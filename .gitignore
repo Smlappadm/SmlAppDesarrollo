@@ -26,3 +26,4 @@ apiProduccion
 **node_modules
 api/.env
 smlapp.zip
+client/.env
