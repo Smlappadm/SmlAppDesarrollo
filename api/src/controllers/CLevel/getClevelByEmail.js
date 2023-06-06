@@ -1,4 +1,4 @@
-const Clevel = require("../../models/Clevel");
+const Clevel = require("../../models/CLevel");
 
 const getClevelByEmail = async (email) => {
   const clevel = await Clevel.findOne({ email: email });
