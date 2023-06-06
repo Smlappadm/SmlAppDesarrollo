@@ -175,8 +175,6 @@ function ChildModal({
   );
 }
 
-
-
 // itemBirthdate,
 // itemCountry,
 // itemDescription,
@@ -227,8 +225,6 @@ export default function NestedModalEdit({
               <h2 id="parent-modal-title">Edit Employ {inputName}</h2>
             </div>
             <div className="flex flex-col items-center justify-center gap-5">
-              <img className="w-5 h-5" src={itemPhoto} />
-              <p>Cumpleaños: {itemBirthdate}</p>
               <InputNameEdit
                 inputName={inputName}
                 setInputName={setInputName}
