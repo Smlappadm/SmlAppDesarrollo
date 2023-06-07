@@ -94,7 +94,7 @@ const VentasDashboard = () => {
       "Dia: 31/8/2022 Hora: 18:30",
       "Dia: 24/4/2023 Hora: 06:30",
     ];
-    // console.log(datos[2].slice(10, 14))
+
 
     console.log(
       datos.sort((a, b) => {
@@ -220,7 +220,7 @@ const VentasDashboard = () => {
     setShowObservaciones(false);
   };
 
-  console.log(data);
+
   return (
     <>
       <Nav />
