@@ -24,6 +24,7 @@ export default function Settings() {
   const userEmail = user?.primaryEmailAddress?.emailAddress;
 
   const [profileImageUrl, setProfileImageUrl] = useState("");
+  const [dateBirth, setDateBirth] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [editSave, setEditSave] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -35,9 +36,12 @@ export default function Settings() {
   const dispatch = useDispatch();
 
   const allEmployees = [...corredores, ...vendedores, ...clevel, ...leader];
+
+
   const selectedEmployee = allEmployees.find(
     (employee) => employee.email === userEmail
   );
+
 
   const [formErrors, setFormErrors] = useState({
     birthdate: "",
@@ -47,7 +51,7 @@ export default function Settings() {
   });
 
   const [formData, setFormData] = useState({
-    birthdate: "",
+    birthdate: selectedEmployee?.birthdate,
     photo: userImageUrl,
     country: selectedEmployee?.country,
     contactNumber: selectedEmployee?.contactNumber,
@@ -93,7 +97,6 @@ export default function Settings() {
     });
   };
 
-  console.log(formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -149,7 +152,11 @@ export default function Settings() {
     dispatch(getAllVendedores());
     dispatch(getAllLeader());
     dispatch(getAllClevel());
+    // setDateBirth(selectedEmployee?.birthdate)
   }, [dispatch]);
+
+
+  // console.log(dateBirth)
 
   return (
     <>
@@ -164,7 +171,9 @@ export default function Settings() {
                 <DatePicker
                   handleChange={handleChange}
                   handleDateFromPicker={handleDateFromPicker}
+                  // dateData={dateBirth ? selectedEmployee?.birthdate : ""}
                 />
+
                 {/* <input
                   type="date"
                   name="birthdate"
@@ -257,7 +266,6 @@ export default function Settings() {
           }
         />
       </div>
-          
     </>
   );
 }

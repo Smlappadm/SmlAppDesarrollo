@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -11,13 +11,16 @@ import "dayjs/locale/es";
 export default function BasicDatePicker({
   handleDateFromPicker,
   handleChange,
+  // dateData
 }) {
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(dayjs());
 
   const handleChangeDate = (date) => {
     setSelectedDate(date);
     handleDateFromPicker(date);
   };
+
+  // dateData.split("/").reverse().join("/")
 
   return (
     <LocalizationProvider
