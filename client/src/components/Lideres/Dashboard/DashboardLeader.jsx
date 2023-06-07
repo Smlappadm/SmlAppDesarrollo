@@ -43,14 +43,10 @@ export const LideresDasboard = () => {
   const [cardXPage, setCardXpage] = useState(10);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
-  // const showData = data.filter((item) => {
-  //   return (
-  //     item.status !== "No responde" &&
-  //     item.status !== "Agendar 2do llamado" &&
-  //     item.status !== "incidencia"
-  //   );
-  //});
-  const currentCard = data.slice(indexFirstCard, indexLastCard);
+  const showData = data.filter((item) => {
+    return item.level !== "-" && item.level !== "incidencia";
+  });
+  const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -413,7 +409,7 @@ export const LideresDasboard = () => {
           pageStyle={pageStyle}
           setPageStyle={setPageStyle}
           cardXPage={cardXPage}
-          data={data}
+          data={showData}
           pages={pages}
           current={currentPage}
         />
