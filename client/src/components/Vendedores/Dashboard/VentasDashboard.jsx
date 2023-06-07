@@ -94,7 +94,7 @@ const VentasDashboard = () => {
       "Dia: 31/8/2022 Hora: 18:30",
       "Dia: 24/4/2023 Hora: 06:30",
     ];
-    // console.log(datos[2].slice(10, 14))
+
 
     console.log(
       datos.sort((a, b) => {
@@ -220,7 +220,7 @@ const VentasDashboard = () => {
     setShowObservaciones(false);
   };
 
-  console.log(data);
+
   return (
     <>
       <Nav />
@@ -383,21 +383,21 @@ const VentasDashboard = () => {
                     <td className="flex justify-start items-center p-0 w-fit">
                       <div className="w-52 h-11">
                         {item.llamada_venta.contacto ? (
-                          <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 ">
+                          <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                             {item.llamada_venta.contacto}
                           </p>
                         ) : (
-                          <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
+                          <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                             Sin contacto
                           </p>
                         )}
                         <div className="flex justify-start items-center">
                           {item.llamada_venta.dia_hora[5] !== "u" ? (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
+                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.llamada_venta.dia_hora}
                             </p>
                           ) : (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
+                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               Sin Día/Hora
                             </p>
                           )}

@@ -31,7 +31,7 @@ export default function BasicDatePicker({ handleDateFromPicker, saveDate }) {
       <DemoContainer components={["DatePicker"]}>
         <DatePicker
           label=""
-          value={dayjs(dateBackup)}
+          value={dayjs(dateBackup ? dateBackup : null)}
           onChange={handleChangeDate}
           sx={{
             width: 350,
