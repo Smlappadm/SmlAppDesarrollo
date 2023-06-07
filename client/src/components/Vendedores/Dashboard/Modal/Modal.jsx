@@ -682,6 +682,7 @@ export default function NestedModal({
               item.status === "No responde") &&
               statusObj.status === "Agendar 2do llamado" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
+                  {console.log("eeeeee")}
                   <label
                     htmlFor="last_name"
                     className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
@@ -695,7 +696,6 @@ export default function NestedModal({
                       id="last_name"
                       name="contacto"
                       // defaultValue={item.status_op}
-                      value={llamadoVenta.contacto}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder=""
@@ -749,25 +749,6 @@ export default function NestedModal({
                       disabled
                       required
                     />
-                    {/* {dateHour.$D ? (<label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    {`Dia: ${dateHour.$D}/${dateHour.$M}/${dateHour.$y} Hora: ${
-                      dateHour.$H && String(dateHour.$H).length === 1
-                        ? `0${dateHour.$H}`
-                        : dateHour.$H
-                    }:${
-                      dateHour.$m && String(dateHour.$m).length === 1
-                        ? `0${dateHour.$m}`
-                        : dateHour.$m
-                    }`}
-                  </label>) : (<label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    Fecha y Hora
-                  </label>)} */}
                     <button
                       type="button"
                       className="py-2 px-3  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
@@ -785,7 +766,7 @@ export default function NestedModal({
                     htmlFor="last_name"
                     className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
                   >
-                    {/* {item.llamada_venta} */}
+                    Contacto
                   </label>
                   <div className="flex justify-center items-center">
                     <input
@@ -793,8 +774,8 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="contacto"
-                      // defaultValue={item.status_op}
-                      value={llamadoVenta.contacto}
+                      // defaultValue={item.llamada_venta.contacto}
+                      value={llamadoVenta.contacto ? llamadoVenta.contacto : item.llamada_venta.contacto}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder=""
@@ -814,7 +795,7 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="observaciones"
-                      value={llamadoVenta.observaciones}
+                      value={llamadoVenta.observaciones ? llamadoVenta.observaciones : item.llamada_venta.observaciones}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       // value="USD"
