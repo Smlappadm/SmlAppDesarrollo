@@ -28,20 +28,19 @@ export default function Settings() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [editSave, setEditSave] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [saveDate, setSaveDate] = useState("");
 
-  const corredores = useSelector((state) => state.corredores);
-  const vendedores = useSelector((state) => state.vendedores);
-  const leader = useSelector((state) => state.leader);
-  const clevel = useSelector((state) => state.clevel);
+  const { corredores } = useSelector((state) => state);
+  const { vendedores } = useSelector((state) => state);
+  const { leader } = useSelector((state) => state);
+  const { clevel } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const allEmployees = [...corredores, ...vendedores, ...clevel, ...leader];
 
-
   const selectedEmployee = allEmployees.find(
     (employee) => employee.email === userEmail
   );
-
 
   const [formErrors, setFormErrors] = useState({
     birthdate: "",
@@ -95,8 +94,8 @@ export default function Settings() {
       ...formData,
       birthdate: `${date.$D}/${date.$M + 1}/${date.$y}`,
     });
+    setEditSave(true);
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -155,9 +154,12 @@ export default function Settings() {
     // setDateBirth(selectedEmployee?.birthdate)
   }, [dispatch]);
 
-
-  // console.log(dateBirth)
-
+  useEffect(() => {
+    if (selectedEmployee && selectedEmployee.birthdate !== null) {
+      setSaveDate(selectedEmployee.birthdate);
+    }
+  }, [selectedEmployee]);
+  
   return (
     <>
       <Nav />
@@ -171,7 +173,7 @@ export default function Settings() {
                 <DatePicker
                   handleChange={handleChange}
                   handleDateFromPicker={handleDateFromPicker}
-                  // dateData={dateBirth ? selectedEmployee?.birthdate : ""}
+                  saveDate={saveDate}
                 />
 
                 {/* <input
@@ -184,14 +186,18 @@ export default function Settings() {
                 /> */}
               </div>
               <div className="flex flex-col justify-end items-start gap-1 w-full h-20 ">
-                  <span className="text-[#dad8d8]">País</span>
+                <span className="text-[#dad8d8]">País</span>
                 <select
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
                   className={styles.inputStyles}
                 >
-                  <option value="">{selectedEmployee?.country ? selectedEmployee?.country : "Seleccionar país"}</option>
+                  <option value="">
+                    {selectedEmployee?.country
+                      ? selectedEmployee?.country
+                      : "Seleccionar país"}
+                  </option>
                   {Countries.map((country, index) => (
                     <option
                       className={styles.inputStylesTwo}
@@ -228,7 +234,10 @@ export default function Settings() {
               </div>
 
               <div className="flex justify-center items-center w-full mt-5">
-                <UploadWidget onImageUpload={handleImageUpload} setEditSave={setEditSave}/>
+                <UploadWidget
+                  onImageUpload={handleImageUpload}
+                  setEditSave={setEditSave}
+                />
                 {profileImageUrl && (
                   <Image
                     name="photo"
@@ -240,9 +249,9 @@ export default function Settings() {
                   />
                 )}
               </div>
-              <div className="flex flex-col justify-end items-end gap-1 w-full h-fit">
+              <div className="flex flex-col justify-center items-center gap-1 w-full h-fit">
                 {editSave && (
-                  <button type="submit" className={styles.button}>
+                  <button type="submit" className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     Save
                   </button>
                 )}
