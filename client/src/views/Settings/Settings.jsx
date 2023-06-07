@@ -20,6 +20,7 @@ const { VITE_CLOUND_NAME } = import.meta.env;
 
 export default function Settings() {
   const user = useUser().user;
+  const mail = user?.emailAddresses[0]?.emailAddress;
   const userImageUrl = user?.imageUrl;
   const userEmail = user?.primaryEmailAddress?.emailAddress;
 
@@ -34,6 +35,7 @@ export default function Settings() {
   const { vendedores } = useSelector((state) => state);
   const { leader } = useSelector((state) => state);
   const { clevel } = useSelector((state) => state);
+  const role = useSelector((state) => state.rol);
   const dispatch = useDispatch();
 
   const allEmployees = [...corredores, ...vendedores, ...clevel, ...leader];
@@ -115,6 +117,21 @@ export default function Settings() {
     //   return;
     // }
 
+
+    axios.put(`/employees/email/?email=${mail}`, formData);
+
+    if (role === "clevel") {
+      axios.put(`/clevel/email/email/?email=${mail}`, formData);
+      axios.put(`/corredor/email/email/?email=${mail}`, formData);
+      axios.put(`/vendedor/email/email/?email=${mail}`, formData);
+    }
+
+    if (role === "leader") {
+      axios.put(`/clevel/email/email/?email=${mail}`, formData);
+      axios.put(`/corredor/email/email/?email=${mail}`, formData);
+      axios.put(`/vendedor/email/email/?email=${mail}`, formData);
+    }
+
     axios
       .put(`${selectedEmployee.rol}/${selectedEmployee._id}`, formData)
       .then((response) => {
@@ -159,7 +176,7 @@ export default function Settings() {
       setSaveDate(selectedEmployee.birthdate);
     }
   }, [selectedEmployee]);
-  
+
   return (
     <>
       <Nav />
@@ -251,7 +268,10 @@ export default function Settings() {
               </div>
               <div className="flex flex-col justify-center items-center gap-1 w-full h-fit">
                 {editSave && (
-                  <button type="submit" className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                  <button
+                    type="submit"
+                    className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  >
                     Save
                   </button>
                 )}
