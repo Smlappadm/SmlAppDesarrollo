@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/es";
 
 export default function BasicDatePicker({ handleDateFromPicker, saveDate }) {
-  const dateBackup = saveDate.split("/").reverse().join("/");
+  const dateBackup = saveDate && saveDate.split("/").reverse().join("/");
 
   const [selectedDate, setSelectedDate] = useState(dayjs(dateBackup));
 
@@ -31,7 +31,7 @@ export default function BasicDatePicker({ handleDateFromPicker, saveDate }) {
       <DemoContainer components={["DatePicker"]}>
         <DatePicker
           label=""
-          value={dayjs(dateBackup)}
+          value={dayjs(dateBackup ? dateBackup : null)}
           onChange={handleChangeDate}
           sx={{
             width: 350,
