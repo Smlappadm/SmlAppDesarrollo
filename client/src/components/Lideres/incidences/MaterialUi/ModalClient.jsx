@@ -1,9 +1,9 @@
-import React, { useState } from "react"
-import Box from "@mui/material/Box"
-import Modal from "@mui/material/Modal"
-import axios from "axios"
-import { toast, ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -25,6 +25,7 @@ export default function BasicModal(props) {
     _id,
     name,
     category,
+    level,
     email,
     instagram,
     telephone,
@@ -32,15 +33,15 @@ export default function BasicModal(props) {
     province,
     url,
     handleClose,
-    updateParentState
-  } = props
+    updateParentState,
+  } = props;
 
-  const [filledEmail, setFilledEmail] = useState(email || "")
-  const [filledInstagram, setFilledInstagram] = useState(instagram || "")
-  const [filledTelephone, setFilledTelephone] = useState(telephone || "")
-  const [filledLevel, setFilledLevel] = useState("")
-  const [filledUrl, setFilledUrl] = useState(url || "")
-  const [filledCorredor, setFilledCorredor] = useState("")
+  const [filledEmail, setFilledEmail] = useState(email || "");
+  const [filledInstagram, setFilledInstagram] = useState(instagram || "");
+  const [filledTelephone, setFilledTelephone] = useState(telephone || "");
+  const [filledLevel, setFilledLevel] = useState("");
+  const [filledUrl, setFilledUrl] = useState(url || "");
+  const [filledCorredor, setFilledCorredor] = useState("");
 
   const [inputVisibility, setInputVisibility] = useState({
     email: false,
@@ -48,41 +49,40 @@ export default function BasicModal(props) {
     telephone: false,
     level: false,
     url: false,
-    corredor: false
+    corredor: false,
   });
 
   const handleEmailChange = (event) => {
-    const updatedValue = event.target.value
-    const newValue = updatedValue !== "" ? updatedValue : email
-    setFilledEmail(newValue)
+    const updatedValue = event.target.value;
+    const newValue = updatedValue !== "" ? updatedValue : email;
+    setFilledEmail(newValue);
   };
 
   const handleInstagramChange = (event) => {
-    const updatedValue = event.target.value
-    const newValue = updatedValue !== "" ? updatedValue : instagram
-    setFilledInstagram(newValue)
+    const updatedValue = event.target.value;
+    const newValue = updatedValue !== "" ? updatedValue : instagram;
+    setFilledInstagram(newValue);
   };
 
   const handleTelephoneChange = (event) => {
-    const updatedValue = event.target.value
-    const newValue = updatedValue !== "" ? updatedValue : telephone
-    setFilledTelephone(newValue)
+    const updatedValue = event.target.value;
+    const newValue = updatedValue !== "" ? updatedValue : telephone;
+    setFilledTelephone(newValue);
   };
 
   const handleUrlChange = (event) => {
-    const updatedValue = event.target.value
-    const newValue = updatedValue !== "" ? updatedValue : url
-    setFilledUrl(newValue)
+    const updatedValue = event.target.value;
+    const newValue = updatedValue !== "" ? updatedValue : url;
+    setFilledUrl(newValue);
   };
 
-
   const handleCloseModal = () => {
-    setFilledEmail(email || "")
-    setFilledInstagram(instagram || "")
-    setFilledTelephone(telephone || "")
-    setFilledLevel("")
-    setFilledUrl(url || "")
-    setFilledCorredor("")
+    setFilledEmail(email || "");
+    setFilledInstagram(instagram || "");
+    setFilledTelephone(telephone || "");
+    setFilledLevel("");
+    setFilledUrl(url || "");
+    setFilledCorredor("");
 
     setInputVisibility({
       email: false,
@@ -90,10 +90,10 @@ export default function BasicModal(props) {
       telephone: false,
       level: false,
       url: false,
-      corredor: false
+      corredor: false,
     });
 
-    handleClose()
+    handleClose();
   };
 
   const handleFixClick = () => {
@@ -104,12 +104,12 @@ export default function BasicModal(props) {
       level: filledLevel,
       url: filledUrl,
       corredor: filledCorredor,
-    }
+    };
 
     axios
       .put(`lead/${_id}`, updatedData)
       .then((response) => {
-        console.log("Datos actualizados correctamente:", response.data)
+        console.log("Datos actualizados correctamente:", response.data);
         toast.success("✔ Lead Update!", {
           position: "top-center",
           autoClose: 3000,
@@ -120,14 +120,14 @@ export default function BasicModal(props) {
           progress: undefined,
           theme: "dark",
         });
-        handleClose()
+        handleClose();
         updateParentState();
       })
       .catch((error) => {
-        console.error("Error al actualizar los datos:", error)
-        alert("Error updating data. Please try again.")
-      })
-  }
+        console.error("Error al actualizar los datos:", error);
+        alert("Error updating data. Please try again.");
+      });
+  };
 
   return (
     <div>
@@ -144,7 +144,6 @@ export default function BasicModal(props) {
         }}
       >
         <Box sx={style}>
-
           <div className="flex flex-col justify-between h-full">
             <div className="font-semibold flex flex-col gap-3 items-center text-24 mb-5">
               <h1>{name} </h1>
@@ -162,7 +161,7 @@ export default function BasicModal(props) {
             </div>
             <div className="font-semibold flex gap-3">
               <p>NIVEL: </p>
-              <p className="font-normal">-</p>
+              <p className="font-normal">{level}</p>
             </div>
             {!inputVisibility.email ? (
               <div className="font-semibold flex gap-3">
@@ -241,7 +240,10 @@ export default function BasicModal(props) {
               <p>WEB: </p>
               <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                 {!inputVisibility.url ? (
-                  <p className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute" title={url}>
+                  <p
+                    className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                    title={url}
+                  >
                     {url}
                   </p>
                 ) : (
@@ -254,7 +256,9 @@ export default function BasicModal(props) {
                 )}
                 {!inputVisibility.url && (
                   <button
-                    onClick={() => setInputVisibility({ ...inputVisibility, url: true })}
+                    onClick={() =>
+                      setInputVisibility({ ...inputVisibility, url: true })
+                    }
                     className="text-white"
                   >
                     Change
@@ -263,20 +267,17 @@ export default function BasicModal(props) {
               </div>
             </div>
 
-
             <div>
-              <button onClick={handleFixClick} className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 ml-[350px]">
+              <button
+                onClick={handleFixClick}
+                className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 ml-[350px]"
+              >
                 FIX
               </button>
             </div>
-
           </div>
         </Box>
       </Modal>
     </div>
-  )
+  );
 }
-
-
-
-
