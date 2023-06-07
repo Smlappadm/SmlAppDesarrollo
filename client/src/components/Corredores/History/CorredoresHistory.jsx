@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import style from "./CorredoresAnalytics.module.css";
+import style from "./CorredoresHistory.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { useDispatch, useSelector } from "react-redux";
-import { FaHistory } from "react-icons/fa";
 import Nav from "../../Nav/Nav";
 import {
   Card,
@@ -19,13 +18,13 @@ import {
 
 import { CiGlobe, CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
+import { FaHistory } from "react-icons/fa";
 import { getLeadCorredoresChecked } from "../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
-const CorredoresAnlaytics = () => {
+const CorredoresHistory = () => {
   const { corredorLeadChecked } = useSelector((state) => state);
   const dispatch = useDispatch();
-
 
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
@@ -56,14 +55,16 @@ const CorredoresAnlaytics = () => {
         <Card className="w-full m-5 h-screen bg-[#222131]">
           <div className="flex gap-10 items-center mt-2 mx-5 ">
             <Title className="font-bold text-[#e2e2e2] text-lg">
-              Analytics
+              History
             </Title>
             <div className="flex gap-5">
               <Link to={"/corredores"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-
               <Link className="text-5xl" to={"/corredores-history"}>
+                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              </Link>
+              <Link className="text-5xl" to={"/corredores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div>
@@ -174,4 +175,4 @@ const CorredoresAnlaytics = () => {
   );
 };
 
-export default CorredoresAnlaytics;
+export default CorredoresHistory;

@@ -1,6 +1,7 @@
 const getAllCLevels = require("../controllers/CLevel/getAllCLevels");
 const getCLevelById = require("../controllers/CLevel/getCLevelById");
 const getCLevelByName = require("../controllers/CLevel/getCLevelByName");
+const getClevelByEmail = require("../controllers/CLevel/getClevelByEmail");
 const postCLevel = require("../controllers/CLevel/postCLevel");
 const updateCLevelByEmail = require("../controllers/CLevel/updateCLevelByEmail");
 
@@ -35,6 +36,17 @@ const updateCLevelHandler = async (req, res) => {
   }
 };
 
+const getCLevelByEmailHandler = async (req, res) => {
+  const { email } = req.query;
+
+  try {
+    const cLevel = await getClevelByEmail(email);
+    res.status(200).json(cLevel);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 const getCLevelByNameHandler = async (req, res) => {
   const { Name } = req.query;
 
@@ -63,4 +75,5 @@ module.exports = {
   updateCLevelHandler,
   getCLevelByIdHandler,
   getCLevelByNameHandler,
+  getCLevelByEmailHandler,
 };

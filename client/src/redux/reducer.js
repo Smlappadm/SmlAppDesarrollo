@@ -234,7 +234,7 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        leaderDashboard: action.payload,
+        leaderDashboard: CorredorNameSort,
       };
     case FIND_CORREDORES_NAME:
       const vendedorName = action.payload;
@@ -243,7 +243,7 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        leaderDashboard: action.payload,
+        leaderDashboard: vendedorNameSort,
       };
     case GET_ALL_CORREDORES:
       return {

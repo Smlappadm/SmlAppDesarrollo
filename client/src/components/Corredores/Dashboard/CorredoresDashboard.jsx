@@ -7,6 +7,7 @@ import Nav from "../../Nav/Nav";
 import { CiGlobe, CiMail } from "react-icons/ci";
 import { GrInstagram } from "react-icons/gr";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
+import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
   getAllCountries,
@@ -296,6 +297,9 @@ const CorredoresDashboard = () => {
                   <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
                 </Link>
                 <Link className="text-5xl" to={"/corredores-history"}>
+                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/corredores-analytics"}>
                   <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
                 </Link>
               </div>
@@ -361,11 +365,11 @@ const CorredoresDashboard = () => {
             <table className="w-full">
               <thead className={style.tableHead}>
                 <tr className={style.tableRow}>
-                  <th className="text-start">Name</th>
-                  <th className="text-start">Web</th>
-                  <th className="text-start">Mail</th>
-                  <th className="text-start">Instagram</th>
-                  <th className="text-start">Nivel</th>
+                  <th className="text-start ml-20">Name</th>
+                  <th className="text-start ml-5">Web</th>
+                  <th className="text-start ml-12">Mail</th>
+                  <th className="text-start ml-2">Instagram</th>
+                  <th className="text-start ml-4">Nivel</th>
                 </tr>
               </thead>
 

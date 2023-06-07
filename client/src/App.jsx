@@ -7,7 +7,6 @@ import CorredoresDashboard from "./components/Corredores/Dashboard/CorredoresDas
 import VendedoresDashboard from "./components/Vendedores/Dashboard/VendedoresDashboard";
 import { AnalyticLeader } from "./components/Lideres/Analytic/AnalyticLeader";
 import { LideresDasboard } from "./components/Lideres/Dashboard/DashboardLeader";
-import CorredoresAnlaytics from "./components/Corredores/Analitycs/CorredoresAnalytics";
 import VendedoresHistory from "./components/Vendedores/analytics/VendedoresHistory";
 import VendedoresAnalytics from "./components/Vendedores/analytics/VendedoresAnalytics";
 import VentasDasboard from "./components/Vendedores/Dashboard/VentasDashboard";
@@ -27,6 +26,8 @@ import Analytic from "./components/C-Level/Analytics/Analytic";
 import Incidences from "./components/Lideres/incidences/incidencias";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import CorredoresHistory from "./components/Corredores/History/CorredoresHistory";
+import CorredoresAnlaytics from "./components/Corredores/Analytics/CorredoresAnalytics";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -35,15 +36,12 @@ if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
 
 const clerkPubKey = "pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk";
 
-
 function ClerkProviderWithRoutes() {
   const navigate = useNavigate();
   const role = useSelector((state) => state.rol);
   const isEmployee = useSelector((state) => state.isEmployee);
   const [roleReady, setRoleReady] = useState("");
   const [accesReady, setAccessReady] = useState(false);
-
-
 
   useEffect(() => {
     const checkRole = async () => {
@@ -59,12 +57,15 @@ function ClerkProviderWithRoutes() {
     }
     //---------------//
     const checkAccess = async () => {
-      if (isEmployee !== undefined && isEmployee !== null && isEmployee !== "") {
+      if (
+        isEmployee !== undefined &&
+        isEmployee !== null &&
+        isEmployee !== ""
+      ) {
         setAccessReady(isEmployee);
         localStorage.setItem("isEmployeeReady", isEmployee);
-      }
-      else{
-        setAccessReady(false)
+      } else {
+        setAccessReady(false);
       }
     };
 
@@ -72,9 +73,9 @@ function ClerkProviderWithRoutes() {
     if (storedIsEmployee) {
       setAccessReady(storedIsEmployee);
     }
-    
+
     checkRole();
-    checkAccess()
+    checkAccess();
   }, [role, isEmployee]);
 
   const handleSignOut = () => {
@@ -82,8 +83,8 @@ function ClerkProviderWithRoutes() {
     localStorage.removeItem("isEmployeeReady");
   };
 
-	const isRoleReady = localStorage.getItem("roleReady")
-	const isEmployeeReady = localStorage.getItem("isEmployeeReady")
+  const isRoleReady = localStorage.getItem("roleReady");
+  const isEmployeeReady = localStorage.getItem("isEmployeeReady");
 
   function isRoleAllowed(role) {
     const allowedRoles = ["vendedor", "clevel", "leader", "corredor"];
@@ -106,7 +107,6 @@ function ClerkProviderWithRoutes() {
               appearance={{
                 variables: {
                   colorInputBackground: "#222131",
-
                   spacingUnit: "0.8rem",
                 },
                 layout: {
@@ -144,7 +144,8 @@ function ClerkProviderWithRoutes() {
           path="/lideres"
           element={
             isRoleAllowed(roleReady) &&
-              (roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? (
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
               <LideresDasboard />
             ) : (
               <ReturnToPage />
@@ -155,7 +156,8 @@ function ClerkProviderWithRoutes() {
           path="/lideres-analytics"
           element={
             isRoleAllowed(roleReady) &&
-            (roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? (
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
               <AnalyticLeader />
             ) : (
               <ReturnToPage />
@@ -165,7 +167,9 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/lideres-employees"
           element={
-            isRoleAllowed(roleReady) && (roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? (
+            isRoleAllowed(roleReady) &&
+            roleReady === "leader" &&
+            isEmployeeReady ? (
               <Lideres />
             ) : (
               <ReturnToPage />
@@ -174,13 +178,22 @@ function ClerkProviderWithRoutes() {
         />
         <Route
           path="/lideres-incidences"
-          element={isRoleAllowed(roleReady) && (roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? <Incidences /> : <ReturnToPage />}
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
+              <Incidences />
+            ) : (
+              <ReturnToPage />
+            )
+          }
         />
         <Route
           path="/clevel"
           element={
             isRoleAllowed(roleReady) &&
-            (roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? (
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
               <Clevel />
             ) : (
               <ReturnToPage />
@@ -190,7 +203,9 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/clevel-analytics"
           element={
-            isRoleAllowed(roleReady) && roleReady === "clevel" && isEmployeeReady ? (
+            isRoleAllowed(roleReady) &&
+            roleReady === "clevel" &&
+            isEmployeeReady ? (
               <Analytic />
             ) : (
               <ReturnToPage />
@@ -200,7 +215,11 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/corredores"
           element={
-            isRoleAllowed(roleReady) && (roleReady === "corredor" || roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? (
+            isRoleAllowed(roleReady) &&
+            (roleReady === "corredor" ||
+              roleReady === "clevel" ||
+              roleReady === "leader") &&
+            isEmployeeReady ? (
               <CorredoresDashboard />
             ) : (
               <ReturnToPage />
@@ -210,19 +229,55 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/corredores-history"
           element={
-            isRoleAllowed(roleReady) && (roleReady === "corredor" || roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? (
+            isRoleAllowed(roleReady) &&
+            (roleReady === "corredor" ||
+              roleReady === "clevel" ||
+              roleReady === "leader") &&
+            isEmployeeReady ? (
+              <CorredoresHistory />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/corredores-analytics"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "corredor" ||
+              roleReady === "clevel" ||
+              roleReady === "leader") &&
+            isEmployeeReady ? (
               <CorredoresAnlaytics />
             ) : (
               <ReturnToPage />
             )
           }
         />
-        <Route path="/analytics" element={isRoleAllowed(roleReady) && (roleReady === "clevel" || roleReady === "leader") && isEmployeeReady ? <Analytics /> : <ReturnToPage />} />
-        <Route path="/settings" element={isEmployeeReady ? <Settings /> : <ReturnToPage />}  />
+        <Route
+          path="/analytics"
+          element={
+            isRoleAllowed(roleReady) &&
+            roleReady === "clevel" &&
+            isEmployeeReady ? (
+              <Analytics />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/settings"
+          element={isEmployeeReady ? <Settings /> : <ReturnToPage />}
+        />
         <Route
           path="/vendedores"
           element={
-            isRoleAllowed(roleReady) && (roleReady === "vendedor" || roleReady === "clevel" || roleReady === "leader")  && isEmployeeReady ? (
+            isRoleAllowed(roleReady) &&
+            (roleReady === "vendedor" ||
+              roleReady === "clevel" ||
+              roleReady === "leader") &&
+            isEmployeeReady ? (
               <VendedoresDashboard />
             ) : (
               <ReturnToPage />
@@ -232,7 +287,11 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/vendedores-history"
           element={
-            isRoleAllowed(roleReady) && (roleReady === "vendedor" || roleReady === "clevel" || roleReady === "leader")  && isEmployeeReady ? (
+            isRoleAllowed(roleReady) &&
+            (roleReady === "vendedor" ||
+              roleReady === "clevel" ||
+              roleReady === "leader") &&
+            isEmployeeReady ? (
               <VendedoresHistory />
             ) : (
               <ReturnToPage />
@@ -242,7 +301,9 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/vendedores-ventas"
           element={
-            isRoleAllowed(roleReady) && roleReady === "vendedor" || roleReady === "clevel" || roleReady === "leader" ? (
+            (isRoleAllowed(roleReady) && roleReady === "vendedor") ||
+            roleReady === "clevel" ||
+            roleReady === "leader" ? (
               <VentasDasboard />
             ) : (
               <ReturnToPage />
@@ -252,7 +313,9 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/vendedores-analytics"
           element={
-            isRoleAllowed(roleReady) && roleReady === "vendedor" || roleReady === "clevel" || roleReady === "leader" ? (
+            (isRoleAllowed(roleReady) && roleReady === "vendedor") ||
+            roleReady === "clevel" ||
+            roleReady === "leader" ? (
               <VendedoresAnalytics />
             ) : (
               <ReturnToPage />
@@ -280,7 +343,7 @@ function ClerkProviderWithRoutes() {
 function App() {
   return (
     <div className={styles.App}>
-      <ClerkProviderWithRoutes  />
+      <ClerkProviderWithRoutes />
     </div>
   );
 }

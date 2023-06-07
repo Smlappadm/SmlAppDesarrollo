@@ -132,9 +132,9 @@ export const TableEmployees = () => {
       <div className=" flex flex-col justify-start items-center w-full h-screen">
         <ToastContainer />
         <Card className="bg-[#222131] w-full h-screen p-5">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mx-5 mb-0">
             <div className="flex gap-5">
-              <Title className="font-bold text-[#e2e2e2] text-lg">
+              <Title className={style.title}>
                 Employees
               </Title>
               <Link to={"/lideres/"}>
