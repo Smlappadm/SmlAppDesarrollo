@@ -43,14 +43,14 @@ export const LideresDasboard = () => {
   const [cardXPage, setCardXpage] = useState(10);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
-  // const showData = data.filter((item) => {
-  //   return (
-  //     item.status !== "No responde" &&
-  //     item.status !== "Agendar 2do llamado" &&
-  //     item.status !== "incidencia"
-  //   );
-  //});
-  const currentCard = data.slice(indexFirstCard, indexLastCard);
+  const showData = data.filter((item) => {
+    return (
+      item.status !== "No responde" &&
+      item.status !== "Agendar 2do llamado" &&
+      item.status !== "incidencia"
+    );
+  });
+  const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -150,6 +150,9 @@ export const LideresDasboard = () => {
             <Title className={style.title}>Dashboard</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link className="text-5xl" to={"/lideres-employees"}>
+              <IoPeople className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
             <Link className="text-5xl" to={"/lideres-analytics"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -374,7 +377,7 @@ export const LideresDasboard = () => {
                         ""
                       )}
                       {item.status === "Sin contactar" ? (
-                        <Text className="bg-[#d0da3d]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
+                        <Text className="bg-[#d0da3d]  text-[#e0dfdf]   px-2 py-1.5 rounded-xl text-center w-48">
                           Sin Contactar
                         </Text>
                       ) : (
@@ -413,7 +416,7 @@ export const LideresDasboard = () => {
           pageStyle={pageStyle}
           setPageStyle={setPageStyle}
           cardXPage={cardXPage}
-          data={data}
+          data={showData}
           pages={pages}
           current={currentPage}
         />

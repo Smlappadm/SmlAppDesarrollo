@@ -24,6 +24,7 @@ function Landing() {
 	const selectedEmployee = allEmployees.find(employee => employee.email === userEmail);
 	const isEmployeeReady = localStorage.getItem("isEmployeeReady");
 	const roleReady = localStorage.getItem("roleReady");
+
 	const isEmployee = () => {
 		return employees.some(employees => employees.email === userEmail);
 	}
@@ -62,7 +63,7 @@ function Landing() {
 						<div className={style.containerWellcome}>
 							 {selectedEmployee?.photo ? <img className={style.imagen} src={selectedEmployee.photo} alt="" />  : <img className={style.imagen} src={userImageUrl} alt="" /> }
 							<h1 className={style.wellcome}>Bienvenido {user.fullName} </h1>
-							<h3 className={style.role}>Rol: {roleReady} </h3>
+							<h3 className={style.role}>rol: {roleReady} </h3>
 						</div>
 						:
 						<h1 className={style.notWellcome}>entrada no autorizada</h1>

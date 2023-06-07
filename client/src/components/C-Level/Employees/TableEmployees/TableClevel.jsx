@@ -1,8 +1,21 @@
 import { useState, useEffect } from "react";
 import style from "./TableClevel.module.css";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
+import {
+  Card,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+  Text,
+  Title,
+} from "@tremor/react";
 import { CiMail } from "react-icons/ci";
-import { getAllEmployees } from "../../../../redux/actions";
+import {
+  getAllEmployees,
+} from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import NestedModal from "./MaterialUi/NestedModal";
 import NestedModalEdit from "./MaterialUi/Edit/NestedModalEdit";
@@ -83,13 +96,25 @@ const ErrorCreateEmployees = (name) => {
 };
 
 export const TableClevel = () => {
+  // const { corredores, vendedores, clevel, leader } = useSelector(
+  //   (state) => state
+  // );
   const { allEmployees } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(getAllCorredores());
+  //   dispatch(getAllVendedores());
+  //   dispatch(getAllLeader());
+  //   dispatch(getAllClevel());
+  // }, [dispatch]);
+
   useEffect(() => {
     dispatch(getAllEmployees());
   }, [dispatch]);
+
+  // let employees = corredores.concat(vendedores, clevel, leader);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -102,52 +127,52 @@ export const TableClevel = () => {
     setCurrentPage(pageNumber);
   };
 
-  console.log(allEmployees);
-
   return (
     <>
       <div className=" flex flex-col justify-start items-center w-full h-screen">
         <ToastContainer />
-        <div className="bg-[#222131] rounded-none w-full h-screen p-5">
+        <Card className="bg-[#222131] rounded-none w-full h-screen p-5">
           <div className="flex justify-between items-center">
-            <h1 className="font-bold text-[#e2e2e2] text-lg">Employees</h1>
+            <Title className="font-bold text-[#e2e2e2] text-lg">
+              Employees
+            </Title>
             <NestedModal
               CreateEmployees={CreateEmployees}
               ErrorCreateEmployees={ErrorCreateEmployees}
             />
           </div>
-          <div className="w-full">
-            <div className={style.tableHead}>
-              <div className={style.tableRow}>
-                <div>Name</div>
-                <div>Email</div>
-                <div>Phone Number</div>
-                <div>Position</div>
-                <div>
+          <Table className="w-full">
+            <TableHead className={style.tableHead}>
+              <TableRow className={style.tableRow}>
+                <TableHeaderCell>Name</TableHeaderCell>
+                <TableHeaderCell>Email</TableHeaderCell>
+                <TableHeaderCell>Phone Number</TableHeaderCell>
+                <TableHeaderCell>Position</TableHeaderCell>
+                <TableHeaderCell>
                   <h1></h1>
-                </div>
-              </div>
-            </div>
-            <div className={style.tableBody}>
+                </TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody className={style.tableBody}>
               {currentCard.map((item, index) => (
-                <div key={index} className={style.tableCards}>
-                  <div className="flex justify-start items-center p-0">
+                <TableRow key={index} className={style.tableCards}>
+                  <TableCell className="flex justify-start items-center p-0">
                     {/* <img
                       className="w-8 ml-2 mr-4 rounded-full"
                       src={item.photo}
                       alt="avatar image"
                     /> */}
-                    <p>{item.name}</p>
-                  </div>
-                  <div className="flex justify-start items-center p-0">
+                    <Text>{item.name}</Text>
+                  </TableCell>
+                  <TableCell className="flex justify-start items-center p-0">
                     <CiMail className={style.icon} />
-                    <p>{item.email}</p>
-                  </div>
-                  <div className="p-0 mx-3">
-                    <p>{item.contactNumber}</p>
-                  </div>
-                  <div className="p-0">
-                    <p
+                    <Text>{item.email}</Text>
+                  </TableCell>
+                  <TableCell className="p-0 mx-3">
+                    <Text>{item.contactNumber}</Text>
+                  </TableCell>
+                  <TableCell className="p-0">
+                    <Text
                       className={` 
                       ${item.rol === "clevel" ? "bg-[#ac4242]" : null} 
                       ${item.rol === "leader" ? "bg-[#1b7757]" : null}  
@@ -157,19 +182,15 @@ export const TableClevel = () => {
                       } text-center p-1 w-20 rounded-lg`}
                     >
                       {item.rol}
-                    </p>
-                  </div>
-                  <div className="p-0 relative">
+                    </Text>
+                  </TableCell>
+                  <TableCell className="p-0 relative">
                     <div className="ml-20 pl-2">
                       <NestedModalEdit
                         itemId={item._id}
                         itemName={item.name}
                         itemEmail={item.email}
                         itemPhone={item.contactNumber}
-                        itemBirthdate={item.birthdate}
-                        itemCountry={item.country}
-                        itemDescription={item.description}
-                        itemPhoto={item.photo}
                         itemRol={item.rol}
                         ErrorEmployees={ErrorEmployees}
                         BannedEmployees={BannedEmployees}
@@ -177,12 +198,12 @@ export const TableClevel = () => {
                         ErrorEditEmployees={ErrorEditEmployees}
                       />
                     </div>
-                  </div>
-                </div>
+                  </TableCell>
+                </TableRow>
               ))}
-            </div>
-          </div>
-        </div>
+            </TableBody>
+          </Table>
+        </Card>
 
         <div className=" mb-6">
           <PaginationOutlined

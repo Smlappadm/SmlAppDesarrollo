@@ -6,9 +6,6 @@ const findLeadVendedorName = async (name) => {
     vendedor: regex,
     checked: true,
     view: true,
-    status: {
-      $nin: ["No responde", "Agendar 2do llamado", "incidencia"],
-    },
   }).exec();
   return leads;
 };

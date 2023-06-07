@@ -9,7 +9,7 @@ import {
   IoCashSharp,
   IoPeople,
   IoExitOutline,
-  IoWalkOutline,
+  IoWalkOutline
 } from "react-icons/io5";
 
 function Nav() {
@@ -17,8 +17,8 @@ function Nav() {
   const roleReady = localStorage.getItem("roleReady");
   const isEmployee = localStorage.getItem("isEmployeeReady");
 
-  const handleLogout = async () => {
-    await signOut();
+  const handleLogout = () => {
+    signOut();
     localStorage.clear();
   };
 
@@ -29,16 +29,14 @@ function Nav() {
           <Link to={"/protected"}>
             <img
               className="opacity-80 w-44"
-              src="https://i.postimg.cc/Kvj4Yr5X/White-Logo-Social-Media-Lab.webp"
+              src="https://cdn.discordapp.com/attachments/1105243107555037294/1106577865698459788/White_Logo_Social_Media_Lab.png"
             />
           </Link>
         </div>
 
-        {!isEmployee || !roleReady ? (
-          <div className={styles.loader}></div>
-        ) : (
+        {!isEmployee || !roleReady? <div className={styles.ldsCircle}><div></div></div> :(
           <div className=" flex  w-fit mt-12 ">
-            {roleReady === "clevel" || roleReady === "leader" ? (
+            {roleReady === "clevel" ? (
               <ul className="flex flex-col gap-2">
                 <li className="flex gap-2 items-center text-[18px]">
                   <span className=" text-lg">
@@ -92,21 +90,19 @@ function Nav() {
                     </Link>
                   </span>
                 </li>
-                {roleReady === "clevel" ? (
-                  <li className="flex gap-2 items-center text-[18px] text-white">
-                    <span className="text-[1.5rem]">
-                      <IoStatsChart className="w-4 text-[#e0dddd]" />
-                    </span>
-                    <span>
-                      <Link
-                        to="/analytics"
-                        className="text-[#e0dddd] hover:text-white"
-                      >
-                        Analytics
-                      </Link>
-                    </span>
-                  </li>
-                ) : null}
+                <li className="flex gap-2 items-center text-[18px] text-white">
+                  <span className="text-[1.5rem]">
+                    <IoStatsChart className="w-4 text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/analytics"
+                      className="text-[#e0dddd] hover:text-white"
+                    >
+                      Analytics
+                    </Link>
+                  </span>
+                </li>
                 <li className="flex gap-2 items-center text-[18px]">
                   <span className=" text-lg">
                     <IoSettingsSharp className="text-[#e0dddd]" />
@@ -144,6 +140,87 @@ function Nav() {
                     <Link
                       to="/vendedores-history"
                       className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Analytics
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoSettingsSharp className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/settings"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Settings
+                    </Link>
+                  </span>
+                </li>
+              </ul>
+            ) : roleReady === "leader" ? (
+              <ul className="flex flex-col gap-2">
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoPeople className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/clevel"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Employees
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoGrid className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/lideres"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Dashboard
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoCashSharp className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/vendedores"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Vendedor
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoWalkOutline className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/corredores"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Corredor
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px] text-white">
+                  <span className="text-[1.5rem]">
+                    <IoStatsChart className="w-4 text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/analytics"
+                      className="text-[#e0dddd] hover:text-white"
                     >
                       Analytics
                     </Link>

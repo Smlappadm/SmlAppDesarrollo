@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import InputNameEdit from "./InputNameEdit";
 import InputPhoneEdit from "./InputPhoneEdit";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import InputEmailEdit from "./InputEmailEdit";
 import { getAllEmployees } from "../../../../../../redux/actions";
 
@@ -34,7 +34,6 @@ function ChildModalDelete({
   BannedEmployees,
 }) {
   const [open, setOpen] = useState(false);
-  const role = useSelector((state) => state.rol);
   const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);
@@ -65,17 +64,13 @@ function ChildModalDelete({
 
   return (
     <React.Fragment>
-      {role && role === "clevel" ? (
-        <Button
-          variant="contained"
-          sx={{ marginTop: "2rem" }}
-          onClick={handleOpen}
-        >
-          Delete Employ
-        </Button>
-      ) : (
-        ""
-      )}
+      <Button
+        variant="contained"
+        sx={{ marginTop: "2rem" }}
+        onClick={handleOpen}
+      >
+        Delete Employ
+      </Button>
       <Modal
         open={open}
         onClose={handleCreate}
@@ -126,13 +121,13 @@ function ChildModal({
     }
 
     try {
-      const response = await axios.put(`/${itemRol}/?email=${itemEmail}`, {
+      const response = await axios.put(`/${itemRol}/${itemId}`, {
         name: inputName,
         email: inputEmail,
         rol: selectEmployees,
         contactNumber: inputPhone,
       });
-      const response1 = await axios.put(`/employees/?email=${inputEmail}`, {
+      const response1 = await axios.put(`/employees/${itemEmail}`, {
         name: inputName,
         email: inputEmail,
         rol: selectEmployees,
@@ -145,7 +140,10 @@ function ChildModal({
       console.log(`No se pudo enviar el post de ${itemRol}`);
     }
 
-    dispatch(getAllEmployees());
+    dispatch(getAllCorredores());
+    dispatch(getAllVendedores());
+    dispatch(getAllLeader());
+    dispatch(getAllClevel());
     setOpen(false);
   };
 
@@ -174,11 +172,6 @@ function ChildModal({
     </React.Fragment>
   );
 }
-
-// itemBirthdate,
-// itemCountry,
-// itemDescription,
-// itemPhoto,
 
 export default function NestedModalEdit({
   itemId,
@@ -219,7 +212,7 @@ export default function NestedModalEdit({
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ ...style, width: "30%", bgcolor: "#39394b" }}>
+        <Box sx={{ ...style, width: "30%", height: "45%", bgcolor: "#39394b" }}>
           <div>
             <div className="flex flex-col gap-5 my-5">
               <h2 id="parent-modal-title">Edit Employ {inputName}</h2>

@@ -125,9 +125,12 @@ const Incidences = () => {
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5 ">
-            <Title className={style.title}>Incidences</Title>
+            <Title className={style.title}>Dashboard</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link className="text-5xl" to={"/lideres-employees"}>
+              <IoPeople className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
             <Link className="text-5xl" to={"/lideres-analytics"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />

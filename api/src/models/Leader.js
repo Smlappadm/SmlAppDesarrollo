@@ -16,7 +16,7 @@ const LeaderSchema = new mongoose.Schema(
       },
     },
     birthdate: {
-      type: String,
+      type: Date,
     },
     photo: {
       type: String,
