@@ -14,6 +14,6 @@ CLevelRouter.get("/", getAllCLevelsHandler);
 CLevelRouter.get("/email", getCLevelByEmailHandler);
 CLevelRouter.get("/name", getCLevelByNameHandler);
 CLevelRouter.get("/:id", getCLevelByIdHandler);
-CLevelRouter.put("/", updateCLevelHandler);
+CLevelRouter.put("/email/email", updateCLevelHandler);
 
 module.exports = CLevelRouter;

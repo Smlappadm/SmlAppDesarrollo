@@ -14,7 +14,19 @@ const employeesSchema = new Schema(
       type: String,
       required: true,
     },
+    birthdate: {
+      type: String,
+    },
+    photo: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
     contactNumber: {
+      type: String,
+    },
+    description: {
       type: String,
     },
     deleted: {
