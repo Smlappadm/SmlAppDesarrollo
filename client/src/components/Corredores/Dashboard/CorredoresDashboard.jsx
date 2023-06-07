@@ -489,7 +489,7 @@ const CorredoresDashboard = () => {
             </table>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
-              <h1>LEADS NOT FOUND...</h1>
+              <h1>NO HAY LEADS CON ESE FILTRADO...</h1>
             </div>
           )}
         </form>
