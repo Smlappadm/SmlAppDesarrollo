@@ -7,6 +7,7 @@ const putCorredorLead = require("../controllers/Corredor/putCorredorLead");
 const updateCorredorById = require("../controllers/Corredor/updateCorredorById");
 const getCorredorByEmail = require("../controllers/Corredor/getCorredorByEmail");
 const putCorredorLeadChecked = require("../controllers/Corredor/putCorredorLeadChecked");
+const updateCorredorByEmail = require("../controllers/Corredor/updateCorredorByEmail");
 
 const getAllCorredoresHandler = async (req, res) => {
   try {
@@ -95,6 +96,18 @@ const getCorredorByIdHandler = async (req, res) => {
   }
 };
 
+const updateCorredorByEmailHandler = async (req, res) => {
+  const email = req.query.email;
+  const updatedData = req.body;
+
+  try {
+    const corredor = await updateCorredorByEmail(email, updatedData);
+    res.status(200).json(corredor);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllCorredoresHandler,
   postCorredorHandler,
@@ -104,4 +117,5 @@ module.exports = {
   putCorredorLeadHandler,
   getValueLeadsHandler,
   putCorredorLeadCheckedHandler,
+  updateCorredorByEmailHandler,
 };
