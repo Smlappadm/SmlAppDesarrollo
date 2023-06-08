@@ -338,7 +338,7 @@ const Incidences = () => {
                         ""
                       )}
                       {item.status === "Sin contactar" ? (
-                        <Text className="bg-[#d0da3d]  text-[#e0dfdf]   px-2 py-1.5 rounded-xl text-center w-48">
+                        <Text className="bg-[#d0da3d]  text-black   px-2 py-1.5 rounded-xl text-center w-48">
                           Sin Contactar
                         </Text>
                       ) : (
