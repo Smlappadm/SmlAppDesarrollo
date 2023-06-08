@@ -168,7 +168,6 @@ export default function Settings() {
     dispatch(getAllVendedores());
     dispatch(getAllLeader());
     dispatch(getAllClevel());
-    // setDateBirth(selectedEmployee?.birthdate)
   }, [dispatch]);
 
   useEffect(() => {
