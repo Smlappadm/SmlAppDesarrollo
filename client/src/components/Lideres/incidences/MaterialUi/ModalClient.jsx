@@ -41,8 +41,9 @@ export default function BasicModal(props) {
     setClient(_id);
     setChangeMail(email);
     setChangePhone(telephone);
-    setchangeWeb(web);
-  }, [email, _id, telephone, web]);
+    setChangeWeb(web);
+    setChangeIG(instagram);
+  }, [email, _id, telephone, web, instagram, props]);
 
   const [client, setClient] = useState("");
 
@@ -50,6 +51,7 @@ export default function BasicModal(props) {
     email: false,
     telephone: false,
     web: false,
+    instagram: false,
   });
 
   const [changeMail, setChangeMail] = useState("");
@@ -57,7 +59,6 @@ export default function BasicModal(props) {
     setVisible({ ...visible, email: true });
   };
   const OKChangeMail = () => {
-    setUpdateLead({ ...updateLead, email: changeMail });
     setVisible({ ...visible, email: false });
   };
 
@@ -66,30 +67,37 @@ export default function BasicModal(props) {
     setVisible({ ...visible, telephone: true });
   };
   const OKChangePhone = () => {
-    setUpdateLead({ ...updateLead, telephone: changePhone });
     setVisible({ ...visible, telephone: false });
   };
-  const [changeWeb, setchangeWeb] = useState("");
-  const OpenchangeWeb = () => {
+
+  const [changeWeb, setChangeWeb] = useState("");
+  const OpenChangeWeb = () => {
     setVisible({ ...visible, web: true });
   };
-  const OKchangeWeb = () => {
-    setUpdateLead({ ...updateLead, web: changeWeb });
+  const OKChangeWeb = () => {
     setVisible({ ...visible, web: false });
   };
 
-  const [updateLead, setUpdateLead] = useState({
-    email: changeMail,
-    telephone: changePhone,
-  });
+  const [changeIG, setChangeIG] = useState("");
+  const OpenChangeIG = () => {
+    setVisible({ ...visible, instagram: true });
+  };
+  const OKChangeIG = () => {
+    setVisible({ ...visible, instagram: false });
+  };
 
   let body = {};
-  const SendFix = (client) => {
-    body = { email: changeMail, telephone: changePhone };
+  const SendFix = async (client) => {
+    body = {
+      email: changeMail,
+      telephone: changePhone,
+      url: changeWeb,
+      instagram: changeIG,
+    };
     console.log("listo");
     console.log(client);
     console.log(body);
-    axios.put(`lead/${client}`, body);
+    await axios.put(`lead/${client}`, body);
   };
 
   return (
@@ -122,119 +130,111 @@ export default function BasicModal(props) {
                 {province}, {city}{" "}
               </p>
             </div>
-            {vendedor === "" ? (
-              <>
-                <div className="font-semibold flex gap-3">
-                  <p>NIVEL: </p>
-                  <p className="font-normal">{level}</p>
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>INSTAGRAM: </p>
-                  <p className="font-normal">{instagram}</p>
-                  <button>Change</button>
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>TELEPHONE: </p>
-                  {visible.telephone === false ? (
-                    <>
-                      <p className="font-normal">{changePhone}</p>
-                      <button onClick={OpenChangePhone}>Change</button>
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        type="text"
-                        value={changePhone}
-                        onChange={(event) => {
-                          setChangePhone(event.target.value);
-                        }}
-                      />
-                      <button onClick={OKChangePhone}>OK</button>
-                    </>
-                  )}
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>EMAIL: </p>
-                  {visible.email === false ? (
-                    <>
-                      <p className="font-normal">{changeMail}</p>
-                      <button onClick={OpenChangeMail}>Change</button>
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        type="text"
-                        value={changeMail}
-                        onChange={(event) => {
-                          setChangeMail(event.target.value);
-                        }}
-                      />
-                      <button onClick={OKChangeMail}>OK</button>
-                    </>
-                  )}
-                </div>
-                <div className="w-28 font-semibold flex gap-3">
-                  <p>WEB: </p>
+
+            <div className="font-semibold flex gap-3">
+              <p>NIVEL: </p>
+              <p className="font-normal">{level}</p>
+            </div>
+            <div className="font-semibold flex gap-3">
+              <p>INSTAGRAM: </p>
+              {visible.instagram === false ? (
+                <>
+                  <p className="font-normal">{changeIG}</p>
+                  <button onClick={OpenChangeIG}>Change</button>
+                </>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    value={changeIG}
+                    onChange={(event) => {
+                      setChangeIG(event.target.value);
+                    }}
+                  />
+                  <button onClick={OKChangeIG}>OK</button>
+                </>
+              )}
+            </div>
+            <div className="font-semibold flex gap-3">
+              <p>TELEPHONE: </p>
+              {visible.telephone === false ? (
+                <>
+                  <p className="font-normal">{changePhone}</p>
+                  <button onClick={OpenChangePhone}>Change</button>
+                </>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    value={changePhone}
+                    onChange={(event) => {
+                      setChangePhone(event.target.value);
+                    }}
+                  />
+                  <button onClick={OKChangePhone}>OK</button>
+                </>
+              )}
+            </div>
+            <div className="font-semibold flex gap-3">
+              <p>EMAIL: </p>
+              {visible.email === false ? (
+                <>
+                  <p className="font-normal">{changeMail}</p>
+                  <button onClick={OpenChangeMail}>Change</button>
+                </>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    value={changeMail}
+                    onChange={(event) => {
+                      setChangeMail(event.target.value);
+                    }}
+                  />
+                  <button onClick={OKChangeMail}>OK</button>
+                </>
+              )}
+            </div>
+            <div className="w-28 font-semibold flex gap-3">
+              <p>WEB: </p>
+              {visible.web === false ? (
+                <>
                   <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
                     <a
                       className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
-                      href={web}
+                      href={changeWeb}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {web}
+                      {changeWeb}
                     </a>
                   </div>
-                  <button className="text-white px-2">Change</button>
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>CORREDOR: </p>
-                  <p className="font-normal">{corredor}</p>
-                </div>
-              </>
-            ) : null}
+                  <button onClick={OpenChangeWeb}>Change</button>
+                </>
+              ) : (
+                <>
+                  <input
+                    type="text"
+                    value={changeWeb}
+                    onChange={(event) => {
+                      setChangeWeb(event.target.value);
+                    }}
+                  />
+                  <button onClick={OKChangeWeb}>OK</button>
+                </>
+              )}
+            </div>
+            <div className="font-semibold flex gap-3">
+              <p>OBSERVACION: </p>
+              <p className="font-normal">{observacion}</p>
+            </div>
+            <div className="font-semibold flex gap-3">
+              <p>CORREDOR: </p>
+              <p className="font-normal">{corredor}</p>
+            </div>
 
             {vendedor !== "" ? (
               <>
-                <div className="font-semibold flex gap-3">
-                  <p>NIVEL: </p>
-                  <p className="font-normal">{level}</p>
-                </div>
-                <div className="w-28 font-semibold flex gap-3">
-                  <p>WEB: </p>
-                  <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
-                    <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
-                      <a
-                        className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
-                        href={web}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {web}
-                      </a>
-                    </div>
-                    <button className="text-white px-2">Change</button>
-                  </div>
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>TELEFONO: </p>
-                  <p className="font-normal">{telephone}</p>
-                  <button>Change</button>
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>EMAIL: </p>
-                  <p className="font-normal">{email}</p>
-                  <button>Change</button>
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>INSTAGRAM: </p>
-                  <p className="font-normal">{instagram}</p>
-                  <button>Change</button>
-                </div>
-                <div className="font-semibold flex gap-3">
-                  <p>OBSERVACION: </p>
-                  <p className="font-normal">{observacion}</p>
-                </div>
                 <div className="font-semibold flex gap-3">
                   <p>VENDEDOR: </p>
                   <p className="font-normal">{vendedor}</p>
@@ -246,7 +246,7 @@ export default function BasicModal(props) {
               <button
                 className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 ml-[350px]"
                 onClick={() => {
-                  SendFix(client, updateLead);
+                  SendFix(client);
                 }}
               >
                 FIX
