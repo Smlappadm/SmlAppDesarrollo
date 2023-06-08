@@ -174,17 +174,17 @@ export default function BasicModal(props) {
               <div className="font-semibold flex gap-3">
                 <p>NIVEL: </p>
                 {visible.level === false ? (
-                  <>
-                    <p className="font-normal">{changeLevel}</p>
+                  <div className="w-[500px] flex flex-row justify-between">
+                    <p className="font-normal ">{changeLevel}</p>
                     <button
-                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 "
                       onClick={OpenChangeLevel}
                     >
                       Change
                     </button>
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div className="w-[500px] flex flex-row justify-between">
                     <select
                       name="level"
                       id="level"
@@ -204,16 +204,16 @@ export default function BasicModal(props) {
                     >
                       OK
                     </button>
-                  </>
+                  </div>
                 )}
               </div>
             ) : (
-              <>
+              <div className="w-[500px] flex flex-row justify-between">
                 <div className="font-semibold flex gap-3">
                   <p>NIVEL: </p>
                   {visible.level === false ? (
                     <>
-                      <p className="font-normal">{changeLevel}</p>
+                      <p className="font-normal w-80">{changeLevel}</p>
                       <button
                         className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
                         onClick={OpenChangeLevel}
@@ -246,12 +246,12 @@ export default function BasicModal(props) {
                     </>
                   )}
                 </div>
-              </>
+              </div>
             )}
             <div className="font-semibold flex gap-3">
               <p>INSTAGRAM: </p>
               {visible.instagram === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeIG}</p>
                   <button
                     className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
@@ -259,9 +259,9 @@ export default function BasicModal(props) {
                   >
                     Change
                   </button>
-                </>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changeIG}
@@ -275,13 +275,13 @@ export default function BasicModal(props) {
                   >
                     OK
                   </button>
-                </>
+                </div>
               )}
             </div>
             <div className="font-semibold flex gap-3">
               <p>TELEPHONE: </p>
               {visible.telephone === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changePhone}</p>
                   <button
                     className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
@@ -289,9 +289,9 @@ export default function BasicModal(props) {
                   >
                     Change
                   </button>
-                </>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changePhone}
@@ -305,13 +305,13 @@ export default function BasicModal(props) {
                   >
                     OK
                   </button>
-                </>
+                </div>
               )}
             </div>
             <div className="font-semibold flex gap-3">
               <p>EMAIL: </p>
               {visible.email === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeMail}</p>
                   <button
                     className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
@@ -319,9 +319,9 @@ export default function BasicModal(props) {
                   >
                     Change
                   </button>
-                </>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changeMail}
@@ -335,13 +335,13 @@ export default function BasicModal(props) {
                   >
                     OK
                   </button>
-                </>
+                </div>
               )}
             </div>
-            <div className="w-28 font-semibold flex gap-3">
+            <div className=" font-semibold flex gap-3">
               <p>WEB: </p>
               {visible.web === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
                     <a
                       className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
@@ -358,9 +358,9 @@ export default function BasicModal(props) {
                   >
                     Change
                   </button>
-                </>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changeWeb}
@@ -374,7 +374,7 @@ export default function BasicModal(props) {
                   >
                     OK
                   </button>
-                </>
+                </div>
               )}
             </div>
             <div className="font-semibold flex gap-3">
@@ -387,12 +387,12 @@ export default function BasicModal(props) {
             </div>
 
             {vendedor !== "" ? (
-              <>
+              <div className="w-[500px] flex flex-row justify-between">
                 <div className="font-semibold flex gap-3">
                   <p>VENDEDOR: </p>
                   <p className="font-normal">{vendedor}</p>
                 </div>
-              </>
+              </div>
             ) : null}
 
             {vendedor !== "" ? (
