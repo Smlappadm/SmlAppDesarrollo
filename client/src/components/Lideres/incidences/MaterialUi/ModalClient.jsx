@@ -41,13 +41,15 @@ export default function BasicModal(props) {
     setClient(_id);
     setChangeMail(email);
     setChangePhone(telephone);
-  }, [email, _id, telephone]);
+    setchangeWeb(web);
+  }, [email, _id, telephone, web]);
 
   const [client, setClient] = useState("");
 
   const [visible, setVisible] = useState({
     email: false,
     telephone: false,
+    web: false,
   });
 
   const [changeMail, setChangeMail] = useState("");
@@ -66,6 +68,14 @@ export default function BasicModal(props) {
   const OKChangePhone = () => {
     setUpdateLead({ ...updateLead, telephone: changePhone });
     setVisible({ ...visible, telephone: false });
+  };
+  const [changeWeb, setchangeWeb] = useState("");
+  const OpenchangeWeb = () => {
+    setVisible({ ...visible, web: true });
+  };
+  const OKchangeWeb = () => {
+    setUpdateLead({ ...updateLead, web: changeWeb });
+    setVisible({ ...visible, web: false });
   };
 
   const [updateLead, setUpdateLead] = useState({
