@@ -143,7 +143,7 @@ export default function BasicModal(props) {
                     </>
                   )}
                 </div>
-                {/* <div className="font-semibold flex gap-3">
+                <div className="font-semibold flex gap-3">
                   <p>EMAIL: </p>
                   {visible.email === false ? (
                     <>
@@ -162,7 +162,7 @@ export default function BasicModal(props) {
                       <button onClick={OKChangeMail}>OK</button>
                     </>
                   )}
-                </div> */}
+                </div>
                 <div className="w-28 font-semibold flex gap-3">
                   <p>WEB: </p>
                   <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
