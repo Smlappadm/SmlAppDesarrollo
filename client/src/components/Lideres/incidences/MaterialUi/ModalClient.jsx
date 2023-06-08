@@ -45,10 +45,10 @@ export default function BasicModal(props) {
 
   const [client, setClient] = useState("");
 
-  // const [visible, setVisible] = useState({
-  //   email: false,
-  //   telephone: false,
-  // });
+  const [visible, setVisible] = useState({
+    email: false,
+    telephone: false,
+  });
 
   // const [changeMail, setChangeMail] = useState("");
   // const OpenChangeMail = () => {
