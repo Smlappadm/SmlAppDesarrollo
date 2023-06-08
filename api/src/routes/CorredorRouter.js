@@ -22,7 +22,7 @@ CorredorRouter.put("/:id", updateCorredorHandler);
 CorredorRouter.post("/sendmail", sendmail);
 CorredorRouter.post("/sendHiringEmail", sendHiringEmail);
 CorredorRouter.put("/email", putCorredorLeadHandler);
-CorredorRouter.put("/email/email", updateCorredorByEmailHandler);
 CorredorRouter.put("/checked", putCorredorLeadCheckedHandler);
+CorredorRouter.put("/detail", updateCorredorByEmailHandler);
 
 module.exports = CorredorRouter;

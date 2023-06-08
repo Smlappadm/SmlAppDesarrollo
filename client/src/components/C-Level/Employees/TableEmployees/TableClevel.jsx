@@ -104,6 +104,10 @@ export const TableClevel = () => {
     setCurrentPage(pageNumber);
   };
 
+  const cardDetail = (email) => {
+    dispatch(getDetailEmploy(email));
+  };
+
   return (
     <div className="flex w-screen h-screen">
       <div className=" flex flex-col justify-start items-center w-full h-screen">
@@ -128,7 +132,7 @@ export const TableClevel = () => {
                 <div
                   key={index}
                   className={style.tableCards}
-                  onClick={() => dispatch(getDetailEmploy(item.email))}
+                  onClick={() => cardDetail(item.email)}
                 >
                   <div className="flex justify-start items-center p-0">
                     <img
@@ -192,7 +196,7 @@ export const TableClevel = () => {
         </div>
       </div>
 
-      <Detail cardEmail={detailEmploy[0]} />
+      <Detail cardEmail={detailEmploy.length > 0 ? detailEmploy[0] : null} />
     </div>
   );
 };

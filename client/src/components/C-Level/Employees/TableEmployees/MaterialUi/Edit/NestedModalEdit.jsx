@@ -105,13 +105,11 @@ function ChildModalDelete({
 function ChildModal({
   inputName,
   inputEmail,
-  selectEmployees,
   inputPhone,
   inputBirthdate,
   inputDescription,
   inputCountry,
   itemRol,
-  itemId,
   itemEmail,
   onModalClose,
   EditEmployees,
@@ -138,123 +136,70 @@ function ChildModal({
     }
 
     try {
-      if (selectEmployees === "clevel") {
-        const response = await axios.put(
-          `/clevel/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-        const response1 = await axios.put(
-          `/corredor/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-        const response2 = await axios.put(
-          `/vendedor/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-      }
-      if (selectEmployees === "leader") {
-        const response = await axios.put(
-          `/clevel/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-        const response1 = await axios.put(
-          `/corredor/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-        const response2 = await axios.put(
-          `/vendedor/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-      }
-      if (selectEmployees === "corredor") {
-        const response = await axios.put(
-          `/corredor/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-      }
-      if (selectEmployees === "vendedor") {
-        const response = await axios.put(
-          `/vendedor/email/email/?email=${itemEmail}`,
-          {
-            name: inputName,
-            email: inputEmail,
-            rol: selectEmployees,
-            contactNumber: inputPhone,
-            birthdate: inputBirthdate,
-            description: inputDescription,
-            country: inputCountry,
-          }
-        );
-      }
-
-      const response1 = await axios.put(
-        `/employees/email/?email=${inputEmail}`,
-        {
+      if (itemRol === "clevel") {
+        await axios.put(`/clevel/email/?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
-          rol: selectEmployees,
           contactNumber: inputPhone,
           birthdate: inputBirthdate,
           description: inputDescription,
           country: inputCountry,
-        }
-      );
+        });
+
+        // await axios.put(`/corredor/detail/?email=${inputEmail}`, {
+        //   name: inputName,
+        //   email: inputEmail,
+        //   contactNumber: inputPhone,
+        //   birthdate: inputBirthdate,
+        //   description: inputDescription,
+        //   country: inputCountry,
+        // });
+
+        // await axios.put(`/vendedor/detail/?email=${inputEmail}`, {
+        //   name: inputName,
+        //   email: inputEmail,
+        //   contactNumber: inputPhone,
+        //   birthdate: inputBirthdate,
+        //   description: inputDescription,
+        //   country: inputCountry,
+        // });
+      }
+      if (itemRol === "leader") {
+        await axios.put(`/leader/email/?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
+
+        // await axios.put(`/corredor/detail/?email=${inputEmail}`, {
+        //   name: inputName,
+        //   email: inputEmail,
+        //   contactNumber: inputPhone,
+        //   birthdate: inputBirthdate,
+        //   description: inputDescription,
+        //   country: inputCountry,
+        // });
+        // await axios.put(`/vendedor/email/?email=${inputEmail}`, {
+        //   name: inputName,
+        //   email: inputEmail,
+        //   contactNumber: inputPhone,
+        //   birthdate: inputBirthdate,
+        //   description: inputDescription,
+        //   country: inputCountry,
+        // });
+      }
+
+      await axios.put(`/employees/email/?email=${inputEmail}`, {
+        name: inputName,
+        email: inputEmail,
+        contactNumber: inputPhone,
+        birthdate: inputBirthdate,
+        description: inputDescription,
+        country: inputCountry,
+      });
       EditEmployees(inputName);
       onModalClose();
     } catch (error) {
