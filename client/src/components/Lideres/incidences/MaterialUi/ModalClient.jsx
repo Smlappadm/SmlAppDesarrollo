@@ -73,14 +73,14 @@ export default function BasicModal(props) {
     telephone: changePhone,
   });
 
-  // let body = {};
-  // const SendFix = (client) => {
-  //   body = { email: changeMail, telephone: changePhone };
-  //   console.log("listo");
-  //   console.log(client);
-  //   console.log(body);
-  //   axios.put(`lead/${client}`, body);
-  // };
+  let body = {};
+  const SendFix = (client) => {
+    body = { email: changeMail, telephone: changePhone };
+    console.log("listo");
+    console.log(client);
+    console.log(body);
+    axios.put(`lead/${client}`, body);
+  };
 
   return (
     <div>
@@ -123,7 +123,7 @@ export default function BasicModal(props) {
                   <p className="font-normal">{instagram}</p>
                   <button>Change</button>
                 </div>
-                <div className="font-semibold flex gap-3">
+                {/* <div className="font-semibold flex gap-3">
                   <p>TELEPHONE: </p>
                   {visible.telephone === false ? (
                     <>
@@ -142,8 +142,8 @@ export default function BasicModal(props) {
                       <button onClick={OKChangePhone}>OK</button>
                     </>
                   )}
-                </div>
-                <div className="font-semibold flex gap-3">
+                </div> */}
+                {/* <div className="font-semibold flex gap-3">
                   <p>EMAIL: </p>
                   {visible.email === false ? (
                     <>
@@ -162,7 +162,7 @@ export default function BasicModal(props) {
                       <button onClick={OKChangeMail}>OK</button>
                     </>
                   )}
-                </div>
+                </div> */}
                 <div className="w-28 font-semibold flex gap-3">
                   <p>WEB: </p>
                   <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
