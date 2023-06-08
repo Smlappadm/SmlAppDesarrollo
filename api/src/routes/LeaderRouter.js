@@ -18,6 +18,6 @@ LeaderRouter.get("/email", getLeaderByEmailHandler);
 LeaderRouter.get("/name", getLeaderByNameHandler);
 LeaderRouter.get("/:id", getLeaderByIdHandler);
 LeaderRouter.put("/:id", updateLeaderHandler);
-LeaderRouter.put("/email/email", updateCorredorByEmailHandler);
+LeaderRouter.put("/email", updateCorredorByEmailHandler);
 
 module.exports = LeaderRouter;
