@@ -1,6 +1,5 @@
 import styles from "./UploadWidget.module.css";
 import { useEffect, useRef } from "react";
-//import { useDispatch } from "react-redux";
 import { Image } from "cloudinary-react";
 const { VITE_CLOUND_NAME, VITE_UPLOAD_PRESENT } = import.meta.env;
 import { useState } from "react";
