@@ -131,7 +131,7 @@ const CorredoresDashboard = () => {
             url: corredorLead[i].url,
             email: corredorLead[i].email,
             instagram: corredorLead[i].instagram,
-            level: "-",
+            level: corredorLead[i].level,
             checked: false,
             view: true,
           });
@@ -283,6 +283,9 @@ const CorredoresDashboard = () => {
     }
   };
 
+  const instagramRegex =
+    /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
+
   return (
     <>
       <Nav />
@@ -413,8 +416,16 @@ const CorredoresDashboard = () => {
 
                       <td className="flex justify-start w-[10rem] items-center gap-3 p-0 mx-3">
                         <div>
-                          <GrInstagram className="text-[2rem] text-[#418df0]" />
+                          {item.instagram &&
+                          instagramRegex.test(item.instagram) ? (
+                            <Link to={item.instagram} target="_blank">
+                              <GrInstagram className="text-[2rem] text-[#418df0]" />
+                            </Link>
+                          ) : (
+                            <GrInstagram className="text-[2rem] text-[#418df0]" />
+                          )}
                         </div>
+
                         <input
                           className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
                             item.instagram ? "border-green-500" : ""
