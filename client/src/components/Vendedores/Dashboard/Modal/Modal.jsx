@@ -754,13 +754,11 @@ export default function NestedModal({
                     >
                       Calendry
                     </a>
-                    <button
-                      type="button"
-                      className=" text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+
+                    <CiEdit
                       onClick={setDateTime}
-                    >
-                      <CiEdit className="bg-[#575659] border-2 text-1 text-white w-12 h-10 rounded-md cursor-pointer " />
-                    </button>
+                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    />
                   </div>
                 </div>
               )}
@@ -851,13 +849,10 @@ export default function NestedModal({
                     >
                       Calendry
                     </a>
-                    <button
-                      type="button"
-                      className=" text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    <CiEdit
                       onClick={setDateTime}
-                    >
-                      <CiEdit className="bg-[#575659] border-2 text-1 text-white w-12 h-10 rounded-md cursor-pointer " />
-                    </button>
+                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    />
                   </div>
                 </div>
               )}
