@@ -284,6 +284,7 @@ function IncidenceModal({
           sx={{
             ...style,
             width: 500,
+            borderRadius: "15px",
             backgroundColor: "#39394B",
             display: "flex",
             flexDirection: "column",
