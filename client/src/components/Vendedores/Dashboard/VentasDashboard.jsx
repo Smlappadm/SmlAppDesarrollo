@@ -39,6 +39,8 @@ const VentasDashboard = () => {
 
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(emailAddress));
+    // ordenarLeadsLlamadasVentas()
+
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -86,69 +88,68 @@ const VentasDashboard = () => {
   };
   //********************************* */
 
-  const ordenarLeadsLlamadasVentas = () => {
-    let datos = [
-      "Sin Día/Hora",
-      "Dia: 31/7/2022 Hora: 18:30",
-      "Dia: 31/5/2022 Hora: 18:30",
-      "Dia: 31/8/2022 Hora: 18:30",
-      "Dia: 24/4/2023 Hora: 06:30",
-    ];
+  // const ordenarLeadsLlamadasVentas = () => {
+  //   let datos = [
+  //     "Sin Día/Hora",
+  //     "Dia: 31/7/2022 Hora: 18:30",
+  //     "Dia: 31/5/2022 Hora: 18:30",
+  //     "Dia: 31/8/2022 Hora: 18:30",
+  //     "Dia: 24/4/2023 Hora: 06:30",
+  //   ];
 
+  //   console.log(
+  //     datos.sort((a, b) => {
+  //       if (a === "Sin Día/Hora" && b !== "Sin Día/Hora") {
+  //         return 1;
+  //       } else if (a !== "Sin Día/Hora" && b === "Sin Día/Hora") {
+  //         return -1;
+  //       } else {
+  //         const diaA = a[6] !== "/" ? a.slice(5, 7) : a.slice(5, 6);
+  //         const diaB = b[6] !== "/" ? b.slice(5, 7) : b.slice(5, 6);
+  //         if (diaA !== diaB) {
+  //           return diaA - diaB;
+  //         }
+  //         const mesA = a[7] !== "/" ? a.slice(7, 9) : a.slice(8, 9);
+  //         const mesB = b[7] !== "/" ? b.slice(7, 9) : b.slice(8, 9);
+  //         if (mesA !== mesB) {
+  //           return mesA - mesB;
+  //         }
+  //         const añoA = a.slice(10, 14);
+  //         const añoB = b.slice(10, 14);
+  //         return añoA - añoB;
+  //       }
+  //     })
+  //   );
 
-    console.log(
-      datos.sort((a, b) => {
-        if (a === "Sin Día/Hora" && b !== "Sin Día/Hora") {
-          return 1;
-        } else if (a !== "Sin Día/Hora" && b === "Sin Día/Hora") {
-          return -1;
-        } else {
-          const diaA = a[6] !== "/" ? a.slice(5, 7) : a.slice(5, 6);
-          const diaB = b[6] !== "/" ? b.slice(5, 7) : b.slice(5, 6);
-          if (diaA !== diaB) {
-            return diaA - diaB;
-          }
-          const mesA = a[7] !== "/" ? a.slice(7, 9) : a.slice(8, 9);
-          const mesB = b[7] !== "/" ? b.slice(7, 9) : b.slice(8, 9);
-          if (mesA !== mesB) {
-            return mesA - mesB;
-          }
-          const añoA = a.slice(10, 14);
-          const añoB = b.slice(10, 14);
-          return añoA - añoB;
-        }
-      })
-    );
-
-    console.log(
-      datos
-        .sort((a, b) => {
-          const diaA = a[6] !== "/" ? a.slice(5, 7) : a.slice(5, 6);
-          const diaB = b[6] !== "/" ? b.slice(5, 7) : b.slice(5, 6);
-          return diaA - diaB;
-        })
-        .sort((a, b) => {
-          const mesA = a[7] !== "/" ? a.slice(7, 9) : a.slice(8, 9);
-          const mesB = b[7] !== "/" ? b.slice(7, 9) : b.slice(8, 9);
-          return mesA - mesB;
-        })
-        .sort((a, b) => {
-          const añoA = a.slice(10, 14);
-          const añoB = b.slice(10, 14);
-          return añoA - añoB;
-        })
-        .sort((a, b) => {
-          if (a === "Sin Día/Hora" && b !== "Sin Día/Hora") {
-            return 1;
-          } else if (a !== "Sin Día/Hora" && b === "Sin Día/Hora") {
-            return -1;
-          } else {
-            return 0;
-          }
-        })
-    );
-  };
-
+    // console.log(
+    //   datos
+    //     .sort((a, b) => {
+    //       const diaA = a[6] !== "/" ? a.slice(5, 7) : a.slice(5, 6);
+    //       const diaB = b[6] !== "/" ? b.slice(5, 7) : b.slice(5, 6);
+    //       return diaA - diaB;
+    //     })
+    //     .sort((a, b) => {
+    //       const mesA = a[7] !== "/" ? a.slice(7, 9) : a.slice(8, 9);
+    //       const mesB = b[7] !== "/" ? b.slice(7, 9) : b.slice(8, 9);
+    //       return mesA - mesB;
+    //     })
+    //     .sort((a, b) => {
+    //       const añoA = a.slice(10, 14);
+    //       const añoB = b.slice(10, 14);
+    //       return añoA - añoB;
+    //     })
+    //     .sort((a, b) => {
+    //       if (a === "Sin Día/Hora" && b !== "Sin Día/Hora") {
+    //         return 1;
+    //       } else if (a !== "Sin Día/Hora" && b === "Sin Día/Hora") {
+    //         return -1;
+    //       } else {
+    //         return 0;
+    //       }
+    //     })
+    // );
+  // };
+ console.log(data)
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
       .writeText(copyToProps)
@@ -219,7 +220,6 @@ const VentasDashboard = () => {
   const closeObservacionesHandler = () => {
     setShowObservaciones(false);
   };
-
 
   return (
     <>
@@ -383,21 +383,21 @@ const VentasDashboard = () => {
                     <td className="flex justify-start items-center p-0 w-fit">
                       <div className="w-52 h-11">
                         {item.llamada_venta.contacto ? (
-                          <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                          <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 ">
                             {item.llamada_venta.contacto}
                           </p>
                         ) : (
-                          <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                          <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
                             Sin contacto
                           </p>
                         )}
                         <div className="flex justify-start items-center">
                           {item.llamada_venta.dia_hora[5] !== "u" ? (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
                               {item.llamada_venta.dia_hora}
                             </p>
                           ) : (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
                               Sin Día/Hora
                             </p>
                           )}
