@@ -123,7 +123,7 @@ export default function BasicModal(props) {
                   <p className="font-normal">{instagram}</p>
                   <button>Change</button>
                 </div>
-                {/* <div className="font-semibold flex gap-3">
+                <div className="font-semibold flex gap-3">
                   <p>TELEPHONE: </p>
                   {visible.telephone === false ? (
                     <>
@@ -142,7 +142,7 @@ export default function BasicModal(props) {
                       <button onClick={OKChangePhone}>OK</button>
                     </>
                   )}
-                </div> */}
+                </div>
                 {/* <div className="font-semibold flex gap-3">
                   <p>EMAIL: </p>
                   {visible.email === false ? (
