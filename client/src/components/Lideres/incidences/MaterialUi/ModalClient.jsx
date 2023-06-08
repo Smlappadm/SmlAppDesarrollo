@@ -68,10 +68,10 @@ export default function BasicModal(props) {
     setVisible({ ...visible, telephone: false });
   };
 
-  // const [updateLead, setUpdateLead] = useState({
-  //   email: changeMail,
-  //   telephone: changePhone,
-  // });
+  const [updateLead, setUpdateLead] = useState({
+    email: changeMail,
+    telephone: changePhone,
+  });
 
   // let body = {};
   // const SendFix = (client) => {
