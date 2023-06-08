@@ -151,7 +151,6 @@ const CorredoresDashboard = () => {
         });
       }
     };
-
     updateClients();
   }, [client]);
 
