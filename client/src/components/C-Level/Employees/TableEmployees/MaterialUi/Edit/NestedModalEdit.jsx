@@ -8,6 +8,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import InputEmailEdit from "./InputEmailEdit";
 import { getAllEmployees } from "../../../../../../redux/actions";
+import InputBirthdateEdit from "./InputBirthdateEdit";
+import InputDescriptionEdit from "./InputDescriptionEdit";
+import InputCountryEdit from "./InputCountryEdit";
 
 const style = {
   position: "absolute",
@@ -42,9 +45,12 @@ function ChildModalDelete({
 
   const handleCreate = async () => {
     try {
-      const response = await axios.put(`/${itemRol}/?email=${itemEmail}`, {
-        deleted: true,
-      });
+      const response = await axios.put(
+        `/${itemRol}/email/email/?email=${itemEmail}`,
+        {
+          deleted: true,
+        }
+      );
     } catch (error) {
       ErrorEmployees(inputName);
       console.log(`No se pudo enviar el baneado de ${itemRol} ${itemEmail} `);
@@ -98,6 +104,9 @@ function ChildModal({
   inputEmail,
   selectEmployees,
   inputPhone,
+  inputBirthdate,
+  inputDescription,
+  inputCountry,
   itemRol,
   itemId,
   itemEmail,
@@ -126,18 +135,123 @@ function ChildModal({
     }
 
     try {
-      const response = await axios.put(`/${itemRol}/?email=${itemEmail}`, {
-        name: inputName,
-        email: inputEmail,
-        rol: selectEmployees,
-        contactNumber: inputPhone,
-      });
-      const response1 = await axios.put(`/employees/?email=${inputEmail}`, {
-        name: inputName,
-        email: inputEmail,
-        rol: selectEmployees,
-        contactNumber: inputPhone,
-      });
+      if (selectEmployees === "clevel") {
+        const response = await axios.put(
+          `/clevel/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+        const response1 = await axios.put(
+          `/corredor/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+        const response2 = await axios.put(
+          `/vendedor/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+      }
+      if (selectEmployees === "leader") {
+        const response = await axios.put(
+          `/clevel/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+        const response1 = await axios.put(
+          `/corredor/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+        const response2 = await axios.put(
+          `/vendedor/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+      }
+      if (selectEmployees === "corredor") {
+        const response = await axios.put(
+          `/corredor/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+      }
+      if (selectEmployees === "vendedor") {
+        const response = await axios.put(
+          `/vendedor/email/email/?email=${itemEmail}`,
+          {
+            name: inputName,
+            email: inputEmail,
+            rol: selectEmployees,
+            contactNumber: inputPhone,
+            birthdate: inputBirthdate,
+            description: inputDescription,
+            country: inputCountry,
+          }
+        );
+      }
+
+      const response1 = await axios.put(
+        `/employees/email/?email=${inputEmail}`,
+        {
+          name: inputName,
+          email: inputEmail,
+          rol: selectEmployees,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        }
+      );
       EditEmployees(inputName);
       onModalClose();
     } catch (error) {
@@ -175,16 +289,14 @@ function ChildModal({
   );
 }
 
-// itemBirthdate,
-// itemCountry,
-// itemDescription,
-// itemPhoto,
-
 export default function NestedModalEdit({
   itemId,
   itemName,
   itemEmail,
   itemPhone,
+  itemBirthdate,
+  itemDescription,
+  itemCountry,
   itemRol,
   SendEmployees,
   BannedEmployees,
@@ -201,12 +313,18 @@ export default function NestedModalEdit({
   const [inputEmail, setInputEmail] = useState("");
   const [selectEmployees, setSelectEmployees] = useState("");
   const [inputPhone, setInputPhone] = useState("");
+  const [inputBirthdate, setInputBirthdate] = useState("");
+  const [inputDescription, setInputDescription] = useState("");
+  const [inputCountry, setInputCountry] = useState("");
 
   const handleOpen = () => {
     setInputName(itemName);
     setInputEmail(itemEmail);
     setSelectEmployees(itemRol);
     setInputPhone(itemPhone);
+    setInputBirthdate(itemBirthdate);
+    setInputDescription(itemDescription);
+    setInputCountry(itemCountry);
     setOpen(true);
   };
 
@@ -237,6 +355,18 @@ export default function NestedModalEdit({
                 inputPhone={inputPhone}
                 setInputPhone={setInputPhone}
               />
+              <InputCountryEdit
+                inputCountry={inputCountry}
+                setInputCountry={setInputCountry}
+              />
+              <InputBirthdateEdit
+                inputBirthdate={inputBirthdate}
+                setInputBirthdate={setInputBirthdate}
+              />
+              <InputDescriptionEdit
+                inputDescription={inputDescription}
+                setInputDescription={setInputDescription}
+              />
               {/* <BasicSelect
                 employees={selectEmployees}
                 setEmployees={setSelectEmployees}
@@ -249,6 +379,9 @@ export default function NestedModalEdit({
               inputEmail={inputEmail}
               selectEmployees={selectEmployees}
               inputPhone={inputPhone}
+              inputBirthdate={inputBirthdate}
+              inputDescription={inputDescription}
+              inputCountry={inputCountry}
               itemRol={itemRol}
               itemId={itemId}
               itemEmail={itemEmail}

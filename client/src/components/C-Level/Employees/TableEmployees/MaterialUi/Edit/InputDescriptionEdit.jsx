@@ -2,9 +2,12 @@ import React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export default function InputPhoneEdit({ inputPhone, setInputPhone }) {
+export default function InputDescriptionEdit({
+  inputDescription,
+  setInputDescription,
+}) {
   const handleChange = (event) => {
-    setInputPhone(event.target.value);
+    setInputDescription(event.target.value);
   };
 
   return (
@@ -17,20 +20,23 @@ export default function InputPhoneEdit({ inputPhone, setInputPhone }) {
     >
       <TextField
         fullWidth
-        label="Telefono"
-        id="Telefono"
-        value={inputPhone}
+        label="Descripcion"
+        id="Descripcion"
+        value={inputDescription}
         onChange={handleChange}
         InputProps={{
           style: {
             color: "white",
           },
+          multiline: true, // Agregamos esta propiedad para permitir múltiples líneas
+          rows: 4, // Puedes ajustar la cantidad de filas que deseas mostrar
         }}
         InputLabelProps={{
           style: {
             color: "white",
           },
         }}
+        variant="outlined" // Cambiamos la variante a "outlined" para que se vea como un textarea
       />
     </Box>
   );

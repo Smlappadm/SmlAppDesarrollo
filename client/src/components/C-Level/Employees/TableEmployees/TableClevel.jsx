@@ -84,7 +84,7 @@ const ErrorCreateEmployees = (name) => {
 };
 
 export const TableClevel = () => {
-  const [cardEmail, setCardEmail] = useState("")
+  const [cardEmail, setCardEmail] = useState("");
   const { allEmployees } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -106,7 +106,7 @@ export const TableClevel = () => {
 
   const cardDetails = (email) => {
     setCardEmail(email);
-  }
+  };
 
   return (
     <div className="flex w-screen h-screen">
@@ -121,20 +121,19 @@ export const TableClevel = () => {
             />
           </div>
           <div className="w-full">
-            <div className={style.tableHead}>
-              <div className={style.tableRow}>
-                <div>Name</div>
-                <div>Email</div>
-                <div>Phone Number</div>
-                <div>Position</div>
-                <div>
-                  <h1></h1>
-                </div>
-              </div>
-            </div>
             <div className={style.tableBody}>
+              <div className={style.tableRow}>
+                <div>Nombre</div>
+                <div>Email</div>
+                <div>Rol</div>
+                <div></div>
+              </div>
               {currentCard.map((item, index) => (
-                <div key={index} className={style.tableCards} onClick={() => cardDetails(item.email)}>
+                <div
+                  key={index}
+                  className={style.tableCards}
+                  onClick={() => cardDetails(item.email)}
+                >
                   <div className="flex justify-start items-center p-0">
                     <img
                       className="w-8 ml-2 mr-4 rounded-full"
@@ -146,9 +145,6 @@ export const TableClevel = () => {
                   <div className="flex justify-start items-center p-0">
                     <CiMail className={style.icon} />
                     <p>{item.email}</p>
-                  </div>
-                  <div className="p-0 mx-3">
-                    <p>{item.contactNumber}</p>
                   </div>
                   <div className="p-0">
                     <p
@@ -200,7 +196,7 @@ export const TableClevel = () => {
         </div>
       </div>
 
-      <Detail cardEmail={cardEmail}/>
+      <Detail cardEmail={cardEmail} />
     </div>
   );
 };

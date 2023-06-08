@@ -8,13 +8,13 @@
   margin-top: 20px;
   display: grid;
 
-  grid-template-columns: 22% 26% 24% 1% 1% auto;
-  margin-left: 20px;
+  grid-template-columns: 32% 33% 1% 1% auto;
+  margin-left: 5rem;
 }
 
 .tableCards {
   display: grid;
-  grid-template-columns: 12% 20% 16% 1% 17%;
+  grid-template-columns: 12% 20% 1% 17%;
   align-items: center;
   justify-content: space-between;
   background-color: #39394b;
