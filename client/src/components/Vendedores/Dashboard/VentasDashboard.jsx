@@ -4,13 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import dayjs from "dayjs";
 import {
   filterLevel,
-  getLeadCheckedInactive5,
   getLeadsLLamadaVenta,
 } from "../../../redux/actions";
-import { AiOutlinePhone } from "react-icons/ai";
 import Modal from "./Modal/Modal";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
@@ -39,7 +36,6 @@ const VentasDashboard = () => {
 
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(emailAddress));
-    // ordenarLeadsLlamadasVentas()
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
