@@ -19,6 +19,7 @@ import { CiGlobe } from "react-icons/ci";
 const Incidences = () => {
   const [data, setData] = useState([]);
   const { leaderDashboard } = useSelector((state) => state);
+  const [changeIncidence, setChangeIncidence] = useState({});
   const dispatch = useDispatch();
 
   const fetchData = () => {
@@ -33,12 +34,16 @@ const Incidences = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    dispatch(getLeadChecked());
+  }, [dispatch, changeIncidence]);
 
   useEffect(() => {
     filterData();
   }, [leaderDashboard]);
+
+  const handleChangeIncidence = (change) => {
+    setChangeIncidence(change);
+  };
 
   const handleState = () => {
     fetchData();
@@ -191,7 +196,7 @@ const Incidences = () => {
 
           <div>
             <ModalCient
-              updateParentState={handleState}
+              fixed={handleChangeIncidence}
               open={open}
               handleClose={handleClose}
               _id={modalItems._id}
