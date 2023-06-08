@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Detail from "../../Employees/Detail/Detail";
 import style from "./TableClevel.module.css";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { CiMail } from "react-icons/ci";
@@ -83,6 +84,7 @@ const ErrorCreateEmployees = (name) => {
 };
 
 export const TableClevel = () => {
+  const [cardEmail, setCardEmail] = useState("")
   const { allEmployees } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -102,10 +104,12 @@ export const TableClevel = () => {
     setCurrentPage(pageNumber);
   };
 
-  console.log(allEmployees);
+  const cardDetails = (email) => {
+    setCardEmail(email);
+  }
 
   return (
-    <>
+    <div className="flex w-screen h-screen">
       <div className=" flex flex-col justify-start items-center w-full h-screen">
         <ToastContainer />
         <div className="bg-[#222131] rounded-none w-full h-screen p-5">
@@ -130,13 +134,13 @@ export const TableClevel = () => {
             </div>
             <div className={style.tableBody}>
               {currentCard.map((item, index) => (
-                <div key={index} className={style.tableCards}>
+                <div key={index} className={style.tableCards} onClick={() => cardDetails(item.email)}>
                   <div className="flex justify-start items-center p-0">
-                    {/* <img
+                    <img
                       className="w-8 ml-2 mr-4 rounded-full"
                       src={item.photo}
-                      alt="avatar image"
-                    /> */}
+                      alt=""
+                    />
                     <p>{item.name}</p>
                   </div>
                   <div className="flex justify-start items-center p-0">
@@ -195,6 +199,8 @@ export const TableClevel = () => {
           />
         </div>
       </div>
-    </>
+
+      <Detail cardEmail={cardEmail}/>
+    </div>
   );
 };
