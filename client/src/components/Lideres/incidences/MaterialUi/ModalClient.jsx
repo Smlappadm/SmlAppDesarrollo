@@ -221,6 +221,7 @@ export default function BasicModal(props) {
                       name="level"
                       id="level"
                       placeholder="Selecciona nivel"
+                      className="text-black w-80"
                       value={changeLevel}
                       onChange={(event) => {
                         setChangeLevel(event.target.value);
@@ -258,6 +259,7 @@ export default function BasicModal(props) {
                       name="level"
                       id="level"
                       placeholder="Selecciona nivel"
+                      className="text-black w-80"
                       value={changeLevel}
                       onChange={(event) => {
                         setChangeLevel(event.target.value);
@@ -294,6 +296,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeIG}
                     onChange={(event) => {
                       setChangeIG(event.target.value);
@@ -324,6 +327,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changePhone}
                     onChange={(event) => {
                       setChangePhone(event.target.value);
@@ -354,6 +358,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeMail}
                     onChange={(event) => {
                       setChangeMail(event.target.value);
@@ -393,6 +398,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeWeb}
                     onChange={(event) => {
                       setChangeWeb(event.target.value);
