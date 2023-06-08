@@ -7,8 +7,8 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 export default function BasicButtonGroup() {
   return (
     <ButtonGroup variant="contained" aria-label="outlined primary button group">
-      <Button>Delete</Button>
-      <Button>Update</Button>
+      <Button>Eliminar</Button>
+      <Button>Actualizar</Button>
     </ButtonGroup>
   );
 }
