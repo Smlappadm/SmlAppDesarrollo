@@ -111,9 +111,6 @@ export default function BasicModal(props) {
       level: changeLevel,
       checked: changeLevel === "incidencia" ? true : false,
     };
-    console.log("listo");
-    console.log(client);
-    console.log(body);
     dispatch(updateLeadIncidence(client, body));
     fixed(body);
   };
@@ -125,13 +122,10 @@ export default function BasicModal(props) {
       instagram: changeIG,
       level: changeLevel,
     };
-    console.log("listo");
-    console.log(client);
-    console.log(body);
     dispatch(updateLeadIncidence(client, body));
     fixed(body);
   };
-  const DiscardLeadVendedor = (client) => {
+  const DiscardLead = (client) => {
     body = {
       email: changeMail,
       telephone: changePhone,
@@ -141,9 +135,6 @@ export default function BasicModal(props) {
       checked: false,
       view: false,
     };
-    console.log("listo");
-    console.log(client);
-    console.log(body);
     dispatch(updateLeadIncidence(client, body));
     fixed(body);
   };
@@ -185,7 +176,12 @@ export default function BasicModal(props) {
                 {visible.level === false ? (
                   <>
                     <p className="font-normal">{changeLevel}</p>
-                    <button onClick={OpenChangeLevel}>Change</button>
+                    <button
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                      onClick={OpenChangeLevel}
+                    >
+                      Change
+                    </button>
                   </>
                 ) : (
                   <>
@@ -202,7 +198,12 @@ export default function BasicModal(props) {
                       <option value="1">1</option>
                       <option value="2">2</option>
                     </select>
-                    <button onClick={OKChangeLevel}>OK</button>
+                    <button
+                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                      onClick={OKChangeLevel}
+                    >
+                      OK
+                    </button>
                   </>
                 )}
               </div>
@@ -213,7 +214,12 @@ export default function BasicModal(props) {
                   {visible.level === false ? (
                     <>
                       <p className="font-normal">{changeLevel}</p>
-                      <button onClick={OpenChangeLevel}>Change</button>
+                      <button
+                        className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                        onClick={OpenChangeLevel}
+                      >
+                        Change
+                      </button>
                     </>
                   ) : (
                     <>
@@ -231,7 +237,12 @@ export default function BasicModal(props) {
                         <option value="1">1</option>
                         <option value="2">2</option>
                       </select>
-                      <button onClick={OKChangeLevel}>OK</button>
+                      <button
+                        className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                        onClick={OKChangeLevel}
+                      >
+                        OK
+                      </button>
                     </>
                   )}
                 </div>
@@ -242,7 +253,12 @@ export default function BasicModal(props) {
               {visible.instagram === false ? (
                 <>
                   <p className="font-normal">{changeIG}</p>
-                  <button onClick={OpenChangeIG}>Change</button>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangeIG}
+                  >
+                    Change
+                  </button>
                 </>
               ) : (
                 <>
@@ -253,7 +269,12 @@ export default function BasicModal(props) {
                       setChangeIG(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangeIG}>OK</button>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangeIG}
+                  >
+                    OK
+                  </button>
                 </>
               )}
             </div>
@@ -262,7 +283,12 @@ export default function BasicModal(props) {
               {visible.telephone === false ? (
                 <>
                   <p className="font-normal">{changePhone}</p>
-                  <button onClick={OpenChangePhone}>Change</button>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangePhone}
+                  >
+                    Change
+                  </button>
                 </>
               ) : (
                 <>
@@ -273,7 +299,12 @@ export default function BasicModal(props) {
                       setChangePhone(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangePhone}>OK</button>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangePhone}
+                  >
+                    OK
+                  </button>
                 </>
               )}
             </div>
@@ -282,7 +313,12 @@ export default function BasicModal(props) {
               {visible.email === false ? (
                 <>
                   <p className="font-normal">{changeMail}</p>
-                  <button onClick={OpenChangeMail}>Change</button>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangeMail}
+                  >
+                    Change
+                  </button>
                 </>
               ) : (
                 <>
@@ -293,7 +329,12 @@ export default function BasicModal(props) {
                       setChangeMail(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangeMail}>OK</button>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangeMail}
+                  >
+                    OK
+                  </button>
                 </>
               )}
             </div>
@@ -311,7 +352,12 @@ export default function BasicModal(props) {
                       {changeWeb}
                     </a>
                   </div>
-                  <button onClick={OpenChangeWeb}>Change</button>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangeWeb}
+                  >
+                    Change
+                  </button>
                 </>
               ) : (
                 <>
@@ -322,7 +368,12 @@ export default function BasicModal(props) {
                       setChangeWeb(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangeWeb}>OK</button>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangeWeb}
+                  >
+                    OK
+                  </button>
                 </>
               )}
             </div>
@@ -349,7 +400,7 @@ export default function BasicModal(props) {
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
                   onClick={() => {
-                    SendFixVendedor(client);
+                    DiscardLead(client);
                   }}
                 >
                   DISCARD LEAD
@@ -368,10 +419,18 @@ export default function BasicModal(props) {
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
                   onClick={() => {
+                    DiscardLead(client);
+                  }}
+                >
+                  DISCARD LEAD
+                </button>
+                <button
+                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                  onClick={() => {
                     SendFixCorredor(client);
                   }}
                 >
-                  FIXX
+                  FIX LEAD
                 </button>
               </div>
             )}
