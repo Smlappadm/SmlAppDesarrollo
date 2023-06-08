@@ -204,10 +204,10 @@ const Incidences = () => {
               status={modalItems.status}
               city={modalItems.city}
               province={modalItems.province}
-              url={modalItems.url}
+              web={modalItems.url}
               corredor={modalItems.corredor}
               vendedor={modalItems.vendedor}
-              op={modalItems.status_op}
+              observacion={modalItems.status_op}
             />
             {currentCard.map((item, index) => (
               <div
