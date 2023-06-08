@@ -48,9 +48,6 @@ const VendedoresDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  // const [edit, setEdit] = useState(false);
-  // const [editIndex, setEditIndex] = useState("");
-
 
 
   //FILTER**********************
@@ -137,13 +134,8 @@ const VendedoresDashboard = () => {
     });
 
     dispatch(getLeadCheckedInactive5(emailAddress));
-    // setData(vendedoresDashboard);
+  };
 
-  };
-  const updateLeads = () => {
-    // dispatch(getLeadCheckedInactive5(emailAddress));
-    // setData(vendedoresDashboard);
-  };
 
 
   return (
@@ -291,7 +283,6 @@ const VendedoresDashboard = () => {
                         SendLeadAlert={SendLeadAlert}
                         SendIncidenceAlert={SendIncidenceAlert}
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
-                        updateLeads={updateLeads}
                         emailAddress={emailAddress}
                         fullName={fullName}
                       />
