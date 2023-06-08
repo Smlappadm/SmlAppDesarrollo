@@ -209,10 +209,6 @@ function IncidenceModal({
   const [openIncidenceChild, setOpenIncidenceChild] = React.useState(false);
   const [observationIncidence, setObservationIncidence] = React.useState("");
 
-  const handleOpen = () => {
-    // setOpenChild(true);
-  };
-
   const handleChangeObservation = (event) => {
     const value = event.target.value;
     setObservationIncidence(value);
@@ -223,7 +219,7 @@ function IncidenceModal({
   };
   const confirmSendIncidence = () => {
     statusObj.level = "incidencia";
-    // await setStatusObj({...statusObj, status: "incidencia"})
+
 
     const dataVendedor = {
       _id: item._id,
@@ -265,7 +261,6 @@ function IncidenceModal({
 
     setOpen(false);
 
-    // SendIncidenceAlert();
   };
 
   const sendIncidence = () => {

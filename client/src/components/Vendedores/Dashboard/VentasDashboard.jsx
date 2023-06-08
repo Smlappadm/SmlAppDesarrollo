@@ -29,7 +29,6 @@ const VentasDashboard = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-  const fullName = user?.fullName;
 
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
@@ -51,8 +50,8 @@ const VentasDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [edit, setEdit] = useState(false);
-  const [editIndex, setEditIndex] = useState("");
+  // const [edit, setEdit] = useState(false);
+  // const [editIndex, setEditIndex] = useState("");
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -97,13 +96,13 @@ const VentasDashboard = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-  const openEditMenu = (index, id) => {
-    setEdit(true);
-    setEditIndex(index);
-  };
-  const sendEdit = () => {
-    setEdit(false);
-  };
+  // const openEditMenu = (index, id) => {
+  //   setEdit(true);
+  //   setEditIndex(index);
+  // };
+  // const sendEdit = () => {
+  //   setEdit(false);
+  // };
   const SendLeadAlert = () => {
     toast.success("✔ Lead Update!", {
       position: "top-center",
@@ -142,11 +141,8 @@ const VentasDashboard = () => {
       theme: "dark",
     });
     dispatch(getLeadsLLamadaVenta(emailAddress));
-    // window.location.reload();
-    // this.forceUpdate();
   };
   const updateLeads = () => {
-    // dispatch(getLeadsLLamadaVenta());
 
   };
 
@@ -191,30 +187,6 @@ const VentasDashboard = () => {
             {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
-              // <select
-              //   name="level"
-              //   id="level"
-              //   onChange={(event) => {
-              //     onChangeLevel(event.target.value);
-              //   }}
-              //   className="w-1/5 text-center bg-transparent border border-white rounded-md p-1 absolute left-[40%] "
-              // >
-              //   <option value="" disabled selected className="bg-[#222131]">
-              //     Seleccione un nivel
-              //   </option>
-              //   <option value="0" className="bg-[#222131]">
-              //     0
-              //   </option>
-              //   <option value="1" className="bg-[#222131]">
-              //     1
-              //   </option>
-              //   <option value="2" className="bg-[#222131]">
-              //     2
-              //   </option>
-              //   <option value="incidencia" className="bg-[#222131]">
-              //     Incidencia
-              //   </option>
-              // </select>
               ""
             )}
           </div>
@@ -379,7 +351,7 @@ const VentasDashboard = () => {
             </table>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
-              <h1>LEADS NOT FOUND...</h1>
+              <h1>No hay Leads disponibles</h1>
             </div>
           )}
         </div>
