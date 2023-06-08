@@ -33,7 +33,7 @@ const Form = (props) => {
 		const propsArray = Object.values(errors);
 		if (propsArray.some((error) => error !== '')) {
 			alert('Debe llenar todos los campos correctamente');
-			return; // Salir de la función si hay errores
+			return;
 		}
 
 		// Si no hay errores, ejecutar la función de autenticación
