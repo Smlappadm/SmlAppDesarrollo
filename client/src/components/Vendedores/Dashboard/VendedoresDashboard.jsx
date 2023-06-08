@@ -32,7 +32,6 @@ const VendedoresDashboard = () => {
 
   useEffect(() => {
     dispatch(getLeadCheckedInactive5(emailAddress));
-
   }, [dispatch, emailAddress]);
 
   
