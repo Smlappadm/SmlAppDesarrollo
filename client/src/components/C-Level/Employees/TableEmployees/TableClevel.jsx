@@ -3,7 +3,7 @@ import Detail from "../../Employees/Detail/Detail";
 import style from "./TableClevel.module.css";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { CiMail } from "react-icons/ci";
-import { getAllEmployees } from "../../../../redux/actions";
+import { getAllEmployees, getDetailEmploy } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import NestedModal from "./MaterialUi/NestedModal";
 import NestedModalEdit from "./MaterialUi/Edit/NestedModalEdit";
@@ -84,7 +84,7 @@ const ErrorCreateEmployees = (name) => {
 };
 
 export const TableClevel = () => {
-  const [cardEmail, setCardEmail] = useState("");
+  const { detailEmploy } = useSelector((state) => state);
   const { allEmployees } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -102,10 +102,6 @@ export const TableClevel = () => {
 
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-
-  const cardDetails = (email) => {
-    setCardEmail(email);
   };
 
   return (
@@ -132,7 +128,7 @@ export const TableClevel = () => {
                 <div
                   key={index}
                   className={style.tableCards}
-                  onClick={() => cardDetails(item.email)}
+                  onClick={() => dispatch(getDetailEmploy(item.email))}
                 >
                   <div className="flex justify-start items-center p-0">
                     <img
@@ -196,7 +192,7 @@ export const TableClevel = () => {
         </div>
       </div>
 
-      <Detail cardEmail={cardEmail} />
+      <Detail cardEmail={detailEmploy[0]} />
     </div>
   );
 };
