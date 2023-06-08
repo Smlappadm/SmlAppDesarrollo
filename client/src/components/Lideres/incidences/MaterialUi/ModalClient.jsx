@@ -37,11 +37,11 @@ export default function BasicModal(props) {
     corredor,
     vendedor,
   } = props;
-  // useEffect(() => {
-  //   setClient(_id);
-  //   setChangeMail(email);
-  //   setChangePhone(telephone);
-  // }, [email, _id, telephone]);
+  useEffect(() => {
+    setClient(_id);
+    setChangeMail(email);
+    setChangePhone(telephone);
+  }, [email, _id, telephone]);
 
   // const [client, setClient] = useState("");
 
