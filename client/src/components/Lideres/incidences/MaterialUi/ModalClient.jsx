@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
@@ -31,110 +31,63 @@ export default function BasicModal(props) {
     telephone,
     city,
     province,
-    url,
+    web,
     handleClose,
-    updateParentState,
+    observacion,
+    corredor,
+    vendedor,
   } = props;
+  useEffect(() => {
+    setClient(_id);
+    setChangeMail(email);
+    setChangePhone(telephone);
+  }, [email, _id, telephone]);
 
-  const [filledEmail, setFilledEmail] = useState(email || "");
-  const [filledInstagram, setFilledInstagram] = useState(instagram || "");
-  const [filledTelephone, setFilledTelephone] = useState(telephone || "");
-  const [filledLevel, setFilledLevel] = useState("");
-  const [filledUrl, setFilledUrl] = useState(url || "");
-  const [filledCorredor, setFilledCorredor] = useState("");
+  const [client, setClient] = useState("");
 
-  const [inputVisibility, setInputVisibility] = useState({
+  const [visible, setVisible] = useState({
     email: false,
-    instagram: false,
     telephone: false,
-    level: false,
-    url: false,
-    corredor: false,
   });
 
-  const handleEmailChange = (event) => {
-    const updatedValue = event.target.value;
-    const newValue = updatedValue !== "" ? updatedValue : email;
-    setFilledEmail(newValue);
-  };
+  // const [changeMail, setChangeMail] = useState("");
+  // const OpenChangeMail = () => {
+  //   setVisible({ ...visible, email: true });
+  // };
+  // const OKChangeMail = () => {
+  //   setUpdateLead({ ...updateLead, email: changeMail });
+  //   setVisible({ ...visible, email: false });
+  // };
 
-  const handleInstagramChange = (event) => {
-    const updatedValue = event.target.value;
-    const newValue = updatedValue !== "" ? updatedValue : instagram;
-    setFilledInstagram(newValue);
-  };
+  // const [changePhone, setChangePhone] = useState("");
+  // const OpenChangePhone = () => {
+  //   setVisible({ ...visible, telephone: true });
+  // };
+  // const OKChangePhone = () => {
+  //   setUpdateLead({ ...updateLead, telephone: changePhone });
+  //   setVisible({ ...visible, telephone: false });
+  // };
 
-  const handleTelephoneChange = (event) => {
-    const updatedValue = event.target.value;
-    const newValue = updatedValue !== "" ? updatedValue : telephone;
-    setFilledTelephone(newValue);
-  };
+  // const [updateLead, setUpdateLead] = useState({
+  //   email: changeMail,
+  //   telephone: changePhone,
+  // });
 
-  const handleUrlChange = (event) => {
-    const updatedValue = event.target.value;
-    const newValue = updatedValue !== "" ? updatedValue : url;
-    setFilledUrl(newValue);
-  };
-
-  const handleCloseModal = () => {
-    setFilledEmail(email || "");
-    setFilledInstagram(instagram || "");
-    setFilledTelephone(telephone || "");
-    setFilledLevel("");
-    setFilledUrl(url || "");
-    setFilledCorredor("");
-
-    setInputVisibility({
-      email: false,
-      instagram: false,
-      telephone: false,
-      level: false,
-      url: false,
-      corredor: false,
-    });
-
-    handleClose();
-  };
-
-  const handleFixClick = () => {
-    const updatedData = {
-      email: filledEmail,
-      instagram: filledInstagram,
-      telephone: filledTelephone,
-      level: filledLevel,
-      url: filledUrl,
-      corredor: filledCorredor,
-    };
-
-    axios
-      .put(`lead/${_id}`, updatedData)
-      .then((response) => {
-        console.log("Datos actualizados correctamente:", response.data);
-        toast.success("✔ Lead Update!", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-        handleClose();
-        updateParentState();
-      })
-      .catch((error) => {
-        console.error("Error al actualizar los datos:", error);
-        alert("Error updating data. Please try again.");
-      });
-  };
+  // let body = {};
+  // const SendFix = (client) => {
+  //   body = { email: changeMail, telephone: changePhone };
+  //   console.log("listo");
+  //   console.log(client);
+  //   console.log(body);
+  //   axios.put(`lead/${client}`, body);
+  // };
 
   return (
     <div>
       <ToastContainer />
       <Modal
         open={props.open}
-        onClose={handleCloseModal}
+        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         BackdropProps={{
@@ -159,118 +112,132 @@ export default function BasicModal(props) {
                 {province}, {city}{" "}
               </p>
             </div>
-            <div className="font-semibold flex gap-3">
-              <p>NIVEL: </p>
-              <p className="font-normal">{level}</p>
-            </div>
-            {!inputVisibility.email ? (
-              <div className="font-semibold flex gap-3">
-                <p>EMAIL: </p>
-                <p className="font-normal">{email}</p>
-                <button
-                  onClick={() =>
-                    setInputVisibility({ ...inputVisibility, email: true })
-                  }
-                >
-                  Change
-                </button>
-              </div>
-            ) : (
-              <div className="font-semibold flex gap-3">
-                <p>EMAIL: </p>
-                <input
-                  type="text"
-                  value={filledEmail}
-                  onChange={handleEmailChange}
-                  className="font-normal bg-gray-600"
-                />
-              </div>
-            )}
-            {!inputVisibility.instagram ? (
-              <div className="font-semibold flex gap-3">
-                <p>INSTAGRAM: </p>
-                <p className="font-normal">{instagram}</p>
-                <button
-                  onClick={() =>
-                    setInputVisibility({ ...inputVisibility, instagram: true })
-                  }
-                >
-                  Change
-                </button>
-              </div>
-            ) : (
-              <div className="font-semibold flex gap-3">
-                <p>INSTAGRAM: </p>
-                <input
-                  type="text"
-                  value={filledInstagram}
-                  onChange={handleInstagramChange}
-                  className="font-normal bg-gray-600"
-                />
-              </div>
-            )}
-            {!inputVisibility.telephone ? (
-              <div className="font-semibold flex gap-3">
-                <p>TELEFONO: </p>
-                <p className="font-normal">{telephone}</p>
-                <button
-                  onClick={() =>
-                    setInputVisibility({ ...inputVisibility, telephone: true })
-                  }
-                >
-                  Change
-                </button>
-              </div>
-            ) : (
-              <div className="font-semibold flex gap-3">
-                <p>TELEFONO: </p>
-                <input
-                  type="text"
-                  value={filledTelephone}
-                  onChange={handleTelephoneChange}
-                  className="font-normal bg-gray-600"
-                />
-              </div>
-            )}
-            <div className="font-semibold flex gap-3">
-              <p>Corredor: </p>
-              <p className="font-normal">-</p>
-            </div>
-            <div className="w-28 font-semibold flex gap-3">
-              <p>WEB: </p>
-              <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
-                {!inputVisibility.url ? (
-                  <p
-                    className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
-                    title={url}
-                  >
-                    {url}
-                  </p>
-                ) : (
-                  <input
-                    type="text"
-                    value={filledUrl}
-                    onChange={handleUrlChange}
-                    className="font-normal bg-gray-600"
-                  />
-                )}
-                {!inputVisibility.url && (
-                  <button
-                    onClick={() =>
-                      setInputVisibility({ ...inputVisibility, url: true })
-                    }
-                    className="text-white"
-                  >
-                    Change
-                  </button>
-                )}
-              </div>
-            </div>
+            {vendedor === "" ? (
+              <>
+                <div className="font-semibold flex gap-3">
+                  <p>NIVEL: </p>
+                  <p className="font-normal">{level}</p>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>INSTAGRAM: </p>
+                  <p className="font-normal">{instagram}</p>
+                  <button>Change</button>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>TELEPHONE: </p>
+                  {visible.telephone === false ? (
+                    <>
+                      <p className="font-normal">{changePhone}</p>
+                      <button onClick={OpenChangePhone}>Change</button>
+                    </>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        value={changePhone}
+                        onChange={(event) => {
+                          setChangePhone(event.target.value);
+                        }}
+                      />
+                      <button onClick={OKChangePhone}>OK</button>
+                    </>
+                  )}
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>EMAIL: </p>
+                  {visible.email === false ? (
+                    <>
+                      <p className="font-normal">{changeMail}</p>
+                      <button onClick={OpenChangeMail}>Change</button>
+                    </>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        value={changeMail}
+                        onChange={(event) => {
+                          setChangeMail(event.target.value);
+                        }}
+                      />
+                      <button onClick={OKChangeMail}>OK</button>
+                    </>
+                  )}
+                </div>
+                <div className="w-28 font-semibold flex gap-3">
+                  <p>WEB: </p>
+                  <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
+                    <a
+                      className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                      href={web}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {web}
+                    </a>
+                  </div>
+                  <button className="text-white px-2">Change</button>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>CORREDOR: </p>
+                  <p className="font-normal">{corredor}</p>
+                </div>
+              </>
+            ) : null}
+
+            {vendedor !== "" ? (
+              <>
+                <div className="font-semibold flex gap-3">
+                  <p>NIVEL: </p>
+                  <p className="font-normal">{level}</p>
+                </div>
+                <div className="w-28 font-semibold flex gap-3">
+                  <p>WEB: </p>
+                  <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
+                    <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
+                      <a
+                        className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                        href={web}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {web}
+                      </a>
+                    </div>
+                    <button className="text-white px-2">Change</button>
+                  </div>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>TELEFONO: </p>
+                  <p className="font-normal">{telephone}</p>
+                  <button>Change</button>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>EMAIL: </p>
+                  <p className="font-normal">{email}</p>
+                  <button>Change</button>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>INSTAGRAM: </p>
+                  <p className="font-normal">{instagram}</p>
+                  <button>Change</button>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>OBSERVACION: </p>
+                  <p className="font-normal">{observacion}</p>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>VENDEDOR: </p>
+                  <p className="font-normal">{vendedor}</p>
+                </div>
+              </>
+            ) : null}
 
             <div>
               <button
-                onClick={handleFixClick}
                 className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 ml-[350px]"
+                onClick={() => {
+                  SendFix(client, updateLead);
+                }}
               >
                 FIX
               </button>
