@@ -39,6 +39,7 @@ function ChildModal({
   const handleOpen = () => {
     setOpenChild(true);
     handleLlamadoVentaChange();
+  
   };
   const handleClose = () => {
     setOpenChild(false);
@@ -130,8 +131,8 @@ function ChildModal({
       });
     setOpenChild(false);
     setOpen(false);
-
-    console.log(llamadoVenta);
+    statusObj.status="";
+  
   };
 
   const handleCancel = () => {
