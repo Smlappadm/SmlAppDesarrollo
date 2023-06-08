@@ -50,8 +50,8 @@ const VentasDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [edit, setEdit] = useState(false);
-  const [editIndex, setEditIndex] = useState("");
+  // const [edit, setEdit] = useState(false);
+  // const [editIndex, setEditIndex] = useState("");
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -96,13 +96,13 @@ const VentasDashboard = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-  const openEditMenu = (index, id) => {
-    setEdit(true);
-    setEditIndex(index);
-  };
-  const sendEdit = () => {
-    setEdit(false);
-  };
+  // const openEditMenu = (index, id) => {
+  //   setEdit(true);
+  //   setEditIndex(index);
+  // };
+  // const sendEdit = () => {
+  //   setEdit(false);
+  // };
   const SendLeadAlert = () => {
     toast.success("✔ Lead Update!", {
       position: "top-center",
@@ -351,7 +351,7 @@ const VentasDashboard = () => {
             </table>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
-              <h1>LEADS NOT FOUND...</h1>
+              <h1>No hay Leads disponibles</h1>
             </div>
           )}
         </div>
