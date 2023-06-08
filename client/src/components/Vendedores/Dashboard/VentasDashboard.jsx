@@ -142,9 +142,6 @@ const VentasDashboard = () => {
     });
     dispatch(getLeadsLLamadaVenta(emailAddress));
   };
-  const updateLeads = () => {
-
-  };
 
   const showObservacionesHandler = (observacion) => {
     setObservationMessage(observacion);
@@ -341,7 +338,6 @@ const VentasDashboard = () => {
                         SendLeadAlert={SendLeadAlert}
                         SendIncidenceAlert={SendIncidenceAlert}
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
-                        updateLeads={updateLeads}
                         emailAddress={emailAddress}
                       />
                     </td>
