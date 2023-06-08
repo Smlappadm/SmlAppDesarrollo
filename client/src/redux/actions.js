@@ -248,3 +248,9 @@ export const getAllCountries = () => {
     dispatch({ type: GET_ALL_COUNTRY, payload: allCountries });
   };
 };
+
+export const updateLeadIncidence = (client, body) => {
+  return async () => {
+    await axios.put(`lead/${client}`, body);
+  };
+};
