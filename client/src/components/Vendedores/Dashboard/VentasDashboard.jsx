@@ -80,7 +80,6 @@ const VentasDashboard = () => {
 
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
-    console.log(value)
     setLevelValue(value);
     dispatch(filterLevel(value));
     setData(vendedoresVentasDashboard);
