@@ -24,6 +24,7 @@ import {
   GET_ALL_EMPLOYEES,
   GET_ALL_PROFESION,
   GET_ALL_COUNTRY,
+  GET_DETAIL_EMPLOY,
 } from "./actions";
 
 const initialState = {
@@ -49,6 +50,7 @@ const initialState = {
   allEmployees: [],
   allProfesion: [],
   allCountries: [],
+  detailEmploy: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -296,7 +298,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         LeadsLlamadaVenta: action.payload,
-        vendedoresVentasDashboard: action.payload
+        vendedoresVentasDashboard: action.payload,
       };
     case GET_CORREDOR_LEAD:
       return {
@@ -323,6 +325,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allCountries: action.payload,
+      };
+    case GET_DETAIL_EMPLOY:
+      return {
+        ...state,
+        detailEmploy: action.payload,
       };
 
     default:

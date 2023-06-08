@@ -33,6 +33,7 @@ export default function BasicModal(props) {
     city,
     province,
     web,
+    open,
     handleClose,
     observacion,
     corredor,
@@ -111,10 +112,9 @@ export default function BasicModal(props) {
       level: changeLevel,
       checked: changeLevel === "incidencia" ? true : false,
     };
-    console.log("listo");
-    console.log(client);
-    console.log(body);
     dispatch(updateLeadIncidence(client, body));
+    handleClose();
+    FixedLeadAlert();
     fixed(body);
   };
   const SendFixVendedor = (client) => {
@@ -125,13 +125,12 @@ export default function BasicModal(props) {
       instagram: changeIG,
       level: changeLevel,
     };
-    console.log("listo");
-    console.log(client);
-    console.log(body);
     dispatch(updateLeadIncidence(client, body));
+    handleClose();
+    FixedLeadAlert();
     fixed(body);
   };
-  const DiscardLeadVendedor = (client) => {
+  const DiscardLead = (client) => {
     body = {
       email: changeMail,
       telephone: changePhone,
@@ -141,18 +140,42 @@ export default function BasicModal(props) {
       checked: false,
       view: false,
     };
-    console.log("listo");
-    console.log(client);
-    console.log(body);
     dispatch(updateLeadIncidence(client, body));
+    handleClose();
+    DiscardLeadAlert();
     fixed(body);
+  };
+
+  const FixedLeadAlert = () => {
+    toast.success(`✔ FIXED LEAD! `, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const DiscardLeadAlert = () => {
+    toast.success(`✔ DISCARD LEAD! `, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   return (
     <div>
       <ToastContainer />
       <Modal
-        open={props.open}
+        open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -183,12 +206,17 @@ export default function BasicModal(props) {
               <div className="font-semibold flex gap-3">
                 <p>NIVEL: </p>
                 {visible.level === false ? (
-                  <>
-                    <p className="font-normal">{changeLevel}</p>
-                    <button onClick={OpenChangeLevel}>Change</button>
-                  </>
+                  <div className="w-[500px] flex flex-row justify-between">
+                    <p className="font-normal ">{changeLevel}</p>
+                    <button
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 "
+                      onClick={OpenChangeLevel}
+                    >
+                      Change
+                    </button>
+                  </div>
                 ) : (
-                  <>
+                  <div className="w-[500px] flex flex-row justify-between">
                     <select
                       name="level"
                       id="level"
@@ -202,50 +230,68 @@ export default function BasicModal(props) {
                       <option value="1">1</option>
                       <option value="2">2</option>
                     </select>
-                    <button onClick={OKChangeLevel}>OK</button>
-                  </>
+                    <button
+                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                      onClick={OKChangeLevel}
+                    >
+                      OK
+                    </button>
+                  </div>
                 )}
               </div>
             ) : (
-              <>
-                <div className="font-semibold flex gap-3">
-                  <p>NIVEL: </p>
-                  {visible.level === false ? (
-                    <>
-                      <p className="font-normal">{changeLevel}</p>
-                      <button onClick={OpenChangeLevel}>Change</button>
-                    </>
-                  ) : (
-                    <>
-                      <select
-                        name="level"
-                        id="level"
-                        placeholder="Selecciona nivel"
-                        value={changeLevel}
-                        onChange={(event) => {
-                          setChangeLevel(event.target.value);
-                        }}
-                      >
-                        <option value="incidencia">Incidencia</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                      </select>
-                      <button onClick={OKChangeLevel}>OK</button>
-                    </>
-                  )}
-                </div>
-              </>
+              <div className="font-semibold flex gap-3">
+                <p>NIVEL: </p>
+                {visible.level === false ? (
+                  <div className="w-[500px] flex flex-row justify-between">
+                    <p className="font-normal w-80">{changeLevel}</p>
+                    <button
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                      onClick={OpenChangeLevel}
+                    >
+                      Change
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-[500px] flex flex-row justify-between">
+                    <select
+                      name="level"
+                      id="level"
+                      placeholder="Selecciona nivel"
+                      value={changeLevel}
+                      onChange={(event) => {
+                        setChangeLevel(event.target.value);
+                      }}
+                    >
+                      <option value="incidencia">Incidencia</option>
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                    <button
+                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                      onClick={OKChangeLevel}
+                    >
+                      OK
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
             <div className="font-semibold flex gap-3">
               <p>INSTAGRAM: </p>
               {visible.instagram === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeIG}</p>
-                  <button onClick={OpenChangeIG}>Change</button>
-                </>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangeIG}
+                  >
+                    Change
+                  </button>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changeIG}
@@ -253,19 +299,29 @@ export default function BasicModal(props) {
                       setChangeIG(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangeIG}>OK</button>
-                </>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangeIG}
+                  >
+                    OK
+                  </button>
+                </div>
               )}
             </div>
             <div className="font-semibold flex gap-3">
               <p>TELEPHONE: </p>
               {visible.telephone === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changePhone}</p>
-                  <button onClick={OpenChangePhone}>Change</button>
-                </>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangePhone}
+                  >
+                    Change
+                  </button>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changePhone}
@@ -273,19 +329,29 @@ export default function BasicModal(props) {
                       setChangePhone(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangePhone}>OK</button>
-                </>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangePhone}
+                  >
+                    OK
+                  </button>
+                </div>
               )}
             </div>
             <div className="font-semibold flex gap-3">
               <p>EMAIL: </p>
               {visible.email === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeMail}</p>
-                  <button onClick={OpenChangeMail}>Change</button>
-                </>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangeMail}
+                  >
+                    Change
+                  </button>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changeMail}
@@ -293,14 +359,19 @@ export default function BasicModal(props) {
                       setChangeMail(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangeMail}>OK</button>
-                </>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangeMail}
+                  >
+                    OK
+                  </button>
+                </div>
               )}
             </div>
-            <div className="w-28 font-semibold flex gap-3">
+            <div className=" font-semibold flex gap-3">
               <p>WEB: </p>
               {visible.web === false ? (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <div className="w-64 text-ellipsis  flex justify-start items-center p-0">
                     <a
                       className="text-sm font-normal text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
@@ -311,10 +382,15 @@ export default function BasicModal(props) {
                       {changeWeb}
                     </a>
                   </div>
-                  <button onClick={OpenChangeWeb}>Change</button>
-                </>
+                  <button
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OpenChangeWeb}
+                  >
+                    Change
+                  </button>
+                </div>
               ) : (
-                <>
+                <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
                     value={changeWeb}
@@ -322,8 +398,13 @@ export default function BasicModal(props) {
                       setChangeWeb(event.target.value);
                     }}
                   />
-                  <button onClick={OKChangeWeb}>OK</button>
-                </>
+                  <button
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    onClick={OKChangeWeb}
+                  >
+                    OK
+                  </button>
+                </div>
               )}
             </div>
             <div className="font-semibold flex gap-3">
@@ -336,12 +417,12 @@ export default function BasicModal(props) {
             </div>
 
             {vendedor !== "" ? (
-              <>
+              <div className="w-[500px] flex flex-row justify-between">
                 <div className="font-semibold flex gap-3">
                   <p>VENDEDOR: </p>
                   <p className="font-normal">{vendedor}</p>
                 </div>
-              </>
+              </div>
             ) : null}
 
             {vendedor !== "" ? (
@@ -349,7 +430,7 @@ export default function BasicModal(props) {
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
                   onClick={() => {
-                    SendFixVendedor(client);
+                    DiscardLead(client);
                   }}
                 >
                   DISCARD LEAD
@@ -368,10 +449,18 @@ export default function BasicModal(props) {
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
                   onClick={() => {
+                    DiscardLead(client);
+                  }}
+                >
+                  DISCARD LEAD
+                </button>
+                <button
+                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                  onClick={() => {
                     SendFixCorredor(client);
                   }}
                 >
-                  FIXX
+                  FIX LEAD
                 </button>
               </div>
             )}
