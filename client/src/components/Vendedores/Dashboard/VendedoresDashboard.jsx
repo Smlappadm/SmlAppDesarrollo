@@ -48,8 +48,8 @@ const VendedoresDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [edit, setEdit] = useState(false);
-  const [editIndex, setEditIndex] = useState("");
+  // const [edit, setEdit] = useState(false);
+  // const [editIndex, setEditIndex] = useState("");
 
 
 
