@@ -46,7 +46,6 @@ const Pagination = ({ pageStyle, setPageStyle, cardXPage, client, pages }) => {
               <a
                 onClick={() => {
                   pages(num);
-                  // setCurrentPage(num)
                   setPageStyle(num);
                 }}
               >
