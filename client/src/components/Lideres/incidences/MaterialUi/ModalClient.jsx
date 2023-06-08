@@ -50,14 +50,14 @@ export default function BasicModal(props) {
     telephone: false,
   });
 
-  // const [changeMail, setChangeMail] = useState("");
-  // const OpenChangeMail = () => {
-  //   setVisible({ ...visible, email: true });
-  // };
-  // const OKChangeMail = () => {
-  //   setUpdateLead({ ...updateLead, email: changeMail });
-  //   setVisible({ ...visible, email: false });
-  // };
+  const [changeMail, setChangeMail] = useState("");
+  const OpenChangeMail = () => {
+    setVisible({ ...visible, email: true });
+  };
+  const OKChangeMail = () => {
+    setUpdateLead({ ...updateLead, email: changeMail });
+    setVisible({ ...visible, email: false });
+  };
 
   // const [changePhone, setChangePhone] = useState("");
   // const OpenChangePhone = () => {
