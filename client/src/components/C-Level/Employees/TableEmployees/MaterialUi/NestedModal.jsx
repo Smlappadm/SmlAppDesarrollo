@@ -14,6 +14,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
+  borderRadius: "30px",
   boxShadow: 24,
   textAlign: "center",
   color: "white",
@@ -148,7 +149,7 @@ function ChildModal({
     <React.Fragment>
       <div className="flex gap-2 justify-center items-center mt-5">
         <Button variant="outlined" onClick={handleCloseChild}>
-          Cerrar x
+          Cerrar
         </Button>
         <Button variant="contained" onClick={handleOpen}>
           Siguiente
@@ -181,7 +182,7 @@ function ChildModal({
             </p>
             <div className="flex justify-center gap-2 items-center">
               <Button variant="outlined" onClick={handleClose}>
-                Cerrar x
+                Cerrar
               </Button>
               <Button variant="contained" onClick={handleCreate}>
                 Crear empleado
@@ -231,7 +232,6 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
             width: "30%",
             height: "50%",
             bgcolor: "#39394b",
-            borderRadius: "30px",
           }}
         >
           <div>
