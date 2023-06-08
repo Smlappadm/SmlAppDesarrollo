@@ -209,7 +209,7 @@ export default function BasicModal(props) {
                   <div className="w-[500px] flex flex-row justify-between">
                     <p className="font-normal ">{changeLevel}</p>
                     <button
-                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 "
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2 "
                       onClick={OpenChangeLevel}
                     >
                       Change
@@ -221,6 +221,7 @@ export default function BasicModal(props) {
                       name="level"
                       id="level"
                       placeholder="Selecciona nivel"
+                      className="text-black w-80"
                       value={changeLevel}
                       onChange={(event) => {
                         setChangeLevel(event.target.value);
@@ -231,7 +232,7 @@ export default function BasicModal(props) {
                       <option value="2">2</option>
                     </select>
                     <button
-                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                       onClick={OKChangeLevel}
                     >
                       OK
@@ -246,7 +247,7 @@ export default function BasicModal(props) {
                   <div className="w-[500px] flex flex-row justify-between">
                     <p className="font-normal w-80">{changeLevel}</p>
                     <button
-                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                       onClick={OpenChangeLevel}
                     >
                       Change
@@ -258,6 +259,7 @@ export default function BasicModal(props) {
                       name="level"
                       id="level"
                       placeholder="Selecciona nivel"
+                      className="text-black w-80"
                       value={changeLevel}
                       onChange={(event) => {
                         setChangeLevel(event.target.value);
@@ -269,7 +271,7 @@ export default function BasicModal(props) {
                       <option value="2">2</option>
                     </select>
                     <button
-                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                       onClick={OKChangeLevel}
                     >
                       OK
@@ -284,7 +286,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeIG}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeIG}
                   >
                     Change
@@ -294,13 +296,14 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeIG}
                     onChange={(event) => {
                       setChangeIG(event.target.value);
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangeIG}
                   >
                     OK
@@ -314,7 +317,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changePhone}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangePhone}
                   >
                     Change
@@ -324,13 +327,14 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changePhone}
                     onChange={(event) => {
                       setChangePhone(event.target.value);
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangePhone}
                   >
                     OK
@@ -344,7 +348,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeMail}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeMail}
                   >
                     Change
@@ -354,13 +358,14 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeMail}
                     onChange={(event) => {
                       setChangeMail(event.target.value);
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangeMail}
                   >
                     OK
@@ -383,7 +388,7 @@ export default function BasicModal(props) {
                     </a>
                   </div>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeWeb}
                   >
                     Change
@@ -393,13 +398,14 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeWeb}
                     onChange={(event) => {
                       setChangeWeb(event.target.value);
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangeWeb}
                   >
                     OK
@@ -433,7 +439,7 @@ export default function BasicModal(props) {
                     DiscardLead(client);
                   }}
                 >
-                  DISCARD LEAD
+                  DESCARTAR CLIENTE
                 </button>
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
@@ -441,7 +447,7 @@ export default function BasicModal(props) {
                     SendFixVendedor(client);
                   }}
                 >
-                  FIX LEAD
+                  ACTUALIZAR
                 </button>
               </div>
             ) : (
@@ -452,7 +458,7 @@ export default function BasicModal(props) {
                     DiscardLead(client);
                   }}
                 >
-                  DISCARD LEAD
+                  DESCARTAR CLIENTE
                 </button>
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
@@ -460,7 +466,7 @@ export default function BasicModal(props) {
                     SendFixCorredor(client);
                   }}
                 >
-                  FIX LEAD
+                  ACTUALIZAR
                 </button>
               </div>
             )}
