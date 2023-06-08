@@ -18,9 +18,56 @@ const getLeadCheckedInactive5 = async (email) => {
     level: { $nin: ["incidencia", "0", "", "-"] },
   });
 
+// leadChequedInactiveNoResponde.forEach(element => {
+//   console.log(element.updatedAt)
+// })
+
+
+const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
+  
+
+  const dateA = a.updatedAt.toISOString();
+  const dateB = b.updatedAt.toISOString()
+  
+  if (dateA.slice(0, 4) !== dateB.slice(0, 4)) {
+    return dateA.slice(0, 4) - dateB.slice(0, 4);
+  }
+  
+  if (dateA.slice(5, 7) !== dateB.slice(5, 7)) {
+    return dateA.slice(5, 7) - dateB.slice(5, 7);
+  }
+  
+  if (dateA.slice(8, 10) !== dateB.slice(8, 10)) {
+    return dateA.slice(8, 10) - dateB.slice(8, 10);
+  }
+  
+  if (dateA.slice(11, 13) !== dateB.slice(11, 13)) {
+    return dateA.slice(11, 13) - dateB.slice(11, 13);
+  }
+  
+  if (dateA.slice(14, 16) !== dateB.slice(14, 16)) {
+    return dateA.slice(14, 16) - dateB.slice(14, 16);
+  }
+  // console.log(dateA)
+  // console.log(dateB)
+    // console.log(dateA.slice(0, 4))
+    // console.log(dateB.slice(0, 4))
+    // console.log(dateA.slice(5, 7))
+    // console.log(dateB.slice(5, 7))
+    // console.log(dateA.slice(8, 10))
+    // console.log(dateB.slice(8, 10))
+    // console.log(dateA.slice(11, 13))
+    // console.log(dateB.slice(11, 13))
+    // console.log(dateA.slice(14, 16))
+    // console.log(dateB.slice(14, 16))
+    // console.log(b.updatedAt.slice(1, 4))
+
+    return 0;
+  });
+
+
   let count = 0;
   count = 5 - leadChequedInactive.length;
-  console.log(count);
   let leadRest = [];
   if (count) {
     if (count > 0 && count <= 5) {
@@ -47,7 +94,7 @@ const getLeadCheckedInactive5 = async (email) => {
   return [
     ...leadChequedInactive,
     ...leadRest,
-    ...leadChequedInactiveNoResponde,
+    ...leadsNoRespondenSorted,
   ];
 };
 

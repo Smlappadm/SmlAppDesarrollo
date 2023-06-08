@@ -957,6 +957,14 @@ video {
   width: 100vw;
 }
 
+.w-80 {
+  width: 20rem;
+}
+
+.w-\[500px\] {
+  width: 500px;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
@@ -1294,6 +1302,11 @@ video {
 .bg-green-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#a9b231\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(169 178 49 / var(--tw-bg-opacity));
 }
 
 .fill-none {
