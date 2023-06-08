@@ -14,6 +14,7 @@ import {
 import InputBirthdateEdit from "./InputBirthdateEdit";
 import InputDescriptionEdit from "./InputDescriptionEdit";
 import InputCountryEdit from "./InputCountryEdit";
+import { TbPointFilled } from "react-icons/tb";
 
 const style = {
   position: "absolute",
@@ -290,7 +291,8 @@ export default function NestedModalEdit({
 
   return (
     <div>
-      <Button onClick={handleOpen}>...</Button>
+      <Button className="text-3xl" onClick={handleOpen}><TbPointFilled /><TbPointFilled /><TbPointFilled /> </Button>
+
       <Modal
         open={open}
         onClose={handleClose}
