@@ -3,16 +3,10 @@ const Vendedor = require("../../models/Vendedor");
 
 const updateLeadVendedorById = async (id, updatedData) => {
 
-  // const VendedorArrays = Vendedor.find({
-  //   $or: [
-  //     { leads_contacted: updatedData.dataVendedor.status },
-  //     { declined_leads: updatedData.dataVendedor.status },
-  //     { unanswered_leads: updatedData.dataVendedor.status },
-  //   ]
-  // });
+
 
   const leadCountCheck = await Lead.findById(id);
-  // console.log(VendedorArrays);
+
   
   if (!updatedData.dataLead.llamados) {
     updatedData.dataLead.llamados = 0;
