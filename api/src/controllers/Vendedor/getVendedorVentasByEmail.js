@@ -37,62 +37,7 @@ const getVendedorVentasByEmail = async (email) => {
     return 0;
   });
   
-  //   const sortClients = filteredLeads.sort((a, b) => {
-  //     // Obtener los años de los objetos de fecha
-  //     const minutosA = a.llamada_venta?.dateObject?.minutos;
-  //     const minutosB = b.llamada_venta?.dateObject?.minutos;
 
-  //     // Si alguno de los objetos de fecha es indefinido, colocarlo al final
-  //     if (typeof minutosA === 'undefined') return 1;
-  //     if (typeof minutosB === 'undefined') return -1;
-
-  //     // Ordenar en función del año
-  //     return minutosA - minutosB;
-  //   }).sort((a, b) => {
-  //     // Obtener los años de los objetos de fecha
-  //     const diaA = a.llamada_venta?.dateObject?.hora;
-  //     const diaB = b.llamada_venta?.dateObject?.hora;
-
-  //     // Si alguno de los objetos de fecha es indefinido, colocarlo al final
-  //     if (typeof horaA === 'undefined') return 1;
-  //     if (typeof horaB === 'undefined') return -1;
-
-  //     // Ordenar en función del año
-  //     return horaA - horaB;
-  //   }).sort((a, b) => {
-  //     // Obtener los años de los objetos de fecha
-  //     const diaA = a.llamada_venta?.dateObject?.dia;
-  //     const diaB = b.llamada_venta?.dateObject?.dia;
-
-  //     // Si alguno de los objetos de fecha es indefinido, colocarlo al final
-  //     if (typeof diaA === 'undefined') return 1;
-  //     if (typeof diaB === 'undefined') return -1;
-
-  //     // Ordenar en función del año
-  //     return diaA - diaB;
-  //   }).sort((a, b) => {
-  //     // Obtener los años de los objetos de fecha
-  //     const mesA = a.llamada_venta?.dateObject?.mes;
-  //     const mesB = b.llamada_venta?.dateObject?.mes;
-
-  //     // Si alguno de los objetos de fecha es indefinido, colocarlo al final
-  //     if (typeof mesA === 'undefined') return 1;
-  //     if (typeof mesB === 'undefined') return -1;
-
-  //     // Ordenar en función del año
-  //     return mesA - mesB;
-  //   }).sort((a, b) => {
-  //     // Obtener los años de los objetos de fecha
-  //     const yearA = a.llamada_venta?.dateObject?.year;
-  //     const yearB = b.llamada_venta?.dateObject?.year;
-
-  //     // Si alguno de los objetos de fecha es indefinido, colocarlo al final
-  //     if (typeof yearA === 'undefined') return 1;
-  //     if (typeof yearB === 'undefined') return -1;
-
-  //     // Ordenar en función del año
-  //     return yearA - yearB;
-  //   });
   return sortClients;
 };
 
