@@ -209,7 +209,7 @@ export default function BasicModal(props) {
                   <div className="w-[500px] flex flex-row justify-between">
                     <p className="font-normal ">{changeLevel}</p>
                     <button
-                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 "
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2 "
                       onClick={OpenChangeLevel}
                     >
                       Change
@@ -231,7 +231,7 @@ export default function BasicModal(props) {
                       <option value="2">2</option>
                     </select>
                     <button
-                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                       onClick={OKChangeLevel}
                     >
                       OK
@@ -246,7 +246,7 @@ export default function BasicModal(props) {
                   <div className="w-[500px] flex flex-row justify-between">
                     <p className="font-normal w-80">{changeLevel}</p>
                     <button
-                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                       onClick={OpenChangeLevel}
                     >
                       Change
@@ -269,7 +269,7 @@ export default function BasicModal(props) {
                       <option value="2">2</option>
                     </select>
                     <button
-                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                       onClick={OKChangeLevel}
                     >
                       OK
@@ -284,7 +284,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeIG}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeIG}
                   >
                     Change
@@ -300,7 +300,7 @@ export default function BasicModal(props) {
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangeIG}
                   >
                     OK
@@ -314,7 +314,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changePhone}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangePhone}
                   >
                     Change
@@ -330,7 +330,7 @@ export default function BasicModal(props) {
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangePhone}
                   >
                     OK
@@ -344,7 +344,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeMail}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeMail}
                   >
                     Change
@@ -360,7 +360,7 @@ export default function BasicModal(props) {
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangeMail}
                   >
                     OK
@@ -383,7 +383,7 @@ export default function BasicModal(props) {
                     </a>
                   </div>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeWeb}
                   >
                     Change
@@ -399,7 +399,7 @@ export default function BasicModal(props) {
                     }}
                   />
                   <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10"
+                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OKChangeWeb}
                   >
                     OK
