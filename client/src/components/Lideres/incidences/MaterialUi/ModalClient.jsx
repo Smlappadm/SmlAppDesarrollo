@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { updateLeadIncidence } from "../../../../redux/actions";
 
 const style = {
   position: "absolute",
@@ -36,14 +37,19 @@ export default function BasicModal(props) {
     observacion,
     corredor,
     vendedor,
+    fixed,
   } = props;
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setClient(_id);
     setChangeMail(email);
     setChangePhone(telephone);
     setChangeWeb(web);
     setChangeIG(instagram);
-  }, [email, _id, telephone, web, instagram, props]);
+    setChangeLevel(level);
+  }, [email, _id, telephone, web, instagram, level, dispatch]);
 
   const [client, setClient] = useState("");
 
@@ -52,6 +58,7 @@ export default function BasicModal(props) {
     telephone: false,
     web: false,
     instagram: false,
+    level: false,
   });
 
   const [changeMail, setChangeMail] = useState("");
@@ -86,18 +93,59 @@ export default function BasicModal(props) {
     setVisible({ ...visible, instagram: false });
   };
 
+  const [changeLevel, setChangeLevel] = useState("");
+  const OpenChangeLevel = () => {
+    setVisible({ ...visible, level: true });
+  };
+  const OKChangeLevel = () => {
+    setVisible({ ...visible, level: false });
+  };
+
   let body = {};
-  const SendFix = async (client) => {
+  const SendFixCorredor = (client) => {
     body = {
       email: changeMail,
       telephone: changePhone,
       url: changeWeb,
       instagram: changeIG,
+      level: changeLevel,
+      checked: changeLevel === "incidencia" ? true : false,
     };
     console.log("listo");
     console.log(client);
     console.log(body);
-    await axios.put(`lead/${client}`, body);
+    dispatch(updateLeadIncidence(client, body));
+    fixed(body);
+  };
+  const SendFixVendedor = (client) => {
+    body = {
+      email: changeMail,
+      telephone: changePhone,
+      url: changeWeb,
+      instagram: changeIG,
+      level: changeLevel,
+    };
+    console.log("listo");
+    console.log(client);
+    console.log(body);
+    dispatch(updateLeadIncidence(client, body));
+    fixed(body);
+  };
+  const DiscardLeadVendedor = (client) => {
+    body = {
+      email: changeMail,
+      telephone: changePhone,
+      url: changeWeb,
+      instagram: changeIG,
+      level: "0",
+      checked: false,
+      view: false,
+    };
+    console.log("listo");
+    console.log(client);
+    console.log(body);
+    dispatch(updateLeadIncidence(client, body));
+    fixed(body);
   };
 
   return (
@@ -131,10 +179,64 @@ export default function BasicModal(props) {
               </p>
             </div>
 
-            <div className="font-semibold flex gap-3">
-              <p>NIVEL: </p>
-              <p className="font-normal">{level}</p>
-            </div>
+            {vendedor !== "" ? (
+              <div className="font-semibold flex gap-3">
+                <p>NIVEL: </p>
+                {visible.level === false ? (
+                  <>
+                    <p className="font-normal">{changeLevel}</p>
+                    <button onClick={OpenChangeLevel}>Change</button>
+                  </>
+                ) : (
+                  <>
+                    <select
+                      name="level"
+                      id="level"
+                      placeholder="Selecciona nivel"
+                      value={changeLevel}
+                      onChange={(event) => {
+                        setChangeLevel(event.target.value);
+                      }}
+                    >
+                      <option value="incidencia">Incidencia</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                    <button onClick={OKChangeLevel}>OK</button>
+                  </>
+                )}
+              </div>
+            ) : (
+              <>
+                <div className="font-semibold flex gap-3">
+                  <p>NIVEL: </p>
+                  {visible.level === false ? (
+                    <>
+                      <p className="font-normal">{changeLevel}</p>
+                      <button onClick={OpenChangeLevel}>Change</button>
+                    </>
+                  ) : (
+                    <>
+                      <select
+                        name="level"
+                        id="level"
+                        placeholder="Selecciona nivel"
+                        value={changeLevel}
+                        onChange={(event) => {
+                          setChangeLevel(event.target.value);
+                        }}
+                      >
+                        <option value="incidencia">Incidencia</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                      </select>
+                      <button onClick={OKChangeLevel}>OK</button>
+                    </>
+                  )}
+                </div>
+              </>
+            )}
             <div className="font-semibold flex gap-3">
               <p>INSTAGRAM: </p>
               {visible.instagram === false ? (
@@ -242,16 +344,37 @@ export default function BasicModal(props) {
               </>
             ) : null}
 
-            <div>
-              <button
-                className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 ml-[350px]"
-                onClick={() => {
-                  SendFix(client);
-                }}
-              >
-                FIX
-              </button>
-            </div>
+            {vendedor !== "" ? (
+              <div className="flex flex-row justify-around">
+                <button
+                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                  onClick={() => {
+                    SendFixVendedor(client);
+                  }}
+                >
+                  DISCARD LEAD
+                </button>
+                <button
+                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                  onClick={() => {
+                    SendFixVendedor(client);
+                  }}
+                >
+                  FIX LEAD
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-row justify-around">
+                <button
+                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                  onClick={() => {
+                    SendFixCorredor(client);
+                  }}
+                >
+                  FIXX
+                </button>
+              </div>
+            )}
           </div>
         </Box>
       </Modal>

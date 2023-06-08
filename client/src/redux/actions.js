@@ -256,3 +256,9 @@ export const getDetailEmploy = (email) => {
     dispatch({ type: GET_DETAIL_EMPLOY, payload: detailEmploy });
   };
 };
+
+export const updateLeadIncidence = (client, body) => {
+  return async () => {
+    await axios.put(`lead/${client}`, body);
+  };
+};
