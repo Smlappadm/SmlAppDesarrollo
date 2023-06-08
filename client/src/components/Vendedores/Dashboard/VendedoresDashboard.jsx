@@ -267,7 +267,7 @@ const VendedoresDashboard = () => {
                     </td>
                     <td className="flex justify-start items-start p-0 w-fit">
                       {item.status === "Sin contactar" && (
-                        <p className="bg-[#d0da3d] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                        <p className="bg-[#a9b231] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                           {item.status}
                         </p>
                       )}
