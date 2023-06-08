@@ -273,11 +273,16 @@ const VendedoresDashboard = () => {
                       )}
                       {item.status === "No responde" && (
                         // <p className="bg-[#b4215e] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                        <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                        <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
+{/* className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-18" */}
+                        <p className="text-16">
                           {/* bg-[#ff69b4]  */}
                           {item.status}
                         </p>
+                        <label className="text-[14px]">{item.updatedAt.slice(0, 10).split("-").reverse().join("-")} {item.updatedAt.slice(11, 16)}</label>
+                        </div>
                       )}
+
                     </td>
                     <td className="flex justify-start items-start p-0 w-fit gap-3">
                     <ModalIntelligentInfo/>

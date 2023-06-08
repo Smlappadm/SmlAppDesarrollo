@@ -6,7 +6,7 @@ import BasicSelect from "./BasicSelect";
 import InputName from "./InputName";
 import InputEmail from "./InputEmail";
 import axios from "axios";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getAllClevel,
   getAllCorredores,
@@ -14,8 +14,6 @@ import {
   getAllLeader,
   getAllVendedores,
 } from "../../../../../redux/actions";
-
-
 
 const style = {
   position: "absolute",
@@ -165,7 +163,6 @@ function ChildModal({
       </div>
       <Modal
         open={open}
-        onClose={handleCreate}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >

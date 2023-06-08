@@ -7,7 +7,10 @@ import InputPhoneEdit from "./InputPhoneEdit";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import InputEmailEdit from "./InputEmailEdit";
-import { getAllEmployees } from "../../../../../../redux/actions";
+import {
+  getAllEmployees,
+  getDetailEmploy,
+} from "../../../../../../redux/actions";
 import InputBirthdateEdit from "./InputBirthdateEdit";
 import InputDescriptionEdit from "./InputDescriptionEdit";
 import InputCountryEdit from "./InputCountryEdit";
@@ -260,6 +263,7 @@ function ChildModal({
     }
 
     dispatch(getAllEmployees());
+    dispatch(getDetailEmploy(itemEmail));
     setOpen(false);
   };
 
@@ -274,7 +278,6 @@ function ChildModal({
       </Button>
       <Modal
         open={open}
-        onClose={handleCreate}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
