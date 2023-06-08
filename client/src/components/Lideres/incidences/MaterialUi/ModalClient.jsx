@@ -39,6 +39,7 @@ export default function BasicModal(props) {
     corredor,
     vendedor,
     fixed,
+    status,
   } = props;
 
   const dispatch = useDispatch();
@@ -111,6 +112,7 @@ export default function BasicModal(props) {
       instagram: changeIG,
       level: changeLevel,
       checked: changeLevel === "incidencia" ? true : false,
+      status: changeLevel === "0" ? "discard" : status,
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
@@ -139,6 +141,7 @@ export default function BasicModal(props) {
       level: "0",
       checked: false,
       view: false,
+      status: "discard",
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
