@@ -433,7 +433,7 @@ export default function BasicModal(props) {
                     DiscardLead(client);
                   }}
                 >
-                  DISCARD LEAD
+                  DESCARTAR CLIENTE
                 </button>
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
@@ -441,7 +441,7 @@ export default function BasicModal(props) {
                     SendFixVendedor(client);
                   }}
                 >
-                  FIX LEAD
+                  ACTUALIZAR
                 </button>
               </div>
             ) : (
@@ -452,7 +452,7 @@ export default function BasicModal(props) {
                     DiscardLead(client);
                   }}
                 >
-                  DISCARD LEAD
+                  DESCARTAR CLIENTE
                 </button>
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
@@ -460,7 +460,7 @@ export default function BasicModal(props) {
                     SendFixCorredor(client);
                   }}
                 >
-                  FIX LEAD
+                  ACTUALIZAR
                 </button>
               </div>
             )}
