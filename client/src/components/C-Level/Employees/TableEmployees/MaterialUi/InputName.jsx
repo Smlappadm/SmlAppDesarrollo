@@ -17,8 +17,8 @@ export default function InputName({ name, setName, itemName }) {
     >
       <TextField
         fullWidth
-        label='Name'
-        id='Name'
+        label='Nombre'
+        id='Nombre'
         value={name}
         onChange={handleChange}
         InputProps={{

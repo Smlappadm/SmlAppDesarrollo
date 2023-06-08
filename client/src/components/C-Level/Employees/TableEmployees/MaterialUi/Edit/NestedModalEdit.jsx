@@ -20,7 +20,6 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  border: "2px solid #000",
   boxShadow: 24,
   textAlign: "center",
   color: "white",
@@ -92,9 +91,9 @@ function ChildModalDelete({
         aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b" }}>
-          <h2 id="child-modal-title">Confirm deletion of {inputName}?</h2>
+          <h2 id="child-modal-title">Seguro quieres eliminar a {inputName} ?</h2>
           <Button variant="contained" onClick={handleCreate}>
-            Delete Employ
+            Eliminar empleado
           </Button>
         </Box>
       </Modal>
@@ -219,17 +218,18 @@ function ChildModal({
         sx={{ marginTop: "2rem" }}
         onClick={handleOpen}
       >
-        Update Employ
+        Actualizar
       </Button>
       <Modal
         open={open}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b" }}>
+        <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b", 
+            borderRadius: "30px" }}>
           <h2 id="child-modal-title">Confirm update of {inputName}?</h2>
           <Button variant="contained" onClick={handleCreate}>
-            Update Employ
+            Actualizar empleado
           </Button>
         </Box>
       </Modal>
@@ -285,7 +285,14 @@ export default function NestedModalEdit({
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ ...style, width: "30%", bgcolor: "#39394b" }}>
+        <Box
+          sx={{
+            ...style,
+            width: "30%",
+            bgcolor: "#39394b",
+            borderRadius: "30px",
+          }}
+        >
           <div>
             <div className="flex flex-col gap-5 my-5">
               <h2 id="parent-modal-title">Edit Employ {inputName}</h2>
