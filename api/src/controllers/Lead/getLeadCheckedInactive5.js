@@ -18,9 +18,6 @@ const getLeadCheckedInactive5 = async (email) => {
     level: { $nin: ["incidencia", "0", "", "-"] },
   });
 
-// leadChequedInactiveNoResponde.forEach(element => {
-//   console.log(element.updatedAt)
-// })
 
 
 const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
@@ -48,19 +45,6 @@ const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
   if (dateA.slice(14, 16) !== dateB.slice(14, 16)) {
     return dateA.slice(14, 16) - dateB.slice(14, 16);
   }
-  // console.log(dateA)
-  // console.log(dateB)
-    // console.log(dateA.slice(0, 4))
-    // console.log(dateB.slice(0, 4))
-    // console.log(dateA.slice(5, 7))
-    // console.log(dateB.slice(5, 7))
-    // console.log(dateA.slice(8, 10))
-    // console.log(dateB.slice(8, 10))
-    // console.log(dateA.slice(11, 13))
-    // console.log(dateB.slice(11, 13))
-    // console.log(dateA.slice(14, 16))
-    // console.log(dateB.slice(14, 16))
-    // console.log(b.updatedAt.slice(1, 4))
 
     return 0;
   });
