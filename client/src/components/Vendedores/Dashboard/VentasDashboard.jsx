@@ -25,7 +25,7 @@ import Nav from "../../Nav/Nav";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
-  const { LeadsLlamadaVenta } = useSelector((state) => state);
+  const { vendedoresVentasDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [showObservaciones, setShowObservaciones] = useState(false);
@@ -40,12 +40,11 @@ const VentasDashboard = () => {
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(emailAddress));
     // ordenarLeadsLlamadasVentas()
-
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
-    setData(LeadsLlamadaVenta);
-  }, [LeadsLlamadaVenta, setData]);
+    setData(vendedoresVentasDashboard);
+  }, [vendedoresVentasDashboard, setData]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -69,7 +68,7 @@ const VentasDashboard = () => {
 
   const handlerFilter = (filter) => {
     if (filter === "level") {
-      setFilters({ level: true, runner: false, sellers: false, status: false });
+      setFilters({ level: !filters.level, runner: false, sellers: false, status: false });
     } else if (filter === "runner") {
       setFilters({ level: false, runner: true, sellers: false, status: false });
     } else if (filter === "sellers") {
@@ -81,75 +80,18 @@ const VentasDashboard = () => {
 
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
+    console.log(value)
     setLevelValue(value);
     dispatch(filterLevel(value));
-    setData(LeadsLlamadaVenta);
+    setData(vendedoresVentasDashboard);
     setCurrentPage(1);
+    if(!value){
+      setFilters({...filters, level: !filters.level})
+    }
   };
   //********************************* */
 
-  // const ordenarLeadsLlamadasVentas = () => {
-  //   let datos = [
-  //     "Sin Día/Hora",
-  //     "Dia: 31/7/2022 Hora: 18:30",
-  //     "Dia: 31/5/2022 Hora: 18:30",
-  //     "Dia: 31/8/2022 Hora: 18:30",
-  //     "Dia: 24/4/2023 Hora: 06:30",
-  //   ];
 
-  //   console.log(
-  //     datos.sort((a, b) => {
-  //       if (a === "Sin Día/Hora" && b !== "Sin Día/Hora") {
-  //         return 1;
-  //       } else if (a !== "Sin Día/Hora" && b === "Sin Día/Hora") {
-  //         return -1;
-  //       } else {
-  //         const diaA = a[6] !== "/" ? a.slice(5, 7) : a.slice(5, 6);
-  //         const diaB = b[6] !== "/" ? b.slice(5, 7) : b.slice(5, 6);
-  //         if (diaA !== diaB) {
-  //           return diaA - diaB;
-  //         }
-  //         const mesA = a[7] !== "/" ? a.slice(7, 9) : a.slice(8, 9);
-  //         const mesB = b[7] !== "/" ? b.slice(7, 9) : b.slice(8, 9);
-  //         if (mesA !== mesB) {
-  //           return mesA - mesB;
-  //         }
-  //         const añoA = a.slice(10, 14);
-  //         const añoB = b.slice(10, 14);
-  //         return añoA - añoB;
-  //       }
-  //     })
-  //   );
-
-    // console.log(
-    //   datos
-    //     .sort((a, b) => {
-    //       const diaA = a[6] !== "/" ? a.slice(5, 7) : a.slice(5, 6);
-    //       const diaB = b[6] !== "/" ? b.slice(5, 7) : b.slice(5, 6);
-    //       return diaA - diaB;
-    //     })
-    //     .sort((a, b) => {
-    //       const mesA = a[7] !== "/" ? a.slice(7, 9) : a.slice(8, 9);
-    //       const mesB = b[7] !== "/" ? b.slice(7, 9) : b.slice(8, 9);
-    //       return mesA - mesB;
-    //     })
-    //     .sort((a, b) => {
-    //       const añoA = a.slice(10, 14);
-    //       const añoB = b.slice(10, 14);
-    //       return añoA - añoB;
-    //     })
-    //     .sort((a, b) => {
-    //       if (a === "Sin Día/Hora" && b !== "Sin Día/Hora") {
-    //         return 1;
-    //       } else if (a !== "Sin Día/Hora" && b === "Sin Día/Hora") {
-    //         return -1;
-    //       } else {
-    //         return 0;
-    //       }
-    //     })
-    // );
-  // };
- console.log(data)
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
       .writeText(copyToProps)
@@ -210,7 +152,7 @@ const VentasDashboard = () => {
   };
   const updateLeads = () => {
     // dispatch(getLeadsLLamadaVenta());
-    // setData(LeadsLlamadaVenta);
+
   };
 
   const showObservacionesHandler = (observacion) => {
@@ -281,7 +223,7 @@ const VentasDashboard = () => {
               ""
             )}
           </div>
-          {LeadsLlamadaVenta.length > 0 ? (
+          {vendedoresVentasDashboard.length > 0 ? (
             <table className={style.table}>
               <thead className="text-gray-400 text-14 font-thin">
                 <tr className={style.tableRow}>
@@ -337,8 +279,8 @@ const VentasDashboard = () => {
                     </td>
                     <td className="flex justify-start items-center p-0 w-fit">
                       {showObservaciones && (
-                        <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#b9b9b978] text-white rounded-md">
-                          <p className="mt-2 p-3    ">
+                        <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
+                          <p className=" p-3    ">
                             Observaciones: {observationMessage}
                           </p>
                           <button
@@ -383,21 +325,21 @@ const VentasDashboard = () => {
                     <td className="flex justify-start items-center p-0 w-fit">
                       <div className="w-52 h-11">
                         {item.llamada_venta.contacto ? (
-                          <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 ">
+                          <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                             {item.llamada_venta.contacto}
                           </p>
                         ) : (
-                          <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
+                          <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                             Sin contacto
                           </p>
                         )}
                         <div className="flex justify-start items-center">
                           {item.llamada_venta.dia_hora[5] !== "u" ? (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
+                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.llamada_venta.dia_hora}
                             </p>
                           ) : (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111">
+                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               Sin Día/Hora
                             </p>
                           )}
