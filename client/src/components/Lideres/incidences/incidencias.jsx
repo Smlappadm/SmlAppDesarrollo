@@ -364,7 +364,7 @@ const Incidences = () => {
             pageStyle={pageStyle}
             setPageStyle={setPageStyle}
             cardXPage={cardXPage}
-            data={showData}
+            data={data}
             pages={pages}
             current={currentPage}
           />
