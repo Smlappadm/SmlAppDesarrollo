@@ -190,16 +190,16 @@ const VentasDashboard = () => {
           {vendedoresVentasDashboard.length > 0 ? (
             <table className={style.table}>
               <div className="flex justify-start items-center  mx-6">
-                <label className="border-2 text-start w-[20%] px-3">Nombre</label>
-                <label className="border-2 text-start w-[15%] px-3">Sector</label>
-                <label className="border-2 text-start w-[10%] px-3">País</label>
-                <label className="border-2 text-center w-[5%] ">Email</label>
-                <label className="border-2 text-center w-[5%] ">Instagram</label>
-                <label className="border-2 text-center w-[15%] ">Phone</label>
-                <button className="border-2 text-center  w-[10%]">Nivel</button>
-                <label className="border-2 text-center w-[15%] ">Llamar</label>
-                <label className="border-2 text-center w-[20%] ">Status</label>
-                <label className="border-2 text-center w-[20%] ">Status</label>
+                <label className=" text-start w-[15%] px-3">Nombre</label>
+                <label className=" text-start w-[11%] px-3">Sector</label>
+                <label className=" text-start w-[9%] px-3">País</label>
+                <label className=" text-center w-[5%] ">Email</label>
+                <label className=" text-center w-[5%] ">Instagram</label>
+                <label className=" text-center w-[13%] ">Phone</label>
+                <button className=" text-center w-[5%]">Nivel</button>
+                <label className=" text-center w-[17%] ">Llamar</label>
+                <label className=" text-center w-[15%] ">Status</label>
+                <label className=" text-center w-[5%] "></label>
               </div>
               {/* <thead className="text-gray-400 text-14 font-thin">
                 <tr className={style.tableRow}>
@@ -223,18 +223,18 @@ const VentasDashboard = () => {
               <tbody className="">
                 {currentCard.map((item, index) => (
                   <div key={item._id} className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg">
-                    <div className=" w-[20%] flex justify-start items-center  p-0 ">
+                    <div className=" w-[15%] flex justify-start items-center  p-0 ">
                       <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.name}
                       </p>
                     </div>
-                    <div className=" w-[15%] flex justify-start items-center p-0 ">
+                    <div className=" w-[11%] flex justify-start items-center p-0 ">
                       <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.category}
                       </p>
                     </div>
 
-                    <div className=" w-[10%] flex justify-start items-center p-0">
+                    <div className=" w-[9%] flex justify-start items-center p-0">
                       <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.province}
                       </p>
@@ -279,7 +279,7 @@ const VentasDashboard = () => {
                         </div>
                       )}
                     </div>
-                    <div className=" w-[15%] flex justify-center items-center p-0 ">
+                    <div className=" w-[13%] flex justify-center items-center p-0 ">
                       <p
                         onClick={() => handleCopyClick(item.telephone)}
                         className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
@@ -287,7 +287,7 @@ const VentasDashboard = () => {
                         {item.telephone}
                       </p>
                       </div>
-                      <div className=" w-[20%] flex justify-center items-start p-0">
+                      <div className=" w-[5%] flex justify-center items-start p-0">
                       {item.level !== "incidencia" ? (
                         <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
                           {item.level}
@@ -298,8 +298,8 @@ const VentasDashboard = () => {
                         </div>
                       )}
                     </div>
-                    <div className=" w-[20%] flex justify-center items-start p-0">
-                      <div className="w-52 h-11">
+                    <div className=" w-[17%] flex justify-center items-start p-0">
+                      <div className="w-48 h-11">
                         {item.llamada_venta.contacto ? (
                           <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                             {item.llamada_venta.contacto}
@@ -309,9 +309,9 @@ const VentasDashboard = () => {
                             Sin contacto
                           </p>
                         )}
-                        <div className="flex justify-start items-center">
+                        <div className=" flex justify-start items-center">
                           {item.llamada_venta.dia_hora[5] !== "u" ? (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.llamada_venta.dia_hora}
                             </p>
                           ) : (
@@ -330,7 +330,7 @@ const VentasDashboard = () => {
                         }}
                       />
                     </div>
-                    <div className=" w-[20%] flex justify-center items-start p-0">
+                    <div className=" w-[15%] flex justify-center items-start p-0">
                       {item.status === "Sin contactar" && (
                         <p className="bg-[#ff69b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                           {item.status}
@@ -338,13 +338,13 @@ const VentasDashboard = () => {
                       )}
                       {item.status === "Agendar 2do llamado" && (
                         // <p className="bg-[#b4215e] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                        <p className="bg-[#21b46f] w-52 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                        <p className="bg-[#21b46f] w-48 h-11 flex justify-center items-center text-white rounded-3xl text-16">
                           {/* bg-[#ff69b4]  */}
                           {item.status}
                         </p>
                       )}
                     </div>
-                    <div className=" w-[20%] flex justify-center items-start p-0">
+                    <div className=" w-[5%] flex justify-center items-start p-0">
                       <Modal
                         item={item}
                         SendLeadAlert={SendLeadAlert}
