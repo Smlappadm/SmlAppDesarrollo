@@ -158,23 +158,23 @@ function ChildModal({
           country: inputCountry,
         });
 
-        // await axios.put(`/corredor/detail/?email=${inputEmail}`, {
-        //   name: inputName,
-        //   email: inputEmail,
-        //   contactNumber: inputPhone,
-        //   birthdate: inputBirthdate,
-        //   description: inputDescription,
-        //   country: inputCountry,
-        // });
+        await axios.put(`/corredor/email/email/?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
 
-        // await axios.put(`/vendedor/detail/?email=${inputEmail}`, {
-        //   name: inputName,
-        //   email: inputEmail,
-        //   contactNumber: inputPhone,
-        //   birthdate: inputBirthdate,
-        //   description: inputDescription,
-        //   country: inputCountry,
-        // });
+        await axios.put(`/vendedor/email/email/?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
       }
       if (itemRol === "leader") {
         await axios.put(`/leader/email/?email=${inputEmail}`, {
@@ -186,22 +186,45 @@ function ChildModal({
           country: inputCountry,
         });
 
-        // await axios.put(`/corredor/detail/?email=${inputEmail}`, {
-        //   name: inputName,
-        //   email: inputEmail,
-        //   contactNumber: inputPhone,
-        //   birthdate: inputBirthdate,
-        //   description: inputDescription,
-        //   country: inputCountry,
-        // });
-        // await axios.put(`/vendedor/email/?email=${inputEmail}`, {
-        //   name: inputName,
-        //   email: inputEmail,
-        //   contactNumber: inputPhone,
-        //   birthdate: inputBirthdate,
-        //   description: inputDescription,
-        //   country: inputCountry,
-        // });
+        await axios.put(`/corredor/email/email/?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
+
+        await axios.put(`/vendedor/email/email/?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
+      }
+
+      if (itemRol === "vendedor") {
+        await axios.put(`/vendedor/email/email/?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
+      }
+
+      if (itemRol === "corredor") {
+        await axios.put(`/corredor/email/email/?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
       }
 
       await axios.put(`/employees/email/?email=${inputEmail}`, {
@@ -291,7 +314,11 @@ export default function NestedModalEdit({
 
   return (
     <div>
-      <Button className="text-3xl" onClick={handleOpen}><TbPointFilled /><TbPointFilled /><TbPointFilled /> </Button>
+      <Button className="text-3xl" onClick={handleOpen}>
+        <TbPointFilled />
+        <TbPointFilled />
+        <TbPointFilled />{" "}
+      </Button>
 
       <Modal
         open={open}
