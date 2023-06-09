@@ -35,8 +35,3 @@
   margin-right: 5px;
 }
 
-@media screen and (max-width: 1500px) {
-  .tableRow {
-    grid-template-columns: 27% 30% 20% 10% auto;
-  }
-}

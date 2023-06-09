@@ -19,6 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import BasicButtons from "./MaterialUi/BasicButtons";
+import NestedModal from "./MaterialUi/NestedModal";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -26,6 +27,7 @@ const CorredoresDashboard = () => {
   const [country, setCountry] = useState("");
   const [marca_personal, setMarca_personal] = useState("");
   const [category, seCategory] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const { corredorLead } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
@@ -91,6 +93,20 @@ const CorredoresDashboard = () => {
     });
   };
 
+  const handleChangeIncidencia = (event, index) => {
+    const { name, value } = event.target;
+
+    setClient((prevState) => {
+      const updatedClient = [...prevState];
+      updatedClient[index] = {
+        ...updatedClient[index],
+        [name]: value,
+        status_op: value,
+      };
+      return updatedClient;
+    });
+  };
+
   const handleChangeEmail = (event, index) => {
     const { name, value } = event.target;
     setClient((prevState) => {
@@ -115,8 +131,19 @@ const CorredoresDashboard = () => {
         level: value,
       };
 
+      if (value === "incidencia") {
+        console.log("entro", value);
+        setOpenModal(true);
+      }
+      if (value !== "incidencia") {
+        console.log("salio", value);
+        setOpenModal(false);
+      }
       return updatedClient;
     });
+    return(
+      <NestedModal />
+    )
   };
 
   useEffect(() => {
@@ -132,6 +159,7 @@ const CorredoresDashboard = () => {
             email: corredorLead[i].email,
             instagram: corredorLead[i].instagram,
             level: corredorLead[i].level,
+            status_op: corredorLead[i].status_op,
             checked: false,
             view: true,
           });
@@ -244,6 +272,7 @@ const CorredoresDashboard = () => {
               name: client[i].name,
               url: client[i].url,
               instagram: client[i].instagram,
+              status_op: client[i].status_op,
               email: client[i].email,
               level: client[i].level,
               checked: true,
@@ -258,6 +287,7 @@ const CorredoresDashboard = () => {
               name: client[i].name,
               url: client[i].url,
               instagram: client[i].instagram,
+              status_op: client[i].status_op,
               email: client[i].email,
               level: client[i].level,
               checked: true,
@@ -492,6 +522,27 @@ const CorredoresDashboard = () => {
                         >
                           ⚠
                         </button>
+
+                        <div>
+                          <NestedModal
+                            itemId={item._id}
+                            itemStatus_op={item.status_op}
+                            openModal={openModal}
+                            setOpenModal={setOpenModal}
+                          />
+                          {/* <input
+                            className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+                              item.status_op ? "border-green-500" : ""
+                            }`}
+                            type="text"
+                            name="incidencia"
+                            value={item.status_op}
+                            onChange={(event) =>
+                              handleChangeIncidencia(event, index)
+                            }
+                            placeholder="Descripcion de la incidencia"
+                          /> */}
+                        </div>
                       </td>
                     </tr>
                   ))}
