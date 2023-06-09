@@ -189,7 +189,19 @@ const VentasDashboard = () => {
           </div>
           {vendedoresVentasDashboard.length > 0 ? (
             <table className={style.table}>
-              <thead className="text-gray-400 text-14 font-thin">
+              <div className="flex justify-start items-center  mx-6">
+                <label className="border-2 text-start w-[20%] px-3">Nombre</label>
+                <label className="border-2 text-start w-[15%] px-3">Sector</label>
+                <label className="border-2 text-start w-[10%] px-3">País</label>
+                <label className="border-2 text-center w-[5%] ">Email</label>
+                <label className="border-2 text-center w-[5%] ">Instagram</label>
+                <label className="border-2 text-center w-[15%] ">Phone</label>
+                <button className="border-2 text-center  w-[10%]">Nivel</button>
+                <label className="border-2 text-center w-[15%] ">Llamar</label>
+                <label className="border-2 text-center w-[20%] ">Status</label>
+                <label className="border-2 text-center w-[20%] ">Status</label>
+              </div>
+              {/* <thead className="text-gray-400 text-14 font-thin">
                 <tr className={style.tableRow}>
                   <th className="text-start">Nombre</th>
                   <th className="text-start">Sector</th>
@@ -206,29 +218,29 @@ const VentasDashboard = () => {
                   <th className="text-start">Status</th>
                   <th className="text-start"></th>
                 </tr>
-              </thead>
+              </thead> */}
 
               <tbody className="">
                 {currentCard.map((item, index) => (
-                  <tr key={index} className={style.tableCards}>
-                    <td className="flex justify-start items-center  p-0 w-fit">
+                  <div key={item._id} className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg">
+                    <div className=" w-[20%] flex justify-start items-center  p-0 ">
                       <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.name}
                       </p>
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[15%] flex justify-start items-center p-0 ">
                       <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.category}
                       </p>
-                    </td>
+                    </div>
 
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    <div className=" w-[10%] flex justify-start items-center p-0">
                       <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.province}
                       </p>
-                    </td>
+                    </div>
 
-                    <td className="flex justify-center items-center p-0 w-fit">
+                    <div className=" w-[5%] flex justify-center items-center p-0">
                       {item.email !== "-" ? (
                         <div onClick={() => handleCopyClick(item.email)}>
                           <div className="cursor-pointer">
@@ -240,8 +252,8 @@ const VentasDashboard = () => {
                           <CiMail className="text-[35px] mr-5 text-[#9eabbe]" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[5%] flex justify-center items-center p-0">
                       {showObservaciones && (
                         <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
                           <p className=" p-3    ">
@@ -266,16 +278,16 @@ const VentasDashboard = () => {
                           <CiInstagram className="text-[35px] mr-5 text-[#9eabbe]" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[15%] flex justify-center items-center p-0 ">
                       <p
                         onClick={() => handleCopyClick(item.telephone)}
                         className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                       >
                         {item.telephone}
                       </p>
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                      </div>
+                      <div className=" w-[20%] flex justify-center items-start p-0">
                       {item.level !== "incidencia" ? (
                         <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
                           {item.level}
@@ -285,8 +297,8 @@ const VentasDashboard = () => {
                           <CiWarning className="text-[#fdfa3a] p-0 text-[35px] font-bold" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[20%] flex justify-center items-start p-0">
                       <div className="w-52 h-11">
                         {item.llamada_venta.contacto ? (
                           <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
@@ -317,8 +329,8 @@ const VentasDashboard = () => {
                           );
                         }}
                       />
-                    </td>
-                    <td className="flex justify-start items-start p-0 w-fit">
+                    </div>
+                    <div className=" w-[20%] flex justify-center items-start p-0">
                       {item.status === "Sin contactar" && (
                         <p className="bg-[#ff69b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                           {item.status}
@@ -331,8 +343,8 @@ const VentasDashboard = () => {
                           {item.status}
                         </p>
                       )}
-                    </td>
-                    <td className="flex justify-start items-start p-0 w-fit">
+                    </div>
+                    <div className=" w-[20%] flex justify-center items-start p-0">
                       <Modal
                         item={item}
                         SendLeadAlert={SendLeadAlert}
@@ -340,8 +352,8 @@ const VentasDashboard = () => {
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
                         emailAddress={emailAddress}
                       />
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                 ))}
               </tbody>
             </table>
