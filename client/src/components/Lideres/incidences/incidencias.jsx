@@ -359,14 +359,16 @@ const Incidences = () => {
             ))}
           </div>
         </div>
-        <PaginationOutlined
-          pageStyle={pageStyle}
-          setPageStyle={setPageStyle}
-          cardXPage={cardXPage}
-          data={data}
-          pages={pages}
-          current={currentPage}
-        />
+        {data.length > 10 ? (
+          <PaginationOutlined
+            pageStyle={pageStyle}
+            setPageStyle={setPageStyle}
+            cardXPage={cardXPage}
+            data={showData}
+            pages={pages}
+            current={currentPage}
+          />
+        ) : null}
       </Card>
     </>
   );
