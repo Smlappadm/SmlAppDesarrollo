@@ -449,6 +449,7 @@ export default function NestedModal({
   };
   const handleClose = () => {
     setOpen(false);
+    statusObj.status = "";
   };
 
   const handleSelectChange = (event) => {

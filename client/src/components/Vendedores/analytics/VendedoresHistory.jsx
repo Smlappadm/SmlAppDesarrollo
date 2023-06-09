@@ -130,9 +130,9 @@ const VendedoresHistory = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
               <div className="absolute right-14">
-                <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
+                {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
                   <option className="py-1">2023</option>
-                </select>
+                </select> */}
               </div>
             </div>
           </div>
