@@ -44,10 +44,9 @@ export const AnalyticLeader = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const showData = data.filter((item) => {
-    return (
-      item.status !== "No responde" && item.status !== "Agendar 2do llamado"
-    );
+    return item.status === "discard";
   });
+  console.log(showData);
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -364,28 +363,9 @@ export const AnalyticLeader = () => {
                       </div>
                     </div>
                     <div className="flex justify-center items-center p-0">
-                      {item.status === "Contratado" ? (
-                        <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Contratado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-                      {item.status === "Sin contactar" ? (
-                        <Text className="bg-[#b44f82]  text-[#e0dfdf]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Sin Contactar
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-
-                      {item.status === "Rechazado" ? (
-                        <Text className="bg-[#b44f82] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
-                          Rechazado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
+                      <Text className="bg-black  text-white   px-2 py-1.5 rounded-xl text-center w-48">
+                        DESCARTADO
+                      </Text>
                     </div>
                   </button>
                 </div>
@@ -397,7 +377,7 @@ export const AnalyticLeader = () => {
           pageStyle={pageStyle}
           setPageStyle={setPageStyle}
           cardXPage={cardXPage}
-          data={data}
+          data={showData}
           pages={pages}
           current={currentPage}
         />

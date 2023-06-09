@@ -14,11 +14,13 @@ import {
 import InputBirthdateEdit from "./InputBirthdateEdit";
 import InputDescriptionEdit from "./InputDescriptionEdit";
 import InputCountryEdit from "./InputCountryEdit";
+import { TbPointFilled } from "react-icons/tb";
 
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
+  borderRadius: "30px",
   transform: "translate(-50%, -50%)",
   boxShadow: 24,
   textAlign: "center",
@@ -45,6 +47,9 @@ function ChildModalDelete({
     setOpen(true);
   };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handleCreate = async () => {
     try {
       const response = await axios.put(
@@ -74,11 +79,7 @@ function ChildModalDelete({
   return (
     <React.Fragment>
       {role && role === "clevel" ? (
-        <Button
-          variant="contained"
-          sx={{ marginTop: "2rem" }}
-          onClick={handleOpen}
-        >
+        <Button variant="contained" onClick={handleOpen}>
           Delete Employ
         </Button>
       ) : (
@@ -86,15 +87,23 @@ function ChildModalDelete({
       )}
       <Modal
         open={open}
-        onClose={handleCreate}
+        onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b" }}>
-          <h2 id="child-modal-title">Seguro quieres eliminar a {inputName} ?</h2>
-          <Button variant="contained" onClick={handleCreate}>
-            Eliminar empleado
-          </Button>
+          <h2 id="child-modal-title">
+            Seguro quieres eliminar a {inputName} ?
+          </h2>
+
+          <div className="flex mt-5 gap-2 justify-center items-center">
+            <Button variant="outlined" onClick={handleClose}>
+              Cerrar
+            </Button>
+            <Button variant="contained" onClick={handleCreate}>
+              Eliminar empleado
+            </Button>
+          </div>
         </Box>
       </Modal>
     </React.Fragment>
@@ -118,6 +127,10 @@ function ChildModal({
   const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   const handleCreate = async () => {
@@ -213,11 +226,7 @@ function ChildModal({
 
   return (
     <React.Fragment>
-      <Button
-        variant="contained"
-        sx={{ marginTop: "2rem" }}
-        onClick={handleOpen}
-      >
+      <Button variant="contained" onClick={handleOpen}>
         Actualizar
       </Button>
       <Modal
@@ -225,12 +234,16 @@ function ChildModal({
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b", 
-            borderRadius: "30px" }}>
+        <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b" }}>
           <h2 id="child-modal-title">Confirm update of {inputName}?</h2>
-          <Button variant="contained" onClick={handleCreate}>
-            Actualizar empleado
-          </Button>
+          <div className="flex mt-5 gap-2 justify-center items-center">
+            <Button variant="outlined" onClick={handleClose}>
+              Cerrar
+            </Button>
+            <Button variant="contained" onClick={handleCreate}>
+              Actualizar empleado
+            </Button>
+          </div>
         </Box>
       </Modal>
     </React.Fragment>
@@ -278,7 +291,8 @@ export default function NestedModalEdit({
 
   return (
     <div>
-      <Button onClick={handleOpen}>...</Button>
+      <Button className="text-3xl" onClick={handleOpen}><TbPointFilled /><TbPointFilled /><TbPointFilled /> </Button>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -290,7 +304,6 @@ export default function NestedModalEdit({
             ...style,
             width: "30%",
             bgcolor: "#39394b",
-            borderRadius: "30px",
           }}
         >
           <div>
@@ -328,7 +341,10 @@ export default function NestedModalEdit({
               /> */}
             </div>
           </div>
-          <div className="flex gap-3 justify-center items-center">
+          <div className="flex mt-5 gap-3 justify-center items-center">
+            <Button variant="outlined" onClick={handleClose}>
+              Cerrar
+            </Button>
             <ChildModal
               inputName={inputName}
               inputEmail={inputEmail}
@@ -340,9 +356,9 @@ export default function NestedModalEdit({
               itemRol={itemRol}
               itemId={itemId}
               itemEmail={itemEmail}
-              onModalClose={handleClose}
               EditEmployees={EditEmployees}
               ErrorEditEmployees={ErrorEditEmployees}
+              onModalClose={handleClose}
             />
             <ChildModalDelete
               inputName={inputName}

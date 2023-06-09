@@ -39,6 +39,7 @@ export default function BasicModal(props) {
     corredor,
     vendedor,
     fixed,
+    status,
   } = props;
 
   const dispatch = useDispatch();
@@ -110,7 +111,9 @@ export default function BasicModal(props) {
       url: changeWeb,
       instagram: changeIG,
       level: changeLevel,
-      checked: changeLevel === "incidencia" ? true : false,
+      checked:
+        changeLevel !== "incidencia" || changeLevel !== "0" ? true : false,
+      status: changeLevel === "0" ? "discard" : status,
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
@@ -137,8 +140,9 @@ export default function BasicModal(props) {
       url: changeWeb,
       instagram: changeIG,
       level: "0",
-      checked: false,
-      view: false,
+      checked: true,
+      view: true,
+      status: "discard",
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
@@ -221,6 +225,7 @@ export default function BasicModal(props) {
                       name="level"
                       id="level"
                       placeholder="Selecciona nivel"
+                      className="text-black w-80"
                       value={changeLevel}
                       onChange={(event) => {
                         setChangeLevel(event.target.value);
@@ -258,6 +263,7 @@ export default function BasicModal(props) {
                       name="level"
                       id="level"
                       placeholder="Selecciona nivel"
+                      className="text-black w-80"
                       value={changeLevel}
                       onChange={(event) => {
                         setChangeLevel(event.target.value);
@@ -294,6 +300,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeIG}
                     onChange={(event) => {
                       setChangeIG(event.target.value);
@@ -324,6 +331,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changePhone}
                     onChange={(event) => {
                       setChangePhone(event.target.value);
@@ -354,6 +362,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeMail}
                     onChange={(event) => {
                       setChangeMail(event.target.value);
@@ -393,6 +402,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <input
                     type="text"
+                    className="text-black w-80"
                     value={changeWeb}
                     onChange={(event) => {
                       setChangeWeb(event.target.value);
@@ -433,7 +443,7 @@ export default function BasicModal(props) {
                     DiscardLead(client);
                   }}
                 >
-                  DISCARD LEAD
+                  DESCARTAR CLIENTE
                 </button>
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
@@ -441,7 +451,7 @@ export default function BasicModal(props) {
                     SendFixVendedor(client);
                   }}
                 >
-                  FIX LEAD
+                  ACTUALIZAR
                 </button>
               </div>
             ) : (
@@ -452,7 +462,7 @@ export default function BasicModal(props) {
                     DiscardLead(client);
                   }}
                 >
-                  DISCARD LEAD
+                  DESCARTAR CLIENTE
                 </button>
                 <button
                   className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
@@ -460,7 +470,7 @@ export default function BasicModal(props) {
                     SendFixCorredor(client);
                   }}
                 >
-                  FIX LEAD
+                  ACTUALIZAR
                 </button>
               </div>
             )}
