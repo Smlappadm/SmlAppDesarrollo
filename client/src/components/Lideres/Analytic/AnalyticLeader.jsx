@@ -373,14 +373,16 @@ export const AnalyticLeader = () => {
           </div>
         </div>
         {showData.length > 10 ? (
-          <PaginationOutlined
-            pageStyle={pageStyle}
-            setPageStyle={setPageStyle}
-            cardXPage={cardXPage}
-            data={showData}
-            pages={pages}
-            current={currentPage}
-          />
+          <div className="fixed bottom-1 left-1 right-1">
+            <PaginationOutlined
+              pageStyle={pageStyle}
+              setPageStyle={setPageStyle}
+              cardXPage={cardXPage}
+              data={showData}
+              pages={pages}
+              current={currentPage}
+            />
+          </div>
         ) : null}
       </Card>
     </>
