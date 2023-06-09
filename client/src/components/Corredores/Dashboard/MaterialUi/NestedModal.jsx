@@ -30,9 +30,11 @@ function ChildModal({
   const [openChild, setOpenChild] = useState(false);
   const handleOpen = () => {
     setOpenChild(true);
+   
   };
   const handleClose = () => {
     setOpenChild(false);
+  
   };
 
   const handleIncidencia = async () => {
@@ -133,7 +135,7 @@ export default function NestedModal({
       </button>
 
       <Modal
-      setOpen={setOpen}
+      
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
@@ -159,6 +161,7 @@ export default function NestedModal({
             </div>
           </div>
           <ChildModal
+          setOpen={setOpen}
             itemId={itemId}
             inputIncidencia={inputIncidencia}
             handleReset={handleReset}
