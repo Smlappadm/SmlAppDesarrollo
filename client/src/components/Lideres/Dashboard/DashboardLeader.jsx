@@ -46,8 +46,11 @@ export const LideresDasboard = () => {
   const showData = data.filter((item) => {
     return (
       item.level !== "-" &&
+      item.level !== "0" &&
       item.level !== "incidencia" &&
       item.status !== "" &&
+      item.corredor !== "" &&
+      item.corredor !== "-" &&
       item.status !== "discard"
     );
   });
