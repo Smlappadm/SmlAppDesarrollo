@@ -18,6 +18,6 @@ VendedorRouter.get("/email", getVendedorByEmailHandler);
 VendedorRouter.get("/ventas/email", getVendedorVentasByEmailHandler);
 VendedorRouter.get("/:id", getVendedorByIdHandler);
 VendedorRouter.put("/:id", updateVendedorHandler);
-VendedorRouter.put("/detail", updateVendedorByEmailHandler);
+VendedorRouter.put("/email/email", updateVendedorByEmailHandler);
 
 module.exports = VendedorRouter;
