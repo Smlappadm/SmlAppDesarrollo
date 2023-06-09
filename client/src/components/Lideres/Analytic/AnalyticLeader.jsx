@@ -14,7 +14,6 @@ import InputSeller from "./MaterialUi/InputSeller";
 import SelectLevel from "./MaterialUi/SelectLevel";
 import SelectStatus from "./MaterialUi/SelectStatus";
 import ModalCient from "./MaterialUi/ModalClient";
-import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -373,14 +372,16 @@ export const AnalyticLeader = () => {
             ))}
           </div>
         </div>
-        <PaginationOutlined
-          pageStyle={pageStyle}
-          setPageStyle={setPageStyle}
-          cardXPage={cardXPage}
-          data={showData}
-          pages={pages}
-          current={currentPage}
-        />
+        {showData.length > 10 ? (
+          <PaginationOutlined
+            pageStyle={pageStyle}
+            setPageStyle={setPageStyle}
+            cardXPage={cardXPage}
+            data={showData}
+            pages={pages}
+            current={currentPage}
+          />
+        ) : null}
       </Card>
     </>
   );
