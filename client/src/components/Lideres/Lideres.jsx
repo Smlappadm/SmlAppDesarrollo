@@ -1,5 +1,4 @@
 import React from "react";
-import Detail from "./Employees/Detail/Detail";
 import { TableEmployees } from "./Employees/TableEmployees/TableEmployees";
 import Nav from "../Nav/Nav";
 
@@ -8,7 +7,6 @@ function Lideres() {
     <>
       <Nav />
       <TableEmployees />
-      {/* <Detail performance={true} /> */}
     </>
   );
 }
