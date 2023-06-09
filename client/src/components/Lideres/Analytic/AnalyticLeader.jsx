@@ -155,7 +155,7 @@ export const AnalyticLeader = () => {
             </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
-          {filters.level === true ? (
+          {/* {filters.level === true ? (
             <SelectLevel onChange={onChangeLevel} value={levelValue} />
           ) : (
             ""
@@ -166,7 +166,7 @@ export const AnalyticLeader = () => {
             <SelectStatus onChange={onChangeStatus} value={statusValue} />
           ) : (
             ""
-          )}
+          )} */}
         </div>
         <div className="w-full">
           <div className="text-white text-14 font-thin">
