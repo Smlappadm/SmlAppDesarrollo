@@ -44,7 +44,12 @@ export const LideresDasboard = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const showData = data.filter((item) => {
-    return item.level !== "-" && item.level !== "incidencia";
+    return (
+      item.level !== "-" &&
+      item.level !== "incidencia" &&
+      item.status !== "" &&
+      item.status !== "discard"
+    );
   });
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
