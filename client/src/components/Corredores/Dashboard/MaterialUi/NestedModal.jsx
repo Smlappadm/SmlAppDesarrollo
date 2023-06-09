@@ -100,13 +100,12 @@ export default function NestedModal({
   handleClientClick,
   item,
 }) {
-
-  console.log(item.level);
   const [open, setOpen] = useState(false);
 
   const handleOpen = (event, index) => {
     setOpen(true);
     handleClientClick(event, index);
+    console.log(event);
   };
   const handleClose = () => {
     setOpen(false);
