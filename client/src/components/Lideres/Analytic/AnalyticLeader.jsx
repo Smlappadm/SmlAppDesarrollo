@@ -155,6 +155,7 @@ export const AnalyticLeader = () => {
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
           </div>
+          <div className="h-[36.5px] w-[36.5px]"></div>
           {filters.level === true ? (
             <SelectLevel onChange={onChangeLevel} value={levelValue} />
           ) : (
@@ -167,7 +168,6 @@ export const AnalyticLeader = () => {
           ) : (
             ""
           )}
-          <AddLead />
         </div>
         <div className="w-full">
           <div className="text-white text-14 font-thin">
