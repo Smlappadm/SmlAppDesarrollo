@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import InputIncidencia from "./InputIncidencia";
-import { TbPointFilled } from "react-icons/tb";
+import { BsFillEnvelopePaperFill } from "react-icons/bs";
 
 const style = {
   position: "absolute",
@@ -20,12 +20,7 @@ const style = {
   pb: 3,
 };
 
-function ChildModal({
-  inputIncidencia,
-  handleReset,
-  handleCloseChild,
-  itemId,
-}) {
+function ChildModal({ inputIncidencia, handleReset, handleCloseChild, item }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -36,9 +31,10 @@ function ChildModal({
 
   const handleIncidencia = async () => {
     try {
-      await axios.put(`/lead/${itemId}`, {
+      const response = await axios.put(`/lead/${item._id}`, {
         status_op: inputIncidencia,
       });
+      console.log(response.data);
     } catch (error) {
       console.log(`No se pudo enviar la incidencia`);
     }
@@ -89,19 +85,14 @@ function ChildModal({
   );
 }
 
-export default function NestedModal({ itemId, openModal, setOpenModal }) {
+export default function NestedModal({ item }) {
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    setOpen(!open);
-  }, [openModal]);
 
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
-    setOpenModal(false);
   };
 
   const [inputIncidencia, setInputIncidencia] = useState("");
@@ -112,8 +103,12 @@ export default function NestedModal({ itemId, openModal, setOpenModal }) {
 
   return (
     <div>
-      <Button className="text-3xl" onClick={handleOpen}>
-        <TbPointFilled />
+      <Button onClick={handleOpen}>
+        {item.status_op === "" ? (
+          <BsFillEnvelopePaperFill className="text-[1.6rem] text-[#a89e3c] hover:text-[#3570bd]" />
+        ) : (
+          <BsFillEnvelopePaperFill className="text-[1.6rem] text-[#4da342] hover:text-[#3570bd]" />
+        )}
       </Button>
       <Modal
         open={open}
@@ -141,7 +136,7 @@ export default function NestedModal({ itemId, openModal, setOpenModal }) {
             </div>
           </div>
           <ChildModal
-            itemId={itemId}
+            item={item}
             inputIncidencia={inputIncidencia}
             handleReset={handleReset}
             handleCloseChild={handleClose}
