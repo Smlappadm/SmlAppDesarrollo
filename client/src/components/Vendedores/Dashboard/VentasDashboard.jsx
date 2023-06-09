@@ -189,46 +189,39 @@ const VentasDashboard = () => {
           </div>
           {vendedoresVentasDashboard.length > 0 ? (
             <table className={style.table}>
-              <thead className="text-gray-400 text-14 font-thin">
-                <tr className={style.tableRow}>
-                  <th className="text-start">Nombre</th>
-                  <th className="text-start">Sector</th>
-                  <th className="text-start">País</th>
-                  <th className="text-start">Email</th>
-                  <th className="text-start">Instagram</th>
-                  <th className="text-start">Phone</th>
-                  <th className="text-start">
-                    <button onClick={() => handlerFilter("level")}>
-                      Nivel
-                    </button>
-                  </th>
-                  <th className="text-start">Llamar</th>
-                  <th className="text-start">Status</th>
-                  <th className="text-start"></th>
-                </tr>
-              </thead>
-
+              <div className="flex justify-start items-center  mx-6">
+                <label className=" text-start w-[15%] px-3">Nombre</label>
+                <label className=" text-start w-[11%] px-3">Sector</label>
+                <label className=" text-start w-[9%] px-3">País</label>
+                <label className=" text-center w-[5%] ">Email</label>
+                <label className=" text-center w-[5%] ">Instagram</label>
+                <label className=" text-center w-[13%] ">Phone</label>
+                <button className=" text-center w-[5%]">Nivel</button>
+                <label className=" text-center w-[17%] ">Llamar</label>
+                <label className=" text-center w-[15%] ">Status</label>
+                <label className=" text-center w-[5%] "></label>
+              </div>
               <tbody className="">
                 {currentCard.map((item, index) => (
-                  <tr key={index} className={style.tableCards}>
-                    <td className="flex justify-start items-center  p-0 w-fit">
+                  <div key={item._id} className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg">
+                    <div className=" w-[15%] flex justify-start items-center  p-0 ">
                       <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.name}
                       </p>
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[11%] flex justify-start items-center p-0 ">
                       <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.category}
                       </p>
-                    </td>
+                    </div>
 
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    <div className=" w-[9%] flex justify-start items-center p-0">
                       <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.province}
                       </p>
-                    </td>
+                    </div>
 
-                    <td className="flex justify-center items-center p-0 w-fit">
+                    <div className=" w-[5%] flex justify-center items-center p-0">
                       {item.email !== "-" ? (
                         <div onClick={() => handleCopyClick(item.email)}>
                           <div className="cursor-pointer">
@@ -240,8 +233,8 @@ const VentasDashboard = () => {
                           <CiMail className="text-[35px] mr-5 text-[#9eabbe]" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[5%] flex justify-center items-center p-0">
                       {showObservaciones && (
                         <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
                           <p className=" p-3    ">
@@ -266,16 +259,16 @@ const VentasDashboard = () => {
                           <CiInstagram className="text-[35px] mr-5 text-[#9eabbe]" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[13%] flex justify-center items-center p-0 ">
                       <p
                         onClick={() => handleCopyClick(item.telephone)}
                         className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                       >
                         {item.telephone}
                       </p>
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                      </div>
+                      <div className=" w-[5%] flex justify-center items-start p-0">
                       {item.level !== "incidencia" ? (
                         <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
                           {item.level}
@@ -285,9 +278,9 @@ const VentasDashboard = () => {
                           <CiWarning className="text-[#fdfa3a] p-0 text-[35px] font-bold" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
-                      <div className="w-52 h-11">
+                    </div>
+                    <div className=" w-[17%] flex justify-center items-start p-0">
+                      <div className="w-48 h-11">
                         {item.llamada_venta.contacto ? (
                           <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                             {item.llamada_venta.contacto}
@@ -297,9 +290,9 @@ const VentasDashboard = () => {
                             Sin contacto
                           </p>
                         )}
-                        <div className="flex justify-start items-center">
+                        <div className=" flex justify-start items-center">
                           {item.llamada_venta.dia_hora[5] !== "u" ? (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.llamada_venta.dia_hora}
                             </p>
                           ) : (
@@ -317,8 +310,8 @@ const VentasDashboard = () => {
                           );
                         }}
                       />
-                    </td>
-                    <td className="flex justify-start items-start p-0 w-fit">
+                    </div>
+                    <div className=" w-[15%] flex justify-center items-start p-0">
                       {item.status === "Sin contactar" && (
                         <p className="bg-[#ff69b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                           {item.status}
@@ -326,13 +319,13 @@ const VentasDashboard = () => {
                       )}
                       {item.status === "Agendar 2do llamado" && (
                         // <p className="bg-[#b4215e] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                        <p className="bg-[#21b46f] w-52 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                        <p className="bg-[#21b46f] w-48 h-11 flex justify-center items-center text-white rounded-3xl text-16">
                           {/* bg-[#ff69b4]  */}
                           {item.status}
                         </p>
                       )}
-                    </td>
-                    <td className="flex justify-start items-start p-0 w-fit">
+                    </div>
+                    <div className=" w-[5%] flex justify-center items-start p-0">
                       <Modal
                         item={item}
                         SendLeadAlert={SendLeadAlert}
@@ -340,8 +333,8 @@ const VentasDashboard = () => {
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
                         emailAddress={emailAddress}
                       />
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                 ))}
               </tbody>
             </table>

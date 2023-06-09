@@ -272,7 +272,14 @@ const VendedoresDashboard = () => {
                               .split("-")
                               .reverse()
                               .join("-")}{" "}
-                            {item.updatedAt.slice(11, 16)}
+                            {item.updatedAt.slice(11, 13) === "00" && "21"}
+                            {item.updatedAt.slice(11, 13) === "01" && "22"}
+                            {item.updatedAt.slice(11, 13) === "02" && "23"}
+                            {item.updatedAt.slice(11, 13) === "03" && "00"}
+                            {item.updatedAt.slice(11, 13) !== "00" && item.updatedAt.slice(11, 13) !== "01" && item.updatedAt.slice(11, 13) !== "02" && item.updatedAt.slice(11, 13) !== "03" && Number(item.updatedAt.slice(11, 13)) - 3}
+                            {item.updatedAt.slice(13, 16)}
+                            
+                            {console.log(item.updatedAt)}
                           </label>
                         </div>
                       )}
@@ -294,7 +301,7 @@ const VendedoresDashboard = () => {
             </table>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
-              <h1>LEADS NOT FOUND...</h1>
+              <h1>No hay Leads disponibles</h1>
             </div>
           )}
         </div>
