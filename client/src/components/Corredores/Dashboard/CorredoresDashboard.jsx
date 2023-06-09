@@ -120,9 +120,6 @@ const CorredoresDashboard = () => {
     });
   };
 
-
-  
-
   const handleClientClick = (event, index) => {
     const { name, value } = event.target;
 
@@ -133,6 +130,8 @@ const CorredoresDashboard = () => {
         [name]: value,
         level: value,
       };
+
+      // console.log(value);
 
       // if (value === "incidencia") {
       //   console.log("entro", value);
@@ -145,8 +144,6 @@ const CorredoresDashboard = () => {
       return updatedClient;
     });
   };
-
-
 
   useEffect(() => {
     let clientes = [];
@@ -511,7 +508,7 @@ const CorredoresDashboard = () => {
                         >
                           2
                         </button>
-                        {/* <button
+                        <button
                           className={
                             item.level === "incidencia"
                               ? style.buttonNivelActive
@@ -520,20 +517,20 @@ const CorredoresDashboard = () => {
                           type="button"
                           name={item._id}
                           value="incidencia"
-                          
+                          onClick={(event) => handleClientClick(event, index)}
                         >
                           ⚠
-                        </button> */}
+                        </button>
 
                         <div>
-                          <NestedModal
+                          {/* <NestedModal
                             itemId={item._id}
                             item={item}
                             itemStatus_op={item.status_op}
                             openModal={openModal}
                             setOpenModal={setOpenModal}
                             handleClientClick={handleClientClick}
-                          />
+                          /> */}
                           {/* <input
                             className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
                               item.status_op ? "border-green-500" : ""
