@@ -201,25 +201,6 @@ const VentasDashboard = () => {
                 <label className=" text-center w-[15%] ">Status</label>
                 <label className=" text-center w-[5%] "></label>
               </div>
-              {/* <thead className="text-gray-400 text-14 font-thin">
-                <tr className={style.tableRow}>
-                  <th className="text-start">Nombre</th>
-                  <th className="text-start">Sector</th>
-                  <th className="text-start">País</th>
-                  <th className="text-start">Email</th>
-                  <th className="text-start">Instagram</th>
-                  <th className="text-start">Phone</th>
-                  <th className="text-start">
-                    <button onClick={() => handlerFilter("level")}>
-                      Nivel
-                    </button>
-                  </th>
-                  <th className="text-start">Llamar</th>
-                  <th className="text-start">Status</th>
-                  <th className="text-start"></th>
-                </tr>
-              </thead> */}
-
               <tbody className="">
                 {currentCard.map((item, index) => (
                   <div key={item._id} className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg">
