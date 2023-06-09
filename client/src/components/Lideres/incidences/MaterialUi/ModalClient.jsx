@@ -438,7 +438,7 @@ export default function BasicModal(props) {
             {vendedor !== "" ? (
               <div className="flex flex-row justify-around">
                 <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
                   onClick={() => {
                     DiscardLead(client);
                   }}
@@ -457,7 +457,7 @@ export default function BasicModal(props) {
             ) : (
               <div className="flex flex-row justify-around">
                 <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
                   onClick={() => {
                     DiscardLead(client);
                   }}

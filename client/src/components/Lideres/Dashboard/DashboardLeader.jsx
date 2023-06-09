@@ -110,13 +110,33 @@ export const LideresDasboard = () => {
   };
   const handlerFilter = (filter) => {
     if (filter === "level") {
-      setFilters({ level: true, runner: false, sellers: false, status: false });
+      setFilters({
+        level: !filters.level,
+        runner: false,
+        sellers: false,
+        status: false,
+      });
     } else if (filter === "runner") {
-      setFilters({ level: false, runner: true, sellers: false, status: false });
+      setFilters({
+        level: false,
+        runner: !filters.runner,
+        sellers: false,
+        status: false,
+      });
     } else if (filter === "sellers") {
-      setFilters({ level: false, runner: false, sellers: true, status: false });
+      setFilters({
+        level: false,
+        runner: false,
+        sellers: !filters.sellers,
+        status: false,
+      });
     } else {
-      setFilters({ level: false, runner: false, sellers: false, status: true });
+      setFilters({
+        level: false,
+        runner: false,
+        sellers: false,
+        status: !filters.status,
+      });
     }
   };
   const [levelValue, setLevelValue] = useState("");
@@ -192,7 +212,7 @@ export const LideresDasboard = () => {
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">Nivel</Text>
+                  <Text className="text-center w-6 p-0 text-white">LVL</Text>
                 </button>
               </div>
               <div className="flex justify-center items-center p-0">
@@ -202,12 +222,10 @@ export const LideresDasboard = () => {
                 <Text className="text-center w-6 p-0 text-white">Mail</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">
-                  Instagram
-                </Text>
+                <Text className="text-center w-6 p-0 text-white">IG</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Telefono</Text>
+                <Text className="text-center w-6 p-0 text-white">Tel</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("runner")}>
@@ -410,14 +428,16 @@ export const LideresDasboard = () => {
             ))}
           </div>
         </div>
-        <PaginationOutlined
-          pageStyle={pageStyle}
-          setPageStyle={setPageStyle}
-          cardXPage={cardXPage}
-          data={showData}
-          pages={pages}
-          current={currentPage}
-        />
+        {showData.length > 10 ? (
+          <PaginationOutlined
+            pageStyle={pageStyle}
+            setPageStyle={setPageStyle}
+            cardXPage={cardXPage}
+            data={showData}
+            pages={pages}
+            current={currentPage}
+          />
+        ) : null}
       </Card>
     </>
   );
