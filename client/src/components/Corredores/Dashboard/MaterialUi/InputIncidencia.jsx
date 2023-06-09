@@ -13,7 +13,7 @@ export default function InputIncidencia({
   return (
     <Box
       sx={{
-        width: "80%",
+        width: "70%",
         maxWidth: "100%",
         color: "white",
       }}
@@ -29,7 +29,7 @@ export default function InputIncidencia({
             color: "white",
           },
           multiline: true,
-          rows: 4,
+          rows: 8,
         }}
         InputLabelProps={{
           style: {
