@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import style from "./AnalyticLeader.module.css";
+import style from "./IncidencesHistory.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
 import {
@@ -26,7 +26,7 @@ import {
 } from "../../../redux/actions";
 import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
 
-export const AnalyticLeader = () => {
+export const IncidencesHistory = () => {
   const [data, setData] = useState([]);
   const { leaderDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ export const AnalyticLeader = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const showData = data.filter((item) => {
-    return item.level === "0";
+    return item.status === "discard";
   });
   console.log(showData);
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
@@ -143,7 +143,7 @@ export const AnalyticLeader = () => {
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5">
-            <Title className={style.title}>Analytics</Title>
+            <Title className={style.title}>I-Historial</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
@@ -152,6 +152,9 @@ export const AnalyticLeader = () => {
             </Link>
             <Link className="text-5xl" to={"/lideres-incidences"}>
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link className="text-5xl" to={"/lideres-i-history"}>
+              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
@@ -363,7 +366,7 @@ export const AnalyticLeader = () => {
                     </div>
                     <div className="flex justify-center items-center p-0">
                       <Text className="bg-black  text-white   px-2 py-1.5 rounded-xl text-center w-48">
-                        DISCARD BOT
+                        DESCARTADO
                       </Text>
                     </div>
                   </button>

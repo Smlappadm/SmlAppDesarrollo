@@ -24,6 +24,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Clevel from "./components/C-Level/Clevel";
 import Analytic from "./components/C-Level/Analytics/Analytic";
 import Incidences from "./components/Lideres/incidences/incidencias";
+import { IncidencesHistory } from "./components/Lideres/incidences-history/IncidencesHistory.jsx";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CorredoresHistory from "./components/Corredores/History/CorredoresHistory";
@@ -183,6 +184,18 @@ function ClerkProviderWithRoutes() {
             (roleReady === "clevel" || roleReady === "leader") &&
             isEmployeeReady ? (
               <Incidences />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/lideres-i-history"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
+              <IncidencesHistory />
             ) : (
               <ReturnToPage />
             )

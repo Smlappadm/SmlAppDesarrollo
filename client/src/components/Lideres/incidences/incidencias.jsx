@@ -145,6 +145,9 @@ const Incidences = () => {
             <Link className="text-5xl" to={"/lideres-incidences"}>
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
+            <Link className="text-5xl" to={"/lideres-i-history"}>
+              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
         </div>
@@ -330,28 +333,9 @@ const Incidences = () => {
                       </div>
                     </div>
                     <div className="flex justify-center items-center p-0">
-                      {item.status === "Contratado" ? (
-                        <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Contratado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-                      {item.status === "Sin contactar" ? (
-                        <Text className="bg-[#d0da3d]  text-black   px-2 py-1.5 rounded-xl text-center w-48">
-                          Sin Contactar
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-
-                      {item.status === "Rechazado" ? (
-                        <Text className="bg-[#b44f82] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
-                          Rechazado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
+                      <Text className="bg-red-500  text-white   px-2 py-1.5 rounded-xl text-center w-48">
+                        INCIDENCIA
+                      </Text>
                     </div>
                   </button>
                 </div>

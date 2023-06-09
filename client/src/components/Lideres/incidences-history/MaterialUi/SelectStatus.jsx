@@ -27,13 +27,13 @@ export default function SelectSmall(props) {
       size="small"
     >
       <InputLabel id="demo-select-small-label" style={{ color: "gray" }}>
-        Nivel
+        Estado
       </InputLabel>
       <Select
         labelId="demo-select-small-label"
-        id="level"
+        id="status"
         value={props.value}
-        label="level"
+        label="status"
         onChange={(event) => {
           handleChange(event.target.value);
         }}
@@ -47,8 +47,9 @@ export default function SelectSmall(props) {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value="1">1</MenuItem>
-        <MenuItem value="2">2</MenuItem>
+        <MenuItem value="contratado">Contratado</MenuItem>
+        <MenuItem value="rechazado">Rechazado</MenuItem>
+        <MenuItem value="sin-contactar">Sin Contactar</MenuItem>
       </Select>
     </FormControl>
   );
