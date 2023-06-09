@@ -333,28 +333,9 @@ const Incidences = () => {
                       </div>
                     </div>
                     <div className="flex justify-center items-center p-0">
-                      {item.status === "Contratado" ? (
-                        <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Contratado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-                      {item.status === "Sin contactar" ? (
-                        <Text className="bg-[#d0da3d]  text-black   px-2 py-1.5 rounded-xl text-center w-48">
-                          Sin Contactar
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-
-                      {item.status === "Rechazado" ? (
-                        <Text className="bg-[#b44f82] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
-                          Rechazado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
+                      <Text className="bg-red-500  text-white   px-2 py-1.5 rounded-xl text-center w-48">
+                        INCIDENCIA
+                      </Text>
                     </div>
                   </button>
                 </div>
