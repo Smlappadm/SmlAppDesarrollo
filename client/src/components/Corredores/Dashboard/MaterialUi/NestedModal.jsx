@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import InputIncidencia from "./InputIncidencia";
 import { TbPointFilled } from "react-icons/tb";
-
+import styles from "./NestedModal.module.css";
 const style = {
   position: "absolute",
   top: "50%",
@@ -25,13 +25,14 @@ function ChildModal({
   handleReset,
   handleCloseChild,
   itemId,
+  setOpen
 }) {
-  const [open, setOpen] = useState(false);
+  const [openChild, setOpenChild] = useState(false);
   const handleOpen = () => {
-    setOpen(true);
+    setOpenChild(true);
   };
   const handleClose = () => {
-    setOpen(false);
+    setOpenChild(false);
   };
 
   const handleIncidencia = async () => {
@@ -42,8 +43,9 @@ function ChildModal({
     } catch (error) {
       console.log(`No se pudo enviar la incidencia`);
     }
-
-    setOpen(false);
+    
+    setOpenChild(false);
+    setOpen(false)
     handleReset();
   };
 
@@ -58,7 +60,7 @@ function ChildModal({
         </Button>
       </div>
       <Modal
-        open={open}
+        open={openChild}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
@@ -89,19 +91,23 @@ function ChildModal({
   );
 }
 
-export default function NestedModal({ itemId, openModal, setOpenModal }) {
+export default function NestedModal({
+  itemId,
+  openModal,
+  setOpenModal,
+  handleClientClick,
+  item,
+}) {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    setOpen(!open);
-  }, [openModal]);
-
-  const handleOpen = () => {
+  const handleOpen = (event, index) => {
     setOpen(true);
+    handleClientClick(event, index);
+    console.log(event);
   };
   const handleClose = () => {
     setOpen(false);
-    setOpenModal(false);
+    // setOpenModal(false);
   };
 
   const [inputIncidencia, setInputIncidencia] = useState("");
@@ -112,10 +118,22 @@ export default function NestedModal({ itemId, openModal, setOpenModal }) {
 
   return (
     <div>
-      <Button className="text-3xl" onClick={handleOpen}>
-        <TbPointFilled />
-      </Button>
+      <button
+        className={
+          item.level === "incidencia"
+            ? styles.buttonNivelActive
+            : styles.buttonNivel
+        }
+        type="button"
+        name={item._id}
+        value="incidencia"
+        onClick={handleOpen}
+      >
+        ⚠
+      </button>
+
       <Modal
+      setOpen={setOpen}
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
@@ -131,7 +149,7 @@ export default function NestedModal({ itemId, openModal, setOpenModal }) {
         >
           <div>
             <div className="flex flex-col gap-5 my-5">
-              <h2 id="parent-modal-title">Nueva incidencia</h2>
+              <h2 id="parent-modal-title">{item.name}</h2>
             </div>
             <div className="flex flex-col items-center justify-center gap-5">
               <InputIncidencia
