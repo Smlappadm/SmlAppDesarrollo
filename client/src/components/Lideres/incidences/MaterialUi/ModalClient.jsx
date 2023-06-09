@@ -111,7 +111,8 @@ export default function BasicModal(props) {
       url: changeWeb,
       instagram: changeIG,
       level: changeLevel,
-      checked: changeLevel === "incidencia" ? true : false,
+      checked:
+        changeLevel !== "incidencia" || changeLevel !== "0" ? true : false,
       status: changeLevel === "0" ? "discard" : status,
     };
     dispatch(updateLeadIncidence(client, body));
@@ -139,8 +140,8 @@ export default function BasicModal(props) {
       url: changeWeb,
       instagram: changeIG,
       level: "0",
-      checked: false,
-      view: false,
+      checked: true,
+      view: true,
       status: "discard",
     };
     dispatch(updateLeadIncidence(client, body));
