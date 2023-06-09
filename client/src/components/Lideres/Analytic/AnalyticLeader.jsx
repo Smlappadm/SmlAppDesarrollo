@@ -43,7 +43,7 @@ export const AnalyticLeader = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const showData = data.filter((item) => {
-    return item.status === "discard";
+    return item.level === "0";
   });
   console.log(showData);
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
@@ -363,7 +363,7 @@ export const AnalyticLeader = () => {
                     </div>
                     <div className="flex justify-center items-center p-0">
                       <Text className="bg-black  text-white   px-2 py-1.5 rounded-xl text-center w-48">
-                        DESCARTADO
+                        DISCARD BOT
                       </Text>
                     </div>
                   </button>
