@@ -134,15 +134,15 @@ const VendedoresDashboard = () => {
   };
 
   const funcionHorario = (horario) => {
-const fechaHoraISO = horario;
+    const fechaHoraISO = horario;
 
-const fechaHora = new Date(fechaHoraISO);
+    const fechaHora = new Date(fechaHoraISO);
 
-const opciones = { hour12: false };
+    const opciones = { hour12: false };
 
-const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
+    const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
 
-return fechaHoraLocal;
+    return fechaHoraLocal;
   };
 
   return (
