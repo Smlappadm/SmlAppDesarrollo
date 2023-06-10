@@ -131,19 +131,8 @@ const CorredoresDashboard = () => {
         level: value,
       };
 
-      if (value === "incidencia") {
-        console.log("entro", value);
-        setOpenModal(true);
-      }
-      if (value !== "incidencia") {
-        console.log("salio", value);
-        setOpenModal(false);
-      }
       return updatedClient;
     });
-    return(
-      <NestedModal />
-    )
   };
 
   useEffect(() => {
@@ -272,7 +261,6 @@ const CorredoresDashboard = () => {
               name: client[i].name,
               url: client[i].url,
               instagram: client[i].instagram,
-              status_op: client[i].status_op,
               email: client[i].email,
               level: client[i].level,
               checked: true,
@@ -287,7 +275,6 @@ const CorredoresDashboard = () => {
               name: client[i].name,
               url: client[i].url,
               instagram: client[i].instagram,
-              status_op: client[i].status_op,
               email: client[i].email,
               level: client[i].level,
               checked: true,
@@ -512,7 +499,7 @@ const CorredoresDashboard = () => {
                         <button
                           className={
                             item.level === "incidencia"
-                              ? style.buttonNivelActive
+                              ? style.buttonNivelActiveIncidence
                               : style.buttonNivel
                           }
                           type="button"
@@ -523,26 +510,11 @@ const CorredoresDashboard = () => {
                           ⚠
                         </button>
 
-                        <div>
-                          <NestedModal
-                            itemId={item._id}
-                            itemStatus_op={item.status_op}
-                            openModal={openModal}
-                            setOpenModal={setOpenModal}
-                          />
-                          {/* <input
-                            className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
-                              item.status_op ? "border-green-500" : ""
-                            }`}
-                            type="text"
-                            name="incidencia"
-                            value={item.status_op}
-                            onChange={(event) =>
-                              handleChangeIncidencia(event, index)
-                            }
-                            placeholder="Descripcion de la incidencia"
-                          /> */}
-                        </div>
+                        {
+                            item.level === "incidencia" ? <div>
+                          <NestedModal item={item} />
+                        </div> : null}
+                        
                       </td>
                     </tr>
                   ))}

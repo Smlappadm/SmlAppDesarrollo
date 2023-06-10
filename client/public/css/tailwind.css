@@ -1557,6 +1557,10 @@ video {
   font-size: 35px;
 }
 
+.text-\[1\.6rem\] {
+  font-size: 1.6rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1683,6 +1687,16 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-\[\#4da342\] {
+  --tw-text-opacity: 1;
+  color: rgb(77 163 66 / var(--tw-text-opacity));
+}
+
+.text-\[\#a89e3c\] {
+  --tw-text-opacity: 1;
+  color: rgb(168 158 60 / var(--tw-text-opacity));
 }
 
 .placeholder-white::-moz-placeholder {
