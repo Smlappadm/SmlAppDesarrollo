@@ -196,7 +196,7 @@ const VentasDashboard = () => {
                 <label className=" text-center w-[5%] ">Email</label>
                 <label className=" text-center w-[5%] ">Instagram</label>
                 <label className=" text-center w-[13%] ">Phone</label>
-                <button className=" text-center w-[5%]">Nivel</button>
+                <button className=" text-center w-[5%]" onClick={() => handlerFilter("level")}>Nivel</button>
                 <label className=" text-center w-[17%] ">Llamar</label>
                 <label className=" text-center w-[15%] ">Status</label>
                 <label className=" text-center w-[5%] "></label>
