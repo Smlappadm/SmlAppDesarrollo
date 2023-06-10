@@ -133,6 +133,18 @@ const VendedoresDashboard = () => {
     dispatch(getLeadCheckedInactive5(emailAddress));
   };
 
+  const funcionHorario = (horario) => {
+const fechaHoraISO = horario;
+
+const fechaHora = new Date(fechaHoraISO);
+
+const opciones = { hour12: false };
+
+const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
+
+return fechaHoraLocal;
+  };
+
   return (
     <>
       <Nav />
@@ -178,14 +190,22 @@ const VendedoresDashboard = () => {
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
                 <label className="text-center w-[10%] ">Phone</label>
-                <button className="  w-[10%]" onClick={() => handlerFilter("level")}>Nivel</button>
+                <button
+                  className="  w-[10%]"
+                  onClick={() => handlerFilter("level")}
+                >
+                  Nivel
+                </button>
                 <label className="text-center w-[20%] ">Status</label>
                 <label className="text-start w-[10%] "></label>
               </div>
 
               <tbody className="">
                 {currentCard.map((item, index) => (
-                  <div key={item._id} className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg">
+                  <div
+                    key={item._id}
+                    className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
+                  >
                     <div className=" w-[15%] flex justify-start items-center  p-0 ">
                       <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.name}
@@ -267,18 +287,19 @@ const VendedoresDashboard = () => {
                             {item.status}
                           </p>
                           <label className="text-[14px]">
-                            {item.updatedAt
+                            {/* {item.updatedAt
                               .slice(0, 10)
                               .split("-")
                               .reverse()
-                              .join("-")}{" "}
-                            {item.updatedAt.slice(11, 13) === "00" && "21"}
+                              .join("-")}{" "} */}
+                            {funcionHorario(item.updatedAt)}
+                            {/* {String(item.updateAt)} */}
+                            {/* {item.updatedAt.slice(11, 13) === "00" && "21"}
                             {item.updatedAt.slice(11, 13) === "01" && "22"}
                             {item.updatedAt.slice(11, 13) === "02" && "23"}
                             {item.updatedAt.slice(11, 13) === "03" && "00"}
                             {item.updatedAt.slice(11, 13) !== "00" && item.updatedAt.slice(11, 13) !== "01" && item.updatedAt.slice(11, 13) !== "02" && item.updatedAt.slice(11, 13) !== "03" && Number(item.updatedAt.slice(11, 13)) - 3}
-                            {item.updatedAt.slice(13, 16)}
-                            
+                            {item.updatedAt.slice(13, 16)}  */}
                             {console.log(item.updatedAt)}
                           </label>
                         </div>
