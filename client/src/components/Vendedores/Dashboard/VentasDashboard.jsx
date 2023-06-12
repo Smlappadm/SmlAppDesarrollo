@@ -50,8 +50,6 @@ const VentasDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  // const [edit, setEdit] = useState(false);
-  // const [editIndex, setEditIndex] = useState("");
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -96,13 +94,6 @@ const VentasDashboard = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-  // const openEditMenu = (index, id) => {
-  //   setEdit(true);
-  //   setEditIndex(index);
-  // };
-  // const sendEdit = () => {
-  //   setEdit(false);
-  // };
   const SendLeadAlert = () => {
     toast.success("✔ Lead Update!", {
       position: "top-center",
@@ -319,9 +310,7 @@ const VentasDashboard = () => {
                         </p>
                       )}
                       {item.status === "Agendar 2do llamado" && (
-                        // <p className="bg-[#b4215e] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                         <p className="bg-[#21b46f] w-48 h-11 flex justify-center items-center text-white rounded-3xl text-16">
-                          {/* bg-[#ff69b4]  */}
                           {item.status}
                         </p>
                       )}
