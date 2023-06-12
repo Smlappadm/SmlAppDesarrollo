@@ -140,7 +140,7 @@ export const AnalyticLeader = () => {
   return (
     <>
       <Nav />
-      <Card className="w-full h-full bg-[#222131] rounded-none p-5">
+      <Card className="w-full h-full bg-[#222131] rounded-none p-5 relative">
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5">
             <Title className={style.title}>Analytics</Title>
@@ -373,16 +373,14 @@ export const AnalyticLeader = () => {
           </div>
         </div>
         {showData.length > 10 ? (
-          <div className="fixed bottom-1 left-1 right-1">
-            <PaginationOutlined
-              pageStyle={pageStyle}
-              setPageStyle={setPageStyle}
-              cardXPage={cardXPage}
-              data={showData}
-              pages={pages}
-              current={currentPage}
-            />
-          </div>
+          <PaginationOutlined
+            pageStyle={pageStyle}
+            setPageStyle={setPageStyle}
+            cardXPage={cardXPage}
+            data={showData}
+            pages={pages}
+            current={currentPage}
+          />
         ) : null}
       </Card>
     </>
