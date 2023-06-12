@@ -182,7 +182,7 @@ const VendedoresDashboard = () => {
             )}
           </div>
           {vendedoresDashboard.length ? (
-            <table className={style.table}>
+            <div className={style.table}>
               <div className="flex justify-start items-center  mx-6">
                 <label className="text-start w-[15%] px-3">Nombre</label>
                 <label className="text-start w-[15%] px-3">Sector</label>
@@ -200,7 +200,7 @@ const VendedoresDashboard = () => {
                 <label className="text-start w-[10%] "></label>
               </div>
 
-              <tbody className="">
+              <div className="">
                 {currentCard.map((item, index) => (
                   <div
                     key={item._id}
@@ -318,8 +318,8 @@ const VendedoresDashboard = () => {
                     </div>
                   </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>No hay Leads disponibles</h1>
