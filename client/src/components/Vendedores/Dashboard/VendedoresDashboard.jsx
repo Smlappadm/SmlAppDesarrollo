@@ -292,7 +292,7 @@ const VendedoresDashboard = () => {
                               .split("-")
                               .reverse()
                               .join("-")}{" "} */}
-                            {funcionHorario(item.updatedAt)}
+                            {funcionHorario(item.updatedAt).slice(0,16)}
                             {/* {String(item.updateAt)} */}
                             {/* {item.updatedAt.slice(11, 13) === "00" && "21"}
                             {item.updatedAt.slice(11, 13) === "01" && "22"}
