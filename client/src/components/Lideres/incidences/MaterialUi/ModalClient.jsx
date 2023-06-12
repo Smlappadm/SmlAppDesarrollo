@@ -145,7 +145,6 @@ export default function BasicModal(props) {
       status: "discard",
       status_op: "",
     };
-    console.log(body);
     dispatch(updateLeadIncidence(client, body));
     handleClose();
     DiscardLeadAlert();
