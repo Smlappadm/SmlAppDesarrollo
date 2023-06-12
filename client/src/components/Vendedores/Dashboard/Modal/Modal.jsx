@@ -135,6 +135,7 @@ function ChildModal({
 
   const handleCancel = () => {
     setOpen(false);
+    statusObj.status = "";
   };
   return (
     <React.Fragment>
