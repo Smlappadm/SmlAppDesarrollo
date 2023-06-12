@@ -376,16 +376,14 @@ export const IncidencesHistory = () => {
           </div>
         </div>
         {showData.length > 10 ? (
-          <div className="fixed bottom-1 left-1 right-1">
-            <PaginationOutlined
-              pageStyle={pageStyle}
-              setPageStyle={setPageStyle}
-              cardXPage={cardXPage}
-              data={showData}
-              pages={pages}
-              current={currentPage}
-            />
-          </div>
+          <PaginationOutlined
+            pageStyle={pageStyle}
+            setPageStyle={setPageStyle}
+            cardXPage={cardXPage}
+            data={showData}
+            pages={pages}
+            current={currentPage}
+          />
         ) : null}
       </Card>
     </>
