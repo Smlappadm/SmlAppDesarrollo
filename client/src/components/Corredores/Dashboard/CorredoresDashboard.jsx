@@ -392,19 +392,19 @@ const CorredoresDashboard = () => {
                 </tr>
               </thead>
 
-              <tbody className="h-3/4">
+              <tbody className="">
                 {client &&
                   client.map((item, index) => (
                     <tr key={index} className={style.tableCards}>
-                      <td className="flex justify-start items-center p-0">
-                        <div type="text" id="name" value={item.name}>
-                          <p className="w-96 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden">
+                      <td className="flex p-0">
+                        <div className="ml-10" type="text" id="name" value={item.name}>
+                          <p className="w-80 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden">
                             {item.name}
                           </p>
                         </div>
                       </td>
 
-                      <td className="flex justify-start items-center p-0">
+                      <td className="flex ml-10 p-0">
                         <Link to={item.url} target="_blank">
                           <p value={item.url}>
                             <CiGlobe className="text-[2rem] text-[#418df0]" />
@@ -412,7 +412,7 @@ const CorredoresDashboard = () => {
                         </Link>
                       </td>
 
-                      <td className="flex justify-start w-[10rem] items-center gap-3 p-0 mx-3">
+                      <td className="flex w-[10rem] gap-3 p-0 mx-3">
                         <div>
                           <CiMail className="text-[2rem] text-[#418df0]" />
                         </div>
@@ -430,7 +430,7 @@ const CorredoresDashboard = () => {
                         />
                       </td>
 
-                      <td className="flex justify-start w-[10rem] items-center gap-3 p-0 mx-3">
+                      <td className="flex w-[10rem] gap-3 p-0 mx-3">
                         <div>
                           {item.instagram &&
                           instagramRegex.test(item.instagram) ? (
@@ -456,7 +456,7 @@ const CorredoresDashboard = () => {
                         />
                       </td>
 
-                      <td className="flex justify-start items-center p-0">
+                      <td className="flex ml-6 p-0">
                         <button
                           className={
                             item.level === "0"
