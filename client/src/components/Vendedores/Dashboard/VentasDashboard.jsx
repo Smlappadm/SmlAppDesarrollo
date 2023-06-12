@@ -188,7 +188,7 @@ const VentasDashboard = () => {
             )}
           </div>
           {vendedoresVentasDashboard.length > 0 ? (
-            <table className={style.table}>
+            <div className={style.table}>
               <div className="flex justify-start items-center  mx-6">
                 <label className=" text-start w-[15%] px-3">Nombre</label>
                 <label className=" text-start w-[11%] px-3">Sector</label>
@@ -201,7 +201,7 @@ const VentasDashboard = () => {
                 <label className=" text-center w-[15%] ">Status</label>
                 <label className=" text-center w-[5%] "></label>
               </div>
-              <tbody className="">
+              <div className="">
                 {currentCard.map((item, index) => (
                   <div key={item._id} className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg">
                     <div className=" w-[15%] flex justify-start items-center  p-0 ">
@@ -290,8 +290,9 @@ const VentasDashboard = () => {
                             Sin contacto
                           </p>
                         )}
+                       
                         <div className=" flex justify-start items-center">
-                          {item.llamada_venta.dia_hora[5] !== "u" ? (
+                          {typeof item.llamada_venta.dia_hora !== "undefined" && item.llamada_venta?.dia_hora[5] !== "u" ? (
                             <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.llamada_venta.dia_hora}
                             </p>
@@ -336,8 +337,8 @@ const VentasDashboard = () => {
                     </div>
                   </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>No hay Leads disponibles</h1>
