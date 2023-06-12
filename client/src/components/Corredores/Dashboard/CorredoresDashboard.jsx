@@ -249,42 +249,49 @@ const CorredoresDashboard = () => {
     SendLeads(user.fullName);
     try {
       for (let i = 0; i < corredorLead.length; i++) {
-        if (client[i].level !== "-") {
-          if (client[i].instagram.trim() !== "" && client[i].level === "0") {
-            SendLeadsErrorInsta0(client[i].name);
-          } else if (
-            client[i].instagram.trim() === "" &&
-            (client[i].level === "incidencia" || client[i].level === "0")
+        const currentClient = client[i];
+
+        if (currentClient.level !== "-") {
+          if (
+            currentClient.instagram.trim() !== "" &&
+            (currentClient.level === "0" ||
+              currentClient.level === "incidencia")
           ) {
-            const response = await axios.put(`/lead/${client[i]._id}`, {
-              _id: client[i]._id,
-              name: client[i].name,
-              url: client[i].url,
-              instagram: client[i].instagram,
-              email: client[i].email,
-              level: client[i].level,
+            SendLeadsErrorInsta0(currentClient.name);
+          } else if (
+            currentClient.instagram.trim() === "" &&
+            (currentClient.level === "incidencia" ||
+              currentClient.level === "0")
+          ) {
+            const response = await axios.put(`/lead/${currentClient._id}`, {
+              _id: currentClient._id,
+              name: currentClient.name,
+              url: currentClient.url,
+              instagram: currentClient.instagram,
+              email: currentClient.email,
+              level: currentClient.level,
               checked: true,
               view: true,
             });
           } else if (
-            client[i].instagram.trim() !== "" &&
-            client[i].level !== "-"
+            currentClient.instagram.trim() !== "" &&
+            (currentClient.level === "1" || currentClient.level === "2")
           ) {
-            const response = await axios.put(`/lead/${client[i]._id}`, {
-              _id: client[i]._id,
-              name: client[i].name,
-              url: client[i].url,
-              instagram: client[i].instagram,
-              email: client[i].email,
-              level: client[i].level,
+            const response = await axios.put(`/lead/${currentClient._id}`, {
+              _id: currentClient._id,
+              name: currentClient.name,
+              url: currentClient.url,
+              instagram: currentClient.instagram,
+              email: currentClient.email,
+              level: currentClient.level,
               checked: true,
               view: true,
             });
           } else {
-            SendLeadsErrorInsta(client[i].name);
+            SendLeadsErrorInsta(currentClient.name);
           }
         } else {
-          SendLeadsErrorLevel(client[i].name);
+          SendLeadsErrorLevel(currentClient.name);
         }
       }
 
@@ -397,7 +404,12 @@ const CorredoresDashboard = () => {
                   client.map((item, index) => (
                     <tr key={index} className={style.tableCards}>
                       <td className="flex p-0">
-                        <div className="ml-10" type="text" id="name" value={item.name}>
+                        <div
+                          className="ml-10"
+                          type="text"
+                          id="name"
+                          value={item.name}
+                        >
                           <p className="w-80 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden">
                             {item.name}
                           </p>
@@ -510,11 +522,11 @@ const CorredoresDashboard = () => {
                           ⚠
                         </button>
 
-                        {
-                            item.level === "incidencia" ? <div>
-                          <NestedModal item={item} />
-                        </div> : null}
-                        
+                        {item.level === "incidencia" ? (
+                          <div>
+                            <NestedModal item={item} />
+                          </div>
+                        ) : null}
                       </td>
                     </tr>
                   ))}
