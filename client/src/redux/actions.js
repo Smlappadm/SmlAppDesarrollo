@@ -115,7 +115,7 @@ export const getLeadChecked = () => {
 };
 
 export const getLeadCheckedInactive5 = (email) => {
-  if (email) {
+  if (email && email !== undefined && email !== null  && email !== "") {
     return async (dispatch) => {
       const response = await axios.get(`/lead/checkedinactive5?email=${email}`);
       const LeadCheckedInactive5 = response.data;
