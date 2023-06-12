@@ -143,7 +143,7 @@ export default function BasicModal(props) {
       checked: true,
       view: true,
       status: "discard",
-      status_op: "",
+      status_op: "-",
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
