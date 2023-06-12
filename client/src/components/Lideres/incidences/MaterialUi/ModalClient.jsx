@@ -228,6 +228,7 @@ export default function BasicModal(props) {
                       className="text-black w-80"
                       value={changeLevel}
                       onChange={(event) => {
+                        console.log(event.target.value);
                         setChangeLevel(event.target.value);
                       }}
                     >
