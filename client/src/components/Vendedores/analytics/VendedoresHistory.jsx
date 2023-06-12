@@ -226,7 +226,7 @@ const VendedoresHistory = () => {
                           Rechazado
                         </p>
                       )}
-                      {item.status === "incidencia" && (
+                      {item.level === "incidencia" && (
                         <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                           Incidencia
                         </p>
