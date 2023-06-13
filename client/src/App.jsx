@@ -29,6 +29,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CorredoresHistory from "./components/Corredores/History/CorredoresHistory";
 import CorredoresAnlaytics from "./components/Corredores/Analytics/CorredoresAnalytics";
+import Home from "./viewsClientes/Home/Home";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -341,6 +342,19 @@ function ClerkProviderWithRoutes() {
             <>
               <SignedIn>
                 <Landing />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/client"
+          element={
+            <>
+              <SignedIn>
+                <Home />
               </SignedIn>
               <SignedOut>
                 <RedirectToSignIn />
