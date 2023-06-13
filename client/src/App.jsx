@@ -144,8 +144,8 @@ function ClerkProviderWithRoutes() {
         <Route path="*" element={<h1>error 404</h1>} />
         <Route path="/home" element={<Landing />} />
         <Route path="/clientes-home" element={<Home />} />
-        <Route path="/clientes-home/addvideos" element={<AddVideos />} />
-        <Route path="/clientes-home/settings" element={<ClientesSettings />} />
+        <Route path="/clientes-addvideos" element={<AddVideos />} />
+        <Route path="/clientes-settings" element={<ClientesSettings />} />
 
         <Route path="/" element={<Login />} />
         <Route
