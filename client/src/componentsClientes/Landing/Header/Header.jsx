@@ -4,7 +4,7 @@ import { IoAdd, IoSettingsOutline } from "react-icons/io5";
 import CircularProgressBar from "../CircularProgressbar/CircularProgressbar";
 
 export default function Header() {
-  const customValue = 10;
+  const customValue = 75;
   const imgInstagram = "https://i.postimg.cc/tT405K0C/image.png";
   return (
     <div className="flex flex-row justify-between p-4 w-screen">
