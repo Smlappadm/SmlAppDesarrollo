@@ -8,7 +8,6 @@ export default function Register({ handleOpenRegister }) {
   const [email, setEmail] = useState("");
 
   const validateEmail = (email) => {
-    // Expresión regular para validar el formato de correo electrónico
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     if (!emailRegex.test(email)) {
       console.log("Por favor, ingresa un correo electrónico válido");
@@ -17,7 +16,6 @@ export default function Register({ handleOpenRegister }) {
     return true;
   };
   const validatePassword = (password) => {
-    // Expresiones regulares para verificar si hay al menos una letra mayúscula y un número
     const uppercaseRegex = /[A-Z]/;
     const numberRegex = /[0-9]/;
     if (!uppercaseRegex.test(password) || !numberRegex.test(password)) {
@@ -36,18 +34,14 @@ export default function Register({ handleOpenRegister }) {
   let body = {};
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Realizar validaciones aquí
     if (username === "") {
       console.log("Por favor, ingresa un usuario");
       return;
     }
-
     if (name === "") {
       console.log("Por favor, ingresa un nombre");
       return;
     }
-
     if (password === "") {
       console.log("Por favor, ingresa una contraseña");
       return;
@@ -55,7 +49,6 @@ export default function Register({ handleOpenRegister }) {
     if (!validatePassword(password)) {
       return;
     }
-
     if (email === "") {
       console.log("Por favor, ingresa un correo electrónico");
       return;
@@ -74,7 +67,6 @@ export default function Register({ handleOpenRegister }) {
     };
     console.log(body);
     await axios.post("/clientes/new", body);
-    // Si pasa todas las validaciones, puedes enviar los datos o realizar otras acciones
     console.log("Formulario enviado");
   };
 
