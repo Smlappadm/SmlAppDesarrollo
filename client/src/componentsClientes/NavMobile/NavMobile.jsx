@@ -1,19 +1,13 @@
+import { Button } from '@mui/material'
 import React from 'react'
-import { NavLink } from "react-router-dom"
+
 
 export default function NavMobile() {
   return (
     <div className={style.divLinks}>
+
     <NavLink
-      to={`/home`}
-      className={({ isActive }) =>
-        isActive ? style.active : style.disable
-      }
-    >
-      Home
-    </NavLink>
-    <NavLink
-      to={`/about`}
+      to={`/client`}
       className={({ isActive }) =>
         isActive ? style.active : style.disable
       }
