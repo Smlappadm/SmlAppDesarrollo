@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function AddVideos() {
   return (
@@ -23,9 +24,11 @@ export default function AddVideos() {
         <div className="text-white  rounded-full px-20 py-2 bg-[#07a1f8] hover:bg-[#127fbe]">
           <p className="text-[1.7rem] text-center">Añadir</p>
         </div>
-        <div className="text-gray-200 rounded-full px-20 py-2">
-          <p className="text-[1.7rem] text-center">Cancelar</p>
-        </div>
+        <Link to={"/clientes-home"}>
+          <div className="text-gray-200 rounded-full px-20 py-2">
+            <p className="text-[1.7rem] text-center">Cancelar</p>
+          </div>
+        </Link>
       </div>
     </div>
   );
