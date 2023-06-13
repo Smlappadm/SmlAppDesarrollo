@@ -25,10 +25,10 @@ export default function Header() {
 
       <div className="flex flex-col justify-between">
         <div className="flex flex-row gap-2">
-          <Link to="addvideos">
+          <Link to="/clientes-addvideos">
             <IoAdd className="font-bold" color="#fff" size={30} />
           </Link>
-          <Link to="setting">
+          <Link to="/clientes-settings">
             <IoSettingsOutline className="font-bold" color="#fff" size={26} />
           </Link>
         </div>
