@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export default function Register({ handleOpenRegister }) {
   const [username, setUsername] = useState("");
@@ -32,7 +33,8 @@ export default function Register({ handleOpenRegister }) {
     return true;
   };
 
-  const handleSubmit = (e) => {
+  let body = {};
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Realizar validaciones aquí
@@ -61,7 +63,17 @@ export default function Register({ handleOpenRegister }) {
     if (!validateEmail(email)) {
       return;
     }
-
+    body = {
+      username,
+      name,
+      password,
+      email,
+      photo:
+        "https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp",
+      rol: "cliente",
+    };
+    console.log(body);
+    await axios.post("/clientes/new", body);
     // Si pasa todas las validaciones, puedes enviar los datos o realizar otras acciones
     console.log("Formulario enviado");
   };
