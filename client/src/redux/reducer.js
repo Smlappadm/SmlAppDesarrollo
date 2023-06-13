@@ -24,6 +24,7 @@ import {
   GET_ALL_EMPLOYEES,
   GET_ALL_PROFESION,
   GET_ALL_COUNTRY,
+  GET_DETAIL_EMPLOY,
 } from "./actions";
 
 const initialState = {
@@ -34,6 +35,7 @@ const initialState = {
   leadUnchecked10: [],
   leaderDashboard: [],
   vendedoresDashboard: [],
+  vendedoresVentasDashboard: [],
   corredores: [],
   vendedores: [],
   leader: [],
@@ -48,6 +50,7 @@ const initialState = {
   allEmployees: [],
   allProfesion: [],
   allCountries: [],
+  detailEmploy: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -144,11 +147,14 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         leaderDashboard: copyCategory,
       };
+
     case FILTER_LEVEL:
       const copyLevel = [...state.leadChequed];
       let filteredLevel = copyLevel;
       const copyLevelVendedores = [...state.leadCheckedInactive5];
       let filteredLevelVendedores = copyLevelVendedores;
+      const copyLeadsLlamadaVenta = [...state.LeadsLlamadaVenta];
+      let filteredLeadsLlamadaVenta = copyLeadsLlamadaVenta;
 
       if (action.payload === "0") {
         filteredLevel = copyLevel.filter((client) => {
@@ -156,6 +162,10 @@ const rootReducer = (state = initialState, action) => {
           return clientLevel === "0";
         });
         filteredLevelVendedores = copyLevelVendedores.filter((client) => {
+          const clientLevel = client.level ? client.level : "";
+          return clientLevel === "0";
+        });
+        filteredLeadsLlamadaVenta = copyLeadsLlamadaVenta.filter((client) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "0";
         });
@@ -169,6 +179,10 @@ const rootReducer = (state = initialState, action) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "1";
         });
+        filteredLeadsLlamadaVenta = copyLeadsLlamadaVenta.filter((client) => {
+          const clientLevel = client.level ? client.level : "";
+          return clientLevel === "1";
+        });
       }
       if (action.payload === "2") {
         filteredLevel = copyLevel.filter((client) => {
@@ -176,6 +190,10 @@ const rootReducer = (state = initialState, action) => {
           return clientLevel === "2";
         });
         filteredLevelVendedores = copyLevelVendedores.filter((client) => {
+          const clientLevel = client.level ? client.level : "";
+          return clientLevel === "2";
+        });
+        filteredLeadsLlamadaVenta = copyLeadsLlamadaVenta.filter((client) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "2";
         });
@@ -189,12 +207,18 @@ const rootReducer = (state = initialState, action) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "incidencia";
         });
+        filteredLeadsLlamadaVenta = copyLeadsLlamadaVenta.filter((client) => {
+          const clientLevel = client.level ? client.level : "";
+          return clientLevel === "incidencia";
+        });
       }
       return {
         ...state,
         leaderDashboard: filteredLevel,
         vendedoresDashboard: filteredLevelVendedores,
+        vendedoresVentasDashboard: filteredLeadsLlamadaVenta,
       };
+
     case FILTER_STATUS:
       const copyStatus = [...state.leadChequed];
       let filteredStatus = copyStatus;
@@ -274,6 +298,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         LeadsLlamadaVenta: action.payload,
+        vendedoresVentasDashboard: action.payload,
       };
     case GET_CORREDOR_LEAD:
       return {
@@ -301,6 +326,13 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allCountries: action.payload,
       };
+    case GET_DETAIL_EMPLOY:
+      return {
+        ...state,
+        detailEmploy: action.payload,
+      };
+
+    // *******************************Clientes *******************************
 
     default:
       return { ...state };

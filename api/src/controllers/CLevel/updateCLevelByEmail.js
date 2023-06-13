@@ -1,10 +1,10 @@
 const CLevel = require("../../models/CLevel");
 
 const updateCLevelByEmail = async (email, updatedData) => {
-  const cLevel = await CLevel.findOneAndUpdate(email, updatedData, {
+  const clevel = await CLevel.findOneAndUpdate({ email }, updatedData, {
     new: true,
   });
-  return cLevel;
+  return clevel;
 };
 
 module.exports = updateCLevelByEmail;

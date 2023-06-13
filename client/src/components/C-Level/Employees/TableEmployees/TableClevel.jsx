@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import Detail from "../../Employees/Detail/Detail";
 import style from "./TableClevel.module.css";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { CiMail } from "react-icons/ci";
-import { getAllEmployees } from "../../../../redux/actions";
+import { getAllEmployees, getDetailEmploy } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import NestedModal from "./MaterialUi/NestedModal";
 import NestedModalEdit from "./MaterialUi/Edit/NestedModalEdit";
@@ -83,6 +84,7 @@ const ErrorCreateEmployees = (name) => {
 };
 
 export const TableClevel = () => {
+  const { detailEmploy } = useSelector((state) => state);
   const { allEmployees } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -102,10 +104,12 @@ export const TableClevel = () => {
     setCurrentPage(pageNumber);
   };
 
-  console.log(allEmployees);
+  const cardDetail = (email) => {
+    dispatch(getDetailEmploy(email));
+  };
 
   return (
-    <>
+    <div className="flex w-screen h-screen">
       <div className=" flex flex-col justify-start items-center w-full h-screen">
         <ToastContainer />
         <div className="bg-[#222131] rounded-none w-full h-screen p-5">
@@ -117,34 +121,30 @@ export const TableClevel = () => {
             />
           </div>
           <div className="w-full">
-            <div className={style.tableHead}>
-              <div className={style.tableRow}>
-                <div>Name</div>
-                <div>Email</div>
-                <div>Phone Number</div>
-                <div>Position</div>
-                <div>
-                  <h1></h1>
-                </div>
-              </div>
-            </div>
             <div className={style.tableBody}>
+              <div className={style.tableRow}>
+                <div>Nombre</div>
+                <div>Email</div>
+                <div>Rol</div>
+                <div></div>
+              </div>
               {currentCard.map((item, index) => (
-                <div key={index} className={style.tableCards}>
+                <div
+                  key={index}
+                  className={style.tableCards}
+                  onClick={() => cardDetail(item.email)}
+                >
                   <div className="flex justify-start items-center p-0">
-                    {/* <img
+                    <img
                       className="w-8 ml-2 mr-4 rounded-full"
                       src={item.photo}
-                      alt="avatar image"
-                    /> */}
+                      alt=""
+                    />
                     <p>{item.name}</p>
                   </div>
                   <div className="flex justify-start items-center p-0">
                     <CiMail className={style.icon} />
                     <p>{item.email}</p>
-                  </div>
-                  <div className="p-0 mx-3">
-                    <p>{item.contactNumber}</p>
                   </div>
                   <div className="p-0">
                     <p
@@ -195,6 +195,8 @@ export const TableClevel = () => {
           />
         </div>
       </div>
-    </>
+
+      <Detail cardEmail={detailEmploy.length > 0 ? detailEmploy[0] : null} />
+    </div>
   );
 };

@@ -31,8 +31,8 @@
   color: aliceblue;
 }
 .socialButtons:hover {
-  background-color: #f0d5d5; /* Cambia el color de fondo cuando se pasa el cursor */
-  color: #323149; /* Cambia el color del texto cuando se pasa el cursor */
+  background-color: #f0d5d5; 
+  color: #323149; 
 }
 
 .card {

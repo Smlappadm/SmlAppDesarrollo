@@ -8,19 +8,19 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
 
-export default function BasicDatePicker({
-  handleDateFromPicker,
-  handleChange,
-  // dateData
-}) {
-  const [selectedDate, setSelectedDate] = useState(dayjs());
+export default function BasicDatePicker({ handleDateFromPicker, saveDate }) {
+  const dateBackup = saveDate && saveDate.split("/").reverse().join("/");
+
+  const [selectedDate, setSelectedDate] = useState(dayjs(dateBackup));
+
+  const funcion = () => {
+    return selectedDate;
+  };
 
   const handleChangeDate = (date) => {
     setSelectedDate(date);
     handleDateFromPicker(date);
   };
-
-  // dateData.split("/").reverse().join("/")
 
   return (
     <LocalizationProvider
@@ -31,7 +31,7 @@ export default function BasicDatePicker({
       <DemoContainer components={["DatePicker"]}>
         <DatePicker
           label=""
-          value={selectedDate}
+          value={dayjs(dateBackup ? dateBackup : null)}
           onChange={handleChangeDate}
           sx={{
             width: 350,
@@ -50,7 +50,7 @@ export default function BasicDatePicker({
               border: "1px solid white",
               borderRadius: "15px",
             },
-            "& .css-1cb9e0w-MuiFormControl-root-MuiTextField-root .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root":
+            "& .css-1cb9e0w-MuiFormControl-root-MuiTextField-root ":
               {
                 backgroundColor: "#222131",
                 color: "white",
@@ -59,7 +59,12 @@ export default function BasicDatePicker({
               },
             "& .css-i4bv87-MuiSvgIcon-root": {
               color: "white",
+              
             },
+            "& .css-1xhypcz-MuiStack-root": {
+              border: "1px solid white",
+              color: "white",
+            }
           }}
           //   value={selectedDate}
           //   onChange={handleDateChange}

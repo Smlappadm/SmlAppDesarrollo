@@ -130,12 +130,12 @@ function ChildModal({
       });
     setOpenChild(false);
     setOpen(false);
-
-    console.log(llamadoVenta);
+    statusObj.status = "";
   };
 
   const handleCancel = () => {
     setOpen(false);
+    statusObj.status = "";
   };
   return (
     <React.Fragment>
@@ -208,76 +208,38 @@ function IncidenceModal({
   updateLeads,
 }) {
   const [openIncidenceChild, setOpenIncidenceChild] = React.useState(false);
-  const handleOpen = () => {
-    // setOpenChild(true);
+  const [observationIncidence, setObservationIncidence] = React.useState("");
+
+  const handleChangeObservation = (event) => {
+    const value = event.target.value;
+    setObservationIncidence(value);
   };
-
-  // const handleUpdate = () => {
-  //   if (statusObj.status === "incidencia") {
-  //     const dataVendedor = {
-  //       _id: item._id,
-  //       name: item.name,
-  //       status: statusObj.status,
-  //       status_op: statusObj.status_op,
-  //       llamada_venta: statusObj.llamada_venta,
-  //       province: item.province,
-  //       category: item.category,
-  //       telephone: item.telephone,
-  //       url: item.url,
-  //       instagram: item.instagram,
-  //       level: item.level,
-  //     };
-
-  //     const dataLead = {
-  //       status: statusObj.status,
-  //       status_op: statusObj.status_op,
-  //       vendedor: emailAddress,
-  //       vendedor_name: fullName,
-  //       llamados: item.llamados,
-  //       llamada_venta: statusObj.llamada_venta,
-  //     };
-
-  //     const dataUpdate = {
-  //       dataLead,
-  //       dataVendedor,
-  //     };
-  //     // axios
-  //     //   .put(`/lead/vendedor/${item._id}`, dataUpdate)
-  //     //   .then((response) => {})
-  //     //   .catch((error) => {
-  //     //     console.log("error al enviar lña incidencia");
-  //     //   });
-
-  //   //  updateLeads();
-  //   SendIncidenceAlert();
-  //   }
-  // };
 
   const handleClose = () => {
     setOpenIncidenceChild(false);
   };
   const confirmSendIncidence = () => {
-    statusObj.status = "incidencia";
-    // await setStatusObj({...statusObj, status: "incidencia"})
+    statusObj.level = "incidencia";
+
 
     const dataVendedor = {
       _id: item._id,
       name: item.name,
       status: statusObj.status,
-      status_op: statusObj.status_op,
+      status_op: observationIncidence,
       llamada_venta: statusObj.llamada_venta,
       province: item.province,
       category: item.category,
       telephone: item.telephone,
       url: item.url,
       instagram: item.instagram,
-      level: statusObj.status,
+      level: statusObj.level,
     };
 
     const dataLead = {
       status: statusObj.status,
-      level: statusObj.status,
-      status_op: statusObj.status_op,
+      level: statusObj.level,
+      status_op: observationIncidence,
       vendedor: emailAddress,
       vendedor_name: fullName,
       llamados: item.llamados,
@@ -288,6 +250,7 @@ function IncidenceModal({
       dataLead,
       dataVendedor,
     };
+
     axios
       .put(`/lead/vendedor/${item._id}`, dataUpdate)
       .then((response) => {
@@ -299,7 +262,6 @@ function IncidenceModal({
 
     setOpen(false);
 
-    // SendIncidenceAlert();
   };
 
   const sendIncidence = () => {
@@ -323,6 +285,7 @@ function IncidenceModal({
           sx={{
             ...style,
             width: 500,
+            borderRadius: "15px",
             backgroundColor: "#39394B",
             display: "flex",
             flexDirection: "column",
@@ -334,11 +297,13 @@ function IncidenceModal({
             Send Incidence?
           </h2>
           <textarea
-            name=""
+            name="observation"
+            value={observationIncidence}
             id=""
             cols="30"
             rows="5"
             placeholder="Observation"
+            onChange={handleChangeObservation}
             className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           ></textarea>
           <div className="flex justify-around items-center m-5">
@@ -444,8 +409,6 @@ function intelligentInfo({ setOpen }) {
 }
 //************************************************************************************************ */
 
-
-
 export default function NestedModal({
   item,
   SendLeadAlert,
@@ -468,7 +431,7 @@ export default function NestedModal({
     contacto: "",
     observaciones: "",
     dia: dateHour.$D,
-    mes: (dateHour.$M + 1),
+    mes: dateHour.$M + 1,
     year: dateHour.$y,
     hora: dateHour.$D,
     minutos: dateHour.$m,
@@ -487,6 +450,7 @@ export default function NestedModal({
   };
   const handleClose = () => {
     setOpen(false);
+    statusObj.status = "";
   };
 
   const handleSelectChange = (event) => {
@@ -556,7 +520,7 @@ export default function NestedModal({
       setLlamadoVenta({
         ...llamadoVenta,
         [property]: value,
-        diaHora: `Dia: ${dateHour.$D}/${(dateHour.$M + 1)}/${dateHour.$y} Hora: ${
+        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
@@ -566,7 +530,7 @@ export default function NestedModal({
             : dateHour.$m
         }`,
         dia: dateHour.$D,
-        mes: (dateHour.$M + 1),
+        mes: dateHour.$M + 1,
         year: dateHour.$y,
         hora: dateHour.$D,
         minutos: dateHour.$m,
@@ -574,7 +538,7 @@ export default function NestedModal({
     } else {
       setLlamadoVenta({
         ...llamadoVenta,
-        diaHora: `Dia: ${dateHour.$D}/${(dateHour.$M + 1)}/${dateHour.$y} Hora: ${
+        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
@@ -584,7 +548,7 @@ export default function NestedModal({
             : dateHour.$m
         }`,
         dia: dateHour.$D,
-        mes: (dateHour.$M + 1),
+        mes: dateHour.$M + 1,
         year: dateHour.$y,
         hora: dateHour.$D,
         minutos: dateHour.$m,
@@ -727,7 +691,6 @@ export default function NestedModal({
                       id="last_name"
                       name="contacto"
                       // defaultValue={item.status_op}
-                      value={llamadoVenta.contacto}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder=""
@@ -754,7 +717,7 @@ export default function NestedModal({
                       required
                     />
                   </div>
-                  <div className="flex items-center justify-center gap-7 mt-8">
+                  <div className="flex items-center justify-center gap-2 mt-8">
                     <input
                       onChange={handleLlamadoVentaChange}
                       type="text"
@@ -781,32 +744,19 @@ export default function NestedModal({
                       disabled
                       required
                     />
-                    {/* {dateHour.$D ? (<label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    {`Dia: ${dateHour.$D}/${dateHour.$M}/${dateHour.$y} Hora: ${
-                      dateHour.$H && String(dateHour.$H).length === 1
-                        ? `0${dateHour.$H}`
-                        : dateHour.$H
-                    }:${
-                      dateHour.$m && String(dateHour.$m).length === 1
-                        ? `0${dateHour.$m}`
-                        : dateHour.$m
-                    }`}
-                  </label>) : (<label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    Fecha y Hora
-                  </label>)} */}
-                    <button
+                    <a
                       type="button"
-                      className="py-2 px-3  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                      onClick={setDateTime}
+                      className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                      href="https://calendly.com/event_types/user/me"
+                      target="_blank"
                     >
-                      Cambiar
-                    </button>
+                      Calendry
+                    </a>
+
+                    <CiEdit
+                      onClick={setDateTime}
+                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    />
                   </div>
                 </div>
               )}
@@ -817,7 +767,7 @@ export default function NestedModal({
                     htmlFor="last_name"
                     className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
                   >
-                    {/* {item.llamada_venta} */}
+                    Contacto
                   </label>
                   <div className="flex justify-center items-center">
                     <input
@@ -825,8 +775,12 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="contacto"
-                      // defaultValue={item.status_op}
-                      value={llamadoVenta.contacto}
+                      // defaultValue={item.llamada_venta.contacto}
+                      value={
+                        llamadoVenta.contacto
+                          ? llamadoVenta.contacto
+                          : item.llamada_venta.contacto
+                      }
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder=""
@@ -846,14 +800,18 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="observaciones"
-                      value={llamadoVenta.observaciones}
+                      value={
+                        llamadoVenta.observaciones
+                          ? llamadoVenta.observaciones
+                          : item.llamada_venta.observaciones
+                      }
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       // value="USD"
                       required
                     />
                   </div>
-                  <div className="flex items-center justify-center gap-7 mt-8">
+                  <div className="flex items-center justify-center gap-2 mt-8">
                     <input
                       onChange={handleLlamadoVentaChange}
                       type="text"
@@ -864,7 +822,7 @@ export default function NestedModal({
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={
                         dateHour.$D
-                          ? `Dia: ${dateHour.$D}/${(dateHour.$M+1)}/${
+                          ? `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${
                               dateHour.$y
                             } Hora: ${
                               dateHour.$H && String(dateHour.$H).length === 1
@@ -881,13 +839,18 @@ export default function NestedModal({
                       required
                     />
 
-                    <button
+                    <a
                       type="button"
-                      className="py-2 px-3  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                      onClick={setDateTime}
+                      className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                      href="https://calendly.com/event_types/user/me"
+                      target="_blank"
                     >
-                      Cambiar
-                    </button>
+                      Calendry
+                    </a>
+                    <CiEdit
+                      onClick={setDateTime}
+                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    />
                   </div>
                 </div>
               )}

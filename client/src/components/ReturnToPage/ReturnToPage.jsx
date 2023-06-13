@@ -1,5 +1,3 @@
-import styles from "./ReturnToPage.module.css";
-import { IoIosArrowBack } from "react-icons/io";
 
 function ReturnToPage() {
   const regresar = () => {

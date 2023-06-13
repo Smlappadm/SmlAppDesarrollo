@@ -14,7 +14,6 @@ import InputSeller from "./MaterialUi/InputSeller";
 import SelectLevel from "./MaterialUi/SelectLevel";
 import SelectStatus from "./MaterialUi/SelectStatus";
 import ModalCient from "./MaterialUi/ModalClient";
-import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,10 +43,9 @@ export const AnalyticLeader = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const showData = data.filter((item) => {
-    return (
-      item.status !== "No responde" && item.status !== "Agendar 2do llamado"
-    );
+    return item.level === "0";
   });
+  console.log(showData);
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -142,7 +140,7 @@ export const AnalyticLeader = () => {
   return (
     <>
       <Nav />
-      <Card className="w-full h-full bg-[#222131] rounded-none p-5">
+      <Card className="w-full h-full bg-[#222131] rounded-none p-5 relative">
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5">
             <Title className={style.title}>Analytics</Title>
@@ -156,7 +154,8 @@ export const AnalyticLeader = () => {
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
           </div>
-          {filters.level === true ? (
+          <div className="h-[36.5px] w-[36.5px]"></div>
+          {/* {filters.level === true ? (
             <SelectLevel onChange={onChangeLevel} value={levelValue} />
           ) : (
             ""
@@ -167,8 +166,7 @@ export const AnalyticLeader = () => {
             <SelectStatus onChange={onChangeStatus} value={statusValue} />
           ) : (
             ""
-          )}
-          <AddLead />
+          )} */}
         </div>
         <div className="w-full">
           <div className="text-white text-14 font-thin">
@@ -364,28 +362,9 @@ export const AnalyticLeader = () => {
                       </div>
                     </div>
                     <div className="flex justify-center items-center p-0">
-                      {item.status === "Contratado" ? (
-                        <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Contratado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-                      {item.status === "Sin contactar" ? (
-                        <Text className="bg-[#b44f82]  text-[#e0dfdf]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Sin Contactar
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-
-                      {item.status === "Rechazado" ? (
-                        <Text className="bg-[#b44f82] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
-                          Rechazado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
+                      <Text className="bg-black  text-white   px-2 py-1.5 rounded-xl text-center w-48">
+                        DISCARD BOT
+                      </Text>
                     </div>
                   </button>
                 </div>
@@ -393,14 +372,16 @@ export const AnalyticLeader = () => {
             ))}
           </div>
         </div>
-        <PaginationOutlined
-          pageStyle={pageStyle}
-          setPageStyle={setPageStyle}
-          cardXPage={cardXPage}
-          data={data}
-          pages={pages}
-          current={currentPage}
-        />
+        {showData.length > 10 ? (
+          <PaginationOutlined
+            pageStyle={pageStyle}
+            setPageStyle={setPageStyle}
+            cardXPage={cardXPage}
+            data={showData}
+            pages={pages}
+            current={currentPage}
+          />
+        ) : null}
       </Card>
     </>
   );

@@ -25,6 +25,7 @@ export const FIND_VENDEDORES_NAME = "FIND_VENDEDORES_NAME";
 export const GET_ALL_EMPLOYEES = "GET_ALL_EMPLOYEES";
 export const GET_ALL_PROFESION = "GET_ALL_PROFESION";
 export const GET_ALL_COUNTRY = "GET_ALL_COUNTRY";
+export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 
 //
 export const setRol = (rol) => {
@@ -114,16 +115,16 @@ export const getLeadChecked = () => {
 };
 
 export const getLeadCheckedInactive5 = (email) => {
-  if (email) {
-    return async (dispatch) => {
+  return async (dispatch) => {
+    if (email && email !== "undefined" && email !== null && email !== "") {
       const response = await axios.get(`/lead/checkedinactive5?email=${email}`);
       const LeadCheckedInactive5 = response.data;
       dispatch({
         type: GET_LEAD_CHEQUED_INACTIVE_5,
         payload: LeadCheckedInactive5,
       });
-    };
-  }
+    }
+  };
 };
 
 export const orderClients = (order) => {
@@ -248,3 +249,18 @@ export const getAllCountries = () => {
     dispatch({ type: GET_ALL_COUNTRY, payload: allCountries });
   };
 };
+export const getDetailEmploy = (email) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/employees/email/?email=${email}`);
+    const detailEmploy = response.data;
+    dispatch({ type: GET_DETAIL_EMPLOY, payload: detailEmploy });
+  };
+};
+
+export const updateLeadIncidence = (client, body) => {
+  return async () => {
+    await axios.put(`lead/${client}`, body);
+  };
+};
+
+// *******************************Clientes *******************************

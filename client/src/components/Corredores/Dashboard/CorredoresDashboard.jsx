@@ -19,6 +19,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import BasicButtons from "./MaterialUi/BasicButtons";
+import NestedModal from "./MaterialUi/NestedModal";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -26,6 +27,7 @@ const CorredoresDashboard = () => {
   const [country, setCountry] = useState("");
   const [marca_personal, setMarca_personal] = useState("");
   const [category, seCategory] = useState("");
+  const [openModal, setOpenModal] = useState(false);
 
   const { corredorLead } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
@@ -91,6 +93,20 @@ const CorredoresDashboard = () => {
     });
   };
 
+  const handleChangeIncidencia = (event, index) => {
+    const { name, value } = event.target;
+
+    setClient((prevState) => {
+      const updatedClient = [...prevState];
+      updatedClient[index] = {
+        ...updatedClient[index],
+        [name]: value,
+        status_op: value,
+      };
+      return updatedClient;
+    });
+  };
+
   const handleChangeEmail = (event, index) => {
     const { name, value } = event.target;
     setClient((prevState) => {
@@ -131,7 +147,8 @@ const CorredoresDashboard = () => {
             url: corredorLead[i].url,
             email: corredorLead[i].email,
             instagram: corredorLead[i].instagram,
-            level: "-",
+            level: corredorLead[i].level,
+            status_op: corredorLead[i].status_op,
             checked: false,
             view: true,
           });
@@ -151,7 +168,6 @@ const CorredoresDashboard = () => {
         });
       }
     };
-
     updateClients();
   }, [client]);
 
@@ -233,42 +249,49 @@ const CorredoresDashboard = () => {
     SendLeads(user.fullName);
     try {
       for (let i = 0; i < corredorLead.length; i++) {
-        if (client[i].level !== "-") {
-          if (client[i].instagram.trim() !== "" && client[i].level === "0") {
-            SendLeadsErrorInsta0(client[i].name);
-          } else if (
-            client[i].instagram.trim() === "" &&
-            (client[i].level === "incidencia" || client[i].level === "0")
+        const currentClient = client[i];
+
+        if (currentClient.level !== "-") {
+          if (
+            currentClient.instagram.trim() !== "" &&
+            (currentClient.level === "0" ||
+              currentClient.level === "incidencia")
           ) {
-            const response = await axios.put(`/lead/${client[i]._id}`, {
-              _id: client[i]._id,
-              name: client[i].name,
-              url: client[i].url,
-              instagram: client[i].instagram,
-              email: client[i].email,
-              level: client[i].level,
+            SendLeadsErrorInsta0(currentClient.name);
+          } else if (
+            currentClient.instagram.trim() === "" &&
+            (currentClient.level === "incidencia" ||
+              currentClient.level === "0")
+          ) {
+            const response = await axios.put(`/lead/${currentClient._id}`, {
+              _id: currentClient._id,
+              name: currentClient.name,
+              url: currentClient.url,
+              instagram: currentClient.instagram,
+              email: currentClient.email,
+              level: currentClient.level,
               checked: true,
               view: true,
             });
           } else if (
-            client[i].instagram.trim() !== "" &&
-            client[i].level !== "-"
+            currentClient.instagram.trim() !== "" &&
+            (currentClient.level === "1" || currentClient.level === "2")
           ) {
-            const response = await axios.put(`/lead/${client[i]._id}`, {
-              _id: client[i]._id,
-              name: client[i].name,
-              url: client[i].url,
-              instagram: client[i].instagram,
-              email: client[i].email,
-              level: client[i].level,
+            const response = await axios.put(`/lead/${currentClient._id}`, {
+              _id: currentClient._id,
+              name: currentClient.name,
+              url: currentClient.url,
+              instagram: currentClient.instagram,
+              email: currentClient.email,
+              level: currentClient.level,
               checked: true,
               view: true,
             });
           } else {
-            SendLeadsErrorInsta(client[i].name);
+            SendLeadsErrorInsta(currentClient.name);
           }
         } else {
-          SendLeadsErrorLevel(client[i].name);
+          SendLeadsErrorLevel(currentClient.name);
         }
       }
 
@@ -282,6 +305,9 @@ const CorredoresDashboard = () => {
       console.log({ error: error.message });
     }
   };
+
+  const instagramRegex =
+    /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
 
   return (
     <>
@@ -373,19 +399,24 @@ const CorredoresDashboard = () => {
                 </tr>
               </thead>
 
-              <tbody className="h-3/4">
+              <tbody className="">
                 {client &&
                   client.map((item, index) => (
                     <tr key={index} className={style.tableCards}>
-                      <td className="flex justify-start items-center p-0">
-                        <div type="text" id="name" value={item.name}>
-                          <p className="w-96 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden">
+                      <td className="flex p-0">
+                        <div
+                          className="ml-10"
+                          type="text"
+                          id="name"
+                          value={item.name}
+                        >
+                          <p className="w-80 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden">
                             {item.name}
                           </p>
                         </div>
                       </td>
 
-                      <td className="flex justify-start items-center p-0">
+                      <td className="flex ml-10 p-0">
                         <Link to={item.url} target="_blank">
                           <p value={item.url}>
                             <CiGlobe className="text-[2rem] text-[#418df0]" />
@@ -393,7 +424,7 @@ const CorredoresDashboard = () => {
                         </Link>
                       </td>
 
-                      <td className="flex justify-start w-[10rem] items-center gap-3 p-0 mx-3">
+                      <td className="flex w-[10rem] gap-3 p-0 mx-3">
                         <div>
                           <CiMail className="text-[2rem] text-[#418df0]" />
                         </div>
@@ -411,10 +442,18 @@ const CorredoresDashboard = () => {
                         />
                       </td>
 
-                      <td className="flex justify-start w-[10rem] items-center gap-3 p-0 mx-3">
+                      <td className="flex w-[10rem] gap-3 p-0 mx-3">
                         <div>
-                          <GrInstagram className="text-[2rem] text-[#418df0]" />
+                          {item.instagram &&
+                          instagramRegex.test(item.instagram) ? (
+                            <Link to={item.instagram} target="_blank">
+                              <GrInstagram className="text-[2rem] text-[#418df0]" />
+                            </Link>
+                          ) : (
+                            <GrInstagram className="text-[2rem] text-[#418df0]" />
+                          )}
                         </div>
+
                         <input
                           className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
                             item.instagram ? "border-green-500" : ""
@@ -429,7 +468,7 @@ const CorredoresDashboard = () => {
                         />
                       </td>
 
-                      <td className="flex justify-start items-center p-0">
+                      <td className="flex ml-6 p-0">
                         <button
                           className={
                             item.level === "0"
@@ -472,7 +511,7 @@ const CorredoresDashboard = () => {
                         <button
                           className={
                             item.level === "incidencia"
-                              ? style.buttonNivelActive
+                              ? style.buttonNivelActiveIncidence
                               : style.buttonNivel
                           }
                           type="button"
@@ -482,6 +521,12 @@ const CorredoresDashboard = () => {
                         >
                           ⚠
                         </button>
+
+                        {item.level === "incidencia" ? (
+                          <div>
+                            <NestedModal item={item} />
+                          </div>
+                        ) : null}
                       </td>
                     </tr>
                   ))}
@@ -489,7 +534,7 @@ const CorredoresDashboard = () => {
             </table>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
-              <h1>LEADS NOT FOUND...</h1>
+              <h1>NO HAY LEADS CON ESE FILTRADO...</h1>
             </div>
           )}
         </form>

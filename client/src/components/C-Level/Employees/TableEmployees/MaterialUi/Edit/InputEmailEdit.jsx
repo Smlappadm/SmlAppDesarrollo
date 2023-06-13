@@ -10,7 +10,7 @@ export default function InputEmailEdit({ inputEmail, setInputEmail }) {
   return (
     <Box
       sx={{
-        width: "50%",
+        width: "80%",
         maxWidth: "100%",
         color: "white",
       }}

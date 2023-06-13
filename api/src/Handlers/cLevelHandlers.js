@@ -24,13 +24,13 @@ const postCLevelHandler = async (req, res) => {
   }
 };
 
-const updateCLevelHandler = async (req, res) => {
-  const email = req.params.email;
+const updateClevelByEmailHandler = async (req, res) => {
+  const email = req.query.email;
   const updatedData = req.body;
 
   try {
-    const cLevel = await updateCLevelByEmail(email, updatedData);
-    res.status(200).json(cLevel);
+    const employ = await updateCLevelByEmail(email, updatedData);
+    res.status(200).json(employ);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -72,7 +72,7 @@ const getCLevelByIdHandler = async (req, res) => {
 module.exports = {
   getAllCLevelsHandler,
   postCLevelHandler,
-  updateCLevelHandler,
+  updateClevelByEmailHandler,
   getCLevelByIdHandler,
   getCLevelByNameHandler,
   getCLevelByEmailHandler,

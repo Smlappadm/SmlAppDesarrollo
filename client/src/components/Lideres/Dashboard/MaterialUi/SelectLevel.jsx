@@ -47,10 +47,8 @@ export default function SelectSmall(props) {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value="0">0</MenuItem>
         <MenuItem value="1">1</MenuItem>
         <MenuItem value="2">2</MenuItem>
-        <MenuItem value="incidencia">Incidencia</MenuItem>
       </Select>
     </FormControl>
   );

@@ -5,11 +5,12 @@ const CorredorSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
       required: true,
+      unique: true,
       validate: {
         validator: validator.isEmail,
         message: "El correo electrónico debe tener un formato válido",

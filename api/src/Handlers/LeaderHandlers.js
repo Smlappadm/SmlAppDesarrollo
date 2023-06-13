@@ -4,6 +4,7 @@ const getLeaderById = require("../controllers/Leader/getLeaderById");
 const getLeaderByName = require("../controllers/Leader/getLeaderByName");
 const postLeader = require("../controllers/Leader/postLeader");
 const updateLeaderById = require("../controllers/Leader/updateLeadById");
+const updateLeaderByEmail = require("../controllers/Leader/updateLeaderByEmail");
 
 const getAllLeadersHandler = async (req, res) => {
   try {
@@ -69,6 +70,18 @@ const getLeaderByIdHandler = async (req, res) => {
   }
 };
 
+const updateLeaderByEmailHandler = async (req, res) => {
+  const email = req.query.email;
+  const updatedData = req.body;
+
+  try {
+    const leader = await updateLeaderByEmail(email, updatedData);
+    res.status(200).json(leader);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllLeadersHandler,
   postLeaderHandler,
@@ -76,4 +89,5 @@ module.exports = {
   getLeaderByIdHandler,
   getLeaderByNameHandler,
   getLeaderByEmailHandler,
+  updateLeaderByEmailHandler,
 };

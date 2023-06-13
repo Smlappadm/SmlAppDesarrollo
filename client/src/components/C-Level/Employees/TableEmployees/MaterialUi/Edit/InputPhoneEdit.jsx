@@ -10,15 +10,15 @@ export default function InputPhoneEdit({ inputPhone, setInputPhone }) {
   return (
     <Box
       sx={{
-        width: "50%",
+        width: "80%",
         maxWidth: "100%",
         color: "white",
       }}
     >
       <TextField
         fullWidth
-        label="Phone"
-        id="Phone"
+        label="Telefono"
+        id="Telefono"
         value={inputPhone}
         onChange={handleChange}
         InputProps={{

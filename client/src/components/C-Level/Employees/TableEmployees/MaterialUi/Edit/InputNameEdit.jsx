@@ -10,15 +10,15 @@ export default function InputNameEdit({ inputName, setInputName }) {
   return (
     <Box
       sx={{
-        width: "50%",
+        width: "80%",
         maxWidth: "100%",
         color: "white",
       }}
     >
       <TextField
         fullWidth
-        label="Name"
-        id="Name"
+        label="Nombre"
+        id="Nombre"
         value={inputName}
         onChange={handleChange}
         InputProps={{

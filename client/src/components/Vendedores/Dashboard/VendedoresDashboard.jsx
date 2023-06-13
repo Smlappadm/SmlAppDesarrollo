@@ -6,12 +6,12 @@ import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { filterLevel, getLeadCheckedInactive5 } from "../../../redux/actions";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
-import { IoGrid, IoStatsChart} from "react-icons/io5";
+import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHistory } from "react-icons/fa";
-import {MdOutlineAttachMoney } from "react-icons/md";
-import SelectLevel from "./SelectLevel"
+import { MdOutlineAttachMoney } from "react-icons/md";
+import SelectLevel from "./SelectLevel";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 
@@ -24,22 +24,19 @@ const VendedoresDashboard = () => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-  const  fullName  = user?.fullName;
+  const fullName = user?.fullName;
 
-
-  localStorage.setItem('email', email);
-  let emailAddress = localStorage.getItem('email');
+  localStorage.setItem("email", email);
+  let emailAddress = localStorage.getItem("email");
 
   useEffect(() => {
     dispatch(getLeadCheckedInactive5(emailAddress));
-
   }, [dispatch, emailAddress]);
 
-  
   useEffect(() => {
     setData(vendedoresDashboard);
   }, [vendedoresDashboard]);
-  
+
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardXPage, setCardXpage] = useState(10);
@@ -49,10 +46,6 @@ const VendedoresDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [edit, setEdit] = useState(false);
-  const [editIndex, setEditIndex] = useState("");
-
-
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -138,14 +131,19 @@ const VendedoresDashboard = () => {
     });
 
     dispatch(getLeadCheckedInactive5(emailAddress));
-    // setData(vendedoresDashboard);
-
-  };
-  const updateLeads = () => {
-    // dispatch(getLeadCheckedInactive5(emailAddress));
-    // setData(vendedoresDashboard);
   };
 
+  const funcionHorario = (horario) => {
+    const fechaHoraISO = horario;
+
+    const fechaHora = new Date(fechaHoraISO);
+
+    const opciones = { hour12: false };
+
+    const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
+
+    return fechaHoraLocal;
+  };
 
   return (
     <>
@@ -178,84 +176,92 @@ const VendedoresDashboard = () => {
               </Link>
             </div>
             {filters.level === true ? (
-            <SelectLevel onChange={onChangeLevel} value={levelValue} />
+              <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
               ""
             )}
-
           </div>
           {vendedoresDashboard.length ? (
-            <table className={style.table}>
-              <thead className="text-gray-400 text-14 font-thin">
-                <tr className={style.tableRow}>
-                  <th className="text-start">Nombre</th>
-                  <th className="text-start">Sector</th>
-                  <th className="text-start">País</th>
-                  <th className="text-start">Email</th>
-                  <th className="text-start">Instagram</th>
-                  <th className="text-start">Phone</th>
-                  <th className="text-start">
-                    <button onClick={() => handlerFilter("level")}>
-                      Nivel
-                    </button>
-                  </th>
-                  <th className="text-start">Status</th>
-                  <th className="text-start"></th>
-                </tr>
-              </thead>
+            <div className={style.table}>
+              <div className="flex justify-start items-center  mx-6">
+                <label className="text-start w-[15%] px-3">Nombre</label>
+                <label className="text-start w-[15%] px-3">Sector</label>
+                <label className="text-start w-[10%] px-3">País</label>
+                <label className="text-center w-[5%] ">Email</label>
+                <label className="text-center w-[5%] ">Instagram</label>
+                <label className="text-center w-[10%] ">Phone</label>
+                <button
+                  className="  w-[10%]"
+                  onClick={() => handlerFilter("level")}
+                >
+                  Nivel
+                </button>
+                <label className="text-center w-[20%] ">Status</label>
+                <label className="text-start w-[10%] "></label>
+              </div>
 
-              <tbody className="">
+              <div className="">
                 {currentCard.map((item, index) => (
-                  <tr key={item._id} className={style.tableCards}>
-                    <td className="flex justify-start items-center  p-0 w-fit">
+                  <div
+                    key={item._id}
+                    className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
+                  >
+                    <div className=" w-[15%] flex justify-start items-center  p-0 ">
                       <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.name}
                       </p>
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[15%] flex justify-start items-center p-0 ">
                       <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.category}
                       </p>
-                    </td>
+                    </div>
 
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    <div className=" w-[10%] flex justify-start items-center p-0">
                       <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.province}
                       </p>
-                    </td>
+                    </div>
 
-                    <td className="flex justify-center items-center p-0 w-fit">
+                    <div className=" w-[5%] flex justify-center items-center p-0">
                       {item.email !== "-" ? (
                         <div onClick={() => handleCopyClick(item.email)}>
                           <div className="cursor-pointer">
-                            <CiMail className="text-[35px] mr-5 text-[#418df0] z-0" />
+                            <CiMail className="text-[35px] text-[#418df0] z-0" />
                           </div>
                         </div>
                       ) : (
                         <div>
-                          <CiMail className="text-[35px] mr-5 text-[#9eabbe]" />
+                          <CiMail className="text-[35px] text-[#9eabbe]" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-center items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[5%] flex justify-center items-center p-0">
                       {item.instagram ? (
                         <div>
-                          <a href={item.instagram} target="_blank" className="cursor-pointer">
-                            <CiInstagram className="text-[35px] mr-5 text-[#ff598b]" />
+                          <a
+                            href={item.instagram}
+                            target="_blank"
+                            className="cursor-pointer"
+                          >
+                            <CiInstagram className="text-[35px] text-[#ff598b]" />
                           </a>
                         </div>
                       ) : (
                         <div>
-                          <CiInstagram className="text-[35px] mr-5 text-[#9eabbe]" />
+                          <CiInstagram className="text-[35px] text-[#9eabbe]" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
-                    <p onClick={() => handleCopyClick(item.telephone)} className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                    </div>
+                    <div className=" w-[10%] flex justify-center items-center p-0 ">
+                      <p
+                        onClick={() => handleCopyClick(item.telephone)}
+                        className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                      >
                         {item.telephone}
                       </p>
-                    </td>
-                    <td className="flex justify-start items-center p-0 w-fit">
+                    </div>
+                    <div className=" w-[10%] flex justify-center items-center p-0">
                       {item.level !== "incidencia" ? (
                         <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
                           {item.level}
@@ -265,40 +271,55 @@ const VendedoresDashboard = () => {
                           <CiWarning className="text-[#fdfa3a] p-0 text-[35px] font-bold" />
                         </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-start p-0 w-fit">
+                    </div>
+                    <div className=" w-[20%] flex justify-center items-start p-0">
                       {item.status === "Sin contactar" && (
-                        <p className="bg-[#d0da3d] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                        <p className="bg-[#a9b231] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                           {item.status}
                         </p>
                       )}
                       {item.status === "No responde" && (
-                        // <p className="bg-[#b4215e] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                        <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                          {/* bg-[#ff69b4]  */}
-                          {item.status}
-                        </p>
+                        <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
+                          <p className="text-16">
+                            {item.status}
+                          </p>
+                          <label className="text-[14px]">
+                            {/* {item.updatedAt
+                              .slice(0, 10)
+                              .split("-")
+                              .reverse()
+                              .join("-")}{" "} */}
+                            {funcionHorario(item.updatedAt).slice(0,16)}
+                            {/* {String(item.updateAt)} */}
+                            {/* {item.updatedAt.slice(11, 13) === "00" && "21"}
+                            {item.updatedAt.slice(11, 13) === "01" && "22"}
+                            {item.updatedAt.slice(11, 13) === "02" && "23"}
+                            {item.updatedAt.slice(11, 13) === "03" && "00"}
+                            {item.updatedAt.slice(11, 13) !== "00" && item.updatedAt.slice(11, 13) !== "01" && item.updatedAt.slice(11, 13) !== "02" && item.updatedAt.slice(11, 13) !== "03" && Number(item.updatedAt.slice(11, 13)) - 3}
+                            {item.updatedAt.slice(13, 16)}  */}
+                            {console.log(item.updatedAt)}
+                          </label>
+                        </div>
                       )}
-                    </td>
-                    <td className="flex justify-start items-start p-0 w-fit gap-3">
-                    <ModalIntelligentInfo/>
+                    </div>
+                    <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
+                      <ModalIntelligentInfo />
                       <Modal
                         item={item}
                         SendLeadAlert={SendLeadAlert}
                         SendIncidenceAlert={SendIncidenceAlert}
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
-                        updateLeads={updateLeads}
                         emailAddress={emailAddress}
                         fullName={fullName}
                       />
-                    </td>
-                  </tr>
+                    </div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
-              <h1>LEADS NOT FOUND...</h1>
+              <h1>No hay Leads disponibles</h1>
             </div>
           )}
         </div>

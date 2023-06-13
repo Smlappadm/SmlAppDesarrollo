@@ -1,66 +1,76 @@
-import { Link } from "react-router-dom"
-import style from "./incidencias.module.css"
-import PaginationOutlined from "../../pagination/PaginationOutlined"
-import { Card, Text, Title } from "@tremor/react"
-import { CiMail, CiInstagram, CiPhone, CiWarning } from "react-icons/ci"
-import ModalCient from "./MaterialUi/ModalClient"
-import Nav from "../../Nav/Nav"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { getLeadChecked, orderClients, orderCategory } from "../../../redux/actions"
-import { IoGrid, IoStatsChart, IoPeople } from "react-icons/io5"
-import { CiGlobe } from "react-icons/ci"
+import { Link } from "react-router-dom";
+import style from "./incidencias.module.css";
+import PaginationOutlined from "../../pagination/PaginationOutlined";
+import { Card, Text, Title } from "@tremor/react";
+import { CiMail, CiInstagram, CiPhone, CiWarning } from "react-icons/ci";
+import ModalCient from "./MaterialUi/ModalClient";
+import Nav from "../../Nav/Nav";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getLeadChecked,
+  orderClients,
+  orderCategory,
+} from "../../../redux/actions";
+import { IoGrid, IoStatsChart, IoPeople } from "react-icons/io5";
+import { CiGlobe } from "react-icons/ci";
 
 //
 const Incidences = () => {
-  const [data, setData] = useState([])
-  const { leaderDashboard } = useSelector((state) => state)
-  const dispatch = useDispatch()
+  const [data, setData] = useState([]);
+  const { leaderDashboard } = useSelector((state) => state);
+  const [changeIncidence, setChangeIncidence] = useState({});
+  const dispatch = useDispatch();
 
   const fetchData = () => {
-    dispatch(getLeadChecked())
-  }
+    dispatch(getLeadChecked());
+  };
 
   const filterData = () => {
-    const filteredData = leaderDashboard.filter(item => item.level === "incidencia")
-    setData(filteredData)
-  }
+    const filteredData = leaderDashboard.filter(
+      (item) => item.level === "incidencia"
+    );
+    setData(filteredData);
+  };
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    dispatch(getLeadChecked());
+  }, [dispatch, changeIncidence]);
 
   useEffect(() => {
-    filterData()
-  }, [leaderDashboard])
+    filterData();
+  }, [leaderDashboard]);
+
+  const handleChangeIncidence = (change) => {
+    setChangeIncidence(change);
+  };
 
   const handleState = () => {
-    fetchData()
-    filterData()
-  }
+    fetchData();
+    filterData();
+  };
 
-
-  const [pageStyle, setPageStyle] = useState(1)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [cardXPage, setCardXpage] = useState(10)
-  const indexLastCard = currentPage * cardXPage
-  const indexFirstCard = indexLastCard - cardXPage
-  const currentCard = data.slice(indexFirstCard, indexLastCard)
+  const [pageStyle, setPageStyle] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardXPage, setCardXpage] = useState(10);
+  const indexLastCard = currentPage * cardXPage;
+  const indexFirstCard = indexLastCard - cardXPage;
+  const currentCard = data.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
-    setCurrentPage(pageNumber)
-  }
-  const [clientOrder, setClientOrder] = useState("")
-  const [categoryOrder, setCategoryOrder] = useState("")
+    setCurrentPage(pageNumber);
+  };
+  const [clientOrder, setClientOrder] = useState("");
+  const [categoryOrder, setCategoryOrder] = useState("");
 
   const headerClient = () => {
     if (clientOrder === "ASC") {
-      return "Cliente ⤴"
+      return "Cliente ⤴";
     } else if (clientOrder === "DES") {
-      return "Cliente ⤵"
+      return "Cliente ⤵";
     } else {
-      return "Cliente"
+      return "Cliente";
     }
-  }
+  };
   const handleOrderByClient = () => {
     if (clientOrder === "ASC" || clientOrder === "") {
       setClientOrder("DES");
@@ -96,28 +106,28 @@ const Incidences = () => {
     }
     setCurrentPage(1);
   };
-  const [levelValue, setLevelValue] = useState("")
+  const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
-    setLevelValue(value)
-    dispatch(filterLevel(value))
-    setData(leaderDashboard)
-    setCurrentPage(1)
-  }
-  const [statusValue, setStatusValue] = useState("")
+    setLevelValue(value);
+    dispatch(filterLevel(value));
+    setData(leaderDashboard);
+    setCurrentPage(1);
+  };
+  const [statusValue, setStatusValue] = useState("");
   const onChangeStatus = (value) => {
-    setStatusValue(value)
-    dispatch(filterStatus(value))
-    setData(leaderDashboard)
-    setCurrentPage(1)
-  }
+    setStatusValue(value);
+    dispatch(filterStatus(value));
+    setData(leaderDashboard);
+    setCurrentPage(1);
+  };
 
-  const [open, setOpen] = useState(false)
-  const [modalItems, setModalItems] = useState([])
+  const [open, setOpen] = useState(false);
+  const [modalItems, setModalItems] = useState([]);
   const handleOpen = (item, index) => {
-    setOpen(true)
-    setModalItems(item)
-  }
-  const handleClose = () => setOpen(false)
+    setOpen(true);
+    setModalItems(item);
+  };
+  const handleClose = () => setOpen(false);
 
   return (
     <>
@@ -135,11 +145,13 @@ const Incidences = () => {
             <Link className="text-5xl" to={"/lideres-incidences"}>
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
-
+            <Link className="text-5xl" to={"/lideres-i-history"}>
+              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
         </div>
-        <table className="w-full">
+        <div className="w-full">
           <div className="text-white text-14 font-thin ">
             <div className="flex items-center justify-around p-3  ">
               <div className="flex justify-center items-center p-0">
@@ -157,7 +169,7 @@ const Incidences = () => {
                 </button>
               </div>
               <div className="flex justify-center items-center p-0">
-                  <Text className="text-center w-6 p-0 text-white">Nivel</Text>
+                <Text className="text-center w-6 p-0 text-white">Nivel</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Web</Text>
@@ -174,26 +186,20 @@ const Incidences = () => {
                 <Text className="text-center w-6 p-0 text-white">Telefono</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                  <Text className="text-start w-28 p-0 text-white">
-                    Corredor
-                  </Text>
+                <Text className="text-start w-28 p-0 text-white">Corredor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                  <Text className="text-start w-28 p-0 text-white">
-                    Vendedor
-                  </Text>
+                <Text className="text-start w-28 p-0 text-white">Vendedor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                  <Text className="text-center w-48 p-0 text-white">
-                    Estado
-                  </Text>
+                <Text className="text-center w-48 p-0 text-white">Estado</Text>
               </div>
             </div>
           </div>
 
-          <tbody>
+          <div>
             <ModalCient
-              updateParentState={handleState}
+              fixed={handleChangeIncidence}
               open={open}
               handleClose={handleClose}
               _id={modalItems._id}
@@ -206,10 +212,10 @@ const Incidences = () => {
               status={modalItems.status}
               city={modalItems.city}
               province={modalItems.province}
-              url={modalItems.url}
+              web={modalItems.url}
               corredor={modalItems.corredor}
               vendedor={modalItems.vendedor}
-              op={modalItems.status_op}
+              observacion={modalItems.status_op}
             />
             {currentCard.map((item, index) => (
               <div
@@ -221,7 +227,6 @@ const Incidences = () => {
                     className="w-full flex justify-around items-center"
                     onClick={(index) => handleOpen(item, index)}
                   >
-
                     <div className="flex justify-center items-center p-0 ">
                       <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                         <Text className=" text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
@@ -328,45 +333,28 @@ const Incidences = () => {
                       </div>
                     </div>
                     <div className="flex justify-center items-center p-0">
-                      {item.status === "Contratado" ? (
-                        <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Contratado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-                      {item.status === "Sin contactar" ? (
-                        <Text className="bg-[#d0da3d]  text-[#e0dfdf]   px-2 py-1.5 rounded-xl text-center w-48">
-                          Sin Contactar
-                        </Text>
-                      ) : (
-                        ""
-                      )}
-
-                      {item.status === "Rechazado" ? (
-                        <Text className="bg-[#b44f82] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
-                          Rechazado
-                        </Text>
-                      ) : (
-                        ""
-                      )}
+                      <Text className="bg-red-500  text-white   px-2 py-1.5 rounded-xl text-center w-48">
+                        INCIDENCIA
+                      </Text>
                     </div>
                   </button>
                 </div>
               </div>
             ))}
-          </tbody>
-        </table>
-        <PaginationOutlined
-          pageStyle={pageStyle}
-          setPageStyle={setPageStyle}
-          cardXPage={cardXPage}
-          data={data}
-          pages={pages}
-          current={currentPage}
-        />
+          </div>
+        </div>
+        {data.length > 10 ? (
+          <PaginationOutlined
+            pageStyle={pageStyle}
+            setPageStyle={setPageStyle}
+            cardXPage={cardXPage}
+            data={data}
+            pages={pages}
+            current={currentPage}
+          />
+        ) : null}
       </Card>
     </>
   );
 };
-export default Incidences
+export default Incidences;

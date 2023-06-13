@@ -12,6 +12,6 @@ EmployeesRouter.get("/", getAllEmployeesHandler);
 EmployeesRouter.post("/", postEmployeesHandler);
 EmployeesRouter.get("/email", getEmployeesByEmailHandler);
 EmployeesRouter.delete("/", deleteEmployeesByEmailHandler);
-EmployeesRouter.put("/", updateEmployByEmailHandler);
+EmployeesRouter.put("/email", updateEmployByEmailHandler);
 
 module.exports = EmployeesRouter;

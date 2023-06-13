@@ -13,7 +13,8 @@ export default function SelectSmall(props) {
         m: 1,
         width: "20%",
         height: "33px",
-        margin: "0px 0px",
+        margin: "0px 50px",
+        color: "white",
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "white",
         },
@@ -23,6 +24,8 @@ export default function SelectSmall(props) {
         "&.focused .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "green",
         },
+
+
       }}
       size="small"
     >
