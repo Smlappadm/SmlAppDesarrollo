@@ -1,5 +1,5 @@
 import React from 'react'
-
+import avatar from "../../Assets/avatar.png"
 export const Agendar = ({nameAgendar}) => {
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-screen mt-8">
@@ -9,7 +9,7 @@ export const Agendar = ({nameAgendar}) => {
         value="vistaGeneral"
         className="flex justify-start items-center border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 py-0.5 rounded-full text-18 w-72 h-12"
       >
-      <img src="" alt="icono de Tiktok" className="mx-3 w-8 h-8" />
+      <img src={avatar} alt="icono de Tiktok" className="bg-[#f8cc07] mx-3 w-10 h-10 rounded-full" />
         Juan Pedro Gomez
       </button>
     </div>
