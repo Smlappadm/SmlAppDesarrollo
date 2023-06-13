@@ -332,6 +332,8 @@ const rootReducer = (state = initialState, action) => {
         detailEmploy: action.payload,
       };
 
+    // *******************************Clientes *******************************
+
     default:
       return { ...state };
   }
