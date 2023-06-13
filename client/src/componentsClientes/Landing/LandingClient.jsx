@@ -8,22 +8,7 @@ export default function LandingClient() {
     <div>
       <Header />
       <Name />
-      <Followers />
-      <div className="">
-        <Followers
-          numberInstagram={2725}
-          numberTiktok={2500}
-          maxNumber={`10K`}
-        />
-      </div>
-      <div className="">
-        <Followers
-          numberInstagram={2725}
-          numberTiktok={2500}
-          maxNumber={`10K`}
-        />
-      </div>
-      </div>
-
+      <Followers numberInstagram={2725} numberTiktok={2500} maxNumber={`10K`} />
+    </div>
   );
 }
