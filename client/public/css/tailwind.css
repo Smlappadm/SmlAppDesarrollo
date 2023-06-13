@@ -1202,6 +1202,10 @@ video {
   overflow: hidden;
 }
 
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
 .text-ellipsis {
   text-overflow: ellipsis;
 }
