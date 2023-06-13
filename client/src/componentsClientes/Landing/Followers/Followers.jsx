@@ -12,12 +12,12 @@ export default function Followers({
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-fit">
-      <div>
+    <div className="flex flex-col justify-center items-center w-screen h-fit relative mt-3">
+      <div className="">
         <label htmlFor="" className="text-[45px] text-white font-medium px-2">
           {formatearNumeroConPuntos(numberInstagram + numberTiktok)}
         </label>
-        <label htmlFor="">/ {maxNumber}</label>
+        <label htmlFor="" className="top-7 absolute">/ {maxNumber}</label>
       </div>
       <div className="">
         <label htmlFor="" className="font-thin ">
