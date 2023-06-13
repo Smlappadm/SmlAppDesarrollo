@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ handleOpenRegister, handleJoin }) {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({});
+
+  const handleSubmit = async () => {
+    const response = await axios.get(`/clientes/username?username=${username}`);
+    const client = response.data;
+    console.log(client);
+    if (username === client.username && password === client.password) {
+      navigate("/clientes-home");
+    } else {
+      console.log("todo mal");
+    }
+  };
+
   return (
     <div className="w-screen h-screen bg-[#020131] flex flex-col justify-start items-center">
       <img
@@ -14,6 +32,10 @@ export default function Login({ handleOpenRegister, handleJoin }) {
         <input
           className="rounded-md bg-[#404062] h-7 pl-2"
           type="text"
+          value={username}
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
           placeholder="Ingresar Usuario"
         />
         <label className="font-bold ml-2" htmlFor="">
@@ -22,12 +44,16 @@ export default function Login({ handleOpenRegister, handleJoin }) {
         <input
           className="rounded-md bg-[#404062] h-7 pl-2"
           type="text"
+          value={password}
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
           placeholder="Ingresar Contraseña"
         />
         <div className="flex flex-col items-center gap-y-4 mt-4">
           <button
             className="bg-[#07a1f8] rounded-2xl px-3 text-black"
-            onClick={handleJoin}
+            onClick={handleSubmit}
           >
             Ingresar
           </button>
