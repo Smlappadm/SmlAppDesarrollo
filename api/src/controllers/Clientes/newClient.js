@@ -1,11 +1,20 @@
 const Clientes = require("../../models/Clientes");
 
-const newClient = async ({ name, email, photo, country, rol, deleted }) => {
+const newClient = async ({
+  username,
+  name,
+  email,
+  password,
+  photo,
+  rol,
+  deleted,
+}) => {
   const client = await Clientes.create({
+    username,
     name,
     email,
     photo,
-    country,
+    password,
     rol,
     deleted,
   });
