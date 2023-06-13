@@ -67,6 +67,7 @@ export default function Register({ handleOpenRegister }) {
     console.log(body);
     await axios.post("/clientes/new", body);
     console.log("Formulario enviado");
+    setUsername("");
   };
 
   return (
