@@ -12,7 +12,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
     const client = response.data;
     console.log(client);
     if (username === client.username && password === client.password) {
-      navigate("/clientes-home");
+      handleJoin();
     } else {
       console.log("todo mal");
     }
