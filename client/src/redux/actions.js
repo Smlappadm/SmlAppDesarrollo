@@ -116,7 +116,7 @@ export const getLeadChecked = () => {
 
 export const getLeadCheckedInactive5 = (email) => {
   return async (dispatch) => {
-      if (email && email !== "undefined" && email !== null  && email !== "") {
+    if (email && email !== "undefined" && email !== null && email !== "") {
       const response = await axios.get(`/lead/checkedinactive5?email=${email}`);
       const LeadCheckedInactive5 = response.data;
       dispatch({
@@ -124,7 +124,7 @@ export const getLeadCheckedInactive5 = (email) => {
         payload: LeadCheckedInactive5,
       });
     }
-  }
+  };
 };
 
 export const orderClients = (order) => {
@@ -262,3 +262,5 @@ export const updateLeadIncidence = (client, body) => {
     await axios.put(`lead/${client}`, body);
   };
 };
+
+// *******************************Clientes *******************************
