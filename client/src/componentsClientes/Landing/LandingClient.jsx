@@ -8,13 +8,7 @@ export default function LandingClient() {
     <div>
       <Header />
       <Name />
-      <div className="flex jus">
-        <Followers
-          numberInstagram={2725}
-          numberTiktok={2500}
-          maxNumber={`10K`}
-        />
-      </div>
+      <Followers numberInstagram={2725} numberTiktok={2500} maxNumber={`10K`} />
     </div>
   );
 }
