@@ -29,6 +29,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CorredoresHistory from "./components/Corredores/History/CorredoresHistory";
 import CorredoresAnlaytics from "./components/Corredores/Analytics/CorredoresAnalytics";
+import LoginClientes from "./viewsClientes/Login/LoginClientes";
 import Home from "./viewsClientes/Home/Home";
 import AddVideos from "./viewsClientes/AddVideos/AddVideos";
 import ClientesSettings from "./viewsClientes/Settings/ClientesSettings";
@@ -348,6 +349,19 @@ function ClerkProviderWithRoutes() {
             <>
               <SignedIn>
                 <Landing />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route
+          path="/clientes-login"
+          element={
+            <>
+              <SignedIn>
+                <LoginClientes />
               </SignedIn>
               <SignedOut>
                 <RedirectToSignIn />
