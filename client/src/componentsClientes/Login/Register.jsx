@@ -61,8 +61,7 @@ export default function Register({ handleOpenRegister }) {
       name,
       password,
       email,
-      photo:
-        "https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp",
+      photo: "",
       rol: "cliente",
     };
     console.log(body);

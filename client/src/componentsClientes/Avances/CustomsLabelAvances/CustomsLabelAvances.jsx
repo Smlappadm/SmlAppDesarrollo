@@ -1,14 +1,13 @@
 import React from "react";
 
-export default function CustomsLabelAvances({ text, switchValue, invitar }) {
+export default function CustomsLabelAvances({ text, suma, value }) {
   return (
-    <div className="flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b]">
+    <div className="flex justify-between gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b]">
       <p className="text-[#fff] font-bold">{text}</p>
-      {invitar ? (
-        <div className="bg-[#188ffd] hover:bg-[#1263af] text-[#fff] rounded-full px-4">
-          <p>Invitar</p>
-        </div>
-      ) : null}
+      <div className="flex  gap-2">
+        <p className="text-[#fff] font-bold">{suma}</p>
+        <p className="text-[#fff] font-bold mr-5">{value}</p>
+      </div>
     </div>
   );
 }
