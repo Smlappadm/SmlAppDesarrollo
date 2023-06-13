@@ -8,6 +8,8 @@ export default function ClientesSettings() {
   const switchs1 = true
   const texto2 = "Mis pagos"
   const texto3 = "Invitar a un amigo"
+  const invitar3 = true
+
   return (
     <div className="flex  mx-4 flex-col h-screen w-screen">
       <div className="flex items-end justify-between pt-4">
@@ -18,7 +20,7 @@ export default function ClientesSettings() {
       <CustomsLabelSetting text={texto} />
       <CustomsLabelSetting text={texto1} switchValue ={switchs1} />
       <CustomsLabelSetting text={texto2} />
-      <CustomsLabelSetting text={texto3} />
+      <CustomsLabelSetting text={texto3} invitar={invitar3} />
     </div>
   );
 }
