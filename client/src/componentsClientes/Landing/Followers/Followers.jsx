@@ -5,7 +5,7 @@ import tkPng from "../../../Assets/tik-tok.png"
 export default function Followers({ numberInstagram, numberTiktok, maxNumber }) {
 
   function formatearNumeroConPuntos(numero) {
-    return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return numero && numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
 
