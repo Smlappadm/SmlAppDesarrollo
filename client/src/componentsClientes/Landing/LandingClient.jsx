@@ -23,6 +23,7 @@ export default function LandingClient() {
           maxNumber={`10K`}
         />
       </div>
-    </div>
+      </div>
+
   );
 }
