@@ -29,7 +29,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CorredoresHistory from "./components/Corredores/History/CorredoresHistory";
 import CorredoresAnlaytics from "./components/Corredores/Analytics/CorredoresAnalytics";
-import LandingClient from "./componentsClientes/Landing/LandingClient";
+import Home from "./viewsClientes/Home/Home";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -141,7 +141,7 @@ function ClerkProviderWithRoutes() {
         />
         <Route path="*" element={<h1>error 404</h1>} />
         <Route path="/home" element={<Landing />} />
-        <Route path="/homeclientes" element={<LandingClient />} />
+        <Route path="/homeclientes" element={<Home />} />
         <Route path="/" element={<Login />} />
         <Route
           path="/lideres"
