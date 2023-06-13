@@ -30,6 +30,8 @@ import { useEffect, useState } from "react";
 import CorredoresHistory from "./components/Corredores/History/CorredoresHistory";
 import CorredoresAnlaytics from "./components/Corredores/Analytics/CorredoresAnalytics";
 import Home from "./viewsClientes/Home/Home";
+import AddVideos from "./viewsClientes/AddVideos/AddVideos";
+import ClientesSettings from "./viewsClientes/Settings/ClientesSettings";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -142,6 +144,9 @@ function ClerkProviderWithRoutes() {
         <Route path="*" element={<h1>error 404</h1>} />
         <Route path="/home" element={<Landing />} />
         <Route path="/clientes-home" element={<Home />} />
+        <Route path="/clientes-home/addvideos" element={<AddVideos />} />
+        <Route path="/clientes-home/settings" element={<ClientesSettings />} />
+
         <Route path="/" element={<Login />} />
         <Route
           path="/lideres"
