@@ -356,19 +356,7 @@ function ClerkProviderWithRoutes() {
             </>
           }
         />
-        <Route
-          path="/clientes-login"
-          element={
-            <>
-              <SignedIn>
-                <LoginClientes />
-              </SignedIn>
-              <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut>
-            </>
-          }
-        />
+        <Route path="/clientes-login" element={<LoginClientes />} />
       </Routes>
     </ClerkProvider>
   );
