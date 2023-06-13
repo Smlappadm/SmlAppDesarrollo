@@ -12,7 +12,7 @@ export default function Followers({
   }
 
   return (
-    <div className="flex flex-col justify-center items-center w-screen">
+    <div className="flex flex-col justify-center items-center w-screen h-fit">
       <div>
         <label htmlFor="" className="text-[45px] text-white font-medium px-2">
           {formatearNumeroConPuntos(numberInstagram + numberTiktok)}
