@@ -1263,11 +1263,6 @@ video {
   background-color: rgb(172 66 66 / var(--tw-bg-opacity));
 }
 
-.bg-\[\#b4215e\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(180 33 94 / var(--tw-bg-opacity));
-}
-
 .bg-\[\#b9b9b978\] {
   background-color: #b9b9b978;
 }
@@ -1535,6 +1530,18 @@ video {
   font-size: 35px;
 }
 
+.text-\[20px\] {
+  font-size: 20px;
+}
+
+.text-\[50px\] {
+  font-size: 50px;
+}
+
+.text-\[45px\] {
+  font-size: 45px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1553,6 +1560,10 @@ video {
 
 .font-thin {
   font-weight: 100;
+}
+
+.font-extrabold {
+  font-weight: 800;
 }
 
 .leading-tight {
