@@ -6,7 +6,6 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({});
 
   const handleSubmit = async () => {
     const response = await axios.get(`/clientes/username?username=${username}`);
