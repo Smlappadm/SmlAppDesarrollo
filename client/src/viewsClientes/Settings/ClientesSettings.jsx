@@ -1,7 +1,7 @@
 import React from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 import { Link } from "react-router-dom";
+import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 
 export default function ClientesSettings() {
   const texto = "Ajustes de perfil";
