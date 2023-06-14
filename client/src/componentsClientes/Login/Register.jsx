@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 export default function Register({ handleOpenRegister }) {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [showView, setShowView] = useState(false);
+
+  const handlePasswordView = () => {
+    setShowView(!showView);
+  };
 
   const validateEmail = (email) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -103,15 +109,28 @@ export default function Register({ handleOpenRegister }) {
       <label className="font-bold ml-2" htmlFor="">
         Contraseña:
       </label>
-      <input
-        className="rounded-md bg-[#404062] h-7 pl-2"
-        type="text"
-        value={password}
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-        placeholder="Ingresar Contraseña"
-      />
+      <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
+        <input
+          className="rounded-md bg-[#404062] h-7 pl-2 w-full"
+          type={showView === false ? "password" : "text"}
+          value={password}
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+          placeholder="Ingresar Contraseña"
+        />
+        {showView === false ? (
+          <IoEyeSharp
+            className="pr-2 text-[2rem]"
+            onClick={handlePasswordView}
+          />
+        ) : (
+          <IoEyeOffSharp
+            className="pr-2 text-[2rem]"
+            onClick={handlePasswordView}
+          />
+        )}
+      </div>
       <label className="font-bold ml-2" htmlFor="">
         Correo Electronico:
       </label>

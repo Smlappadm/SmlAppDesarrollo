@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 export default function Login({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showView, setShowView] = useState(false);
+
+  const handlePasswordView = () => {
+    setShowView(!showView);
+  };
 
   const handleSubmit = async () => {
     const response = await axios.get(`/clientes/username?username=${username}`);
@@ -35,15 +41,28 @@ export default function Login({ handleOpenRegister, handleJoin }) {
       <label className="font-bold ml-2" htmlFor="">
         Contraseña:
       </label>
-      <input
-        className="rounded-md bg-[#404062] h-7 pl-2"
-        type="text"
-        value={password}
-        onChange={(event) => {
-          setPassword(event.target.value);
-        }}
-        placeholder="Ingresar Contraseña"
-      />
+      <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
+        <input
+          className="rounded-md bg-[#404062] h-7 pl-2 w-full"
+          type={showView === false ? "password" : "text"}
+          value={password}
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+          placeholder="Ingresar Contraseña"
+        />
+        {showView === false ? (
+          <IoEyeSharp
+            className="pr-2 text-[2rem]"
+            onClick={handlePasswordView}
+          />
+        ) : (
+          <IoEyeOffSharp
+            className="pr-2 text-[2rem]"
+            onClick={handlePasswordView}
+          />
+        )}
+      </div>
       <div className="flex flex-col items-center gap-y-4 mt-4">
         <button
           className="bg-[#07a1f8] rounded-2xl px-3 text-black"
