@@ -5,8 +5,8 @@ import gdPng from "../../Assets/googleDrive.png";
 
 export default function Recursos() {
   return (
-    <div className="flex flex-col justify-center items-center gap-3 w-80 mt-8 ">
-      <h1 className=" text-white text-18 w-10/12">Recursos</h1>
+    <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8 ">
+      <h1 className=" text-white text-18 w-10/12 md:w-fit">Recursos</h1>
 
         <button
           value="vistaGeneral"
