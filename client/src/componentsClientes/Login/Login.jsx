@@ -52,9 +52,15 @@ export default function Login({ handleOpenRegister, handleJoin }) {
           placeholder="Ingresar Contraseña"
         />
         {showView === true ? (
-          <IoEyeSharp className="pr-2 text-[2rem]" />
+          <IoEyeSharp
+            className="pr-2 text-[2rem]"
+            onClick={handlePasswordView}
+          />
         ) : (
-          <IoEyeOffSharp className="pr-2 text-[2rem]" />
+          <IoEyeOffSharp
+            className="pr-2 text-[2rem]"
+            onClick={handlePasswordView}
+          />
         )}
       </div>
       <div className="flex flex-col items-center gap-y-4 mt-4">
