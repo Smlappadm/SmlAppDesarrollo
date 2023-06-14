@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 export default function Register({ handleOpenRegister }) {
   const [username, setUsername] = useState("");
