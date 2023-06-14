@@ -19,9 +19,9 @@
   text-transform: none;
   background-color: #222131;
   color: #222131;
-  width: 0%;
+  width: 10%;
   padding: 0% 0.2rem;
-  height: 0%;
+  height: 10%;
   min-height: 0rem;
   align-items: center;
   justify-content: center;
@@ -66,10 +66,11 @@
 }
 
 .formFieldInput {
-  color: #222131;
+  color: white;
   border: 1px solid #222131;
   padding: 0.01rem 0.01rem;
-  width: 10%;
+  width: 100%;
+  display: none;
 }
 
 .main {
@@ -100,5 +101,6 @@
 }
 
 .footerActionText {
+  display: none;
   color: #222131;
 }
