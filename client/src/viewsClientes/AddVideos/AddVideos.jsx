@@ -11,7 +11,7 @@ export default function AddVideos() {
       </div>
       <div className="w-screen flex justify-center items-center">
         <input
-          className="text-black w-screen p-2 m-4 rounded-lg"
+          className="text-black  p-2 m-4 rounded-lg w-96"
           type="text"
           placeholder="Ingrese su link..."
         />
@@ -21,12 +21,12 @@ export default function AddVideos() {
         <p>Las estadpisticas se actualizan 1 vez al dia</p>
       </div>
       <div className="flex flex-col gap-5 mt-20">
-        <div className="text-white  rounded-full px-20 py-2 bg-[#07a1f8] hover:bg-[#127fbe]">
-          <p className="text-[1.7rem] text-center">Añadir</p>
+        <div className="text-white  rounded-full px-6 py-2 bg-[#07a1f8] hover:bg-[#127fbe]">
+          <p className="text-[1.4rem] text-center">Añadir</p>
         </div>
         <Link to={"/clientes-home"}>
-          <div className="text-gray-200 rounded-full px-20 py-2">
-            <p className="text-[1.7rem] text-center">Cancelar</p>
+          <div className=" rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+            <p className="text-[1.4rem] text-center">Cancelar</p>
           </div>
         </Link>
       </div>

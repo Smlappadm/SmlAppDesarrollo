@@ -20,14 +20,14 @@ export default function ClientesSettings() {
             <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
           </Link>
         </div>
-        <div>
+
           <CustomsLabelSetting text={texto} />
           <CustomsLabelSetting text={texto1} switchValue={switchs1} />
           <CustomsLabelSetting text={texto2} />
           <div className="mt-32">
             <CustomsLabelSetting text={texto3} invitar={invitar3} />
           </div>
-        </div>
+
       </div>
       <div className="flex justify-center items-center mb-4">
         <p>Cerrar Sesión</p>

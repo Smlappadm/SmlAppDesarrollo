@@ -1,5 +1,6 @@
 const newClient = require("../controllers/Clientes/newClient");
 const loginClient = require("../controllers/Clientes/loginClient");
+const getAllClientes = require("../controllers/Clientes/getAllClients");
 
 const newClientHandler = async (req, res) => {
   const body = req.body;
@@ -19,5 +20,17 @@ const loginClientHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const getAllClientesHandler = async (req, res) => {
+  try {
+    const client = await getAllClientes();
+    res.status(200).json(client);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
-module.exports = { newClientHandler, loginClientHandler };
+module.exports = {
+  newClientHandler,
+  loginClientHandler,
+  getAllClientesHandler,
+};

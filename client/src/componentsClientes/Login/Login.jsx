@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
-import { SignIn } from "@clerk/clerk-react";
+import { SignIn, useUser } from "@clerk/clerk-react";
 
 export default function Login({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showView, setShowView] = useState(false);
+
+  const user = useUser().user;
+  const userEmail = user;
+  console.log(userEmail);
 
   const handlePasswordView = () => {
     setShowView(!showView);
