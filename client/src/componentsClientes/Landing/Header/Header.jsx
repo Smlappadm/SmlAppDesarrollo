@@ -7,7 +7,7 @@ export default function Header() {
   const customValue = 55.2;
   const imgInstagram = "https://i.postimg.cc/tT405K0C/image.png";
   return (
-    <div className="flex flex-row justify-center p-4 w-screen md:gap-10">
+    <div className="flex flex-row justify-center p-4 w-screen md:gap-60">
       <div className=" justify-center items-center relative">
         <img
           className=" w-[5rem]"
