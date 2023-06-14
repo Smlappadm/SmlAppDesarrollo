@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
-import { useClerk } from "@clerk/clerk-react";
 import { SignIn } from "@clerk/clerk-react";
 
 export default function Login({ handleOpenRegister, handleJoin }) {
@@ -10,17 +9,6 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showView, setShowView] = useState(false);
-
-  // const { signInWithProvider } = useClerk();
-  // const handleGoogleLogin = async () => {
-  //   try {
-  //     await signInWithProvider("google");
-  //     // El usuario ha iniciado sesión correctamente
-  //   } catch (error) {
-  //     // Ocurrió un error durante el inicio de sesión
-  //     console.error("Error de inicio de sesión con Google:", error);
-  //   }
-  // };
 
   const handlePasswordView = () => {
     setShowView(!showView);
