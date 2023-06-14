@@ -11,7 +11,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#020131] w-screen h-screen mb-10">
+    <div className="flex flex-col items-center bg-[#020131] w-screen h-full pb-32">
         <LandingClient />
         {/* otras cosas del header */}
 
