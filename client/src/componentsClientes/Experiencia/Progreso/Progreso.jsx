@@ -1,6 +1,4 @@
 import React from 'react';
-import ProgressBar from "@ramonak/react-progress-bar";
-import { Progress } from 'flowbite-react';
 import LinearDeterminate from './LinearDeterminate';
 
 
