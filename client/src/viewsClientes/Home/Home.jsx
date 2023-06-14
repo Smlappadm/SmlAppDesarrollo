@@ -12,9 +12,9 @@ export default function Home() {
   // }
   // const userEmail = user.emailAddresses[0].emailAddress;
   // console.log(userEmail);
-  const response = axios.get("/clientes/");
-  const client = response.data;
-  console.log(client);
+  // const response = axios.get("/clientes/");
+  // const client = response.data;
+  // console.log(client);
   const [optionView, setOptionView] = useState("vistaGeneral");
 
   const handleViewChange = (event) => {
