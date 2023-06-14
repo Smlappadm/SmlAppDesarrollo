@@ -356,6 +356,7 @@ function ClerkProviderWithRoutes() {
             </>
           }
         />
+
         <Route path="/clientes-login" element={<LoginClientes />} />
       </Routes>
     </ClerkProvider>
