@@ -22,7 +22,7 @@ export default function Trofeos() {
   ]);
 
   return (
-    <div className=" flex flex-col justify-center items-center gap-3 w-96 md:w-[430px]  ">
+    <div className=" flex flex-col justify-center items-center gap-3 w-[330px] md:w-[430px]  ">
       <h1 className=" text-white text-18 w-10/12 md:w-fit">Trofeos</h1>
 
       <div className="flex justify-center items-center  gap-3 w-full  flex-wrap">
