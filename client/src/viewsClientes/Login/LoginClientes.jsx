@@ -14,7 +14,12 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="w-screen h-screen bg-[#020131] flex flex-col justify-start items-center">
+      <img
+        src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+        alt=""
+        onClick={handleOpenRegister}
+      />
       {register === false ? (
         <Login
           handleOpenRegister={handleOpenRegister}
