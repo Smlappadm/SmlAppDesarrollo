@@ -6,6 +6,11 @@ export default function Register({ handleOpenRegister }) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [showView, setShowView] = useState(false);
+
+  const handlePasswordView = () => {
+    setShowView(!showView);
+  };
 
   const validateEmail = (email) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
