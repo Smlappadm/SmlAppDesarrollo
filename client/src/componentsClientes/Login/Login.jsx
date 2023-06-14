@@ -115,6 +115,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
               footerActionText: "hidden",
             },
           }}
+          afterSignInUrl="/clientes-home"
         />
 
         <div className="flex ">
