@@ -22,8 +22,8 @@ export default function Trofeos() {
   ]);
 
   return (
-    <div className="flex flex-col mx-4 gap-4">
-      <h2 className="text-[#fff]">Trofeos</h2>
+    <div className="flex flex-col gap-4">
+      <h1 className=" text-white ml-8 text-18 ">Avances</h1>
       <div className="flex justify-center items-center">
         <div className="grid grid-cols-3 gap-4 w-10/12">
           {trofeos.map((trofeo, index) => (
