@@ -133,6 +133,7 @@ export default function Register({ handleOpenRegister }) {
         }}
         placeholder="Ingresar Usuario"
       />
+      <span>{errors.username}</span>
       <label className="font-bold ml-2" htmlFor="">
         Nombre:
       </label>
