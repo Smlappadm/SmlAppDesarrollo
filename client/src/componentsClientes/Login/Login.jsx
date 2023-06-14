@@ -10,10 +10,6 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   const [password, setPassword] = useState("");
   const [showView, setShowView] = useState(false);
 
-  const user = useUser().user;
-  const userEmail = user;
-  console.log(userEmail);
-
   const handlePasswordView = () => {
     setShowView(!showView);
   };
@@ -76,6 +72,8 @@ export default function Login({ handleOpenRegister, handleJoin }) {
           Ingresar
         </button>
         <SignIn
+          routing="path"
+          path="/sign-in"
           appearance={{
             variables: {
               spacingUnit: "0.8rem",
@@ -104,7 +102,6 @@ export default function Login({ handleOpenRegister, handleJoin }) {
               footer: "hidden",
               logoBox: "hidden",
               navbar: "hidden",
-              footerActionText: "hidden",
             },
           }}
           afterSignInUrl="/clientes-home"
