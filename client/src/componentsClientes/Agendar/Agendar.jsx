@@ -2,8 +2,8 @@ import React from 'react'
 import avatar from "../../Assets/avatar.png"
 export const Agendar = ({nameAgendar}) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-3 w-screen mt-8">
-    <h1 className="w-10/12 text-white text-18">Agendar con</h1>
+    <div className="flex flex-col justify-center items-center gap-3 w-96 mt-3">
+    <h1 className="text-white text-18 w-10/12 md:w-fit">Agendar con</h1>
 
       <button
         value="vistaGeneral"
