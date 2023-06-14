@@ -14,14 +14,12 @@ export default function Home() {
     return <div>Loading...</div>;
   }
   const userEmail = user.emailAddresses[0].emailAddress;
-  console.log(userEmail);
   const fetchData = async () => {
     try {
       const response = await axios.get("/clientes/");
       const client = response.data;
       const findClient = client.some((item) => item.email === userEmail);
       setAccess(findClient);
-      console.log(findClient);
     } catch (error) {
       console.error("Error al obtener los datos:", error);
     }
