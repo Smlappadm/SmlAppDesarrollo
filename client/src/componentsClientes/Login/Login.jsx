@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { IoEyeSharp } from "react-icons/io5";
+import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 
 export default function Login({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
@@ -51,7 +51,11 @@ export default function Login({ handleOpenRegister, handleJoin }) {
           }}
           placeholder="Ingresar Contraseña"
         />
-        <IoEyeSharp className="pr-2 text-[2rem]" />
+        {showView === true ? (
+          <IoEyeSharp className="pr-2 text-[2rem]" />
+        ) : (
+          <IoEyeOffSharp className="pr-2 text-[2rem]" />
+        )}
       </div>
       <div className="flex flex-col items-center gap-y-4 mt-4">
         <button
