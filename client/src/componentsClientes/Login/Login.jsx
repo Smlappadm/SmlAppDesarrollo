@@ -27,7 +27,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
 
   return (
     <div className="flex flex-col w-3/4 gap-y-4">
-      <label className="font-bold ml-2" htmlFor="">
+      <label className="font-bold ml-2 mt-4" htmlFor="">
         Usuario:
       </label>
       <input
@@ -39,7 +39,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
         }}
         placeholder="Ingresar Usuario"
       />
-      <label className="font-bold ml-2" htmlFor="">
+      <label className="font-bold ml-2 mt-4" htmlFor="">
         Contraseña:
       </label>
       <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
