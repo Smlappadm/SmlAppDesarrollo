@@ -19,12 +19,12 @@ export default function Followers({
         </label>
         <label htmlFor="" className="top-7 absolute">/ {maxNumber}</label>
       </div>
-      <div className="">
+      <div className="absolute top-13">
         <label htmlFor="" className="font-thin ">
           followers
         </label>
       </div>
-      <div className="flex justify-center items-center w-fit h-fit gap-4 mt-5">
+      <div className="flex justify-center items-center w-fit h-fit gap-4 mt-6">
         <img src={igPng} alt="icono de Instagram" className="w-8 h-8" />
         <label
           htmlFor=""
