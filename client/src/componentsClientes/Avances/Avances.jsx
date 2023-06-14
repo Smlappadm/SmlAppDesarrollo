@@ -10,10 +10,10 @@ export default function Avances() {
   ];
 
   return (
-    <div className="flex gap-5 flex-col justify-between w-screen">
+    <div className="flex gap-5 flex-col justify-center items-center">
       <div className="mx-4">
         <div className="flex mb-4 items-end justify-between pt-4">
-          <h2 className="font-bold">Avances</h2>
+          <h1 className=" text-white text-18 w-10/12">Avances</h1>
         </div>
         <div>
           {avances.map((avance, index) => (
