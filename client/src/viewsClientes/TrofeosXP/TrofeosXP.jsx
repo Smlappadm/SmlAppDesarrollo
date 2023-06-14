@@ -1,7 +1,8 @@
 import React from 'react'
+import Experiencia from '../../componentsClientes/Experiencia/Experiencia'
 
 export const TrofeosXP = () => {
   return (
-    <div>TrofeosXP</div>
+    <Experiencia/>
   )
 }
