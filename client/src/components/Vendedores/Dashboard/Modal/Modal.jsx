@@ -331,21 +331,17 @@ function IncidenceModal({
 function intelligentInfo({ setOpen }) {
   const [openIntelligentInfo, setOpenIntelligentInfo] = React.useState(false);
 
-  const handleOpen = () => {
-    // setOpenChild(true);
-  };
+
   const handleClose = () => {
     setOpenIncidenceChild(false);
   };
   const confirmSendIncidence = () => {
-    // setOpenChild(false);
+
     setOpen(false);
-    // SendLeadAlert();
+
     SendIncidenceAlert();
   };
-  const handleCancel = () => {
-    // setOpen(false);
-  };
+
 
   const sendIncidence = () => {
     setOpenIncidenceChild(true);
@@ -616,7 +612,6 @@ export default function NestedModal({
                   id="select1"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  {/* <option selected>Choose a country</option> */}
                   <option value="Sin contactar">Sin Contactar</option>
                   <option value="Agendar 2do llamado">
                     Agendar 2do llamado
@@ -635,7 +630,6 @@ export default function NestedModal({
                   <option disabled="disabled" value="default">
                     Elige uno...
                   </option>
-                  {/* <option value="Agendar 2do llamado">Agendar 2do llamado</option> */}
                   <option value="Agendar otro llamado">
                     Agendar otro llamado
                   </option>
@@ -662,15 +656,12 @@ export default function NestedModal({
                   }
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  {/* <option selected>Choose a country</option> */}
                   <option disabled="disabled" value="default">
                     Elige uno...
                   </option>
                   <option value="Sin dinero">Sin Dinero</option>
                   <option value="Sin interes">Sin Interes</option>
                   <option value="Otro servicio">Otro Servicio</option>
-                  {/* <option value="Otro servicio">Sin respuesta - 3 llamados</option> */}
-                  {/* <option value="DE">Germany</option> */}
                 </select>
               </div>
             )}
@@ -690,11 +681,8 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="contacto"
-                      // defaultValue={item.status_op}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
                       placeholder=""
-                      // value="USD"
                       required
                     />
                   </div>
@@ -713,7 +701,6 @@ export default function NestedModal({
                       value={llamadoVenta.observaciones}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
-                      // value="USD"
                       required
                     />
                   </div>
@@ -723,8 +710,6 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="status_op"
-                      // defaultValue={item.status_op}
-                      // value={llamadoVenta.diaHora}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={
                         dateHour.$D
