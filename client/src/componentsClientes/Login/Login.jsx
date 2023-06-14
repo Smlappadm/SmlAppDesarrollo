@@ -86,8 +86,8 @@ export default function Login({ handleOpenRegister, handleJoin }) {
         <SignIn
           appearance={{
             variables: {
-              colorInputBackground: "#222131",
               spacingUnit: "0.8rem",
+              borderRadius: "10px",
             },
             layout: {
               socialButtonsPlacement: "top",
@@ -96,8 +96,8 @@ export default function Login({ handleOpenRegister, handleJoin }) {
               socialButtonsBlockButton: "text-white bg-[#404062] m-0 ",
               formButtonPrimary: "hidden",
               formFieldInput: "hidden",
-              card: " bg-transparent m-0 p-0 ",
-              main: "flex flex-col p-0 m-0  w-full bg-transparent",
+              card: " bg-transparent m-0 p-0 flex items-center",
+              main: "flex flex-col p-0 m-0  w-3/4 bg-transparent",
               form: "hidden",
               formField: "hidden",
               dividerRow: "hidden",
