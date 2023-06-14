@@ -10,11 +10,8 @@ export default function Avances() {
   ];
 
   return (
-    <div className="flex gap-5 flex-col justify-center items-center">
-      <div className="mx-4">
-        <div className="flex mb-4 items-end justify-between pt-4">
-          <h1 className=" text-white text-18 w-10/12">Avances</h1>
-        </div>
+    <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8 ">
+      <h1 className=" text-white text-18 w-10/12 md:w-fit">Avances</h1>
         <div>
           {avances.map((avance, index) => (
             <CustomsLabelAvances
@@ -26,6 +23,6 @@ export default function Avances() {
           ))}
         </div>
       </div>
-    </div>
+  
   );
 }

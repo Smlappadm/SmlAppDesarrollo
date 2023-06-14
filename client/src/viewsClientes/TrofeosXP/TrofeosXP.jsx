@@ -4,9 +4,13 @@ import Trofeos from "../../componentsClientes/Trofeos/Trofeos";
 
 export const TrofeosXP = () => {
   return (
-    <div>
+    <div className=" flex flex-col md:flex-row justify-center md:gap-9 items-center  mt-8">
+
       <Experiencia />
-      <Trofeos />
+
+      <div className="flex flex-col">
+        <Trofeos />
+      </div>
     </div>
   );
 };

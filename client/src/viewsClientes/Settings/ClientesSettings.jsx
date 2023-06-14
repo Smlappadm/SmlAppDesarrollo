@@ -12,7 +12,7 @@ export default function ClientesSettings() {
   const invitar3 = true;
 
   return (
-    <div className="flex gap-5 mx-4 flex-col justify-between h-screen w-screen">
+    <div className="flex bg-[#020131] gap-5 mx-4 flex-col justify-between h-screen w-screen">
       <div>
         <div className="flex mb-4 items-end justify-between pt-4">
           <h2 className="font-bold">Personal</h2>
