@@ -23,7 +23,12 @@ export default function LinearDeterminate() {
 
   return (
     <Box sx={{ width: '85%'}}>
-      <LinearProgress color="success" sx={{ height: '20px', borderRadius: "10px", backgroundColor:"black", color: "green" }} variant="determinate" value={progress} />
+      <LinearProgress color="success" sx={{ height: '20px', borderRadius: "10px", backgroundColor:"black", color: "green",
+       "& .css-h8g9t7-MuiLinearProgress-bar1": {
+        backgroundColor: "#28b61b",
+        borderRadius: "10px"
+      },
+    }} variant="determinate" value={progress} />
     </Box>
   );
 }
