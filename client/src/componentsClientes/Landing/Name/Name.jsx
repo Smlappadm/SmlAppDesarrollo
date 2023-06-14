@@ -5,7 +5,7 @@ export default function Name() {
   const user = useUser().user;
   const name = user.fullName;
 
-  console.log(name);
+  console.log(user);
 
   return (
     <div className="flex flex-col gap-1 mt-5 justify-center items-center">
