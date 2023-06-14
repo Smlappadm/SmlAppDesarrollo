@@ -210,7 +210,6 @@ const VendedoresHistory = () => {
                       )}
                      </div>
                      <div className=" w-[20%] flex justify-center items-start p-0">
-                      {/* esto es hardcodeo */}
                       {item.status === "Contratado" && (
                         <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                           Contratado

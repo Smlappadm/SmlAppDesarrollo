@@ -284,19 +284,7 @@ const VendedoresDashboard = () => {
                             {item.status}
                           </p>
                           <label className="text-[14px]">
-                            {/* {item.updatedAt
-                              .slice(0, 10)
-                              .split("-")
-                              .reverse()
-                              .join("-")}{" "} */}
                             {funcionHorario(item.updatedAt).slice(0,16)}
-                            {/* {String(item.updateAt)} */}
-                            {/* {item.updatedAt.slice(11, 13) === "00" && "21"}
-                            {item.updatedAt.slice(11, 13) === "01" && "22"}
-                            {item.updatedAt.slice(11, 13) === "02" && "23"}
-                            {item.updatedAt.slice(11, 13) === "03" && "00"}
-                            {item.updatedAt.slice(11, 13) !== "00" && item.updatedAt.slice(11, 13) !== "01" && item.updatedAt.slice(11, 13) !== "02" && item.updatedAt.slice(11, 13) !== "03" && Number(item.updatedAt.slice(11, 13)) - 3}
-                            {item.updatedAt.slice(13, 16)}  */}
                             {console.log(item.updatedAt)}
                           </label>
                         </div>
