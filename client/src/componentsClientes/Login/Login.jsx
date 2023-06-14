@@ -43,15 +43,15 @@ export default function Login({ handleOpenRegister, handleJoin }) {
       </label>
       <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
         <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
-          type="text"
+          className="rounded-md bg-[#404062] h-7 pl-2 w-full"
+          type={showView === false ? "password" : "text"}
           value={password}
           onChange={(event) => {
             setPassword(event.target.value);
           }}
           placeholder="Ingresar Contraseña"
         />
-        {showView === true ? (
+        {showView === false ? (
           <IoEyeSharp
             className="pr-2 text-[2rem]"
             onClick={handlePasswordView}
