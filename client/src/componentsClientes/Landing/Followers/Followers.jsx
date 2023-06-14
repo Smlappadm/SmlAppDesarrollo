@@ -17,14 +17,12 @@ export default function Followers({
         <label htmlFor="" className="text-[45px] text-white font-medium px-2">
           {formatearNumeroConPuntos(numberInstagram + numberTiktok)}
         </label>
-        <label htmlFor="" className="top-7 absolute">/ {maxNumber}</label>
-      </div>
-      <div className="">
-        <label htmlFor="" className="font-thin ">
-          followers
+        <label htmlFor="" className="top-7 absolute">
+          / {maxNumber}
         </label>
       </div>
-      <div className="flex justify-center items-center w-fit h-fit gap-4 mt-5">
+
+      <div className="flex justify-center items-center w-fit h-fit gap-4">
         <img src={igPng} alt="icono de Instagram" className="w-8 h-8" />
         <label
           htmlFor=""
