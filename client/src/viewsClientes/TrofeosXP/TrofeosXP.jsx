@@ -1,8 +1,12 @@
-import React from 'react'
-import Experiencia from '../../componentsClientes/Experiencia/Experiencia'
+import React from "react";
+import Experiencia from "../../componentsClientes/Experiencia/Experiencia";
+import Trofeos from "../../componentsClientes/Trofeos/Trofeos";
 
 export const TrofeosXP = () => {
   return (
-    <Experiencia/>
-  )
-}
+    <div>
+      <Experiencia />
+      <Trofeos />
+    </div>
+  );
+};
