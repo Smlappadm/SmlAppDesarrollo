@@ -8,7 +8,7 @@ export default function Progreso() {
   }
 
   return (
-    <div className="  flex flex-col justify-center items-center gap-2 bg-[#404062] w-10/12 h-20 rounded-xl mb-24">
+    <div className="  flex flex-col justify-center items-center gap-2 bg-[#404062] w-10/12 h-20 rounded-xl">
     <div className=" flex w-full justify-end items-center gap-5 mr-10">
       <label htmlFor="" className="text-green-400 font-semibold">+505</label>
       <label htmlFor="" className="font-bold text-24 text-white">{formatearNumeroConPuntos("23775")}</label>
