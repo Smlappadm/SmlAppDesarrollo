@@ -2,12 +2,25 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
+import { useClerk } from "@clerk/clerk-react";
+import { SignIn } from "@clerk/clerk-react";
 
 export default function Login({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showView, setShowView] = useState(false);
+
+  // const { signInWithProvider } = useClerk();
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     await signInWithProvider("google");
+  //     // El usuario ha iniciado sesión correctamente
+  //   } catch (error) {
+  //     // Ocurrió un error durante el inicio de sesión
+  //     console.error("Error de inicio de sesión con Google:", error);
+  //   }
+  // };
 
   const handlePasswordView = () => {
     setShowView(!showView);
@@ -70,6 +83,40 @@ export default function Login({ handleOpenRegister, handleJoin }) {
         >
           Ingresar
         </button>
+        <SignIn
+          appearance={{
+            variables: {
+              colorInputBackground: "#222131",
+              spacingUnit: "0.8rem",
+            },
+            layout: {
+              socialButtonsPlacement: "top",
+            },
+            elements: {
+              socialButtonsBlockButton: "text-white bg-[#404062] m-0 ",
+              formButtonPrimary: "hidden",
+              formFieldInput: "hidden",
+              card: " bg-transparent m-0 p-0 ",
+              main: "flex flex-col p-0 m-0  w-full bg-transparent",
+              form: "hidden",
+              formField: "hidden",
+              dividerRow: "hidden",
+              formFieldLabel: "hidden",
+              footerActionText: "hidden",
+              logoImage: "hidden",
+              headerTitle: "hidden",
+              headerSubtitle: "hidden",
+              socialButtonsBlockButton__slack: "hidden",
+              button: "hidden",
+              footerAction__signUp: "hidden",
+              footer: "hidden",
+              logoBox: "hidden",
+              navbar: "hidden",
+              footerActionText: "hidden",
+            },
+          }}
+        />
+
         <div className="flex ">
           <p>¿No tienes cuenta?</p>
           <button onClick={handleOpenRegister} className="text-blue-600 ml-1">
