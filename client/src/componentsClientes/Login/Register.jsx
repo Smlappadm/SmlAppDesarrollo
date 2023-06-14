@@ -8,6 +8,12 @@ export default function Register({ handleOpenRegister }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [showView, setShowView] = useState(false);
+  const [errors, setErrors] = useState({
+    username: "",
+    name: "",
+    password: "",
+    email: "",
+  });
 
   const handlePasswordView = () => {
     setShowView(!showView);
@@ -25,13 +31,18 @@ export default function Register({ handleOpenRegister }) {
     const uppercaseRegex = /[A-Z]/;
     const numberRegex = /[0-9]/;
     if (!uppercaseRegex.test(password) || !numberRegex.test(password)) {
-      console.log(
-        "La contraseña debe contener al menos una letra mayúscula y un número"
-      );
+      setErrors({
+        ...errors,
+        password:
+          "La contraseña debe contener al menos una letra mayúscula y un número",
+      });
       return false;
     }
     if (password.length < 8 || password.length > 16) {
-      console.log("La contraseña debe tener entre 8 y 16 caracteres");
+      setErrors({
+        ...errors,
+        password: "La contraseña debe tener entre 8 y 16 caracteres",
+      });
       return false;
     }
     return true;
@@ -41,27 +52,55 @@ export default function Register({ handleOpenRegister }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username === "") {
-      console.log("Por favor, ingresa un usuario");
+      setErrors({
+        ...errors,
+        username: "Por favor, ingresa un usuario",
+      });
       return;
     }
+    setErrors({
+      ...errors,
+      username: "",
+    });
     if (name === "") {
-      console.log("Por favor, ingresa un nombre");
+      setErrors({
+        ...errors,
+        name: "Por favor, ingresa un nombre",
+      });
       return;
     }
+    setErrors({
+      ...errors,
+      name: "",
+    });
     if (password === "") {
-      console.log("Por favor, ingresa una contraseña");
+      setErrors({
+        ...errors,
+        password: "Por favor, ingresa una contraseña",
+      });
       return;
     }
     if (!validatePassword(password)) {
       return;
     }
+    setErrors({
+      ...errors,
+      password: "",
+    });
     if (email === "") {
-      console.log("Por favor, ingresa un correo electrónico");
+      setErrors({
+        ...errors,
+        email: "Por favor, ingresa un correo electrónico",
+      });
       return;
     }
     if (!validateEmail(email)) {
       return;
     }
+    setErrors({
+      ...errors,
+      email: "",
+    });
     body = {
       username,
       name,
