@@ -22,19 +22,15 @@ export default function Trofeos() {
   ]);
 
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className=" text-white ml-8 text-18 ">Avances</h1>
-      <div className="flex justify-center items-center">
-        <div className="grid grid-cols-3 gap-4 w-10/12">
-          {trofeos.map((trofeo, index) => (
-            <div key={index}>
-              <CustomsIcons
-                imagen={trofeo.imagen}
-                isVisible={trofeo.isVisible}
-              />
-            </div>
-          ))}
-        </div>
+    <div className=" flex flex-col justify-center items-center gap-3 w-96 md:w-[430px]  ">
+      <h1 className=" text-white text-18 w-10/12 md:w-fit">Trofeos</h1>
+
+      <div className="flex justify-center items-center  gap-3 w-full  flex-wrap">
+        {trofeos.map((trofeo, index) => (
+          <div key={index}>
+            <CustomsIcons imagen={trofeo.imagen} isVisible={trofeo.isVisible} />
+          </div>
+        ))}
       </div>
     </div>
   );
