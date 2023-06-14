@@ -904,6 +904,10 @@ video {
   height: 100vh;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .w-1\/5 {
   width: 20%;
 }
@@ -1468,6 +1472,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#818080\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(129 128 128 / var(--tw-bg-opacity));
+}
+
 .fill-none {
   fill: none;
 }
@@ -1699,6 +1708,10 @@ video {
 
 .text-\[45px\] {
   font-size: 45px;
+}
+
+.text-\[65px\] {
+  font-size: 65px;
 }
 
 .font-bold {
