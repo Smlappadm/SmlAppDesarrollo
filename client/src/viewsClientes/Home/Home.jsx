@@ -2,8 +2,19 @@ import React, { useState } from "react";
 import LandingClient from "../../componentsClientes/Landing/LandingClient";
 import { VistaGeneral } from "../VistaGeneral/VistaGeneral";
 import { TrofeosXP } from "../TrofeosXP/TrofeosXP";
+import { useUser } from "@clerk/clerk-react";
+import axios from "axios";
 
 export default function Home() {
+  // const { user } = useUser();
+  // if (!user || !user.emailAddresses || !user.emailAddresses[0]) {
+  //   return <div>Loading...</div>;
+  // }
+  // const userEmail = user.emailAddresses[0].emailAddress;
+  // console.log(userEmail);
+  // const response = axios.get("/clientes/");
+  // const client = response.data;
+  // console.log(client);
   const [optionView, setOptionView] = useState("vistaGeneral");
 
   const handleViewChange = (event) => {
