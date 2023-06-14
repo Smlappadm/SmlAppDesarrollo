@@ -20,7 +20,7 @@ import {
   SignIn,
   SignUp,
 } from "@clerk/clerk-react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Clevel from "./components/C-Level/Clevel";
 import Analytic from "./components/C-Level/Analytics/Analytic";
 import Incidences from "./components/Lideres/incidences/incidencias";
@@ -95,6 +95,8 @@ function ClerkProviderWithRoutes() {
     const allowedRoles = ["vendedor", "clevel", "leader", "corredor"];
     return allowedRoles.includes(isRoleReady);
   }
+  const location = useLocation();
+  const redirectUrl = new URLSearchParams(location.search).get("redirect_url");
   return (
     <ClerkProvider
       publishableKey={clerkPubKey}
@@ -106,35 +108,39 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/sign-in/*"
           element={
-            <SignIn
-              routing="path"
-              path="/sign-in"
-              appearance={{
-                variables: {
-                  colorInputBackground: "#222131",
-                  spacingUnit: "0.8rem",
-                },
-                layout: {
-                  socialButtonsPlacement: "top",
-                },
-                elements: {
-                  formButtonPrimary: styles.formButtonPrimary,
-                  socialButtonsBlockButton: styles.socialButtons,
-                  formFieldInput: styles.formFieldInput,
-                  card: styles.card,
-                  main: styles.main,
-                  form: styles.form,
-                  formField: styles.formField,
-                  dividerRow: styles.dividerRow,
-                  formFieldLabel: styles.formFieldLabel,
-                  footerActionText: styles.footerActionText,
-                  logoImage: styles.logoImage,
-                  headerTitle: styles.headerTitle,
-                  headerSubtitle: styles.headerSubtitle,
-                  rootBox: styles.rootBox,
-                },
-              }}
-            ></SignIn>
+            redirectUrl === "/protected" ? (
+              <SignIn
+                routing="path"
+                path="/sign-in"
+                appearance={{
+                  variables: {
+                    colorInputBackground: "#222131",
+                    spacingUnit: "0.8rem",
+                  },
+                  layout: {
+                    socialButtonsPlacement: "top",
+                  },
+                  elements: {
+                    formButtonPrimary: styles.formButtonPrimary,
+                    socialButtonsBlockButton: styles.socialButtons,
+                    formFieldInput: styles.formFieldInput,
+                    card: styles.card,
+                    main: styles.main,
+                    form: styles.form,
+                    formField: styles.formField,
+                    dividerRow: styles.dividerRow,
+                    formFieldLabel: styles.formFieldLabel,
+                    footerActionText: styles.footerActionText,
+                    logoImage: styles.logoImage,
+                    headerTitle: styles.headerTitle,
+                    headerSubtitle: styles.headerSubtitle,
+                    rootBox: styles.rootBox,
+                  },
+                }}
+              ></SignIn>
+            ) : (
+              <LoginClientes />
+            )
           }
         />
 
@@ -144,7 +150,6 @@ function ClerkProviderWithRoutes() {
         />
         <Route path="*" element={<h1>error 404</h1>} />
         <Route path="/home" element={<Landing />} />
-        <Route path="/clientes-home" element={<Home />} />
         <Route path="/clientes-addvideos" element={<AddVideos />} />
         <Route path="/clientes-settings" element={<ClientesSettings />} />
 
@@ -357,7 +362,19 @@ function ClerkProviderWithRoutes() {
           }
         />
 
-        <Route path="/clientes-login" element={<LoginClientes />} />
+        <Route
+          path="/clientes-home"
+          element={
+            <>
+              <SignedIn>
+                <Home />
+              </SignedIn>
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          }
+        />
       </Routes>
     </ClerkProvider>
   );
