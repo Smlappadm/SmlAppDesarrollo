@@ -4,7 +4,7 @@ import { IoAdd, IoSettingsOutline } from "react-icons/io5";
 import CircularProgressBar from "../CircularProgressbar/CircularProgressbar";
 
 export default function Header() {
-  const customValue = 53.5;
+  const customValue = 55.2;
   const imgInstagram = "https://i.postimg.cc/tT405K0C/image.png";
   return (
     <div className="flex flex-row justify-between p-4 w-screen">
@@ -32,7 +32,7 @@ export default function Header() {
             <IoSettingsOutline className="font-bold" color="#fff" size={26} />
           </Link>
         </div>
-        <p className="font-bold">53.5%</p>
+        <p className="font-bold">{customValue}%</p>
       </div>
     </div>
   );
