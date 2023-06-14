@@ -6,7 +6,7 @@ import Avances from "../../componentsClientes/Avances/Avances";
 export const VistaGeneral = () => {
   return (
     <div>
-      <Avances />;
+      <Avances />
       <Recursos />
       <Agendar />
     </div>
