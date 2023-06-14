@@ -11,8 +11,8 @@ export default function Avances() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8 ">
-      <div>
-        <h1 className=" text-white text-18 w-10/12 md:w-fit">Avances</h1> 
+      <div className="flex justify-between w-10/12">
+        <h1 className=" text-white text-18">Avances</h1>
         <select>
           <option value="">desde siempre</option>
         </select>
