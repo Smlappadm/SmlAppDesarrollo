@@ -21,8 +21,8 @@ export default function Home() {
           onClick={handleViewChange}
           className={
             optionView === "vistaGeneral"
-              ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 py-0.5 rounded-full text-18"
-              : " text-white px-3 py-0.5 rounded-full text-18 border-2"
+              ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 pt-1 rounded-full text-18"
+              : " text-white px-3 pt-1 rounded-full text-18 border-2"
           }
         >
           Vista general
@@ -32,8 +32,8 @@ export default function Home() {
           onClick={handleViewChange}
           className={
             optionView === "trofeosXP"
-              ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 py-0.5 rounded-full text-18"
-              : "text-white px-3 py-0.5 rounded-full text-18 border-2"
+              ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 pt-1 rounded-full text-18"
+              : "text-white px-3 pt-1 rounded-full text-18 border-2"
           }
         >
           Trofeos y XP
