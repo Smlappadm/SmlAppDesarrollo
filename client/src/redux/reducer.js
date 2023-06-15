@@ -25,6 +25,7 @@ import {
   GET_ALL_PROFESION,
   GET_ALL_COUNTRY,
   GET_DETAIL_EMPLOY,
+  GET_ALL_CLIENTES,
 } from "./actions";
 
 const initialState = {
@@ -51,6 +52,7 @@ const initialState = {
   allProfesion: [],
   allCountries: [],
   detailEmploy: [],
+  allClientes: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -333,7 +335,11 @@ const rootReducer = (state = initialState, action) => {
       };
 
     // *******************************Clientes *******************************
-
+    case GET_ALL_CLIENTES:
+      return {
+        ...state,
+        allClientes: action.payload,
+      };
     default:
       return { ...state };
   }
