@@ -13,7 +13,7 @@ export default function Avances() {
     <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8 ">
       <div className="flex justify-between w-10/12">
         <h1 className=" text-white text-18">Avances</h1>
-        <select>
+        <select className="bg-transparent focus:border-none">
           <option value="">desde siempre</option>
         </select>
       </div>
