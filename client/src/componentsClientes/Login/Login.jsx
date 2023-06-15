@@ -27,7 +27,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
 
   return (
     <div className="flex flex-col ">
-      <label className="font-bold ml-2 mt-4" htmlFor="">
+      {/* <label className="font-bold ml-2 mt-4" htmlFor="">
         Usuario:
       </label>
       <input
@@ -63,14 +63,14 @@ export default function Login({ handleOpenRegister, handleJoin }) {
             onClick={handlePasswordView}
           />
         )}
-      </div>
+      </div> */}
       <div className="flex flex-col items-center gap-y-4 mt-8">
-        <button
+        {/* <button
           className="bg-[#07a1f8] rounded-2xl px-3 text-black"
           onClick={handleSubmit}
         >
           Ingresar
-        </button>
+        </button> */}
         <SignIn
           routing="path"
           path="/sign-in"
@@ -86,7 +86,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
               socialButtonsBlockButton: "text-white bg-[#404062] m-0 ",
               formButtonPrimary: "hidden",
               formFieldInput: "hidden",
-              card: " bg-transparent m-0 p-0 flex items-center",
+              card: " bg-transparent m-0 p-0 flex items-center h-fit",
               main: "flex flex-col p-0 m-0  w-3/4 bg-transparent",
               form: "hidden",
               formField: "hidden",
