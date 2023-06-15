@@ -47,8 +47,6 @@ export const LideresHistory = () => {
   const showData = data.filter((item) => {
     return (
       item.level !== "-" &&
-      item.level !== "0" &&
-      item.level !== "incidencia" &&
       item.status !== "" &&
       item.corredor !== "" &&
       item.corredor !== "-" &&
@@ -413,6 +411,13 @@ export const LideresHistory = () => {
                       {item.status === "Sin contactar" ? (
                         <Text className="bg-[#d0da3d]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
                           Sin Contactar
+                        </Text>
+                      ) : (
+                        ""
+                      )}
+                      {item.status === "Agendar 2do llamado" ? (
+                        <Text className="bg-[#483dda]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
+                          Agendar 2do llamado
                         </Text>
                       ) : (
                         ""
