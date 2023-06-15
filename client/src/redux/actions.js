@@ -27,6 +27,7 @@ export const GET_ALL_PROFESION = "GET_ALL_PROFESION";
 export const GET_ALL_COUNTRY = "GET_ALL_COUNTRY";
 export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
+export const GET_ALL_CLIENTES = "GET_ALL_CLIENTES";
 
 //
 export const setRol = (rol) => {
@@ -199,8 +200,8 @@ export const AddLeads = (body) => {
 export const getVendedorAllLeads = (email) => {
   return async (dispatch) => {
     const response = await axios.get(`/vendedor/email?email=${email}`);
-    const allLeads = response.data.leads;
-    const allLeadsMaps = await allLeads.filter(
+    const allLeads = response.data?.leads;
+    const allLeadsMaps = allLeads && await allLeads.filter(
       (item) =>
         item.status !== "Sin contactar" && item.status !== "Agendar 2do llamado"
     );
@@ -285,3 +286,10 @@ export const updateLeadIncidence = (client, body) => {
 };
 
 // *******************************Clientes *******************************
+export const getAllClientes = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/clientes/");
+    const clientes = response.data;
+    dispatch({ type: GET_ALL_CLIENTES, payload: clientes });
+  };
+};
