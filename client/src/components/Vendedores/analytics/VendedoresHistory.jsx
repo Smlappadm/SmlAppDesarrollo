@@ -15,20 +15,22 @@ import Nav from "../../Nav/Nav";
 
 const VendedoresHistory = () => {
   const [data, setData] = useState([]);
-  const  {vendedorAllLeadsHistory}  = useSelector((state) => state);
+  const { vendedorAllLeadsHistory } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0].emailAddress;
-  const [openFilterName, setOpenFilterName] = useState(false)
+  const [openFilterName, setOpenFilterName] = useState(false);
+  const [filterName, setFilterName] = useState("");
+
 
   useEffect(() => {
     dispatch(getVendedorAllLeads(email));
-  }, [dispatch]);
+  }, [dispatch, email]);
   useEffect(() => {
-    setData(vendedorAllLeadsHistory);
-  }, [vendedorAllLeadsHistory]);
 
+    vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
+  }, [vendedorAllLeadsHistory]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -51,8 +53,14 @@ const VendedoresHistory = () => {
   });
 
   const handlerFilter = (filter) => {
+    setOpenFilterName(false);
     if (filter === "level") {
-      setFilters({ level: true, runner: false, sellers: false, status: false });
+      setFilters({
+        level: !filters.level,
+        runner: false,
+        sellers: false,
+        status: false,
+      });
     } else if (filter === "runner") {
       setFilters({ level: false, runner: true, sellers: false, status: false });
     } else if (filter === "sellers") {
@@ -63,17 +71,30 @@ const VendedoresHistory = () => {
   };
 
   const [levelValue, setLevelValue] = useState("");
+
   const onChangeLevel = (value) => {
     setLevelValue(value);
     dispatch(filterLevel(value));
     setData(vendedorAllLeadsHistory);
     setCurrentPage(1);
-    if(!value){
-      setFilters({...filters, level: !filters.level})
+    if (!value) {
+      setFilters({ ...filters, level: !filters.level });
+    }
+  };
+
+  const onChangeName = (event) => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setFilterName(event.target.value);
+    const leadsFilteredName = vendedorAllLeadsHistory.filter((item) =>
+      item.name.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    setData(leadsFilteredName);
+
+    if (event.target.value === "") {
+      dispatch(getVendedorAllLeads(email));
     }
   };
   //*********** */
-
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
       .writeText(copyToProps)
@@ -98,8 +119,9 @@ const VendedoresHistory = () => {
   };
 
   const handlerOpenFilterName = () => {
-    setOpenFilterName(true)
-  }
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setOpenFilterName(!openFilterName);
+  };
 
   return (
     <>
@@ -130,23 +152,39 @@ const VendedoresHistory = () => {
               <Link className="text-5xl" to={"/vendedores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              
-                {filters.level === true ? (
-                  <SelectLevel onChange={onChangeLevel} value={levelValue} className="border-2 w-64"/>
-                ) : (
-                  ""
-                )}
-              
-                {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
+
+              {filters.level === true ? (
+                <SelectLevel
+                  onChange={onChangeLevel}
+                  value={levelValue}
+                  className="border-2 w-64"
+                />
+              ) : (
+                ""
+              )}
+              {openFilterName === true ? (
+                <div className=" flex justify-center items-center w-80">
+                  <input
+                    onChange={onChangeName}
+                    value={filterName}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Nombre"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+
+              {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
                   <option className="py-1">2023</option>
                 </select> */}
             </div>
           </div>
 
-          {vendedorAllLeadsHistory && vendedorAllLeadsHistory.length ? (
+          {data && data.length ? (
             <div className={style.table}>
               <div className="flex justify-start items-center  mx-6">
-              <button
+                <button
                   className="text-start w-[20%] px-3"
                   onClick={handlerOpenFilterName}
                 >
@@ -167,97 +205,98 @@ const VendedoresHistory = () => {
               </div>
 
               <div className="">
-                {currentCard && currentCard.map((item, index) => (
-                  <div
-                    key={item._id}
-                    className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
-                  >
-                    <div className=" w-[20%] flex justify-start items-center  p-0 ">
-                      <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.name}
-                      </p>
-                    </div>
-                    <div className=" w-[15%] flex justify-start items-center p-0 ">
-                      <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.category}
-                      </p>
-                    </div>
+                {currentCard &&
+                  currentCard.map((item, index) => (
+                    <div
+                      key={item._id}
+                      className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
+                    >
+                      <div className=" w-[20%] flex justify-start items-center  p-0 ">
+                        <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          {item.name}
+                        </p>
+                      </div>
+                      <div className=" w-[15%] flex justify-start items-center p-0 ">
+                        <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          {item.category}
+                        </p>
+                      </div>
 
-                    <div className=" w-[10%] flex justify-start items-center p-0">
-                      <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.province}
-                      </p>
-                    </div>
+                      <div className=" w-[10%] flex justify-start items-center p-0">
+                        <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          {item.province}
+                        </p>
+                      </div>
 
-                    <div className=" w-[5%] flex justify-center items-center p-0">
-                      {item.email !== "-" ? (
-                        <div onClick={() => handleCopyClick(item.email)}>
-                          <div className="cursor-pointer">
-                            <CiMail className="text-[35px] text-[#418df0] z-0" />
+                      <div className=" w-[5%] flex justify-center items-center p-0">
+                        {item.email !== "-" ? (
+                          <div onClick={() => handleCopyClick(item.email)}>
+                            <div className="cursor-pointer">
+                              <CiMail className="text-[35px] text-[#418df0] z-0" />
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <CiMail className="text-[35px] text-[#9eabbe]" />
-                        </div>
-                      )}
-                    </div>
-                    <div className=" w-[5%] flex justify-center items-center p-0">
-                      {item.instagram ? (
-                        <div onClick={() => handleCopyClick(item.instagram)}>
-                          <div className="cursor-pointer">
-                            <CiInstagram className="text-[35px]  text-[#ff598b]" />
+                        ) : (
+                          <div>
+                            <CiMail className="text-[35px] text-[#9eabbe]" />
                           </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <CiInstagram className="text-[35px] text-[#9eabbe]" />
-                        </div>
-                      )}
+                        )}
+                      </div>
+                      <div className=" w-[5%] flex justify-center items-center p-0">
+                        {item.instagram ? (
+                          <div onClick={() => handleCopyClick(item.instagram)}>
+                            <div className="cursor-pointer">
+                              <CiInstagram className="text-[35px]  text-[#ff598b]" />
+                            </div>
+                          </div>
+                        ) : (
+                          <div>
+                            <CiInstagram className="text-[35px] text-[#9eabbe]" />
+                          </div>
+                        )}
+                      </div>
+                      <div className=" w-[15%] flex justify-center items-center p-0 ">
+                        <p
+                          onClick={() => handleCopyClick(item.telephone)}
+                          className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                        >
+                          {item.telephone}
+                        </p>
+                      </div>
+                      <div className=" w-[10%] flex justify-center items-center p-0">
+                        {item.level !== "incidencia" ? (
+                          <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
+                            {item.level}
+                          </p>
+                        ) : (
+                          <div className="bg-[#6254ff] text-[#e8e8e9] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
+                            <CiWarning className="text-[#fdfa3a] p-0 text-[35px] font-bold" />
+                          </div>
+                        )}
+                      </div>
+                      <div className=" w-[20%] flex justify-center items-start p-0">
+                        {item.status === "Contratado" && (
+                          <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                            Contratado
+                          </p>
+                        )}
+                        {item.status === "No responde" && (
+                          <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                            Sin responder
+                          </p>
+                        )}
+                        {item.status === "Rechazado" && (
+                          <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                            Rechazado
+                          </p>
+                        )}
+                        {item.level === "incidencia" && (
+                          <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
+                            Incidencia
+                          </p>
+                        )}
+                      </div>
                     </div>
-                    <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <p
-                        onClick={() => handleCopyClick(item.telephone)}
-                        className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
-                      >
-                        {item.telephone}
-                      </p>
-                    </div>
-                    <div className=" w-[10%] flex justify-center items-center p-0">
-                      {item.level !== "incidencia" ? (
-                        <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
-                          {item.level}
-                        </p>
-                      ) : (
-                        <div className="bg-[#6254ff] text-[#e8e8e9] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
-                          <CiWarning className="text-[#fdfa3a] p-0 text-[35px] font-bold" />
-                        </div>
-                      )}
-                    </div>
-                    <div className=" w-[20%] flex justify-center items-start p-0">
-                      {item.status === "Contratado" && (
-                        <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                          Contratado
-                        </p>
-                      )}
-                      {item.status === "No responde" && (
-                        <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                          Sin responder
-                        </p>
-                      )}
-                      {item.status === "Rechazado" && (
-                        <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                          Rechazado
-                        </p>
-                      )}
-                      {item.level === "incidencia" && (
-                        <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
-                          Incidencia
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           ) : (
