@@ -11,7 +11,7 @@ export default function SelectSmall(props) {
     <FormControl
       sx={{
         m: 1,
-        width: "20%",
+        width: "200px",
         height: "33px",
         margin: "0px 50px",
         color: "white",
