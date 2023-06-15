@@ -179,8 +179,8 @@ export const AddLeads = (body) => {
 export const getVendedorAllLeads = (email) => {
   return async (dispatch) => {
     const response = await axios.get(`/vendedor/email?email=${email}`);
-    const allLeads = response.data.leads;
-    const allLeadsMaps = await allLeads.filter(
+    const allLeads = response.data?.leads;
+    const allLeadsMaps = allLeads && await allLeads.filter(
       (item) =>
         item.status !== "Sin contactar" && item.status !== "Agendar 2do llamado"
     );
