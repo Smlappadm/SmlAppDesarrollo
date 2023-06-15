@@ -22,8 +22,10 @@ const VendedoresHistory = () => {
   const email = user?.emailAddresses[0].emailAddress;
   const [openFilterName, setOpenFilterName] = useState(false);
   const [openFilterSector, setOpenFilterSector] = useState(false);
+  const [openFilterPais, setOpenFilterPais] = useState(false);
   const [filterName, setFilterName] = useState("");
   const [filterSector, setFilterSector] = useState("");
+  const [filterPais, setFilterPais] = useState("");
 
   useEffect(() => {
     dispatch(getVendedorAllLeads(email));
@@ -58,6 +60,7 @@ const VendedoresHistory = () => {
     setFilterPais("");
     setOpenFilterName(false);
     setOpenFilterSector(false);
+    setOpenFilterPais(false);
     if (filter === "level") {
       setFilters({
         level: !filters.level,
@@ -78,8 +81,7 @@ const VendedoresHistory = () => {
 
   const onChangeLevel = (value) => {
     setLevelValue(value);
-    setOpenFilterName(false);
-    setOpenFilterSector(false);
+
     dispatch(filterLevel(value));
     setData(vendedorAllLeadsHistory);
     setCurrentPage(1);
@@ -126,15 +128,33 @@ const VendedoresHistory = () => {
       )
     );
 
-    // const leadsFilteredSector = vendedorAllLeadsHistory.filter((item) =>
-    //   item.category.toLowerCase().includes(event.target.value.toLowerCase())
-    // );
     setData(leadsFilteredSector);
-
     if (event.target.value === "") {
       dispatch(getVendedorAllLeads(email));
     }
   };
+  const onChangePais = (event) => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setFilterPais(event.target.value);
+
+    const normalizeString = (str) =>
+      str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]/g, "");
+
+    const leadsFilteredPais = vendedorAllLeadsHistory.filter((item) =>
+      normalizeString(item.province.toLowerCase()).includes(
+        normalizeString(event.target.value.toLowerCase())
+      )
+    );
+
+    setData(leadsFilteredPais);
+    if (event.target.value === "") {
+      dispatch(getVendedorAllLeads(email));
+    }
+  };
+
   //*********** */
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
@@ -282,7 +302,7 @@ const VendedoresHistory = () => {
                 </button>
                 <button
                   className="text-start w-[10%] px-3"
-                  onClick={handlerOpenFilterSector}
+                  onClick={handlerOpenFilterPais}
                 >
                   País
                 </button>
