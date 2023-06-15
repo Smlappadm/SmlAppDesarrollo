@@ -17,7 +17,7 @@ export default function ClientesSettings() {
     await signOut();
     navigate("/clientes-home");
   };
-
+  //*************** */
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
       <div className="   justify-between w-96">
