@@ -35,7 +35,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#020131] w-screen h-full 2xl:h-screen  pb-32">
+    <div className="flex flex-col items-center bg-gradient-to-br from-black via-[#020131]  to-blue-950 w-screen h-full 2xl:h-screen  pb-32">
       {access ? (
         <>
           <LandingClient />
