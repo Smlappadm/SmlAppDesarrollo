@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllClientes } from "../../redux/actions";
 
 export default function Register({ handleOpenRegister }) {
   const [username, setUsername] = useState("");
@@ -8,6 +10,7 @@ export default function Register({ handleOpenRegister }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [showView, setShowView] = useState(false);
+  const { allClientes } = useSelector((state) => state);
   const [errors, setErrors] = useState({
     username: "",
     name: "",
@@ -15,15 +18,33 @@ export default function Register({ handleOpenRegister }) {
     email: "",
     validate: false,
   });
+  const dispatch = useDispatch();
 
   const handlePasswordView = () => {
     setShowView(!showView);
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(getAllClientes());
+    };
 
-  const validateEmail = (email) => {
+    fetchData();
+  }, [dispatch]);
+  useEffect(() => {
+    console.log(allClientes);
+  }, [allClientes]);
+
+  const validateEmail = async (email) => {
+    const clientEmailVerify = allClientes.some(
+      (client) => client.email === email
+    );
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     if (!emailRegex.test(email)) {
       return "Por favor, ingresa un correo electrónico válido";
+    }
+    if (clientEmailVerify) {
+      console.log("Este usario ya esta registrado, intente con otro!");
+      return "Este usario ya esta registrado, intente con otro!";
     }
     return "";
   };
