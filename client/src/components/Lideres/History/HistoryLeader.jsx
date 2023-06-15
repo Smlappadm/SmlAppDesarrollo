@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import style from "./AnalyticLeader.module.css";
+import style from "./HistoryLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
 import {
@@ -15,6 +15,7 @@ import InputSeller from "./MaterialUi/InputSeller";
 import SelectLevel from "./MaterialUi/SelectLevel";
 import SelectStatus from "./MaterialUi/SelectStatus";
 import ModalCient from "./MaterialUi/ModalClient";
+import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,7 +28,7 @@ import {
 } from "../../../redux/actions";
 import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
 
-export const AnalyticLeader = () => {
+export const LideresHistory = () => {
   const [data, setData] = useState([]);
   const { leaderDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -44,7 +45,13 @@ export const AnalyticLeader = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const showData = data.filter((item) => {
-    return item.level === "0";
+    return (
+      item.level !== "-" &&
+      item.status !== "" &&
+      item.corredor !== "" &&
+      item.corredor !== "-" &&
+      item.status !== "discard"
+    );
   });
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
@@ -105,13 +112,33 @@ export const AnalyticLeader = () => {
   };
   const handlerFilter = (filter) => {
     if (filter === "level") {
-      setFilters({ level: true, runner: false, sellers: false, status: false });
+      setFilters({
+        level: !filters.level,
+        runner: false,
+        sellers: false,
+        status: false,
+      });
     } else if (filter === "runner") {
-      setFilters({ level: false, runner: true, sellers: false, status: false });
+      setFilters({
+        level: false,
+        runner: !filters.runner,
+        sellers: false,
+        status: false,
+      });
     } else if (filter === "sellers") {
-      setFilters({ level: false, runner: false, sellers: true, status: false });
+      setFilters({
+        level: false,
+        runner: false,
+        sellers: !filters.sellers,
+        status: false,
+      });
     } else {
-      setFilters({ level: false, runner: false, sellers: false, status: true });
+      setFilters({
+        level: false,
+        runner: false,
+        sellers: false,
+        status: !filters.status,
+      });
     }
   };
   const [levelValue, setLevelValue] = useState("");
@@ -136,14 +163,13 @@ export const AnalyticLeader = () => {
     setModalItems(item);
   };
   const handleClose = () => setOpen(false);
-
   return (
     <>
       <Nav />
-      <Card className="w-full h-full bg-[#222131] rounded-none p-5 relative">
+      <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5">
-            <Title className={style.title}>Analytics</Title>
+            <Title className={style.title}>History</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
@@ -157,8 +183,7 @@ export const AnalyticLeader = () => {
               <CiDumbbell className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
           </div>
-          <div className="h-[36.5px] w-[36.5px]"></div>
-          {/* {filters.level === true ? (
+          {filters.level === true ? (
             <SelectLevel onChange={onChangeLevel} value={levelValue} />
           ) : (
             ""
@@ -169,7 +194,9 @@ export const AnalyticLeader = () => {
             <SelectStatus onChange={onChangeStatus} value={statusValue} />
           ) : (
             ""
-          )} */}
+          )}
+          <label>Leads chequeados: {showData.length}</label>
+          <AddLead />
         </div>
         <div className="w-full">
           <div className="text-white text-14 font-thin">
@@ -190,7 +217,7 @@ export const AnalyticLeader = () => {
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">Nivel</Text>
+                  <Text className="text-center w-6 p-0 text-white">LVL</Text>
                 </button>
               </div>
               <div className="flex justify-center items-center p-0">
@@ -200,12 +227,13 @@ export const AnalyticLeader = () => {
                 <Text className="text-center w-6 p-0 text-white">Mail</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">
-                  Instagram
-                </Text>
+                <Text className="text-center w-6 p-0 text-white">IG</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Telefono</Text>
+                <Text className="text-center w-6 p-0 text-white">Tel</Text>
+              </div>
+              <div className="flex justify-center items-center p-0">
+                <Text className="pr-3 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("runner")}>
@@ -269,7 +297,7 @@ export const AnalyticLeader = () => {
                     <div className="flex justify-center items-center p-0">
                       <div className="w-28 text-ellipsis  flex justify-start items-center p-0 ">
                         <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                          {item.category}
+                          {item.profesion}
                         </Text>
                       </div>
                     </div>
@@ -350,6 +378,14 @@ export const AnalyticLeader = () => {
                         )}
                       </div>
                     </div>
+                    <div className="flex justify-center items-center p-0">
+                      <div className="w-24 text-ellipsis flex justify-start items-center p-0">
+                        <Text className="text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          {item.updatedAt ? item.updatedAt.slice(0, 10) : "-"}
+                        </Text>
+                      </div>
+                    </div>
+
                     <div className="flex justify-center items-center p-0 ">
                       <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                         <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
@@ -365,9 +401,49 @@ export const AnalyticLeader = () => {
                       </div>
                     </div>
                     <div className="flex justify-center items-center p-0">
-                      <Text className="bg-black  text-white   px-2 py-1.5 rounded-xl text-center w-48">
-                        DISCARD BOT
-                      </Text>
+                      {item.status === "Contratado" ? (
+                        <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
+                          Contratado
+                        </Text>
+                      ) : (
+                        ""
+                      )}
+                      {item.status === "Sin contactar" ? (
+                        <Text className="bg-[#d0da3d]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
+                          Sin Contactar
+                        </Text>
+                      ) : (
+                        ""
+                      )}
+                      {item.status === "Agendar 2do llamado" ? (
+                        <Text className="bg-[#483dda]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
+                          Agendar 2do llamado
+                        </Text>
+                      ) : (
+                        ""
+                      )}
+
+                      {item.status === "Rechazado" ? (
+                        <Text className="bg-[#ac4242] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                          Rechazado
+                        </Text>
+                      ) : (
+                        ""
+                      )}
+                      {item.status === "incidencia" ? (
+                        <Text className="bg-[#e5fc18] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                          Incidencia
+                        </Text>
+                      ) : (
+                        ""
+                      )}
+                      {item.status === "No responde" ? (
+                        <Text className="bg-[#2148b4] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                          No responde
+                        </Text>
+                      ) : (
+                        ""
+                      )}
                     </div>
                   </button>
                 </div>

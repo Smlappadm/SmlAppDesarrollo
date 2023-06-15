@@ -1,31 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button"; // Importa el componente Button
 import { useDispatch } from "react-redux";
-import { findCorredoresByName } from "../../../../redux/actions";
+import { findVendedorByName } from "../../../../redux/actions";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
-
   const handleChange = (event) => {
     let value = event.target.value;
-    dispatch(findCorredoresByName(value));
+    dispatch(findVendedorByName(value));
   };
 
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "10px",
-        width: "50%",
+        width: "20%",
+        maxWidth: "40%",
         height: "33px",
         color: "gray",
-        margin: "0px 10px",
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "white",
         },
@@ -38,8 +30,9 @@ export default function InputName({ name }) {
       }}
     >
       <TextField
-        label="Buscar por corredor"
-        id="runner"
+        fullWidth
+        label="Buscar por vendedor"
+        id="seller"
         value={name}
         onChange={handleChange}
         size="small"

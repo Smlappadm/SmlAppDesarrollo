@@ -13,7 +13,7 @@ import {
   Title,
   Badge,
 } from "@tremor/react";
-import { CiMail, CiWarning } from "react-icons/ci";
+import { CiMail, CiWarning, CiDumbbell } from "react-icons/ci";
 import {
   getAllClevel,
   getAllCorredores,
@@ -134,9 +134,7 @@ export const TableEmployees = () => {
         <Card className="bg-[#222131] w-full h-screen p-5">
           <div className="flex justify-between items-center mx-5 mb-0">
             <div className="flex gap-5">
-              <Title className={style.title}>
-                Employees
-              </Title>
+              <Title className={style.title}>Employees</Title>
               <Link to={"/lideres/"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
@@ -148,6 +146,9 @@ export const TableEmployees = () => {
               </Link>
               <Link className="text-5xl" to={"/lideres-incidences"}>
                 <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              </Link>
+              <Link className="text-5xl" to={"/lideres-history"}>
+                <CiDumbbell className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div>
             <NestedModal

@@ -33,6 +33,7 @@ import LoginClientes from "./viewsClientes/Login/LoginClientes";
 import Home from "./viewsClientes/Home/Home";
 import AddVideos from "./viewsClientes/AddVideos/AddVideos";
 import ClientesSettings from "./viewsClientes/Settings/ClientesSettings";
+import { LideresHistory } from "./components/Lideres/History/HistoryLeader";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -197,6 +198,18 @@ function ClerkProviderWithRoutes() {
             (roleReady === "clevel" || roleReady === "leader") &&
             isEmployeeReady ? (
               <Incidences />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/lideres-history"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
+              <LideresHistory />
             ) : (
               <ReturnToPage />
             )

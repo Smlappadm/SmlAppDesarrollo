@@ -21,14 +21,16 @@ const VendedoresHistory = () => {
   const user = useUser().user;
   const email = user?.emailAddresses[0].emailAddress;
   const [openFilterName, setOpenFilterName] = useState(false);
+  const [openFilterSector, setOpenFilterSector] = useState(false);
+  const [openFilterPais, setOpenFilterPais] = useState(false);
   const [filterName, setFilterName] = useState("");
-
+  const [filterSector, setFilterSector] = useState("");
+  const [filterPais, setFilterPais] = useState("");
 
   useEffect(() => {
     dispatch(getVendedorAllLeads(email));
   }, [dispatch, email]);
   useEffect(() => {
-
     vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
   }, [vendedorAllLeadsHistory]);
 
@@ -53,7 +55,12 @@ const VendedoresHistory = () => {
   });
 
   const handlerFilter = (filter) => {
+    setFilterSector("");
+    setFilterName("");
+    setFilterPais("");
     setOpenFilterName(false);
+    setOpenFilterSector(false);
+    setOpenFilterPais(false);
     if (filter === "level") {
       setFilters({
         level: !filters.level,
@@ -74,6 +81,7 @@ const VendedoresHistory = () => {
 
   const onChangeLevel = (value) => {
     setLevelValue(value);
+
     dispatch(filterLevel(value));
     setData(vendedorAllLeadsHistory);
     setCurrentPage(1);
@@ -85,15 +93,68 @@ const VendedoresHistory = () => {
   const onChangeName = (event) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setFilterName(event.target.value);
+    const normalizeString = (str) =>
+      str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]/g, "");
+
     const leadsFilteredName = vendedorAllLeadsHistory.filter((item) =>
-      item.name.toLowerCase().includes(event.target.value.toLowerCase())
+      normalizeString(item.name.toLowerCase()).includes(
+        normalizeString(event.target.value.toLowerCase())
+      )
     );
+
     setData(leadsFilteredName);
 
     if (event.target.value === "") {
       dispatch(getVendedorAllLeads(email));
     }
   };
+
+  const onChangeSector = (event) => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setFilterSector(event.target.value);
+
+    const normalizeString = (str) =>
+      str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]/g, "");
+
+    const leadsFilteredSector = vendedorAllLeadsHistory.filter((item) =>
+      normalizeString(item.category.toLowerCase()).includes(
+        normalizeString(event.target.value.toLowerCase())
+      )
+    );
+
+    setData(leadsFilteredSector);
+    if (event.target.value === "") {
+      dispatch(getVendedorAllLeads(email));
+    }
+  };
+  const onChangePais = (event) => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setFilterPais(event.target.value);
+
+    const normalizeString = (str) =>
+      str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]/g, "");
+
+    const leadsFilteredPais = vendedorAllLeadsHistory.filter((item) =>
+      normalizeString(item.province.toLowerCase()).includes(
+        normalizeString(event.target.value.toLowerCase())
+      )
+    );
+
+    setData(leadsFilteredPais);
+    if (event.target.value === "") {
+      dispatch(getVendedorAllLeads(email));
+    }
+  };
+
   //*********** */
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
@@ -120,7 +181,26 @@ const VendedoresHistory = () => {
 
   const handlerOpenFilterName = () => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
+    setOpenFilterSector(false);
+    setOpenFilterPais(false);
     setOpenFilterName(!openFilterName);
+    setFilterSector("");
+    setFilterPais("");
+  };
+  const handlerOpenFilterSector = () => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setOpenFilterName(false);
+    setOpenFilterPais(false);
+    setOpenFilterSector(!openFilterSector);
+    setFilterName("");
+    setFilterPais("");
+  };
+  const handlerOpenFilterPais = () => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setOpenFilterName(false);
+    setOpenFilterSector(false);
+    setOpenFilterPais(!openFilterPais);
+    setFilterPais("");
   };
 
   return (
@@ -174,6 +254,30 @@ const VendedoresHistory = () => {
               ) : (
                 ""
               )}
+              {openFilterSector === true ? (
+                <div className=" flex justify-center items-center w-80">
+                  <input
+                    onChange={onChangeSector}
+                    value={filterSector}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Sector"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+              {openFilterPais === true ? (
+                <div className=" flex justify-center items-center w-80">
+                  <input
+                    onChange={onChangePais}
+                    value={filterPais}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Pais"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
 
               {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
                   <option className="py-1">2023</option>
@@ -190,8 +294,18 @@ const VendedoresHistory = () => {
                 >
                   Nombre
                 </button>
-                <label className="text-start w-[15%] px-3">Sector</label>
-                <label className="text-start w-[10%] px-3">País</label>
+                <button
+                  className="text-start w-[15%] px-3"
+                  onClick={handlerOpenFilterSector}
+                >
+                  Sector
+                </button>
+                <button
+                  className="text-start w-[10%] px-3"
+                  onClick={handlerOpenFilterPais}
+                >
+                  País
+                </button>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
                 <label className="text-center w-[15%] ">Phone</label>
