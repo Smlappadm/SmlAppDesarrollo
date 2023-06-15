@@ -203,7 +203,7 @@ export const getVendedorAllLeads = (email) => {
     const allLeads = response.data?.leads;
     const allLeadsMaps = allLeads && await allLeads.filter(
       (item) =>
-        item.status !== "Sin contactar" && item.status !== "Agendar 2do llamado"
+        item.status !== "Sin contactar"
     );
     dispatch({
       type: GET_VENDEDOR_ALL_LEADS,
