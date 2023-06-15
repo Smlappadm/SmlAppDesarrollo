@@ -9,7 +9,8 @@ import { FaHistory } from "react-icons/fa";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
 import { MdOutlineAttachMoney } from "react-icons/md";
-import SelectLevel from "../Dashboard/SelectLevel";
+import SelectLevel from "../Dashboard/Select/SelectLevel";
+import SelectStatus from "../Dashboard/Select/SelectStatus";
 
 import Nav from "../../Nav/Nav";
 
@@ -23,9 +24,11 @@ const VendedoresHistory = () => {
   const [openFilterName, setOpenFilterName] = useState(false);
   const [openFilterSector, setOpenFilterSector] = useState(false);
   const [openFilterPais, setOpenFilterPais] = useState(false);
+  const [openFilterStatus, setOpenFilterStatus] = useState(false);
   const [filterName, setFilterName] = useState("");
   const [filterSector, setFilterSector] = useState("");
   const [filterPais, setFilterPais] = useState("");
+  const [filterStatus, setFilterStatus] = useState("");
 
   useEffect(() => {
     dispatch(getVendedorAllLeads(email));
@@ -55,12 +58,14 @@ const VendedoresHistory = () => {
   });
 
   const handlerFilter = (filter) => {
+    dispatch(getVendedorAllLeads(email));
     setFilterSector("");
     setFilterName("");
     setFilterPais("");
     setOpenFilterName(false);
     setOpenFilterSector(false);
     setOpenFilterPais(false);
+    setOpenFilterStatus(false);
     if (filter === "level") {
       setFilters({
         level: !filters.level,
@@ -78,6 +83,7 @@ const VendedoresHistory = () => {
   };
 
   const [levelValue, setLevelValue] = useState("");
+  const [statusValue, setStatusValue] = useState("");
 
   const onChangeLevel = (value) => {
     setLevelValue(value);
@@ -155,6 +161,23 @@ const VendedoresHistory = () => {
     }
   };
 
+  const onChangeStatus = (value) => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    console.log(value)
+    // setStatusValue(event.target.value);
+
+
+    const leadsFilteredPais = vendedorAllLeadsHistory.filter((item) => item.status === value);
+
+    setData(leadsFilteredPais);
+    if (value === "s") {
+      dispatch(getVendedorAllLeads(email));
+    }
+  };
+
+
+
+
   //*********** */
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
@@ -183,24 +206,42 @@ const VendedoresHistory = () => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterSector(false);
     setOpenFilterPais(false);
+    setOpenFilterStatus(false);
     setOpenFilterName(!openFilterName);
     setFilterSector("");
     setFilterPais("");
+    dispatch(getVendedorAllLeads(email));
   };
   const handlerOpenFilterSector = () => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterPais(false);
+    setOpenFilterStatus(false);
     setOpenFilterSector(!openFilterSector);
     setFilterName("");
     setFilterPais("");
+    dispatch(getVendedorAllLeads(email));
   };
   const handlerOpenFilterPais = () => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterSector(false);
+    setOpenFilterStatus(false);
     setOpenFilterPais(!openFilterPais);
+    setFilterName("");
+    setFilterSector("");
+    dispatch(getVendedorAllLeads(email));
+  };
+  const handlerOpenStatus = () => {
+    setFilters({ level: false, runner: false, sellers: false, status: false });
+    setOpenFilterName(false);
+    setOpenFilterSector(false);
+    setOpenFilterPais(false);
     setFilterPais("");
+    setFilterName("");
+    setFilterSector("");
+    setOpenFilterStatus(!openFilterStatus);
+    dispatch(getVendedorAllLeads(email));
   };
 
   return (
@@ -234,11 +275,13 @@ const VendedoresHistory = () => {
               </Link>
 
               {filters.level === true ? (
-                <SelectLevel
-                  onChange={onChangeLevel}
-                  value={levelValue}
-                  className="border-2 w-64"
-                />
+                <div className=" flex justify-center items-center w-80">
+                  <SelectLevel
+                    onChange={onChangeLevel}
+                    value={levelValue}
+                    className="border-2 w-64"
+                  />
+                </div>
               ) : (
                 ""
               )}
@@ -273,6 +316,17 @@ const VendedoresHistory = () => {
                     value={filterPais}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Pais"
+                  />
+                </div>
+              ) : (
+                ""
+              )}
+              {openFilterStatus === true ? (
+                <div className=" flex justify-center items-center w-80">
+                  <SelectStatus
+                    onChange={onChangeStatus}
+                    value={statusValue}
+                    className="border-2 w-64"
                   />
                 </div>
               ) : (
@@ -315,10 +369,16 @@ const VendedoresHistory = () => {
                 >
                   Nivel
                 </button>
-                <label className="text-center w-[20%] ">Status</label>
+                <button
+                  className="text-center w-[20%]"
+                  onClick={handlerOpenStatus}
+                >
+                  Status
+                </button>
               </div>
 
               <div className="">
+                {console.log(currentCard)}
                 {currentCard &&
                   currentCard.map((item, index) => (
                     <div
@@ -402,6 +462,12 @@ const VendedoresHistory = () => {
                           <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                             Rechazado
                           </p>
+                        )}
+                        {item.status === "Agendar 2do llamado" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Agendar</p>
+                            <p>2do llamado</p>
+                          </div>
                         )}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
