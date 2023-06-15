@@ -13,6 +13,7 @@ export default function Register({ handleOpenRegister }) {
     name: "",
     password: "",
     email: "",
+    validate: false,
   });
 
   const handlePasswordView = () => {
@@ -24,7 +25,7 @@ export default function Register({ handleOpenRegister }) {
     if (!emailRegex.test(email)) {
       return "Por favor, ingresa un correo electrónico válido";
     }
-    return "-";
+    return "";
   };
   const validatePassword = (password) => {
     const uppercaseRegex = /[A-Z]/;
@@ -35,24 +36,22 @@ export default function Register({ handleOpenRegister }) {
     if (password.length < 8 || password.length > 16) {
       return "La contraseña debe tener entre 8 y 16 caracteres";
     }
-    return "-";
+    return "";
   };
 
-  let body = {};
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const validateRegister = () => {
     let updateErrors = { ...errors };
     if (name === "") {
       updateErrors.name = "Por favor, ingresa un nombre";
     }
     if (name !== "") {
-      updateErrors.name = "-";
+      updateErrors.name = "";
     }
     if (username === "") {
       updateErrors.username = "Por favor, ingresa un usuario";
     }
     if (username !== "") {
-      updateErrors.username = "-";
+      updateErrors.username = "";
     }
     if (password === "") {
       updateErrors.password = "Por favor, ingresa una contraseña";
@@ -64,37 +63,54 @@ export default function Register({ handleOpenRegister }) {
     } else {
       updateErrors.email = validateEmail(email);
     }
-    setErrors(updateErrors);
-    console.log(errors);
-    body = {
-      username,
-      name,
-      password,
-      email,
-      photo: "",
-      rol: "cliente",
-    };
-    console.log(body);
     if (
-      errors.username === "-" &&
-      errors.name === "-" &&
-      errors.password === "-" &&
-      errors.email === "-"
+      updateErrors.username === "" &&
+      updateErrors.name === "" &&
+      updateErrors.password === "" &&
+      updateErrors.email === ""
     ) {
-      await axios.post("/clientes/new", body);
-      console.log("Formulario enviado");
-      setUsername("");
-      setEmail("");
-      setName("");
-      setPassword("");
-      handleOpenRegister();
+      setErrors({ ...updateErrors, validate: true });
+    } else {
+      setErrors(updateErrors);
+    }
+  };
+  const newClient = async () => {
+    await axios.post("/clientes/new", body);
+    console.log("Formulario enviado");
+    setUsername("");
+    setEmail("");
+    setName("");
+    setPassword("");
+    handleOpenRegister();
+    console.log("entro");
+  };
+  let body = {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    validateRegister();
+    console.log(errors);
+    if (errors.validate) {
+      console.log("sadasdas");
+      body = {
+        username,
+        name,
+        password,
+        email,
+        photo: "",
+        rol: "cliente",
+      };
+      newClient();
     } else {
       console.log("murio");
     }
   };
 
   return (
-    <form className="flex flex-col w-3/4 gap-y-4" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col w-3/4 gap-y-4"
+      onSubmit={handleSubmit}
+      onChange={validateRegister}
+    >
       <div className="flex flex-col">
         <label className="font-bold ml-2 mb-2" htmlFor="">
           Usuario:
