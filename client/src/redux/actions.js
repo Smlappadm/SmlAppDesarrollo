@@ -26,6 +26,7 @@ export const GET_ALL_EMPLOYEES = "GET_ALL_EMPLOYEES";
 export const GET_ALL_PROFESION = "GET_ALL_PROFESION";
 export const GET_ALL_COUNTRY = "GET_ALL_COUNTRY";
 export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
+export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
 
 //
 export const setRol = (rol) => {
@@ -155,6 +156,26 @@ export const findCorredoresByName = (corredorName) => {
     dispatch({ type: FIND_CORREDORES_NAME, payload: corredoresByName });
   };
 };
+
+export const findCorredoresByNameAllInfo = (
+  corredorName,
+  selectedMonth,
+  selectedYear,
+  fromDay,
+  toDay
+) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `/lead/allinfo?name=${corredorName}&month=${selectedMonth}&year=${selectedYear}&fromDay=${fromDay}&toDay=${toDay}`
+    );
+    const corredoresByNameAllInfo = response.data;
+    dispatch({
+      type: FIND_CORREDORES_NAME_ALL_INFO,
+      payload: corredoresByNameAllInfo,
+    });
+  };
+};
+
 export const findVendedorByName = (vendedorName) => {
   return async (dispatch) => {
     const response = await axios.get(`/lead/vendedor?name=${vendedorName}`);
