@@ -1664,6 +1664,10 @@ video {
   padding-right: 0.5rem;
 }
 
+.pr-3 {
+  padding-right: 0.75rem;
+}
+
 .pr-4 {
   padding-right: 1rem;
 }
@@ -2071,6 +2075,10 @@ video {
 
 .focus\:z-10:focus {
   z-index: 10;
+}
+
+.focus\:border-none:focus {
+  border-style: none;
 }
 
 .focus\:border-blue-500:focus {
