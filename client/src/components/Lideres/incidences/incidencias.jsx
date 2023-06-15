@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 import style from "./incidencias.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
-import { CiMail, CiInstagram, CiPhone, CiWarning } from "react-icons/ci";
+import {
+  CiMail,
+  CiInstagram,
+  CiPhone,
+  CiWarning,
+  CiDumbbell,
+} from "react-icons/ci";
 import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
@@ -147,6 +153,9 @@ const Incidences = () => {
             </Link>
             <Link className="text-5xl" to={"/lideres-i-history"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link className="text-5xl" to={"/lideres-history"}>
+              <CiDumbbell className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
