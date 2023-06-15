@@ -8,6 +8,7 @@ import {
   CiPhone,
   CiWarning,
   CiGlobe,
+  CiDumbbell,
 } from "react-icons/ci";
 import InputRunner from "./MaterialUi/InputRunner";
 import InputSeller from "./MaterialUi/InputSeller";
@@ -164,7 +165,6 @@ export const LideresDasboard = () => {
     setModalItems(item);
   };
   const handleClose = () => setOpen(false);
-
   return (
     <>
       <Nav />
@@ -180,6 +180,9 @@ export const LideresDasboard = () => {
             </Link>
             <Link className="text-5xl" to={"/lideres-incidences"}>
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link className="text-5xl" to={"/lideres-history"}>
+              <CiDumbbell className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
           </div>
           {filters.level === true ? (
@@ -229,6 +232,9 @@ export const LideresDasboard = () => {
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Tel</Text>
+              </div>
+              <div className="flex justify-center items-center p-0">
+                <Text className="pr-3 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("runner")}>
@@ -373,6 +379,14 @@ export const LideresDasboard = () => {
                         )}
                       </div>
                     </div>
+                    <div className="flex justify-center items-center p-0">
+                      <div className="w-24 text-ellipsis flex justify-start items-center p-0">
+                        <Text className="text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          {item.updatedAt ? item.updatedAt.slice(0, 10) : "-"}
+                        </Text>
+                      </div>
+                    </div>
+
                     <div className="flex justify-center items-center p-0 ">
                       <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                         <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
