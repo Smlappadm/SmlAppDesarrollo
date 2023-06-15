@@ -30,7 +30,7 @@ export default function SelectSmall(props) {
       size="small"
     >
       <InputLabel id="demo-select-small-label" style={{ color: "gray" }}>
-        Nivel
+        Level
       </InputLabel>
       <Select
         labelId="demo-select-small-label"
