@@ -26,12 +26,12 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   };
 
   return (
-    <div className="flex flex-col w-3/4 gap-y-4">
+    <div className="flex flex-col ">
       <label className="font-bold ml-2 mt-4" htmlFor="">
         Usuario:
       </label>
       <input
-        className="rounded-md bg-[#404062] h-7 pl-2"
+        className="rounded-md bg-[#404062] h-7 pl-2 mt-2"
         type="text"
         value={username}
         onChange={(event) => {
@@ -39,10 +39,10 @@ export default function Login({ handleOpenRegister, handleJoin }) {
         }}
         placeholder="Ingresar Usuario"
       />
-      <label className="font-bold ml-2 mt-4" htmlFor="">
+      <label className="font-bold ml-2 mt-6" htmlFor="">
         Contraseña:
       </label>
-      <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
+      <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center mt-2">
         <input
           className="rounded-md bg-[#404062] h-7 pl-2 w-full"
           type={showView === false ? "password" : "text"}
@@ -64,7 +64,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
           />
         )}
       </div>
-      <div className="flex flex-col items-center gap-y-4 mt-4">
+      <div className="flex flex-col items-center gap-y-4 mt-8">
         <button
           className="bg-[#07a1f8] rounded-2xl px-3 text-black"
           onClick={handleSubmit}
