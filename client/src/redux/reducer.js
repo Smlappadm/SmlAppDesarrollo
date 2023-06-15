@@ -25,6 +25,7 @@ import {
   GET_ALL_PROFESION,
   GET_ALL_COUNTRY,
   GET_DETAIL_EMPLOY,
+  FIND_CORREDORES_NAME_ALL_INFO,
 } from "./actions";
 
 const initialState = {
@@ -51,6 +52,7 @@ const initialState = {
   allProfesion: [],
   allCountries: [],
   detailEmploy: [],
+  corredoresByNameAllInfo: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -260,7 +262,16 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         leaderDashboard: CorredorNameSort,
       };
-    case FIND_CORREDORES_NAME:
+    case FIND_CORREDORES_NAME_ALL_INFO:
+      const corredoresByNameAllInfo = action.payload;
+      const corredoresByNameAllInfoSort = corredoresByNameAllInfo.sort(
+        (a, b) => (b ? b.level : "") - (a ? a.level : "")
+      );
+      return {
+        ...state,
+        leaderDashboard: corredoresByNameAllInfoSort,
+      };
+    case FIND_VENDEDORES_NAME:
       const vendedorName = action.payload;
       const vendedorNameSort = vendedorName.sort(
         (a, b) => (b ? b.level : "") - (a ? a.level : "")
