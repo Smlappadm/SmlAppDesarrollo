@@ -314,8 +314,8 @@ const rootReducer = (state = initialState, action) => {
     case GET_VENDEDOR_ALL_LEADS:
       return {
         ...state,
-        vendedorAllLeadsHistory: action.payload,
         vendedorAllLeads: action.payload,
+        vendedorAllLeadsHistory: action.payload,
       };
     case GET_LEADS_LLAMADA_VENTA:
       return {
@@ -354,6 +354,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detailEmploy: action.payload,
       };
+
 
     // *******************************Clientes *******************************
     case GET_ALL_CLIENTES:
