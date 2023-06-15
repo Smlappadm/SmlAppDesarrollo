@@ -73,6 +73,9 @@ const VendedoresDashboard = () => {
     dispatch(filterLevel(value));
     setData(vendedoresDashboard);
     setCurrentPage(1);
+    if(!value){
+      setFilters({...filters, level: !filters.level})
+    }
   };
   //********************************* */
 
