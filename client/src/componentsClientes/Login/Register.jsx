@@ -29,11 +29,13 @@ export default function Register({ handleOpenRegister }) {
     };
     fetchData();
   }, [dispatch]);
-  useEffect(() => {
-    console.log(allClientes[1]);
-  }, [allClientes]);
+  useEffect(() => {}, [allClientes]);
 
-  const validateEmail = async (email) => {
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  };
+  const validateEmail = (email) => {
+    console.log(email);
     const clientEmailVerify =
       allClientes && allClientes.some((client) => client.email === email);
     console.log();
@@ -201,11 +203,9 @@ export default function Register({ handleOpenRegister }) {
         </label>
         <input
           className="rounded-md bg-[#404062] h-7 pl-2"
-          type="text"
+          type="email"
           value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
+          onChange={handleChangeEmail}
           placeholder="Ingresar Correo"
         />
         <span className="text-red-400 text-[12px] text-center">
