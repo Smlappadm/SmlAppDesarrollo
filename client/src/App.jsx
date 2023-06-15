@@ -138,9 +138,9 @@ function ClerkProviderWithRoutes() {
                   },
                 }}
               ></SignIn>
-            ) : redirectUrl === "/clientes-home" ? (
+            ) : (
               <LoginClientes />
-            ) : null
+            )
           }
         />
 
