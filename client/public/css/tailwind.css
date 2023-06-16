@@ -882,6 +882,10 @@ video {
   height: 66.666667%;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -906,6 +910,10 @@ video {
   height: 2.25rem;
 }
 
+.h-\[100px\] {
+  height: 100px;
+}
+
 .h-\[36\.5px\] {
   height: 36.5px;
 }
@@ -923,8 +931,20 @@ video {
   height: 100vh;
 }
 
-.h-40 {
-  height: 10rem;
+.h-\[50px\] {
+  height: 50px;
+}
+
+.h-\[60px\] {
+  height: 60px;
+}
+
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-\[40px\] {
+  height: 40px;
 }
 
 .w-1\/5 {
@@ -2024,6 +2044,26 @@ video {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
+.placeholder\:text-black::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-black::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-white::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-white::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .hover\:absolute:hover {
   position: absolute;
 }
@@ -2050,6 +2090,11 @@ video {
 .hover\:bg-\[\#2a286e\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(42 40 110 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#3f437a\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(63 67 122 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-\[\#c94219\]:hover {
