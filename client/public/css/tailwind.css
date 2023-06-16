@@ -806,6 +806,14 @@ video {
   margin-top: 2rem;
 }
 
+.ml-3 {
+  margin-left: 0.75rem;
+}
+
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -945,6 +953,10 @@ video {
 
 .h-\[40px\] {
   height: 40px;
+}
+
+.h-32 {
+  height: 8rem;
 }
 
 .w-1\/5 {
@@ -1128,6 +1140,14 @@ video {
   width: 41.666667%;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
+.w-7 {
+  width: 1.75rem;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
@@ -1155,6 +1175,12 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.appearance-none {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .flex-row {
@@ -1732,6 +1758,11 @@ video {
   padding-bottom: 1rem;
 }
 
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -2048,6 +2079,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
 .placeholder-white::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(255 255 255 / var(--tw-placeholder-opacity));
@@ -2060,6 +2096,12 @@ video {
 
 .opacity-80 {
   opacity: 0.8;
+}
+
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .drop-shadow-xl {
@@ -2113,6 +2155,10 @@ video {
   color: rgb(107 114 128 / var(--tw-text-opacity));
 }
 
+.focus-within\:border-none:focus-within {
+  border-style: none;
+}
+
 .hover\:absolute:hover {
   position: absolute;
 }
@@ -2124,6 +2170,10 @@ video {
 
 .hover\:overflow-visible:hover {
   overflow: visible;
+}
+
+.hover\:border-none:hover {
+  border-style: none;
 }
 
 .hover\:bg-\[\#1263af\]:hover {
@@ -2221,6 +2271,10 @@ video {
 .focus\:border-gray-500:focus {
   --tw-border-opacity: 1;
   border-color: rgb(107 114 128 / var(--tw-border-opacity));
+}
+
+.focus\:border-transparent:focus {
+  border-color: transparent;
 }
 
 .focus\:bg-white:focus {
