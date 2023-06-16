@@ -30,31 +30,29 @@ export default function ClientesSettings() {
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
       <div className="   justify-between w-96">
-        {!profileSetting ? (
-          <>
-            <div className=" flex mb-4 items-end justify-between pt-4">
-              <h2 className="font-bold">Personal</h2>
-              <Link
-                to={"/clientes-home"}
-                className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-              >
-                <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-              </Link>
-            </div>
-            <div className="">
-              <button className="w-full" onClick={handleProfileSetting}>
-                <CustomsLabelSetting text={texto} />
-              </button>
-              <CustomsLabelSetting text={texto1} switchValue={switchs1} />
-              <CustomsLabelSetting text={texto2} />
-            </div>
-            <div className="mt-16">
-              <CustomsLabelSetting text={texto3} invitar={invitar3} />
-            </div>
-          </>
-        ) : (
-          <ProfileSetting handleProfileSetting={handleProfileSetting} />
-        )}
+        <div className=" flex mb-4 items-end justify-between pt-4">
+          <h2 className="font-bold">Personal</h2>
+          <Link
+            to={"/clientes-home"}
+            className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+          >
+            <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+          </Link>
+        </div>
+        <div className="">
+          <CustomsLabelSetting text={texto} />
+          <CustomsLabelSetting text={texto1} switchValue={switchs1} />
+
+          <Link
+            to={"/clientes-pagos"}
+            className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
+          >
+            Mis Pagos
+          </Link>
+        </div>
+        <div className="mt-16">
+          <CustomsLabelSetting text={texto3} invitar={invitar3} />
+        </div>
       </div>
       <div className="flex justify-center items-center mt-10">
         <button
