@@ -11,6 +11,10 @@ const ClienteSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    instagram: {
+      type: String,
+    },
+
     password: {
       type: String,
       required: true,
