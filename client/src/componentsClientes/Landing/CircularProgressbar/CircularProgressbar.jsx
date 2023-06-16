@@ -3,10 +3,12 @@ import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const CircularProgressBar = ({ value, imageSrc }) => {
+  const percentage = (value / 10000) * 100;
+
   return (
     <div style={{ width: "8.2rem", position: "relative" }}>
       <CircularProgressbar
-        value={value}
+        value={percentage}
         strokeWidth={10}
         styles={buildStyles({
           pathColor: "#570387",
