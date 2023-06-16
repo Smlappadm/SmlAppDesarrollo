@@ -13,7 +13,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
         </button>
       </div>
-      <div className="w-full">
+      <div className="w-full flex flex-col gap-3 items-center">
         <input
           type="text"
           placeholder="Cambiar Nombre de Usuario"
@@ -22,7 +22,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
         <input
           type="text"
           placeholder="Ingresar Instagram"
-          className="w-full"
+          className="w-10/12 text-center rounded-md h-[40px] bg-transparent border placeholder:text-white text-white"
         />
         <input type="text" placeholder="Ingresar TikTok" className="w-full" />
         <input
