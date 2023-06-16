@@ -28,6 +28,7 @@ export const GET_ALL_COUNTRY = "GET_ALL_COUNTRY";
 export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
 export const GET_ALL_CLIENTES = "GET_ALL_CLIENTES";
+export const GET_CLIENT_BY_EMAIL = "GET_CLIENT_BY_EMAIL";
 
 //
 export const setRol = (rol) => {
@@ -295,5 +296,12 @@ export const getAllClientes = () => {
 export const updateClientProfile = (userEmail, body) => {
   return async () => {
     await axios.put(`/clientes/update?email=${userEmail}`, body);
+  };
+};
+export const getClientByEmail = (userEmail) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/clientes/user?email=${userEmail}`);
+    const client = response.data;
+    dispatch({ type: GET_CLIENT_BY_EMAIL, payload: client });
   };
 };
