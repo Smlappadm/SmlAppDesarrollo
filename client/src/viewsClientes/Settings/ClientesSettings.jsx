@@ -28,7 +28,7 @@ export default function ClientesSettings() {
     setProfileSetting(!profileSetting);
   };
   return (
-    <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
+    <div className="flex bg-gradient-to-br from-black via-[#020131]  to-blue-950 gap-5  flex-col justify-center items-center h-screen w-screen">
       <div className="   justify-between w-96">
         {!profileSetting ? (
           <>

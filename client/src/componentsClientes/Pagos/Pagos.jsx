@@ -1,7 +1,24 @@
-import React from 'react'
+import React from "react";
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+import CheckoutForm from "./CheckoutForm"
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
 export const Pagos = () => {
+  const options = {
+    // passing the client secret obtained from the server
+    clientSecret: '{{CLIENT_SECRET}}',
+  };
+
   return (
-    <div>Pagos</div>
-  )
-}
+    <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
+
+    {/* <Elements stripe={stripePromise} options={options}> */}
+      <CheckoutForm />
+    {/* </Elements> */}
+    </div>
+  );
+};
+
