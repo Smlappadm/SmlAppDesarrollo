@@ -3,13 +3,22 @@ import { useUser } from "@clerk/clerk-react";
 import Name from "./Name/Name";
 import Header from "./Header/Header";
 import Followers from "./Followers/Followers";
+import { useDispatch, useSelector } from "react-redux";
+import { getClientByEmail } from "../../redux/actions";
 
 export default function LandingClient() {
   const user = useUser().user;
-  const nameUser = user.fullName;
   const imgUser = user.imageUrl;
 
-  const [name, setName] = useState(nameUser);
+  const { client } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const userEmail = user.emailAddresses[0].emailAddress;
+
+  useEffect(() => {
+    dispatch(getClientByEmail(userEmail && userEmail));
+  }, [dispatch]);
+
+  const [name, setName] = useState(client.name);
   const [imgInstagram, setImgInstagram] = useState(imgUser);
   const [numberInstagram, setNumberInstagram] = useState(1200);
   const [numberTiktok, setNumberTiktok] = useState(3300);
