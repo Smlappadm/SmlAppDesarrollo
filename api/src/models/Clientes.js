@@ -14,10 +14,16 @@ const ClienteSchema = new mongoose.Schema(
     instagram: {
       type: String,
     },
+    seguidoresinstagram: {
+      type: String,
+    },
     drive: {
       type: String,
     },
     tiktok: {
+      type: String,
+    },
+    seguidorestiktok: {
       type: String,
     },
     password: {
