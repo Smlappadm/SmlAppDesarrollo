@@ -78,7 +78,7 @@ export default function LinearDeterminate({
 
   const progressBarFillStyles = {
     height: "100%",
-    backgroundColor: "#2ecc71",
+    backgroundColor: "#570387",
     borderRadius: "10px",
     width: `${progress}%`,
     transition: "width 1s linear", 
