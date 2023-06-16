@@ -7,6 +7,7 @@ import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 import igPng from "../../Assets/instagram.png";
 import tkPng from "../../Assets/tik-tok.png";
 import gdPng from "../../Assets/googleDrive.png";
+import avatarPng from "../../Assets/avatar.png";
 
 export default function ProfileSetting({ handleProfileSetting }) {
   const [username, setUsername] = useState("");
@@ -54,34 +55,62 @@ export default function ProfileSetting({ handleProfileSetting }) {
         </button>
       </div>
       <div className="w-full flex flex-col gap-4 items-center">
-        <input
-          type="text"
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-          placeholder="Cambiar Nombre de Usuario"
-          className="w-10/12 text-center rounded-md h-[40px] bg-gradient-to-br from-black via-[#020131]  to-blue-950 border placeholder:text-gray-500 text-white"
-        />
-        <input
-          type="text"
-          value={instagram}
-          onChange={(event) => setInstagram(event.target.value)}
-          placeholder="Ingresar Instagram"
-          className="w-10/12 text-center rounded-md h-[40px] bg-gradient-to-br from-black via-[#020131]  to-blue-950 border placeholder:text-gray-500 text-white"
-        />
-        <input
-          type="text"
-          value={tiktok}
-          onChange={(event) => setTiktok(event.target.value)}
-          placeholder="Ingresar TikTok"
-          className="w-10/12 text-center rounded-md h-[40px] bg-gradient-to-br from-black via-[#020131]  to-blue-950 border placeholder:text-gray-500 text-white"
-        />
-        <input
-          type="text"
-          value={drive}
-          onChange={(event) => setDrive(event.target.value)}
-          placeholder="Ingresar Google Drive"
-          className="w-10/12 text-center rounded-md h-[40px] bg-gradient-to-br from-black via-[#020131]  to-blue-950 border placeholder:text-gray-500 text-white"
-        />
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <img
+            src={avatarPng}
+            alt="icono de Avatar"
+            className="ml-2 mr-1 w-8 h-8"
+          />
+          <input
+            type="text"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            placeholder="Cambiar Nombre de Usuario"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <img
+            src={igPng}
+            alt="icono de Instagram"
+            className="ml-2 mr-1 w-8 h-8"
+          />
+          <input
+            type="text"
+            value={instagram}
+            onChange={(event) => setInstagram(event.target.value)}
+            placeholder="Ingresar Instagram"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <img
+            src={tkPng}
+            alt="icono de Tiktok"
+            className="ml-2 mr-1 w-8 h-8"
+          />
+          <input
+            type="text"
+            value={tiktok}
+            onChange={(event) => setTiktok(event.target.value)}
+            placeholder="Ingresar TikTok"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <img
+            src={gdPng}
+            alt="icono de Google Drive"
+            className="ml-2 mr-1 w-8 h-8"
+          />
+          <input
+            type="text"
+            value={drive}
+            onChange={(event) => setDrive(event.target.value)}
+            placeholder="Ingresar Google Drive"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
         <button
           className="w-5/12 text-center rounded-md mt-6 border h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 "
           onClick={handleSaveChanges}
