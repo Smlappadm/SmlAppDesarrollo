@@ -1,10 +1,12 @@
 import { useClerk } from "@clerk/clerk-react";
-import React from "react";
+import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
+import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 
 export default function ClientesSettings() {
+  const [profileSetting, setProfileSetting] = useState(false);
   const navigate = useNavigate();
   const texto = "Ajustes de perfil";
   const texto1 = "Notificaiones";
@@ -21,6 +23,10 @@ export default function ClientesSettings() {
     navigate("/clientes-home");
   };
   //*************** */
+
+  const handleProfileSetting = () => {
+    setProfileSetting(!profileSetting);
+  };
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
       <div className="   justify-between w-96">
