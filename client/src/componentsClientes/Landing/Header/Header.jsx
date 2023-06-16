@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoAdd, IoSettingsOutline } from "react-icons/io5";
+import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import CircularProgressBar from "../CircularProgressbar/CircularProgressbar";
 import { useUser } from "@clerk/clerk-react";
 
@@ -29,7 +30,7 @@ export default function Header() {
           to="/clientes-addvideos"
           className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
         >
-          <IoAdd className="font-bold" color="#fff" size={30} />
+          <AiOutlineVideoCameraAdd className="font-bold" color="#fff" size={30} />
         </Link>
         <Link
           to="/clientes-settings"
