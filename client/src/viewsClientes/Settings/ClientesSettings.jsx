@@ -2,6 +2,7 @@ import { useClerk } from "@clerk/clerk-react";
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
+import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 
 export default function ClientesSettings() {
@@ -29,25 +30,31 @@ export default function ClientesSettings() {
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
       <div className="   justify-between w-96">
-        <div className=" flex mb-4 items-end justify-between pt-4">
-          <h2 className="font-bold">Personal</h2>
-          <Link
-            to={"/clientes-home"}
-            className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-          >
-            <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-          </Link>
-        </div>
-        <div className="">
-          <button className="w-full" onClick={handleProfileSetting}>
-            <CustomsLabelSetting text={texto} />
-          </button>
-          <CustomsLabelSetting text={texto1} switchValue={switchs1} />
-          <CustomsLabelSetting text={texto2} />
-        </div>
-        <div className="mt-16">
-          <CustomsLabelSetting text={texto3} invitar={invitar3} />
-        </div>
+        {!profileSetting ? (
+          <>
+            <div className=" flex mb-4 items-end justify-between pt-4">
+              <h2 className="font-bold">Personal</h2>
+              <Link
+                to={"/clientes-home"}
+                className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+              >
+                <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+              </Link>
+            </div>
+            <div className="">
+              <button className="w-full" onClick={handleProfileSetting}>
+                <CustomsLabelSetting text={texto} />
+              </button>
+              <CustomsLabelSetting text={texto1} switchValue={switchs1} />
+              <CustomsLabelSetting text={texto2} />
+            </div>
+            <div className="mt-16">
+              <CustomsLabelSetting text={texto3} invitar={invitar3} />
+            </div>
+          </>
+        ) : (
+          <ProfileSetting handleProfileSetting={handleProfileSetting} />
+        )}
       </div>
       <div className="flex justify-center items-center mt-10">
         <button
