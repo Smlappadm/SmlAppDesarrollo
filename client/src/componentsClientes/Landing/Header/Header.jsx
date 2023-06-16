@@ -1,16 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoAdd, IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import CircularProgressBar from "../CircularProgressbar/CircularProgressbar";
-import { useUser } from "@clerk/clerk-react";
 
-export default function Header() {
-  const user = useUser().user;
-  const imgUser = user.imageUrl;
-
-  const customValue = 55.2;
-  const imgInstagram = imgUser;
+export default function Header({ numberTotal, setCustomValue, imgInstagram }) {
   return (
     <div className="flex flex-row justify-center p-4 w-screen md:gap-60">
       <div className=" justify-center items-center relative">
@@ -21,8 +15,8 @@ export default function Header() {
         />
       </div>
       <div className=" pt-10 justify-center items-center relative">
-        <CircularProgressBar value={customValue} imageSrc={imgInstagram} />
-        <p className="font-bold bottom-0 -right-7 absolute">{customValue}%</p>
+        <CircularProgressBar value={numberTotal} imageSrc={imgInstagram} />
+        <p className="font-bold bottom-0 -right-7 absolute">{(numberTotal / 10000) * 100}%</p>
       </div>
 
       <div className="flex  justify-center items-start gap-3 pt-4">
@@ -30,7 +24,11 @@ export default function Header() {
           to="/clientes-addvideos"
           className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
         >
-          <AiOutlineVideoCameraAdd className="font-bold" color="#fff" size={30} />
+          <AiOutlineVideoCameraAdd
+            className="font-bold"
+            color="#fff"
+            size={30}
+          />
         </Link>
         <Link
           to="/clientes-settings"

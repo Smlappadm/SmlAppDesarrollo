@@ -1,24 +1,45 @@
 import { useUser } from "@clerk/clerk-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { getClientByEmail, updateClientProfile } from "../../redux/actions";
+
+import igPng from "../../Assets/instagram.png";
+import tkPng from "../../Assets/tik-tok.png";
+import gdPng from "../../Assets/googleDrive.png";
 
 export default function ProfileSetting({ handleProfileSetting }) {
   const [username, setUsername] = useState("");
+  const [photo, setPhoto] = useState("");
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [drive, setDrive] = useState("");
+  const { client } = useSelector((state) => state);
   const { user } = useUser();
+  const dispatch = useDispatch();
   const userEmail = user.emailAddresses[0].emailAddress;
+  const userFullName = user.fullName;
+  const userPhoto = user.imageUrl;
 
-  const handleSaveChanges = () => {
+  useEffect(() => {
+    dispatch(getClientByEmail(userEmail && userEmail));
+  }, [dispatch]);
+  useEffect(() => {
+    setUsername(client?.username || "");
+    setInstagram(client?.instagram || "");
+    setTiktok(client?.tiktok || "");
+    setDrive(client?.drive || "");
+  }, [client]);
+
+  const handleSaveChanges = async () => {
     const body = {
-      username,
+      username: username === "" ? userFullName : username,
+      photo: photo === "" ? userPhoto : photo,
       instagram,
       tiktok,
       drive,
     };
-    console.log(body);
-    console.log(userEmail);
+    dispatch(updateClientProfile(userEmail, body));
   };
 
   return (

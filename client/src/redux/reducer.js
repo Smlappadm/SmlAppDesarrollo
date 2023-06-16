@@ -27,6 +27,7 @@ import {
   GET_DETAIL_EMPLOY,
   FIND_CORREDORES_NAME_ALL_INFO,
   GET_ALL_CLIENTES,
+  GET_CLIENT_BY_EMAIL,
 } from "./actions";
 
 const initialState = {
@@ -56,6 +57,7 @@ const initialState = {
   detailEmploy: [],
   corredoresByNameAllInfo: [],
   allClientes: [],
+  client: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -176,10 +178,12 @@ const rootReducer = (state = initialState, action) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "0";
         });
-        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter((client) => {
-          const clientLevel = client.level ? client.level : "";
-          return clientLevel === "0";
-        });
+        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter(
+          (client) => {
+            const clientLevel = client.level ? client.level : "";
+            return clientLevel === "0";
+          }
+        );
       }
       if (action.payload === "1") {
         filteredLevel = copyLevel.filter((client) => {
@@ -194,10 +198,12 @@ const rootReducer = (state = initialState, action) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "1";
         });
-        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter((client) => {
-          const clientLevel = client.level ? client.level : "";
-          return clientLevel === "1";
-        });
+        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter(
+          (client) => {
+            const clientLevel = client.level ? client.level : "";
+            return clientLevel === "1";
+          }
+        );
       }
       if (action.payload === "2") {
         filteredLevel = copyLevel.filter((client) => {
@@ -212,10 +218,12 @@ const rootReducer = (state = initialState, action) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "2";
         });
-        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter((client) => {
-          const clientLevel = client.level ? client.level : "";
-          return clientLevel === "2";
-        });
+        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter(
+          (client) => {
+            const clientLevel = client.level ? client.level : "";
+            return clientLevel === "2";
+          }
+        );
       }
       if (action.payload === "incidencia") {
         filteredLevel = copyLevel.filter((client) => {
@@ -230,10 +238,12 @@ const rootReducer = (state = initialState, action) => {
           const clientLevel = client.level ? client.level : "";
           return clientLevel === "incidencia";
         });
-        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter((client) => {
-          const clientLevel = client.level ? client.level : "";
-          return clientLevel === "incidencia";
-        });
+        filteredVendedorAllLeadsHistory = copyVendedorAllLeadsHistory.filter(
+          (client) => {
+            const clientLevel = client.level ? client.level : "";
+            return clientLevel === "incidencia";
+          }
+        );
       }
       return {
         ...state,
@@ -366,12 +376,16 @@ const rootReducer = (state = initialState, action) => {
         detailEmploy: action.payload,
       };
 
-
     // *******************************Clientes *******************************
     case GET_ALL_CLIENTES:
       return {
         ...state,
         allClientes: action.payload,
+      };
+    case GET_CLIENT_BY_EMAIL:
+      return {
+        ...state,
+        client: action.payload,
       };
     default:
       return { ...state };

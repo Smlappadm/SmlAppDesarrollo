@@ -2,6 +2,7 @@ const newClient = require("../controllers/Clientes/newClient");
 const loginClient = require("../controllers/Clientes/loginClient");
 const getAllClientes = require("../controllers/Clientes/getAllClients");
 const updateClientProfile = require("../controllers/Clientes/updateClientProfile");
+const getClientByEmail = require("../controllers/Clientes/getClientByEmail");
 
 const newClientHandler = async (req, res) => {
   const body = req.body;
@@ -39,10 +40,20 @@ const updateClientProfileHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const getClientByEmailHandler = async (req, res) => {
+  const { email } = req.query;
+  try {
+    const client = await getClientByEmail(email);
+    res.status(200).json(client);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 module.exports = {
   newClientHandler,
   loginClientHandler,
   getAllClientesHandler,
   updateClientProfileHandler,
+  getClientByEmailHandler,
 };
