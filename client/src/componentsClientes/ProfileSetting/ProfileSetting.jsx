@@ -17,18 +17,22 @@ export default function ProfileSetting({ handleProfileSetting }) {
         <input
           type="text"
           placeholder="Cambiar Nombre de Usuario"
-          className="w-full"
+          className="w-10/12 text-center rounded-md h-[40px] bg-transparent border placeholder:text-white text-white"
         />
         <input
           type="text"
           placeholder="Ingresar Instagram"
           className="w-10/12 text-center rounded-md h-[40px] bg-transparent border placeholder:text-white text-white"
         />
-        <input type="text" placeholder="Ingresar TikTok" className="w-full" />
+        <input
+          type="text"
+          placeholder="Ingresar TikTok"
+          className="w-10/12 text-center rounded-md h-[40px] bg-transparent border placeholder:text-white text-white"
+        />
         <input
           type="text"
           placeholder="Ingresar Google Drive"
-          className="w-full"
+          className="w-10/12 text-center rounded-md h-[40px] bg-transparent border placeholder:text-white text-white"
         />
       </div>
     </>
