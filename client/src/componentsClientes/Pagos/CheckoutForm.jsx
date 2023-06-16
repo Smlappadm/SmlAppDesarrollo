@@ -5,6 +5,7 @@ import {
   useElements,
   AddressElement
 } from "@stripe/react-stripe-js";
+import "bootswatch/dist/lux/bootstrap.min.css"
 import style from "./CheckoutForm.module.css"
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -29,12 +30,31 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onClick={handleSubmit} className="w-96 h-32">
- <CardElement
-       className="text-18 h-32 shadow appearance-none border rounded w-full py-6 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-      />
+    <form onClick={handleSubmit} className="flex flex-col justify-center items-center w-96 rounded-lg gap-4">
+        <div className="grid items-center bg-[#39394B] w-96 h-fit rounded-xl p-3">
 
-      <button disabled={!stripe}>Submit</button>
+        <CardElement
+        options={{
+          style: {
+            base: {
+              fontSize: "20px",
+              color: "#ffffff",
+              "::placeholder": {
+                color: "#ffffff",
+              },
+              backgroundColor: "#39394B", // Background personalizado
+              borderRadius: "10px", // Border radius personalizado
+            },
+            invalid: {
+              color: "#9e2146",
+            },
+          },
+          hidePostalCode: true,
+        }}
+      />
+        </div>
+
+      <button disabled={!stripe} className="border-2 border-[#07A1F8] bg-[#07A1F8] w-fit text-white px-5 py-2  rounded-full">Buy</button>
     </form>
   );
 };
