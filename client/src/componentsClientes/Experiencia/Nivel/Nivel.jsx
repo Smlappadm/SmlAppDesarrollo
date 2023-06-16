@@ -8,7 +8,7 @@ export default function Nivel({ nivel }) {
           Nivel
         </label>
         <label htmlFor="" className=" text-[65px]  absolute top-3">
-          <span class="bg-gradient-to-t from-blue-500 to-purple-500 text-transparent bg-clip-text font-extrabold">
+          <span className="bg-gradient-to-t from-blue-500 to-purple-500 text-transparent bg-clip-text font-extrabold">
             {nivel}
           </span>
         </label>
