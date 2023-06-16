@@ -3,10 +3,9 @@ import {
   CardElement,
   useStripe,
   useElements,
-  AddressElement
+  AddressElement,
 } from "@stripe/react-stripe-js";
-import "bootswatch/dist/lux/bootstrap.min.css"
-import style from "./CheckoutForm.module.css"
+import style from "./CheckoutForm.module.css";
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -30,37 +29,43 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onClick={handleSubmit} className="flex flex-col justify-center items-center w-96 rounded-lg gap-4">
-        <div className="grid items-center bg-[#39394B] w-96 h-fit rounded-xl p-3">
-
+    <form
+      onClick={handleSubmit}
+      className="flex flex-col justify-center items-center w-96 rounded-lg gap-4"
+    >
+      <div className="grid items-center bg-[#39394B] w-96 h-fit rounded-xl p-3">
         <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "20px",
-              color: "#ffffff",
-              "::placeholder": {
+          options={{
+            style: {
+              base: {
+                fontSize: "20px",
                 color: "#ffffff",
+                "::placeholder": {
+                  color: "#ffffff",
+                },
+                backgroundColor: "#39394B", // Background personalizado
+                borderRadius: "10px", // Border radius personalizado
               },
-              backgroundColor: "#39394B", // Background personalizado
-              borderRadius: "10px", // Border radius personalizado
+              invalid: {
+                color: "#9e2146",
+              },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-          hidePostalCode: true,
-        }}
-      />
-        </div>
+            hidePostalCode: true,
+          }}
+        />
+      </div>
 
-      <button disabled={!stripe} className="border-2 border-[#07A1F8] bg-[#07A1F8] w-fit text-white px-5 py-2  rounded-full">Buy</button>
+      <button
+        disabled={!stripe}
+        className="border-2 border-[#07A1F8] bg-[#07A1F8] w-fit text-white px-5 py-2  rounded-full"
+      >
+        Buy
+      </button>
     </form>
   );
 };
 
 export default CheckoutForm;
-
 
 // import React, {useState} from 'react';
 // import {useStripe, useElements, PaymentElement, CartElement} from '@stripe/react-stripe-js';
@@ -89,7 +94,6 @@ export default CheckoutForm;
 //         return_url: 'https://example.com/order/123/complete',
 //       },
 //     });
-
 
 //     if (error) {
 //       // This point will only be reached if there is an immediate error when
