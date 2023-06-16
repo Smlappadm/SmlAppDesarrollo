@@ -4,6 +4,10 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
+import igPng from "../../Assets/instagram.png";
+import tkPng from "../../Assets/tik-tok.png";
+import gdPng from "../../Assets/googleDrive.png";
+
 export default function ProfileSetting({ handleProfileSetting }) {
   const [username, setUsername] = useState("");
   const [photo, setPhoto] = useState("");
