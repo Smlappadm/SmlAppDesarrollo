@@ -1,11 +1,19 @@
-.element {
-
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    width: 500px;
-    height: 30px;
-
-
-
-}
+.my-card-element {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 25px;
+    color: #424770;
+    background-color: #ece3e3;
+  }
+  
+  .my-card-element::placeholder {
+    color: #aab7c4;
+  }
+  
+  .my-card-element.invalid {
+    color: #9e2146;
+    border-color: #9e2146;
+  }
