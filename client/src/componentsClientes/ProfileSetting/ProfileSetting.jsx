@@ -59,7 +59,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <img
             src={avatarPng}
             alt="icono de Avatar"
-            className="ml-2 mr-1 w-7 h-7"
+            className="ml-2 mr-1 w-6 h-6"
           />
           <input
             type="text"
@@ -87,7 +87,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <img
             src={tkPng}
             alt="icono de Tiktok"
-            className="ml-2 mr-1 w-8 h-8"
+            className="ml-2 mr-1 w-6 h-6"
           />
           <input
             type="text"
@@ -101,7 +101,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <img
             src={gdPng}
             alt="icono de Google Drive"
-            className="ml-2 mr-1 w-8 h-8"
+            className="ml-2 mr-1 w-6 h-6"
           />
           <input
             type="text"
