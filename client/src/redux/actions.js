@@ -201,10 +201,9 @@ export const getVendedorAllLeads = (email) => {
   return async (dispatch) => {
     const response = await axios.get(`/vendedor/email?email=${email}`);
     const allLeads = response.data?.leads;
-    const allLeadsMaps = allLeads && await allLeads.filter(
-      (item) =>
-        item.status !== "Sin contactar"
-    );
+    const allLeadsMaps =
+      allLeads &&
+      (await allLeads.filter((item) => item.status !== "Sin contactar"));
     dispatch({
       type: GET_VENDEDOR_ALL_LEADS,
       payload: allLeadsMaps,
@@ -291,5 +290,10 @@ export const getAllClientes = () => {
     const response = await axios.get("/clientes/");
     const clientes = response.data;
     dispatch({ type: GET_ALL_CLIENTES, payload: clientes });
+  };
+};
+export const updateClientProfile = (userEmail, body) => {
+  return async () => {
+    await axios.put(`/clientes/update?email=${userEmail}`, body);
   };
 };

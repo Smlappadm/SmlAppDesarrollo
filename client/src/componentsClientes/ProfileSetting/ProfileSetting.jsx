@@ -1,17 +1,31 @@
+import { useUser } from "@clerk/clerk-react";
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { useDispatch } from "react-redux";
+import { updateClientProfile } from "../../redux/actions";
 
 export default function ProfileSetting({ handleProfileSetting }) {
-  const [username, setUsername] = useState();
-  const [instagram, setInstagram] = useState();
-  const [tiktok, setTiktok] = useState();
-  const [drive, setDrive] = useState();
+  const [username, setUsername] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [tiktok, setTiktok] = useState("");
+  const [drive, setDrive] = useState("");
+  const { user } = useUser();
+  const dispatch = useDispatch();
+  const userEmail = user.emailAddresses[0].emailAddress;
+  const userFullName = user.fullName;
+  const userPhoto = user.imageUrl;
 
-  const handleSaveChanges = () => {
-    console.log(username);
-    console.log(instagram);
-    console.log(tiktok);
-    console.log(drive);
+  const handleSaveChanges = async () => {
+    console.log(userPhoto);
+    const body = {
+      username: username === "" ? userFullName : username,
+      photo: photo === "" ? userPhoto : photo,
+      instagram,
+      tiktok,
+      drive,
+    };
+    dispatch(updateClientProfile(userEmail, body));
   };
 
   return (
