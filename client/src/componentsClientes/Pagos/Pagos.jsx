@@ -4,7 +4,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm"
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+const stripePromise = loadStripe('pk_test_51NJhsbGpn5uZGCfpbyEu252jvDVNlqDiljFxifEkG5rAba4tu11lt9wl3m3UP1xFL3tnUGtPxT0KLMjNSnl6SO7o00xs2avzC5');
 
 export const Pagos = () => {
   const options = {
@@ -16,8 +16,9 @@ export const Pagos = () => {
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
 
     {/* <Elements stripe={stripePromise} options={options}> */}
+    <Elements stripe={stripePromise} >
       <CheckoutForm />
-    {/* </Elements> */}
+    </Elements>
     </div>
   );
 };
