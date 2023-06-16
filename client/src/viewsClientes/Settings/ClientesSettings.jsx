@@ -13,8 +13,11 @@ export default function ClientesSettings() {
   const texto3 = "Invitar a un amigo";
   const invitar3 = true;
   const { signOut } = useClerk();
+
+  const tokenAccess = localStorage.getItem("access");
   const handleLogout = async () => {
     await signOut();
+    localStorage.removeItem("access");
     navigate("/clientes-home");
   };
   //*************** */

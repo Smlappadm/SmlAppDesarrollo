@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LandingClient from "../../componentsClientes/Landing/LandingClient";
 import { VistaGeneral } from "../VistaGeneral/VistaGeneral";
 import { TrofeosXP } from "../TrofeosXP/TrofeosXP";
@@ -7,27 +7,43 @@ import axios from "axios";
 
 export default function Home() {
   const [optionView, setOptionView] = useState("vistaGeneral");
-  const [access, setAccess] = useState(false);
+  const [access, setAccess] = useState();
   const { signOut } = useClerk();
   const { user } = useUser();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/clientes/");
+        const client = response.data;
+        const findClient = client.some((item) => item.email === userEmail);
+        setAccess(findClient);
+        localStorage.setItem("access", JSON.stringify(findClient));
+      } catch (error) {
+        console.error("Error al obtener los datos:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const tokenAccess = localStorage.getItem("access");
+    if (tokenAccess) {
+      setAccess(JSON.parse(tokenAccess));
+    }
+  }, []);
+
   if (!user || !user.emailAddresses || !user.emailAddresses[0]) {
     return <div>Loading...</div>;
   }
   const userEmail = user.emailAddresses[0].emailAddress;
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("/clientes/");
-      const client = response.data;
-      const findClient = client.some((item) => item.email === userEmail);
-      setAccess(findClient);
-    } catch (error) {
-      console.error("Error al obtener los datos:", error);
-    }
+  const localRemove = () => {
+    console.log("Removing access from localStorage");
+    localStorage.removeItem("access");
   };
 
-  fetchData();
-
   const handleLogout = async () => {
+    localRemove();
     await signOut();
   };
   const handleViewChange = (event) => {
@@ -35,7 +51,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#020131] w-screen h-full 2xl:h-screen  pb-32">
+    <div className="flex flex-col items-center bg-gradient-to-br from-black via-[#020131]  to-blue-950 w-screen h-full 2xl:h-screen  pb-32">
       {access ? (
         <>
           <LandingClient />

@@ -90,6 +90,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
               borderRadius: "10px",
             },
             layout: {
+              socialButtonsVariant: "blockButton",
               socialButtonsPlacement: "top",
             },
             elements: {
