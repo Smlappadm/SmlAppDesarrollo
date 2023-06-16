@@ -14,6 +14,9 @@ const ClienteSchema = new mongoose.Schema(
     instagram: {
       type: String,
     },
+    drive: {
+      type: String,
+    },
 
     password: {
       type: String,
