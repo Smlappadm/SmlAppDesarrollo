@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
 export default function ProfileSetting({ handleProfileSetting }) {
-  const [username, setUsername] = useState();
-  const [instagram, setInstagram] = useState();
-  const [tiktok, setTiktok] = useState();
-  const [drive, setDrive] = useState();
+  const [username, setUsername] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [tiktok, setTiktok] = useState("");
+  const [drive, setDrive] = useState("");
 
   const handleSaveChanges = () => {
     console.log(username);
