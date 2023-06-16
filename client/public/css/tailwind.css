@@ -1144,6 +1144,10 @@ video {
   width: 91.666667%;
 }
 
+.w-7 {
+  width: 1.75rem;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
