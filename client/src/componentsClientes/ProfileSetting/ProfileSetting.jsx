@@ -1,6 +1,7 @@
 import React from "react";
+import { IoCloseSharp } from "react-icons/io5";
 
-export default function ProfileSetting(handleProfileSetting) {
+export default function ProfileSetting({ handleProfileSetting }) {
   return (
     <div className=" flex mb-4 items-end justify-between pt-4">
       <h2 className="font-bold">Ajustes de Perfil</h2>
