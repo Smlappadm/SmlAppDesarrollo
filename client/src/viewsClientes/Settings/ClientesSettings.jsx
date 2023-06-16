@@ -13,7 +13,12 @@ export default function ClientesSettings() {
   const texto3 = "Invitar a un amigo";
   const invitar3 = true;
   const { signOut } = useClerk();
+  const localRemove = () => {
+    console.log("Removing access from localStorage");
+    localStorage.setItem("access", JSON.stringify(""));
+  };
   const handleLogout = async () => {
+    //localRemove();
     await signOut();
     navigate("/clientes-home");
   };
