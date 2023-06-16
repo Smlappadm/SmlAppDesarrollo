@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/clerk-react";
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 
@@ -6,12 +7,18 @@ export default function ProfileSetting({ handleProfileSetting }) {
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [drive, setDrive] = useState("");
+  const { user } = useUser();
+  const userEmail = user.emailAddresses[0].emailAddress;
 
   const handleSaveChanges = () => {
-    console.log(username);
-    console.log(instagram);
-    console.log(tiktok);
-    console.log(drive);
+    const body = {
+      username,
+      instagram,
+      tiktok,
+      drive,
+    };
+    console.log(body);
+    console.log(userEmail);
   };
 
   return (
