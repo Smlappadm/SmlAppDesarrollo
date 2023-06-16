@@ -36,7 +36,13 @@ export default function ClientesSettings() {
         <div className="">
           <CustomsLabelSetting text={texto} />
           <CustomsLabelSetting text={texto1} switchValue={switchs1} />
-          <CustomsLabelSetting text={texto2} />
+
+          <Link
+            to={"/clientes-pagos"}
+            className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
+          >
+            Mis Pagos
+          </Link>
         </div>
         <div className="mt-16">
           <CustomsLabelSetting text={texto3} invitar={invitar3} />
