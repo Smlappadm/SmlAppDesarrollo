@@ -7,48 +7,43 @@ import axios from "axios";
 
 export default function Home() {
   const [optionView, setOptionView] = useState("vistaGeneral");
-  const [access, setAccess] = useState("");
+  const [access, setAccess] = useState();
   const { signOut } = useClerk();
   const { user } = useUser();
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("/clientes/");
-      const client = response.data;
-      const findClient = client.some((item) => item.email === userEmail);
-
-      local(findClient);
-    } catch (error) {
-      console.error("Error al obtener los datos:", error);
-    }
-  };
-
-  const local = (loc) => {
-    localStorage.setItem("access", JSON.stringify(loc));
-    console.log("ssi");
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/clientes/");
+        const client = response.data;
+        const findClient = client.some((item) => item.email === userEmail);
+        setAccess(findClient);
+        localStorage.setItem("access", JSON.stringify(findClient));
+      } catch (error) {
+        console.error("Error al obtener los datos:", error);
+      }
+    };
+
     fetchData();
   }, []);
-  if (
-    !user ||
-    !user.emailAddresses ||
-    !user.emailAddresses[0] ||
-    localStorage.getItem("access") === ""
-  ) {
+
+  useEffect(() => {
+    const tokenAccess = localStorage.getItem("access");
+    if (tokenAccess) {
+      setAccess(JSON.parse(tokenAccess));
+    }
+  }, []);
+
+  if (!user || !user.emailAddresses || !user.emailAddresses[0]) {
     return <div>Loading...</div>;
   }
   const userEmail = user.emailAddresses[0].emailAddress;
-  const tokenAccess = JSON.parse(
-    localStorage && localStorage.getItem("access")
-  );
-
   const localRemove = () => {
     console.log("Removing access from localStorage");
-    localStorage.setItem("access", JSON.stringify(""));
+    localStorage.removeItem("access");
   };
 
   const handleLogout = async () => {
-    //localRemove();
+    localRemove();
     await signOut();
   };
   const handleViewChange = (event) => {
@@ -57,7 +52,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center bg-gradient-to-br from-black via-[#020131]  to-blue-950 w-screen h-full 2xl:h-screen  pb-32">
-      {tokenAccess && tokenAccess ? (
+      {access ? (
         <>
           <LandingClient />
           {/* otras cosas del header */}
