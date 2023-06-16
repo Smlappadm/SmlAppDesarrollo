@@ -33,6 +33,7 @@ import LoginClientes from "./viewsClientes/Login/LoginClientes";
 import Home from "./viewsClientes/Home/Home";
 import AddVideos from "./viewsClientes/AddVideos/AddVideos";
 import ClientesSettings from "./viewsClientes/Settings/ClientesSettings";
+import {Pagos} from "./componentsClientes/Pagos/Pagos"
 import { LideresHistory } from "./components/Lideres/History/HistoryLeader";
 const { CLERK_API_KEY } = import.meta.env;
 
@@ -151,8 +152,9 @@ function ClerkProviderWithRoutes() {
         />
         <Route path="*" element={<h1>error 404</h1>} />
         <Route path="/home" element={<Landing />} />
-        <Route path="/clientes-addvideos" element={<AddVideos />} />
-        <Route path="/clientes-settings" element={<ClientesSettings />} />
+        <Route path="/clientes-addvideos" element={<AddVideos/>} />
+        <Route path="/clientes-settings" element={<ClientesSettings/>} />
+        <Route path="/clientes-pagos" element={<Pagos/>} />
 
         <Route path="/" element={<Login />} />
         <Route
