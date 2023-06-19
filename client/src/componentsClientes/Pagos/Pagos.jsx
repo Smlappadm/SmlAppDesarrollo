@@ -35,7 +35,7 @@ export const Pagos = () => {
 
     {/* <Elements stripe={stripePromise} options={options}> */}
     <Elements stripe={stripePromise} >
-      <ConfirmacionPago/>
+      {/* <ConfirmacionPago/> */}
       <CheckoutForm />
     </Elements>
     </div>
