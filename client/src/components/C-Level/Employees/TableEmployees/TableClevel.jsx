@@ -9,6 +9,9 @@ import NestedModal from "./MaterialUi/NestedModal";
 import NestedModalEdit from "./MaterialUi/Edit/NestedModalEdit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IoGrid } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { FaBan } from "react-icons/fa";
 
 const BannedEmployees = (name) => {
   toast.success(`✔ ${name} Successful banning process completed! `, {
@@ -84,6 +87,7 @@ const ErrorCreateEmployees = (name) => {
 };
 
 export const TableClevel = () => {
+  
   const { detailEmploy } = useSelector((state) => state);
   const { allEmployees } = useSelector((state) => state);
 
@@ -114,7 +118,17 @@ export const TableClevel = () => {
         <ToastContainer />
         <div className="bg-[#222131] rounded-none w-full h-screen p-5">
           <div className="flex justify-between items-center">
-            <h1 className="font-bold text-[#e2e2e2] text-lg">Employees</h1>
+            <div className="flex gap-5">
+              <h1 className="font-bold text-[#e2e2e2] text-lg">Employees</h1>
+              <div className="flex gap-5">
+                <Link to={"/clevel"}>
+                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/employees-banned"}>
+                  <FaBan className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+              </div>
+            </div>
             <NestedModal
               CreateEmployees={CreateEmployees}
               ErrorCreateEmployees={ErrorCreateEmployees}
