@@ -44,9 +44,6 @@ const CLevelSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-CLevelSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
 
 const CLevel = new mongoose.model("clevel", CLevelSchema);
 
