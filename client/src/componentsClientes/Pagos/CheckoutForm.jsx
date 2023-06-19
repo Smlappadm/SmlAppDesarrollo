@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   PaymentElement,
   CardElement,
@@ -13,6 +13,13 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
+  const [errores, setErrores] = useState({message: ""});
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setLoading(false)
+    }, 2000)
+  }, [loading])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,12 +34,20 @@ const CheckoutForm = () => {
       card: elements.getElement(CardElement),
     });
 
+    setErrores({...errores, message: error.message})
     setLoading(true);
+    console.log(errores)
+    console.log(error)
+
+    // 'Your card number is invalid.'
+    // 'Your card number is incomplete.'
+    // "Your card's security code is incomplete."
+    // "Your card's expiration date is incomplete."
 
     if (!error) {
       console.log("Compra realizada");
       const { id } = paymentMethod;
-
+      
       try {
         const { data } = await axios.post(
           "http://localhost:3001/api/clientes/payment",
@@ -42,20 +57,26 @@ const CheckoutForm = () => {
           }
         );
         console.log(data);
-
+        setErrores({...errores, message: ""})
         elements.getElement(CardElement).clear();
       } catch (error) {
-        console.log(error);
+        console.log("dsdsf")
+        setErrores({...errores, message: error.message})
+        // console.log(error);
+        console.log(errores.message)
       }
       setLoading(false);
     }
   };
-
+  
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-96 rounded-lg gap-4"
     >
+      {errores.message && (<div>
+        <p></p>
+      </div>) }
       <input
         type="text"
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#dddde2] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -90,7 +111,7 @@ const CheckoutForm = () => {
 
       <button
         type="submit"
-        disabled={!stripe}
+        disabled={!stripe && errores.message === ""}
         className="border-2 border-[#07A1F8] bg-[none] w-24 text-white px-5 py-2  rounded-full hover:bg-[#3579b1] flex justify-center"
       >
         {loading ? (
