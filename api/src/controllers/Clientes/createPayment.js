@@ -1,21 +1,14 @@
-import stripeImport from "stripe";
-
-const stripe = stripeImport(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const paymentIntent = async (req, res) => {
-  // const bookDB = await getBookById(products[0].id)
-  // const finalAmount = bookDB.price
-  const product = req.body;
+  console.log("asdasdasdasdasd");
+
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: "1", //precio
+      amount: 100, // Precio en centavos (por ejemplo, $1.00)
       currency: "usd",
-      //   payment_method: product[0].pm,
-      payment_method: "",
+      payment_method: "", // Aquí debes proporcionar el ID del método de pago
       confirm: true,
-      // automatic_payment_methods: {
-      //   enabled: true,
-      // },
     });
 
     res.send({
@@ -27,4 +20,5 @@ const paymentIntent = async (req, res) => {
   }
 };
 
-export { paymentIntent };
+module.exports = { paymentIntent };
+
