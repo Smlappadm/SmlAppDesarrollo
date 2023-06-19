@@ -49,6 +49,16 @@ const getClientByEmailHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const paymentClienteHandler = async (req, res) => {
+  // const { email } = req.query;
+  console.log("entro")
+  try {
+    const pago= await createPayment(pago);
+    res.status(200).json(client);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 module.exports = {
   newClientHandler,
@@ -56,4 +66,5 @@ module.exports = {
   getAllClientesHandler,
   updateClientProfileHandler,
   getClientByEmailHandler,
+  paymentClienteHandler
 };
