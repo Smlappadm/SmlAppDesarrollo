@@ -92,21 +92,19 @@ function Nav() {
                     </Link>
                   </span>
                 </li>
-                {roleReady === "clevel" ? (
-                  <li className="flex gap-2 items-center text-[18px] text-white">
-                    <span className="text-[1.5rem]">
-                      <IoStatsChart className="w-4 text-[#e0dddd]" />
-                    </span>
-                    <span>
-                      <Link
-                        to="/analytics"
-                        className="text-[#e0dddd] hover:text-white"
-                      >
-                        Analytics
-                      </Link>
-                    </span>
-                  </li>
-                ) : null}
+                <li className="flex gap-2 items-center text-[18px] text-white">
+                  <span className="text-[1.5rem]">
+                    <IoStatsChart className="w-4 text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/analytics"
+                      className="text-[#e0dddd] hover:text-white"
+                    >
+                      Analytics
+                    </Link>
+                  </span>
+                </li>
                 <li className="flex gap-2 items-center text-[18px]">
                   <span className=" text-lg">
                     <IoSettingsSharp className="text-[#e0dddd]" />
