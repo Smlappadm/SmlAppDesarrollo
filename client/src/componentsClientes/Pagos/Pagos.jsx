@@ -2,6 +2,7 @@ import React from "react";
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import CheckoutForm from "./CheckoutForm"
+import ConfirmacionPago from "./ConfirmacionPago";
 // require('dotenv').config();
 
 // const { STRIPE_SECRET_KEY } = process.env;
@@ -33,6 +34,7 @@ export const Pagos = () => {
 
     {/* <Elements stripe={stripePromise} options={options}> */}
     <Elements stripe={stripePromise} >
+      <ConfirmacionPago/>
       <CheckoutForm />
     </Elements>
     </div>
