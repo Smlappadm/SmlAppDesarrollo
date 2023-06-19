@@ -1,12 +1,22 @@
+const updateBannedEmploy = require("../controllers/Employees/UpdateBannedEmploy");
 const deleteEmployByEmail = require("../controllers/Employees/deleteEmployByEmail");
 const getAllEmployees = require("../controllers/Employees/getAllEmployees");
 const getEmployeesByEmail = require("../controllers/Employees/getEmployByEmail");
+const getEmployeesBanned = require("../controllers/Employees/getEmployeesBanned");
 const postEmployees = require("../controllers/Employees/postEmployees");
 const updateEmployByEmail = require("../controllers/Employees/updateEmployByEmail");
 
 const getAllEmployeesHandler = async (req, res) => {
   try {
     const employees = await getAllEmployees();
+    res.status(200).json(employees);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const getEmployeesBannedHandler = async (req, res) => {
+  try {
+    const employees = await getEmployeesBanned();
     res.status(200).json(employees);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -58,10 +68,24 @@ const updateEmployByEmailHandler = async (req, res) => {
   }
 };
 
+const updateBannedEmployHandler = async (req, res) => {
+  const email = req.query.email;
+  const updatedData = req.body;
+
+  try {
+    const employ = await updateBannedEmploy(email, updatedData);
+    res.status(200).json(employ);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 module.exports = {
   postEmployeesHandler,
   getEmployeesByEmailHandler,
   updateEmployByEmailHandler,
   getAllEmployeesHandler,
   deleteEmployeesByEmailHandler,
+  updateBannedEmployHandler,
+  getEmployeesBannedHandler,
 };
