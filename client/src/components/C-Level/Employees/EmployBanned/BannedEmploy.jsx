@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import style from "./BannedEmployees.module.css";
+import style from "./BannedEmploy.module.css";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { CiMail } from "react-icons/ci";
 import { getDetailEmploy, getEmployeesBanned } from "../../../../redux/actions";
@@ -23,6 +23,9 @@ export default function BannedEmploy() {
   useEffect(() => {
     dispatch(getEmployeesBanned());
   }, [dispatch]);
+  useEffect(() => {
+    console.log(employeesBanned && employeesBanned);
+  }, [employeesBanned]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -150,8 +153,7 @@ export default function BannedEmploy() {
                 <div>Rol</div>
                 <div></div>
               </div>
-              {currentCard &&
-                currentCard.map((item, index) => (
+              {currentCard.map((item, index) => (
                   <div
                     key={index}
                     className={style.tableCards}
