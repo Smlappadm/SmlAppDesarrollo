@@ -52,9 +52,17 @@ function ChildModalDelete({
   };
   const handleCreate = async () => {
     try {
-      await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
-        deleted: true,
-      });
+      if (itemRol === "clevel" || itemRol === "leader") {
+        await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
+          deleted: true,
+        });
+        await axios.put(`/corredor/email/email?email=${itemEmail}`, {
+          deleted: true,
+        });
+        await axios.put(`/vendedor/email/email?email=${itemEmail}`, {
+          deleted: true,
+        });
+      }
     } catch (error) {
       ErrorEmployees(inputName);
       console.log(`No se pudo enviar el baneado de ${itemRol} ${itemEmail} `);
