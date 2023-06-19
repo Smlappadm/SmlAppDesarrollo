@@ -10,11 +10,12 @@ const {
 const ClientesRouter = Router();
 
 
+ClientesRouter.post("/payment", paymentClienteHandler);
+console.log("ssasasasas")
 ClientesRouter.post("/new", newClientHandler);
 ClientesRouter.get("/username", loginClientHandler);
 ClientesRouter.get("/user", getClientByEmailHandler);
 ClientesRouter.get("/", getAllClientesHandler);
 ClientesRouter.put("/update", updateClientProfileHandler);
-ClientesRouter.post("/payment", paymentClienteHandler);
 
 module.exports = ClientesRouter;
