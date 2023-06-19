@@ -12,6 +12,7 @@ import { FaBan } from "react-icons/fa";
 import Detail from "../Detail/Detail";
 import Nav from "../../../Nav/Nav";
 import { IoAdd } from "react-icons/io5";
+import axios from "axios";
 
 export default function BannedEmploy() {
   // const BannedEmployees = (name) => {
@@ -80,7 +81,7 @@ export default function BannedEmploy() {
       }
 
       // console.log(itemRol);
-      
+
       console.log(inputEmail);
       if (itemRol === "leader") {
         await axios.put(`/leader/email/email?email=${inputEmail}`, {
@@ -114,7 +115,9 @@ export default function BannedEmploy() {
       // BannedEmployees(inputEmail);
     } catch (error) {
       // ErrorEmployees(inputEmail);
-      console.log(`No se pudo enviar el post de ${inputEmail}  ${itemRol} `);
+      console.log(
+        `No se pudo enviar el post de ${inputEmail}  ${itemRol} ${error.message}`
+      );
     }
 
     dispatch(getEmployeesBanned());
