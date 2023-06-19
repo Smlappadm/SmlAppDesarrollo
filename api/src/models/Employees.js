@@ -44,9 +44,6 @@ const employeesSchema = new Schema(
   { timestamps: true }
 );
 
-employeesSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
 
 const Employees = model("Employees", employeesSchema);
 
