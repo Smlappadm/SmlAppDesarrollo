@@ -79,7 +79,6 @@ function ChildModal({
         alert("El campo 'rol' no es válido");
         return;
     }
-    console.log(url);
     try {
       await axios.post(url, {
         name: inputName,
@@ -87,7 +86,6 @@ function ChildModal({
         rol: selectEmployees,
         deleted: false,
       });
-      console.log("se envio todito");
       if (selectEmployees === "clevel" || selectEmployees === "leader") {
         await axios.post("/corredor", {
           name: inputName,
