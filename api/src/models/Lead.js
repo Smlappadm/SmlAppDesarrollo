@@ -132,7 +132,6 @@ const LeadSchema = new mongoose.Schema(
       type: Boolean,
       require: true,
       default: false,
-      select: false,
     },
   },
   { timestamps: true }
