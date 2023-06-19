@@ -3,6 +3,7 @@ const loginClient = require("../controllers/Clientes/loginClient");
 const getAllClientes = require("../controllers/Clientes/getAllClients");
 const updateClientProfile = require("../controllers/Clientes/updateClientProfile");
 const getClientByEmail = require("../controllers/Clientes/getClientByEmail");
+const createPayment = require("../controllers/Clientes/createPayment")
 
 const newClientHandler = async (req, res) => {
   const body = req.body;
@@ -50,10 +51,11 @@ const getClientByEmailHandler = async (req, res) => {
   }
 };
 const paymentClienteHandler = async (req, res) => {
-  console.log("entrotamb")
+
   // const { email } = req.query;
-  console.log("entro")
+  // console.log("entro")
   try {
+    // const pago= await createPayment(pago);
     const pago= await createPayment();
     res.status(200).json(pago);
   } catch (error) {
