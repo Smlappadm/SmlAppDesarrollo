@@ -18,7 +18,7 @@ const postCLevelHandler = async (req, res) => {
   const data = req.body;
   try {
     const cLevel = await postCLevel(data);
-    res.status(200).json(data);
+    res.status(200).json(cLevel);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
