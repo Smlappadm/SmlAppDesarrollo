@@ -53,7 +53,7 @@ function ChildModalDelete({
   const handleCreate = async () => {
     try {
       const response = await axios.put(
-        `/${itemRol}/email/email/?email=${itemEmail}`,
+        `/${itemRol}/email/email?email=${itemEmail}`,
         {
           deleted: true,
         }
@@ -149,7 +149,7 @@ function ChildModal({
 
     try {
       if (itemRol === "clevel") {
-        await axios.put(`/clevel/email/?email=${inputEmail}`, {
+        await axios.put(`/clevel/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -158,7 +158,7 @@ function ChildModal({
           country: inputCountry,
         });
 
-        await axios.put(`/corredor/email/email/?email=${inputEmail}`, {
+        await axios.put(`/corredor/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -167,7 +167,7 @@ function ChildModal({
           country: inputCountry,
         });
 
-        await axios.put(`/vendedor/email/email/?email=${inputEmail}`, {
+        await axios.put(`/vendedor/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -177,7 +177,7 @@ function ChildModal({
         });
       }
       if (itemRol === "leader") {
-        await axios.put(`/leader/email/?email=${inputEmail}`, {
+        await axios.put(`/leader/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -186,7 +186,7 @@ function ChildModal({
           country: inputCountry,
         });
 
-        await axios.put(`/corredor/email/email/?email=${inputEmail}`, {
+        await axios.put(`/corredor/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -195,7 +195,7 @@ function ChildModal({
           country: inputCountry,
         });
 
-        await axios.put(`/vendedor/email/email/?email=${inputEmail}`, {
+        await axios.put(`/vendedor/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -206,7 +206,7 @@ function ChildModal({
       }
 
       if (itemRol === "vendedor") {
-        await axios.put(`/vendedor/email/email/?email=${inputEmail}`, {
+        await axios.put(`/vendedor/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -217,7 +217,7 @@ function ChildModal({
       }
 
       if (itemRol === "corredor") {
-        await axios.put(`/corredor/email/email/?email=${inputEmail}`, {
+        await axios.put(`/corredor/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,
@@ -227,7 +227,7 @@ function ChildModal({
         });
       }
 
-      await axios.put(`/employees/email/?email=${inputEmail}`, {
+      await axios.put(`/employees/email?email=${inputEmail}`, {
         name: inputName,
         email: inputEmail,
         contactNumber: inputPhone,
