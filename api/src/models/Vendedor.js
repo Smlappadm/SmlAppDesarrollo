@@ -48,10 +48,6 @@ const VendedorSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-VendedorSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
-
 const Vendedor = new mongoose.model("vendedor", VendedorSchema);
 
 module.exports = Vendedor;
