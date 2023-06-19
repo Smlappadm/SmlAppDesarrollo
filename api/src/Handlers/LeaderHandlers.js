@@ -17,7 +17,6 @@ const getAllLeadersHandler = async (req, res) => {
 
 const postLeaderHandler = async (req, res) => {
   const data = req.body;
-  console.log(data);
   try {
     const leaders = await postLeader(data);
     res.status(200).json(leaders);
