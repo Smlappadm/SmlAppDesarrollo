@@ -29,6 +29,8 @@ export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
 export const GET_ALL_CLIENTES = "GET_ALL_CLIENTES";
 export const GET_CLIENT_BY_EMAIL = "GET_CLIENT_BY_EMAIL";
+export const COMPRA_SERVICIO = "COMPRA_SERVICIO"
+
 
 //
 export const setRol = (rol) => {
@@ -305,3 +307,17 @@ export const getClientByEmail = (userEmail) => {
     dispatch({ type: GET_CLIENT_BY_EMAIL, payload: client });
   };
 };
+
+export const sendCompraServivio = (pago) => {
+  return async function (dispatch) {
+    try {
+      const payload = await clienteAxios.post(`/create-payment-intent/`, pago)
+      return dispatch({
+        type: COMPRA_SERVICIO,
+        payload
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
