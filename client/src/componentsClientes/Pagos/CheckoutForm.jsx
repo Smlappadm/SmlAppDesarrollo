@@ -33,17 +33,19 @@ const CheckoutForm = () => {
       onClick={handleSubmit}
       className="flex flex-col justify-center items-center w-96 rounded-lg gap-4"
     >
-      <div className="grid items-center bg-[#39394B] w-96 h-fit rounded-xl p-3">
+      <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#dddde2] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre completo" />
+<input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#39394B] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email" />
+      <div className="grid items-center bg-[#f8f8f8] w-full h-14 rounded-xl p-3">
         <CardElement
           options={{
             style: {
               base: {
-                fontSize: "20px",
-                color: "#ffffff",
+                fontSize: "18px",
+                color: "#1d1d1d",
                 "::placeholder": {
-                  color: "#ffffff",
+                  color: "#000000",
                 },
-                backgroundColor: "#39394B", // Background personalizado
+                backgroundColor: "#f3f3f3", // Background personalizado
                 borderRadius: "10px", // Border radius personalizado
               },
               invalid: {
@@ -57,7 +59,7 @@ const CheckoutForm = () => {
 
       <button
         disabled={!stripe}
-        className="border-2 border-[#07A1F8] bg-[#07A1F8] w-fit text-white px-5 py-2  rounded-full"
+        className="border-2 border-[#07A1F8] bg-[none] w-24 text-white px-5 py-2  rounded-full hover:bg-[#3579b1]"
       >
         Buy
       </button>
