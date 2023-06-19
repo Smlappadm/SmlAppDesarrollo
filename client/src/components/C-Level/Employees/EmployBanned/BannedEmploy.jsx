@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import style from "./BannedEmployees.module.css";
+import style from "./BannedEmploy.module.css";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { CiMail } from "react-icons/ci";
 import { getDetailEmploy, getEmployeesBanned } from "../../../../redux/actions";
@@ -15,30 +15,6 @@ import { IoAdd } from "react-icons/io5";
 import axios from "axios";
 
 export default function BannedEmploy() {
-  // const BannedEmployees = (name) => {
-  //   toast.success(`✔ ${name} Successful unbanned process completed! `, {
-  //     position: "top-center",
-  //     autoClose: 3000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "dark",
-  //   });
-  // };
-  // const ErrorEmployees = (name) => {
-  //   toast.error(`❌ Error unbanned Employ ${name}! `, {
-  //     position: "top-center",
-  //     autoClose: 3000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     progress: undefined,
-  //     theme: "dark",
-  //   });
-  // };
   const { detailEmploy } = useSelector((state) => state);
   const { employeesBanned } = useSelector((state) => state);
 
@@ -67,64 +43,87 @@ export default function BannedEmploy() {
     dispatch(getDetailEmploy(email));
   };
 
-  const handleRemoveBanned = async (itemRol, inputEmail) => {
+  const BannedEmployees = (name) => {
+    toast.success(`✔ ${name} Successful unbanned process completed! `, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const ErrorEmployees = (name) => {
+    toast.error(`❌ Error unbanned Employ ${name}! `, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const handleRemoveBanned = async (Rol, Email, Name) => {
     try {
-      if (itemRol === "clevel") {
-        await axios.put(`/clevel/email?email=${inputEmail}`, {
+      if (Rol === "clevel") {
+        await axios.put(`/clevel/email?email=${Email}`, {
           deleted: false,
         });
 
-        await axios.put(`/corredor/email/email?email=${inputEmail}`, {
+        await axios.put(`/corredor/email/email?email=${Email}`, {
           deleted: false,
         });
 
-        await axios.put(`/vendedor/email/email?email=${inputEmail}`, {
-          deleted: false,
-        });
-      }
-
-      // console.log(itemRol);
-
-      console.log(inputEmail);
-      if (itemRol === "leader") {
-        await axios.put(`/leader/email/email?email=${inputEmail}`, {
-          deleted: false,
-        });
-
-        await axios.put(`/corredor/email/email?email=${inputEmail}`, {
-          deleted: false,
-        });
-
-        await axios.put(`/vendedor/email/email?email=${inputEmail}`, {
+        await axios.put(`/vendedor/email/email?email=${Email}`, {
           deleted: false,
         });
       }
 
-      if (itemRol === "vendedor") {
-        await axios.put(`/vendedor/email/email?email=${inputEmail}`, {
+      console.log(Email);
+      if (Rol === "leader") {
+        await axios.put(`/leader/email/email?email=${Email}`, {
+          deleted: false,
+        });
+
+        await axios.put(`/corredor/email/email?email=${Email}`, {
+          deleted: false,
+        });
+
+        await axios.put(`/vendedor/email/email?email=${Email}`, {
           deleted: false,
         });
       }
 
-      if (itemRol === "corredor") {
-        await axios.put(`/corredor/email/email?email=${inputEmail}`, {
+      if (Rol === "vendedor") {
+        await axios.put(`/vendedor/email/email?email=${Email}`, {
           deleted: false,
         });
       }
 
-      await axios.put(`/employees/email?email=${inputEmail}`, {
+      if (Rol === "corredor") {
+        await axios.put(`/corredor/email/email?email=${Email}`, {
+          deleted: false,
+        });
+      }
+
+      await axios.put(`/employees/email?email=${Email}`, {
         deleted: false,
       });
-      // BannedEmployees(inputEmail);
+      BannedEmployees(Name);
     } catch (error) {
-      // ErrorEmployees(inputEmail);
+      ErrorEmployees(Name);
       console.log(
-        `No se pudo enviar el post de ${inputEmail}  ${itemRol} ${error.message}`
+        `No se pudo enviar el post de ${Email}  ${Rol} ${error.message}`
       );
     }
 
     dispatch(getEmployeesBanned());
-    dispatch(getDetailEmploy(inputEmail));
+    dispatch(getDetailEmploy(Email));
   };
 
   return (
@@ -154,8 +153,7 @@ export default function BannedEmploy() {
                 <div>Rol</div>
                 <div></div>
               </div>
-              {currentCard &&
-                currentCard.map((item, index) => (
+              {currentCard.map((item, index) => (
                   <div
                     key={index}
                     className={style.tableCards}
@@ -187,7 +185,9 @@ export default function BannedEmploy() {
                       </p>
                     </div>
                     <div
-                      onClick={() => handleRemoveBanned(item.rol, item.email)}
+                      onClick={() =>
+                        handleRemoveBanned(item.rol, item.email, item.name)
+                      }
                     >
                       <IoAdd className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
                     </div>
