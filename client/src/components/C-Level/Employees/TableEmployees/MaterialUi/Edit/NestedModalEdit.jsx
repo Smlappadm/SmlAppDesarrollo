@@ -51,13 +51,12 @@ function ChildModalDelete({
     setOpen(false);
   };
   const handleCreate = async () => {
+    console.log(itemRol);
+    console.log(itemEmail);
     try {
-      const response = await axios.put(
-        `/${itemRol}/email/email?email=${itemEmail}`,
-        {
-          deleted: true,
-        }
-      );
+      await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
+        deleted: true,
+      });
     } catch (error) {
       ErrorEmployees(inputName);
       console.log(`No se pudo enviar el baneado de ${itemRol} ${itemEmail} `);
