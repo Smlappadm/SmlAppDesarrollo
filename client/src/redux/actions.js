@@ -29,6 +29,7 @@ export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
 export const GET_ALL_CLIENTES = "GET_ALL_CLIENTES";
 export const GET_CLIENT_BY_EMAIL = "GET_CLIENT_BY_EMAIL";
+export const GET_BANNED = "GET_BANNED";
 
 //
 export const setRol = (rol) => {
@@ -55,6 +56,17 @@ export const getEmployees = (employees) => ({
   type: GET_EMPLOYEES,
   payload: employees,
 });
+
+export const getEmployeesBanned = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/employees/banned");
+    const employeesBanned = response.data;
+    dispatch({
+      type: GET_BANNED,
+      payload: employeesBanned,
+    });
+  };
+};
 
 //
 export const getAllLead = () => {
