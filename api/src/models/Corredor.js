@@ -55,15 +55,11 @@ const CorredorSchema = new mongoose.Schema(
     deleted: {
       type: Boolean,
       default: false,
-      select: false,
     },
   },
   { timestamps: true }
 );
 
-CorredorSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
 
 const Corredor = new mongoose.model("corredor", CorredorSchema);
 

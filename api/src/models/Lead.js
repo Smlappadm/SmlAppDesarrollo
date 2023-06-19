@@ -132,15 +132,10 @@ const LeadSchema = new mongoose.Schema(
       type: Boolean,
       require: true,
       default: false,
-      select: false,
     },
   },
   { timestamps: true }
 );
-
-LeadSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
 
 const Lead = new mongoose.model("lead", LeadSchema);
 

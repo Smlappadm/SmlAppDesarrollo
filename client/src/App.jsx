@@ -33,8 +33,9 @@ import LoginClientes from "./viewsClientes/Login/LoginClientes";
 import Home from "./viewsClientes/Home/Home";
 import AddVideos from "./viewsClientes/AddVideos/AddVideos";
 import ClientesSettings from "./viewsClientes/Settings/ClientesSettings";
-import {Pagos} from "./componentsClientes/Pagos/Pagos"
+import { Pagos } from "./componentsClientes/Pagos/Pagos";
 import { LideresHistory } from "./components/Lideres/History/HistoryLeader";
+import BannedEmployees from "./components/C-Level/Employees/EmployBanned/BannedEmploy";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -152,9 +153,9 @@ function ClerkProviderWithRoutes() {
         />
         <Route path="*" element={<h1>error 404</h1>} />
         <Route path="/home" element={<Landing />} />
-        <Route path="/clientes-addvideos" element={<AddVideos/>} />
-        <Route path="/clientes-settings" element={<ClientesSettings/>} />
-        <Route path="/clientes-pagos" element={<Pagos/>} />
+        <Route path="/clientes-addvideos" element={<AddVideos />} />
+        <Route path="/clientes-settings" element={<ClientesSettings />} />
+        <Route path="/clientes-pagos" element={<Pagos />} />
 
         <Route path="/" element={<Login />} />
         <Route
@@ -164,6 +165,18 @@ function ClerkProviderWithRoutes() {
             (roleReady === "clevel" || roleReady === "leader") &&
             isEmployeeReady ? (
               <LideresDasboard />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/employees-banned"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
+              <BannedEmployees />
             ) : (
               <ReturnToPage />
             )

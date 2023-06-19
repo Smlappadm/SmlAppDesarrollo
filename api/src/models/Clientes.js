@@ -52,16 +52,10 @@ const ClienteSchema = new mongoose.Schema(
     deleted: {
       type: Boolean,
       default: false,
-      select: false,
     },
   },
   { timestamps: true }
 );
-
-ClienteSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
-
 const Cliente = new mongoose.model("cliente", ClienteSchema);
 
 module.exports = Cliente;

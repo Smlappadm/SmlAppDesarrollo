@@ -38,15 +38,11 @@ const employeesSchema = new Schema(
     deleted: {
       type: Boolean,
       default: false,
-      select: false,
     },
   },
   { timestamps: true }
 );
 
-employeesSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
 
 const Employees = model("Employees", employeesSchema);
 

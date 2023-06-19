@@ -16,7 +16,6 @@ LeaderRouter.get("/", getAllLeadersHandler);
 LeaderRouter.get("/email", getLeaderByEmailHandler);
 LeaderRouter.get("/name", getLeaderByNameHandler);
 LeaderRouter.get("/:id", getLeaderByIdHandler);
-LeaderRouter.put("/email/email", updateLeaderByEmailHandler);
 LeaderRouter.put("/:id", updateLeaderHandler);
 LeaderRouter.put("/email/email", updateLeaderByEmailHandler);
 
