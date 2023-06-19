@@ -103,6 +103,7 @@ function ChildModal({
         });
       }
       CreateEmployees(inputName);
+      log("se envio todito");
     } catch (error) {
       ErrorCreateEmployees(inputName);
       console.log(`No se pudo enviar el post de ${selectEmployees}`);
