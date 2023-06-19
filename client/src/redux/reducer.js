@@ -28,6 +28,7 @@ import {
   FIND_CORREDORES_NAME_ALL_INFO,
   GET_ALL_CLIENTES,
   GET_CLIENT_BY_EMAIL,
+  GET_BANNED,
 } from "./actions";
 
 const initialState = {
@@ -58,6 +59,7 @@ const initialState = {
   corredoresByNameAllInfo: [],
   allClientes: [],
   client: [],
+  employeesBanned: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -78,6 +80,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         employees: action.payload,
+      };
+
+    case GET_BANNED:
+      return {
+        ...state,
+        employeesBanned: action.payload,
       };
 
     case GET_ALL_LEAD:
