@@ -6,6 +6,7 @@ const {
   getLeaderByIdHandler,
   getLeaderByNameHandler,
   getLeaderByEmailHandler,
+  updateLeaderByEmailHandler,
 } = require("../Handlers/LeaderHandlers");
 const {
   updateCorredorByEmailHandler,
@@ -18,6 +19,6 @@ LeaderRouter.get("/email", getLeaderByEmailHandler);
 LeaderRouter.get("/name", getLeaderByNameHandler);
 LeaderRouter.get("/:id", getLeaderByIdHandler);
 LeaderRouter.put("/:id", updateLeaderHandler);
-LeaderRouter.put("/email", updateCorredorByEmailHandler);
+LeaderRouter.put("/email", updateLeaderByEmailHandler);
 
 module.exports = LeaderRouter;
