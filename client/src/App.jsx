@@ -157,6 +157,7 @@ function ClerkProviderWithRoutes() {
         <Route path="/clientes-settings" element={<ClientesSettings />} />
         <Route path="/clientes-pagos" element={<Pagos />} />
 
+
         <Route path="/" element={<Login />} />
         <Route
           path="/lideres"
