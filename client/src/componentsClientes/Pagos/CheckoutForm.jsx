@@ -6,6 +6,8 @@ import {
   AddressElement,
 } from "@stripe/react-stripe-js";
 import style from "./CheckoutForm.module.css";
+import axios from "axios"
+
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
@@ -24,10 +26,15 @@ const CheckoutForm = () => {
     });
     if (!error) {
       console.log("Compra realizada");
-      console.log(paymentMethod);
+      const { id } = paymentMethod;
+      const {data} = await axios.post("http://localhost:3001/api/clientes/payment", {
+        id,
+        amount: 10, //"centavos por cien seria el peso"
+      })
+      console.log(data);
     } else {
-      console.log("Hubo un error")
-      console.log(error)
+      console.log("Hubo un error");
+      console.log(error);
     }
   };
 
@@ -36,8 +43,16 @@ const CheckoutForm = () => {
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-96 rounded-lg gap-4"
     >
-      <input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#dddde2] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre completo" />
-<input type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#39394B] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email" />
+      <input
+        type="text"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#dddde2] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Nombre completo"
+      />
+      <input
+        type="text"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#39394B] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="email"
+      />
       <div className="grid items-center bg-[#f8f8f8] w-full h-14 rounded-xl p-3">
         <CardElement
           options={{
@@ -61,7 +76,7 @@ const CheckoutForm = () => {
       </div>
 
       <button
-      type="submit"
+        type="submit"
         disabled={!stripe}
         className="border-2 border-[#07A1F8] bg-[none] w-24 text-white px-5 py-2  rounded-full hover:bg-[#3579b1]"
       >
