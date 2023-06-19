@@ -23,9 +23,6 @@ export default function BannedEmploy() {
   useEffect(() => {
     dispatch(getEmployeesBanned());
   }, [dispatch]);
-  useEffect(() => {
-    console.log(employeesBanned && employeesBanned);
-  }, [employeesBanned]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -154,45 +151,45 @@ export default function BannedEmploy() {
                 <div></div>
               </div>
               {currentCard.map((item, index) => (
-                  <div
-                    key={index}
-                    className={style.tableCards}
-                    onClick={() => cardDetail(item.email)}
-                  >
-                    <div className="flex justify-start items-center p-0">
-                      <img
-                        className="w-8 ml-2 mr-4 rounded-full"
-                        src={item.photo}
-                        alt=""
-                      />
-                      <p>{item.name}</p>
-                    </div>
-                    <div className="flex justify-start items-center p-0">
-                      <CiMail className={style.icon} />
-                      <p>{item.email}</p>
-                    </div>
-                    <div className="p-0">
-                      <p
-                        className={` 
+                <div
+                  key={index}
+                  className={style.tableCards}
+                  onClick={() => cardDetail(item.email)}
+                >
+                  <div className="flex justify-start items-center p-0">
+                    <img
+                      className="w-8 ml-2 mr-4 rounded-full"
+                      src={item.photo}
+                      alt=""
+                    />
+                    <p>{item.name}</p>
+                  </div>
+                  <div className="flex justify-start items-center p-0">
+                    <CiMail className={style.icon} />
+                    <p>{item.email}</p>
+                  </div>
+                  <div className="p-0">
+                    <p
+                      className={` 
                       ${item.rol === "clevel" ? "bg-[#ac4242]" : null} 
                       ${item.rol === "leader" ? "bg-[#1b7757]" : null}  
                       ${item.rol === "corredor" ? "bg-[#2148b4]" : null}  
                       ${
                         item.rol === "vendedor" ? "bg-[#8a912b]" : null
                       } text-center p-1 w-20 rounded-lg`}
-                      >
-                        {item.rol}
-                      </p>
-                    </div>
-                    <div
-                      onClick={() =>
-                        handleRemoveBanned(item.rol, item.email, item.name)
-                      }
                     >
-                      <IoAdd className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                    </div>
+                      {item.rol}
+                    </p>
                   </div>
-                ))}
+                  <div
+                    onClick={() =>
+                      handleRemoveBanned(item.rol, item.email, item.name)
+                    }
+                  >
+                    <IoAdd className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
