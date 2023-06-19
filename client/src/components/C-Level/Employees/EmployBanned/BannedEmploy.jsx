@@ -47,6 +47,9 @@ export default function BannedEmploy() {
   useEffect(() => {
     dispatch(getEmployeesBanned());
   }, [dispatch]);
+  useEffect(() => {
+    console.log(employeesBanned && employeesBanned);
+  }, [employeesBanned]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
