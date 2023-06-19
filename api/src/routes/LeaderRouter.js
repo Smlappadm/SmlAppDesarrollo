@@ -2,14 +2,13 @@ const { Router } = require("express");
 const {
   postLeaderHandler,
   getAllLeadersHandler,
-  updateLeaderHandler,
-  getLeaderByIdHandler,
-  getLeaderByNameHandler,
   getLeaderByEmailHandler,
+  getLeaderByNameHandler,
+  getLeaderByIdHandler,
+  updateLeaderHandler,
+  updateLeaderByEmailHandler,
 } = require("../Handlers/LeaderHandlers");
-const {
-  updateCorredorByEmailHandler,
-} = require("../Handlers/CorredorHandlers");
+
 const LeaderRouter = Router();
 
 LeaderRouter.post("/", postLeaderHandler);
@@ -18,6 +17,6 @@ LeaderRouter.get("/email", getLeaderByEmailHandler);
 LeaderRouter.get("/name", getLeaderByNameHandler);
 LeaderRouter.get("/:id", getLeaderByIdHandler);
 LeaderRouter.put("/:id", updateLeaderHandler);
-LeaderRouter.put("/email", updateCorredorByEmailHandler);
+LeaderRouter.put("/email", updateLeaderByEmailHandler);
 
 module.exports = LeaderRouter;
