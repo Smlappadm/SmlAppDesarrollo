@@ -38,7 +38,6 @@ const CLevelSchema = new mongoose.Schema(
     deleted: {
       type: Boolean,
       default: false,
-      select: false,
     },
   },
   { timestamps: true }
