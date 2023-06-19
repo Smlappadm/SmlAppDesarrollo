@@ -54,7 +54,7 @@ const paymentClienteHandler = async (req, res) => {
   const {id, amount} = req.body
   try {
     const pago = await createPayment({id, amount});
-    res.status(200).json({pago: pago, message: "Pay "});
+    res.status(200).json({pago: pago, message: "Pago Realizado"});
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
