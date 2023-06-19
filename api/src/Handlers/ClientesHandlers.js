@@ -50,11 +50,12 @@ const getClientByEmailHandler = async (req, res) => {
   }
 };
 const paymentClienteHandler = async (req, res) => {
+  console.log("entrotamb")
   // const { email } = req.query;
   console.log("entro")
   try {
-    const pago= await createPayment(pago);
-    res.status(200).json(client);
+    const pago= await createPayment();
+    res.status(200).json(pago);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
