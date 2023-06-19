@@ -13,13 +13,22 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-  const [errores, setErrores] = useState({message: ""});
+  const [errores, setErrores] = useState({ message: "" });
+  const [datos, setDatos] = useState({ nombre: "", email: "", email2:"", pais:"", calle:"", numero:"", cp:""});
 
-  useEffect(()=>{
-    setTimeout(()=>{
-      setLoading(false)
-    }, 2000)
-  }, [loading])
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+      setErrores({...errores, message: ""})
+    }, 3000);
+  }, [loading, errores]);
+
+  const handleChange = (event) => {
+  const name = event.target.name
+  const value = event.target.value
+
+  setDatos({...datos, [name]: value})
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,16 +37,16 @@ const CheckoutForm = () => {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
+    setErrores({ ...errores, message: ""});
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
 
-    setErrores({...errores, message: error.message})
     setLoading(true);
-    console.log(errores)
-    console.log(error)
+    // console.log(errores);
+    // console.log(error);
 
     // 'Your card number is invalid.'
     // 'Your card number is incomplete.'
@@ -47,7 +56,7 @@ const CheckoutForm = () => {
     if (!error) {
       console.log("Compra realizada");
       const { id } = paymentMethod;
-      
+
       try {
         const { data } = await axios.post(
           "http://localhost:3001/api/clientes/payment",
@@ -57,58 +66,155 @@ const CheckoutForm = () => {
           }
         );
         console.log(data);
-        setErrores({...errores, message: ""})
+        setErrores({ ...errores, message: "" });
         elements.getElement(CardElement).clear();
       } catch (error) {
-        console.log("dsdsf")
-        setErrores({...errores, message: error.message})
+        setErrores({ ...errores, message: error.message });
+        console.log("dsdsf");
+        // setErrores({ ...errores, message: error.message });
         // console.log(error);
-        console.log(errores.message)
+        console.log(errores.message);
       }
       setLoading(false);
     }
   };
-  
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center w-96 rounded-lg gap-4"
+      className="flex flex-col justify-center items-center w-80 rounded-lg gap-4"
     >
-      {errores.message && (<div>
-        <p></p>
-      </div>) }
+      {errores.message &&
+        errores.message === "Your card number is invalid." && (
+          <p className="absolute top-12 text-center">
+            Número de tarjeta invalido
+          </p>
+        )}
+      {errores.message &&
+        errores.message === "Your card number is incomplete." && (
+          <p className="absolute top-12 text-center">Número de tarjeta incompleto</p>
+        )}
+      {errores.message &&
+        errores.message === "Your card's security code is incomplete." && (
+          <p className="absolute top-12 text-center">Clave de seguridad incompleta</p>
+        )}
+      {errores.message &&
+        errores.message === "Your card's expiration date is incomplete." && (
+          <p className="absolute top-12 text-center">Fecha de expiración incompleta</p>
+        )}
+      {errores.message &&
+        errores.message === "Your card's expiration year is in the past." && (
+          <p className="absolute top-12 text-center">Tarjeta expirada</p>
+        )}
+
+<div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
       <input
         type="text"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#dddde2] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        name="nombre"
+        onChange={handleChange}
+        value={datos.nombre}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="Nombre completo"
-      />
+        />
+        </div>
+        <div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
       <input
         type="text"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#39394B] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        name="email"
+        onChange={handleChange}
+        value={datos.email}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         placeholder="email"
       />
-      <div className="grid items-center bg-[#f8f8f8] w-full h-14 rounded-xl p-3">
+      </div>
+      <div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
+      <input
+        type="text"
+        name="email2"
+        onChange={handleChange}
+        value={datos.email2}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Confirmar email"
+      />
+       </div>
+      <div className="flex gap-2">
+      <div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
+      <input
+        type="text"
+        name="pais"
+        onChange={handleChange}
+        value={datos.pais}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="País"
+      />
+      </div>
+      <div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
+      <input
+        type="text"
+        name="calle"
+        onChange={handleChange}
+        value={datos.calle}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Calle"
+      />
+  </div>
+      </div>
+      <div className="flex gap-2">
+      <div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
+      <input
+        type="text"
+        name="numero"
+        onChange={handleChange}
+        value={datos.numero}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="número"
+      />
+      </div>
+      <div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
+      <input
+        type="text"
+        name="cp"
+        onChange={handleChange}
+        value={datos.cp}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="CP"
+      />
+       </div>
+
+      </div>
+        <div className="border-2 w-80 rounded-full"></div>
+      <div className="border-2 w-full">
+<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
+      <div className="grid items-center bg-[#2a2a33] w-full h-14 rounded-xl p-3">
         <CardElement
           options={{
             style: {
               base: {
                 fontSize: "20px",
-                color: "#1d1d1d",
+                color: "#ffffff",
                 "::placeholder": {
-                  color: "#000000",
+                  color: "#c2bfbf",
                 },
-                backgroundColor: "#f8f8f8", // Background personalizado
+                backgroundColor: "#2a2a33", // Background personalizado
                 borderRadius: "10px", // Border radius personalizado
+                border: "1px solid #bbbbbb"
               },
               invalid: {
-                color: "#9e2146",
+                color: "#f50b51",
               },
             },
             hidePostalCode: true,
           }}
         />
       </div>
-
+      </div>
       <button
         type="submit"
         disabled={!stripe && errores.message === ""}
