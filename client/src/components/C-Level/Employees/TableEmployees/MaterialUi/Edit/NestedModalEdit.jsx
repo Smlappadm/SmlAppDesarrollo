@@ -69,7 +69,7 @@ function ChildModalDelete({
     }
 
     try {
-      await axios.put(`/employees/email?email=${inputEmail}`, {
+      await axios.put(`/employees/banned?email=${inputEmail}`, {
         deleted: true,
       });
 
