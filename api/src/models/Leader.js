@@ -44,9 +44,6 @@ const LeaderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-LeaderSchema.pre("find", function () {
-  this.where({ deleted: false });
-});
 
 const Leader = new mongoose.model("leader", LeaderSchema);
 
