@@ -32,6 +32,7 @@
     "dayjs": "1.11.7",
     "dotenv": "^16.0.3",
     "faker": "^6.6.6",
+    "formik": "^2.4.2",
     "framer-motion": "^10.12.16",
     "mkcert": "^1.5.1",
     "moment": "^2.29.4",

@@ -31,7 +31,7 @@ const postCorredorHandler = async (req, res) => {
 
   try {
     const corredores = await postCorredor(data);
-    res.status(200).json(data);
+    res.status(200).json(corredores);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

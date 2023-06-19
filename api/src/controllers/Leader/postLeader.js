@@ -14,11 +14,11 @@ const postLeader = async ({
   const leader = await Leader.create({
     name,
     email,
-    birthdate,
-    photo,
-    country,
-    contactNumber,
-    description,
+    birthdate: birthdate ?? "",
+    photo: photo ?? "",
+    country: country ?? "",
+    contactNumber: contactNumber ?? "",
+    description: description ?? "",
     rol,
     deleted,
   });
