@@ -43,12 +43,12 @@ const CheckoutForm = () => {
           options={{
             style: {
               base: {
-                fontSize: "18px",
+                fontSize: "20px",
                 color: "#1d1d1d",
                 "::placeholder": {
                   color: "#000000",
                 },
-                backgroundColor: "#f3f3f3", // Background personalizado
+                backgroundColor: "#f8f8f8", // Background personalizado
                 borderRadius: "10px", // Border radius personalizado
               },
               invalid: {
