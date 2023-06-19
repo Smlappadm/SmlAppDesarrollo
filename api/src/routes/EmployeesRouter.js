@@ -5,8 +5,8 @@ const {
   updateEmployByEmailHandler,
   getAllEmployeesHandler,
   deleteEmployeesByEmailHandler,
-  updateBannedEmployHandler,
   getEmployeesBannedHandler,
+  updateBannedEmployHandler,
 } = require("../Handlers/employeesHandlers");
 const EmployeesRouter = Router();
 
@@ -16,6 +16,6 @@ EmployeesRouter.post("/", postEmployeesHandler);
 EmployeesRouter.get("/email", getEmployeesByEmailHandler);
 EmployeesRouter.delete("/", deleteEmployeesByEmailHandler);
 EmployeesRouter.put("/email", updateEmployByEmailHandler);
-EmployeesRouter.put("/email/banned", updateBannedEmployHandler);
+EmployeesRouter.put("/banned", updateBannedEmployHandler);
 
 module.exports = EmployeesRouter;
