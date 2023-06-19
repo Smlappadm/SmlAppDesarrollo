@@ -20,7 +20,7 @@ const postLeaderHandler = async (req, res) => {
   console.log(data);
   try {
     const leaders = await postLeader(data);
-    res.status(200).json(data);
+    res.status(200).json(leaders);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
