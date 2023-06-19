@@ -174,7 +174,7 @@ function ChildModal({
         });
       }
       if (itemRol === "leader") {
-        await axios.put(`/leader/email?email=${inputEmail}`, {
+        await axios.put(`/leader/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,

@@ -22,15 +22,18 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-
     if (!error) {
+      console.log("Compra realizada");
       console.log(paymentMethod);
+    } else {
+      console.log("Hubo un error")
+      console.log(error)
     }
   };
 
   return (
     <form
-      onClick={handleSubmit}
+      onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-96 rounded-lg gap-4"
     >
       <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#dddde2] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre completo" />
@@ -58,6 +61,7 @@ const CheckoutForm = () => {
       </div>
 
       <button
+      type="submit"
         disabled={!stripe}
         className="border-2 border-[#07A1F8] bg-[none] w-24 text-white px-5 py-2  rounded-full hover:bg-[#3579b1]"
       >

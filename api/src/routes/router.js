@@ -3,10 +3,10 @@ const router = Router();
 const CLevelRouter = require("./CLevelRouter");
 const CorredorRouter = require("./CorredorRouter");
 const LeadRouter = require("./LeadRouter");
-const LeaderRouter = require("./LeaderRouter");
 const VendedorRouter = require("./VendedorRouter");
 const EmployeesRouter = require("./EmployeesRouter");
 const ClientesRouter = require("./ClientesRouter");
+const LeaderRouter = require("./LeaderRouter");
 
 router.use("/employees", EmployeesRouter);
 router.use("/clevel", CLevelRouter);
