@@ -51,8 +51,6 @@ function ChildModalDelete({
     setOpen(false);
   };
   const handleCreate = async () => {
-    console.log(itemRol);
-    console.log(itemEmail);
     try {
       await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
         deleted: true,
