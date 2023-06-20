@@ -53,7 +53,7 @@ function ChildModalDelete({
   const handleCreate = async () => {
     try {
       if (itemRol === "clevel" || itemRol === "leader") {
-        await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
+        await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
           deleted: true,
         });
         await axios.put(`/corredor/email/email?email=${itemEmail}`, {
@@ -69,7 +69,7 @@ function ChildModalDelete({
     }
 
     try {
-      await axios.put(`/employees/email?email=${inputEmail}`, {
+      await axios.put(`/employees/banned?email=${inputEmail}`, {
         deleted: true,
       });
 
