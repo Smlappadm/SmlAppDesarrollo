@@ -186,7 +186,7 @@ export default function BannedEmploy() {
                       handleRemoveBanned(item.rol, item.email, item.name)
                     }
                   >
-                    <IoAdd className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                    <IoAdd className="text-[2rem] text-[#418df0] hover:text-[#3570bd] cursor-pointer" />
                   </div>
                 </div>
               ))}
