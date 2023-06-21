@@ -13,7 +13,16 @@ const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-  const [errores, setErrores] = useState({ message: "" });
+  const [errores, setErrores] = useState({
+    nombre: "",
+    email: "",
+    email2: "",
+    pais: "",
+    calle: "",
+    numero: "",
+    cp: "",
+    targeta: "",
+  });
   const [datos, setDatos] = useState({
     nombre: "",
     email: "",
@@ -36,6 +45,7 @@ const CheckoutForm = () => {
     const value = event.target.value;
 
     setDatos({ ...datos, [name]: value });
+    setErrores(validation({ ...datos, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -120,10 +130,10 @@ const CheckoutForm = () => {
         errores.message === "Your card's expiration year is in the past." && (
           <p className="absolute top-12 text-center">Tarjeta expirada</p>
         )}
-        <label htmlFor="" className=" w-full text-[16px]">
-          Complete los datos del pago:
-        </label>
-<div className="border-2 w-80 rounded-full"></div>
+      <label htmlFor="" className=" w-full text-[16px]">
+        Complete los datos del pago:
+      </label>
+      <div className="border-2 w-80 rounded-full"></div>
       <div className=" w-full">
         <label htmlFor="" className=" w-full text-[13px]">
           Nombre completo
@@ -250,7 +260,16 @@ const CheckoutForm = () => {
       <div className="border-2 w-80 rounded-full"></div>
       <button
         type="submit"
-        disabled={!stripe && errores.message === ""}
+        disabled={!stripe ||
+          errores.nombre ||
+          errores.email ||
+          errores.email2 ||
+          errores.pais ||
+          errores.calle ||
+          errores.numero ||
+          errores.cp ||
+          errores.targeta
+        }
         className=" bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"
       >
         {loading ? (
