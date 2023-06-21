@@ -16,6 +16,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [drive, setDrive] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
   const [save, setSave] = useState(false);
   const { client } = useSelector((state) => state);
   const { user } = useUser();
@@ -141,15 +143,28 @@ export default function ProfileSetting({ handleProfileSetting }) {
           />
         </div>
         <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
-          <p className="ml-2 mr-1  w-40">📞</p>
+          <p className="ml-2 mr-1 w-[24px]">📞</p>
           <input
             type="text"
-            value={drive}
+            value={phone}
             onChange={(event) => {
-              setDrive(event.target.value);
+              setPhone(event.target.value);
               setSave(true);
             }}
-            placeholder="Ingresar Google Drive"
+            placeholder="Ingresar Teléfono"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <p className="ml-2 mr-1 w-[24px]">🌍</p>
+          <input
+            type="text"
+            value={country}
+            onChange={(event) => {
+              setCountry(event.target.value);
+              setSave(true);
+            }}
+            placeholder="Ingresar País"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
