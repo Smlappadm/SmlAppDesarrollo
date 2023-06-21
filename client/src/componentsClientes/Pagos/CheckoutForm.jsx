@@ -14,20 +14,28 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const [errores, setErrores] = useState({ message: "" });
-  const [datos, setDatos] = useState({ nombre: "", email: "", email2:"", pais:"", calle:"", numero:"", cp:""});
+  const [datos, setDatos] = useState({
+    nombre: "",
+    email: "",
+    email2: "",
+    pais: "",
+    calle: "",
+    numero: "",
+    cp: "",
+  });
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-      setErrores({...errores, message: ""})
+      setErrores({ ...errores, message: "" });
     }, 3000);
   }, [loading, errores]);
 
   const handleChange = (event) => {
-  const name = event.target.name
-  const value = event.target.value
+    const name = event.target.name;
+    const value = event.target.value;
 
-  setDatos({...datos, [name]: value})
+    setDatos({ ...datos, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -37,7 +45,7 @@ const CheckoutForm = () => {
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-    setErrores({ ...errores, message: ""});
+    setErrores({ ...errores, message: "" });
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -92,139 +100,164 @@ const CheckoutForm = () => {
         )}
       {errores.message &&
         errores.message === "Your card number is incomplete." && (
-          <p className="absolute top-12 text-center">Número de tarjeta incompleto</p>
+          <p className="absolute top-12 text-center">
+            Número de tarjeta incompleto
+          </p>
         )}
       {errores.message &&
         errores.message === "Your card's security code is incomplete." && (
-          <p className="absolute top-12 text-center">Clave de seguridad incompleta</p>
+          <p className="absolute top-12 text-center">
+            Clave de seguridad incompleta
+          </p>
         )}
       {errores.message &&
         errores.message === "Your card's expiration date is incomplete." && (
-          <p className="absolute top-12 text-center">Fecha de expiración incompleta</p>
+          <p className="absolute top-12 text-center">
+            Fecha de expiración incompleta
+          </p>
         )}
       {errores.message &&
         errores.message === "Your card's expiration year is in the past." && (
           <p className="absolute top-12 text-center">Tarjeta expirada</p>
         )}
-
-<div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <input
-        type="text"
-        name="nombre"
-        onChange={handleChange}
-        value={datos.nombre}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Nombre completo"
+        <label htmlFor="" className=" w-full text-[16px]">
+          Complete los datos del pago:
+        </label>
+<div className="border-2 w-80 rounded-full"></div>
+      <div className=" w-full">
+        <label htmlFor="" className=" w-full text-[13px]">
+          Nombre completo
+        </label>
+        <input
+          type="text"
+          name="nombre"
+          onChange={handleChange}
+          value={datos.nombre}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Nombre completo"
         />
+      </div>
+      <div className=" w-full">
+        <label htmlFor="" className=" w-full text-[13px]">
+          Email
+        </label>
+        <input
+          type="text"
+          name="email"
+          onChange={handleChange}
+          value={datos.email}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="email"
+        />
+      </div>
+      <div className=" w-full">
+        <label htmlFor="" className=" w-full text-[13px]">
+          Email confirmación
+        </label>
+        <input
+          type="text"
+          name="email2"
+          onChange={handleChange}
+          value={datos.email2}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Confirmar email"
+        />
+      </div>
+      <div className="flex gap-2">
+        <div className=" w-full">
+          <label htmlFor="" className=" w-full text-[13px]">
+            País
+          </label>
+          <input
+            type="text"
+            name="pais"
+            onChange={handleChange}
+            value={datos.pais}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="País"
+          />
         </div>
-        <div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <input
-        type="text"
-        name="email"
-        onChange={handleChange}
-        value={datos.email}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="email"
-      />
-      </div>
-      <div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <input
-        type="text"
-        name="email2"
-        onChange={handleChange}
-        value={datos.email2}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Confirmar email"
-      />
-       </div>
-      <div className="flex gap-2">
-      <div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <input
-        type="text"
-        name="pais"
-        onChange={handleChange}
-        value={datos.pais}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="País"
-      />
-      </div>
-      <div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <input
-        type="text"
-        name="calle"
-        onChange={handleChange}
-        value={datos.calle}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Calle"
-      />
-  </div>
+        <div className=" w-full">
+          <label htmlFor="" className=" w-full text-[13px]">
+            Calle
+          </label>
+          <input
+            type="text"
+            name="calle"
+            onChange={handleChange}
+            value={datos.calle}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Calle"
+          />
+        </div>
       </div>
       <div className="flex gap-2">
-      <div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <input
-        type="text"
-        name="numero"
-        onChange={handleChange}
-        value={datos.numero}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="número"
-      />
+        <div className=" w-full">
+          <label htmlFor="" className=" w-full text-[13px]">
+            Número
+          </label>
+          <input
+            type="text"
+            name="numero"
+            onChange={handleChange}
+            value={datos.numero}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="número"
+          />
+        </div>
+        <div className=" w-full">
+          <label htmlFor="" className=" w-full text-[13px]">
+            Código Postal
+          </label>
+          <input
+            type="text"
+            name="cp"
+            onChange={handleChange}
+            value={datos.cp}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="CP"
+          />
+        </div>
       </div>
-      <div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <input
-        type="text"
-        name="cp"
-        onChange={handleChange}
-        value={datos.cp}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="CP"
-      />
-       </div>
-
-      </div>
-        <div className="border-2 w-80 rounded-full"></div>
-      <div className="border-2 w-full">
-<label htmlFor="" className="border-2 w-full text-[13px]" >Nombre completo</label>
-      <div className="grid items-center bg-[#2a2a33] w-full h-14 rounded-xl p-3">
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "20px",
-                color: "#ffffff",
-                "::placeholder": {
-                  color: "#c2bfbf",
+      <div className="border-2 w-80 rounded-full"></div>
+      <div className=" w-full">
+        <label htmlFor="" className=" w-full text-[13px]">
+          Número de tarjeta
+        </label>
+        <div className="grid items-center bg-[#2a2a33] w-full h-14 rounded-xl p-3">
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "18px",
+                  color: "#ffffff",
+                  "::placeholder": {
+                    color: "#c2bfbf",
+                  },
+                  backgroundColor: "#2a2a33", // Background personalizado
+                  borderRadius: "10px", // Border radius personalizado
+                  border: "1px solid #bbbbbb",
                 },
-                backgroundColor: "#2a2a33", // Background personalizado
-                borderRadius: "10px", // Border radius personalizado
-                border: "1px solid #bbbbbb"
+                invalid: {
+                  color: "#f50b51",
+                },
               },
-              invalid: {
-                color: "#f50b51",
-              },
-            },
-            hidePostalCode: true,
-          }}
-        />
+              hidePostalCode: true,
+            }}
+          />
+        </div>
       </div>
-      </div>
+      <div className="border-2 w-80 rounded-full"></div>
       <button
         type="submit"
         disabled={!stripe && errores.message === ""}
-        className="border-2 border-[#07A1F8] bg-[none] w-24 text-white px-5 py-2  rounded-full hover:bg-[#3579b1] flex justify-center"
+        className=" bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"
       >
         {loading ? (
           <div role="status">
             <svg
               aria-hidden="true"
-              className="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+              className="inline w-6 h-6  text-gray-200 animate-spin dark:text-gray-600 fill-white"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
