@@ -13,7 +13,6 @@ const updateClientProfile = async (email, body) => {
       country: body.country && body.country,
     }
   );
-  console.log(client);
   return client;
 };
 
