@@ -1,7 +1,6 @@
 const Lead = require("../../models/Lead");
 
 const getLeadCheckedInactive5 = async (email) => {
-  console.log(email);
   const leadChequedInactive = await Lead.find({
     checked: true,
     vendedor: email,
