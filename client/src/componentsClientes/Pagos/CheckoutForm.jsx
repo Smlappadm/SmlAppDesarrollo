@@ -118,8 +118,18 @@ const CheckoutForm = () => {
             amount: 100, //"centavos por cien seria el peso"
           }
         );
-        console.log(data);
-        setErrores({ ...errores, tarjeta: "" });
+
+        setErrores({ ...errores,   
+        nombre: "",
+        email: "",
+        email2: "",
+        pais: "",
+        calle: "",
+        numero: "",
+        cp: "",
+        tarjeta: "" });
+
+        console.log({datos ,data})
         elements.getElement(CardElement).clear();
         navigate("/clientes-checkout");
       } catch (error) {
