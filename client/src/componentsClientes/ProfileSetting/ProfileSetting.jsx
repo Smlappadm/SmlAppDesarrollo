@@ -140,6 +140,19 @@ export default function ProfileSetting({ handleProfileSetting }) {
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <p className="ml-2 mr-1  w-40">📞</p>
+          <input
+            type="text"
+            value={drive}
+            onChange={(event) => {
+              setDrive(event.target.value);
+              setSave(true);
+            }}
+            placeholder="Ingresar Google Drive"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
         {save ? (
           <button
             className="w-5/12 text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
