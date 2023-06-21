@@ -4,6 +4,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ClientesSettings() {
   const [profileSetting, setProfileSetting] = useState(false);
@@ -29,11 +30,24 @@ export default function ClientesSettings() {
   const handleProfileSetting = () => {
     setProfileSetting(!profileSetting);
   };
+  const copyRefSuccess = () => {
+    toast.success("Codigo de Referido Copiado.", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "#020131",
+        color: "white",
+        border: "1px solid",
+        borderColor: "white",
+      },
+    });
+  };
 
   const copyRefLink = () => {
     navigator.clipboard.writeText(
       `http://localhost:5173/clientes-home?ref=${userEmail && userEmail}`
     );
+    copyRefSuccess();
   };
   return (
     <div className="flex bg-gradient-to-br from-black via-[#020131]  to-blue-950 gap-5  flex-col justify-center items-center h-screen w-screen">
@@ -86,6 +100,7 @@ export default function ClientesSettings() {
           Cerrar Sesión
         </button>
       </div>
+      <Toaster />
     </div>
   );
 }
