@@ -22,7 +22,7 @@ const CheckoutForm = () => {
     calle: "",
     numero: "",
     cp: "",
-    targeta: "",
+    tarjeta: "",
   });
   const [datos, setDatos] = useState({
     nombre: "",
@@ -32,6 +32,7 @@ const CheckoutForm = () => {
     calle: "",
     numero: "",
     cp: "",
+    tarjeta: "",
   });
 
   // useEffect(() => {
@@ -54,15 +55,15 @@ const CheckoutForm = () => {
     if (!stripe || !elements) {
       // setTimeout(() => {
         setLoading(false);
-      //   // setErrores({ ...errores, message: "" });
-      // }, 3000);
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
-    setErrores({ ...errores, message: "" });
-
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+        //   // setErrores({ ...errores, message: "" });
+        // }, 3000);
+        // Stripe.js hasn't yet loaded.
+        // Make sure to disable form submission until Stripe.js has loaded.
+        return;
+      }
+    
+      
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
     });
@@ -75,8 +76,16 @@ const CheckoutForm = () => {
     // 'Your card number is incomplete.'
     // "Your card's security code is incomplete."
     // "Your card's expiration date is incomplete."
-
-    if (!error) {
+    // nombre: "",
+    // email: "",
+    // email2: "",
+    // pais: "",
+    // calle: "",
+    // numero: "",
+    // cp: "",
+    // tarjeta: "",
+    // console.log(error)
+    if (!error && !errores.nombre ) {
       console.log("Compra realizada");
       const { id } = paymentMethod;
 
@@ -89,17 +98,24 @@ const CheckoutForm = () => {
           }
         );
         console.log(data);
-        setErrores({ ...errores, message: "" });
+        setErrores({ ...errores, tarjeta: "" });
         elements.getElement(CardElement).clear();
       } catch (error) {
-        setErrores({ ...errores, message: error.message });
+        console.log(error)
+        setErrores(validation({ ...datos, tarjeta: error.message }));
         setLoading(false);
-        console.log("dsdsf");
+        
         // setErrores({ ...errores, message: error.message });
         // console.log(error);
-        console.log(errores.message);
+        console.log(errores.tarjeta);
       }
       setLoading(false);
+    }
+    else{
+      console.log("eeeeeeeeeeeeee")
+      console.log(error.message === "undefined")
+      // error.message && setErrores({ ...errores, tarjeta: error.message || "" });
+      console.log("asdfasdfasdf")
     }
   };
 console.log(errores)
@@ -108,32 +124,32 @@ console.log(errores)
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-80 rounded-lg gap-4 h-screen pb-24"
     >
-      {errores.message &&
-        errores.message === "Your card number is invalid." && (
+      {errores.tarjeta &&
+        errores.tarjeta === "Your card number is invalid." && (
           <p className="absolute top-12 text-center">
             Número de tarjeta invalido
           </p>
         )}
-      {errores.message &&
-        errores.message === "Your card number is incomplete." && (
+      {errores.tarjeta &&
+        errores.tarjeta === "Your card number is incomplete." && (
           <p className="absolute top-12 text-center">
             Número de tarjeta incompleto
           </p>
         )}
-      {errores.message &&
-        errores.message === "Your card's security code is incomplete." && (
+      {errores.tarjeta &&
+        errores.tarjeta === "Your card's security code is incomplete." && (
           <p className="absolute top-12 text-center">
             Clave de seguridad incompleta
           </p>
         )}
-      {errores.message &&
-        errores.message === "Your card's expiration date is incomplete." && (
+      {errores.tarjeta &&
+        errores.tarjeta === "Your card's expiration date is incomplete." && (
           <p className="absolute top-12 text-center">
             Fecha de expiración incompleta
           </p>
         )}
-      {errores.message &&
-        errores.message === "Your card's expiration year is in the past." && (
+      {errores.tarjeta &&
+        errores.tarjeta === "Your card's expiration year is in the past." && (
           <p className="absolute top-12 text-center">Tarjeta expirada</p>
         )}
       <label htmlFor="" className=" w-full text-[16px] text-center">
@@ -217,8 +233,9 @@ console.log(errores)
             name="numero"
             onChange={handleChange}
             value={datos.numero}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="número"
+            
           />
         </div>
         <div className=" w-full">
@@ -266,19 +283,20 @@ console.log(errores)
       <div className="border-2 w-80 rounded-full"></div>
       <button
         type="submit"
-        disabled={!stripe ||
-          errores.nombre ||
-          errores.email ||
-          errores.email2 ||
-          errores.pais ||
-          errores.calle ||
-          errores.numero ||
-          errores.cp ||
-          errores.targeta
-        }
-        className=" bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"
+        // disabled={
+        //   !stripe ||
+        //   errores.nombre ||
+        //   errores.email ||
+        //   errores.email2 ||
+        //   errores.pais ||
+        //   errores.calle ||
+        //   errores.numero ||
+        //   errores.cp ||
+        //   errores.tarjeta
+        // }
+        className= " bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"
       >
-        {loading ? (
+        {false ? (
           <div role="status">
             <svg
               aria-hidden="true"
