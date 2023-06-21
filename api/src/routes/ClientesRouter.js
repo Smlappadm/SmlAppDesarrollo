@@ -5,7 +5,8 @@ const {
   getAllClientesHandler,
   updateClientProfileHandler,
   getClientByEmailHandler,
-  paymentClienteHandler
+  paymentClienteHandler,
+  setReferredHandler,
 } = require("../Handlers/ClientesHandlers");
 const ClientesRouter = Router();
 
@@ -15,5 +16,6 @@ ClientesRouter.get("/user", getClientByEmailHandler);
 ClientesRouter.get("/", getAllClientesHandler);
 ClientesRouter.put("/update", updateClientProfileHandler);
 ClientesRouter.post("/payment", paymentClienteHandler);
+ClientesRouter.put("/referred", setReferredHandler);
 
 module.exports = ClientesRouter;
