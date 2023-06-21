@@ -20,8 +20,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
   const [country, setCountry] = useState("");
   const [save, setSave] = useState(false);
   const { client } = useSelector((state) => state);
-  const { user } = useUser();
   const dispatch = useDispatch();
+  const { user } = useUser();
   const userEmail = user.emailAddresses[0].emailAddress;
   const userFullName = user.fullName;
   const userPhoto = user.imageUrl;
