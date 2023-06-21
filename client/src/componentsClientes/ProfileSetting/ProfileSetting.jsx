@@ -34,6 +34,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
     setInstagram(client?.instagram || "");
     setTiktok(client?.tiktok || "");
     setDrive(client?.drive || "");
+    setPhone(client?.phone || "");
+    setCountry(client?.country || "");
   }, [client]);
 
   const saveSuccess = () => {
@@ -56,6 +58,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
       instagram,
       tiktok,
       drive,
+      phone,
+      country,
     };
     dispatch(updateClientProfile(userEmail, body));
     saveSuccess();
@@ -143,7 +147,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           />
         </div>
         <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
-          <p className="ml-2 mr-1 w-[24px]">📞</p>
+          <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">📞</p>
           <input
             type="text"
             value={phone}
@@ -156,7 +160,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           />
         </div>
         <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
-          <p className="ml-2 mr-1 w-[24px]">🌍</p>
+          <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">🌍</p>
           <input
             type="text"
             value={country}
