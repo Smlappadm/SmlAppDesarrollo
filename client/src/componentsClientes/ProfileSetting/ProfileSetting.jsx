@@ -108,7 +108,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
               setInstagram(event.target.value);
               setSave(true);
             }}
-            placeholder="Ingresar Instagram"
+            placeholder="Ingresar Link de Instagram"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
@@ -125,7 +125,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
               setTiktok(event.target.value);
               setSave(true);
             }}
-            placeholder="Ingresar TikTok"
+            placeholder="Ingresar Link de TikTok"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
@@ -142,7 +142,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
               setDrive(event.target.value);
               setSave(true);
             }}
-            placeholder="Ingresar Google Drive"
+            placeholder="Ingresar Link de Google Drive"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
