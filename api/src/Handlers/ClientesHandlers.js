@@ -3,7 +3,8 @@ const loginClient = require("../controllers/Clientes/loginClient");
 const getAllClientes = require("../controllers/Clientes/getAllClients");
 const updateClientProfile = require("../controllers/Clientes/updateClientProfile");
 const getClientByEmail = require("../controllers/Clientes/getClientByEmail");
-const createPayment = require("../controllers/Clientes/createPayment")
+const createPayment = require("../controllers/Clientes/createPayment");
+const setReferred = require("../controllers/Clientes/setReferred");
 
 const newClientHandler = async (req, res) => {
   const body = req.body;
@@ -51,10 +52,19 @@ const getClientByEmailHandler = async (req, res) => {
   }
 };
 const paymentClienteHandler = async (req, res) => {
-  const {id, amount} = req.body
+  const { id, amount } = req.body;
   try {
-    const pago = await createPayment({id, amount});
-    res.status(200).json({pago: pago, message: "Pago Realizado"});
+    const pago = await createPayment({ id, amount });
+    res.status(200).json({ pago: pago, message: "Pago Realizado" });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+const setReferredHandler = async (req, res) => {
+  const body = req.body;
+  try {
+    const referred = await setReferred(body);
+    res.status(200).json(referred);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -66,5 +76,6 @@ module.exports = {
   getAllClientesHandler,
   updateClientProfileHandler,
   getClientByEmailHandler,
-  paymentClienteHandler
+  paymentClienteHandler,
+  setReferredHandler,
 };
