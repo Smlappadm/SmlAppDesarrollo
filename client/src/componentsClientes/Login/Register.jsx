@@ -227,20 +227,23 @@ export default function Register({ handleOpenRegister, refeerred }) {
           {errors.email}
         </span>
       </div>
-      <div className="flex flex-col">
-        <label className="font-bold ml-2" htmlFor="">
-          Referido:
-        </label>
-        <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
-          type="text"
-          value={referred}
-          onChange={(event) => {
-            setReferred(event.target.value);
-          }}
-          placeholder="Ingresar Nombre"
-        />
-      </div>
+      {refeerred ? (
+        <div className="flex flex-col">
+          <label className="font-bold ml-2" htmlFor="">
+            Referido:
+          </label>
+          <input
+            className="rounded-md bg-[#404062] h-7 pl-2"
+            type="text"
+            value={referred}
+            onChange={(event) => {
+              setReferred(event.target.value);
+            }}
+            placeholder="Ingresar Nombre"
+            readOnly
+          />
+        </div>
+      ) : null}
       <div className="flex flex-col items-center gap-y-4 mt-4">
         <button
           className="bg-[#07a1f8] rounded-2xl px-3 text-black"
