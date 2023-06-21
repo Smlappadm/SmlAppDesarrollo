@@ -45,6 +45,10 @@ const ClienteSchema = new mongoose.Schema(
     country: {
       type: String,
     },
+    phone: {
+      type: String,
+    },
+
     rol: {
       type: String,
       required: true,
