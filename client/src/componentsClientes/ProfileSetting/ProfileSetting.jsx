@@ -16,6 +16,9 @@ export default function ProfileSetting({ handleProfileSetting }) {
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [drive, setDrive] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+  const [save, setSave] = useState(false);
   const { client } = useSelector((state) => state);
   const { user } = useUser();
   const dispatch = useDispatch();
@@ -31,6 +34,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
     setInstagram(client?.instagram || "");
     setTiktok(client?.tiktok || "");
     setDrive(client?.drive || "");
+    setPhone(client?.phone || "");
+    setCountry(client?.country || "");
   }, [client]);
 
   const saveSuccess = () => {
@@ -53,9 +58,12 @@ export default function ProfileSetting({ handleProfileSetting }) {
       instagram,
       tiktok,
       drive,
+      phone,
+      country,
     };
     dispatch(updateClientProfile(userEmail, body));
     saveSuccess();
+    setSave(false);
   };
 
   return (
@@ -79,7 +87,10 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event) => {
+              setUsername(event.target.value);
+              setSave(true);
+            }}
             placeholder="Cambiar Nombre de Usuario"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
@@ -93,7 +104,10 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={instagram}
-            onChange={(event) => setInstagram(event.target.value)}
+            onChange={(event) => {
+              setInstagram(event.target.value);
+              setSave(true);
+            }}
             placeholder="Ingresar Instagram"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
@@ -107,7 +121,10 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={tiktok}
-            onChange={(event) => setTiktok(event.target.value)}
+            onChange={(event) => {
+              setTiktok(event.target.value);
+              setSave(true);
+            }}
             placeholder="Ingresar TikTok"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
@@ -121,17 +138,52 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={drive}
-            onChange={(event) => setDrive(event.target.value)}
+            onChange={(event) => {
+              setDrive(event.target.value);
+              setSave(true);
+            }}
             placeholder="Ingresar Google Drive"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <button
-          className="w-5/12 text-center rounded-md mt-6 border h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 "
-          onClick={handleSaveChanges}
-        >
-          Guardar
-        </button>
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">📞</p>
+          <input
+            type="text"
+            value={phone}
+            onChange={(event) => {
+              setPhone(event.target.value);
+              setSave(true);
+            }}
+            placeholder="Ingresar Teléfono"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
+        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+          <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">🌍</p>
+          <input
+            type="text"
+            value={country}
+            onChange={(event) => {
+              setCountry(event.target.value);
+              setSave(true);
+            }}
+            placeholder="Ingresar País"
+            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+          />
+        </div>
+        {save ? (
+          <button
+            className="w-5/12 text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
+            onClick={handleSaveChanges}
+          >
+            Guardar
+          </button>
+        ) : (
+          <button className="w-5/12 text-center rounded-md mt-6 border border-gray-500 h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-gray-500">
+            Guardar
+          </button>
+        )}
       </div>
       <Toaster />
     </>

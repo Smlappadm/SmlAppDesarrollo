@@ -9,6 +9,8 @@ const updateClientProfile = async (email, body) => {
       instagram: body.instagram && body.instagram,
       tiktok: body.tiktok && body.tiktok,
       drive: body.drive && body.drive,
+      phone: body.phone && body.phone,
+      country: body.country && body.country,
     }
   );
   return client;
