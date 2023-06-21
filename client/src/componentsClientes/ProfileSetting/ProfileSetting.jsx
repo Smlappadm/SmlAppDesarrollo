@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
+import toast, { Toaster } from "react-hot-toast";
 
 import igPng from "../../Assets/instagram.png";
 import tkPng from "../../Assets/tik-tok.png";
@@ -32,6 +33,19 @@ export default function ProfileSetting({ handleProfileSetting }) {
     setDrive(client?.drive || "");
   }, [client]);
 
+  const saveSuccess = () => {
+    toast.success("Cambios guardados.", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "#020131",
+        color: "white",
+        border: "1px solid",
+        borderColor: "white",
+      },
+    });
+  };
+
   const handleSaveChanges = async () => {
     const body = {
       username: username === "" ? userFullName : username,
@@ -41,6 +55,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
       drive,
     };
     dispatch(updateClientProfile(userEmail, body));
+    saveSuccess();
   };
 
   return (
@@ -118,6 +133,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           Guardar
         </button>
       </div>
+      <Toaster />
     </>
   );
 }
