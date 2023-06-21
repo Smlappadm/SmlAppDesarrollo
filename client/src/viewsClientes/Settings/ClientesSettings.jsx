@@ -58,9 +58,9 @@ export default function ClientesSettings() {
                 Mis Pagos
               </Link>
             </div>
-            <div className="mt-16">
-              <CustomsLabelSetting text={texto3} invitar={invitar3} />
-            </div>
+            <button className="w-full text-center rounded-md mt-6 border border-transparent h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white ">
+              Invitar a un Amigo
+            </button>
           </>
         ) : (
           <ProfileSetting handleProfileSetting={handleProfileSetting} />
