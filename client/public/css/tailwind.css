@@ -951,6 +951,14 @@ video {
   height: 100vh;
 }
 
+.h-\[30px\] {
+  height: 30px;
+}
+
+.h-\[24px\] {
+  height: 24px;
+}
+
 .w-1\/5 {
   width: 20%;
 }
@@ -1901,6 +1909,10 @@ video {
 
 .text-\[16px\] {
   font-size: 16px;
+}
+
+.text-\[22px\] {
+  font-size: 22px;
 }
 
 .font-bold {
