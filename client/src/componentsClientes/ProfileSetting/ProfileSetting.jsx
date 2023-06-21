@@ -142,13 +142,13 @@ export default function ProfileSetting({ handleProfileSetting }) {
         </div>
         {save ? (
           <button
-            className="w-5/12 text-center rounded-md mt-6 border h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 "
+            className="w-5/12 text-center rounded-md mt-6 border h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
             onClick={handleSaveChanges}
           >
             Guardar
           </button>
         ) : (
-          <button className="w-5/12 text-center rounded-md mt-6 border h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 ">
+          <button className="w-5/12 text-center rounded-md mt-6 border h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-gray-500">
             Guardar
           </button>
         )}
