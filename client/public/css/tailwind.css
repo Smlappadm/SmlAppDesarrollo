@@ -644,6 +644,14 @@ video {
   top: 1.75rem;
 }
 
+.bottom-4 {
+  bottom: 1rem;
+}
+
+.right-1 {
+  right: 0.25rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1823,6 +1831,10 @@ video {
   padding-top: 1rem;
 }
 
+.pb-24 {
+  padding-bottom: 6rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2098,6 +2110,16 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-green-500 {
+  --tw-text-opacity: 1;
+  color: rgb(34 197 94 / var(--tw-text-opacity));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .placeholder-white::-moz-placeholder {
