@@ -1,4 +1,4 @@
-import { useClerk } from "@clerk/clerk-react";
+import { useClerk, useUser } from "@clerk/clerk-react";
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,6 +14,8 @@ export default function ClientesSettings() {
   const texto2 = "Mis pagos";
   const texto3 = "Invitar a un amigo";
   const invitar3 = true;
+  const { user } = useUser();
+  const userEmail = user.emailAddresses[0].emailAddress;
   const { signOut } = useClerk();
 
   const tokenAccess = localStorage.getItem("access");
@@ -26,6 +28,12 @@ export default function ClientesSettings() {
 
   const handleProfileSetting = () => {
     setProfileSetting(!profileSetting);
+  };
+
+  const copyRefLink = () => {
+    navigator.clipboard.writeText(
+      `http://localhost:5173/clientes-home?ref=${userEmail && userEmail}`
+    );
   };
   return (
     <div className="flex bg-gradient-to-br from-black via-[#020131]  to-blue-950 gap-5  flex-col justify-center items-center h-screen w-screen">
@@ -58,9 +66,12 @@ export default function ClientesSettings() {
                 Mis Pagos
               </Link>
             </div>
-            <div className="mt-16">
-              <CustomsLabelSetting text={texto3} invitar={invitar3} />
-            </div>
+            <button
+              className="w-full text-center rounded-md mt-6 border border-transparent h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
+              onClick={copyRefLink}
+            >
+              Invitar a un Amigo
+            </button>
           </>
         ) : (
           <ProfileSetting handleProfileSetting={handleProfileSetting} />

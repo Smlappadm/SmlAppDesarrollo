@@ -4,11 +4,12 @@ import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClientes } from "../../redux/actions";
 
-export default function Register({ handleOpenRegister }) {
+export default function Register({ handleOpenRegister, refeerred }) {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [referred, setReferred] = useState("");
   const [showView, setShowView] = useState(false);
   const { allClientes } = useSelector((state) => state);
   const [errors, setErrors] = useState({
@@ -25,11 +26,13 @@ export default function Register({ handleOpenRegister }) {
   };
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(getAllClientes());
+      dispatch(getAllClientes());
     };
     fetchData();
   }, [dispatch]);
-  useEffect(() => {}, [allClientes]);
+  useEffect(() => {
+    setReferred(refeerred);
+  }, [allClientes]);
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -211,6 +214,20 @@ export default function Register({ handleOpenRegister }) {
         <span className="text-red-400 text-[12px] text-center">
           {errors.email}
         </span>
+      </div>
+      <div className="flex flex-col">
+        <label className="font-bold ml-2" htmlFor="">
+          Referido:
+        </label>
+        <input
+          className="rounded-md bg-[#404062] h-7 pl-2"
+          type="text"
+          value={referred}
+          onChange={(event) => {
+            setReferred(event.target.value);
+          }}
+          placeholder="Ingresar Nombre"
+        />
       </div>
       <div className="flex flex-col items-center gap-y-4 mt-4">
         <button
