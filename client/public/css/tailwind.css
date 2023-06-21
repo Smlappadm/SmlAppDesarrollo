@@ -1136,6 +1136,10 @@ video {
   width: 100vw;
 }
 
+.w-\[24px\] {
+  width: 24px;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
@@ -2092,6 +2096,11 @@ video {
 
 .opacity-80 {
   opacity: 0.8;
+}
+
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .drop-shadow-xl {
