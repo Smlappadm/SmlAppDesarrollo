@@ -6,13 +6,16 @@ import {
   useElements,
   AddressElement,
 } from "@stripe/react-stripe-js";
+import {useNavigate} from "react-router-dom"
 import style from "./CheckoutForm.module.css";
 import validation from "./validation";
 import axios from "axios";
 
+
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
   const [loadChecks, setLoadChecks] = useState({
     nombre: false,
@@ -118,6 +121,7 @@ const CheckoutForm = () => {
         console.log(data);
         setErrores({ ...errores, tarjeta: "" });
         elements.getElement(CardElement).clear();
+        navigate("/clientes-checkout");
       } catch (error) {
         console.log(error);
         setErrores(validation({ ...datos, tarjeta: error.message }));
