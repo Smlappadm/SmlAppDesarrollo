@@ -7,6 +7,7 @@ import {
   AddressElement,
 } from "@stripe/react-stripe-js";
 import style from "./CheckoutForm.module.css";
+import validation from "./validation";
 import axios from "axios";
 
 const CheckoutForm = () => {
@@ -33,13 +34,13 @@ const CheckoutForm = () => {
     cp: "",
   });
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-      setErrores({ ...errores, message: "" });
-    }, 3000);
-  }, [loading, errores]);
-
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     setErrores({ ...errores, message: "" });
+  //   }, 3000);
+  // }, [setLoading]);
+  // setLoading(false);
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -51,6 +52,10 @@ const CheckoutForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
+      // setTimeout(() => {
+        setLoading(false);
+      //   // setErrores({ ...errores, message: "" });
+      // }, 3000);
       // Stripe.js hasn't yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
@@ -88,6 +93,7 @@ const CheckoutForm = () => {
         elements.getElement(CardElement).clear();
       } catch (error) {
         setErrores({ ...errores, message: error.message });
+        setLoading(false);
         console.log("dsdsf");
         // setErrores({ ...errores, message: error.message });
         // console.log(error);
@@ -96,11 +102,11 @@ const CheckoutForm = () => {
       setLoading(false);
     }
   };
-
+console.log(errores)
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center w-80 rounded-lg gap-4"
+      className="flex flex-col justify-center items-center w-80 rounded-lg gap-4 h-screen pb-24"
     >
       {errores.message &&
         errores.message === "Your card number is invalid." && (
@@ -130,8 +136,8 @@ const CheckoutForm = () => {
         errores.message === "Your card's expiration year is in the past." && (
           <p className="absolute top-12 text-center">Tarjeta expirada</p>
         )}
-      <label htmlFor="" className=" w-full text-[16px]">
-        Complete los datos del pago:
+      <label htmlFor="" className=" w-full text-[16px] text-center">
+        Complete los datos del pago
       </label>
       <div className="border-2 w-80 rounded-full"></div>
       <div className=" w-full">
