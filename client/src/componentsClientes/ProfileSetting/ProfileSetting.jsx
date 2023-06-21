@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
+import toast, { Toaster } from "react-hot-toast";
 
 import igPng from "../../Assets/instagram.png";
 import tkPng from "../../Assets/tik-tok.png";
@@ -15,6 +16,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
   const [instagram, setInstagram] = useState("");
   const [tiktok, setTiktok] = useState("");
   const [drive, setDrive] = useState("");
+  const [save, setSave] = useState(false);
   const { client } = useSelector((state) => state);
   const { user } = useUser();
   const dispatch = useDispatch();
@@ -32,6 +34,19 @@ export default function ProfileSetting({ handleProfileSetting }) {
     setDrive(client?.drive || "");
   }, [client]);
 
+  const saveSuccess = () => {
+    toast.success("Cambios guardados.", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "#020131",
+        color: "white",
+        border: "1px solid",
+        borderColor: "white",
+      },
+    });
+  };
+
   const handleSaveChanges = async () => {
     const body = {
       username: username === "" ? userFullName : username,
@@ -41,6 +56,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
       drive,
     };
     dispatch(updateClientProfile(userEmail, body));
+    saveSuccess();
+    setSave(false);
   };
 
   return (
@@ -64,7 +81,10 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={username}
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event) => {
+              setUsername(event.target.value);
+              setSave(true);
+            }}
             placeholder="Cambiar Nombre de Usuario"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
@@ -78,7 +98,10 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={instagram}
-            onChange={(event) => setInstagram(event.target.value)}
+            onChange={(event) => {
+              setInstagram(event.target.value);
+              setSave(true);
+            }}
             placeholder="Ingresar Instagram"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
@@ -92,7 +115,10 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={tiktok}
-            onChange={(event) => setTiktok(event.target.value)}
+            onChange={(event) => {
+              setTiktok(event.target.value);
+              setSave(true);
+            }}
             placeholder="Ingresar TikTok"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
@@ -106,18 +132,28 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <input
             type="text"
             value={drive}
-            onChange={(event) => setDrive(event.target.value)}
+            onChange={(event) => {
+              setDrive(event.target.value);
+              setSave(true);
+            }}
             placeholder="Ingresar Google Drive"
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <button
-          className="w-5/12 text-center rounded-md mt-6 border h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 "
-          onClick={handleSaveChanges}
-        >
-          Guardar
-        </button>
+        {save ? (
+          <button
+            className="w-5/12 text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
+            onClick={handleSaveChanges}
+          >
+            Guardar
+          </button>
+        ) : (
+          <button className="w-5/12 text-center rounded-md mt-6 border border-gray-500 h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-gray-500">
+            Guardar
+          </button>
+        )}
       </div>
+      <Toaster />
     </>
   );
 }

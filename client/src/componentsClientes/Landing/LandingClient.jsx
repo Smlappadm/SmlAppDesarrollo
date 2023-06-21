@@ -13,12 +13,7 @@ export default function LandingClient() {
   const { client } = useSelector((state) => state);
   const dispatch = useDispatch();
   const userEmail = user.emailAddresses[0].emailAddress;
-
-  useEffect(() => {
-    dispatch(getClientByEmail(userEmail && userEmail));
-  }, [dispatch]);
-
-  const [name, setName] = useState(client.name);
+  const [name, setName] = useState("");
   const [imgInstagram, setImgInstagram] = useState(imgUser);
   const [numberInstagram, setNumberInstagram] = useState(200);
   const [numberTiktok, setNumberTiktok] = useState(3300);
@@ -26,8 +21,13 @@ export default function LandingClient() {
   const [maxNumber, setMaxNumber] = useState("10K");
 
   useEffect(() => {
+    dispatch(getClientByEmail(userEmail && userEmail));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setName(client.username);
     setNumberTotal(numberTiktok + numberInstagram);
-  }, [numberTiktok, numberInstagram]);
+  }, [numberTiktok, numberInstagram, client]);
 
   return (
     <div>
