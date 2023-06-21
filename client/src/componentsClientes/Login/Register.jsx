@@ -109,6 +109,16 @@ export default function Register({ handleOpenRegister, refeerred }) {
     handleOpenRegister();
     console.log("entro");
   };
+  const serRef = async () => {
+    try {
+      await axios.put("/clientes/referred", body);
+      console.log("seteo referido");
+      console.log(body.email);
+      console.log(body.referred);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   let body = {};
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -123,8 +133,10 @@ export default function Register({ handleOpenRegister, refeerred }) {
         email,
         photo: "",
         rol: "cliente",
+        referred: referred ?? "",
       };
       newClient();
+      serRef();
     } else {
       console.log("murio");
     }
