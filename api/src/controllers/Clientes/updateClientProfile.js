@@ -11,7 +11,6 @@ const updateClientProfile = async (email, body) => {
       drive: body.drive && body.drive,
     }
   );
-  console.log(client);
   return client;
 };
 
