@@ -8,7 +8,8 @@ const validation = (pago) => {
     if(pago.nombre[0] === " " || !pago.nombre) errores.nombre = "Nombre: Complete el campo del nombre"
     if(pago.email[0] === " " || !pago.email) errores.email = "email: Complete el campo del email"
     else if (!regexEmail.test(pago.email)) errores.email = "Email: Debe que ser un email";
-    if (pago.email !== pago.email2) errores.email2 = "Email: Los email no coinciden";
+    if(pago.email2[0] === " " || !pago.email2) errores.email2 = "email: Complete el campo del email"
+    else if (pago.email !== pago.email2) errores.email2 = "Email: Los email no coinciden";
   if (pago.pais[0] === "" || !pago.pais) errores.pais = "País: Complete el campo del país";
   if (pago.calle[0] === "" || !pago.calle) errores.calle = "Calle: Complete el campo del Calle";
   if (pago.numero[0] === "" || !pago.numero) errores.numero = "Número: Complete el campo del número";

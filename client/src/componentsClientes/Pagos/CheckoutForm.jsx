@@ -6,22 +6,34 @@ import {
   useElements,
   AddressElement,
 } from "@stripe/react-stripe-js";
+import {useNavigate} from "react-router-dom"
 import style from "./CheckoutForm.module.css";
 import validation from "./validation";
 import axios from "axios";
 
+
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
+  const [loadChecks, setLoadChecks] = useState({
+    nombre: false,
+    email: false,
+    email2: false,
+    pais: false,
+    calle: false,
+    numero: false,
+    cp: false,
+  });
   const [errores, setErrores] = useState({
-    nombre: "",
-    email: "",
-    email2: "",
-    pais: "",
-    calle: "",
-    numero: "",
-    cp: "",
+    nombre: "2",
+    email: "2",
+    email2: "2",
+    pais: "2",
+    calle: "2",
+    numero: "2",
+    cp: "2",
     tarjeta: "",
   });
   const [datos, setDatos] = useState({
@@ -45,7 +57,7 @@ const CheckoutForm = () => {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-
+    setLoadChecks({...loadChecks, [name]: true})
     setDatos({ ...datos, [name]: value });
     setErrores(validation({ ...datos, [name]: value }));
   };
@@ -106,9 +118,20 @@ const CheckoutForm = () => {
             amount: 100, //"centavos por cien seria el peso"
           }
         );
-        console.log(data);
-        setErrores({ ...errores, tarjeta: "" });
+
+        setErrores({ ...errores,   
+        nombre: "",
+        email: "",
+        email2: "",
+        pais: "",
+        calle: "",
+        numero: "",
+        cp: "",
+        tarjeta: "" });
+
+        console.log({datos ,data})
         elements.getElement(CardElement).clear();
+        navigate("/clientes-checkout");
       } catch (error) {
         console.log(error);
         setErrores(validation({ ...datos, tarjeta: error.message }));
@@ -116,23 +139,19 @@ const CheckoutForm = () => {
 
         // setErrores({ ...errores, message: error.message });
         // console.log(error);
-        console.log(errores.tarjeta);
       }
       setLoading(false);
     } else {
-      console.log("eeeeeeeeeeeeee");
-      console.log(error);
       setErrores({ ...errores, tarjeta: error ? error.message : "" });
-      console.log("asdfasdfasdf");
     }
   };
-  console.log(errores);
+
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-col justify-center items-center w-80 rounded-lg gap-4 h-screen pb-24"
     >
-      <label htmlFor="" className=" w-full text-[16px] text-center">
+      <label htmlFor="" className=" w-full text-[18px] spa text-center">
         Complete los datos del pago
       </label>
       <div className="border-2 w-80 rounded-full"></div>
@@ -140,11 +159,11 @@ const CheckoutForm = () => {
         <label htmlFor="" className=" w-full text-[13px]">
           Nombre completo
         </label>
-        {errores.nombre ? (
+        {loadChecks.nombre ? (errores.nombre ? (
           <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
           ) : (
-            <p className="absolute text-center text-14 text-green-500 right-1 bottom-4">✔</p>
-        )}
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
         <input
           type="text"
           name="nombre"
@@ -158,11 +177,11 @@ const CheckoutForm = () => {
         <label htmlFor="" className=" w-full text-[13px]">
           Email
         </label>
-        {errores.nombre ? (
+        {loadChecks.email ? (errores.email ? (
           <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
           ) : (
-            <p className="absolute text-center text-14 text-green-500 right-1 bottom-4">✔</p>
-        )}
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
         <input
           type="text"
           name="email"
@@ -176,11 +195,11 @@ const CheckoutForm = () => {
         <label htmlFor="" className=" w-full text-[13px]">
           Email confirmación
         </label>
-        {errores.nombre ? (
+        {loadChecks.email2 ? (errores.email2 ? (
           <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
           ) : (
-            <p className="absolute text-center text-14 text-green-500 right-1 bottom-4">✔</p>
-        )}
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
         <input
           type="text"
           name="email2"
@@ -195,11 +214,11 @@ const CheckoutForm = () => {
           <label htmlFor="" className=" w-full text-[13px]">
             País
           </label>
-          {errores.nombre ? (
+          {loadChecks.pais ? (errores.pais ? (
           <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
           ) : (
-            <p className="absolute text-center text-14 text-green-500 right-1 bottom-4">✔</p>
-        )}
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="pais"
@@ -213,11 +232,11 @@ const CheckoutForm = () => {
           <label htmlFor="" className=" w-full text-[13px]">
             Calle
           </label>
-          {errores.nombre ? (
+          {loadChecks.calle ? (errores.calle ? (
           <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
           ) : (
-            <p className="absolute text-center text-14 text-green-500 right-1 bottom-4">✔</p>
-        )}
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="calle"
@@ -233,11 +252,11 @@ const CheckoutForm = () => {
           <label htmlFor="" className=" w-full text-[13px]">
             Número
           </label>
-          {errores.nombre ? (
+          {loadChecks.numero ? (errores.numero ? (
           <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
           ) : (
-            <p className="absolute text-center text-14 text-green-500 right-1 bottom-4">✔</p>
-        )}
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="numero"
@@ -251,11 +270,11 @@ const CheckoutForm = () => {
           <label htmlFor="" className=" w-full text-[13px]">
             Código Postal
           </label>
-          {errores.nombre ? (
+          {loadChecks.cp ? (errores.cp ? (
           <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
           ) : (
-            <p className="absolute text-center text-14 text-green-500 right-1 bottom-4">✔</p>
-        )}
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="cp"
@@ -297,18 +316,25 @@ const CheckoutForm = () => {
       <div className="border-2 w-80 rounded-full"></div>
       <button
         type="submit"
-        // disabled={
-        //   !stripe ||
-        //   errores.nombre ||
-        //   errores.email ||
-        //   errores.email2 ||
-        //   errores.pais ||
-        //   errores.calle ||
-        //   errores.numero ||
-        //   errores.cp ||
-        //   errores.tarjeta
-        // }
-        className=" bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"
+        disabled={
+          !stripe ||
+          errores.nombre ||
+          errores.email ||
+          errores.email2 ||
+          errores.pais ||
+          errores.calle ||
+          errores.numero ||
+          errores.cp 
+          // errores.tarjeta
+        }
+        className={           (!stripe ||
+        errores.nombre ||
+        errores.email ||
+        errores.email2 ||
+        errores.pais ||
+        errores.calle ||
+        errores.numero ||
+        errores.cp) ? "border-2 bg-[none] w-full text-[#8d8c8c] px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center" : " bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"  }
       >
         {false ? (
           <div role="status">
@@ -334,8 +360,8 @@ const CheckoutForm = () => {
           "Buy"
         )}
       </button>
-      <div className="border-2 relative h-fit">
-        {errores.nombre && (
+      <div className=" relative w-full flex justify-center">
+        {/* {errores.nombre && (
           <p className="text-center text-14">{errores.nombre}</p>
         )}
         {errores.email && (
@@ -354,9 +380,9 @@ const CheckoutForm = () => {
         {errores.calle && (
           <p className="text-center text-14">{errores.calle}</p>
         )}
-        {errores.cp && <p className="text-center text-14">{errores.cp}</p>}
+        {errores.cp && <p className="text-center text-14">{errores.cp}</p>} */}
         {errores.tarjeta && (
-          <p className="text-center text-14">{errores.tarjeta}</p>
+          <p className="absolute text-center text-14 text-red-400">{errores.tarjeta}</p>
         )}
       </div>
     </form>
