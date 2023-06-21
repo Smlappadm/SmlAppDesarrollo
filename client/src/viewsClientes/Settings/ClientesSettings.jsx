@@ -67,7 +67,7 @@ export default function ClientesSettings() {
               </Link>
             </div>
             <button
-              className="w-full text-center rounded-md mt-6 border border-transparent h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
+              className="w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
               onClick={copyRefLink}
             >
               Invitar a un Amigo
