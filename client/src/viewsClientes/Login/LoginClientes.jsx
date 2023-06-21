@@ -8,8 +8,8 @@ export default function Home() {
   const [referred, setReferred] = useState("");
   const location = useLocation();
   const redirectUrl = new URLSearchParams(location.search).get("redirect_url");
-  const inicio = redirectUrl.indexOf("ref=") + 5;
-  const ref = redirectUrl.slice(inicio);
+  const inicio = redirectUrl ? redirectUrl.indexOf("ref=") + 4 : "";
+  const ref = redirectUrl ? redirectUrl.slice(inicio) : "";
 
   useEffect(() => {
     setReferred(ref);
