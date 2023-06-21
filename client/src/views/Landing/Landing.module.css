@@ -23,10 +23,12 @@
     animation-fill-mode: forwards;
 }
 .notWellcome{
-    background-color: red;
+    background-color: rgb(236, 8, 65);
+    border-radius: 10px;
     font-size: 50px;
     font-weight: 600;
     opacity: 0;
+    padding: 2px 3px;
     animation-name: fadeIn;
     animation-duration: 1s;
     animation-delay: 1.5s;
