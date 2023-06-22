@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail } from "../../redux/actions";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Referral() {
   const [verificados, setVerificados] = useState([]);
@@ -27,6 +28,26 @@ export default function Referral() {
     console.log(verificados);
   }, [client, verificados]);
 
+  const copyRefSuccess = () => {
+    toast.success("Codigo de Referido Copiado.", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "#020131",
+        color: "white",
+        border: "1px solid",
+        borderColor: "white",
+      },
+    });
+  };
+
+  const copyRefLink = () => {
+    navigator.clipboard.writeText(
+      `http://localhost:5173/clientes-home?ref=${userEmail && userEmail}`
+    );
+    copyRefSuccess();
+  };
+
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <p className="text-white text-24 mt-4">REFERIDOS</p>
@@ -49,9 +70,13 @@ export default function Referral() {
         debitis veritatis excepturi minus! Odio corporis pariatur, sapiente
         ullam facilis et accusantium ipsum?
       </p>
-      <button className="w-11/12 text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex ">
+      <button
+        onClick={copyRefLink}
+        className="w-11/12 text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex "
+      >
         Copiar Link de Referido!
       </button>
+      <Toaster />
     </div>
   );
 }
