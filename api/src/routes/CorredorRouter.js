@@ -19,10 +19,10 @@ CorredorRouter.get("/lead", getValueLeadsHandler);
 CorredorRouter.get("/email", getCorredorByEmailHandler);
 CorredorRouter.get("/:id", getCorredorByIdHandler);
 CorredorRouter.put("/:id", updateCorredorHandler);
-CorredorRouter.post("/sendmail", sendmail);
-CorredorRouter.post("/sendHiringEmail", sendHiringEmail);
 CorredorRouter.put("/email", putCorredorLeadHandler);
 CorredorRouter.put("/checked", putCorredorLeadCheckedHandler);
 CorredorRouter.put("/email/email", updateCorredorByEmailHandler);
+CorredorRouter.post("/sendmail", sendmail);
+CorredorRouter.post("/sendHiringEmail", sendHiringEmail);
 
 module.exports = CorredorRouter;
