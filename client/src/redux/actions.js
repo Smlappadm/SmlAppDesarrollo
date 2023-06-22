@@ -24,7 +24,6 @@ export const FIND_CORREDORES_NAME = "FIND_CORREDORES_NAME";
 export const FIND_VENDEDORES_NAME = "FIND_VENDEDORES_NAME";
 export const GET_ALL_EMPLOYEES = "GET_ALL_EMPLOYEES";
 export const GET_ALL_PROFESION = "GET_ALL_PROFESION";
-export const GET_ALL_CATEGORY = "GET_ALL_CATEGORY";
 export const GET_ALL_COUNTRY = "GET_ALL_COUNTRY";
 export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
@@ -237,17 +236,15 @@ export const getLeadsLLamadaVenta = (email) => {
 };
 
 export const getLeadCorredores = (
-  name,
   email,
   profesion,
-  category,
   country,
   marca_personal
 ) => {
   return async (dispatch) => {
     if (email !== "undefined" && email !== "") {
       const response = await axios.get(
-        `lead/unchecked10?name=${name}&email=${email}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
+        `lead/unchecked10?email=${email}&profesion=${profesion}&country=${country}&marca_personal=${marca_personal}`
       );
       const corredorLead = response.data;
       dispatch({ type: GET_CORREDOR_LEAD, payload: corredorLead });
@@ -276,14 +273,6 @@ export const getAllProfesion = () => {
     const response = await axios.get("/lead/profesion");
     const allProfesion = response.data;
     dispatch({ type: GET_ALL_PROFESION, payload: allProfesion });
-  };
-};
-
-export const getAllCategory = () => {
-  return async (dispatch) => {
-    const response = await axios.get("/lead/category");
-    const allCategory = response.data;
-    dispatch({ type: GET_ALL_CATEGORY, payload: allCategory });
   };
 };
 
