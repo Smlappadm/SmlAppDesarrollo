@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function Referral() {
   const [verificados, setVerificados] = useState([]);
+  const [uniqueKey, setUniqueKey] = useState([]);
   const { user } = useUser();
   const userEmail = user.emailAddresses[0].emailAddress;
   const dispatch = useDispatch();
@@ -19,7 +20,9 @@ export default function Referral() {
       const item = client.referred[i];
       const response = await axios.get(`/clientes/user?email=${item}`);
       const verify = response.data.verify;
+      const uID = response.data._id;
       setVerificados((prevVerificados) => [...prevVerificados, verify]);
+      setUniqueKey((prevUniqueKey) => [...prevUniqueKey, uniqueKey]);
     }
   };
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function Referral() {
         {client && client.referred
           ? client.referred.map((item, index) => (
               <>
-                <div className="flex items-center justify-between" key={item}>
+                <div className="flex items-center justify-between">
                   <label className="m-4">{item}</label>
                   {verificados[index] && verificados[index] === true ? (
                     <p>✅</p>
