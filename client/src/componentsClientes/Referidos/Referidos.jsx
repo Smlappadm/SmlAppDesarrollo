@@ -53,7 +53,7 @@ export default function Referral() {
         <p className="text-white text-24 mt-4">REFERIDOS</p>
         <Link
           to={"/clientes-home"}
-          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] text-24 mt-4 absolute right-3"
+          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] text-24 mt-4 "
         >
           <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
         </Link>
