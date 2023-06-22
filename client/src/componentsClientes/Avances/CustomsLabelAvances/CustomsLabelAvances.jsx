@@ -10,11 +10,11 @@ export default function CustomsLabelAvances({ text, suma, sumaTotal, value }) {
       </div>
       {/* Contenedor para mostrar las sumas y el valor */}
       <div className="flex gap-2">
-        {/* Suma total */}
-        {/* <p className="text-[#0f0] font-bold">+ {sumaTotal}</p> */}
-        {/* Suma */}
         <div className="flex gap-5 justify-center items-center">
-          <p className="text-[#0f0] text-[0.8rem] font-bold">+ {suma}</p>
+          {/* Suma total */}
+          <p className="text-[#0f0] font-bold">+ {sumaTotal}</p>
+          {/* Suma */}
+          {/* <p className="text-[#0f0] text-[0.8rem] font-bold">+ {suma}</p> */}
           {/* Valor */}
           <p className="text-[#fff] text-[1.2rem] font-bold mr-5">{value}</p>
         </div>
