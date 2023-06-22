@@ -61,9 +61,11 @@ export default function ClientesSettings() {
                 Mis Pagos
               </Link>
             </div>
-            <div className="w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex ">
-              <Link to={"/clientes-referidos"}>Referidos</Link>
-            </div>
+            <Link to={"/clientes-referidos"}>
+              <div className="w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex ">
+                Referidos
+              </div>
+            </Link>
           </>
         ) : (
           <ProfileSetting handleProfileSetting={handleProfileSetting} />
