@@ -31,7 +31,7 @@ export const Pagos = () => {
 
 
   return (
-    <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
+    <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-full xl:h-screen w-screen">
 
     {/* <Elements stripe={stripePromise} options={options}> */}
     <Elements stripe={stripePromise} >
