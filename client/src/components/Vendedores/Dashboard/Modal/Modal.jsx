@@ -563,7 +563,6 @@ export default function NestedModal({
   };
 
   const handleOpenPagoSelect = () => {
-    
     setOpenPagoSelect(!openPagoSelect);
     setPagoCalculo({
       ...pagoCalculo,
@@ -579,6 +578,25 @@ export default function NestedModal({
       valorCuota25: (Number(statusObj.status_op) / 25).toFixed(2),
     });
   };
+
+  const handleSelectpago = (event) => {
+    if(event.target.value === "pago1"){
+      setStatusObj({...statusObj, status_op: {cuotas: 1, valorCuota: pagoCalculo.valorCuota1, total: pagoCalculo.precio1}})
+    }
+    if(event.target.value === "pago6"){
+      setStatusObj({...statusObj, status_op: {cuotas: 6, valorCuota: pagoCalculo.valorCuota6, total: pagoCalculo.precio6}})
+    }
+    if(event.target.value === "pago12"){
+      setStatusObj({...statusObj, status_op: {cuotas: 12, valorCuota: pagoCalculo.valorCuota12, total: pagoCalculo.precio12}})
+    }
+    if(event.target.value === "pago16"){
+      setStatusObj({...statusObj, status_op: {cuotas: 16, valorCuota: pagoCalculo.valorCuota16, total: pagoCalculo.precio16}})
+    }
+    if(event.target.value === "pago25"){
+      setStatusObj({...statusObj, status_op: {cuotas: 25, valorCuota: pagoCalculo.valorCuota25, total: pagoCalculo.precio25}})
+    }
+console.log(statusObj.status_op)
+  }
 
   return (
     <div className="">
@@ -897,7 +915,7 @@ export default function NestedModal({
                   </div>
                   {openPagoSelect && (
                     <select
-                      onChange={handleSelectChange}
+                      onChange={handleSelectpago}
                       name="status"
                       defaultValue="default"
                       id="select1"
@@ -906,11 +924,11 @@ export default function NestedModal({
                       <option disabled="disabled" value="default">
                         Modo de pago
                       </option>
-                      <option value="pago1">{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1}`}</option>
-                      <option value="pago6">{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6}`}</option>
-                      <option value="pago12">{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12}`}</option>
-                      <option value="pago16">{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16}`}</option>
-                      <option value="pago25">{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
+                      <option className="text-justify" name="1" value="pago1">{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1} - 35%OFF`}</option>
+                      <option className="text-justify" name="6" value="pago6">{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6} - 20%OFF`}</option>
+                      <option className="text-justify" name="12" value="pago12">{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12} - 10%OFF`}</option>
+                      <option className="text-justify" name="16" value="pago16">{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16} - 5%OFF`}</option>
+                      <option className="text-justify" name="25" value="pago25">{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
                     </select>
                   )}
                 </div>
