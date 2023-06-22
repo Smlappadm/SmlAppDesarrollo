@@ -53,7 +53,6 @@ export default function Referral() {
       `http://localhost:5173/clientes-home?ref=${userEmail && userEmail}`
     );
     copyRefSuccess();
-    console.log(uniqueKey);
   };
 
   return (
