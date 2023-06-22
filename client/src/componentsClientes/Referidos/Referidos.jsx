@@ -68,20 +68,14 @@ export default function Referral() {
         </Link>
       </div>
       <div className="h-3/6 w-full items-start overflow-auto px-4 mt-6 bg-transparent border-opacity-5 border rounded-lg border-blue-500">
-        <p>{verificados}</p>
         {client && client.referred
           ? client.referred.map((item, index) => (
-              <>
-                <div
-                  className="flex items-center justify-between"
-                  key={uniqueKey[index]}
-                >
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-              </>
+              <div className="flex items-center justify-between" key={index}>
+                <label className="m-4">{item}</label>
+                {verificados[index] && verificados[index] === true ? (
+                  <p>✅</p>
+                ) : null}
+              </div>
             ))
           : "no hay nada"}
       </div>
