@@ -23,6 +23,7 @@ import {
   FIND_VENDEDORES_NAME,
   GET_ALL_EMPLOYEES,
   GET_ALL_PROFESION,
+  GET_ALL_CATEGORY,
   GET_ALL_COUNTRY,
   GET_DETAIL_EMPLOY,
   FIND_CORREDORES_NAME_ALL_INFO,
@@ -54,6 +55,7 @@ const initialState = {
   corredorLeadChecked: [],
   allEmployees: [],
   allProfesion: [],
+  allCategory: [],
   allCountries: [],
   detailEmploy: [],
   corredoresByNameAllInfo: [],
@@ -372,6 +374,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allProfesion: action.payload,
+      };
+    case GET_ALL_CATEGORY:
+      return {
+        ...state,
+        allCategory: action.payload,
       };
     case GET_ALL_COUNTRY:
       return {
