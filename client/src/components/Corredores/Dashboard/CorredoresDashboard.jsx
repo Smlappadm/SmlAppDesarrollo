@@ -10,7 +10,6 @@ import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
-  getAllCategory,
   getAllCountries,
   getAllProfesion,
   getLeadCorredores,
@@ -25,19 +24,17 @@ import NestedModal from "./MaterialUi/NestedModal";
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
   const [profesion, setProfesion] = useState("");
-  const [category, setCategory] = useState("");
   const [country, setCountry] = useState("");
   const [marca_personal, setMarca_personal] = useState("");
+  const [category, seCategory] = useState("");
   const [openModal, setOpenModal] = useState(false);
 
   const { corredorLead } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
-  const { allCategory } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const user = useUser().user;
-  const name = user?.fullName;
   const mail = user?.emailAddresses[0]?.emailAddress;
 
   localStorage.setItem("email", mail);
@@ -45,33 +42,14 @@ const CorredoresDashboard = () => {
 
   useEffect(() => {
     if (mail !== undefined) {
-      dispatch(
-        getLeadCorredores(
-          name,
-          email,
-          category,
-          profesion,
-          country,
-          marca_personal
-        )
-      );
+      dispatch(getLeadCorredores(email, profesion, country, marca_personal));
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
-      dispatch(getAllCategory());
     }
   }, [dispatch, mail]);
 
   const filtrar = () => {
-    dispatch(
-      getLeadCorredores(
-        name,
-        email,
-        profesion,
-        category,
-        country,
-        marca_personal
-      )
-    );
+    dispatch(getLeadCorredores(email, profesion, country, marca_personal));
   };
 
   const filterProfesion = (event) => {
@@ -86,7 +64,7 @@ const CorredoresDashboard = () => {
 
   const filterCategory = (event) => {
     const { value } = event.target;
-    setCategory(value);
+    seCategory(value);
   };
 
   const checkMarcaPersonal = () => {
@@ -317,12 +295,9 @@ const CorredoresDashboard = () => {
         }
       }
 
-      dispatch(
-        getLeadCorredores(email, profesion, category, country, marca_personal)
-      );
+      dispatch(getLeadCorredores(email, profesion, country, marca_personal));
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
-      dispatch(getAllCategory());
 
       SendLeadsSuccess();
     } catch (error) {
@@ -377,23 +352,6 @@ const CorredoresDashboard = () => {
 
               <option className="text-black" value="">
                 Otras Profesiones
-              </option>
-            </select>
-            <label>Categoria: </label>
-            <select
-              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
-              value={category}
-              onChange={filterCategory}
-            >
-              {allCategory &&
-                allCategory.map((option, index) => (
-                  <option className="text-black" key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-
-              <option className="text-black" value="">
-                Otras Categorias
               </option>
             </select>
             <label>Pais: </label>
