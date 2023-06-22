@@ -4,11 +4,12 @@ import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClientes } from "../../redux/actions";
 
-export default function Register({ handleOpenRegister }) {
+export default function Register({ handleOpenRegister, refeerred }) {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [referred, setReferred] = useState("");
   const [showView, setShowView] = useState(false);
   const { allClientes } = useSelector((state) => state);
   const [errors, setErrors] = useState({
@@ -25,11 +26,13 @@ export default function Register({ handleOpenRegister }) {
   };
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(getAllClientes());
+      dispatch(getAllClientes());
     };
     fetchData();
   }, [dispatch]);
-  useEffect(() => {}, [allClientes]);
+  useEffect(() => {
+    setReferred(refeerred);
+  }, [allClientes]);
 
   const handleChangeEmail = (event) => {
     setEmail(event.target.value);
@@ -106,6 +109,16 @@ export default function Register({ handleOpenRegister }) {
     handleOpenRegister();
     console.log("entro");
   };
+  const serRef = async () => {
+    try {
+      await axios.put("/clientes/referred", body);
+      console.log("seteo referido");
+      console.log(body.email);
+      console.log(body.referred);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   let body = {};
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -120,8 +133,10 @@ export default function Register({ handleOpenRegister }) {
         email,
         photo: "",
         rol: "cliente",
+        referred: referred ?? "",
       };
       newClient();
+      serRef();
     } else {
       console.log("murio");
     }
@@ -212,6 +227,23 @@ export default function Register({ handleOpenRegister }) {
           {errors.email}
         </span>
       </div>
+      {refeerred ? (
+        <div className="flex flex-col">
+          <label className="font-bold ml-2" htmlFor="">
+            Referido:
+          </label>
+          <input
+            className="rounded-md bg-[#404062] h-7 pl-2"
+            type="text"
+            value={referred}
+            onChange={(event) => {
+              setReferred(event.target.value);
+            }}
+            placeholder="Ingresar Nombre"
+            readOnly
+          />
+        </div>
+      ) : null}
       <div className="flex flex-col items-center gap-y-4 mt-4">
         <button
           className="bg-[#07a1f8] rounded-2xl px-3 text-black"

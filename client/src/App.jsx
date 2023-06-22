@@ -36,6 +36,8 @@ import ClientesSettings from "./viewsClientes/Settings/ClientesSettings";
 import { Pagos } from "./componentsClientes/Pagos/Pagos";
 import { LideresHistory } from "./components/Lideres/History/HistoryLeader";
 import BannedEmployees from "./components/C-Level/Employees/EmployBanned/BannedEmploy";
+import { CheckoutPage } from "./viewsClientes/CheckoutPage/CheckoutPage";
+import Referidos from "./viewsClientes/Referidos/Referidos";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -156,7 +158,8 @@ function ClerkProviderWithRoutes() {
         <Route path="/clientes-addvideos" element={<AddVideos />} />
         <Route path="/clientes-settings" element={<ClientesSettings />} />
         <Route path="/clientes-pagos" element={<Pagos />} />
-
+        <Route path="/clientes-checkout" element={<CheckoutPage />} />
+        <Route path="/clientes-referidos" element={<Referidos />} />
 
         <Route path="/" element={<Login />} />
         <Route

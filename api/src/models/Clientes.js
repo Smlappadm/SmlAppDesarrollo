@@ -77,6 +77,9 @@ const ClienteSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    referred: {
+      type: String,
+    },
     deleted: {
       type: Boolean,
       default: false,

@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Login from "../../componentsClientes/Login/Login";
 import Register from "../../componentsClientes/Login/Register";
 export default function Home() {
   const navigate = useNavigate();
   const [register, setRegister] = useState(false);
+  const [referred, setReferred] = useState("");
+  const location = useLocation();
+  const redirectUrl = new URLSearchParams(location.search).get("redirect_url");
+  const inicio = redirectUrl ? redirectUrl.indexOf("ref=") + 4 : "";
+  const ref = redirectUrl && inicio !== 3 ? redirectUrl.slice(inicio) : "";
+
+  useEffect(() => {
+    setReferred(ref);
+  }, [ref]);
 
   const handleJoin = () => {
     navigate("/clientes-home");
@@ -28,7 +37,10 @@ export default function Home() {
             handleJoin={handleJoin}
           />
         ) : (
-          <Register handleOpenRegister={handleOpenRegister} />
+          <Register
+            handleOpenRegister={handleOpenRegister}
+            refeerred={referred}
+          />
         )}
       </div>
     </div>

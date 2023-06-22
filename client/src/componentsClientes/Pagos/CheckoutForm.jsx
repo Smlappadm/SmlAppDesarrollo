@@ -6,22 +6,35 @@ import {
   useElements,
   AddressElement,
 } from "@stripe/react-stripe-js";
+import {useNavigate} from "react-router-dom"
 import style from "./CheckoutForm.module.css";
+import validation from "./validation";
 import axios from "axios";
+
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false);
+  const [loadChecks, setLoadChecks] = useState({
+    nombre: false,
+    email: false,
+    email2: false,
+    pais: false,
+    calle: false,
+    numero: false,
+    cp: false,
+  });
   const [errores, setErrores] = useState({
-    nombre: "",
-    email: "",
-    email2: "",
-    pais: "",
-    calle: "",
-    numero: "",
-    cp: "",
-    targeta: "",
+    nombre: "2",
+    email: "2",
+    email2: "2",
+    pais: "2",
+    calle: "2",
+    numero: "2",
+    cp: "2",
+    tarjeta: "",
   });
   const [datos, setDatos] = useState({
     nombre: "",
@@ -31,19 +44,20 @@ const CheckoutForm = () => {
     calle: "",
     numero: "",
     cp: "",
+    tarjeta: "",
   });
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-      setErrores({ ...errores, message: "" });
-    }, 3000);
-  }, [loading, errores]);
-
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     setErrores({ ...errores, message: "" });
+  //   }, 3000);
+  // }, [setLoading]);
+  // setLoading(false);
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-
+    setLoadChecks({...loadChecks, [name]: true})
     setDatos({ ...datos, [name]: value });
     setErrores(validation({ ...datos, [name]: value }));
   };
@@ -51,11 +65,14 @@ const CheckoutForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
+      // setTimeout(() => {
+      setLoading(false);
+      //   // setErrores({ ...errores, message: "" });
+      // }, 3000);
       // Stripe.js hasn't yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-    setErrores({ ...errores, message: "" });
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -70,8 +87,26 @@ const CheckoutForm = () => {
     // 'Your card number is incomplete.'
     // "Your card's security code is incomplete."
     // "Your card's expiration date is incomplete."
-
-    if (!error) {
+    // nombre: "",
+    // email: "",
+    // email2: "",
+    // pais: "",
+    // calle: "",
+    // numero: "",
+    // cp: "",
+    // tarjeta: "",
+    // console.log(error)
+    if (
+      !error &&
+      !errores.nombre &&
+      !errores.email &&
+      !errores.email2 &&
+      !errores.pais &&
+      !errores.calle &&
+      !errores.numero &&
+      !errores.cp &&
+      !errores.tarjeta
+    ) {
       console.log("Compra realizada");
       const { id } = paymentMethod;
 
@@ -83,16 +118,31 @@ const CheckoutForm = () => {
             amount: 100, //"centavos por cien seria el peso"
           }
         );
-        console.log(data);
-        setErrores({ ...errores, message: "" });
+
+        setErrores({ ...errores,   
+        nombre: "",
+        email: "",
+        email2: "",
+        pais: "",
+        calle: "",
+        numero: "",
+        cp: "",
+        tarjeta: "" });
+
+        console.log({datos ,data})
         elements.getElement(CardElement).clear();
+        navigate("/clientes-checkout");
       } catch (error) {
-        setErrores({ ...errores, message: error.message });
-        console.log("dsdsf");
+        console.log(error);
+        setErrores(validation({ ...datos, tarjeta: error.message }));
+        setLoading(false);
+
         // setErrores({ ...errores, message: error.message });
         // console.log(error);
-        console.log(errores.message);
       }
+      setLoading(false);
+    } else {
+      setErrores({ ...errores, tarjeta: error ? error.message : "" });
       setLoading(false);
     }
   };
@@ -100,44 +150,21 @@ const CheckoutForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center w-80 rounded-lg gap-4"
+      className="flex flex-col justify-center items-center w-80 rounded-lg gap-4 h-screen pb-24"
     >
-      {errores.message &&
-        errores.message === "Your card number is invalid." && (
-          <p className="absolute top-12 text-center">
-            Número de tarjeta invalido
-          </p>
-        )}
-      {errores.message &&
-        errores.message === "Your card number is incomplete." && (
-          <p className="absolute top-12 text-center">
-            Número de tarjeta incompleto
-          </p>
-        )}
-      {errores.message &&
-        errores.message === "Your card's security code is incomplete." && (
-          <p className="absolute top-12 text-center">
-            Clave de seguridad incompleta
-          </p>
-        )}
-      {errores.message &&
-        errores.message === "Your card's expiration date is incomplete." && (
-          <p className="absolute top-12 text-center">
-            Fecha de expiración incompleta
-          </p>
-        )}
-      {errores.message &&
-        errores.message === "Your card's expiration year is in the past." && (
-          <p className="absolute top-12 text-center">Tarjeta expirada</p>
-        )}
-      <label htmlFor="" className=" w-full text-[16px]">
-        Complete los datos del pago:
+      <label htmlFor="" className=" w-full text-[18px] spa text-center">
+        Complete los datos del pago
       </label>
       <div className="border-2 w-80 rounded-full"></div>
-      <div className=" w-full">
+      <div className=" w-full relative">
         <label htmlFor="" className=" w-full text-[13px]">
           Nombre completo
         </label>
+        {loadChecks.nombre ? (errores.nombre ? (
+          <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
+          ) : (
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
         <input
           type="text"
           name="nombre"
@@ -147,10 +174,15 @@ const CheckoutForm = () => {
           placeholder="Nombre completo"
         />
       </div>
-      <div className=" w-full">
+      <div className=" w-full relative">
         <label htmlFor="" className=" w-full text-[13px]">
           Email
         </label>
+        {loadChecks.email ? (errores.email ? (
+          <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
+          ) : (
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
         <input
           type="text"
           name="email"
@@ -160,10 +192,15 @@ const CheckoutForm = () => {
           placeholder="email"
         />
       </div>
-      <div className=" w-full">
+      <div className=" w-full relative">
         <label htmlFor="" className=" w-full text-[13px]">
           Email confirmación
         </label>
+        {loadChecks.email2 ? (errores.email2 ? (
+          <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
+          ) : (
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
         <input
           type="text"
           name="email2"
@@ -174,10 +211,15 @@ const CheckoutForm = () => {
         />
       </div>
       <div className="flex gap-2">
-        <div className=" w-full">
+        <div className=" w-full relative">
           <label htmlFor="" className=" w-full text-[13px]">
             País
           </label>
+          {loadChecks.pais ? (errores.pais ? (
+          <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
+          ) : (
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="pais"
@@ -187,10 +229,15 @@ const CheckoutForm = () => {
             placeholder="País"
           />
         </div>
-        <div className=" w-full">
+        <div className=" w-full relative">
           <label htmlFor="" className=" w-full text-[13px]">
             Calle
           </label>
+          {loadChecks.calle ? (errores.calle ? (
+          <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
+          ) : (
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="calle"
@@ -202,23 +249,33 @@ const CheckoutForm = () => {
         </div>
       </div>
       <div className="flex gap-2">
-        <div className=" w-full">
+        <div className=" w-full relative">
           <label htmlFor="" className=" w-full text-[13px]">
             Número
           </label>
+          {loadChecks.numero ? (errores.numero ? (
+          <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
+          ) : (
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="numero"
             onChange={handleChange}
             value={datos.numero}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#2a2a33] dark:border-gray-600 dark:placeholder-[#b1aeae] dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="número"
           />
         </div>
-        <div className=" w-full">
+        <div className=" w-full relative">
           <label htmlFor="" className=" w-full text-[13px]">
             Código Postal
           </label>
+          {loadChecks.cp ? (errores.cp ? (
+          <p className="absolute text-center text-14 text-red-500 right-1 bottom-4">❌</p>
+          ) : (
+            <p className="absolute text-center text-14 text-green-500 right-2 bottom-4">✔</p>
+        )) : ("")}
           <input
             type="text"
             name="cp"
@@ -260,17 +317,25 @@ const CheckoutForm = () => {
       <div className="border-2 w-80 rounded-full"></div>
       <button
         type="submit"
-        disabled={!stripe ||
+        disabled={
+          !stripe ||
           errores.nombre ||
           errores.email ||
           errores.email2 ||
           errores.pais ||
           errores.calle ||
           errores.numero ||
-          errores.cp ||
-          errores.targeta
+          errores.cp 
+          // errores.tarjeta
         }
-        className=" bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"
+        className={           (!stripe ||
+        errores.nombre ||
+        errores.email ||
+        errores.email2 ||
+        errores.pais ||
+        errores.calle ||
+        errores.numero ||
+        errores.cp) ? "border-2 bg-[none] w-full text-[#8d8c8c] px-5 py-3 mt-3 rounded-xl hover:bg-[#182b46] flex justify-center" : " bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"  }
       >
         {loading ? (
           <div role="status">
@@ -296,10 +361,43 @@ const CheckoutForm = () => {
           "Buy"
         )}
       </button>
+      <div className=" relative w-full flex justify-center">
+        {/* {errores.nombre && (
+          <p className="text-center text-14">{errores.nombre}</p>
+        )}
+        {errores.email && (
+          <p className="text-center text-14">{errores.email}</p>
+        )}
+        {errores.email2 && (
+          <p className="text-center text-14">{errores.email2}</p>
+        )}
+        {errores.pais && <p className="text-center text-14">{errores.pais}</p>}
+        {errores.calle && (
+          <p className="text-center text-14">{errores.calle}</p>
+        )}
+        {errores.numero && (
+          <p className="text-center text-14">{errores.numero}</p>
+        )}
+        {errores.calle && (
+          <p className="text-center text-14">{errores.calle}</p>
+        )}
+        {errores.cp && <p className="text-center text-14">{errores.cp}</p>} */}
+        {errores.tarjeta && (
+          <p className="absolute text-center text-14 text-red-400">{errores.tarjeta}</p>
+        )}
+      </div>
     </form>
   );
 };
-
+//   !stripe ||
+//   errores.nombre ||
+//   errores.email ||
+//   errores.email2 ||
+//   errores.pais ||
+//   errores.calle ||
+//   errores.numero ||
+//   errores.cp ||
+//   errores.tarjeta
 export default CheckoutForm;
 
 // import React, {useState} from 'react';
