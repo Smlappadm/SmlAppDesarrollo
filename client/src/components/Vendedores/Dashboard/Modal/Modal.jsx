@@ -414,6 +414,10 @@ export default function NestedModal({
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
+  const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
+  const [pagoCalculo, setPagoCalculo] = React.useState({
+    precio: 0
+  });
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     status_op: item.status_op,
@@ -548,6 +552,12 @@ export default function NestedModal({
       });
     }
   };
+
+  const handleOpenPagoSelect = () => {
+    setOpenPagoSelect(!openPagoSelect)
+    console.log(statusObj.status_op)
+
+  }
 
   return (
     <div className="">
@@ -839,12 +849,12 @@ export default function NestedModal({
             {item.status === "Agendar 2do llamado" &&
               statusObj.status === "Contratado" && (
                 <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                  <div className="flex items-center justify-center gap-7">
+                  <div className="flex items-center justify-center gap-7 relative">
                     <label
                       htmlFor="last_name"
-                      className="  text-sm text-center font-medium text-gray-900 dark:text-white"
+                      className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
                     >
-                      USD
+                      €
                     </label>
                     <input
                       onChange={handleSelectChange}
@@ -852,20 +862,20 @@ export default function NestedModal({
                       id="last_name"
                       name="status_op"
                       // defaultValue={item.status_op}
-
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      disabled={openPagoSelect}
+                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder=""
                       // value="USD"
                       required
                     />
                     <MdPriceCheck
-                      MdPriceCheck={setDateTime}
+                      onClick={handleOpenPagoSelect}
                       className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     />
 
                   </div>
-                  <select
+                  {openPagoSelect && <select
                     onChange={handleSelectChange}
                     name="status"
                     defaultValue="default"
@@ -881,7 +891,7 @@ export default function NestedModal({
                     <option value="Contratado">Contratado</option>
                     <option value="Rechazado">Rechazado</option>
                     <option value="No responde">No Responde</option>
-                  </select>
+                  </select>}
                 </div>
               )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
