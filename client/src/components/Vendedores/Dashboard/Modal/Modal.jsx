@@ -416,7 +416,16 @@ export default function NestedModal({
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
   const [pagoCalculo, setPagoCalculo] = React.useState({
-    precio: 0
+    precio1: 0,
+    precio6: 0,
+    precio12: 0,
+    precio16: 0,
+    precio25: 0,
+    valorCuota1: 0,
+    valorCuota6: 0,
+    valorCuota12: 0,
+    valorCuota16: 0,
+    valorCuota25: 0,
   });
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -554,10 +563,22 @@ export default function NestedModal({
   };
 
   const handleOpenPagoSelect = () => {
-    setOpenPagoSelect(!openPagoSelect)
-    console.log(statusObj.status_op)
-
-  }
+    setOpenPagoSelect(!openPagoSelect);
+    console.log(statusObj.status_op);
+    setPagoCalculo({
+      ...pagoCalculo,
+      precio1: (statusObj.status_op * 75) / 100,
+      precio6: (statusObj.status_op * 80) / 100,
+      precio12: (statusObj.status_op * 90) / 100,
+      precio16: (statusObj.status_op * 95) / 100,
+      precio25: statusObj.status_op,
+      valorCuota1: precio1,
+      valorCuota6: precio6 / 6,
+      valorCuota12: precio12 / 12,
+      valorCuota16: precio16 / 16,
+      valorCuota25: precio25 / 25,
+    });
+  };
 
   return (
     <div className="">
@@ -866,32 +887,32 @@ export default function NestedModal({
                       className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder=""
-                      // value="USD"
+                      // value={5000}
                       required
                     />
                     <MdPriceCheck
                       onClick={handleOpenPagoSelect}
                       className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     />
-
                   </div>
-                  {openPagoSelect && <select
-                    onChange={handleSelectChange}
-                    name="status"
-                    defaultValue="default"
-                    id="select1"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option disabled="disabled" value="default">
-                      Elige uno...
-                    </option>
-                    <option value="Agendar otro llamado">
-                      Agendar otro llamado
-                    </option>
-                    <option value="Contratado">Contratado</option>
-                    <option value="Rechazado">Rechazado</option>
-                    <option value="No responde">No Responde</option>
-                  </select>}
+                  {openPagoSelect && (
+                    <select
+                      onChange={handleSelectChange}
+                      name="status"
+                      defaultValue="default"
+                      id="select1"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option disabled="disabled" value="default">
+                        Modo de pago
+                      </option>
+                      <option value="Agendar">{`1 pago de €${pagoCalculo.precio1} - total €${}`}</option>
+                      <option value="Contratado">{`6 pago de €${} - total €${}`}</option>
+                      <option value="Rechazado">{`12 pago de €${} - total €${}`}</option>
+                      <option value="No responde">{`16 pago de €${} - total €${}`}</option>
+                      <option value="No responde">{`25 pago de €${} - total €${}`}</option>
+                    </select>
+                  )}
                 </div>
               )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
