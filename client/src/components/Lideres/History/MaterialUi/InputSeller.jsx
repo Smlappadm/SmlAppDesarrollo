@@ -41,11 +41,11 @@ export default function InputName({ name }) {
             color: "white",
           },
         }}
-        InputLabelProps={{
-          style: {
-            color: "gray",
-          },
-        }}
+        // InputLabelProps={{
+        //   style: {
+        //     color: "gray",
+        //   },
+        // }}
       />
     </Box>
   );

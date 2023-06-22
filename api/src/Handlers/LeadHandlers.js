@@ -17,11 +17,21 @@ const getAllProfession = require("../controllers/Lead/getAllProfesion");
 const getAllCountry = require("../controllers/Lead/getAllCountry");
 const findLeadCorredorNameAllInfo = require("../controllers/Lead/findLeadCorredorNameAllInfo");
 const getAllCategory = require("../controllers/Lead/getAllCategory");
+const getCorredores = require("../controllers/Lead/getCorredores");
 
 const getAllLeadHandler = async (req, res) => {
   try {
     const lead = await getAllLeads();
     res.status(200).json(lead);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const getCorredoresHandler = async (req, res) => {
+  try {
+    const corredores = await getCorredores();
+    res.status(200).json(corredores);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -217,6 +227,7 @@ const limpiezaBaseHandler = async (req, res) => {
 
 module.exports = {
   getAllLeadHandler,
+  getCorredoresHandler,
   getLeadUncheckedHandler,
   getLeadCheckedHandler,
   getLeadCheckedInactive5Handler,

@@ -75,11 +75,11 @@ export default function InputName({ name }) {
             color: "white",
           },
         }}
-        InputLabelProps={{
-          style: {
-            color: "gray",
-          },
-        }}
+        // InputLabelProps={{
+        //   style: {
+        //     color: "gray",
+        //   },
+        // }}
       />
 
       <TextField
@@ -94,11 +94,11 @@ export default function InputName({ name }) {
             color: "gray",
           },
         }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
+        // InputLabelProps={{
+        //   style: {
+        //     color: "gray", // Cambia el color del label aquí
+        //   },
+        // }}
         sx={{
           width: "75px", // Ajusta el ancho del TextField aquí
         }}
@@ -112,16 +112,15 @@ export default function InputName({ name }) {
         sx={{
           color: "gray",
         }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
+        // InputLabelProps={{
+        //   style: {
+        //     color: "gray", // Cambia el color del label aquí
+        //   },
+        // }}
       >
         <MenuItem value="" disabled>
           Mes
         </MenuItem>
-        <MenuItem value={""}></MenuItem>
         <MenuItem value={"01"}>Enero</MenuItem>
         <MenuItem value={"02"}>Febrero</MenuItem>
         <MenuItem value={"03"}>Marzo</MenuItem>
@@ -151,11 +150,11 @@ export default function InputName({ name }) {
             color: "gray",
           },
         }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
+        // InputLabelProps={{
+        //   style: {
+        //     color: "gray", // Cambia el color del label aquí
+        //   },
+        // }}
         sx={{
           width: "75px",
         }}
@@ -175,11 +174,11 @@ export default function InputName({ name }) {
             color: "gray",
           },
         }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
+        // InputLabelProps={{
+        //   style: {
+        //     color: "gray", // Cambia el color del label aquí
+        //   },
+        // }}
         sx={{
           width: "75px", // Ajusta el ancho del TextField aquí
         }}
