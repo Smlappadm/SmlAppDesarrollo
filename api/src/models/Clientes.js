@@ -54,7 +54,11 @@ const ClienteSchema = new mongoose.Schema(
       required: true,
     },
     referred: {
-      type: String,
+      type: Array,
+    },
+    verify: {
+      type: Boolean,
+      default: false,
     },
     deleted: {
       type: Boolean,
