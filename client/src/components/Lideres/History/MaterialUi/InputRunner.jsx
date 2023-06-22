@@ -121,6 +121,7 @@ export default function InputName({ name }) {
         <MenuItem value="" disabled>
           Mes
         </MenuItem>
+        <MenuItem value={""}></MenuItem>
         <MenuItem value={"01"}>Enero</MenuItem>
         <MenuItem value={"02"}>Febrero</MenuItem>
         <MenuItem value={"03"}>Marzo</MenuItem>
