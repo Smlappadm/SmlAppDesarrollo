@@ -1,14 +1,47 @@
-import React from "react";
+import { useUser } from "@clerk/clerk-react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getClientByEmail } from "../../redux/actions";
 
 export default function Referral() {
+  const [verificados, setVerificados] = useState([]);
+  const { user } = useUser();
+  const userEmail = user.emailAddresses[0].emailAddress;
+  const dispatch = useDispatch();
+  const { client } = useSelector((state) => state);
+
+  const checkVerifys = async () => {
+    for (let i = 0; i < client.referred.length; i++) {
+      const item = client.referred[i];
+      const response = await axios.get(`/clientes/user?email=${item}`);
+      const verify = response.data.verify;
+      setVerificados((prevVerificados) => [...prevVerificados, verify]);
+    }
+  };
+  useEffect(() => {
+    dispatch(getClientByEmail(userEmail && userEmail));
+    checkVerifys();
+  }, [dispatch]);
+  useEffect(() => {
+    console.log(verificados);
+  }, [client, verificados]);
+
   return (
     <div className="flex justify-start items-center flex-col h-screen">
       <p className="text-white text-24 mt-4">REFERIDOS</p>
       <div className="h-3/6 w-full items-start overflow-auto px-4 mt-6 border border-white">
-        <div className="flex items-center justify-between">
-          <label className="m-4">Nombre del referido</label>
-          <p>✅</p>
-        </div>
+        <p>{verificados}</p>
+        {client && client.referred
+          ? client.referred.map((item, index) => (
+              <div className="flex items-center justify-between">
+                <label className="m-4">{item}</label>
+                {verificados[index] && verificados[index] === true ? (
+                  <p>✅</p>
+                ) : null}
+              </div>
+            ))
+          : "no hay nada"}
       </div>
       <p className="text-center mt-4">
         Beneficios: Lorem ipsum dolor sit amet consectetur adipisicing elit.
