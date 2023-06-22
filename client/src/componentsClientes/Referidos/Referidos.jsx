@@ -63,7 +63,7 @@ export default function Referral() {
         {client && client.referred
           ? client.referred.map((item, index) => (
               <>
-                <div className="flex items-center justify-between" key={index}>
+                <div className="flex items-center justify-between" key={item}>
                   <label className="m-4">{item}</label>
                   {verificados[index] && verificados[index] === true ? (
                     <p>✅</p>
