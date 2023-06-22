@@ -16,14 +16,19 @@ export default function Referral() {
   const { client } = useSelector((state) => state);
 
   const checkVerifys = async () => {
+    const newVerificados = [];
+    const newUniqueKey = [];
     for (let i = 0; i < client.referred.length; i++) {
       const item = client.referred[i];
       const response = await axios.get(`/clientes/user?email=${item}`);
       const verify = response.data.verify;
       const uID = response.data._id;
-      setVerificados((prevVerificados) => [...prevVerificados, verify]);
-      setUniqueKey((prevUniqueKey) => [...prevUniqueKey, uID]);
+      newVerificados.push(verify);
+      newUniqueKey.push(uID);
     }
+
+    setVerificados(newVerificados);
+    setUniqueKey(newUniqueKey);
   };
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
