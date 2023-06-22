@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { CiWarning, CiEdit } from "react-icons/ci";
+import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 
@@ -165,6 +166,7 @@ function ChildModal({
           sx={{
             ...style,
             width: 500,
+            borderRadius: 5,
             backgroundColor: "#39394B",
             display: "flex",
             flexDirection: "column",
@@ -221,7 +223,6 @@ function IncidenceModal({
   const confirmSendIncidence = () => {
     statusObj.level = "incidencia";
 
-
     const dataVendedor = {
       _id: item._id,
       name: item.name,
@@ -261,7 +262,6 @@ function IncidenceModal({
       });
 
     setOpen(false);
-
   };
 
   const sendIncidence = () => {
@@ -331,17 +331,14 @@ function IncidenceModal({
 function intelligentInfo({ setOpen }) {
   const [openIntelligentInfo, setOpenIntelligentInfo] = React.useState(false);
 
-
   const handleClose = () => {
     setOpenIncidenceChild(false);
   };
   const confirmSendIncidence = () => {
-
     setOpen(false);
 
     SendIncidenceAlert();
   };
-
 
   const sendIncidence = () => {
     setOpenIncidenceChild(true);
@@ -735,7 +732,7 @@ export default function NestedModal({
                       href="https://calendly.com/event_types/user/me"
                       target="_blank"
                     >
-                      Calendry
+                      Calendly
                     </a>
 
                     <CiEdit
@@ -830,7 +827,7 @@ export default function NestedModal({
                       href="https://calendly.com/event_types/user/me"
                       target="_blank"
                     >
-                      Calendry
+                      Calendly
                     </a>
                     <CiEdit
                       onClick={setDateTime}
@@ -841,26 +838,50 @@ export default function NestedModal({
               )}
             {item.status === "Agendar 2do llamado" &&
               statusObj.status === "Contratado" && (
-                <div className="flex items-center justify-center gap-7 mt-8">
-                  <label
-                    htmlFor="last_name"
-                    className="  text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    USD
-                  </label>
-                  <input
-                    onChange={handleSelectChange}
-                    type="text"
-                    id="last_name"
-                    name="status_op"
-                    // defaultValue={item.status_op}
+                <div className="flex flex-col items-center justify-center gap-7 mt-8">
+                  <div className="flex items-center justify-center gap-7">
+                    <label
+                      htmlFor="last_name"
+                      className="  text-sm text-center font-medium text-gray-900 dark:text-white"
+                    >
+                      USD
+                    </label>
+                    <input
+                      onChange={handleSelectChange}
+                      type="text"
+                      id="last_name"
+                      name="status_op"
+                      // defaultValue={item.status_op}
 
-                    className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    // placeholder={item.email}
-                    placeholder=""
-                    // value="USD"
-                    required
-                  />
+                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      // placeholder={item.email}
+                      placeholder=""
+                      // value="USD"
+                      required
+                    />
+                    <MdPriceCheck
+                      MdPriceCheck={setDateTime}
+                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    />
+
+                  </div>
+                  <select
+                    onChange={handleSelectChange}
+                    name="status"
+                    defaultValue="default"
+                    id="select1"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option disabled="disabled" value="default">
+                      Elige uno...
+                    </option>
+                    <option value="Agendar otro llamado">
+                      Agendar otro llamado
+                    </option>
+                    <option value="Contratado">Contratado</option>
+                    <option value="Rechazado">Rechazado</option>
+                    <option value="No responde">No Responde</option>
+                  </select>
                 </div>
               )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
