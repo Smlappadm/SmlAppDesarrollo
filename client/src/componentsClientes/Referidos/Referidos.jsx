@@ -69,12 +69,6 @@ export default function Referral() {
                     <p>✅</p>
                   ) : null}
                 </div>
-                {/* <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
                 <div className="flex items-center justify-between" key={index}>
                   <label className="m-4">{item}</label>
                   {verificados[index] && verificados[index] === true ? (
@@ -110,7 +104,13 @@ export default function Referral() {
                   {verificados[index] && verificados[index] === true ? (
                     <p>✅</p>
                   ) : null}
-                </div> */}
+                </div>
+                <div className="flex items-center justify-between" key={index}>
+                  <label className="m-4">{item}</label>
+                  {verificados[index] && verificados[index] === true ? (
+                    <p>✅</p>
+                  ) : null}
+                </div>
               </>
             ))
           : "no hay nada"}
