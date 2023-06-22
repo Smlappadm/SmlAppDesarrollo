@@ -1,37 +1,3 @@
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import LinearProgress from '@mui/material/LinearProgress';
-
-// export default function LinearDeterminate() {
-//   const [progress, setProgress] = React.useState(0);
-
-//   React.useEffect(() => {
-//     const timer = setInterval(() => {
-//       setProgress((oldProgress) => {
-//         if (oldProgress === 100) {
-//           return 0;
-//         }
-//         const diff = Math.random() * 10;
-//         return Math.min(oldProgress + diff, 100);
-//       });
-//     }, 500);
-
-//     return () => {
-//       clearInterval(timer);
-//     };
-//   }, []);
-
-//   return (
-//     <Box sx={{ width: '85%'}}>
-//       <LinearProgress color="success" sx={{ height: '20px', borderRadius: "10px", backgroundColor:"black", color: "green",
-//        "& .css-h8g9t7-MuiLinearProgress-bar1": {
-//         backgroundColor: "#28b61b",
-//         borderRadius: "10px"
-//       },
-//     }} variant="determinate" value={progress} />
-//     </Box>
-//   );
-// }
 import React, { useState, useEffect } from "react";
 
 export default function LinearDeterminate({
@@ -55,15 +21,18 @@ export default function LinearDeterminate({
       currentProgress += stepIncrement;
       setProgress(currentProgress);
 
+      // Comprobar si se alcanzó el valor de progreso clampedValue
       if (
         (stepIncrement > 0 && currentProgress >= clampedValue) ||
         (stepIncrement < 0 && currentProgress <= clampedValue)
       ) {
+        // Establecer el progreso en el valor clampedValue y detener la animación
         setProgress(clampedValue);
         clearInterval(interval);
       }
     }, animationDuration / animationSteps);
 
+    // Limpiar el intervalo al desmontar el componente
     return () => {
       clearInterval(interval);
     };
@@ -81,7 +50,7 @@ export default function LinearDeterminate({
     backgroundColor: "#570387",
     borderRadius: "10px",
     width: `${progress}%`,
-    transition: "width 1s linear", 
+    transition: "width 1s linear",
   };
 
   return (
