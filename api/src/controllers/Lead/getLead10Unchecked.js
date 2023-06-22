@@ -5,7 +5,7 @@ const getLead10Unchecked = async (query) => {
   let limitedLeadRest = [];
   let leadRest = [];
 
-  const { email, profesion, country, category, marca_personal } = query;
+  const { name, email, profesion, category, country, marca_personal } = query;
 
   const findLeadUnchecked = async (conditions, limit) => {
     return Lead.find(conditions, null, { limit }).lean();
@@ -18,6 +18,7 @@ const getLead10Unchecked = async (query) => {
   if (!profesion && !country && !category && !marca_personal) {
     leadUnchecked = await findLeadUnchecked(
       {
+        corredor_name: name,
         corredor: email,
         checked: false,
         view: true,
@@ -32,6 +33,7 @@ const getLead10Unchecked = async (query) => {
           checked: false,
           view: false,
           corredor: "",
+          corredor_name: "",
         },
         count
       );
@@ -40,7 +42,7 @@ const getLead10Unchecked = async (query) => {
         const updates = limitedLeadRest.map((element) => ({
           updateOne: {
             filter: { _id: element._id },
-            update: { corredor: email, view: true },
+            update: { corredor_name: name, corredor: email, view: true },
           },
         }));
 
@@ -71,11 +73,14 @@ const getLead10Unchecked = async (query) => {
     const countryRegex = country ? new RegExp(country, "i") : /.*/;
     const profesionRegex = profesion ? new RegExp(profesion, "i") : /.*/;
     const categoryRegex = category ? new RegExp(category, "i") : /.*/;
-    const marca_personalRegex = marca_personal ? new RegExp(marca_personal, "i") : /.*/;
+    const marca_personalRegex = marca_personal
+      ? new RegExp(marca_personal, "i")
+      : /.*/;
 
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
+        corredor_name: name,
         checked: false,
         view: true,
         country: countryRegex,
@@ -93,6 +98,7 @@ const getLead10Unchecked = async (query) => {
           checked: false,
           view: false,
           corredor: "",
+          corredor_name: "",
           country: countryRegex,
           profesion: profesionRegex,
           category: categoryRegex,
@@ -105,7 +111,7 @@ const getLead10Unchecked = async (query) => {
         const updates = limitedLeadRest.map((element) => ({
           updateOne: {
             filter: { _id: element._id },
-            update: { corredor: email, view: true },
+            update: { corredor_name: name, corredor: email, view: true },
           },
         }));
 

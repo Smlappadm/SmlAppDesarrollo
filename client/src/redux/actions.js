@@ -1,6 +1,5 @@
 import axios from "axios";
 export const GET_ALL_LEAD = "GET_ALL_LEAD";
-export const GET_ALLCORREDORES = "GET_ALLCORREDORES";
 export const GET_LEAD_UNCHECKED_10 = "GET_LEAD_UNCHECKED_10";
 export const GET_LEAD_UNCHECKED = "GET_LEAD_UNCHECKED";
 export const GET_LEAD_CHEQUED = "GET_LEAD_CHEQUED";
@@ -70,20 +69,12 @@ export const getEmployeesBanned = () => {
   };
 };
 
-
+//
 export const getAllLead = () => {
   return async (dispatch) => {
     const response = await axios.get("/lead");
     const lead = response.data;
     dispatch({ type: GET_ALL_LEAD, payload: lead });
-  };
-};
-
-export const getCorredores = () => {
-  return async (dispatch) => {
-    const response = await axios.get("/lead/allcorredores");
-    const allcorredores = response.data;
-    dispatch({ type: GET_ALLCORREDORES, payload: allcorredores });
   };
 };
 export const getAllCorredores = () => {

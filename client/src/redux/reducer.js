@@ -1,6 +1,5 @@
 import {
   GET_ALL_LEAD,
-  GET_ALLCORREDORES,
   GET_LEAD_UNCHECKED,
   GET_LEAD_CHEQUED,
   GET_LEAD_UNCHECKED_10,
@@ -35,7 +34,6 @@ import {
 
 const initialState = {
   lead: [],
-  allcorredores: [],
   leadChequed: [],
   leadCheckedInactive5: [],
   leadUnchecked: [],
@@ -96,12 +94,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         lead: action.payload,
-      };
-
-    case GET_ALLCORREDORES:
-      return {
-        ...state,
-        allcorredores: action.payload,
       };
     case GET_LEAD_UNCHECKED:
       return {
