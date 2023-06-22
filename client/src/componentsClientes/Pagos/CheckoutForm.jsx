@@ -143,6 +143,7 @@ const CheckoutForm = () => {
       setLoading(false);
     } else {
       setErrores({ ...errores, tarjeta: error ? error.message : "" });
+      setLoading(false);
     }
   };
 
@@ -334,9 +335,9 @@ const CheckoutForm = () => {
         errores.pais ||
         errores.calle ||
         errores.numero ||
-        errores.cp) ? "border-2 bg-[none] w-full text-[#8d8c8c] px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center" : " bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"  }
+        errores.cp) ? "border-2 bg-[none] w-full text-[#8d8c8c] px-5 py-3 mt-3 rounded-xl hover:bg-[#182b46] flex justify-center" : " bg-[#3483FA] w-full text-white px-5 py-3 mt-3 rounded-xl hover:bg-[#2559a8] flex justify-center"  }
       >
-        {false ? (
+        {loading ? (
           <div role="status">
             <svg
               aria-hidden="true"
