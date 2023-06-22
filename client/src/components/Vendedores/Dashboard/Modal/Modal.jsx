@@ -563,20 +563,20 @@ export default function NestedModal({
   };
 
   const handleOpenPagoSelect = () => {
+    
     setOpenPagoSelect(!openPagoSelect);
-    console.log(statusObj.status_op);
     setPagoCalculo({
       ...pagoCalculo,
-      precio1: (statusObj.status_op * 75) / 100,
-      precio6: (statusObj.status_op * 80) / 100,
-      precio12: (statusObj.status_op * 90) / 100,
-      precio16: (statusObj.status_op * 95) / 100,
-      precio25: statusObj.status_op,
-      valorCuota1: precio1,
-      valorCuota6: precio6 / 6,
-      valorCuota12: precio12 / 12,
-      valorCuota16: precio16 / 16,
-      valorCuota25: precio25 / 25,
+      precio1: (Number(statusObj.status_op) * 75) / 100,
+      precio6: (Number(statusObj.status_op) * 80) / 100,
+      precio12: (Number(statusObj.status_op) * 90) / 100,
+      precio16: (Number(statusObj.status_op) * 95) / 100,
+      precio25: Number(statusObj.status_op),
+      valorCuota1: ((Number(statusObj.status_op) * 75) / 100).toFixed(2),
+      valorCuota6: (((Number(statusObj.status_op) * 80) / 100) / 6).toFixed(2),
+      valorCuota12: (((Number(statusObj.status_op) * 90) / 100) / 12).toFixed(2),
+      valorCuota16: (((Number(statusObj.status_op) * 95) / 100) / 16).toFixed(2),
+      valorCuota25: (Number(statusObj.status_op) / 25).toFixed(2),
     });
   };
 
@@ -906,11 +906,11 @@ export default function NestedModal({
                       <option disabled="disabled" value="default">
                         Modo de pago
                       </option>
-                      <option value="Agendar">{`1 pago de €${pagoCalculo.precio1} - total €${}`}</option>
-                      <option value="Contratado">{`6 pago de €${} - total €${}`}</option>
-                      <option value="Rechazado">{`12 pago de €${} - total €${}`}</option>
-                      <option value="No responde">{`16 pago de €${} - total €${}`}</option>
-                      <option value="No responde">{`25 pago de €${} - total €${}`}</option>
+                      <option value="pago1">{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1}`}</option>
+                      <option value="pago6">{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6}`}</option>
+                      <option value="pago12">{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12}`}</option>
+                      <option value="pago16">{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16}`}</option>
+                      <option value="pago25">{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
                     </select>
                   )}
                 </div>
