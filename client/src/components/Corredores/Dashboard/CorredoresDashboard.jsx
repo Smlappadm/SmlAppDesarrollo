@@ -160,14 +160,19 @@ const CorredoresDashboard = () => {
 
   useEffect(() => {
     const updateClients = async () => {
+      if (corredorLead.length !== client.length) {
+        return;
+      }
+
       for (let i = 0; i < corredorLead.length; i++) {
-        const response = await axios.put(`/lead/${client[i]._id}`, {
+        const response = await axios.put(`/lead/${corredorLead[i]._id}`, {
           instagram: client[i].instagram,
           email: client[i].email,
           level: client[i].level,
         });
       }
     };
+
     updateClients();
   }, [client]);
 
