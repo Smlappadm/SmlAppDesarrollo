@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
+import { IoCloseSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 export default function Referral() {
   const [verificados, setVerificados] = useState([]);
@@ -47,7 +49,15 @@ export default function Referral() {
 
   return (
     <div className="flex justify-start items-center flex-col h-screen">
-      <p className="text-white text-24 mt-4">REFERIDOS</p>
+      <div className="flex flex-row items-center justify-center text-center w-full mx-4">
+        <p className="text-white text-24 mt-4">REFERIDOS</p>
+        <Link
+          to={"/clientes-home"}
+          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] text-24 mt-4 absolute right-3"
+        >
+          <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+        </Link>
+      </div>
       <div className="h-3/6 w-full items-start overflow-auto px-4 mt-6 bg-transparent border-opacity-5 border rounded-lg border-blue-500">
         <p>{verificados}</p>
         {client && client.referred
