@@ -22,7 +22,7 @@ export default function Referral() {
       const verify = response.data.verify;
       const uID = response.data._id;
       setVerificados((prevVerificados) => [...prevVerificados, verify]);
-      setUniqueKey((prevUniqueKey) => [...prevUniqueKey, uniqueKey]);
+      setUniqueKey((prevUniqueKey) => [...prevUniqueKey, uID]);
     }
   };
   useEffect(() => {
@@ -48,6 +48,7 @@ export default function Referral() {
       `http://localhost:5173/clientes-home?ref=${userEmail && userEmail}`
     );
     copyRefSuccess();
+    console.log(uniqueKey);
   };
 
   return (
@@ -66,54 +67,15 @@ export default function Referral() {
         {client && client.referred
           ? client.referred.map((item, index) => (
               <>
-                <div className="flex items-center justify-between">
+                <div
+                  className="flex items-center justify-between"
+                  key={uniqueKey[index]}
+                >
                   <label className="m-4">{item}</label>
                   {verificados[index] && verificados[index] === true ? (
                     <p>✅</p>
                   ) : null}
                 </div>
-                {/* <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div> */}
               </>
             ))
           : "no hay nada"}
