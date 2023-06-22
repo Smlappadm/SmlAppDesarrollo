@@ -24,9 +24,6 @@ export default function Referral() {
     dispatch(getClientByEmail(userEmail && userEmail));
     checkVerifys();
   }, [dispatch]);
-  useEffect(() => {
-    console.log(verificados);
-  }, [client, verificados]);
 
   const copyRefSuccess = () => {
     toast.success("Codigo de Referido Copiado.", {
