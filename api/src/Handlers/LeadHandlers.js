@@ -183,12 +183,10 @@ const findLeadCorredorNameHandler = async (req, res) => {
   }
 };
 const findLeadCorredorNameAllInfoHandler = async (req, res) => {
-  const { name, month, year, fromDay, toDay } = req.query;
+  const { name, fromDay, toDay } = req.query;
   try {
     const foundCorredor = await findLeadCorredorNameAllInfo(
       name,
-      month,
-      year,
       fromDay,
       toDay
     );
