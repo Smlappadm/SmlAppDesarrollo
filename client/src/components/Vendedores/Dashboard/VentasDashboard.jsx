@@ -4,10 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import {
-  filterLevel,
-  getLeadsLLamadaVenta,
-} from "../../../redux/actions";
+import { filterLevel, getLeadsLLamadaVenta } from "../../../redux/actions";
 import Modal from "./Modal/Modal";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
@@ -61,7 +58,12 @@ const VentasDashboard = () => {
 
   const handlerFilter = (filter) => {
     if (filter === "level") {
-      setFilters({ level: !filters.level, runner: false, sellers: false, status: false });
+      setFilters({
+        level: !filters.level,
+        runner: false,
+        sellers: false,
+        status: false,
+      });
     } else if (filter === "runner") {
       setFilters({ level: false, runner: true, sellers: false, status: false });
     } else if (filter === "sellers") {
@@ -77,12 +79,11 @@ const VentasDashboard = () => {
     dispatch(filterLevel(value));
     setData(vendedoresVentasDashboard);
     setCurrentPage(1);
-    if(!value){
-      setFilters({...filters, level: !filters.level})
+    if (!value) {
+      setFilters({ ...filters, level: !filters.level });
     }
   };
   //********************************* */
-
 
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
@@ -182,19 +183,27 @@ const VentasDashboard = () => {
             <div className={style.table}>
               <div className="flex justify-start items-center  mx-6">
                 <label className=" text-start w-[15%] px-3">Nombre</label>
-                <label className=" text-start w-[11%] px-3">Sector</label>
+                <label className=" text-start w-[11%] px-3">Profesión</label>
                 <label className=" text-start w-[9%] px-3">País</label>
                 <label className=" text-center w-[5%] ">Email</label>
                 <label className=" text-center w-[5%] ">Instagram</label>
                 <label className=" text-center w-[13%] ">Phone</label>
-                <button className=" text-center w-[5%]" onClick={() => handlerFilter("level")}>Nivel</button>
+                <button
+                  className=" text-center w-[5%]"
+                  onClick={() => handlerFilter("level")}
+                >
+                  Nivel
+                </button>
                 <label className=" text-center w-[17%] ">Llamar</label>
                 <label className=" text-center w-[15%] ">Status</label>
                 <label className=" text-center w-[5%] "></label>
               </div>
               <div className="">
                 {currentCard.map((item, index) => (
-                  <div key={item._id} className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg">
+                  <div
+                    key={item._id}
+                    className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
+                  >
                     <div className=" w-[15%] flex justify-start items-center  p-0 ">
                       <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                         {item.name}
@@ -258,8 +267,8 @@ const VentasDashboard = () => {
                       >
                         {item.telephone}
                       </p>
-                      </div>
-                      <div className=" w-[5%] flex justify-center items-start p-0">
+                    </div>
+                    <div className=" w-[5%] flex justify-center items-start p-0">
                       {item.level !== "incidencia" ? (
                         <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
                           {item.level}
@@ -281,9 +290,10 @@ const VentasDashboard = () => {
                             Sin contacto
                           </p>
                         )}
-                       
+
                         <div className=" flex justify-start items-center">
-                          {typeof item.llamada_venta.dia_hora !== "undefined" && item.llamada_venta?.dia_hora[5] !== "u" ? (
+                          {typeof item.llamada_venta.dia_hora !== "undefined" &&
+                          item.llamada_venta?.dia_hora[5] !== "u" ? (
                             <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.llamada_venta.dia_hora}
                             </p>
