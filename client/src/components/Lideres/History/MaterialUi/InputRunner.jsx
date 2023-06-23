@@ -3,22 +3,24 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button"; // Importa el componente Button
+import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findCorredoresByNameAllInfo,
   getCorredor,
 } from "../../../../redux/actions";
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import esLocale from "date-fns/locale/es";
+import { format } from "date-fns";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
   const [names, setNames] = useState("");
-  const [fromDay, setFromDay] = useState("");
-  const [toDay, setToDay] = useState("");
+  const [fromDay, setFromDay] = useState(null);
+  const [toDay, setToDay] = useState(null);
 
   const { allCorredores } = useSelector((state) => state);
-
-  console.log(allCorredores);
 
   useEffect(() => {
     dispatch(getCorredor());
@@ -29,149 +31,128 @@ export default function InputName({ name }) {
     setNames(value);
   };
 
-  const handleMonthChange = (event) => {
-    setSelectedMonth(event.target.value);
+  const handleFromDay = (date) => {
+    setFromDay(date);
   };
 
-  const handleYearChange = (event) => {
-    setSelectedYear(event.target.value);
-  };
-
-  const handleFromDay = (event) => {
-    setFromDay(event.target.value);
-  };
-  const handleToDay = (event) => {
-    setToDay(event.target.value);
+  const handleToDay = (date) => {
+    setToDay(date);
   };
 
   const handleFilterClick = () => {
-    dispatch(findCorredoresByNameAllInfo(names, fromDay, toDay));
+    const formattedFromDay = fromDay ? format(fromDay, "yyyy-MM-dd") : null;
+    const formattedToDay = toDay ? format(toDay, "yyyy-MM-dd") : null;
+    dispatch(
+      findCorredoresByNameAllInfo(names, formattedFromDay, formattedToDay)
+    );
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "10px",
-        width: "50%",
-        height: "33px",
-        color: "gray",
-        margin: "0px 10px",
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white",
-        },
-        "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-          borderColor: "white",
-        },
-        "&.focused .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-          borderColor: "green",
-        },
-      }}
-    >
-      <Select
-        value={names}
-        onChange={handleChange}
-        label="Buscar por corredor"
-        id="runner"
-        size="small"
-        variant="outlined"
-        displayEmpty
-        inputProps={{
-          style: {
-            color: "white",
-          },
-        }}
+    <LocalizationProvider dateAdapter={AdapterDateFns} locale={esLocale}>
+      <Box
         sx={{
-          color: "white",
-          "& .MuiOutlinedInput-input": {
-            padding: "9.5px 14px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          width: "50%",
+          height: "33px",
+          color: "gray",
+          margin: "0px 10px",
+          "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "white",
           },
-          "& .MuiSelect-outlined": {
-            paddingRight: "28px",
+          "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "white",
+          },
+          "&.focused .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "green",
           },
         }}
       >
-        <MenuItem value="" disabled>
-          Buscar por corredor
-        </MenuItem>
-        {allCorredores.map((corredor) => (
-          <MenuItem key={corredor} value={corredor}>
-            {corredor}
-          </MenuItem>
-        ))}
-      </Select>
-      {/* <TextField
-        label="Buscar por corredor"
-        id="runner"
-        value={name}
-        onChange={handleChange}
-        size="small"
-        InputProps={{
-          style: {
+        <Select
+          value={names}
+          onChange={handleChange}
+          label="Buscar por corredor"
+          id="runner"
+          size="small"
+          variant="outlined"
+          displayEmpty
+          inputProps={{
+            style: {
+              color: "white",
+            },
+          }}
+          sx={{
             color: "white",
-          },
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-      /> */}
+            "& .MuiOutlinedInput-input": {
+              padding: "9.5px 14px",
+            },
+            "& .MuiSelect-outlined": {
+              paddingRight: "28px",
+            },
+          }}
+        >
+          <MenuItem value="" disabled>
+            Buscar por corredor
+          </MenuItem>
+          {allCorredores.map((corredor) => (
+            <MenuItem key={corredor} value={corredor}>
+              {corredor}
+            </MenuItem>
+          ))}
+        </Select>
 
-      <TextField
-        type="date"
-        value={fromDay}
-        onChange={handleFromDay}
-        label="Desde"
-        size="small"
-        variant="outlined"
-        inputProps={{
-          min: 1,
-          max: 31,
-          step: 1,
-          style: {
-            color: "gray",
-          },
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-        sx={{
-          width: "150px",
-        }}
-      />
-      <TextField
-        type="date"
-        value={toDay}
-        onChange={handleToDay}
-        label="Hasta"
-        size="small"
-        variant="outlined"
-        inputProps={{
-          min: 1,
-          max: 31,
-          step: 1,
-          style: {
-            color: "gray",
-          },
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-        sx={{
-          width: "150px", // Ajusta el ancho del TextField aquí
-        }}
-      />
+        <DatePicker
+          value={fromDay}
+          onChange={handleFromDay}
+          TextFieldComponent={TextField}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label=""
+              size="small"
+              variant="outlined"
+              sx={{
+                width: "150px",
+                color: "grey"
+              }}
+              value={fromDay ? format(fromDay, "yyyy-MM-dd") : ""}
+            />
+          )}
+        />
 
-      <Button onClick={handleFilterClick} variant="contained" size="small">
-        Filtrar
-      </Button>
-    </Box>
+        <DatePicker
+          value={toDay}
+          onChange={handleToDay}
+          TextFieldComponent={TextField}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label=""
+              size="small"
+              variant="outlined"
+              sx={{
+                width: "150px",
+                color: "grey"
+              }}
+              value={toDay ? format(toDay, "yyyy-MM-dd") : ""}
+            />
+          )}
+        />
+
+        <Button
+          onClick={handleFilterClick}
+          variant="outlined"
+          size="small"
+          sx={{
+            color: "white",
+            borderColor: "white",
+          }}
+        >
+          Filtrar
+        </Button>
+      </Box>
+    </LocalizationProvider>
   );
 }
