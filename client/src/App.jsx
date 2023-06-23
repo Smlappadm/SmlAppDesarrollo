@@ -349,9 +349,7 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/vendedores-ventas"
           element={
-            (isRoleAllowed(roleReady) && roleReady === "vendedor") ||
-            roleReady === "clevel" ||
-            roleReady === "leader" ? (
+            isRoleAllowed(roleReady) && roleReady === "vendedor" ? (
               <VentasDasboard />
             ) : (
               <ReturnToPage />
