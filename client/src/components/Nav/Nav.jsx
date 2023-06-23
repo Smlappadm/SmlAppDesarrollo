@@ -66,32 +66,7 @@ function Nav() {
                     </Link>
                   </span>
                 </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoCashSharp className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/vendedores"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Vendedor
-                    </Link>
-                  </span>
-                </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoWalkOutline className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/corredores"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Corredor
-                    </Link>
-                  </span>
-                </li>
+
                 <li className="flex gap-2 items-center text-[18px] text-white">
                   <span className="text-[1.5rem]">
                     <IoStatsChart className="w-4 text-[#e0dddd]" />

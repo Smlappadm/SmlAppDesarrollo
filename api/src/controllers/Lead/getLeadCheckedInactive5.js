@@ -1,14 +1,34 @@
 const Lead = require("../../models/Lead");
 
 const getLeadCheckedInactive5 = async (email) => {
-  const leadChequedInactive = await Lead.find({
+
+  const leadChequedInactiveNivel2 = await Lead.find({
     checked: true,
     vendedor: email,
     status: "Sin contactar",
-    level: { $nin: ["incidencia", "0", "", "-"] },
+    level: { $nin: ["incidencia", "0", "", "-", "1"] },
   })
     .limit(5)
     .exec();
+
+    const countNivel2 = 5 - leadChequedInactiveNivel2.length;
+
+
+    // console.log(countNivel2)
+    let leadChequedInactiveNivel1 = [];
+
+  if(leadChequedInactiveNivel2.length < 5){
+  leadChequedInactiveNivel1 = await Lead.find({
+    checked: true,
+    vendedor: email,
+    status: "Sin contactar",
+    level: { $nin: ["incidencia", "0", "", "-", "2"] },
+  })
+    .limit(countNivel2 - leadChequedInactiveNivel1.length)
+    .exec();
+  }
+console.log(countNivel2 - leadChequedInactiveNivel1.length)
+const leadChequedInactive = [...leadChequedInactiveNivel2, ...leadChequedInactiveNivel1.slice(0, 5)]
 
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
@@ -76,6 +96,7 @@ const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
 
   return [
     ...leadChequedInactive,
+
     ...leadRest,
     ...leadsNoRespondenSorted,
   ];
