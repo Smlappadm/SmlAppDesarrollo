@@ -48,6 +48,7 @@ export default function InputName({ name }) {
         width: "50%",
         height: "33px",
         color: "gray",
+        paddingBottom:"10px",
         margin: "0px 10px",
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "white",
@@ -60,10 +61,12 @@ export default function InputName({ name }) {
         },
       }}
     >
+      <div className="flex flex-col">
+        <label>Corredor:</label>
       <Select
         value={names}
         onChange={handleChange}
-        label="Buscar por corredor"
+        label=""
         id="runner"
         size="small"
         variant="outlined"
@@ -92,46 +95,54 @@ export default function InputName({ name }) {
           </MenuItem>
         ))}
       </Select>
+      </div>
 
-      <TextField
-        type="date"
-        value={fromDay}
-        onChange={handleFromDay}
-        label=""
-        size="small"
-        variant="outlined"
-        inputProps={{
-          min: 1,
-          max: 31,
-          step: 1,
-          style: {
-            color: "white",
-          },
-        }}
-        sx={{
-          width: "150px",
-        }}
-      />
-      <TextField
-        type="date"
-        value={toDay}
-        onChange={handleToDay}
-        label=""
-        placeholder="hola"
-        size="small"
-        variant="outlined"
-        inputProps={{
-          min: 1,
-          max: 31,
-          step: 1,
-          style: {
-            color: "white",
-          },
-        }}
-        sx={{
-          width: "150px",
-        }}
-      />
+      <div className="flex flex-col">
+        <label>Desde:</label>
+        <TextField
+          type="date"
+          value={fromDay}
+          onChange={handleFromDay}
+          label=""
+          size="small"
+          variant="outlined"
+          inputProps={{
+            min: 1,
+            max: 31,
+            step: 1,
+            style: {
+              color: "white",
+            },
+          }}
+          sx={{
+            width: "150px",
+          }}
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label>Hasta:</label>
+        <TextField
+          type="date"
+          value={toDay}
+          onChange={handleToDay}
+          label=""
+          placeholder="hola"
+          size="small"
+          variant="outlined"
+          inputProps={{
+            min: 1,
+            max: 31,
+            step: 1,
+            style: {
+              color: "white",
+            },
+          }}
+          sx={{
+            width: "150px",
+          }}
+        />
+      </div>
 
       <Button onClick={handleFilterClick} variant="contained" size="small">
         Filtrar
