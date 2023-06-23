@@ -178,6 +178,7 @@ export const findCorredoresByNameAllInfo = (
   toDay
 ) => {
   return async (dispatch) => {
+    console.log(fromDay);
     const response = await axios.get(
       `/lead/allinfo?name=${corredorName}&fromDay=${fromDay}&toDay=${toDay}`
     );
