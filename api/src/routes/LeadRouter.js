@@ -20,6 +20,7 @@ const {
   findLeadCorredorNameAllInfoHandler,
   getAllCategoryHandler,
   getCorredoresHandler,
+  updateChangeEmailHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -31,6 +32,7 @@ LeadRouter.get("/country", getAllCountriesHandler);
 LeadRouter.get("/corredor", findLeadCorredorNameHandler);
 LeadRouter.get("/allinfo", findLeadCorredorNameAllInfoHandler);
 LeadRouter.get("/vendedor", findLeadVendedorNameHandler);
+LeadRouter.put("/changeemail/:id", updateChangeEmailHandler);
 LeadRouter.put("/limpieza", limpiezaBaseHandler);
 LeadRouter.get("/checked", getLeadCheckedHandler);
 LeadRouter.put("/checkedinactive5", getLeadCheckedInactive5Handler);
