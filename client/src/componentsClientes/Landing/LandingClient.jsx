@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useUser } from "@clerk/clerk-react";
 import Name from "./Name/Name";
 import Header from "./Header/Header";
 import Followers from "./Followers/Followers";
-import { useDispatch, useSelector } from "react-redux";
-import { getClientByEmail } from "../../redux/actions";
-import axios from "axios";
-
 export default function LandingClient({
   imgInstagram,
   setMaxNumber,
