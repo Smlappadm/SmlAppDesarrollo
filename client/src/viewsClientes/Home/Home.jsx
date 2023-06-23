@@ -51,7 +51,6 @@ export default function Home() {
   };
 
   return (
-   
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
       {access ? (
         <>

@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button"; // Importa el componente Button
+import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findCorredoresByNameAllInfo,
@@ -18,8 +18,6 @@ export default function InputName({ name }) {
 
   const { allCorredores } = useSelector((state) => state);
 
-  console.log(allCorredores);
-
   useEffect(() => {
     dispatch(getCorredor());
   }, [dispatch]);
@@ -27,14 +25,6 @@ export default function InputName({ name }) {
   const handleChange = (event) => {
     let value = event.target.value;
     setNames(value);
-  };
-
-  const handleMonthChange = (event) => {
-    setSelectedMonth(event.target.value);
-  };
-
-  const handleYearChange = (event) => {
-    setSelectedYear(event.target.value);
   };
 
   const handleFromDay = (event) => {
@@ -58,6 +48,7 @@ export default function InputName({ name }) {
         width: "50%",
         height: "33px",
         color: "gray",
+        paddingBottom:"10px",
         margin: "0px 10px",
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "white",
@@ -70,10 +61,12 @@ export default function InputName({ name }) {
         },
       }}
     >
+      <div className="flex flex-col">
+        <label>Corredor:</label>
       <Select
         value={names}
         onChange={handleChange}
-        label="Buscar por corredor"
+        label=""
         id="runner"
         size="small"
         variant="outlined"
@@ -102,72 +95,54 @@ export default function InputName({ name }) {
           </MenuItem>
         ))}
       </Select>
-      {/* <TextField
-        label="Buscar por corredor"
-        id="runner"
-        value={name}
-        onChange={handleChange}
-        size="small"
-        InputProps={{
-          style: {
-            color: "white",
-          },
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-      /> */}
+      </div>
 
-      <TextField
-        type="date"
-        value={fromDay}
-        onChange={handleFromDay}
-        label="Desde"
-        size="small"
-        variant="outlined"
-        inputProps={{
-          min: 1,
-          max: 31,
-          step: 1,
-          style: {
-            color: "gray",
-          },
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-        sx={{
-          width: "150px",
-        }}
-      />
-      <TextField
-        type="date"
-        value={toDay}
-        onChange={handleToDay}
-        label="Hasta"
-        size="small"
-        variant="outlined"
-        inputProps={{
-          min: 1,
-          max: 31,
-          step: 1,
-          style: {
-            color: "gray",
-          },
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-        sx={{
-          width: "150px", // Ajusta el ancho del TextField aquí
-        }}
-      />
+      <div className="flex flex-col">
+        <label>Desde:</label>
+        <TextField
+          type="date"
+          value={fromDay}
+          onChange={handleFromDay}
+          label=""
+          size="small"
+          variant="outlined"
+          inputProps={{
+            min: 1,
+            max: 31,
+            step: 1,
+            style: {
+              color: "white",
+            },
+          }}
+          sx={{
+            width: "150px",
+          }}
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label>Hasta:</label>
+        <TextField
+          type="date"
+          value={toDay}
+          onChange={handleToDay}
+          label=""
+          placeholder="hola"
+          size="small"
+          variant="outlined"
+          inputProps={{
+            min: 1,
+            max: 31,
+            step: 1,
+            style: {
+              color: "white",
+            },
+          }}
+          sx={{
+            width: "150px",
+          }}
+        />
+      </div>
 
       <Button onClick={handleFilterClick} variant="contained" size="small">
         Filtrar

@@ -27,10 +27,12 @@ import {
   GET_ALL_COUNTRY,
   GET_DETAIL_EMPLOY,
   FIND_CORREDORES_NAME_ALL_INFO,
+  FIND_VENDEDORES_NAME_ALL_INFO,
   GET_ALL_CLIENTES,
   GET_CLIENT_BY_EMAIL,
   GET_BANNED,
   GET_CORREDORES,
+  GET_VENDEDORES,
 } from "./actions";
 
 const initialState = {
@@ -60,10 +62,12 @@ const initialState = {
   allCountries: [],
   detailEmploy: [],
   corredoresByNameAllInfo: [],
+  vendedoresByNameAllInfo: [],
   allClientes: [],
   client: [],
   employeesBanned: [],
   allCorredores: [],
+  allVendedores: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -315,6 +319,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         leaderDashboard: corredoresByNameAllInfoSort,
       };
+    case FIND_VENDEDORES_NAME_ALL_INFO:
+      const vendedoresByNameAllInfo = action.payload;
+      const vendedoresByNameAllInfoSort = vendedoresByNameAllInfo.sort(
+        (a, b) => (b ? b.level : "") - (a ? a.level : "")
+      );
+      return {
+        ...state,
+        leaderDashboard: vendedoresByNameAllInfoSort,
+      };
     case FIND_VENDEDORES_NAME:
       const vendedorName = action.payload;
       const vendedorNameSort = vendedorName.sort(
@@ -391,6 +404,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allCorredores: action.payload,
+      };
+    case GET_VENDEDORES:
+      return {
+        ...state,
+        allVendedores: action.payload,
       };
     case GET_DETAIL_EMPLOY:
       return {

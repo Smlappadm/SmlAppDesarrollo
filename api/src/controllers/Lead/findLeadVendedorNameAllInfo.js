@@ -1,9 +1,12 @@
 const Lead = require("../../models/Lead");
 
-const findLeadCorredorNameAllInfo = async (name, fromDay, toDay) => {
+const findLeadVendedorNameAllInfo = async (name, fromDay, toDay) => {
+  console.log(name);
+  console.log(fromDay);
+  console.log(toDay);
   const regex = name ? new RegExp(name, "i") : /.*/;
   const query = {
-    corredor_name: regex,
+    vendedor_name: regex,
     checked: true,
     view: true,
   };
@@ -38,5 +41,5 @@ const findLeadCorredorNameAllInfo = async (name, fromDay, toDay) => {
   return leads;
 };
 
-module.exports = findLeadCorredorNameAllInfo;
+module.exports = findLeadVendedorNameAllInfo;
 
