@@ -24,7 +24,6 @@ export default function Home() {
     };
 
     fetchData();
-    obtainMetricsInstagram();
   }, []);
 
   useEffect(() => {
@@ -49,13 +48,6 @@ export default function Home() {
   };
   const handleViewChange = (event) => {
     setOptionView(event.target.value);
-  };
-
-  const obtainMetricsInstagram = async () => {
-    const infoIG = await axios.get(
-      "https://apiflask-td8y.onrender.com/obtener_info_instagram?username=nutramosmx"
-    ).data;
-    console.log(infoIG);
   };
 
   return (
