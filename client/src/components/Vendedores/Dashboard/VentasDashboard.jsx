@@ -157,7 +157,7 @@ const VentasDashboard = () => {
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
             <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
-              Dashboard
+              Ventas
             </h1>
             <div className="flex gap-7">
               <Link to={"/vendedores"}>
