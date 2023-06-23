@@ -19,11 +19,8 @@ export default function ResponsiveDateTimePickers({
   let date = "";
   const today = dayjs();
 
-  //   React.useEffect(()=>{
-
-  //   }, [])
   const handleAcept = (date) => {
-    // setSelectedDate(date);
+// setSelectedDate(date);
     closeDateHour();
   };
   const handleDateChange = (date) => {

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./CheckoutForm.module.css";
 import validation from "./validation";
 import axios from "axios";
+import ModalConfirmacion from "./ModalConfirmacion"
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -379,6 +380,8 @@ const CheckoutForm = () => {
             </div>
           </div>
           <div className="border-2 w-80 rounded-full"></div>
+          {/* <ModalConfirmacion/> */}
+
           <button
             type="submit"
             disabled={
