@@ -18,7 +18,6 @@ export default function InputName({ name }) {
   const handleChange = (event) => {
     let value = event.target.value;
     setNames(value);
-    dispatch(findCorredoresByNameAllInfo(names));
   };
 
   const handleMonthChange = (event) => {
@@ -37,9 +36,7 @@ export default function InputName({ name }) {
   };
 
   const handleFilterClick = () => {
-    dispatch(
-      findCorredoresByNameAllInfo(names, selectedMonth, selectedYear, fromDay, toDay)
-    );
+    dispatch(findCorredoresByNameAllInfo(names, fromDay, toDay));
   };
 
   return (
@@ -77,66 +74,13 @@ export default function InputName({ name }) {
         }}
         InputLabelProps={{
           style: {
-            color: "gray",
+            color: "gray", // Cambia el color del label aquí
           },
         }}
       />
 
       <TextField
-        type="text"
-        size="small"
-        value={selectedYear}
-        onChange={handleYearChange}
-        label="Año"
-        variant="outlined"
-        InputProps={{
-          style: {
-            color: "gray",
-          },
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-        sx={{
-          width: "75px", // Ajusta el ancho del TextField aquí
-        }}
-      />
-
-      <Select
-        value={selectedMonth}
-        onChange={handleMonthChange}
-        displayEmpty
-        size="small"
-        sx={{
-          color: "gray",
-        }}
-        InputLabelProps={{
-          style: {
-            color: "gray", // Cambia el color del label aquí
-          },
-        }}
-      >
-        <MenuItem value="" disabled>
-          Mes
-        </MenuItem>
-        <MenuItem value={"01"}>Enero</MenuItem>
-        <MenuItem value={"02"}>Febrero</MenuItem>
-        <MenuItem value={"03"}>Marzo</MenuItem>
-        <MenuItem value={"04"}>Abril</MenuItem>
-        <MenuItem value={"05"}>Mayo</MenuItem>
-        <MenuItem value={"06"}>Junio</MenuItem>
-        <MenuItem value={"07"}>Julio</MenuItem>
-        <MenuItem value={"08"}>Agosto</MenuItem>
-        <MenuItem value={"09"}>Septiembre</MenuItem>
-        <MenuItem value={"10"}>Octubre</MenuItem>
-        <MenuItem value={"11"}>Noviembre</MenuItem>
-        <MenuItem value={"12"}>Diciembre</MenuItem>
-      </Select>
-
-      <TextField
-        type="text"
+        type="date"
         value={fromDay}
         onChange={handleFromDay}
         label="Desde"
@@ -156,11 +100,11 @@ export default function InputName({ name }) {
           },
         }}
         sx={{
-          width: "75px",
+          width: "150px",
         }}
       />
       <TextField
-        type="text"
+        type="date"
         value={toDay}
         onChange={handleToDay}
         label="Hasta"
@@ -180,7 +124,7 @@ export default function InputName({ name }) {
           },
         }}
         sx={{
-          width: "75px", // Ajusta el ancho del TextField aquí
+          width: "150px", // Ajusta el ancho del TextField aquí
         }}
       />
 
