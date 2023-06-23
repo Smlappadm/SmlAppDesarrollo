@@ -163,20 +163,18 @@ const VendedoresHistory = () => {
 
   const onChangeStatus = (value) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
-    console.log(value)
+    console.log(value);
     // setStatusValue(event.target.value);
 
-
-    const leadsFilteredPais = vendedorAllLeadsHistory.filter((item) => item.status === value);
+    const leadsFilteredPais = vendedorAllLeadsHistory.filter(
+      (item) => item.status === value
+    );
 
     setData(leadsFilteredPais);
     if (value === "s") {
       dispatch(getVendedorAllLeads(email));
     }
   };
-
-
-
 
   //*********** */
   const handleCopyClick = (copyToProps) => {
@@ -352,7 +350,7 @@ const VendedoresHistory = () => {
                   className="text-start w-[15%] px-3"
                   onClick={handlerOpenFilterSector}
                 >
-                  Sector
+                  Profesión
                 </button>
                 <button
                   className="text-start w-[10%] px-3"
