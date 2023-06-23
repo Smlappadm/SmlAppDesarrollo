@@ -15,7 +15,7 @@ export default function LandingClient() {
   const userEmail = user.emailAddresses[0].emailAddress;
   const [name, setName] = useState("");
   const [imgInstagram, setImgInstagram] = useState(imgUser);
-  const [numberInstagram, setNumberInstagram] = useState(200);
+  const [numberInstagram, setNumberInstagram] = useState(1500);
   const [numberTiktok, setNumberTiktok] = useState(3300);
   const [numberTotal, setNumberTotal] = useState(2500);
   const [maxNumber, setMaxNumber] = useState("10K");

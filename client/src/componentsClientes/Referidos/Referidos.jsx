@@ -9,18 +9,26 @@ import { Link } from "react-router-dom";
 
 export default function Referral() {
   const [verificados, setVerificados] = useState([]);
+  const [uniqueKey, setUniqueKey] = useState([]);
   const { user } = useUser();
   const userEmail = user.emailAddresses[0].emailAddress;
   const dispatch = useDispatch();
   const { client } = useSelector((state) => state);
 
   const checkVerifys = async () => {
+    const newVerificados = [];
+    const newUniqueKey = [];
     for (let i = 0; i < client.referred.length; i++) {
       const item = client.referred[i];
       const response = await axios.get(`/clientes/user?email=${item}`);
       const verify = response.data.verify;
-      setVerificados((prevVerificados) => [...prevVerificados, verify]);
+      const uID = response.data._id;
+      newVerificados.push(verify);
+      newUniqueKey.push(uID);
     }
+
+    setVerificados(newVerificados);
+    setUniqueKey(newUniqueKey);
   };
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
@@ -53,65 +61,20 @@ export default function Referral() {
         <p className="text-white text-24 mt-4">REFERIDOS</p>
         <Link
           to={"/clientes-home"}
-          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] text-24 mt-4 "
+          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] text-24 mt-4 absolute right-3 "
         >
           <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
         </Link>
       </div>
       <div className="h-3/6 w-full items-start overflow-auto px-4 mt-6 bg-transparent border-opacity-5 border rounded-lg border-blue-500">
-        <p>{verificados}</p>
         {client && client.referred
           ? client.referred.map((item, index) => (
-              <>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                {/* <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div>
-                <div className="flex items-center justify-between" key={index}>
-                  <label className="m-4">{item}</label>
-                  {verificados[index] && verificados[index] === true ? (
-                    <p>✅</p>
-                  ) : null}
-                </div> */}
-              </>
+              <div className="flex items-center justify-between" key={index}>
+                <label className="m-4">{item}</label>
+                {verificados[index] && verificados[index] === true ? (
+                  <p>✅</p>
+                ) : null}
+              </div>
             ))
           : "no hay nada"}
       </div>

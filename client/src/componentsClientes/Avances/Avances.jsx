@@ -70,7 +70,7 @@ export default function Avances() {
         value: client.seguidoresGanados,
       },
       {
-        texto: "Videos Acumulados",
+        texto: "Visitas Acumulados",
         sumaTotal: client.videosAcumuladosAnteriores,
         suma: client.videosAcumulados - client.videosAcumuladosAnteriores,
         value: client.videosAcumulados,
@@ -112,7 +112,7 @@ export default function Avances() {
           <option value="">desde siempre</option>
         </select>
       </div>
-      <div>
+      <div className="flex flex-col w-10/12">
         {avances &&
           avances.map((avance, index) => (
             <CustomsLabelAvances

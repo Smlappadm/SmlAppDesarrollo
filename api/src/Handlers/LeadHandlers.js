@@ -16,6 +16,7 @@ const findLeadVendedorName = require("../controllers/Lead/findLeadVendedorName")
 const getAllProfession = require("../controllers/Lead/getAllProfesion");
 const getAllCountry = require("../controllers/Lead/getAllCountry");
 const findLeadCorredorNameAllInfo = require("../controllers/Lead/findLeadCorredorNameAllInfo");
+const getAllCategory = require("../controllers/Lead/getAllCategory");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -30,6 +31,15 @@ const getAllProfesionHandler = async (req, res) => {
   try {
     const profesion = await getAllProfession();
     res.status(200).json(profesion);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const getAllCategoryHandler = async (req, res) => {
+  try {
+    const category = await getAllCategory();
+    res.status(200).json(category);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -173,12 +183,10 @@ const findLeadCorredorNameHandler = async (req, res) => {
   }
 };
 const findLeadCorredorNameAllInfoHandler = async (req, res) => {
-  const { name, month, year, fromDay, toDay } = req.query;
+  const { name, fromDay, toDay } = req.query;
   try {
     const foundCorredor = await findLeadCorredorNameAllInfo(
       name,
-      month,
-      year,
       fromDay,
       toDay
     );
@@ -223,5 +231,6 @@ module.exports = {
   findLeadVendedorNameHandler,
   getAllProfesionHandler,
   getAllCountriesHandler,
+  getAllCategoryHandler,
   findLeadCorredorNameAllInfoHandler,
 };
