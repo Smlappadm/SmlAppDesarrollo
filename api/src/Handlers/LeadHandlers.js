@@ -17,8 +17,9 @@ const getAllProfession = require("../controllers/Lead/getAllProfesion");
 const getAllCountry = require("../controllers/Lead/getAllCountry");
 const findLeadCorredorNameAllInfo = require("../controllers/Lead/findLeadCorredorNameAllInfo");
 const getAllCategory = require("../controllers/Lead/getAllCategory");
-const getCorredor = require("../controllers/Lead/getCorredores");
 const getCorredores = require("../controllers/Lead/getCorredores");
+const getVendedores = require("../controllers/Lead/getVendedores");
+const findLeadVendedorNameAllInfo = require("../controllers/Lead/findLeadVendedorNameAllInfo");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -47,10 +48,10 @@ const getCorredoresHandler = async (req, res) => {
   }
 };
 
-const getCorredorHandler = async (req, res) => {
+const getVendedoresHandler = async (req, res) => {
   try {
-    const corredor = await getCorredor();
-    res.status(200).json(corredor);
+    const corredores = await getVendedores();
+    res.status(200).json(corredores);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -103,7 +104,6 @@ const getLeadCheckedHandler = async (req, res) => {
 };
 
 const getLeadCheckedInactive5Handler = async (req, res) => {
-
   const body = req.body;
 
   try {
@@ -216,6 +216,21 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+const findLeadVendedorNameAllInfoHandler = async (req, res) => {
+  const { name, fromDay, toDay } = req.query;
+  try {
+    const foundVendedor = await findLeadVendedorNameAllInfo(
+      name,
+      fromDay,
+      toDay
+    );
+    res.status(200).json(foundVendedor);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 const findLeadVendedorNameHandler = async (req, res) => {
   const { name } = req.query;
   try {
@@ -254,6 +269,7 @@ module.exports = {
   getAllCountriesHandler,
   getAllCategoryHandler,
   findLeadCorredorNameAllInfoHandler,
-  getCorredorHandler,
+  findLeadVendedorNameAllInfoHandler,
   getCorredoresHandler,
+  getVendedoresHandler,
 };
