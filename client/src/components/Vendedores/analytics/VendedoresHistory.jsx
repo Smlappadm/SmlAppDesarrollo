@@ -117,7 +117,7 @@ const VendedoresHistory = () => {
       dispatch(getVendedorAllLeads(email));
     }
   };
-console.log("sss")
+
   const onChangeSector = (event) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setFilterSector(event.target.value);
