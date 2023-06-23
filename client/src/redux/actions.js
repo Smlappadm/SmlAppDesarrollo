@@ -31,6 +31,7 @@ export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
 export const GET_ALL_CLIENTES = "GET_ALL_CLIENTES";
 export const GET_CLIENT_BY_EMAIL = "GET_CLIENT_BY_EMAIL";
 export const GET_BANNED = "GET_BANNED";
+export const GET_CORREDORES = "GET_CORREDORES";
 
 //
 export const setRol = (rol) => {
@@ -265,6 +266,14 @@ export const getAllEmployees = () => {
     const response = await axios.get("/employees");
     const allEmployees = response.data;
     dispatch({ type: GET_ALL_EMPLOYEES, payload: allEmployees });
+  };
+};
+
+export const getCorredor = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/allcorredor");
+    const allCorredores = response.data;
+    dispatch({ type: GET_CORREDORES, payload: allCorredores });
   };
 };
 

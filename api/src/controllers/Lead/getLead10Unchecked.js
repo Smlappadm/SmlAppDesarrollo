@@ -16,6 +16,7 @@ const getLead10Unchecked = async (query) => {
   };
 
   if (!profesion && !country && !category && !marca_personal) {
+    console.log(names);
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
@@ -42,7 +43,7 @@ const getLead10Unchecked = async (query) => {
         const updates = limitedLeadRest.map((element) => ({
           updateOne: {
             filter: { _id: element._id },
-            update: { corredor: email, view: true },
+            update: { corredor: email, corredor_name: names, view: true },
           },
         }));
 
@@ -98,6 +99,7 @@ const getLead10Unchecked = async (query) => {
           checked: false,
           view: false,
           corredor: "",
+          corredor_name: "",
           country: countryRegex,
           profesion: profesionRegex,
           category: categoryRegex,
@@ -110,7 +112,7 @@ const getLead10Unchecked = async (query) => {
         const updates = limitedLeadRest.map((element) => ({
           updateOne: {
             filter: { _id: element._id },
-            update: { corredor: email, view: true },
+            update: { corredor: email, corredor_name: names, view: true },
           },
         }));
 

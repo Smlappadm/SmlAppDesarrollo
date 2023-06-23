@@ -19,13 +19,13 @@ const {
   getAllCountriesHandler,
   findLeadCorredorNameAllInfoHandler,
   getAllCategoryHandler,
-  getCorredorHandler,
+  getCorredoresHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
 LeadRouter.get("/", getAllLeadHandler);
 LeadRouter.get("/profesion", getAllProfesionHandler);
-LeadRouter.get("/allcorredor", getCorredorHandler);
+LeadRouter.get("/allcorredor", getCorredoresHandler);
 LeadRouter.get("/category", getAllCategoryHandler);
 LeadRouter.get("/country", getAllCountriesHandler);
 LeadRouter.get("/corredor", findLeadCorredorNameHandler);
