@@ -286,9 +286,7 @@ function ClerkProviderWithRoutes() {
           path="/corredores-history"
           element={
             isRoleAllowed(roleReady) &&
-            (roleReady === "corredor" ||
-              roleReady === "clevel" ||
-              roleReady === "leader") &&
+            roleReady === "corredor" &&
             isEmployeeReady ? (
               <CorredoresHistory />
             ) : (
