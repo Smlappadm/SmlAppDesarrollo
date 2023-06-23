@@ -36,7 +36,7 @@ export default function LandingClient() {
       "https://apiflask-td8y.onrender.com/obtener_info_instagram?username=nikitoo_17"
     );
     const infoIG = response.data;
-    console.log(infoIG);
+    console.log(client?.instagram);
   };
 
   return (
