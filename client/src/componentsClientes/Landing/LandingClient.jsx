@@ -5,6 +5,7 @@ import Header from "./Header/Header";
 import Followers from "./Followers/Followers";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail } from "../../redux/actions";
+import axios from "axios";
 
 export default function LandingClient() {
   const user = useUser().user;
@@ -31,9 +32,10 @@ export default function LandingClient() {
   }, [numberTiktok, numberInstagram, client]);
 
   const obtainMetricsInstagram = async () => {
-    const infoIG = await axios.get(
-      "https://apiflask-td8y.onrender.com/obtener_info_instagram?username=nutramosmx"
-    ).data;
+    const response = await axios.get(
+      "https://apiflask-td8y.onrender.com/obtener_info_instagram?username=nikitoo_17"
+    );
+    const infoIG = response.data;
     console.log(infoIG);
   };
 
