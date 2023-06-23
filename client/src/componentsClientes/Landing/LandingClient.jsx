@@ -42,8 +42,9 @@ export default function LandingClient() {
       `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     );
     const infoIG = response.data;
-    setNameIG(userIG);
-    console.log(userIG);
+    localStorage.setItem("instagram", userIG);
+
+    console.log(ig);
   };
 
   return (
@@ -53,7 +54,7 @@ export default function LandingClient() {
         setMaxNumber={setMaxNumber}
         imgInstagram={imgInstagram}
       />
-      <Name name={name} setName={setName} nameig={nameIG} />
+      <Name name={name} setName={setName} />
       <Followers
         numberInstagram={numberInstagram}
         numberTiktok={numberTiktok}
