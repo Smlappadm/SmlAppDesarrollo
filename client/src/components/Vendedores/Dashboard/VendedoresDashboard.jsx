@@ -188,7 +188,7 @@ const VendedoresDashboard = () => {
             <div className={style.table}>
               <div className="flex justify-start items-center  mx-6">
                 <label className="text-start w-[15%] px-3">Nombre</label>
-                <label className="text-start w-[15%] px-3">Sector</label>
+                <label className="text-start w-[15%] px-3">Profesión</label>
                 <label className="text-start w-[10%] px-3">País</label>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
