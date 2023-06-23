@@ -1,8 +1,18 @@
 const Lead = require("../../models/Lead");
 
-const getCorredor = async () => {
-  const corredor = await Lead.find({ corredor: { $ne: "" } });
-  return corredor;
+const getCorredores = async () => {
+  const corredores = await Lead.distinct("corredor", { corredor: { $ne: "" } });
+
+  const correosSet = new Set();
+
+  corredores.forEach((corredor) => {
+    const correo = corredor.split("fullName=")[0];
+    correosSet.add(correo);
+  });
+
+  const correos = Array.from(correosSet);
+
+  return correos;
 };
 
-module.exports = getCorredor;
+module.exports = getCorredores;
