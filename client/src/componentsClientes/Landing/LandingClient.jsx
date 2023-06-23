@@ -18,7 +18,7 @@ export default function LandingClient() {
   const [loader, setLoader] = useState(false);
   const [nameIG, setNameIG] = useState("");
   const [imgInstagram, setImgInstagram] = useState(imgUser);
-  const [numberInstagram, setNumberInstagram] = useState(1500);
+  const [numberInstagram, setNumberInstagram] = useState(0);
   const [numberTiktok, setNumberTiktok] = useState(3300);
   const [numberTotal, setNumberTotal] = useState(2500);
   const [maxNumber, setMaxNumber] = useState("10K");
@@ -43,8 +43,8 @@ export default function LandingClient() {
     );
     const infoIG = response.data;
     localStorage.setItem("instagram", userIG);
-
-    console.log(ig);
+    setNumberInstagram(parseInt(infoIG.seguidores));
+    console.log(infoIG);
   };
 
   return (
