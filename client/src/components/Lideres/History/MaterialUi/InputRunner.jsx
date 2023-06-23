@@ -4,16 +4,25 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button"; // Importa el componente Button
-import { useDispatch } from "react-redux";
-import { findCorredoresByNameAllInfo } from "../../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  findCorredoresByNameAllInfo,
+  getCorredor,
+} from "../../../../redux/actions";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
   const [names, setNames] = useState("");
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
+
+  const { allCorredores } = useSelector((state) => state);
+
+  console.log(allCorredores);
+
+  useEffect(() => {
+    dispatch(getCorredor());
+  }, [dispatch]);
 
   const handleChange = (event) => {
     let value = event.target.value;
@@ -61,7 +70,39 @@ export default function InputName({ name }) {
         },
       }}
     >
-      <TextField
+      <Select
+        value={names}
+        onChange={handleChange}
+        label="Buscar por corredor"
+        id="runner"
+        size="small"
+        variant="outlined"
+        displayEmpty
+        inputProps={{
+          style: {
+            color: "white",
+          },
+        }}
+        sx={{
+          color: "white",
+          "& .MuiOutlinedInput-input": {
+            padding: "9.5px 14px",
+          },
+          "& .MuiSelect-outlined": {
+            paddingRight: "28px",
+          },
+        }}
+      >
+        <MenuItem value="" disabled>
+          Buscar por corredor
+        </MenuItem>
+        {allCorredores.map((corredor) => (
+          <MenuItem key={corredor} value={corredor}>
+            {corredor}
+          </MenuItem>
+        ))}
+      </Select>
+      {/* <TextField
         label="Buscar por corredor"
         id="runner"
         value={name}
@@ -77,7 +118,7 @@ export default function InputName({ name }) {
             color: "gray", // Cambia el color del label aquí
           },
         }}
-      />
+      /> */}
 
       <TextField
         type="date"
