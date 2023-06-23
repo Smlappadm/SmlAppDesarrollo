@@ -22,12 +22,20 @@ export default function LandingClient() {
 
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
+    obtainMetricsInstagram();
   }, [dispatch]);
 
   useEffect(() => {
     setName(client.username);
     setNumberTotal(numberTiktok + numberInstagram);
   }, [numberTiktok, numberInstagram, client]);
+
+  const obtainMetricsInstagram = async () => {
+    const infoIG = await axios.get(
+      "https://apiflask-td8y.onrender.com/obtener_info_instagram?username=nutramosmx"
+    ).data;
+    console.log(infoIG);
+  };
 
   return (
     <div>
