@@ -30,6 +30,7 @@ import {
   GET_ALL_CLIENTES,
   GET_CLIENT_BY_EMAIL,
   GET_BANNED,
+  GET_CORREDORES,
 } from "./actions";
 
 const initialState = {
@@ -62,6 +63,7 @@ const initialState = {
   allClientes: [],
   client: [],
   employeesBanned: [],
+  allCorredores: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -384,6 +386,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allCountries: action.payload,
+      };
+    case GET_CORREDORES:
+      return {
+        ...state,
+        allCorredores: action.payload,
       };
     case GET_DETAIL_EMPLOY:
       return {
