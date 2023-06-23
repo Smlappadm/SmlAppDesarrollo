@@ -338,9 +338,7 @@ function ClerkProviderWithRoutes() {
           path="/vendedores-history"
           element={
             isRoleAllowed(roleReady) &&
-            (roleReady === "vendedor" ||
-              roleReady === "clevel" ||
-              roleReady === "leader") &&
+            roleReady === "vendedor" &&
             isEmployeeReady ? (
               <VendedoresHistory />
             ) : (
