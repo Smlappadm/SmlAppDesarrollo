@@ -16,8 +16,8 @@ function Analytic() {
         width="100%"
         height="100%"
         src="https://app.powerbi.com/view?r=eyJrIjoiNjFiZTI4MWMtMDI5YS00OGNkLTkxNmItNDU2YzA5NzJmZmQ1IiwidCI6ImZhMTYyNmJlLTUxMDMtNGM5MC1iYzJmLTY2NzAxMWIzMzAwYyJ9"
-        frameborder="0"
-        allowFullScreen="true"
+        frameBorder="0"
+        allowFullScreen={true}
       ></iframe>
     </div>
   );
