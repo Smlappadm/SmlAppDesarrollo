@@ -73,8 +73,8 @@ const VendedoresDashboard = () => {
     dispatch(filterLevel(value));
     setData(vendedoresDashboard);
     setCurrentPage(1);
-    if(!value){
-      setFilters({...filters, level: !filters.level})
+    if (!value) {
+      setFilters({ ...filters, level: !filters.level });
     }
   };
   //********************************* */
@@ -178,11 +178,11 @@ const VendedoresDashboard = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div>
-            {filters.level === true ? (
+            {/* {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
               ""
-            )}
+            )} */}
           </div>
           {vendedoresDashboard.length ? (
             <div className={style.table}>
@@ -193,12 +193,7 @@ const VendedoresDashboard = () => {
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
                 <label className="text-center w-[10%] ">Phone</label>
-                <button
-                  className="  w-[10%]"
-                  onClick={() => handlerFilter("level")}
-                >
-                  Nivel
-                </button>
+                <label className="text-center w-[10%]">Nivel</label>
                 <label className="text-center w-[20%] ">Status</label>
                 <label className="text-start w-[10%] "></label>
               </div>
@@ -283,11 +278,9 @@ const VendedoresDashboard = () => {
                       )}
                       {item.status === "No responde" && (
                         <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
-                          <p className="text-16">
-                            {item.status}
-                          </p>
+                          <p className="text-16">{item.status}</p>
                           <label className="text-[14px]">
-                            {funcionHorario(item.updatedAt).slice(0,16)}
+                            {funcionHorario(item.updatedAt).slice(0, 16)}
                             {console.log(item.updatedAt)}
                           </label>
                         </div>
