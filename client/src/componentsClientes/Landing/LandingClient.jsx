@@ -15,6 +15,8 @@ export default function LandingClient() {
   const dispatch = useDispatch();
   const userEmail = user.emailAddresses[0].emailAddress;
   const [name, setName] = useState("");
+  const [loader, setLoader] = useState(false);
+  const [nameIG, setNameIG] = useState("");
   const [imgInstagram, setImgInstagram] = useState(imgUser);
   const [numberInstagram, setNumberInstagram] = useState(1500);
   const [numberTiktok, setNumberTiktok] = useState(3300);
@@ -23,20 +25,25 @@ export default function LandingClient() {
 
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
-    obtainMetricsInstagram();
   }, [dispatch]);
 
   useEffect(() => {
     setName(client.username);
     setNumberTotal(numberTiktok + numberInstagram);
-  }, [numberTiktok, numberInstagram, client]);
+    name && setLoader(true);
+  }, [client]);
+  useEffect(() => {
+    loader && obtainMetricsInstagram();
+  }, [client]);
 
   const obtainMetricsInstagram = async () => {
+    const userIG = client && client.instagram.slice(26, -1);
     const response = await axios.get(
-      "https://apiflask-td8y.onrender.com/obtener_info_instagram?username=nikitoo_17"
+      `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     );
     const infoIG = response.data;
-    console.log(client?.instagram);
+    setNameIG(userIG);
+    console.log(userIG);
   };
 
   return (
@@ -46,7 +53,7 @@ export default function LandingClient() {
         setMaxNumber={setMaxNumber}
         imgInstagram={imgInstagram}
       />
-      <Name name={name} setName={setName} />
+      <Name name={name} setName={setName} nameig={nameIG} />
       <Followers
         numberInstagram={numberInstagram}
         numberTiktok={numberTiktok}
