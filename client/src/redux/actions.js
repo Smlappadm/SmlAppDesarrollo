@@ -28,10 +28,12 @@ export const GET_ALL_CATEGORY = "GET_ALL_CATEGORY";
 export const GET_ALL_COUNTRY = "GET_ALL_COUNTRY";
 export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
+export const FIND_VENDEDORES_NAME_ALL_INFO = " FIND_VENDEDORES_NAME_ALL_INFO";
 export const GET_ALL_CLIENTES = "GET_ALL_CLIENTES";
 export const GET_CLIENT_BY_EMAIL = "GET_CLIENT_BY_EMAIL";
 export const GET_BANNED = "GET_BANNED";
 export const GET_CORREDORES = "GET_CORREDORES";
+export const GET_VENDEDORES = "GET_VENDEDORES";
 
 //
 export const setRol = (rol) => {
@@ -173,18 +175,35 @@ export const findCorredoresByName = (corredorName) => {
 };
 
 export const findCorredoresByNameAllInfo = (
-  corredorName,
+  names,
   fromDay,
   toDay
 ) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `/lead/allinfo?name=${corredorName}&fromDay=${fromDay}&toDay=${toDay}`
+      `/lead/allinfo?name=${names}&fromDay=${fromDay}&toDay=${toDay}`
     );
     const corredoresByNameAllInfo = response.data;
     dispatch({
       type: FIND_CORREDORES_NAME_ALL_INFO,
       payload: corredoresByNameAllInfo,
+    });
+  };
+};
+
+export const findVendedoresByNameAllInfo = (
+  names,
+  fromDay,
+  toDay
+) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `/lead/allinfovendedor?name=${names}&fromDay=${fromDay}&toDay=${toDay}`
+    );
+    const vendedoresByNameAllInfo = response.data;
+    dispatch({
+      type: FIND_VENDEDORES_NAME_ALL_INFO,
+      payload: vendedoresByNameAllInfo,
     });
   };
 };
@@ -274,6 +293,14 @@ export const getCorredor = () => {
     const response = await axios.get("/lead/allcorredor");
     const allCorredores = response.data;
     dispatch({ type: GET_CORREDORES, payload: allCorredores });
+  };
+};
+
+export const getVendedor = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/allvendedor");
+    const allVendedores = response.data;
+    dispatch({ type: GET_VENDEDORES, payload: allVendedores });
   };
 };
 
