@@ -3,7 +3,7 @@ const Lead = require("../../models/Lead");
 const findLeadCorredorNameAllInfo = async (name, fromDay, toDay) => {
   const regex = name ? new RegExp(name, "i") : /.*/;
   const query = {
-    corredor: regex,
+    corredor_name: regex,
     checked: true,
     view: true,
   };
@@ -39,3 +39,4 @@ const findLeadCorredorNameAllInfo = async (name, fromDay, toDay) => {
 };
 
 module.exports = findLeadCorredorNameAllInfo;
+
