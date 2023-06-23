@@ -174,14 +174,12 @@ export const findCorredoresByName = (corredorName) => {
 
 export const findCorredoresByNameAllInfo = (
   corredorName,
-  selectedMonth,
-  selectedYear,
   fromDay,
   toDay
 ) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `/lead/allinfo?name=${corredorName}&month=${selectedMonth}&year=${selectedYear}&fromDay=${fromDay}&toDay=${toDay}`
+      `/lead/allinfo?name=${corredorName}&fromDay=${fromDay}&toDay=${toDay}`
     );
     const corredoresByNameAllInfo = response.data;
     dispatch({
