@@ -190,13 +190,15 @@ const CorredoresDashboard = () => {
         return;
       }
 
-      for (let i = 0; i < corredorLead.length; i++) {
-        const response = await axios.put(`/lead/${corredorLead[i]._id}`, {
+      const promises = corredorLead.map((lead, i) =>
+        axios.put(`/lead/${lead._id}`, {
           instagram: client[i].instagram,
           email: client[i].email,
           level: client[i].level,
-        });
-      }
+        })
+      );
+
+      await Promise.all(promises);
     };
 
     updateClients();
