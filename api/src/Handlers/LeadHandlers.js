@@ -18,6 +18,7 @@ const getAllCountry = require("../controllers/Lead/getAllCountry");
 const findLeadCorredorNameAllInfo = require("../controllers/Lead/findLeadCorredorNameAllInfo");
 const getAllCategory = require("../controllers/Lead/getAllCategory");
 const getCorredores = require("../controllers/Lead/getCorredores");
+const changeLeadEmail = require("../controllers/Lead/changeLeadEmail");
 const getVendedores = require("../controllers/Lead/getVendedores");
 const findLeadVendedorNameAllInfo = require("../controllers/Lead/findLeadVendedorNameAllInfo");
 
@@ -240,6 +241,18 @@ const findLeadVendedorNameHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const updateChangeEmailHandler = async (req, res) => {
+
+ const { id } = req.params;
+ const {email} = req.body
+
+  try {
+    const leadEmailChanged = await changeLeadEmail(id, email);
+    res.status(200).json(leadEmailChanged);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 const limpiezaBaseHandler = async (req, res) => {
   try {
     const clean = await limpiezaBaseFunction();
@@ -271,5 +284,6 @@ module.exports = {
   findLeadCorredorNameAllInfoHandler,
   findLeadVendedorNameAllInfoHandler,
   getCorredoresHandler,
+  updateChangeEmailHandler,
   getVendedoresHandler,
 };

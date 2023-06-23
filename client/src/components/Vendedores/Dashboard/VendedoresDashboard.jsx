@@ -22,6 +22,7 @@ const VendedoresDashboard = () => {
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -46,7 +47,12 @@ const VendedoresDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-console.log(body)
+
+
+  const cancelModal = () => {
+    dispatch(getLeadCheckedInactive5(body));
+  }
+
   //FILTER**********************
   const [filters, setFilters] = useState({
     level: false,
@@ -80,6 +86,7 @@ console.log(body)
   //********************************* */
 
   const handleCopyClick = (copyToProps) => {
+    console.log(copyToProps)
     navigator.clipboard
       .writeText(copyToProps)
       .then(() => {
@@ -154,11 +161,10 @@ console.log(body)
 
       <div className="flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
-          <p className="mt-2 p-3 bg-[#b9b9b978] text-white rounded-md absolute">
-            Copiado al portapapeles
+          <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
+            Copiado!
           </p>
         )}
-
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
             <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
@@ -281,7 +287,6 @@ console.log(body)
                           <p className="text-16">{item.status}</p>
                           <label className="text-[14px]">
                             {funcionHorario(item.updatedAt).slice(0, 16)}
-                            {console.log(item.updatedAt)}
                           </label>
                         </div>
                       )}
@@ -295,6 +300,7 @@ console.log(body)
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
                         emailAddress={body.email}
                         fullName={fullName}
+                    cancelModal={cancelModal}
                       />
                     </div>
                   </div>

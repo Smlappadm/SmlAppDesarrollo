@@ -7,6 +7,8 @@ import { CiWarning, CiEdit } from "react-icons/ci";
 import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -34,6 +36,7 @@ function ChildModal({
   handleLlamadoVentaChange,
   emailAddress,
   fullName,
+  cancelModal,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -135,6 +138,7 @@ function ChildModal({
   };
 
   const handleCancel = () => {
+    cancelModal();
     setOpen(false);
     statusObj.status = "";
   };
@@ -410,20 +414,26 @@ export default function NestedModal({
   updateLeads,
   emailAddress,
   fullName,
+  cancelModal
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
+  const [editEmail, setEditEmail] = React.useState(false);
+  const [inputEmail, setInputEmail] = React.useState(item.email);
+  const [updatedEmail, setUpdatedEmail] = React.useState(item.email);
   const [pagoCalculo, setPagoCalculo] = React.useState({
-    precio: 0
+    precio: 0,
   });
+
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
   });
+
   const [llamadoVenta, setLlamadoVenta] = React.useState({
     contacto: "",
     observaciones: "",
@@ -441,11 +451,15 @@ export default function NestedModal({
       status: item.status,
     });
   }, [setStatusObj]);
+  useEffect(() => {
+    setUpdatedEmail(inputEmail)
+  }, [updatedEmail]);
 
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
+    cancelModal();
     setOpen(false);
     statusObj.status = "";
   };
@@ -563,31 +577,100 @@ export default function NestedModal({
       precio16: (Number(statusObj.status_op) * 95) / 100,
       precio25: Number(statusObj.status_op),
       valorCuota1: ((Number(statusObj.status_op) * 75) / 100).toFixed(2),
-      valorCuota6: (((Number(statusObj.status_op) * 80) / 100) / 6).toFixed(2),
-      valorCuota12: (((Number(statusObj.status_op) * 90) / 100) / 12).toFixed(2),
-      valorCuota16: (((Number(statusObj.status_op) * 95) / 100) / 16).toFixed(2),
+      valorCuota6: ((Number(statusObj.status_op) * 80) / 100 / 6).toFixed(2),
+      valorCuota12: ((Number(statusObj.status_op) * 90) / 100 / 12).toFixed(2),
+      valorCuota16: ((Number(statusObj.status_op) * 95) / 100 / 16).toFixed(2),
       valorCuota25: (Number(statusObj.status_op) / 25).toFixed(2),
     });
   };
 
   const handleSelectpago = (event) => {
-    if(event.target.value === "pago1"){
-      setStatusObj({...statusObj, status_op: {cuotas: 1, valorCuota: pagoCalculo.valorCuota1, total: pagoCalculo.precio1}})
+    if (event.target.value === "pago1") {
+      setStatusObj({
+        ...statusObj,
+        status_op: {
+          cuotas: 1,
+          valorCuota: pagoCalculo.valorCuota1,
+          total: pagoCalculo.precio1,
+        },
+      });
     }
-    if(event.target.value === "pago6"){
-      setStatusObj({...statusObj, status_op: {cuotas: 6, valorCuota: pagoCalculo.valorCuota6, total: pagoCalculo.precio6}})
+    if (event.target.value === "pago6") {
+      setStatusObj({
+        ...statusObj,
+        status_op: {
+          cuotas: 6,
+          valorCuota: pagoCalculo.valorCuota6,
+          total: pagoCalculo.precio6,
+        },
+      });
     }
-    if(event.target.value === "pago12"){
-      setStatusObj({...statusObj, status_op: {cuotas: 12, valorCuota: pagoCalculo.valorCuota12, total: pagoCalculo.precio12}})
+    if (event.target.value === "pago12") {
+      setStatusObj({
+        ...statusObj,
+        status_op: {
+          cuotas: 12,
+          valorCuota: pagoCalculo.valorCuota12,
+          total: pagoCalculo.precio12,
+        },
+      });
     }
-    if(event.target.value === "pago16"){
-      setStatusObj({...statusObj, status_op: {cuotas: 16, valorCuota: pagoCalculo.valorCuota16, total: pagoCalculo.precio16}})
+    if (event.target.value === "pago16") {
+      setStatusObj({
+        ...statusObj,
+        status_op: {
+          cuotas: 16,
+          valorCuota: pagoCalculo.valorCuota16,
+          total: pagoCalculo.precio16,
+        },
+      });
     }
-    if(event.target.value === "pago25"){
-      setStatusObj({...statusObj, status_op: {cuotas: 25, valorCuota: pagoCalculo.valorCuota25, total: pagoCalculo.precio25}})
+    if (event.target.value === "pago25") {
+      setStatusObj({
+        ...statusObj,
+        status_op: {
+          cuotas: 25,
+          valorCuota: pagoCalculo.valorCuota25,
+          total: pagoCalculo.precio25,
+        },
+      });
     }
-console.log(statusObj.status_op)
-  }
+    console.log(statusObj.status_op);
+  };
+
+  const SendEmailLeadAlert = () => {
+    toast.success("✔ Email Update!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      style: {
+        zIndex: 1, // Establecer el índice Z personalizado aquí
+      },
+    });
+  };
+
+  const handleEditEmail = () => {
+    setEditEmail(!editEmail);
+  };
+  const handleChangeEmail = (event) => {
+    setInputEmail(event.target.value);
+  };
+  const handleConfirmEditEmail = async (id) => {
+    const body = { email: inputEmail };
+    const response = await axios.put(
+      `http://localhost:3001/api/lead/changeemail/${id}`,
+      body
+    );
+    console.log(response.data);
+    setUpdatedEmail(response.data.email)
+    setEditEmail(false);
+    SendEmailLeadAlert();
+  };
 
   return (
     <div className="">
@@ -614,9 +697,59 @@ console.log(statusObj.status_op)
           }}
         >
           <div className="w-full flex justify-center items-center mt-3 mb-10">
-            <h2 id="parent-modal-title" className="text-center text-white">
-              {item.name}
-            </h2>
+            <div className="w-full flex flex-col justify-center items-center">
+              <h2 id="parent-modal-title" className="text-center text-white">
+                {item.name}
+              </h2>
+              {!editEmail && (
+                <div className="w-full flex justify-center items-center mt-5 gap-3">
+                  <input
+                    type="text"
+                    id="last_name"
+                    name="contacto"
+                    // defaultValue={item.llamada_venta.contacto}
+                    className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder=""
+                    value={updatedEmail}
+                    disabled={!editEmail}
+                    required
+                  />
+                  <CiEdit
+                    onClick={handleEditEmail}
+                    className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                  />
+                </div>
+              )}
+              {editEmail && (
+                <div className="w-full flex justify-center items-center mt-5 gap-3">
+                  <input
+                    type="text"
+                    id="last_name"
+                    name="contacto"
+                    onChange={handleChangeEmail}
+                    defaultValue={updatedEmail}
+                    className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    // placeholder={inputEmail}
+                    // value={inputEmail}
+                    disabled={!editEmail}
+                    required
+                  />
+                  <p
+                    onClick={handleEditEmail}
+                    className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                  >
+                    ❌
+                  </p>
+
+                  <p
+                    onClick={() => handleConfirmEditEmail(item._id)}
+                    className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                  >
+                    ✔
+                  </p>
+                </div>
+              )}
+            </div>
             <div className="flex flex-col absolute right-4 top-4">
               <div className="bg-[#8d8b0c] text-[#e8e8e9] w-[40px] rounded-md h-9 text-[35px] drop-shadow-xl hover:bg-[#c94219] ">
                 <IncidenceModal
@@ -903,7 +1036,6 @@ console.log(statusObj.status_op)
                       onClick={handleOpenPagoSelect}
                       className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     />
-
                   </div>
                   {openPagoSelect && (
                     <select
@@ -916,11 +1048,31 @@ console.log(statusObj.status_op)
                       <option disabled="disabled" value="default">
                         Modo de pago
                       </option>
-                      <option className="text-justify" name="1" value="pago1">{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1} - 35%OFF`}</option>
-                      <option className="text-justify" name="6" value="pago6">{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6} - 20%OFF`}</option>
-                      <option className="text-justify" name="12" value="pago12">{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12} - 10%OFF`}</option>
-                      <option className="text-justify" name="16" value="pago16">{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16} - 5%OFF`}</option>
-                      <option className="text-justify" name="25" value="pago25">{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
+                      <option
+                        className="text-justify"
+                        name="1"
+                        value="pago1"
+                      >{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1} - 35%OFF`}</option>
+                      <option
+                        className="text-justify"
+                        name="6"
+                        value="pago6"
+                      >{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6} - 20%OFF`}</option>
+                      <option
+                        className="text-justify"
+                        name="12"
+                        value="pago12"
+                      >{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12} - 10%OFF`}</option>
+                      <option
+                        className="text-justify"
+                        name="16"
+                        value="pago16"
+                      >{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16} - 5%OFF`}</option>
+                      <option
+                        className="text-justify"
+                        name="25"
+                        value="pago25"
+                      >{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
                     </select>
                   )}
                 </div>
@@ -970,6 +1122,7 @@ console.log(statusObj.status_op)
               updateLeads={updateLeads}
               emailAddress={emailAddress}
               fullName={fullName}
+              cancelModal= {cancelModal}
             />
           </div>
         </Box>
