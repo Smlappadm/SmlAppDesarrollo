@@ -93,10 +93,11 @@ const getLeadCheckedHandler = async (req, res) => {
 };
 
 const getLeadCheckedInactive5Handler = async (req, res) => {
-  const { email } = req.query;
+
+  const body = req.body;
 
   try {
-    const leadCheckedInactive5 = await getLeadCheckedInactive5(email);
+    const leadCheckedInactive5 = await getLeadCheckedInactive5(body);
 
     res.status(200).json(leadCheckedInactive5);
   } catch (error) {
