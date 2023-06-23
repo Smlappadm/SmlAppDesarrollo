@@ -33,7 +33,7 @@ LeadRouter.get("/allinfo", findLeadCorredorNameAllInfoHandler);
 LeadRouter.get("/vendedor", findLeadVendedorNameHandler);
 LeadRouter.put("/limpieza", limpiezaBaseHandler);
 LeadRouter.get("/checked", getLeadCheckedHandler);
-LeadRouter.get("/checkedinactive5", getLeadCheckedInactive5Handler);
+LeadRouter.put("/checkedinactive5", getLeadCheckedInactive5Handler);
 LeadRouter.get("/unchecked", getLeadUncheckedHandler);
 LeadRouter.get("/unchecked10", getLead10UncheckedHandler);
 LeadRouter.get("/corredorchecked", getLeadCorredorCheckedHandler);

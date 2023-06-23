@@ -25,12 +25,12 @@ const VendedoresDashboard = () => {
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
-
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  const body = {name: fullName, email: emailAddress}
 
   useEffect(() => {
-    dispatch(getLeadCheckedInactive5(emailAddress));
+    dispatch(getLeadCheckedInactive5(body));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const VendedoresDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
+console.log(body)
   //FILTER**********************
   const [filters, setFilters] = useState({
     level: false,
@@ -107,7 +107,7 @@ const VendedoresDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(emailAddress));
+    dispatch(getLeadCheckedInactive5(body));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -133,7 +133,7 @@ const VendedoresDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedInactive5(emailAddress));
+    dispatch(getLeadCheckedInactive5(body));
   };
 
   const funcionHorario = (horario) => {
@@ -293,7 +293,7 @@ const VendedoresDashboard = () => {
                         SendLeadAlert={SendLeadAlert}
                         SendIncidenceAlert={SendIncidenceAlert}
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
-                        emailAddress={emailAddress}
+                        emailAddress={body.email}
                         fullName={fullName}
                       />
                     </div>

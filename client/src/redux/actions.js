@@ -130,10 +130,10 @@ export const getLeadChecked = () => {
   };
 };
 
-export const getLeadCheckedInactive5 = (email) => {
+export const getLeadCheckedInactive5 = (body) => {
   return async (dispatch) => {
-    if (email && email !== "undefined" && email !== null && email !== "") {
-      const response = await axios.get(`/lead/checkedinactive5?email=${email}`);
+    if (body.email && body.email !== "undefined" && body.email !== null && body.email !== "") {
+      const response = await axios.put(`/lead/checkedinactive5`, body);
       const LeadCheckedInactive5 = response.data;
       dispatch({
         type: GET_LEAD_CHEQUED_INACTIVE_5,
