@@ -28,7 +28,7 @@ const VendedoresDashboard = () => {
   const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
-  const body = {name: fullName, email: emailAddress}
+  const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
     dispatch(getLeadCheckedInactive5(body));
@@ -48,10 +48,9 @@ const VendedoresDashboard = () => {
     setCurrentPage(pageNumber);
   };
 
-
   const cancelModal = () => {
     dispatch(getLeadCheckedInactive5(body));
-  }
+  };
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -86,7 +85,7 @@ const VendedoresDashboard = () => {
   //********************************* */
 
   const handleCopyClick = (copyToProps) => {
-    console.log(copyToProps)
+    console.log(copyToProps);
     navigator.clipboard
       .writeText(copyToProps)
       .then(() => {
@@ -300,7 +299,7 @@ const VendedoresDashboard = () => {
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
                         emailAddress={body.email}
                         fullName={fullName}
-                    cancelModal={cancelModal}
+                        cancelModal={cancelModal}
                       />
                     </div>
                   </div>
