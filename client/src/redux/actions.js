@@ -231,7 +231,8 @@ export const AddLeads = (body) => {
 export const getVendedorAllLeads = (email) => {
   return async (dispatch) => {
     const response = await axios.get(`/vendedor/email?email=${email}`);
-    const allLeads = response.data?.leads;
+    const allLeads = response.data
+    console.log(allLeads)
     const allLeadsMaps =
       allLeads &&
       (await allLeads.filter((item) => item.status !== "Sin contactar"));
