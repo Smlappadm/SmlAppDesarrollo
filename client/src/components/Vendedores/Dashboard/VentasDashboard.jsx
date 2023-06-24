@@ -31,7 +31,7 @@ const VentasDashboard = () => {
   let emailAddress = localStorage.getItem("email");
 
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+      dispatch(getLeadsLLamadaVenta(emailAddress));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -47,6 +47,10 @@ const VentasDashboard = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const cancelModal = () => {
+    dispatch(getLeadsLLamadaVenta(emailAddress))
+  }
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -332,6 +336,7 @@ const VentasDashboard = () => {
                         SendIncidenceAlert={SendIncidenceAlert}
                         SendErrorUpdateAlert={SendErrorUpdateAlert}
                         emailAddress={emailAddress}
+                        cancelModal={cancelModal}
                       />
                     </div>
                   </div>
