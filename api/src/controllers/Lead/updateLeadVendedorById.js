@@ -34,6 +34,8 @@ const updateLeadVendedorById = async (id, updatedData) => {
     new: true,
   });
   
+  console.log(leadUpdate)
+  
   const valor = updatedData.dataVendedor;
  
   let vendedor = [];
