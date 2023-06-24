@@ -75,6 +75,7 @@ function ChildModal({
       dataVendedor = {
         _id: item._id,
         name: item.name,
+        email: item.email,
         status: statusObj.status,
         status_op: statusObj.status_op,
         llamada_venta: statusObj.llamada_venta,
@@ -90,6 +91,7 @@ function ChildModal({
       dataVendedor = {
         _id: item._id,
         name: item.name,
+        email: item.email,
         status: statusObj.status,
         status_op: statusObj.status_op,
         llamada_venta: statusObj.llamada_venta,
@@ -230,6 +232,7 @@ function IncidenceModal({
     const dataVendedor = {
       _id: item._id,
       name: item.name,
+      email: item.email,
       status: statusObj.status,
       status_op: observationIncidence,
       llamada_venta: statusObj.llamada_venta,
@@ -463,6 +466,8 @@ export default function NestedModal({
     setOpen(false);
     statusObj.status = "";
   };
+
+
 
   const handleSelectChange = (event) => {
     setOpenTimeHour(false);
