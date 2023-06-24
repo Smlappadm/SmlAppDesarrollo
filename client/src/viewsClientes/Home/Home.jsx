@@ -87,13 +87,19 @@ export default function Home() {
 
   const obtainMetricsInstagram = async () => {
     const userIG = client && client.instagram.slice(26, -1);
-    const response = await axios.get(
+    const userTT = client && client.tiktok.slice(24);
+    const responseTT = await axios.get(
+      `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
+    );
+    const infoTT = responseTT.data;
+    const responseIG = await axios.get(
       `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     );
-    const infoIG = response.data;
+    const infoIG = responseIG.data;
     localStorage.setItem("instagram", userIG);
     setNumberInstagram(parseInt(infoIG.seguidores));
     console.log(infoIG);
+    console.log(infoTT);
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
