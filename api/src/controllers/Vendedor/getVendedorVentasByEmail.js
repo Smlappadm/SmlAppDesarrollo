@@ -1,13 +1,14 @@
 const Vendedor = require("../../models/Vendedor");
+const Lead = require("../../models/Lead");
 
 const getVendedorVentasByEmail = async (email) => {
-  const vendedor = await Vendedor.findOne({ email: email });
 
-  const filteredLeads = vendedor.leads.filter(
-    (item) => item.status === "Agendar 2do llamado"
-  );
+  const leads = await Lead.find({ vendedor: email, status: "Agendar 2do llamado"});
 
-  const sortClients = filteredLeads.sort((a, b) => {
+
+
+  const sortClients = leads.sort((a, b) => {
+  // const sortClients = filteredLeads.sort((a, b) => {
     const dateA = a.llamada_venta?.dateObject;
     const dateB = b.llamada_venta?.dateObject;
 
