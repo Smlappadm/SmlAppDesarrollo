@@ -244,8 +244,9 @@ export const getVendedorAllLeads = (email) => {
 export const getLeadsLLamadaVenta = (email) => {
   return async (dispatch) => {
     const response = await axios.get(`/vendedor/ventas/email?email=${email}`);
-    const allLeads = response.data;
 
+    const allLeads = response.data;
+console.log(allLeads)
     dispatch({
       type: GET_LEADS_LLAMADA_VENTA,
       payload: allLeads,
