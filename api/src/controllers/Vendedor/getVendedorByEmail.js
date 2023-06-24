@@ -1,9 +1,8 @@
-const Vendedor = require("../../models/Vendedor");
+const Lead = require("../../models/Lead");
 
 const getVendedorByEmail = async (email) => {
-  const vendedor = await Vendedor.findOne({ email: email });
-
-  return vendedor;
+  const Leads = await Lead.find({ vendedor: email });
+  return Leads;
 };
 
 module.exports = getVendedorByEmail;
