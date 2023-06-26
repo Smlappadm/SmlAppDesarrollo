@@ -82,6 +82,32 @@ function Nav() {
                 </li>
                 <li className="flex gap-2 items-center text-[18px]">
                   <span className=" text-lg">
+                    <IoGrid className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/corredores"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Corredores
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoGrid className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/vendedores"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Vendedores
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
                     <IoSettingsSharp className="text-[#e0dddd]" />
                   </span>
                   <span>
