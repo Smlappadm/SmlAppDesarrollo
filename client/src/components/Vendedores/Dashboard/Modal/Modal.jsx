@@ -9,7 +9,7 @@ import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { AiOutlinePhone } from "react-icons/ai";
+import { AiOutlineConsoleSql, AiOutlinePhone } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
@@ -39,14 +39,35 @@ function ChildModal({
   emailAddress,
   fullName,
   cancelModal,
+  setStatusObj,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
+    if(statusObj.status === "Contratado"){
+      let valorCuota = statusObj.cuotas.monto / statusObj.cuotas.cuota
+      
+      setStatusObj({
+        ...statusObj,
+        cuotas: {
+          ...statusObj.cuotas,
+          valorCuota: valorCuota
+        },
+        status_op: statusObj.cuotas.monto
+      });
+
+
+    } else{
+      console.log("111111111")
+      statusObj.cuotas = {};
+    }
+
     setOpenChild(true);
     handleLlamadoVentaChange();
   };
+
   const handleClose = () => {
+    console.log(statusObj)
     setOpenChild(false);
   };
 
@@ -96,6 +117,7 @@ function ChildModal({
         email: item.email,
         status: statusObj.status,
         status_op: statusObj.status_op,
+        cuotas: statusObj.cuotas,
         llamada_venta: statusObj.llamada_venta,
         province: item.province,
         category: item.category,
@@ -109,6 +131,7 @@ function ChildModal({
     const dataLead = {
       status: statusObj.status,
       status_op: statusObj.status_op,
+      cuotas: statusObj.cuotas,
       // vendedor: emailAddress,
       vendedor: emailAddress,
       vendedor_name: fullName,
@@ -120,7 +143,7 @@ function ChildModal({
       dataLead,
       dataVendedor,
     };
-
+console.log(dataUpdate)
     axios
       .put(`/lead/vendedor/${item._id}`, dataUpdate)
       .then((response) => {
@@ -448,6 +471,7 @@ export default function NestedModal({
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
+    cuotas: {},
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
@@ -485,6 +509,8 @@ export default function NestedModal({
 
   const handleSelectChange = (event) => {
     setOpenTimeHour(false);
+    //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    statusObj.cuotas = {};
     const value = event.target.value;
     const property = event.target.name;
     if (value === "No responde" || value === "Sin contactar") {
@@ -503,21 +529,20 @@ export default function NestedModal({
       setStatusObj({ ...statusObj, [property]: value });
     }
   };
+
   const handleSelectChangeContratado = (event) => {
     setOpenTimeHour(false);
     const value = event.target.value;
     const property = event.target.name;
-
-      setStatusObj({
-        ...statusObj,
-        [property]: value,
-        status_op: "",
-      });
+    setStatusObj({
+      ...statusObj,
+      cuotas: {
+        ...statusObj.cuotas,
+        [property]: value
+      },
+    });
 
   };
-
-
-  console.log(statusObj.status_op)
 
   const formattedUpdate = () => {
     let fechaYear = "";
@@ -1204,9 +1229,7 @@ export default function NestedModal({
                       onChange={handleSelectChangeContratado}
                       type="text"
                       id="last_name"
-                      name="status_op"
-                      // defaultValue={item.status_op}
-                      disabled={openPagoSelect}
+                      name="monto"
                       className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder="Monto"
@@ -1223,9 +1246,8 @@ export default function NestedModal({
                       onChange={handleSelectChangeContratado}
                       type="text"
                       id="last_name"
-                      name="status_op"
+                      name="cuota"
                       // defaultValue={item.status_op}
-                      disabled={openPagoSelect}
                       className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
                       placeholder="Cuotas"
@@ -1233,27 +1255,25 @@ export default function NestedModal({
                       required
                     />
                   </div>
-     
-                    <label
-                      htmlFor="last_name"
-                      className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                    >
-                      €
-                    </label>
-                    <p
-                      
-                      type="text"
-                      id="last_name"
-                      name="status_op"
-                      // defaultValue={item.status_op}
-                      disabled={true}
-                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
-                      placeholder=""
-                      // value="USD"
-                      
-                    >€</p>
-        
+
+                  <p
+                    type="text"
+                    id="last_name"
+                    name="total"
+                    // defaultValue={item.status_op}
+                    disabled={true}
+                    className="text-center  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-1 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    // placeholder={item.email}
+                    placeholder=""
+                    // value="USD"
+                  >
+                    {statusObj.cuotas.monto &&
+                      statusObj.cuotas.cuota &&
+                      `€${
+                        (statusObj.cuotas.monto / statusObj.cuotas.cuota).toFixed(2)
+                      }`}
+                  </p>
+
                   {/* <MdPriceCheck
                       onClick={handleOpenPagoSelect}
                       className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
@@ -1345,6 +1365,7 @@ export default function NestedModal({
               emailAddress={emailAddress}
               fullName={fullName}
               cancelModal={cancelModal}
+              setStatusObj={setStatusObj}
             />
           </div>
         </Box>

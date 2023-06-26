@@ -164,14 +164,16 @@ const VendedoresHistory = () => {
   const onChangeStatus = (value) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     console.log(value);
-    // setStatusValue(event.target.value);
+    setStatusValue(value);
 
-    const leadsFilteredPais = vendedorAllLeadsHistory.filter(
+    const leadsFilteredStatus = vendedorAllLeadsHistory.filter(
       (item) => item.status === value
     );
 
-    setData(leadsFilteredPais);
+    setData(leadsFilteredStatus);
     if (value === "s") {
+   
+      setOpenFilterStatus(false)
       dispatch(getVendedorAllLeads(email));
     }
   };
@@ -301,7 +303,7 @@ const VendedoresHistory = () => {
                     onChange={onChangeSector}
                     value={filterSector}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Sector"
+                    placeholder="Profesión"
                   />
                 </div>
               ) : (

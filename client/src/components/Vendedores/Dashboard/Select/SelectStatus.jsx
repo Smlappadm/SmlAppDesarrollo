@@ -11,7 +11,7 @@ export default function SelectStatus(props) {
     <FormControl
       sx={{
         m: 1,
-        width: "200px",
+        width: "230px",
         height: "33px",
         margin: "0px 50px",
         color: "white",

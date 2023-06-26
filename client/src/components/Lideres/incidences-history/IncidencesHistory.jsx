@@ -157,10 +157,6 @@ export const IncidencesHistory = () => {
             <Link className="text-5xl" to={"/lideres-i-history"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
-
-            <Link className="text-5xl" to={"/lideres-history"}>
-              <CiDumbbell className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-            </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
           {/* {filters.level === true ? (

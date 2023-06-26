@@ -168,7 +168,7 @@ function ClerkProviderWithRoutes() {
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" || roleReady === "leader") &&
             isEmployeeReady ? (
-              <LideresDasboard />
+              <LideresHistory />
             ) : (
               <ReturnToPage />
             )
@@ -217,18 +217,6 @@ function ClerkProviderWithRoutes() {
             (roleReady === "clevel" || roleReady === "leader") &&
             isEmployeeReady ? (
               <Incidences />
-            ) : (
-              <ReturnToPage />
-            )
-          }
-        />
-        <Route
-          path="/lideres-history"
-          element={
-            isRoleAllowed(roleReady) &&
-            (roleReady === "clevel" || roleReady === "leader") &&
-            isEmployeeReady ? (
-              <LideresHistory />
             ) : (
               <ReturnToPage />
             )

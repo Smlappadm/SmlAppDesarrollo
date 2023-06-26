@@ -134,7 +134,12 @@ export const getLeadChecked = () => {
 
 export const getLeadCheckedInactive5 = (body) => {
   return async (dispatch) => {
-    if (body.email && body.email !== "undefined" && body.email !== null && body.email !== "") {
+    if (
+      body.email &&
+      body.email !== "undefined" &&
+      body.email !== null &&
+      body.email !== ""
+    ) {
       const response = await axios.put(`/lead/checkedinactive5`, body);
       const LeadCheckedInactive5 = response.data;
       dispatch({
@@ -175,13 +180,19 @@ export const findCorredoresByName = (corredorName) => {
 };
 
 export const findCorredoresByNameAllInfo = (
-  names,
+  corredor,
+  vendedor,
   fromDay,
-  toDay
+  toDay,
+  profesion,
+  country,
+  category,
+  level,
+  status
 ) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `/lead/allinfo?name=${names}&fromDay=${fromDay}&toDay=${toDay}`
+      `/lead/allinfo?corredor=${corredor}&vendedor=${vendedor}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`
     );
     const corredoresByNameAllInfo = response.data;
     dispatch({
@@ -191,11 +202,7 @@ export const findCorredoresByNameAllInfo = (
   };
 };
 
-export const findVendedoresByNameAllInfo = (
-  names,
-  fromDay,
-  toDay
-) => {
+export const findVendedoresByNameAllInfo = (names, fromDay, toDay) => {
   return async (dispatch) => {
     const response = await axios.get(
       `/lead/allinfovendedor?name=${names}&fromDay=${fromDay}&toDay=${toDay}`
@@ -231,8 +238,8 @@ export const AddLeads = (body) => {
 export const getVendedorAllLeads = (email) => {
   return async (dispatch) => {
     const response = await axios.get(`/vendedor/email?email=${email}`);
-    const allLeads = response.data
-    console.log(allLeads)
+    const allLeads = response.data;
+    console.log(allLeads);
     const allLeadsMaps =
       allLeads &&
       (await allLeads.filter((item) => item.status !== "Sin contactar"));
@@ -247,7 +254,7 @@ export const getLeadsLLamadaVenta = (email) => {
     const response = await axios.get(`/vendedor/ventas/email?email=${email}`);
 
     const allLeads = response.data;
-console.log(allLeads)
+    console.log(allLeads);
     dispatch({
       type: GET_LEADS_LLAMADA_VENTA,
       payload: allLeads,
