@@ -153,11 +153,7 @@ export const LideresHistory = () => {
             </Link>
           </div>
 
-          <div className="flex gap-5 mt-10 mb-10 justify-around items-center">
-            {/* <Button variant="outlined" onClick={() => handlerFilter()}>
-              Filtros
-            </Button> */}
-
+          <div className="flex gap-5 mt-12 mb-12 justify-around items-center">
             {filters ? <InputRunner /> : ""}
 
             <label>Leads chequeados: {showData.length}</label>
