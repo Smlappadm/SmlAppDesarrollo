@@ -21,6 +21,7 @@ const getCorredores = require("../controllers/Lead/getCorredores");
 const changeLeadEmail = require("../controllers/Lead/changeLeadEmail");
 const getVendedores = require("../controllers/Lead/getVendedores");
 const findLeadVendedorNameAllInfo = require("../controllers/Lead/findLeadVendedorNameAllInfo");
+const cleanValueClevel = require("../controllers/Lead/cleanValueClevel");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -242,9 +243,8 @@ const findLeadVendedorNameHandler = async (req, res) => {
   }
 };
 const updateChangeEmailHandler = async (req, res) => {
-
- const { id } = req.params;
- const {email} = req.body
+  const { id } = req.params;
+  const { email } = req.body;
 
   try {
     const leadEmailChanged = await changeLeadEmail(id, email);
@@ -253,6 +253,17 @@ const updateChangeEmailHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+const cleanValueClevelHandler = async (req, res) => {
+  const { email } = req.query;
+  try {
+    const clevel = await cleanValueClevel(email);
+    res.status(200).json(clevel);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 const limpiezaBaseHandler = async (req, res) => {
   try {
     const clean = await limpiezaBaseFunction();
@@ -286,4 +297,5 @@ module.exports = {
   getCorredoresHandler,
   updateChangeEmailHandler,
   getVendedoresHandler,
+  cleanValueClevelHandler,
 };
