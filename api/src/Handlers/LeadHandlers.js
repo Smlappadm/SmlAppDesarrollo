@@ -206,12 +206,28 @@ const findLeadCorredorNameHandler = async (req, res) => {
   }
 };
 const findLeadCorredorNameAllInfoHandler = async (req, res) => {
-  const { name, fromDay, toDay } = req.query;
+  const {
+    corredor,
+    vendedor,
+    fromDay,
+    toDay,
+    profesion,
+    country,
+    category,
+    level,
+    status,
+  } = req.query;
   try {
     const foundCorredor = await findLeadCorredorNameAllInfo(
-      name,
+      corredor,
+      vendedor,
       fromDay,
-      toDay
+      toDay,
+      profesion,
+      country,
+      category,
+      level,
+      status
     );
     res.status(200).json(foundCorredor);
   } catch (error) {
