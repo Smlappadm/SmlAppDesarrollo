@@ -7,24 +7,47 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findCorredoresByNameAllInfo,
+  getAllCategory,
+  getAllCountries,
+  getAllProfesion,
   getCorredor,
+  getVendedor,
 } from "../../../../redux/actions";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
-  const [names, setNames] = useState("");
+  const [corredor, setCorredor] = useState("");
+  const [vendedor, setVendedor] = useState("");
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [category, setCategory] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [status, setStatus] = useState("");
 
   const { allCorredores } = useSelector((state) => state);
+  const { allProfesion } = useSelector((state) => state);
+  const { allCategory } = useSelector((state) => state);
+  const { allCountries } = useSelector((state) => state);
+  const { allVendedores } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getCorredor());
+    dispatch(getVendedor());
+    dispatch(getAllProfesion());
+    dispatch(getAllCategory());
+    dispatch(getAllCountries());
   }, [dispatch]);
 
-  const handleChange = (event) => {
+  const handleChangeCorredor = (event) => {
     let value = event.target.value;
-    setNames(value);
+    setCorredor(value);
+  };
+
+  const handleChangeVendedor = (event) => {
+    let value = event.target.value;
+    setVendedor(value);
   };
 
   const handleFromDay = (event) => {
@@ -34,8 +57,45 @@ export default function InputName({ name }) {
     setToDay(event.target.value);
   };
 
+  const handleChangeProfesion = (event) => {
+    let value = event.target.value;
+    setProfesion(value);
+  };
+
+  const handleChangeCategory = (event) => {
+    let value = event.target.value;
+    setCategory(value);
+  };
+
+  const handleChangeCountries = (event) => {
+    let value = event.target.value;
+    setCountry(value);
+  };
+
+  const handleChangeLevel = (event) => {
+    let value = event.target.value;
+    setLevel(value);
+  };
+
+  const handleChangeStatus = (event) => {
+    let value = event.target.value;
+    setStatus(value);
+  };
+
   const handleFilterClick = () => {
-    dispatch(findCorredoresByNameAllInfo(names, fromDay, toDay));
+    dispatch(
+      findCorredoresByNameAllInfo(
+        corredor,
+        vendedor,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   };
 
   return (
@@ -48,7 +108,7 @@ export default function InputName({ name }) {
         width: "50%",
         height: "33px",
         color: "gray",
-        paddingBottom:"10px",
+        paddingBottom: "10px",
         margin: "0px 10px",
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
           borderColor: "white",
@@ -62,86 +122,291 @@ export default function InputName({ name }) {
       }}
     >
       <div className="flex flex-col">
-        <label>Corredor:</label>
-      <Select
-        value={names}
-        onChange={handleChange}
-        label=""
-        id="runner"
-        size="small"
-        variant="outlined"
-        displayEmpty
-        inputProps={{
-          style: {
-            color: "white",
-          },
-        }}
-        sx={{
-          color: "white",
-          "& .MuiOutlinedInput-input": {
-            padding: "9.5px 14px",
-          },
-          "& .MuiSelect-outlined": {
-            paddingRight: "28px",
-          },
-        }}
-      >
-        <MenuItem value="" disabled>
-          Buscar por corredor
-        </MenuItem>
-        {allCorredores.map((corredor) => (
-          <MenuItem key={corredor} value={corredor}>
-            {corredor}
-          </MenuItem>
-        ))}
-      </Select>
-      </div>
+        <div className="flex gap-5">
+          <div className="flex flex-col">
+            <label>Corredor:</label>
+            <Select
+              value={corredor}
+              onChange={handleChangeCorredor}
+              label=""
+              id="runner"
+              size="small"
+              variant="outlined"
+              displayEmpty
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-input": {
+                  padding: "9.5px 14px",
+                },
+                "& .MuiSelect-outlined": {
+                  paddingRight: "28px",
+                },
+              }}
+            >
+              <MenuItem value="">Corredor</MenuItem>
+              {allCorredores.map((corredor) => (
+                <MenuItem key={corredor} value={corredor}>
+                  {corredor}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <div className="flex flex-col">
+            <label>Vendedor:</label>
+            <Select
+              value={vendedor}
+              onChange={handleChangeVendedor}
+              label=""
+              id="runner"
+              size="small"
+              variant="outlined"
+              displayEmpty
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-input": {
+                  padding: "9.5px 14px",
+                },
+                "& .MuiSelect-outlined": {
+                  paddingRight: "28px",
+                },
+              }}
+            >
+              <MenuItem value="">Vendedor</MenuItem>
+              {allVendedores.map((vendedor) => (
+                <MenuItem key={vendedor} value={vendedor}>
+                  {vendedor}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
 
-      <div className="flex flex-col">
-        <label>Desde:</label>
-        <TextField
-          type="date"
-          value={fromDay}
-          onChange={handleFromDay}
-          label=""
-          size="small"
-          variant="outlined"
-          inputProps={{
-            min: 1,
-            max: 31,
-            step: 1,
-            style: {
-              color: "white",
-            },
-          }}
-          sx={{
-            width: "150px",
-          }}
-        />
-      </div>
+          <div className="flex flex-col">
+            <label>Desde:</label>
+            <TextField
+              type="date"
+              value={fromDay}
+              onChange={handleFromDay}
+              label=""
+              size="small"
+              variant="outlined"
+              inputProps={{
+                min: 1,
+                max: 31,
+                step: 1,
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                width: "150px",
+              }}
+            />
+          </div>
 
-      <div className="flex flex-col">
-        <label>Hasta:</label>
-        <TextField
-          type="date"
-          value={toDay}
-          onChange={handleToDay}
-          label=""
-          placeholder="hola"
-          size="small"
-          variant="outlined"
-          inputProps={{
-            min: 1,
-            max: 31,
-            step: 1,
-            style: {
-              color: "white",
-            },
-          }}
-          sx={{
-            width: "150px",
-          }}
-        />
+          <div className="flex flex-col">
+            <label>Hasta:</label>
+            <TextField
+              type="date"
+              value={toDay}
+              onChange={handleToDay}
+              label=""
+              placeholder="hola"
+              size="small"
+              variant="outlined"
+              inputProps={{
+                min: 1,
+                max: 31,
+                step: 1,
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                width: "150px",
+              }}
+            />
+          </div>
+        </div>
+        <div className="flex gap-5">
+          <div className="flex flex-col">
+            <label>Profesion:</label>
+            <Select
+              value={profesion}
+              onChange={handleChangeProfesion}
+              label=""
+              id="runner"
+              size="small"
+              variant="outlined"
+              displayEmpty
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-input": {
+                  padding: "9.5px 14px",
+                },
+                "& .MuiSelect-outlined": {
+                  paddingRight: "28px",
+                },
+              }}
+            >
+              <MenuItem value="">Profesion</MenuItem>
+              {allProfesion.map((profesion) => (
+                <MenuItem key={profesion} value={profesion}>
+                  {profesion}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <div className="flex flex-col">
+            <label>Categoria:</label>
+            <Select
+              value={category}
+              onChange={handleChangeCategory}
+              label=""
+              id="runner"
+              size="small"
+              variant="outlined"
+              displayEmpty
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-input": {
+                  padding: "9.5px 14px",
+                },
+                "& .MuiSelect-outlined": {
+                  paddingRight: "28px",
+                },
+              }}
+            >
+              <MenuItem value="">Categoria</MenuItem>
+              {allCategory.map((category) => (
+                <MenuItem key={category} value={category}>
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <div className="flex flex-col">
+            <label>Paises:</label>
+            <Select
+              value={country}
+              onChange={handleChangeCountries}
+              label=""
+              id="runner"
+              size="small"
+              variant="outlined"
+              displayEmpty
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-input": {
+                  padding: "9.5px 14px",
+                },
+                "& .MuiSelect-outlined": {
+                  paddingRight: "28px",
+                },
+              }}
+            >
+              <MenuItem value="">Pais</MenuItem>
+              {allCountries.map((country) => (
+                <MenuItem key={country} value={country}>
+                  {country}
+                </MenuItem>
+              ))}
+            </Select>
+          </div>
+          <div className="flex flex-col">
+            <label>Level:</label>
+            <Select
+              value={level}
+              onChange={handleChangeLevel}
+              label=""
+              id="runner"
+              size="small"
+              variant="outlined"
+              displayEmpty
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-input": {
+                  padding: "9.5px 14px",
+                },
+                "& .MuiSelect-outlined": {
+                  paddingRight: "28px",
+                },
+              }}
+            >
+              <MenuItem value="">Level</MenuItem>
+              <MenuItem value="0">0</MenuItem>
+              <MenuItem value="1">1</MenuItem>
+              <MenuItem value="2">2</MenuItem>
+              <MenuItem value="incidencia">Incidencia</MenuItem>
+            </Select>
+          </div>
+          <div className="flex flex-col">
+            <label>Estado:</label>
+            <Select
+              value={status}
+              onChange={handleChangeStatus}
+              label=""
+              id="runner"
+              size="small"
+              variant="outlined"
+              displayEmpty
+              inputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              sx={{
+                color: "white",
+                "& .MuiOutlinedInput-input": {
+                  padding: "9.5px 14px",
+                },
+                "& .MuiSelect-outlined": {
+                  paddingRight: "28px",
+                },
+              }}
+            >
+              <MenuItem value="">Estado</MenuItem>
+              <MenuItem value="Sin contactar">Sin contactar</MenuItem>
+              <MenuItem value="Rechazado">Rechazado</MenuItem>
+              <MenuItem value="Contratado">Contratado</MenuItem>
+              <MenuItem value="No responde">No responde</MenuItem>
+              <MenuItem value="Agendar 2do llamado">
+                Agendar 2do llamado
+              </MenuItem>
+              <MenuItem value="incidencia">incidencia</MenuItem>
+              <MenuItem value="discard">discard</MenuItem>
+            </Select>
+          </div>
+        </div>
       </div>
 
       <Button onClick={handleFilterClick} variant="contained" size="small">
