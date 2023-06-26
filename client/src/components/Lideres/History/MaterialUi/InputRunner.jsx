@@ -121,7 +121,7 @@ export default function InputName({ name }) {
         },
       }}
     >
-      <div className="flex flex-col">
+      <div className="flex gap-2 flex-col">
         <div className="flex gap-5">
           <div className="flex flex-col">
             <label>Corredor:</label>
