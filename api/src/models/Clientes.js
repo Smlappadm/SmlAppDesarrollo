@@ -20,10 +20,10 @@ const ClienteSchema = new mongoose.Schema(
     tiktok: {
       type: String,
     },
-    seguidoresinstagram: {
+    seguidoresInstagram: {
       type: Number,
     },
-    seguidorestiktok: {
+    seguidoresTiktok: {
       type: Number,
     },
     seguidores: {
