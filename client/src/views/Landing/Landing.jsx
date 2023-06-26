@@ -36,6 +36,7 @@ function Landing() {
   const isEmployee = () => {
     return employees.some((employees) => employees.email === userEmail);
   };
+  console.log(roleReady);
 
   useEffect(() => {
     dispatch(getAllCorredores());

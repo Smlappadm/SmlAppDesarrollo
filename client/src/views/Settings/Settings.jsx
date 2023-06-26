@@ -15,12 +15,15 @@ import { Image } from "cloudinary-react";
 import Countries from "../../components/Select/SelectionCountries";
 import axios from "axios";
 import styles from "./Settings.module.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { VITE_CLOUND_NAME } = import.meta.env;
 
 export default function Settings() {
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
+  const fullName = user?.fullName;
   const userImageUrl = user?.imageUrl;
   const userEmail = user?.primaryEmailAddress?.emailAddress;
 
@@ -35,7 +38,9 @@ export default function Settings() {
   const { vendedores } = useSelector((state) => state);
   const { leader } = useSelector((state) => state);
   const { clevel } = useSelector((state) => state);
-  const role = useSelector((state) => state.rol);
+
+  const role = localStorage.getItem("roleReady");
+
   const dispatch = useDispatch();
 
   const allEmployees = [...corredores, ...vendedores, ...clevel, ...leader];
@@ -117,7 +122,6 @@ export default function Settings() {
     //   return;
     // }
 
-
     axios.put(`/employees/email/?email=${mail}`, formData);
 
     if (role === "clevel") {
@@ -176,10 +180,32 @@ export default function Settings() {
     }
   }, [selectedEmployee]);
 
+  const CleanClevel = (fullName) => {
+    toast.success(
+      `✔ ${fullName} La desasignación se ha realizado con éxito! `,
+      {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
+  };
+
+  const desasignar = () => {
+    axios.put(`/lead/cleanclevel?email=${mail}`);
+    CleanClevel(user?.fullName);
+  };
+
   return (
     <>
       <Nav />
       <div className="flex justify-center items-center w-full">
+        <ToastContainer />
         <div className="h-screen w-4/5 flex flex-col justify-start items-center p-8">
           <div>
             <h2 className={styles.title}>Settings</h2>
@@ -265,6 +291,18 @@ export default function Settings() {
                   />
                 )}
               </div>
+
+              {role === "clevel" || role === "leader" ? (
+                <div
+                  onClick={desasignar}
+                  className="flex flex-col cursor-pointer justify-center items-center gap-1 w-full h-fit"
+                >
+                  <div className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    Desasignar Corredores/Vendedores
+                  </div>
+                </div>
+              ) : null}
+
               <div className="flex flex-col justify-center items-center gap-1 w-full h-fit">
                 {editSave && (
                   <button

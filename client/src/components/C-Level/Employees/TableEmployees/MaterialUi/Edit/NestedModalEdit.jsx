@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
@@ -10,6 +10,7 @@ import InputEmailEdit from "./InputEmailEdit";
 import {
   getAllEmployees,
   getDetailEmploy,
+  setRol,
 } from "../../../../../../redux/actions";
 import InputBirthdateEdit from "./InputBirthdateEdit";
 import InputDescriptionEdit from "./InputDescriptionEdit";
@@ -41,7 +42,7 @@ function ChildModalDelete({
   BannedEmployees,
 }) {
   const [open, setOpen] = useState(false);
-  const role = useSelector((state) => state.rol);
+  const role = localStorage.getItem("roleReady");
   const dispatch = useDispatch();
   const handleOpen = () => {
     setOpen(true);

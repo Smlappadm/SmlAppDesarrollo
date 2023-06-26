@@ -21,8 +21,8 @@ export default function Home() {
   const [nameIG, setNameIG] = useState("");
   const [imgInstagram, setImgInstagram] = useState(imgUser);
   const [numberInstagram, setNumberInstagram] = useState(0);
-  const [numberTiktok, setNumberTiktok] = useState(3300);
-  const [numberTotal, setNumberTotal] = useState(2500);
+  const [numberTiktok, setNumberTiktok] = useState(0);
+  const [numberTotal, setNumberTotal] = useState(0);
   const [maxNumber, setMaxNumber] = useState("10K");
 
   //Para verificar el acceso a la APP
@@ -88,10 +88,10 @@ export default function Home() {
   const obtainMetricsInstagram = async () => {
     const userIG = client && client.instagram.slice(26, -1);
     const userTT = client && client.tiktok.slice(24);
-    const responseTT = await axios.get(
-      `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
-    );
-    const infoTT = responseTT.data;
+    // const responseTT = await axios.get(
+    //   `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
+    // );
+    // const infoTT = responseTT.data;
     const responseIG = await axios.get(
       `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     );
@@ -99,7 +99,13 @@ export default function Home() {
     localStorage.setItem("instagram", userIG);
     setNumberInstagram(parseInt(infoIG.seguidores));
     console.log(infoIG);
-    console.log(infoTT);
+    // setNumberTiktok(parseInt(infoTT.seguidores));
+    // console.log(infoTT);
+    const body = {
+      seguidoresInstagram: 0,
+      seguidoresTiktok: 0,
+      seguidores: 0,
+    };
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">

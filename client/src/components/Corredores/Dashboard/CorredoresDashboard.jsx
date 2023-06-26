@@ -205,9 +205,9 @@ const CorredoresDashboard = () => {
   }, [client]);
 
   const SendLeads = (name) => {
-    toast.info(`✔ ${name} Send Leads! `, {
+    toast.info(`✔ ${name} Enviando formulario! `, {
       position: "top-center",
-      autoClose: 1000,
+      autoClose: 500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -217,7 +217,7 @@ const CorredoresDashboard = () => {
     });
   };
   const SendLeadsErrorInsta = (name) => {
-    toast.error(`❌ Error Instagram incomplete ${name}!`, {
+    toast.error(`❌ Error Instagram incompleto ${name}!`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -229,7 +229,7 @@ const CorredoresDashboard = () => {
     });
   };
   const SendLeadsErrorLevel = (name) => {
-    toast.error(`❌ Error Instagram incomplete ${name}!`, {
+    toast.error(`❌ Error nivel incompleto ${name}!`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -241,7 +241,7 @@ const CorredoresDashboard = () => {
     });
   };
   const SendLeadsErrorInsta0 = (name) => {
-    toast.error(`❌ Error Instagram with Level 0 ${name}!`, {
+    toast.error(`❌ Error instagram con nivel 0 ${name}!`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -253,7 +253,7 @@ const CorredoresDashboard = () => {
     });
   };
   const SendLeadsSuccess = () => {
-    toast.success(`✔ Send Leads Success!`, {
+    toast.success(`✔ Envío de leads exitoso!`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -265,7 +265,7 @@ const CorredoresDashboard = () => {
     });
   };
   const SendLeadsError = (name) => {
-    toast.error(`✔ Send Leads Error! ${name}`, {
+    toast.error(`✔ Error al enviar los leads! ${name}`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
