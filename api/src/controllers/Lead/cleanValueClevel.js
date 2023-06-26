@@ -25,7 +25,6 @@ const cleanValueClevel = async (email) => {
       { vendedor: email },
       {
         $set: {
-          level: "",
           status: "Sin contactar",
           status_op: "",
           llamados: 0,
