@@ -87,7 +87,7 @@ export default function Home() {
 
   const obtainMetricsInstagram = async () => {
     console.log("hi");
-    const userIG = client && client.instagram.slice(26, -1);
+    const userIG = client && client.instagram.slice(26);
     const userTT = client && client.tiktok.slice(24);
     // const responseTT = await axios.get(
     //   `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
@@ -106,7 +106,9 @@ export default function Home() {
       seguidoresInstagramBase:
         client.seguidoresInstagramBase !== 0
           ? client.seguidoresInstagramBase
-          : parseInt(infoIG.seguidores),
+          : parseInt(infoIG.seguidores) !== NaN
+          ? parseInt(infoIG.seguidores)
+          : 0,
       // seguidoresTiktokBase: client.seguidoresTiktokBase ?? parseInt(infoTT.seguidores),
       seguidoresInstagram: parseInt(infoIG.seguidores),
       // seguidoresTiktok:  parseInt(infoTT.seguidores),
