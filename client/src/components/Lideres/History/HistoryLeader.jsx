@@ -27,6 +27,7 @@ import {
   orderClients,
 } from "../../../redux/actions";
 import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
+import { Button } from "@mui/material";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -41,7 +42,7 @@ export const LideresHistory = () => {
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardXPage, setCardXpage] = useState(10);
+  const [cardXPage, setCardXpage] = useState(8);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const showData = data.filter((item) => {
@@ -59,12 +60,7 @@ export const LideresHistory = () => {
   };
   const [clientOrder, setClientOrder] = useState("");
   const [categoryOrder, setCategoryOrder] = useState("");
-  const [filters, setFilters] = useState({
-    level: false,
-    runner: false,
-    sellers: false,
-    status: false,
-  });
+  const [filters, setFilters] = useState(false);
 
   const headerClient = () => {
     if (clientOrder === "ASC") {
@@ -110,36 +106,8 @@ export const LideresHistory = () => {
     }
     setCurrentPage(1);
   };
-  const handlerFilter = (filter) => {
-    if (filter === "level") {
-      setFilters({
-        level: !filters.level,
-        runner: false,
-        sellers: false,
-        status: false,
-      });
-    } else if (filter === "runner") {
-      setFilters({
-        level: false,
-        runner: !filters.runner,
-        sellers: false,
-        status: false,
-      });
-    } else if (filter === "sellers") {
-      setFilters({
-        level: false,
-        runner: false,
-        sellers: !filters.sellers,
-        status: false,
-      });
-    } else {
-      setFilters({
-        level: false,
-        runner: false,
-        sellers: false,
-        status: !filters.status,
-      });
-    }
+  const handlerFilter = () => {
+    setFilters(!filters);
   };
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
@@ -163,11 +131,12 @@ export const LideresHistory = () => {
     setModalItems(item);
   };
   const handleClose = () => setOpen(false);
+
   return (
     <>
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
-        <div className="flex justify-between items-center mx-5 mb-0">
+        <div className="flex justify-between items-center mx-5">
           <div className="flex gap-5">
             <Title className={style.title}>History</Title>
             <Link to={"/lideres/"}>
@@ -183,19 +152,17 @@ export const LideresHistory = () => {
               <CiDumbbell className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
           </div>
-          {filters.level === true ? (
-            <SelectLevel onChange={onChangeLevel} value={levelValue} />
-          ) : (
-            ""
-          )}
-          {filters.runner === true ? <InputRunner /> : ""}
-          {filters.sellers === true ? <InputSeller /> : ""}
-          {filters.status === true ? (
-            <SelectStatus onChange={onChangeStatus} value={statusValue} />
-          ) : (
-            ""
-          )}
-          <label>Leads chequeados: {showData.length}</label>
+
+          <div className="flex gap-5 mt-10 mb-10 justify-around items-center">
+            {/* <Button variant="outlined" onClick={() => handlerFilter()}>
+              Filtros
+            </Button> */}
+
+            {filters ? <InputRunner /> : ""}
+
+            <label>Leads chequeados: {showData.length}</label>
+          </div>
+
           <AddLead />
         </div>
         <div className="w-full">
@@ -236,7 +203,7 @@ export const LideresHistory = () => {
                 <Text className="pr-3 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("runner")}>
+                <button onClick={() => handlerFilter("sellers")}>
                   <Text className="text-start w-28 p-0 text-white">
                     Corredor
                   </Text>
@@ -451,7 +418,7 @@ export const LideresHistory = () => {
             ))}
           </div>
         </div>
-        {showData.length > 10 ? (
+        {showData.length > 8 ? (
           <PaginationOutlined
             pageStyle={pageStyle}
             setPageStyle={setPageStyle}
