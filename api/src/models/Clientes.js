@@ -26,13 +26,16 @@ const ClienteSchema = new mongoose.Schema(
     seguidorestiktok: {
       type: Number,
     },
+    seguidores: {
+      type: Number,
+    },
+    seguidoresGanados: {
+      type: Number,
+    },
     videosPublicados: {
       type: Number,
     },
     videosPublicadosAnteriores: {
-      type: Number,
-    },
-    seguidoresGanados: {
       type: Number,
     },
     seguidoresGanadosAnteriores: {
