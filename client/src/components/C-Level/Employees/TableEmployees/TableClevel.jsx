@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { FaBan } from "react-icons/fa";
 
 const BannedEmployees = (name) => {
-  toast.success(`✔ ${name} Successful banning process completed! `, {
+  toast.success(`✔ ${name} Proceso de baneo completado exitosamente! `, {
     position: "top-center",
     autoClose: 3000,
     hideProgressBar: false,
@@ -26,7 +26,7 @@ const BannedEmployees = (name) => {
   });
 };
 const ErrorEmployees = (name) => {
-  toast.error(`❌ Error banning Employ ${name}! `, {
+  toast.error(`❌ Error al banear al empleado ${name}! `, {
     position: "top-center",
     autoClose: 3000,
     hideProgressBar: false,
@@ -38,7 +38,7 @@ const ErrorEmployees = (name) => {
   });
 };
 const EditEmployees = (name) => {
-  toast.success(`✔ ${name} Successful edit process completed! `, {
+  toast.success(`✔ ${name} Proceso de edición exitoso completado! `, {
     position: "top-center",
     autoClose: 3000,
     hideProgressBar: false,
@@ -50,7 +50,7 @@ const EditEmployees = (name) => {
   });
 };
 const ErrorEditEmployees = (name) => {
-  toast.error(`❌ Error edit Employ ${name}! `, {
+  toast.error(`❌ Error al editar el empleado ${name}! `, {
     position: "top-center",
     autoClose: 3000,
     hideProgressBar: false,
@@ -62,7 +62,7 @@ const ErrorEditEmployees = (name) => {
   });
 };
 const CreateEmployees = (name) => {
-  toast.success(`✔ ${name} Successful create process completed! `, {
+  toast.success(`✔ ${name} Proceso de creación exitoso completado! `, {
     position: "top-center",
     autoClose: 3000,
     hideProgressBar: false,
@@ -74,7 +74,7 @@ const CreateEmployees = (name) => {
   });
 };
 const ErrorCreateEmployees = (name) => {
-  toast.error(`❌ Error create Employ ${name}! `, {
+  toast.error(`❌ Error al crear el empleado ${name}! `, {
     position: "top-center",
     autoClose: 3000,
     hideProgressBar: false,
@@ -87,7 +87,6 @@ const ErrorCreateEmployees = (name) => {
 };
 
 export const TableClevel = () => {
-  
   const { detailEmploy } = useSelector((state) => state);
   const { allEmployees } = useSelector((state) => state);
 
