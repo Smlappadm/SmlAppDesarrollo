@@ -5,7 +5,7 @@ import { TrofeosXP } from "../TrofeosXP/TrofeosXP";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getClientByEmail } from "../../redux/actions";
+import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
 export default function Home() {
   const [optionView, setOptionView] = useState("vistaGeneral");
@@ -86,6 +86,7 @@ export default function Home() {
   };
 
   const obtainMetricsInstagram = async () => {
+    console.log("hi");
     const userIG = client && client.instagram.slice(26, -1);
     const userTT = client && client.tiktok.slice(24);
     // const responseTT = await axios.get(
@@ -102,10 +103,26 @@ export default function Home() {
     // setNumberTiktok(parseInt(infoTT.seguidores));
     // console.log(infoTT);
     const body = {
-      seguidoresInstagram: 0,
-      seguidoresTiktok: 0,
-      seguidores: 0,
+      seguidoresInstagramBase:
+        client.seguidoresInstagramBase !== 0
+          ? client.seguidoresInstagramBase
+          : parseInt(infoIG.seguidores),
+      // seguidoresTiktokBase: client.seguidoresTiktokBase ?? parseInt(infoTT.seguidores),
+      seguidoresInstagram: parseInt(infoIG.seguidores),
+      // seguidoresTiktok:  parseInt(infoTT.seguidores),
+      seguidoresBase: client
+        ? client.seguidoresInstagramBase + client.seguidoresTiktokBase
+        : 0,
+      // seguidores: parseInt(infoIG.seguidores) +  parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
+      seguidores: parseInt(infoIG.seguidores),
+      seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
+    console.log(body);
+    // try {
+    //   dispatch(updateClientProfile(userEmail, body));
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
