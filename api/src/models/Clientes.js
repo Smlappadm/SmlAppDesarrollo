@@ -91,6 +91,40 @@ const ClienteSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Método estático para filtrar por seguidores desde siempre
+ClienteSchema.statics.filterBySeguidoresDesdeSiempre = function () {
+  return this.find({}).select("seguidoresGanados");
+};
+
+// Método estático para filtrar por seguidores hace 1 mes
+ClienteSchema.statics.filterBySeguidoresHaceUnMes = function () {
+  const oneMonthAgo = new Date();
+  oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+  return this.find({ createdAt: { $gte: oneMonthAgo } }).select(
+    "seguidoresGanados"
+  );
+};
+
+// Método estático para filtrar por seguidores hace 1 semana
+ClienteSchema.statics.filterBySeguidoresHaceUnaSemana = function () {
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+  return this.find({ createdAt: { $gte: oneWeekAgo } }).select(
+    "seguidoresGanados"
+  );
+};
+
+// Método estático para filtrar por seguidores del día actual
+ClienteSchema.statics.filterBySeguidoresDelDia = function () {
+  const today = new Date().setHours(0, 0, 0, 0);
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  return this.find({ createdAt: { $gte: today, $lt: tomorrow } }).select(
+    "seguidoresGanados"
+  );
+};
+
 const Cliente = new mongoose.model("cliente", ClienteSchema);
 
 module.exports = Cliente;
