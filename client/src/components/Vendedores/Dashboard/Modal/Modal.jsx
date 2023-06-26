@@ -131,6 +131,7 @@ function ChildModal({
     const dataLead = {
       status: statusObj.status,
       status_op: statusObj.status_op,
+      cuotas: statusObj.cuotas,
       // vendedor: emailAddress,
       vendedor: emailAddress,
       vendedor_name: fullName,
