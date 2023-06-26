@@ -3,11 +3,13 @@ import axios from "axios";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { CiWarning, CiEdit } from "react-icons/ci";
+import { CiEdit } from "react-icons/ci";
 import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
+import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
+import { AiOutlineConsoleSql, AiOutlinePhone } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
@@ -37,14 +39,35 @@ function ChildModal({
   emailAddress,
   fullName,
   cancelModal,
+  setStatusObj,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
+    if(statusObj.status === "Contratado"){
+      let valorCuota = statusObj.cuotas.monto / statusObj.cuotas.cuota
+      
+      setStatusObj({
+        ...statusObj,
+        cuotas: {
+          ...statusObj.cuotas,
+          valorCuota: valorCuota
+        },
+        status_op: statusObj.cuotas.monto
+      });
+
+
+    } else{
+      console.log("111111111")
+      statusObj.cuotas = {};
+    }
+
     setOpenChild(true);
     handleLlamadoVentaChange();
   };
+
   const handleClose = () => {
+    console.log(statusObj)
     setOpenChild(false);
   };
 
@@ -94,6 +117,7 @@ function ChildModal({
         email: item.email,
         status: statusObj.status,
         status_op: statusObj.status_op,
+        cuotas: statusObj.cuotas,
         llamada_venta: statusObj.llamada_venta,
         province: item.province,
         category: item.category,
@@ -107,6 +131,7 @@ function ChildModal({
     const dataLead = {
       status: statusObj.status,
       status_op: statusObj.status_op,
+      cuotas: statusObj.cuotas,
       // vendedor: emailAddress,
       vendedor: emailAddress,
       vendedor_name: fullName,
@@ -118,7 +143,7 @@ function ChildModal({
       dataLead,
       dataVendedor,
     };
-
+console.log(dataUpdate)
     axios
       .put(`/lead/vendedor/${item._id}`, dataUpdate)
       .then((response) => {
@@ -417,21 +442,36 @@ export default function NestedModal({
   updateLeads,
   emailAddress,
   fullName,
-  cancelModal
+  cancelModal,
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
+
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
   const [updatedEmail, setUpdatedEmail] = React.useState(item.email);
+
+  const [editInstagram, setEditInstagram] = React.useState(false);
+  const [inputInstagram, setInputInstagram] = React.useState(item.instagram);
+  const [updatedInstagram, setUpdatedInstagram] = React.useState(
+    item.instagram
+  );
+
+  const [editTelephone, setEditTelephone] = React.useState(false);
+  const [inputTelephone, setInputTelephone] = React.useState(item.telephone);
+  const [updatedTelephone, setUpdatedTelephone] = React.useState(
+    item.telephone
+  );
+
   const [pagoCalculo, setPagoCalculo] = React.useState({
     precio: 0,
   });
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
+    cuotas: {},
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
@@ -455,7 +495,7 @@ export default function NestedModal({
     });
   }, [setStatusObj]);
   useEffect(() => {
-    setUpdatedEmail(inputEmail)
+    setUpdatedEmail(inputEmail);
   }, [updatedEmail]);
 
   const handleOpen = () => {
@@ -467,10 +507,10 @@ export default function NestedModal({
     statusObj.status = "";
   };
 
-
-
   const handleSelectChange = (event) => {
     setOpenTimeHour(false);
+    //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    statusObj.cuotas = {};
     const value = event.target.value;
     const property = event.target.name;
     if (value === "No responde" || value === "Sin contactar") {
@@ -488,6 +528,20 @@ export default function NestedModal({
     } else {
       setStatusObj({ ...statusObj, [property]: value });
     }
+  };
+
+  const handleSelectChangeContratado = (event) => {
+    setOpenTimeHour(false);
+    const value = event.target.value;
+    const property = event.target.name;
+    setStatusObj({
+      ...statusObj,
+      cuotas: {
+        ...statusObj.cuotas,
+        [property]: value
+      },
+    });
+
   };
 
   const formattedUpdate = () => {
@@ -643,8 +697,8 @@ export default function NestedModal({
     console.log(statusObj.status_op);
   };
 
-  const SendEmailLeadAlert = () => {
-    toast.success("✔ Email Update!", {
+  const SendEmailLeadAlert = (texto) => {
+    toast.success(`✔ ${texto} Update!`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -659,22 +713,58 @@ export default function NestedModal({
     });
   };
 
+  //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
     setEditEmail(!editEmail);
+    setEditInstagram(false);
+    setEditTelephone(false);
   };
   const handleChangeEmail = (event) => {
     setInputEmail(event.target.value);
   };
   const handleConfirmEditEmail = async (id) => {
     const body = { email: inputEmail };
-    const response = await axios.put(
-      `http://localhost:3001/api/lead/changeemail/${id}`,
-      body
-    );
+    const response = await axios.put(`/lead/changeemail/${id}`, body);
     console.log(response.data);
-    setUpdatedEmail(response.data.email)
+    setUpdatedEmail(response.data.email);
     setEditEmail(false);
-    SendEmailLeadAlert();
+    SendEmailLeadAlert("Email");
+  };
+
+  //EDITAR DATOS Instagram
+  const handleEditInstagram = () => {
+    setEditInstagram(!editInstagram);
+    setEditEmail(false);
+    setEditTelephone(false);
+  };
+  const handleChangeInstagram = (event) => {
+    setInputInstagram(event.target.value);
+  };
+  const handleConfirmEditInstagram = async (id) => {
+    const body = { instagram: inputInstagram };
+    const response = await axios.put(`/lead/changeemail/${id}`, body);
+    console.log(response.data);
+    setUpdatedInstagram(response.data.instagram);
+    setEditInstagram(false);
+    SendEmailLeadAlert("Instagram");
+  };
+
+  //EDITAR DATOS Phone
+  const handleEditTelephone = () => {
+    setEditTelephone(!editTelephone);
+    setEditEmail(false);
+    setEditInstagram(false);
+  };
+  const handleChangeTelephone = (event) => {
+    setInputTelephone(event.target.value);
+  };
+  const handleConfirmEditTelephone = async (id) => {
+    const body = { telephone: inputTelephone };
+    const response = await axios.put(`/lead/changeemail/${id}`, body);
+    console.log(response.data);
+    setUpdatedTelephone(response.data.telephone);
+    setEditTelephone(false);
+    SendEmailLeadAlert("Phone");
   };
 
   return (
@@ -701,59 +791,169 @@ export default function NestedModal({
             justifyContent: "space-between",
           }}
         >
-          <div className="w-full flex justify-center items-center mt-3 mb-10">
+          <div className="w-full flex justify-center items-center mt-2 mb-10">
             <div className="w-full flex flex-col justify-center items-center">
               <h2 id="parent-modal-title" className="text-center text-white">
                 {item.name}
               </h2>
-              {!editEmail && (
-                <div className="w-full flex justify-center items-center mt-5 gap-3">
-                  <input
-                    type="text"
-                    id="last_name"
-                    name="contacto"
-                    // defaultValue={item.llamada_venta.contacto}
-                    className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder=""
-                    value={updatedEmail}
-                    disabled={!editEmail}
-                    required
-                  />
-                  <CiEdit
-                    onClick={handleEditEmail}
-                    className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                  />
-                </div>
-              )}
-              {editEmail && (
-                <div className="w-full flex justify-center items-center mt-5 gap-3">
-                  <input
-                    type="text"
-                    id="last_name"
-                    name="contacto"
-                    onChange={handleChangeEmail}
-                    defaultValue={updatedEmail}
-                    className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    // placeholder={inputEmail}
-                    // value={inputEmail}
-                    disabled={!editEmail}
-                    required
-                  />
-                  <p
-                    onClick={handleEditEmail}
-                    className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                  >
-                    ❌
-                  </p>
+              <div className="flex flex-col justify-center items-center mt-3">
+                <div className="mt-3  flex  justify-between items-center">
+                  {/* EDITAR DATOS Email-------------------------------------  */}
+                  {/* {!editEmail && ( */}
 
-                  <p
-                    onClick={() => handleConfirmEditEmail(item._id)}
-                    className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                  >
-                    ✔
-                  </p>
+                  {/* <input
+                      type="text"
+                      name="contacto"
+                      // defaultValue={item.llamada_venta.contacto}
+                      className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder=""
+                      value={updatedEmail}
+                      disabled={!editEmail}
+                      required
+                    /> */}
+                  <CiMail
+                    onClick={handleEditEmail}
+                    className={
+                      editEmail
+                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    }
+                  />
+
+                  {/* )} */}
+                  {/* {!editInstagram && ( */}
+
+                  {/* <input
+                      type="text"
+                      name="contacto"
+                      // defaultValue={item.llamada_venta.contacto}
+                      className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder=""
+                      value={updatedInstagram}
+                      disabled={!editInstagram}
+                      required
+                    /> */}
+                  <CiInstagram
+                    onClick={handleEditInstagram}
+                    className={
+                      editInstagram
+                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    }
+                  />
+
+                  {/* )} */}
+                  {/* {!editTelephone && ( */}
+
+                  {/* <input
+                      type="text"
+                      name="contacto"
+                      // defaultValue={item.llamada_venta.contacto}
+                      className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder=""
+                      value={updatedTelephone}
+                      disabled={!editTelephone}
+                      required
+                    /> */}
+                  <AiOutlinePhone
+                    onClick={handleEditTelephone}
+                    className={
+                      editTelephone
+                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    }
+                  />
                 </div>
-              )}
+                {/* )} */}
+                <div className="">
+                  {editEmail && (
+                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                      <input
+                        type="text"
+                        name="contacto"
+                        onChange={handleChangeEmail}
+                        defaultValue={updatedEmail}
+                        className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        // placeholder={inputEmail}
+                        // value={inputEmail}
+                        disabled={!editEmail}
+                        required
+                      />
+                      <p
+                        onClick={handleEditEmail}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ❌
+                      </p>
+
+                      <p
+                        onClick={() => handleConfirmEditEmail(item._id)}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ✔
+                      </p>
+                    </div>
+                  )}
+                  {/* EDITAR DATOS Email-------------------------------------  */}
+                  {editInstagram && (
+                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                      <input
+                        type="text"
+                        name="contacto"
+                        onChange={handleChangeInstagram}
+                        defaultValue={updatedInstagram}
+                        className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        // placeholder={inputEmail}
+                        // value={inputEmail}
+                        disabled={!editInstagram}
+                        required
+                      />
+                      <p
+                        onClick={handleEditInstagram}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ❌
+                      </p>
+
+                      <p
+                        onClick={() => handleConfirmEditInstagram(item._id)}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ✔
+                      </p>
+                    </div>
+                  )}
+                  {/* EDITAR DATOS Phone-------------------------------------  */}
+                  {editTelephone && (
+                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                      <input
+                        type="text"
+                        name="contacto"
+                        onChange={handleChangeTelephone}
+                        defaultValue={updatedTelephone}
+                        className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        // placeholder={inputEmail}
+                        // value={inputEmail}
+                        disabled={!editTelephone}
+                        required
+                      />
+                      <p
+                        onClick={handleEditTelephone}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ❌
+                      </p>
+
+                      <p
+                        onClick={() => handleConfirmEditTelephone(item._id)}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ✔
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
             <div className="flex flex-col absolute right-4 top-4">
               <div className="bg-[#8d8b0c] text-[#e8e8e9] w-[40px] rounded-md h-9 text-[35px] drop-shadow-xl hover:bg-[#c94219] ">
@@ -1017,7 +1217,8 @@ export default function NestedModal({
             {item.status === "Agendar 2do llamado" &&
               statusObj.status === "Contratado" && (
                 <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                  <div className="flex items-center justify-center gap-7 relative">
+                  {/* <div className="flex flex-col items-center justify-center gap-5"> */}
+                  <div className="flex items-center justify-center gap-2 relative">
                     <label
                       htmlFor="last_name"
                       className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
@@ -1025,24 +1226,60 @@ export default function NestedModal({
                       €
                     </label>
                     <input
-                      onChange={handleSelectChange}
+                      onChange={handleSelectChangeContratado}
                       type="text"
                       id="last_name"
-                      name="status_op"
-                      // defaultValue={item.status_op}
-                      disabled={openPagoSelect}
-                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      name="monto"
+                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
-                      placeholder=""
+                      placeholder="Monto"
                       // value="USD"
                       required
                     />
-                    <MdPriceCheck
-                      onClick={handleOpenPagoSelect}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    <label
+                      htmlFor="last_name"
+                      className="  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
+                    >
+                      /
+                    </label>
+                    <input
+                      onChange={handleSelectChangeContratado}
+                      type="text"
+                      id="last_name"
+                      name="cuota"
+                      // defaultValue={item.status_op}
+                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      // placeholder={item.email}
+                      placeholder="Cuotas"
+                      // value="USD"
+                      required
                     />
                   </div>
-                  {openPagoSelect && (
+
+                  <p
+                    type="text"
+                    id="last_name"
+                    name="total"
+                    // defaultValue={item.status_op}
+                    disabled={true}
+                    className="text-center  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-1 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    // placeholder={item.email}
+                    placeholder=""
+                    // value="USD"
+                  >
+                    {statusObj.cuotas.monto &&
+                      statusObj.cuotas.cuota &&
+                      `€${
+                        (statusObj.cuotas.monto / statusObj.cuotas.cuota).toFixed(2)
+                      }`}
+                  </p>
+
+                  {/* <MdPriceCheck
+                      onClick={handleOpenPagoSelect}
+                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    /> */}
+                  {/* </div> */}
+                  {/* {openPagoSelect && (
                     <select
                       onChange={handleSelectpago}
                       name="status"
@@ -1079,7 +1316,7 @@ export default function NestedModal({
                         value="pago25"
                       >{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
                     </select>
-                  )}
+                  )} */}
                 </div>
               )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
@@ -1127,7 +1364,8 @@ export default function NestedModal({
               updateLeads={updateLeads}
               emailAddress={emailAddress}
               fullName={fullName}
-              cancelModal= {cancelModal}
+              cancelModal={cancelModal}
+              setStatusObj={setStatusObj}
             />
           </div>
         </Box>

@@ -246,7 +246,7 @@ const VentasDashboard = () => {
                           </p>
                           <button
                             onClick={closeObservacionesHandler}
-                            className="border-2 text-white mx-3 text-18 pb-1 px-2 rounded-md"
+                            className="border-2 text-white mx-3 text-18  px-2 rounded-md"
                           >
                             x
                           </button>

@@ -2,11 +2,11 @@ const Lead = require("../../models/Lead");
 
 
 
-const changeLeadEmail = async (id , emailUpdate) => {
+const changeLeadEmail = async (id , key, value) => {
 
     const lead = await Lead.findOneAndUpdate(
         { _id: id },
-        { email: emailUpdate },
+        { [key]: value },
         { new: true }
       );
     return lead;

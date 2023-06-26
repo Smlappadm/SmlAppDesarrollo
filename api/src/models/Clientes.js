@@ -24,11 +24,15 @@ const ClienteSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    seguidoresInstagram: {
+    seguidoresTiktokBase: {
       type: Number,
       default: 0,
     },
-    seguidoresTiktokBase: {
+    seguidoresBase: {
+      type: Number,
+      default: 0,
+    },
+    seguidoresInstagram: {
       type: Number,
       default: 0,
     },

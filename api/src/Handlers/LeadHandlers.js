@@ -259,11 +259,16 @@ const findLeadVendedorNameHandler = async (req, res) => {
   }
 };
 const updateChangeEmailHandler = async (req, res) => {
-  const { id } = req.params;
-  const { email } = req.body;
 
+ const { id } = req.params;
+ 
+ const keys = Object.keys(req.body);
+ const newValue = Object.values(req.body);
+
+ console.log(keys[0])
+ console.log(newValue[0])
   try {
-    const leadEmailChanged = await changeLeadEmail(id, email);
+    const leadEmailChanged = await changeLeadEmail(id, keys[0], newValue[0]);
     res.status(200).json(leadEmailChanged);
   } catch (error) {
     res.status(404).json({ error: error.message });

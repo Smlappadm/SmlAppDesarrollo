@@ -164,14 +164,16 @@ const VendedoresHistory = () => {
   const onChangeStatus = (value) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     console.log(value);
-    // setStatusValue(event.target.value);
+    setStatusValue(value);
 
-    const leadsFilteredPais = vendedorAllLeadsHistory.filter(
+    const leadsFilteredStatus = vendedorAllLeadsHistory.filter(
       (item) => item.status === value
     );
 
-    setData(leadsFilteredPais);
+    setData(leadsFilteredStatus);
     if (value === "s") {
+   
+      setOpenFilterStatus(false)
       dispatch(getVendedorAllLeads(email));
     }
   };

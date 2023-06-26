@@ -61,6 +61,10 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: "",
     },
+    cuotas: {
+      type: Object,
+      require: true,
+    },
     llamados: {
       type: Number,
       require: true,
