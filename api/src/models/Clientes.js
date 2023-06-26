@@ -20,17 +20,29 @@ const ClienteSchema = new mongoose.Schema(
     tiktok: {
       type: String,
     },
+    seguidoresInstagramBase: {
+      type: Number,
+      default: 0,
+    },
     seguidoresInstagram: {
       type: Number,
+      default: 0,
+    },
+    seguidoresTiktokBase: {
+      type: Number,
+      default: 0,
     },
     seguidoresTiktok: {
       type: Number,
+      default: 0,
     },
     seguidores: {
       type: Number,
+      default: 0,
     },
     seguidoresGanados: {
       type: Number,
+      default: 0,
     },
     videosPublicados: {
       type: Number,
