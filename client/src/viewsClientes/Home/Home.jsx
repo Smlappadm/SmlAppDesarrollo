@@ -101,6 +101,11 @@ export default function Home() {
     console.log(infoIG);
     // setNumberTiktok(parseInt(infoTT.seguidores));
     // console.log(infoTT);
+    const body = {
+      seguidoresInstagram: 0,
+      seguidoresTiktok: 0,
+      seguidores: 0,
+    };
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
