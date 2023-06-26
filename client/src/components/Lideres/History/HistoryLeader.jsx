@@ -136,7 +136,7 @@ export const LideresHistory = () => {
     <>
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
-        <div className="flex justify-between items-center mx-5">
+        <div className="flex justify-between mx-5">
           <div className="flex gap-5">
             <Title className={style.title}>History</Title>
             <Link to={"/lideres/"}>
@@ -148,9 +148,6 @@ export const LideresHistory = () => {
             <Link className="text-5xl" to={"/lideres-incidences"}>
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
-            <Link className="text-5xl" to={"/lideres-history"}>
-              <CiDumbbell className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-            </Link>
           </div>
 
           <div className="flex gap-5 mt-12 mb-12 justify-around items-center">
@@ -159,7 +156,9 @@ export const LideresHistory = () => {
             <label>Leads chequeados: {showData.length}</label>
           </div>
 
-          <AddLead />
+          <div>
+            <AddLead />
+          </div>
         </div>
         <div className="w-full">
           <div className="text-white text-14 font-thin">
