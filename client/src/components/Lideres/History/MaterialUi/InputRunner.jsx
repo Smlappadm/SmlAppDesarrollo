@@ -338,7 +338,7 @@ export default function InputName({ name }) {
             </Select>
           </div>
           <div className="flex flex-col">
-            <label>Level:</label>
+            <label>Nivel:</label>
             <Select
               value={level}
               onChange={handleChangeLevel}
