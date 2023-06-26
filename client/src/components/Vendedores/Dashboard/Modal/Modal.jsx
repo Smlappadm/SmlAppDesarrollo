@@ -9,7 +9,7 @@ import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { AiOutlinePhone } from "react-icons/ai";
+import { AiOutlineConsoleSql, AiOutlinePhone } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
@@ -45,18 +45,20 @@ function ChildModal({
 
   const handleOpen = () => {
     if(statusObj.status === "Contratado"){
+      let valorCuota = statusObj.cuotas.monto / statusObj.cuotas.cuota
+      
+      setStatusObj({
+        ...statusObj,
+        cuotas: {
+          ...statusObj.cuotas,
+          valorCuota: valorCuota
+        },
+        status_op: statusObj.cuotas.monto
+      });
 
-        let totalValor = statusObj.status_op.monto / statusObj.status_op.cuota
-  
-        setStatusObj({
-          ...statusObj,
-          status_op: {
-            ...statusObj.cuotas,
-             total: totalValor
-          },
-        });
 
     } else{
+      console.log("111111111")
       statusObj.cuotas = {};
     }
 
@@ -65,6 +67,7 @@ function ChildModal({
   };
 
   const handleClose = () => {
+    console.log(statusObj)
     setOpenChild(false);
   };
 
@@ -114,6 +117,7 @@ function ChildModal({
         email: item.email,
         status: statusObj.status,
         status_op: statusObj.status_op,
+        cuotas: statusObj.cuotas,
         llamada_venta: statusObj.llamada_venta,
         province: item.province,
         category: item.category,
@@ -505,7 +509,7 @@ export default function NestedModal({
   const handleSelectChange = (event) => {
     setOpenTimeHour(false);
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    statusObj.status_op = "";
+    statusObj.cuotas = {};
     const value = event.target.value;
     const property = event.target.name;
     if (value === "No responde" || value === "Sin contactar") {
@@ -531,21 +535,12 @@ export default function NestedModal({
     const property = event.target.name;
     setStatusObj({
       ...statusObj,
-      status_op: {
+      cuotas: {
         ...statusObj.cuotas,
         [property]: value
       },
     });
 
-    let totalValor = statusObj.status_op.monto / statusObj.status_op.cuota
-
-    // setStatusObj({
-    //   ...statusObj,
-    //   status_op: {
-    //     ...statusObj.status_op,
-    //      total: totalValor
-    //   },
-    // });
   };
 
   const formattedUpdate = () => {
@@ -1271,10 +1266,10 @@ export default function NestedModal({
                     placeholder=""
                     // value="USD"
                   >
-                    {statusObj.status_op.monto &&
-                      statusObj.status_op.cuota &&
+                    {statusObj.cuotas.monto &&
+                      statusObj.cuotas.cuota &&
                       `€${
-                        (statusObj.status_op.monto / statusObj.status_op.cuota).toFixed(2)
+                        (statusObj.cuotas.monto / statusObj.cuotas.cuota).toFixed(2)
                       }`}
                   </p>
 
