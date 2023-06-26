@@ -98,8 +98,8 @@ export default function Home() {
     const infoIG = responseIG.data;
     localStorage.setItem("instagram", userIG);
     setNumberInstagram(parseInt(infoIG.seguidores));
-    // setNumberTiktok(parseInt(infoTT.seguidores));
     console.log(infoIG);
+    // setNumberTiktok(parseInt(infoTT.seguidores));
     // console.log(infoTT);
   };
   return (
