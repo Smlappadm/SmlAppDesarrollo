@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "@clerk/clerk-react";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
-export default function Avances() {
+export default function Avances({ seguidores, seguidoresGanados }) {
   // Estado local
   const [isSavingChanges, setIsSavingChanges] = useState(false); // Estado para guardar si se están guardando los cambios
   const [savedBody, setSavedBody] = useState(null); // Estado para guardar el cuerpo de la solicitud guardada
@@ -69,8 +69,8 @@ export default function Avances() {
       },
       {
         texto: "Seguidores Ganados",
-        sumaTotal: client.seguidoresGanados,
-        value: client.seguidores,
+        sumaTotal: seguidoresGanados,
+        value: seguidores,
       },
       {
         texto: "Visitas Acumulados",
@@ -88,7 +88,10 @@ export default function Avances() {
 
     // Actualizar el estado de los avances
     setAvances(avances);
-  }, [client]);
+  }, [seguidores, seguidoresGanados]);
+  useEffect(() => {
+    console.log(avances[1]);
+  }, [avances]);
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8">
