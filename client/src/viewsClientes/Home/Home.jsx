@@ -24,6 +24,7 @@ export default function Home() {
   const [numberTiktok, setNumberTiktok] = useState(0);
   const [numberTotal, setNumberTotal] = useState(0);
   const [maxNumber, setMaxNumber] = useState("10K");
+  const [seguidoresGanados, setseguidoresGanados] = useState(0);
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -53,8 +54,7 @@ export default function Home() {
   //Para traer el Usuario Logueado
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
-    console.log("hi");
-  }, [dispatch]);
+  }, [dispatch, seguidoresGanados, numberTotal]);
 
   //Para setear varios datos
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function Home() {
     //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "1068" };
+    const infoIG = { seguidores: "1001" };
     const infoTT = { seguidores: "500" };
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
@@ -125,6 +125,7 @@ export default function Home() {
       //seguidores: parseInt(infoIG.seguidores),
       seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
+    setseguidoresGanados(body.seguidores - body.seguidoresBase);
     dispatch(updateClientProfile(userEmail, body));
   };
   return (
@@ -168,8 +169,8 @@ export default function Home() {
 
           {optionView === "vistaGeneral" && (
             <VistaGeneral
-              seguidores={client.seguidores}
-              seguidoresGanados={client.seguidoresGanados}
+              seguidores={client?.seguidores}
+              seguidoresGanados={client?.seguidoresGanados}
             />
           )}
           {optionView === "trofeosXP" && <TrofeosXP />}
