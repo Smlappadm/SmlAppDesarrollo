@@ -1,5 +1,5 @@
 import { useClerk, useUser } from "@clerk/clerk-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
@@ -7,6 +7,7 @@ import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 
 export default function ClientesSettings() {
   const [profileSetting, setProfileSetting] = useState(false);
+  const [urlPago, setUrlPago] = useState("")
   const navigate = useNavigate();
   const texto = "Ajustes de perfil";
   const texto1 = "Notificaiones";
@@ -25,10 +26,26 @@ export default function ClientesSettings() {
     navigate("/clientes-home");
   };
   //*************** */
+ useEffect(()=>{
+  handlePagoUrlUpdate(1234, 10000, "Tomas")
+ },[])
 
   const handleProfileSetting = () => {
     setProfileSetting(!profileSetting);
   };
+
+  const handlePagoUrlUpdate = async (id, amount, name) => {
+    const { data } = await axios.post(
+      "http://localhost:3001/api/clientes/payment",
+      {
+        id,
+        amount: amount, //"centavos por cien seria el peso"
+        name
+      }
+    );
+
+    console.log(data)
+  }
 
   return (
     <div className="flex bg-gradient-to-br from-black via-[#020131]  to-blue-950 gap-5  flex-col justify-center items-center h-screen w-screen">
@@ -54,12 +71,12 @@ export default function ClientesSettings() {
 
               <CustomsLabelSetting text={texto1} switchValue={switchs1} />
 
-              <Link
-                to={"/clientes-pagos"}
+              <a
+                href="http://www.google.com.ar" target="_blanck"
                 className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
               >
                 Mis Pagos
-              </Link>
+              </a>
             </div>
             <Link to={"/clientes-referidos"}>
               <div className="w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex ">
