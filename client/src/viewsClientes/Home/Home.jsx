@@ -93,38 +93,44 @@ export default function Home() {
     //   `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
     // );
     // const infoTT = responseTT.data;
-    const responseIG = await axios.get(
-      `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
-    );
-    const infoIG = responseIG.data;
+    // const responseIG = await axios.get(
+    //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
+    // );
+    // const infoIG = responseIG.data;
+    const infoIG = { seguidores: "1051" };
+    const infoTT = { seguidores: "501" };
     localStorage.setItem("instagram", userIG);
+    localStorage.setItem("tiktok", userTT);
     setNumberInstagram(parseInt(infoIG.seguidores));
-    console.log(infoIG);
-    // setNumberTiktok(parseInt(infoTT.seguidores));
-    // console.log(infoTT);
+    setNumberTiktok(parseInt(infoTT.seguidores));
     const body = {
       seguidoresInstagramBase:
         client.seguidoresInstagramBase !== 0
           ? client.seguidoresInstagramBase
-          : parseInt(infoIG.seguidores) !== NaN
+          : parseInt(infoIG.seguidores)
           ? parseInt(infoIG.seguidores)
           : 0,
-      // seguidoresTiktokBase: client.seguidoresTiktokBase ?? parseInt(infoTT.seguidores),
+      seguidoresTiktokBase:
+        client.seguidoresTiktokBase !== 0
+          ? client.seguidoresTiktokBase
+          : parseInt(infoTT.seguidores)
+          ? parseInt(infoTT.seguidores)
+          : 0,
       seguidoresInstagram: parseInt(infoIG.seguidores),
-      // seguidoresTiktok:  parseInt(infoTT.seguidores),
+      seguidoresTiktok: parseInt(infoTT.seguidores),
       seguidoresBase: client
         ? client.seguidoresInstagramBase + client.seguidoresTiktokBase
         : 0,
-      // seguidores: parseInt(infoIG.seguidores) +  parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
-      seguidores: parseInt(infoIG.seguidores),
+      seguidores: parseInt(infoIG.seguidores) + parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
+      //seguidores: parseInt(infoIG.seguidores),
       seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
     console.log(body);
-    // try {
-    //   dispatch(updateClientProfile(userEmail, body));
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
+    try {
+      dispatch(updateClientProfile(userEmail, body));
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
