@@ -53,6 +53,7 @@ export default function Home() {
   //Para traer el Usuario Logueado
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
+    console.log("hi");
   }, [dispatch]);
 
   //Para setear varios datos
@@ -86,9 +87,10 @@ export default function Home() {
   };
 
   const obtainMetricsInstagram = async () => {
-    console.log("hi");
     const userIG = client && client.instagram.slice(26);
     const userTT = client && client.tiktok.slice(24);
+    localStorage.setItem("instagram", userIG);
+    localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
     //   `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
     // );
@@ -97,10 +99,8 @@ export default function Home() {
     //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "1051" };
-    const infoTT = { seguidores: "501" };
-    localStorage.setItem("instagram", userIG);
-    localStorage.setItem("tiktok", userTT);
+    const infoIG = { seguidores: "1068" };
+    const infoTT = { seguidores: "500" };
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
     const body = {
@@ -125,7 +125,6 @@ export default function Home() {
       //seguidores: parseInt(infoIG.seguidores),
       seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
-    console.log(body);
     try {
       dispatch(updateClientProfile(userEmail, body));
     } catch (error) {
@@ -171,7 +170,12 @@ export default function Home() {
             </button>
           </div>
 
-          {optionView === "vistaGeneral" && <VistaGeneral />}
+          {optionView === "vistaGeneral" && (
+            <VistaGeneral
+              seguidores={client.seguidores}
+              seguidoresGanados={client.seguidoresGanados}
+            />
+          )}
           {optionView === "trofeosXP" && <TrofeosXP />}
         </>
       ) : (
