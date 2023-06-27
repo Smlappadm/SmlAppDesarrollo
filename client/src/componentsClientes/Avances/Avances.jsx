@@ -88,10 +88,8 @@ export default function Avances({ seguidores, seguidoresGanados }) {
 
     // Actualizar el estado de los avances
     setAvances(avances);
-  }, [seguidores, seguidoresGanados]);
-  useEffect(() => {
-    console.log(avances[1]);
-  }, [avances]);
+  }, [client]);
+  useEffect(() => {}, [avances]);
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8">
