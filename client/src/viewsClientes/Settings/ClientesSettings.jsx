@@ -4,7 +4,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
-import axios from "axios";
+
 
 export default function ClientesSettings() {
   const [profileSetting, setProfileSetting] = useState(false);
@@ -29,26 +29,13 @@ export default function ClientesSettings() {
     navigate("/clientes-home");
   };
   //*************** */
-  useEffect(() => {
-    handlePagoUrlUpdate(1234, 10000, "Tomas");
-  }, []);
+
 
   const handleProfileSetting = () => {
     setProfileSetting(!profileSetting);
   };
 
-  const handlePagoUrlUpdate = async (id, amount, name) => {
-    const { data } = await axios.post(
-      "http://localhost:3001/api/clientes/payment",
-      {
-        id,
-        amount: amount, //"centavos por cien seria el peso"
-        name,
-      }
-    );
 
-    console.log(data);
-  };
 
   return (
     <div className="flex bg-gradient-to-br from-black via-[#020131]  to-blue-950 gap-5  flex-col justify-center items-center h-screen w-screen">
@@ -74,13 +61,12 @@ export default function ClientesSettings() {
 
               <CustomsLabelSetting text={texto1} switchValue={switchs1} />
 
-              <a
-                href="http://www.google.com.ar"
-                target="_blanck"
-                className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
-              >
+
+            <Link to={"/clientes-pagos"}>
+              <div className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer">
                 Mis Pagos
-              </a>
+              </div>
+            </Link>
             </div>
             <Link to={"/clientes-referidos"}>
               <div className="w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex ">
