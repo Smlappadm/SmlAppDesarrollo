@@ -55,7 +55,7 @@ const createPayment = async ({ id, amount, name }) => {
   });
 
   console.log(session);
-  return { url: session.url };
+  return session;
 };
 
 module.exports = createPayment;
