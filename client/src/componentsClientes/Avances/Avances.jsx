@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "@clerk/clerk-react";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
-export default function Avances() {
+export default function Avances({ seguidores, seguidoresGanados }) {
   // Estado local
   const [isSavingChanges, setIsSavingChanges] = useState(false); // Estado para guardar si se están guardando los cambios
   const [savedBody, setSavedBody] = useState(null); // Estado para guardar el cuerpo de la solicitud guardada
@@ -43,16 +43,20 @@ export default function Avances() {
   };
 
   useEffect(() => {
-    if (isSavingChanges && savedBody) {
-      // Enviar la solicitud para actualizar el perfil del cliente y luego obtener el cliente por su correo electrónico
-      dispatch(updateClientProfile(userEmail, savedBody)).then(() => {
-        dispatch(getClientByEmail(userEmail && userEmail));
-      });
+    // Obtener el cliente por su correo electrónico cuando se monte el componente
+    dispatch(getClientByEmail(userEmail && userEmail));
+  }, [dispatch]);
 
-      // Restablecer el estado de guardando cambios
-      setIsSavingChanges(false);
-    }
-  }, [isSavingChanges, dispatch, userEmail, savedBody]);
+  // useEffect(() => {
+  //   if (isSavingChanges && savedBody) {
+  //     // Enviar la solicitud para actualizar el perfil del cliente y luego obtener el cliente por su correo electrónico
+  //     dispatch(updateClientProfile(userEmail, savedBody)).then(() => {
+  //       dispatch(getClientByEmail(userEmail && userEmail));
+  //     });
+  //     // Restablecer el estado de guardando cambios
+  //     // setIsSavingChanges(false);
+  //   }
+  // }, [isSavingChanges, dispatch, userEmail, savedBody]);
 
   useEffect(() => {
     // Actualizar los avances cuando el estado del cliente cambie
@@ -65,9 +69,8 @@ export default function Avances() {
       },
       {
         texto: "Seguidores Ganados",
-        sumaTotal: client.seguidoresGanadosAnteriores,
-        suma: client.seguidoresGanados - client.seguidoresGanadosAnteriores,
-        value: client.seguidoresGanados,
+        sumaTotal: seguidoresGanados,
+        value: seguidores,
       },
       {
         texto: "Visitas Acumulados",
@@ -85,18 +88,8 @@ export default function Avances() {
 
     // Actualizar el estado de los avances
     setAvances(avances);
-  }, [
-    client,
-    client.videosPublicados,
-    client.seguidoresGanados,
-    client.videosAcumulados,
-    client.meGustaAcumulados,
-  ]);
-
-  useEffect(() => {
-    // Obtener el cliente por su correo electrónico cuando se monte el componente
-    dispatch(getClientByEmail(userEmail && userEmail));
-  }, [dispatch]);
+  }, [client]);
+  useEffect(() => {}, [avances]);
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8">

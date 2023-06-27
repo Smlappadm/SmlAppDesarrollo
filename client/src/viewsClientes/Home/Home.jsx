@@ -24,6 +24,7 @@ export default function Home() {
   const [numberTiktok, setNumberTiktok] = useState(0);
   const [numberTotal, setNumberTotal] = useState(0);
   const [maxNumber, setMaxNumber] = useState("10K");
+  const [seguidoresGanados, setseguidoresGanados] = useState(0);
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function Home() {
   //Para traer el Usuario Logueado
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
-  }, [dispatch]);
+  }, [dispatch, seguidoresGanados, numberTotal]);
 
   //Para setear varios datos
   useEffect(() => {
@@ -86,45 +87,46 @@ export default function Home() {
   };
 
   const obtainMetricsInstagram = async () => {
-    console.log("hi");
     const userIG = client && client.instagram.slice(26);
     const userTT = client && client.tiktok.slice(24);
+    localStorage.setItem("instagram", userIG);
+    localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
     //   `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
     // );
     // const infoTT = responseTT.data;
-    const responseIG = await axios.get(
-      `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
-    );
-    const infoIG = responseIG.data;
-    localStorage.setItem("instagram", userIG);
+    // const responseIG = await axios.get(
+    //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
+    // );
+    // const infoIG = responseIG.data;
+    const infoIG = { seguidores: "1001" };
+    const infoTT = { seguidores: "500" };
     setNumberInstagram(parseInt(infoIG.seguidores));
-    console.log(infoIG);
-    // setNumberTiktok(parseInt(infoTT.seguidores));
-    // console.log(infoTT);
+    setNumberTiktok(parseInt(infoTT.seguidores));
     const body = {
       seguidoresInstagramBase:
         client.seguidoresInstagramBase !== 0
           ? client.seguidoresInstagramBase
-          : parseInt(infoIG.seguidores) !== NaN
+          : parseInt(infoIG.seguidores)
           ? parseInt(infoIG.seguidores)
           : 0,
-      // seguidoresTiktokBase: client.seguidoresTiktokBase ?? parseInt(infoTT.seguidores),
+      seguidoresTiktokBase:
+        client.seguidoresTiktokBase !== 0
+          ? client.seguidoresTiktokBase
+          : parseInt(infoTT.seguidores)
+          ? parseInt(infoTT.seguidores)
+          : 0,
       seguidoresInstagram: parseInt(infoIG.seguidores),
-      // seguidoresTiktok:  parseInt(infoTT.seguidores),
+      seguidoresTiktok: parseInt(infoTT.seguidores),
       seguidoresBase: client
         ? client.seguidoresInstagramBase + client.seguidoresTiktokBase
         : 0,
-      // seguidores: parseInt(infoIG.seguidores) +  parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
-      seguidores: parseInt(infoIG.seguidores),
+      seguidores: parseInt(infoIG.seguidores) + parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
+      //seguidores: parseInt(infoIG.seguidores),
       seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
-    console.log(body);
-    // try {
-    //   dispatch(updateClientProfile(userEmail, body));
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
+    setseguidoresGanados(body.seguidores - body.seguidoresBase);
+    dispatch(updateClientProfile(userEmail, body));
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
@@ -165,7 +167,12 @@ export default function Home() {
             </button>
           </div>
 
-          {optionView === "vistaGeneral" && <VistaGeneral />}
+          {optionView === "vistaGeneral" && (
+            <VistaGeneral
+              seguidores={client?.seguidores}
+              seguidoresGanados={client?.seguidoresGanados}
+            />
+          )}
           {optionView === "trofeosXP" && <TrofeosXP />}
         </>
       ) : (
