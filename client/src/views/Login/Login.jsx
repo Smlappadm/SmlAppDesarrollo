@@ -11,7 +11,8 @@ export default function Login() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2 }}
-        src="https://i.postimg.cc/Kvj4Yr5X/White-Logo-Social-Media-Lab.webp"
+        src="https://i.postimg.cc/yYvQ7m22/logosml.webp"
+        className="w-96"
       />
 
       <a className="" href="/protected">
