@@ -24,6 +24,7 @@ export default function Home() {
   const [numberTiktok, setNumberTiktok] = useState(0);
   const [numberTotal, setNumberTotal] = useState(0);
   const [maxNumber, setMaxNumber] = useState("10K");
+  const [seguidoresGanados, setseguidoresGanados] = useState(0);
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -53,7 +54,7 @@ export default function Home() {
   //Para traer el Usuario Logueado
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
-  }, [dispatch]);
+  }, [dispatch, seguidoresGanados, numberTotal]);
 
   //Para setear varios datos
   useEffect(() => {
@@ -86,9 +87,10 @@ export default function Home() {
   };
 
   const obtainMetricsInstagram = async () => {
-    console.log("hi");
     const userIG = client && client.instagram.slice(26);
     const userTT = client && client.tiktok.slice(24);
+    localStorage.setItem("instagram", userIG);
+    localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
     //   `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
     // );
@@ -97,10 +99,8 @@ export default function Home() {
     //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "1051" };
-    const infoTT = { seguidores: "501" };
-    localStorage.setItem("instagram", userIG);
-    localStorage.setItem("tiktok", userTT);
+    const infoIG = { seguidores: "1001" };
+    const infoTT = { seguidores: "500" };
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
     const body = {
@@ -125,12 +125,8 @@ export default function Home() {
       //seguidores: parseInt(infoIG.seguidores),
       seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
-    console.log(body);
-    try {
-      dispatch(updateClientProfile(userEmail, body));
-    } catch (error) {
-      console.log(error.message);
-    }
+    setseguidoresGanados(body.seguidores - body.seguidoresBase);
+    dispatch(updateClientProfile(userEmail, body));
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
@@ -171,7 +167,12 @@ export default function Home() {
             </button>
           </div>
 
-          {optionView === "vistaGeneral" && <VistaGeneral />}
+          {optionView === "vistaGeneral" && (
+            <VistaGeneral
+              seguidores={client?.seguidores}
+              seguidoresGanados={client?.seguidoresGanados}
+            />
+          )}
           {optionView === "trofeosXP" && <TrofeosXP />}
         </>
       ) : (
