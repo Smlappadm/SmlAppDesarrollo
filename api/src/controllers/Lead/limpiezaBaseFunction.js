@@ -18,6 +18,11 @@ const limpiezaBaseFunction = async () => {
     //     deleted: false,
     //     instagram: "",
     //   },
+    // // }
+    // {
+    //   $set: {
+    //     corredor_name: "Florencia Carballo",
+    //   },
     // }
     // { vendedor: "undefined" },
     // {
