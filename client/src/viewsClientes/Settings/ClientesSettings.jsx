@@ -17,7 +17,9 @@ export default function ClientesSettings() {
   const texto3 = "Invitar a un amigo";
   const invitar3 = true;
   const { user } = useUser();
-  const userEmail = user.emailAddresses[0].emailAddress;
+  const userEmail =
+    user && user.emailAddresses && user.emailAddresses[0].emailAddress;
+
   const { signOut } = useClerk();
 
   const tokenAccess = localStorage.getItem("access");
