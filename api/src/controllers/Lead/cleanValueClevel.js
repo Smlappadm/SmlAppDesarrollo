@@ -6,7 +6,6 @@ const cleanValueClevel = async (email) => {
       { corredor: email },
       {
         $set: {
-          level: "",
           status: "Sin contactar",
           status_op: "",
           llamados: 0,
@@ -17,7 +16,6 @@ const cleanValueClevel = async (email) => {
           checked: false,
           view: false,
           deleted: false,
-          instagram: "",
         },
       }
     ),
