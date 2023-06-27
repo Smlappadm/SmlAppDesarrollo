@@ -150,14 +150,15 @@ export const LideresHistory = () => {
             </Link>
           </div>
 
-          <div className="flex gap-5 mt-12 mb-12 justify-around items-center">
-            {filters ? <InputRunner /> : ""}
-
-            <label>Leads chequeados: {showData.length}</label>
-          </div>
+          <label>Leads chequeados: {showData.length}</label>
 
           <div>
             <AddLead />
+          </div>
+        </div>
+        <div>
+          <div className="flex gap-5 mt-5 mb-5 justify-around items-center">
+            <InputRunner />
           </div>
         </div>
         <div className="w-full">
