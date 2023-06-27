@@ -4,10 +4,11 @@ import { IoCloseSharp } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
+import axios from "axios";
 
 export default function ClientesSettings() {
   const [profileSetting, setProfileSetting] = useState(false);
-  const [urlPago, setUrlPago] = useState("")
+  const [urlPago, setUrlPago] = useState("");
   const navigate = useNavigate();
   const texto = "Ajustes de perfil";
   const texto1 = "Notificaiones";
@@ -26,9 +27,9 @@ export default function ClientesSettings() {
     navigate("/clientes-home");
   };
   //*************** */
- useEffect(()=>{
-  handlePagoUrlUpdate(1234, 10000, "Tomas")
- },[])
+  useEffect(() => {
+    handlePagoUrlUpdate(1234, 10000, "Tomas");
+  }, []);
 
   const handleProfileSetting = () => {
     setProfileSetting(!profileSetting);
@@ -40,12 +41,12 @@ export default function ClientesSettings() {
       {
         id,
         amount: amount, //"centavos por cien seria el peso"
-        name
+        name,
       }
     );
 
-    console.log(data)
-  }
+    console.log(data);
+  };
 
   return (
     <div className="flex bg-gradient-to-br from-black via-[#020131]  to-blue-950 gap-5  flex-col justify-center items-center h-screen w-screen">
@@ -72,7 +73,8 @@ export default function ClientesSettings() {
               <CustomsLabelSetting text={texto1} switchValue={switchs1} />
 
               <a
-                href="http://www.google.com.ar" target="_blanck"
+                href="http://www.google.com.ar"
+                target="_blanck"
                 className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
               >
                 Mis Pagos
