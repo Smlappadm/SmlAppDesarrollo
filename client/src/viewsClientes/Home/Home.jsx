@@ -125,11 +125,7 @@ export default function Home() {
       //seguidores: parseInt(infoIG.seguidores),
       seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
-    try {
-      dispatch(updateClientProfile(userEmail, body));
-    } catch (error) {
-      console.log(error.message);
-    }
+    dispatch(updateClientProfile(userEmail, body));
   };
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
