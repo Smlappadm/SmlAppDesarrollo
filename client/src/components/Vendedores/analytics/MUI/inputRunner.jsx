@@ -13,7 +13,7 @@ import {
 } from "../../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
-export default function InputRunner({getVendedorAllLeads, emailUser}) {
+export default function InputRunner() {
   const dispatch = useDispatch();
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
@@ -94,7 +94,6 @@ export default function InputRunner({getVendedorAllLeads, emailUser}) {
     setCountry("");
     setLevel("");
     setStatus("");
-    dispatch(getVendedorAllLeads(emailUser))
   };
 
   return (
