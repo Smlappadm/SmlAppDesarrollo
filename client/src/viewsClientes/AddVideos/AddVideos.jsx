@@ -8,6 +8,7 @@ import { getClientByEmail } from "../../redux/actions";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
+  const [linkError, setLinkError] = useState("");
   const { user } = useUser();
   const userEmail = user?.emailAddresses[0].emailAddress;
   const dispatch = useDispatch();
@@ -22,15 +23,19 @@ export default function AddVideos() {
   }, [client]);
 
   const newLinkVideo = async () => {
-    const body = {
-      videosPublicados: link,
-    };
-    try {
-      await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
-    } catch (error) {
-      console.log(error.message);
+    if (isInstagramPost(link) || isTikTokPost(link)) {
+      const body = {
+        videosPublicados: link,
+      };
+      try {
+        await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
+      } catch (error) {
+        console.log(error.message);
+      }
+      console.log(client && client.videosPublicados[1]);
+    } else {
+      setLinkError("El link no corresponde a una publicacion");
     }
-    console.log(client && client.videosPublicados[1]);
   };
 
   // Verificar si son links de publicaciones de tiktok o instagram ***********************************************
@@ -75,6 +80,7 @@ export default function AddVideos() {
           <p className="text-[22px] text-center">Añadir</p>
         </div>
       </div>
+      {linkError ? <span className="text-yellow-500">{linkError}</span> : null}
       <HistoryVideos videosPublicados={client?.videosPublicados} />
     </div>
   );
