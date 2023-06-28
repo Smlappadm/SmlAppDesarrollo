@@ -45,21 +45,21 @@ function ChildModal({
 
   const handleOpen = () => {
     if(statusObj.status === "Contratado"){
-      let valorCuota = statusObj.cuotas.monto / statusObj.cuotas.cuota
+      let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas
       
       setStatusObj({
         ...statusObj,
-        cuotas: {
-          ...statusObj.cuotas,
+        pagos: {
+          ...statusObj.pagos,
           valorCuota: valorCuota
         },
-        status_op: statusObj.cuotas.monto
+        status_op: statusObj.pagos.monto
       });
 
 
     } else{
       console.log("111111111")
-      statusObj.cuotas = {};
+      statusObj.pagos = {};
     }
 
     setOpenChild(true);
@@ -117,7 +117,7 @@ function ChildModal({
         email: item.email,
         status: statusObj.status,
         status_op: statusObj.status_op,
-        cuotas: statusObj.cuotas,
+        pagos: statusObj.pagos,
         llamada_venta: statusObj.llamada_venta,
         province: item.province,
         category: item.category,
@@ -131,7 +131,7 @@ function ChildModal({
     const dataLead = {
       status: statusObj.status,
       status_op: statusObj.status_op,
-      cuotas: statusObj.cuotas,
+      pagos: statusObj.pagos,
       // vendedor: emailAddress,
       vendedor: emailAddress,
       vendedor_name: fullName,
@@ -471,7 +471,7 @@ export default function NestedModal({
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
-    cuotas: {},
+    pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
@@ -510,7 +510,7 @@ export default function NestedModal({
   const handleSelectChange = (event) => {
     setOpenTimeHour(false);
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    statusObj.cuotas = {};
+    statusObj.pagos = {};
     const value = event.target.value;
     const property = event.target.name;
     if (value === "No responde" || value === "Sin contactar") {
@@ -536,8 +536,8 @@ export default function NestedModal({
     const property = event.target.name;
     setStatusObj({
       ...statusObj,
-      cuotas: {
-        ...statusObj.cuotas,
+      pagos: {
+        ...statusObj.pagos,
         [property]: value
       },
     });
@@ -626,76 +626,76 @@ export default function NestedModal({
     }
   };
 
-  const handleOpenPagoSelect = () => {
-    setOpenPagoSelect(!openPagoSelect);
-    setPagoCalculo({
-      ...pagoCalculo,
-      precio1: (Number(statusObj.status_op) * 75) / 100,
-      precio6: (Number(statusObj.status_op) * 80) / 100,
-      precio12: (Number(statusObj.status_op) * 90) / 100,
-      precio16: (Number(statusObj.status_op) * 95) / 100,
-      precio25: Number(statusObj.status_op),
-      valorCuota1: ((Number(statusObj.status_op) * 75) / 100).toFixed(2),
-      valorCuota6: ((Number(statusObj.status_op) * 80) / 100 / 6).toFixed(2),
-      valorCuota12: ((Number(statusObj.status_op) * 90) / 100 / 12).toFixed(2),
-      valorCuota16: ((Number(statusObj.status_op) * 95) / 100 / 16).toFixed(2),
-      valorCuota25: (Number(statusObj.status_op) / 25).toFixed(2),
-    });
-  };
+  // const handleOpenPagoSelect = () => {
+  //   setOpenPagoSelect(!openPagoSelect);
+  //   setPagoCalculo({
+  //     ...pagoCalculo,
+  //     precio1: (Number(statusObj.status_op) * 75) / 100,
+  //     precio6: (Number(statusObj.status_op) * 80) / 100,
+  //     precio12: (Number(statusObj.status_op) * 90) / 100,
+  //     precio16: (Number(statusObj.status_op) * 95) / 100,
+  //     precio25: Number(statusObj.status_op),
+  //     valorCuota1: ((Number(statusObj.status_op) * 75) / 100).toFixed(2),
+  //     valorCuota6: ((Number(statusObj.status_op) * 80) / 100 / 6).toFixed(2),
+  //     valorCuota12: ((Number(statusObj.status_op) * 90) / 100 / 12).toFixed(2),
+  //     valorCuota16: ((Number(statusObj.status_op) * 95) / 100 / 16).toFixed(2),
+  //     valorCuota25: (Number(statusObj.status_op) / 25).toFixed(2),
+  //   });
+  // };
 
-  const handleSelectpago = (event) => {
-    if (event.target.value === "pago1") {
-      setStatusObj({
-        ...statusObj,
-        status_op: {
-          cuotas: 1,
-          valorCuota: pagoCalculo.valorCuota1,
-          total: pagoCalculo.precio1,
-        },
-      });
-    }
-    if (event.target.value === "pago6") {
-      setStatusObj({
-        ...statusObj,
-        status_op: {
-          cuotas: 6,
-          valorCuota: pagoCalculo.valorCuota6,
-          total: pagoCalculo.precio6,
-        },
-      });
-    }
-    if (event.target.value === "pago12") {
-      setStatusObj({
-        ...statusObj,
-        status_op: {
-          cuotas: 12,
-          valorCuota: pagoCalculo.valorCuota12,
-          total: pagoCalculo.precio12,
-        },
-      });
-    }
-    if (event.target.value === "pago16") {
-      setStatusObj({
-        ...statusObj,
-        status_op: {
-          cuotas: 16,
-          valorCuota: pagoCalculo.valorCuota16,
-          total: pagoCalculo.precio16,
-        },
-      });
-    }
-    if (event.target.value === "pago25") {
-      setStatusObj({
-        ...statusObj,
-        status_op: {
-          cuotas: 25,
-          valorCuota: pagoCalculo.valorCuota25,
-          total: pagoCalculo.precio25,
-        },
-      });
-    }
-    console.log(statusObj.status_op);
-  };
+  // const handleSelectpago = (event) => {
+  //   if (event.target.value === "pago1") {
+  //     setStatusObj({
+  //       ...statusObj,
+  //       status_op: {
+  //         cuotas: 1,
+  //         valorCuota: pagoCalculo.valorCuota1,
+  //         total: pagoCalculo.precio1,
+  //       },
+  //     });
+  //   }
+  //   if (event.target.value === "pago6") {
+  //     setStatusObj({
+  //       ...statusObj,
+  //       status_op: {
+  //         cuotas: 6,
+  //         valorCuota: pagoCalculo.valorCuota6,
+  //         total: pagoCalculo.precio6,
+  //       },
+  //     });
+  //   }
+  //   if (event.target.value === "pago12") {
+  //     setStatusObj({
+  //       ...statusObj,
+  //       status_op: {
+  //         cuotas: 12,
+  //         valorCuota: pagoCalculo.valorCuota12,
+  //         total: pagoCalculo.precio12,
+  //       },
+  //     });
+  //   }
+  //   if (event.target.value === "pago16") {
+  //     setStatusObj({
+  //       ...statusObj,
+  //       status_op: {
+  //         cuotas: 16,
+  //         valorCuota: pagoCalculo.valorCuota16,
+  //         total: pagoCalculo.precio16,
+  //       },
+  //     });
+  //   }
+  //   if (event.target.value === "pago25") {
+  //     setStatusObj({
+  //       ...statusObj,
+  //       status_op: {
+  //         cuotas: 25,
+  //         valorCuota: pagoCalculo.valorCuota25,
+  //         total: pagoCalculo.precio25,
+  //       },
+  //     });
+  //   }
+  //   console.log(statusObj.status_op);
+  // };
 
   const SendEmailLeadAlert = (texto) => {
     toast.success(`✔ ${texto} Update!`, {
@@ -1246,7 +1246,7 @@ export default function NestedModal({
                       onChange={handleSelectChangeContratado}
                       type="text"
                       id="last_name"
-                      name="cuota"
+                      name="cuotas"
                       // defaultValue={item.status_op}
                       className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       // placeholder={item.email}
@@ -1262,15 +1262,15 @@ export default function NestedModal({
                     name="total"
                     // defaultValue={item.status_op}
                     disabled={true}
-                    className="text-center  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-1 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className= {statusObj.pagos.monto && statusObj.pagos.cuotas ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-36 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" : ""}
                     // placeholder={item.email}
                     placeholder=""
                     // value="USD"
                   >
-                    {statusObj.cuotas.monto &&
-                      statusObj.cuotas.cuota &&
-                      `€${
-                        (statusObj.cuotas.monto / statusObj.cuotas.cuota).toFixed(2)
+                    {statusObj.pagos.monto &&
+                      statusObj.pagos.cuotas &&
+                      `${statusObj.pagos.cuotas} pagos de €${
+                        (statusObj.pagos.monto / statusObj.pagos.cuotas).toFixed(2)
                       }`}
                   </p>
 
