@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 
 const style = {
   position: "absolute",
-  top: "40%",
+  top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 600,
@@ -13,8 +13,9 @@ const style = {
   p: 4,
   textColor: "white",
   color: "white",
-  height: 700,
   borderRadius: "20px",
+  overflow: "auto", // Agrega scroll al contenido
+  maxHeight: "80vh",
 };
 
 export default function BasicModal({ modalItems, open, handleClose }) {
@@ -32,7 +33,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
         }}
       >
         <Box sx={style}>
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col gap-2 justify-between h-full">
             <div className="font-semibold flex flex-col gap-3 items-center text-24 mb-5">
               <h1>{modalItems.name}</h1>
               <hr className="border-gray-400 w-5/6 text-center" />
