@@ -256,19 +256,9 @@ const findLeadVendedorNameAllInfoHandler = async (req, res) => {
 };
 
 const findLeadVendedorNameHandler = async (req, res) => {
-  const { email, fromDay, toDay, profesion, country, category, level, status } =
-    req.query;
+  const { name } = req.query;
   try {
-    const foundCorredor = await findLeadVendedorName(
-      email,
-      fromDay,
-      toDay,
-      profesion,
-      country,
-      category,
-      level,
-      status
-    );
+    const foundCorredor = await findLeadVendedorName(name);
     res.status(200).json(foundCorredor);
   } catch (error) {
     res.status(404).json({ error: error.message });

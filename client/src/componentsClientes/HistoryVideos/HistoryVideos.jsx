@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function HistoryVideos({ videosPublicados }) {
   const [reverse, setReverse] = useState([]);
-
-  // Setear los videos publicados aplicando un reverse para mostrar en el front ***********************************************
   useEffect(() => {
     setReverse(videosPublicados && videosPublicados.reverse());
   }, [videosPublicados]);
-
   return (
     <div className="w-96 bg-[#2c2c2c] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center">
       <p className="text-24 font-extrabold text-white  text-center">

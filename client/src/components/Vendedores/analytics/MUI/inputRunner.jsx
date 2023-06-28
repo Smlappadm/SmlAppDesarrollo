@@ -73,7 +73,7 @@ export default function InputRunner({getVendedorAllLeads, emailUser}) {
 
   const handleFilterClick = () => {
     dispatch(
-      getVendedorAllLeads(
+      findVendedoresByNameAllInfo(
         email,
         fromDay,
         toDay,
@@ -94,7 +94,9 @@ export default function InputRunner({getVendedorAllLeads, emailUser}) {
     setCountry("");
     setLevel("");
     setStatus("");
-    dispatch(getVendedorAllLeads(email,"","","","","","",""))
+    dispatch(
+    getVendedorAllLeads(emailUser,"", "", "", "", "", "", "")
+    )
   };
 
   return (
