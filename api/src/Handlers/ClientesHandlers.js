@@ -71,10 +71,12 @@ const setReferredHandler = async (req, res) => {
   }
 };
 const addVideosHandler = async (req, res) => {
-  const { linksVideos } = req.body;
+  const { videosPublicados } = req.body;
   const { email } = req.query;
+  console.log(videosPublicados);
+  console.log(email);
   try {
-    const newVideo = await addVideos(email, linksVideos);
+    const newVideo = await addVideos(email, videosPublicados);
     res.status(200).json(newVideo);
   } catch (error) {
     res.status(404).json({ message: error.message });
