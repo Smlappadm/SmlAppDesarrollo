@@ -74,7 +74,7 @@ const handlePagoUrlUpdate = async (id, amount, name) => {
                 target="_blanck"
                 className=" w-28 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
               >
-                Mis Pagos
+                Pagar
               </a>
     {/* <Elements stripe={stripePromise} > */}
     {/* <Elements stripe={stripePromise} options={options}> */}

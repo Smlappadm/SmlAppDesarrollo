@@ -61,7 +61,7 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: "",
     },
-    cuotas: {
+    pagos: {
       type: Object,
       require: true,
     },
