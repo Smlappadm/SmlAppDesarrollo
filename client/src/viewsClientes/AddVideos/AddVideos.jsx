@@ -25,6 +25,10 @@ export default function AddVideos() {
 
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
+      const linkhttp = link.slice(0, 12);
+      const minimal = link.slice(12);
+      console.log(linkhttp);
+      console.log(minimal);
       const body = {
         videosPublicados: link,
       };
@@ -98,7 +102,10 @@ export default function AddVideos() {
         </div>
       </div>
       {linkError ? <span className="text-yellow-500">{linkError}</span> : null}
-      <HistoryVideos videosPublicados={client?.videosPublicados} />
+      <HistoryVideos
+        videosPublicados={client?.videosPublicados}
+        fechaVideo={client?.createdAt}
+      />
       <Toaster />
     </div>
   );
