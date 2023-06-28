@@ -51,13 +51,11 @@ export default function InputName({body, getLeadCheckedInactive5}) {
   };
 
   const handleFilterReset = () => {
-    setProfesion("");
-    setCountry("");
     dispatch(
       getLeadCheckedInactive5(
         body,
-        profesion,
-        country,
+        "",
+        "",
       )
     )
   };
