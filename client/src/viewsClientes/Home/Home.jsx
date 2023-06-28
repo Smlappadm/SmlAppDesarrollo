@@ -86,6 +86,7 @@ export default function Home() {
     setOptionView(event.target.value);
   };
 
+  // Obtiene metricas de las redes de instagram y tiktok para armar el modelo ******************************************
   const obtainMetricsInstagram = async () => {
     const userIG = client.instagram ? client.instagram.slice(26) : "";
     const userTT = client.tiktok ? client.tiktok.slice(24) : "";
@@ -128,6 +129,7 @@ export default function Home() {
     setseguidoresGanados(body.seguidores - body.seguidoresBase);
     dispatch(updateClientProfile(userEmail, body));
   };
+
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
       {access ? (
