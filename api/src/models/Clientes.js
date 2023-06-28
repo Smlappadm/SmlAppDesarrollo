@@ -49,8 +49,7 @@ const ClienteSchema = new mongoose.Schema(
       default: 0,
     },
     videosPublicados: {
-      type: Number,
-      default: 0,
+      type: Array,
     },
     videosAcumulados: {
       type: Number,

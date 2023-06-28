@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function AddVideos() {
   return (
-    <div className="flex bg-[#020131] flex-col gap-2 justify-center items-center h-screen w-screen">
+    <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-4">
       <div className=" mx-10">
         <h2 className="font-bold text-neutral-100 text-center">
           Copia y pega el link de tu nuevo video para añadirlo
