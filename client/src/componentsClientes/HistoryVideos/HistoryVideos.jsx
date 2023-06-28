@@ -14,7 +14,7 @@ export default function HistoryVideos({ videosPublicados }) {
             ))}
           </div>
         ) : (
-          <p>nada</p>
+          <p className="text-center">No se han cargado videos</p>
         )}
       </div>
     </div>
