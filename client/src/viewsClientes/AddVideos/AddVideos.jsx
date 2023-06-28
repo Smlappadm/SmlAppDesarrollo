@@ -32,6 +32,7 @@ export default function AddVideos() {
         await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
         setLinkError("");
         setLink("");
+        sendLinkSuccess();
       } catch (error) {
         console.log(error.message);
       }
@@ -53,8 +54,8 @@ export default function AddVideos() {
     return tiktokPostRegex.test(link);
   }
 
-  const copyRefSuccess = () => {
-    toast.success("Codigo de Referido Copiado.", {
+  const sendLinkSuccess = () => {
+    toast.success("Publicacion enviada!", {
       duration: 2000,
       position: "top-center",
       style: {
@@ -98,6 +99,7 @@ export default function AddVideos() {
       </div>
       {linkError ? <span className="text-yellow-500">{linkError}</span> : null}
       <HistoryVideos videosPublicados={client?.videosPublicados} />
+      <Toaster />
     </div>
   );
 }
