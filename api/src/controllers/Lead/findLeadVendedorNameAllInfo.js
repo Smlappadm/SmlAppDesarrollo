@@ -1,12 +1,18 @@
 const Lead = require("../../models/Lead");
 
-const findLeadVendedorNameAllInfo = async (name, fromDay, toDay) => {
-  console.log(name);
-  console.log(fromDay);
-  console.log(toDay);
-  const regex = name ? new RegExp(name, "i") : /.*/;
+const findLeadVendedorNameAllInfo = async (
+  email,
+  fromDay,
+  toDay,
+  profesion,
+  country,
+  category,
+  level,
+  status
+) => {
+  const regexVendedor = email ? new RegExp(email, "i") : /.*/;
   const query = {
-    vendedor_name: regex,
+    vendedor: regexVendedor,
     checked: true,
     view: true,
   };
@@ -37,9 +43,32 @@ const findLeadVendedorNameAllInfo = async (name, fromDay, toDay) => {
     };
   }
 
+  if (profesion) {
+    query.profesion = profesion;
+  }
+
+  if (country) {
+    query.country = country;
+  }
+
+  if (category) {
+    query.category = category;
+  }
+
+  if (level) {
+    query.level = level;
+  }
+
+  if (status) {
+    if (status !== "Sin contactar") {
+      query.status = status;
+    }
+  } else {
+    query.status = { $ne: "Sin contactar" };
+  }
+
   const leads = await Lead.find(query).exec();
   return leads;
 };
 
 module.exports = findLeadVendedorNameAllInfo;
-

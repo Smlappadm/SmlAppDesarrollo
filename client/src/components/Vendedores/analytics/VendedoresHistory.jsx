@@ -13,6 +13,7 @@ import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
 
 import Nav from "../../Nav/Nav";
+import InputRunner from "./MUI/inputRunner";
 
 const VendedoresHistory = () => {
   const [data, setData] = useState([]);
@@ -172,8 +173,7 @@ const VendedoresHistory = () => {
 
     setData(leadsFilteredStatus);
     if (value === "s") {
-   
-      setOpenFilterStatus(false)
+      setOpenFilterStatus(false);
       dispatch(getVendedorAllLeads(email));
     }
   };
@@ -339,7 +339,11 @@ const VendedoresHistory = () => {
             </div>
           </div>
 
-          {data && data.length ? (
+          <div className="flex justify-center items-center mb-5">
+            <InputRunner />
+          </div>
+
+          {currentCard && currentCard.length ? (
             <div className={style.table}>
               <div className="flex justify-start items-center  mx-6">
                 <button
@@ -378,7 +382,6 @@ const VendedoresHistory = () => {
               </div>
 
               <div className="">
-                {console.log(currentCard)}
                 {currentCard &&
                   currentCard.map((item, index) => (
                     <div

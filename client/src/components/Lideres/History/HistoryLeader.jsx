@@ -11,9 +11,6 @@ import {
   CiDumbbell,
 } from "react-icons/ci";
 import InputRunner from "./MaterialUi/InputRunner";
-import InputSeller from "./MaterialUi/InputSeller";
-import SelectLevel from "./MaterialUi/SelectLevel";
-import SelectStatus from "./MaterialUi/SelectStatus";
 import ModalCient from "./MaterialUi/ModalClient";
 import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
@@ -26,8 +23,7 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
-import { Button } from "@mui/material";
+import { IoGrid, IoStatsChart } from "react-icons/io5";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);

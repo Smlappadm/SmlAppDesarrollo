@@ -133,27 +133,10 @@ export const getLeadChecked = () => {
 };
 
 
-// export const getLeadCorredores = (
-//   email,
-//   names,
-//   profesion,
-//   category,
-//   country,
-//   marca_personal
-// ) => {
-//   return async (dispatch) => {
-//     if (email !== "undefined" && email !== "") {
-//       const response = await axios.get(
-//         `lead/unchecked10?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
-//       );
-//       const corredorLead = response.data;
-//       dispatch({ type: GET_CORREDOR_LEAD, payload: corredorLead });
-//     }
-//   };
-// };
+export const getLeadCheckedInactive5 = (body, profesion, country) => {
+  body = {...body, profesion, country}
+  console.log(body)
 
-
-export const getLeadCheckedInactive5 = (body) => {
   return async (dispatch) => {
     if (
       body.email &&
@@ -223,10 +206,19 @@ export const findCorredoresByNameAllInfo = (
   };
 };
 
-export const findVendedoresByNameAllInfo = (names, fromDay, toDay) => {
+export const findVendedoresByNameAllInfo = (
+  email,
+  fromDay,
+  toDay,
+  profesion,
+  country,
+  category,
+  level,
+  status
+) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `/lead/allinfovendedor?name=${names}&fromDay=${fromDay}&toDay=${toDay}`
+      `/lead/allinfovendedor?email=${email}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`
     );
     const vendedoresByNameAllInfo = response.data;
     dispatch({

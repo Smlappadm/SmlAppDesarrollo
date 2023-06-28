@@ -1,6 +1,10 @@
 const Lead = require("../../models/Lead");
 
+
 const getLeadCheckedInactive5 = async (body) => {
+
+  
+
   const leadChequedInactive = await Lead.find({
     checked: true,
     vendedor: body.email,
@@ -9,6 +13,8 @@ const getLeadCheckedInactive5 = async (body) => {
   })
     .limit(5)
     .exec();
+
+
 
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
