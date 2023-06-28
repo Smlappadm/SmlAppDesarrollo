@@ -14,7 +14,8 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import BasicButtons from "./Select/BasicButtons";
+import BasicButtons1 from "./Select/BasicButtons1";
+import BasicButtons2 from "./Select/BasicButtons2";
 
 import Nav from "../../Nav/Nav";
 
@@ -69,7 +70,7 @@ const VendedoresDashboard = () => {
   //FILTER**********************
 
   const filtrar = () => {
-    console.log("entranding")
+
     console.log(profesion)
     console.log(country)
 
@@ -241,8 +242,8 @@ const VendedoresDashboard = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div>
-            <div className="flex gap-5 justify-center items-center ml-10">
-            <label>Profesion: </label>
+            <div className="flex gap-5 justify-center items-center ml-16">
+            <label>Profesión: </label>
             <select
               className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
               value={profesion}
@@ -259,7 +260,7 @@ const VendedoresDashboard = () => {
                 Otras Profesiones
               </option>
             </select>
-            <label>Pais: </label>
+            <label>País: </label>
             <select
               className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
               value={country}
@@ -282,7 +283,10 @@ const VendedoresDashboard = () => {
             </select>
 
             <div onClick={filtrar}>
-              <BasicButtons />
+              <BasicButtons1 />
+            </div>
+            <div onClick={filtrar}>
+              <BasicButtons2 />
             </div>
           </div>
             {/* {filters.level === true ? (
