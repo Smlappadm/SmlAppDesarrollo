@@ -124,7 +124,6 @@ const VendedoresDashboard = () => {
   //********************************* */
 
   const handleCopyClick = (copyToProps) => {
-    console.log(copyToProps);
     navigator.clipboard
       .writeText(copyToProps)
       .then(() => {
