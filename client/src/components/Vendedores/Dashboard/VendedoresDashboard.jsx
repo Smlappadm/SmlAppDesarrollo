@@ -16,6 +16,7 @@ import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import BasicButtons1 from "./Select/BasicButtons1";
 import BasicButtons2 from "./Select/BasicButtons2";
+import InputRunner from "./Select/InputRunner"
 
 import Nav from "../../Nav/Nav";
 
@@ -68,48 +69,48 @@ const VendedoresDashboard = () => {
     dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
 
-  //FILTER**********************
+  //FILTER   Profesion Country **********************
 
-  const filtrar = () => {
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
-  };
-  const filtrar2 = () => {
-    setProfesion("")
-    setCountry("")
-    dispatch(getLeadCheckedInactive5(body, "", ""));
-  };
+  // const filtrar = () => {
+  //   dispatch(getLeadCheckedInactive5(body, profesion, country));
+  // };
+  // const filtrar2 = () => {
+  //   setProfesion("")
+  //   setCountry("")
+  //   dispatch(getLeadCheckedInactive5(body, "", ""));
+  // };
 
-  const filterProfesion = (event) => {
-    const { value } = event.target;
-    setProfesion(value);
-  };
+  // const filterProfesion = (event) => {
+  //   const { value } = event.target;
+  //   setProfesion(value);
+  // };
 
-  const filterCountry = (event) => {
-    const { value } = event.target;
-    setCountry(value);
-  };
+  // const filterCountry = (event) => {
+  //   const { value } = event.target;
+  //   setCountry(value);
+  // };
 
   //-------------------------------------------------------------
 
 
-  const [filters, setFilters] = useState({
-    level: false,
-    runner: false,
-    sellers: false,
-    status: false,
-  });
+  // const [filters, setFilters] = useState({
+  //   level: false,
+  //   runner: false,
+  //   sellers: false,
+  //   status: false,
+  // });
 
-  const handlerFilter = (filter) => {
-    if (filter === "level") {
-      setFilters({ level: true, runner: false, sellers: false, status: false });
-    } else if (filter === "runner") {
-      setFilters({ level: false, runner: true, sellers: false, status: false });
-    } else if (filter === "sellers") {
-      setFilters({ level: false, runner: false, sellers: true, status: false });
-    } else {
-      setFilters({ level: false, runner: false, sellers: false, status: true });
-    }
-  };
+  // const handlerFilter = (filter) => {
+  //   if (filter === "level") {
+  //     setFilters({ level: true, runner: false, sellers: false, status: false });
+  //   } else if (filter === "runner") {
+  //     setFilters({ level: false, runner: true, sellers: false, status: false });
+  //   } else if (filter === "sellers") {
+  //     setFilters({ level: false, runner: false, sellers: true, status: false });
+  //   } else {
+  //     setFilters({ level: false, runner: false, sellers: false, status: true });
+  //   }
+  // };
 
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
@@ -222,7 +223,9 @@ const VendedoresDashboard = () => {
               </Link>
             </div>
             <div className="flex gap-5 justify-center items-center ml-16">
-            <label>Profesión: </label>
+
+              <inputRunner/>
+            {/* <label>Profesión: </label>
             <select
               className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
               value={profesion}
@@ -266,7 +269,7 @@ const VendedoresDashboard = () => {
             </div>
             <div onClick={filtrar2}>
               <BasicButtons2 />
-            </div>
+            </div> */}
           </div>
             {/* {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
