@@ -92,14 +92,14 @@ export default function Home() {
     localStorage.setItem("instagram", userIG);
     localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
-    //   `https://apiflask-td8y.onrender.com/obtener_info_tiktok?username=${userTT}`
+    //   `https://apisml.onrender.com//obtener_info_tiktok?username=${userTT}`
     // );
     // const infoTT = responseTT.data;
     // const responseIG = await axios.get(
-    //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
+    //   `https://apisml.onrender.com//obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "2005" };
+    const infoIG = { seguidores: "5700" };
     const infoTT = { seguidores: "200", likes: "10" };
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
