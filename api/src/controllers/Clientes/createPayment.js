@@ -52,6 +52,7 @@ const createPayment = async ({ id, amount, name }) => {
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",
+    locale: "es",
   });
 
   console.log(session);
