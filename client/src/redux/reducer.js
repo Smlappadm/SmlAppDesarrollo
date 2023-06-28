@@ -63,6 +63,7 @@ const initialState = {
   detailEmploy: [],
   corredoresByNameAllInfo: [],
   vendedoresByNameAllInfo: [],
+  vendedorHistoryDashboard: [],
   allClientes: [],
   client: [],
   employeesBanned: [],
@@ -326,7 +327,7 @@ const rootReducer = (state = initialState, action) => {
       );
       return {
         ...state,
-        leaderDashboard: vendedoresByNameAllInfoSort,
+        vendedorAllLeadsHistory: vendedoresByNameAllInfoSort,
       };
     case FIND_VENDEDORES_NAME:
       const vendedorName = action.payload;
