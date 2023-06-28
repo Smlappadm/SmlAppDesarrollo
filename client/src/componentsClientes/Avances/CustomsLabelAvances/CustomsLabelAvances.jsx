@@ -12,7 +12,9 @@ export default function CustomsLabelAvances({ text, suma, sumaTotal, value }) {
       <div className="flex gap-2">
         <div className="flex gap-5 justify-center items-center">
           {/* Suma total */}
-          <p className="text-[#0f0] font-bold">+ {sumaTotal}</p>
+          {sumaTotal ? (
+            <p className="text-[#0f0] font-bold">+{sumaTotal}</p>
+          ) : null}
           {/* Suma */}
           {/* <p className="text-[#0f0] text-[0.8rem] font-bold">+ {suma}</p> */}
           {/* Valor */}
