@@ -3,6 +3,7 @@ import CustomsLabelAvances from "./CustomsLabelAvances/CustomsLabelAvances";
 import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "@clerk/clerk-react";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
+import { IoReloadOutline } from "react-icons/io5";
 
 export default function Avances({ seguidores, seguidoresGanados }) {
   // Estado local
@@ -93,14 +94,15 @@ export default function Avances({ seguidores, seguidoresGanados }) {
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8">
-      <div
-        onClick={handleSaveChanges}
-        className="bg-[#8C4EB0] text-white rounded-full px-5 py-2 cursor-pointer"
-      >
-        Actualizar valores
-      </div>
       <div className="flex justify-between w-10/12">
         <h1 className="text-white text-18">Avances</h1>
+        <div className="text-5xl rounded-full">
+          <IoReloadOutline 
+            className="font-bold"
+            color="#fff"
+            size={25} onClick={handleSaveChanges} />
+        </div>
+
         <select className="bg-transparent focus:border-none">
           <option value="">desde siempre</option>
         </select>
