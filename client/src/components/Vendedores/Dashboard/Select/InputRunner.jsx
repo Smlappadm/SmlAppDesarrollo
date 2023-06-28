@@ -5,25 +5,23 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  findCorredoresByNameAllInfo,
-  getAllCategory,
   getAllCountries,
   getAllProfesion,
 } from "../../../../redux/actions";
 
-export default function InputName() {
+export default function InputName({body, getLeadCheckedInactive5}) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
-  const [category, setCategory] = useState("");
+
   const [country, setCountry] = useState("");
 
   const { allProfesion } = useSelector((state) => state);
-  const { allCategory } = useSelector((state) => state);
+
   const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getAllProfesion());
-    dispatch(getAllCategory());
+
     dispatch(getAllCountries());
   }, [dispatch]);
 
@@ -32,10 +30,7 @@ export default function InputName() {
     setProfesion(value);
   };
 
-  const handleChangeCategory = (event) => {
-    let value = event.target.value;
-    setCategory(value);
-  };
+
 
   const handleChangeCountries = (event) => {
     let value = event.target.value;
@@ -44,19 +39,27 @@ export default function InputName() {
 
 
   const handleFilterClick = () => {
+    console.log(profesion)
+    console.log(country)
     dispatch(
-      findCorredoresByNameAllInfo(
+      getLeadCheckedInactive5(
+        body,
         profesion,
         country,
-        category,
       )
     );
   };
 
   const handleFilterReset = () => {
     setProfesion("");
-    setCategory("");
     setCountry("");
+    dispatch(
+      getLeadCheckedInactive5(
+        body,
+        profesion,
+        country,
+      )
+    )
   };
 
   return (
@@ -83,8 +86,10 @@ export default function InputName() {
       }}
     >
       <div className="flex gap-5">
-        <div className="flex flex-col">
-          <label>Profesion:</label>
+
+
+        <div className="flex flex-col w-56">
+          <label>Profesión:</label>
           <Select
             value={profesion}
             onChange={handleChangeProfesion}
@@ -108,7 +113,7 @@ export default function InputName() {
               },
             }}
           >
-            <MenuItem value="">Profesion</MenuItem>
+            <MenuItem value="">Profesión</MenuItem>
             {allProfesion.map((profesion) => (
               <MenuItem key={profesion} value={profesion}>
                 {profesion}
@@ -116,41 +121,10 @@ export default function InputName() {
             ))}
           </Select>
         </div>
-        <div className="flex flex-col">
-          <label>Categoria:</label>
-          <Select
-            value={category}
-            onChange={handleChangeCategory}
-            label=""
-            id="runner"
-            size="small"
-            variant="outlined"
-            displayEmpty
-            inputProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            sx={{
-              color: "white",
-              "& .MuiOutlinedInput-input": {
-                padding: "9.5px 14px",
-              },
-              "& .MuiSelect-outlined": {
-                paddingRight: "28px",
-              },
-            }}
-          >
-            <MenuItem value="">Categoria</MenuItem>
-            {allCategory.map((category) => (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </Select>
-        </div>
-        <div className="flex flex-col">
-          <label>Paises:</label>
+
+
+        <div className="flex flex-col w-36">
+          <label>Países:</label>
           <Select
             value={country}
             onChange={handleChangeCountries}
@@ -174,7 +148,7 @@ export default function InputName() {
               },
             }}
           >
-            <MenuItem value="">Pais</MenuItem>
+            <MenuItem value="">País</MenuItem>
             {allCountries.map((country) => (
               <MenuItem key={country} value={country}>
                 {country}
