@@ -132,7 +132,11 @@ export const getLeadChecked = () => {
   };
 };
 
-export const getLeadCheckedInactive5 = (body) => {
+
+export const getLeadCheckedInactive5 = (body, profesion, country) => {
+  body = {...body, profesion, country}
+  console.log(body)
+
   return async (dispatch) => {
     if (
       body.email &&

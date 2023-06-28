@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { filterLevel, getLeadCheckedInactive5 } from "../../../redux/actions";
+import { filterLevel, getLeadCheckedInactive5, getAllProfesion, getAllCountries } from "../../../redux/actions";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
@@ -14,6 +14,8 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
+import BasicButtons1 from "./Select/BasicButtons1";
+import BasicButtons2 from "./Select/BasicButtons2";
 
 import Nav from "../../Nav/Nav";
 
@@ -28,15 +30,27 @@ const VendedoresDashboard = () => {
   const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  
   const body = { name: fullName, email: emailAddress };
+  
+  const { allCountries } = useSelector((state) => state);
+  const { allProfesion } = useSelector((state) => state);
+  
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
 
+
+  
   useEffect(() => {
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getAllProfesion());
+    dispatch(getAllCountries());
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   }, [dispatch, emailAddress]);
-
+  
   useEffect(() => {
     setData(vendedoresDashboard);
   }, [vendedoresDashboard]);
+
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,15 +58,35 @@ const VendedoresDashboard = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const currentCard = data.slice(indexFirstCard, indexLastCard);
+
+
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
 
   //FILTER**********************
+
+  const filtrar = () => {
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
+  };
+
+  const filterProfesion = (event) => {
+    const { value } = event.target;
+    setProfesion(value);
+  };
+
+  const filterCountry = (event) => {
+    const { value } = event.target;
+    setCountry(value);
+  };
+
+  //-------------------------------------------------------------
+
+
   const [filters, setFilters] = useState({
     level: false,
     runner: false,
@@ -113,7 +147,7 @@ const VendedoresDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -139,7 +173,7 @@ const VendedoresDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
 
   const funcionHorario = (horario) => {
@@ -183,6 +217,53 @@ const VendedoresDashboard = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div>
+            <div className="flex gap-5 justify-center items-center ml-16">
+            <label>Profesión: </label>
+            <select
+              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
+              value={profesion}
+              onChange={filterProfesion}
+            >
+              {allProfesion &&
+                allProfesion.map((option, index) => (
+                  <option className="text-black" key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+
+              <option className="text-black" value="">
+                Otras Profesiones
+              </option>
+            </select>
+            <label>País: </label>
+            <select
+              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
+              value={country}
+              onChange={filterCountry}
+            >
+              <option
+                disabled="disabled"
+                className="text-black"
+                value=""
+              ></option>
+              {allCountries &&
+                allCountries.map((option, index) => (
+                  <option className="text-black" key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              <option className="text-black" value="">
+                Otras Paises
+              </option>
+            </select>
+
+            <div onClick={filtrar}>
+              <BasicButtons1 />
+            </div>
+            <div onClick={filtrar}>
+              <BasicButtons2 />
+            </div>
+          </div>
             {/* {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
