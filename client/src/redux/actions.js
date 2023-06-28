@@ -206,10 +206,19 @@ export const findCorredoresByNameAllInfo = (
   };
 };
 
-export const findVendedoresByNameAllInfo = (names, fromDay, toDay) => {
+export const findVendedoresByNameAllInfo = (
+  email,
+  fromDay,
+  toDay,
+  profesion,
+  country,
+  category,
+  level,
+  status
+) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `/lead/allinfovendedor?name=${names}&fromDay=${fromDay}&toDay=${toDay}`
+      `/lead/allinfovendedor?email=${email}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`
     );
     const vendedoresByNameAllInfo = response.data;
     dispatch({
