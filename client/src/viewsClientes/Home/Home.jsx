@@ -68,7 +68,7 @@ export default function Home() {
     if (loader) {
       obtainMetricsInstagram();
     }
-  }, [loader]);
+  }, [loader, client]);
 
   if (!user || !user.emailAddresses || !user.emailAddresses[0]) {
     return <div>Loading...</div>;
@@ -87,8 +87,8 @@ export default function Home() {
   };
 
   const obtainMetricsInstagram = async () => {
-    const userIG = client.instagram && client.instagram.slice(26);
-    const userTT = client.tiktok && client.tiktok.slice(24);
+    const userIG = client.instagram ? client.instagram.slice(26) : "";
+    const userTT = client.tiktok ? client.tiktok.slice(24) : "";
     localStorage.setItem("instagram", userIG);
     localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
@@ -98,9 +98,9 @@ export default function Home() {
     // const responseIG = await axios.get(
     //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     // );
-    // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "1001" };
-    const infoTT = { seguidores: "500", likes: "10" };
+    const infoIG = responseIG.data;
+    const infoIG = { seguidores: "2005" };
+    const infoTT = { seguidores: "200", likes: "10" };
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
     const body = {
