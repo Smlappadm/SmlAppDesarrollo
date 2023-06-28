@@ -135,7 +135,6 @@ export const getLeadChecked = () => {
 
 export const getLeadCheckedInactive5 = (body, profesion, country) => {
   body = {...body, profesion, country}
-  console.log(body)
 
   return async (dispatch) => {
     if (
@@ -252,7 +251,6 @@ export const getVendedorAllLeads = (email) => {
   return async (dispatch) => {
     const response = await axios.get(`/vendedor/email?email=${email}`);
     const allLeads = response.data;
-    console.log(allLeads);
     const allLeadsMaps =
       allLeads &&
       (await allLeads.filter((item) => item.status !== "Sin contactar"));
@@ -267,7 +265,6 @@ export const getLeadsLLamadaVenta = (email) => {
     const response = await axios.get(`/vendedor/ventas/email?email=${email}`);
 
     const allLeads = response.data;
-    console.log(allLeads);
     dispatch({
       type: GET_LEADS_LLAMADA_VENTA,
       payload: allLeads,

@@ -58,7 +58,6 @@ function ChildModal({
 
 
     } else{
-      console.log("111111111")
       statusObj.pagos = {};
     }
 
@@ -67,7 +66,6 @@ function ChildModal({
   };
 
   const handleClose = () => {
-    console.log(statusObj)
     setOpenChild(false);
   };
 
@@ -143,7 +141,7 @@ function ChildModal({
       dataLead,
       dataVendedor,
     };
-console.log(dataUpdate)
+
     axios
       .put(`/lead/vendedor/${item._id}`, dataUpdate)
       .then((response) => {
@@ -725,7 +723,6 @@ export default function NestedModal({
   const handleConfirmEditEmail = async (id) => {
     const body = { email: inputEmail };
     const response = await axios.put(`/lead/changeemail/${id}`, body);
-    console.log(response.data);
     setUpdatedEmail(response.data.email);
     setEditEmail(false);
     SendEmailLeadAlert("Email");
@@ -743,7 +740,6 @@ export default function NestedModal({
   const handleConfirmEditInstagram = async (id) => {
     const body = { instagram: inputInstagram };
     const response = await axios.put(`/lead/changeemail/${id}`, body);
-    console.log(response.data);
     setUpdatedInstagram(response.data.instagram);
     setEditInstagram(false);
     SendEmailLeadAlert("Instagram");
@@ -761,7 +757,6 @@ export default function NestedModal({
   const handleConfirmEditTelephone = async (id) => {
     const body = { telephone: inputTelephone };
     const response = await axios.put(`/lead/changeemail/${id}`, body);
-    console.log(response.data);
     setUpdatedTelephone(response.data.telephone);
     setEditTelephone(false);
     SendEmailLeadAlert("Phone");

@@ -23,7 +23,7 @@ const getLeadCheckedInactive5 = async (body) => {
     status: "Sin contactar",
     level: { $nin: ["incidencia", "0", "", "-"] },
   };
-  console.log(body.profesion)
+
   if (body.email) {
     leadQuery["email"] = body.email;
   }
@@ -33,7 +33,7 @@ const getLeadCheckedInactive5 = async (body) => {
   if (body.profesion) {
     leadQuery["profesion"] = body.profesion;
   }
-console.log(leadQuery)
+
   const leadChequedInactive = await Lead.find(leadQuery).limit(5).exec();
 
   //BUSCA LOS NO RESPONDE --------------------------
