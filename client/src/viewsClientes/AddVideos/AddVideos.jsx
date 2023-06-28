@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos";
 import { getClientByEmail } from "../../redux/actions";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
