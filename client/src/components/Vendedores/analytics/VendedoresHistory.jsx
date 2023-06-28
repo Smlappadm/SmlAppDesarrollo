@@ -13,7 +13,7 @@ import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
 
 import Nav from "../../Nav/Nav";
-import InputRunner from "./MUI/InputRunner";
+import InputRunner from "./MUI/inputRunner";
 
 const VendedoresHistory = () => {
   const [data, setData] = useState([]);
@@ -33,7 +33,7 @@ const VendedoresHistory = () => {
 
   useEffect(() => {
     dispatch(getVendedorAllLeads(email));
-  }, [dispatch, email, handleFilterReset]);
+  }, [dispatch, email]);
   useEffect(() => {
     vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
   }, [vendedorAllLeadsHistory]);
@@ -164,6 +164,7 @@ const VendedoresHistory = () => {
 
   const onChangeStatus = (value) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
+    console.log(value);
     setStatusValue(value);
 
     const leadsFilteredStatus = vendedorAllLeadsHistory.filter(
@@ -339,7 +340,7 @@ const VendedoresHistory = () => {
           </div>
 
           <div className="flex justify-center items-center mb-5">
-            <InputRunner handleFilterReset={handleFilterReset} />
+            <InputRunner />
           </div>
 
           {currentCard && currentCard.length ? (
