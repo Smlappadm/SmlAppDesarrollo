@@ -236,12 +236,18 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
 };
 
 const findLeadVendedorNameAllInfoHandler = async (req, res) => {
-  const { name, fromDay, toDay } = req.query;
+  const { email, fromDay, toDay, profesion, country, category, level, status } =
+    req.query;
   try {
     const foundVendedor = await findLeadVendedorNameAllInfo(
-      name,
+      email,
       fromDay,
-      toDay
+      toDay,
+      profesion,
+      country,
+      category,
+      level,
+      status
     );
     res.status(200).json(foundVendedor);
   } catch (error) {
@@ -259,14 +265,13 @@ const findLeadVendedorNameHandler = async (req, res) => {
   }
 };
 const updateChangeEmailHandler = async (req, res) => {
+  const { id } = req.params;
 
- const { id } = req.params;
- 
- const keys = Object.keys(req.body);
- const newValue = Object.values(req.body);
+  const keys = Object.keys(req.body);
+  const newValue = Object.values(req.body);
 
- console.log(keys[0])
- console.log(newValue[0])
+  console.log(keys[0]);
+  console.log(newValue[0]);
   try {
     const leadEmailChanged = await changeLeadEmail(id, keys[0], newValue[0]);
     res.status(200).json(leadEmailChanged);
