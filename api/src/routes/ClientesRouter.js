@@ -7,6 +7,7 @@ const {
   getClientByEmailHandler,
   paymentClienteHandler,
   setReferredHandler,
+  addVideosHandler,
 } = require("../Handlers/ClientesHandlers");
 const ClientesRouter = Router();
 
@@ -17,5 +18,6 @@ ClientesRouter.get("/", getAllClientesHandler);
 ClientesRouter.put("/update", updateClientProfileHandler);
 ClientesRouter.post("/payment", paymentClienteHandler);
 ClientesRouter.put("/referred", setReferredHandler);
+ClientesRouter.put("/addvideo", addVideosHandler);
 
 module.exports = ClientesRouter;
