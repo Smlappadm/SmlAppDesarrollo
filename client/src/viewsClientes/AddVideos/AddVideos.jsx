@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -5,11 +6,18 @@ import { Link } from "react-router-dom";
 export default function AddVideos() {
   const [link, setLink] = useState("");
   const { user } = useUser();
-  const userEmail = user.emailAddresses[0].emailAddress;
+  const userEmail = user?.emailAddresses[0].emailAddress;
 
   const newLinkVideo = async () => {
-    console.log(link);
-    await axios.put(`/clientes/addvideo`);
+    const body = {
+      videosPublicados: link,
+    };
+    try {
+      await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
+      console.log("asdsa");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
