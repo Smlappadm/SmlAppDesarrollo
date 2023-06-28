@@ -14,7 +14,7 @@ const style = {
   textColor: "white",
   color: "white",
   borderRadius: "20px",
-  overflow: "auto", // Agrega scroll al contenido
+  overflow: "auto",
   maxHeight: "80vh",
 };
 
@@ -39,23 +39,23 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <hr className="border-gray-400 w-5/6 text-center" />
             </div>
             <div className="font-semibold flex gap-3">
-              <p>CORREDOR:</p>
+              <p>Corredor:</p>
               <p className="font-normal">{modalItems.corredor_name}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>CORREDOR EMAIL:</p>
+              <p>Corredor Email:</p>
               <p className="font-normal">{modalItems.corredor}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>VENDEDOR:</p>
+              <p>Vendedor:</p>
               <p className="font-normal">{modalItems.vendedor_name}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>VENDEDOR EMAIL:</p>
+              <p>Vendedor Email:</p>
               <p className="font-normal">{modalItems.vendedor}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>WEB:</p>
+              <p>Web:</p>
               <a
                 href={modalItems.url}
                 target="_blank"
@@ -65,7 +65,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               </a>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>INSTAGRAM:</p>
+              <p>Instagram:</p>
               <a
                 href={modalItems.instagram}
                 target="_blank"
@@ -79,7 +79,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <p className="font-normal">{modalItems.description}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>CATEGORIA:</p>
+              <p>Categoria:</p>
               <p className="font-normal">{modalItems.category}</p>
             </div>
             <div className="font-semibold flex gap-3">
@@ -95,27 +95,27 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <p className="font-normal">{modalItems.province}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>CIUDAD:</p>
+              <p>Ciudad:</p>
               <p className="font-normal">{modalItems.city}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>NIVEL:</p>
+              <p>Nivel:</p>
               <p className="font-normal">{modalItems.level}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>EMAIL:</p>
+              <p>Email:</p>
               <p className="font-normal">{modalItems.email}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>TELEFONO:</p>
+              <p>Telefono:</p>
               <p className="font-normal">{modalItems.telephone}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>ESTADO:</p>
+              <p>Estado:</p>
               <p className="font-normal">{modalItems.status}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>DETALLE:</p>
+              <p>Detalle:</p>
               <p className="font-normal">
                 {modalItems.status_op ? modalItems.status_op : "-"}
               </p>
