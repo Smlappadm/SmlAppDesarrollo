@@ -1,12 +1,26 @@
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getClientByEmail } from "../../redux/actions";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
   const { user } = useUser();
   const userEmail = user?.emailAddresses[0].emailAddress;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getClientByEmail(userEmail && userEmail));
+  }, [dispatch]);
+
+  const { client } = useSelector((state) => state);
+  useEffect(() => {
+    if (client) {
+      console.log(client);
+    }
+  }, [client]);
 
   const newLinkVideo = async () => {
     const body = {
@@ -14,10 +28,10 @@ export default function AddVideos() {
     };
     try {
       await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
-      console.log("asdsa");
     } catch (error) {
       console.log(error.message);
     }
+    console.log(client && client.videosPublicados[1]);
   };
 
   return (
@@ -39,6 +53,7 @@ export default function AddVideos() {
         <input
           className="text-black   rounded-lg  text-center text-[16px] rounded-l-full h-[33px] w-11/12"
           type="text"
+          value={link}
           onChange={(event) => setLink(event.target.value)}
           placeholder="Ingrese su link..."
         />
@@ -50,8 +65,20 @@ export default function AddVideos() {
         </div>
       </div>
       <div>
-        <p className="text-24 font-extrabold text-white">Historial</p>
-        <div></div>
+        <p className="text-24 font-extrabold text-white mt-4 text-center">
+          Historial
+        </p>
+        <div>
+          {client && client?.videosPublicados ? (
+            <div>
+              {client.videosPublicados.map((link) => (
+                <p>{link}</p>
+              ))}
+            </div>
+          ) : (
+            <p>nada</p>
+          )}
+        </div>
       </div>
     </div>
   );
