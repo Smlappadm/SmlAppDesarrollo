@@ -5,6 +5,7 @@ const updateClientProfile = require("../controllers/Clientes/updateClientProfile
 const getClientByEmail = require("../controllers/Clientes/getClientByEmail");
 const createPayment = require("../controllers/Clientes/createPayment");
 const setReferred = require("../controllers/Clientes/setReferred");
+const addVideos = require("../controllers/Clientes/addVideos");
 
 const newClientHandler = async (req, res) => {
   const body = req.body;
@@ -65,6 +66,16 @@ const setReferredHandler = async (req, res) => {
   try {
     const referred = await setReferred(body);
     res.status(200).json(referred);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+const addVideosHandler = async (req, res) => {
+  const { linksVideos } = req.body;
+  const { email } = req.query;
+  try {
+    const newVideo = await addVideos(email, linksVideos);
+    res.status(200).json(newVideo);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
