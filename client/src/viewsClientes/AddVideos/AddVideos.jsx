@@ -59,6 +59,7 @@ export default function AddVideos() {
     return tiktokPostRegex.test(link);
   }
 
+  // Alerta de que se posteo un video ***********************************************
   const sendLinkSuccess = () => {
     toast.success("Publicacion enviada!", {
       duration: 2000,
