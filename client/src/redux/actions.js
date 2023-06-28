@@ -133,27 +133,10 @@ export const getLeadChecked = () => {
 };
 
 
-// export const getLeadCorredores = (
-//   email,
-//   names,
-//   profesion,
-//   category,
-//   country,
-//   marca_personal
-// ) => {
-//   return async (dispatch) => {
-//     if (email !== "undefined" && email !== "") {
-//       const response = await axios.get(
-//         `lead/unchecked10?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
-//       );
-//       const corredorLead = response.data;
-//       dispatch({ type: GET_CORREDOR_LEAD, payload: corredorLead });
-//     }
-//   };
-// };
+export const getLeadCheckedInactive5 = (body, profesion, country) => {
+  body = {...body, profesion, country}
+  console.log(body)
 
-
-export const getLeadCheckedInactive5 = (body) => {
   return async (dispatch) => {
     if (
       body.email &&
