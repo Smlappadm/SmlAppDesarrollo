@@ -13,7 +13,7 @@ import {
 } from "../../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
-export default function InputRunner({handleFilterReset}) {
+export default function InputRunner() {
   const dispatch = useDispatch();
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
