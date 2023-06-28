@@ -29,6 +29,8 @@ export default function AddVideos() {
       };
       try {
         await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
+        setLinkError("");
+        setLink("");
       } catch (error) {
         console.log(error.message);
       }
@@ -49,6 +51,19 @@ export default function AddVideos() {
   function isTikTokPost(link) {
     return tiktokPostRegex.test(link);
   }
+
+  const copyRefSuccess = () => {
+    toast.success("Codigo de Referido Copiado.", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "#020131",
+        color: "white",
+        border: "1px solid",
+        borderColor: "white",
+      },
+    });
+  };
 
   return (
     <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10">
