@@ -11,9 +11,9 @@ import { useUser } from "@clerk/clerk-react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
-import InputRunner from "./MUI/InputRunner";
 
 import Nav from "../../Nav/Nav";
+import InputRunner from "./MUI/inputRunner";
 
 const VendedoresHistory = () => {
   const [data, setData] = useState([]);
@@ -164,6 +164,7 @@ const VendedoresHistory = () => {
 
   const onChangeStatus = (value) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
+    console.log(value);
     setStatusValue(value);
 
     const leadsFilteredStatus = vendedorAllLeadsHistory.filter(
