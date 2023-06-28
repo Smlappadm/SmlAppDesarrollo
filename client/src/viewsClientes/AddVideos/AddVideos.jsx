@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos";
 import { getClientByEmail } from "../../redux/actions";
 
 export default function AddVideos() {
@@ -10,16 +11,14 @@ export default function AddVideos() {
   const { user } = useUser();
   const userEmail = user?.emailAddresses[0].emailAddress;
   const dispatch = useDispatch();
+  const { client } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
-  }, [dispatch]);
+  }, [dispatch, userEmail]);
 
-  const { client } = useSelector((state) => state);
   useEffect(() => {
-    if (client) {
-      console.log(client);
-    }
+    console.log(userEmail);
   }, [client]);
 
   const newLinkVideo = async () => {
@@ -64,22 +63,7 @@ export default function AddVideos() {
           <p className="text-[22px] text-center">Añadir</p>
         </div>
       </div>
-      <div>
-        <p className="text-24 font-extrabold text-white mt-4 text-center">
-          Historial
-        </p>
-        <div>
-          {client && client?.videosPublicados ? (
-            <div>
-              {client.videosPublicados.map((link) => (
-                <p>{link}</p>
-              ))}
-            </div>
-          ) : (
-            <p>nada</p>
-          )}
-        </div>
-      </div>
+      <HistoryVideos videosPublicados={client?.videosPublicados} />
     </div>
   );
 }
