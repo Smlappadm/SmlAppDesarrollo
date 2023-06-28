@@ -23,6 +23,7 @@ export default function AddVideos() {
     console.log(userEmail);
   }, [client]);
 
+  // Agregar un nuevo posteo de video como link ***********************************************
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
       const linkhttp = link.slice(0, 12);
