@@ -1,21 +1,40 @@
 const Lead = require("../../models/Lead");
 
-
 const getLeadCheckedInactive5 = async (body) => {
+  await Lead.updateMany(
+    { vendedor: body.email, status: "Sin contactar" },
+    {
+      $set: {
+        status_op: "",
+        llamados: 0,
+        vendedor: "",
+        vendedor_name: "",
+        checked: true,
+        view: true,
+        deleted: false,
+      },
+    }
+  );
 
-  
-
-  const leadChequedInactive = await Lead.find({
+  // BUSCA LOS QUE TENGA MI MAIL
+  let leadQuery = {
     checked: true,
-    vendedor: body.email,
     status: "Sin contactar",
     level: { $nin: ["incidencia", "0", "", "-"] },
-  })
-    .limit(5)
-    .exec();
+  };
+  if (body.email) {
+    leadQuery["body.email"] = body.email;
+  }
+  if (body.pais) {
+    leadQuery["body.pais"] = body.pais;
+  }
+  if (body.profesion) {
+    leadQuery["body.profesion"] = body.profesion;
+  }
 
+  const leadChequedInactive = await Lead.find(leadQuery).limit(5).exec();
 
-
+  //BUSCA LOS NO RESPONDE --------------------------
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
     vendedor: body.email,
@@ -49,7 +68,10 @@ const getLeadCheckedInactive5 = async (body) => {
 
     return 0;
   });
+  //--------------------------------------------------
 
+
+  
   let count = 0;
   count = 5 - leadChequedInactive.length;
   let leadRest = [];
@@ -83,12 +105,12 @@ const getLeadCheckedInactive5 = async (body) => {
       }
 
       leadRest = [...leadRestNivel2, ...leadRestNivel1];
-      
+
       if (leadRest.length > 0) {
         await Promise.all(
           leadRest.map(async (element) => {
             element.vendedor = body.email;
-            element.vendedor_name = body.name
+            element.vendedor_name = body.name;
             await element.save();
           })
         );
@@ -96,11 +118,8 @@ const getLeadCheckedInactive5 = async (body) => {
     }
   }
 
-  return [
-    ...leadChequedInactive,
-    ...leadRest,
-    ...leadsNoRespondenSorted
-  ];
+  return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
+
 };
 
 module.exports = getLeadCheckedInactive5;
