@@ -66,7 +66,7 @@ export default function Avances({ seguidores, seguidoresGanados }) {
         texto: "Videos Publicados",
         sumaTotal: client.videosPublicadosAnteriores,
         suma: client.videosPublicados - client.videosPublicadosAnteriores,
-        value: client.videosPublicados,
+        value: 0,
       },
       {
         texto: "Seguidores Ganados",
@@ -97,10 +97,12 @@ export default function Avances({ seguidores, seguidoresGanados }) {
       <div className="flex justify-between w-10/12">
         <h1 className="text-white text-18">Avances</h1>
         <div className="text-5xl rounded-full">
-          <IoReloadOutline 
+          <IoReloadOutline
             className="font-bold"
             color="#fff"
-            size={25} onClick={handleSaveChanges} />
+            size={25}
+            onClick={handleSaveChanges}
+          />
         </div>
 
         <select className="bg-transparent focus:border-none">
