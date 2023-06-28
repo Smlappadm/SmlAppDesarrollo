@@ -13,7 +13,7 @@ import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
 
 import Nav from "../../Nav/Nav";
-import InputRunner from "./MUI/inputRunner";
+import InputRunner from "./MUI/InputRunner";
 
 const VendedoresHistory = () => {
   const [data, setData] = useState([]);
@@ -340,7 +340,7 @@ const VendedoresHistory = () => {
           </div>
 
           <div className="flex justify-center items-center mb-5">
-            <InputRunner />
+            <InputRunner getVendedorAllLeads={getVendedorAllLeads} emailUser={email}/>
           </div>
 
           {currentCard && currentCard.length ? (

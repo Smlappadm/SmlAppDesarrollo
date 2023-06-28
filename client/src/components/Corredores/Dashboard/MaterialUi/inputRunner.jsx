@@ -10,12 +10,14 @@ import {
   getAllCountries,
   getAllProfesion,
 } from "../../../../redux/actions";
+import { Checkbox } from "@mui/material";
 
-export default function InputName() {
+export default function InputRunner({ getLeadCorredores, email, names }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [category, setCategory] = useState("");
   const [country, setCountry] = useState("");
+  const [marca_personal, setMarca_personal] = useState("");
 
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
@@ -42,13 +44,19 @@ export default function InputName() {
     setCountry(value);
   };
 
+  const handleChangeNombrePropio = (event) => {
+    setMarca_personal(event.target.checked ? "SI" : "");
+  };
 
   const handleFilterClick = () => {
     dispatch(
-      findCorredoresByNameAllInfo(
+      getLeadCorredores(
+        email,
+        names,
         profesion,
         country,
         category,
+        marca_personal
       )
     );
   };
@@ -57,6 +65,17 @@ export default function InputName() {
     setProfesion("");
     setCategory("");
     setCountry("");
+
+    dispatch(
+      getLeadCorredores(
+        email,
+        names,
+        profesion,
+        country,
+        category,
+        marca_personal
+      )
+    );
   };
 
   return (
@@ -82,7 +101,7 @@ export default function InputName() {
         },
       }}
     >
-      <div className="flex gap-5">
+      <div className="flex items-center justify-center gap-5">
         <div className="flex flex-col">
           <label>Profesion:</label>
           <Select
@@ -181,6 +200,18 @@ export default function InputName() {
               </MenuItem>
             ))}
           </Select>
+        </div>
+        <div className="flex w-32 items-center justify-center flex-col">
+          <div>
+            <label>Nombre Propio:</label>
+          </div>
+          <div>
+            <Checkbox
+              onClick={handleChangeNombrePropio}
+              value={"Si"}
+              size="medium"
+            />
+          </div>
         </div>
         <div className="flex gap-5 items-end justify-center">
           <Button onClick={handleFilterClick} variant="contained" size="large">
