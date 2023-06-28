@@ -2,10 +2,9 @@ const Lead = require("../../models/Lead");
 
 const getLeadCheckedInactive5 = async (body) => {
   await Lead.updateMany(
-    { vendedor: body.email },
+    { vendedor: body.email, status: "Sin contactar" },
     {
       $set: {
-        status: "Sin contactar",
         status_op: "",
         llamados: 0,
         vendedor: "",
@@ -17,16 +16,25 @@ const getLeadCheckedInactive5 = async (body) => {
     }
   );
 
-  const leadChequedInactive = await Lead.find({
-    
+  // BUSCA LOS QUE TENGA MI MAIL
+  let leadQuery = {
     checked: true,
-    vendedor: body.email,
     status: "Sin contactar",
     level: { $nin: ["incidencia", "0", "", "-"] },
-  })
-    .limit(5)
-    .exec();
+  };
+  if (body.email) {
+    leadQuery["body.email"] = body.email;
+  }
+  if (body.pais) {
+    leadQuery["body.pais"] = body.pais;
+  }
+  if (body.profesion) {
+    leadQuery["body.profesion"] = body.profesion;
+  }
 
+  const leadChequedInactive = await Lead.find(leadQuery).limit(5).exec();
+
+  //BUSCA LOS NO RESPONDE --------------------------
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
     vendedor: body.email,
@@ -60,7 +68,10 @@ const getLeadCheckedInactive5 = async (body) => {
 
     return 0;
   });
+  //--------------------------------------------------
 
+
+  
   let count = 0;
   count = 5 - leadChequedInactive.length;
   let leadRest = [];
@@ -108,6 +119,7 @@ const getLeadCheckedInactive5 = async (body) => {
   }
 
   return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
+
 };
 
 module.exports = getLeadCheckedInactive5;
