@@ -33,7 +33,7 @@ const VendedoresHistory = () => {
 
   useEffect(() => {
     dispatch(getVendedorAllLeads(email));
-  }, [dispatch, email]);
+  }, [dispatch, email, handleFilterReset]);
   useEffect(() => {
     vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
   }, [vendedorAllLeadsHistory]);
@@ -339,7 +339,7 @@ const VendedoresHistory = () => {
           </div>
 
           <div className="flex justify-center items-center mb-5">
-            <InputRunner />
+            <InputRunner handleFilterReset={handleFilterReset} />
           </div>
 
           {currentCard && currentCard.length ? (
