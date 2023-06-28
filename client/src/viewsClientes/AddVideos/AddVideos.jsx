@@ -1,34 +1,49 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function AddVideos() {
+  const [link, setLink] = useState("");
+  const { user } = useUser();
+  const userEmail = user.emailAddresses[0].emailAddress;
+
+  const newLinkVideo = async () => {
+    console.log(link);
+    await axios.put(`/clientes/addvideo`);
+  };
+
   return (
-    <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-4">
-      <div className=" mx-10">
-        <h2 className="font-bold text-neutral-100 text-center">
+    <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10">
+      <div className="flex ">
+        <p className="text-24 font-extrabold text-white">Videos</p>
+        <Link to={"/clientes-home"}>
+          <p className="text-24 text-center font-extrabold text-white absolute right-4">
+            x
+          </p>
+        </Link>
+      </div>
+      <div className=" mx-10 mt-4">
+        <h2 className="font-medium text-neutral-100 text-center text-14">
           Copia y pega el link de tu nuevo video para añadirlo
         </h2>
       </div>
-      <div className="w-screen flex justify-center items-center">
+      <div className="w-[390px] flex justify-center items-center flex-row mt-5 text-[22px] h-[33px] px-6">
         <input
-          className="text-black  p-2 m-4 rounded-lg w-96"
+          className="text-black   rounded-lg  text-center text-[16px] rounded-l-full h-[33px] w-11/12"
           type="text"
+          onChange={(event) => setLink(event.target.value)}
           placeholder="Ingrese su link..."
         />
-      </div>
-      <div className="flex flex-col items-center justify-center">
-        <p>Atención:</p>
-        <p>Las estadpisticas se actualizan 1 vez al dia</p>
-      </div>
-      <div className="flex  gap-5 mt-20">
-        <Link to={"/clientes-home"}>
-          <div className=" rounded-full px-5 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-            <p className="text-[1.4rem] text-center">Cancelar</p>
-          </div>
-        </Link>
-        <div className="text-white  rounded-full px-10 py-2 bg-[#07a1f8] hover:bg-[#127fbe]">
-          <p className="text-[1.4rem] text-center">Añadir</p>
+        <div
+          className="text-white px-2 rounded-r-full  bg-[#07a1f8] hover:bg-[#127fbe] h-[33px]"
+          onClick={newLinkVideo}
+        >
+          <p className="text-[22px] text-center">Añadir</p>
         </div>
+      </div>
+      <div>
+        <p className="text-24 font-extrabold text-white">Historial</p>
+        <div></div>
       </div>
     </div>
   );
