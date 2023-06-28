@@ -30,22 +30,23 @@ const VendedoresDashboard = () => {
   const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  
   const body = { name: fullName, email: emailAddress };
-
-
+  
   const { allCountries } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
-
+  
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
 
 
+  
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   }, [dispatch, emailAddress]);
-
+  
   useEffect(() => {
     setData(vendedoresDashboard);
   }, [vendedoresDashboard]);
@@ -64,26 +65,13 @@ const VendedoresDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
 
   //FILTER**********************
 
   const filtrar = () => {
-
-    console.log(profesion)
-    console.log(country)
-
-    // dispatch(
-    //   getLeadCorredores(
-    //     email,
-    //     names,
-    //     profesion,
-    //     category,
-    //     country,
-    //     marca_personal
-    //   )
-    // );
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
 
   const filterProfesion = (event) => {
@@ -94,19 +82,6 @@ const VendedoresDashboard = () => {
   const filterCountry = (event) => {
     const { value } = event.target;
     setCountry(value);
-  };
-
-  const filterCategory = (event) => {
-    const { value } = event.target;
-    setCategory(value);
-  };
-
-  const checkMarcaPersonal = () => {
-    if (marca_personal) {
-      setMarca_personal("SI");
-    } else {
-      setMarca_personal("");
-    }
   };
 
   //-------------------------------------------------------------
@@ -172,7 +147,7 @@ const VendedoresDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -198,7 +173,7 @@ const VendedoresDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedInactive5(body));
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
 
   const funcionHorario = (horario) => {
