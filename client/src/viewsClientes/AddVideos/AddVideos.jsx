@@ -33,6 +33,18 @@ export default function AddVideos() {
     console.log(client && client.videosPublicados[1]);
   };
 
+  // Verificar si son links de publicaciones de tiktok o instagram ***********************************************
+  const instagramPostRegex =
+    /^https?:\/\/(www\.)?instagram\.com\/p\/([a-zA-Z0-9_\-]+)\/?$/;
+  function isInstagramPost(link) {
+    return instagramPostRegex.test(link);
+  }
+  const tiktokPostRegex =
+    /^https?:\/\/(www\.)?tiktok\.com\/(v|@[\w.-]+\/video\/\d+)\/?$/;
+  function isTikTokPost(link) {
+    return tiktokPostRegex.test(link);
+  }
+
   return (
     <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10">
       <div className="flex ">
