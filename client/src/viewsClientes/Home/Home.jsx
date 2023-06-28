@@ -171,6 +171,7 @@ export default function Home() {
             <VistaGeneral
               seguidores={client?.seguidores}
               seguidoresGanados={client?.seguidoresGanados}
+              videosPublicados={client?.videosPublicados}
             />
           )}
           {optionView === "trofeosXP" && <TrofeosXP />}
