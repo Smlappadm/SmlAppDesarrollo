@@ -339,7 +339,7 @@ const VendedoresHistory = () => {
             </div>
           </div>
 
-          <div className="flex justify-center items-center mb-5">
+          <div className="flex justify-center items-center mb-8">
             <InputRunner getVendedorAllLeads={getVendedorAllLeads} emailUser={email}/>
           </div>
 
