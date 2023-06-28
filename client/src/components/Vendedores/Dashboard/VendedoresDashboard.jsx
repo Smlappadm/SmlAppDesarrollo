@@ -224,7 +224,7 @@ const VendedoresDashboard = () => {
             </div>
             <div className="flex gap-5 justify-center items-center ml-16">
 
-              <inputRunner/>
+              <InputRunner getLeadCheckedInactive5={getLeadCheckedInactive5} body={body}/>
             {/* <label>Profesión: </label>
             <select
               className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
