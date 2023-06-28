@@ -375,12 +375,22 @@ const CorredoresDashboard = () => {
               </div>
             </div>
 
+            <div>
+              <div className="flex mt-5 mb-2 items-center justify-center">
+                <InputRunner
+                  getLeadCorredores={getLeadCorredores}
+                  email={email}
+                  names={names}
+                />
+              </div>
+            </div>
+
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
               <IconLabelButtons />
             </div>
           </div>
 
-          <div className="flex gap-5 mt-5 justify-center items-center">
+          {/* <div className="flex gap-5 mt-5 justify-center items-center">
             <label>Profesion: </label>
             <select
               className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
@@ -447,9 +457,6 @@ const CorredoresDashboard = () => {
             <div onClick={filtrar}>
               <BasicButtons />
             </div>
-          </div>
-          {/* <div className="flex mt-10 mb-2 items-center justify-center">
-            <InputRunner getLeadCorredores={getLeadCorredores} email={email} names={names} />
           </div> */}
 
           {corredorLead && corredorLead.length > 0 ? (
