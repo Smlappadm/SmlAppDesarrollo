@@ -131,7 +131,6 @@ export const LideresHistory = () => {
     setModalItems(item);
   };
   const handleClose = () => setOpen(false);
-
   return (
     <>
       <Nav />
@@ -226,19 +225,7 @@ export const LideresHistory = () => {
             <ModalCient
               open={open}
               handleClose={handleClose}
-              name={modalItems.name}
-              category={modalItems.category}
-              level={modalItems.level}
-              web={modalItems.url}
-              email={modalItems.email}
-              instagram={modalItems.instagram}
-              telephone={modalItems.telephone}
-              status={modalItems.status}
-              city={modalItems.city}
-              province={modalItems.province}
-              corredor={modalItems.corredor}
-              vendedor={modalItems.vendedor}
-              op={modalItems.status_op}
+              modalItems={modalItems}
             />
             {currentCard.length > 0 ? (
               currentCard.map((item, index) => (
