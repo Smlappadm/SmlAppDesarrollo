@@ -15,6 +15,7 @@ import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 
+
 import Nav from "../../Nav/Nav";
 
 const VentasDashboard = () => {
@@ -26,13 +27,17 @@ const VentasDashboard = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
+  
 
+  
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
-
+  
   useEffect(() => {
-      dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(emailAddress));
+
   }, [dispatch, emailAddress]);
+
 
   useEffect(() => {
     setData(vendedoresVentasDashboard);

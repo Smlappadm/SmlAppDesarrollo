@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { filterLevel, getLeadCheckedInactive5 } from "../../../redux/actions";
+import { filterLevel, getLeadCheckedInactive5, getAllProfesion, getAllCountries } from "../../../redux/actions";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
@@ -14,6 +14,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
+import BasicButtons from "./Select/BasicButtons";
 
 import Nav from "../../Nav/Nav";
 
@@ -30,7 +31,17 @@ const VendedoresDashboard = () => {
   let emailAddress = localStorage.getItem("email");
   const body = { name: fullName, email: emailAddress };
 
+
+  const { allCountries } = useSelector((state) => state);
+  const { allProfesion } = useSelector((state) => state);
+
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+
+
   useEffect(() => {
+    dispatch(getAllProfesion());
+    dispatch(getAllCountries());
     dispatch(getLeadCheckedInactive5(body));
   }, [dispatch, emailAddress]);
 
@@ -38,12 +49,15 @@ const VendedoresDashboard = () => {
     setData(vendedoresDashboard);
   }, [vendedoresDashboard]);
 
+
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardXPage, setCardXpage] = useState(10);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const currentCard = data.slice(indexFirstCard, indexLastCard);
+
+
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -53,6 +67,50 @@ const VendedoresDashboard = () => {
   };
 
   //FILTER**********************
+
+  const filtrar = () => {
+    console.log("entranding")
+    console.log(profesion)
+    console.log(country)
+
+    // dispatch(
+    //   getLeadCorredores(
+    //     email,
+    //     names,
+    //     profesion,
+    //     category,
+    //     country,
+    //     marca_personal
+    //   )
+    // );
+  };
+
+  const filterProfesion = (event) => {
+    const { value } = event.target;
+    setProfesion(value);
+  };
+
+  const filterCountry = (event) => {
+    const { value } = event.target;
+    setCountry(value);
+  };
+
+  const filterCategory = (event) => {
+    const { value } = event.target;
+    setCategory(value);
+  };
+
+  const checkMarcaPersonal = () => {
+    if (marca_personal) {
+      setMarca_personal("SI");
+    } else {
+      setMarca_personal("");
+    }
+  };
+
+  //-------------------------------------------------------------
+
+
   const [filters, setFilters] = useState({
     level: false,
     runner: false,
@@ -183,6 +241,50 @@ const VendedoresDashboard = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div>
+            <div className="flex gap-5 justify-center items-center ml-10">
+            <label>Profesion: </label>
+            <select
+              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
+              value={profesion}
+              onChange={filterProfesion}
+            >
+              {allProfesion &&
+                allProfesion.map((option, index) => (
+                  <option className="text-black" key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+
+              <option className="text-black" value="">
+                Otras Profesiones
+              </option>
+            </select>
+            <label>Pais: </label>
+            <select
+              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
+              value={country}
+              onChange={filterCountry}
+            >
+              <option
+                disabled="disabled"
+                className="text-black"
+                value=""
+              ></option>
+              {allCountries &&
+                allCountries.map((option, index) => (
+                  <option className="text-black" key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
+              <option className="text-black" value="">
+                Otras Paises
+              </option>
+            </select>
+
+            <div onClick={filtrar}>
+              <BasicButtons />
+            </div>
+          </div>
             {/* {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
