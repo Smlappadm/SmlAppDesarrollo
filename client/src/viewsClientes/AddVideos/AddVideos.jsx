@@ -23,6 +23,7 @@ export default function AddVideos() {
     console.log(userEmail);
   }, [client]);
 
+  // Agregar un nuevo posteo de video como link ***********************************************
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
       const linkhttp = link.slice(0, 12);
@@ -58,6 +59,7 @@ export default function AddVideos() {
     return tiktokPostRegex.test(link);
   }
 
+  // Alerta de que se posteo un video ***********************************************
   const sendLinkSuccess = () => {
     toast.success("Publicacion enviada!", {
       duration: 2000,
