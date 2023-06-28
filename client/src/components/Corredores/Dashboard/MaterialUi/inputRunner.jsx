@@ -70,6 +70,26 @@ export default function InputName() {
     );
   };
 
+<<<<<<< HEAD
+=======
+  const handleFilterReset = () => {
+    setProfesion("");
+    setCategory("");
+    setCountry("");
+
+    dispatch(
+      getLeadCorredores(
+        email,
+        names,
+        profesion,
+        country,
+        category,
+        marca_personal
+      )
+    );
+  };
+
+>>>>>>> parent of cb01789 (Update inputRunner.jsx)
   return (
     <Box
       sx={{
