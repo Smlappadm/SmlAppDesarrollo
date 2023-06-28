@@ -98,8 +98,8 @@ export default function Home() {
     // const responseIG = await axios.get(
     //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     // );
-    // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "500" };
+    const infoIG = responseIG.data;
+    const infoIG = { seguidores: "2005" };
     const infoTT = { seguidores: "200", likes: "10" };
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
