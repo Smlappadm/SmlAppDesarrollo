@@ -5,7 +5,11 @@ import { useUser } from "@clerk/clerk-react";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 import { IoReloadOutline } from "react-icons/io5";
 
-export default function Avances({ seguidores, seguidoresGanados }) {
+export default function Avances({
+  seguidores,
+  seguidoresGanados,
+  videosPublicados,
+}) {
   // Estado local
   const [isSavingChanges, setIsSavingChanges] = useState(false); // Estado para guardar si se están guardando los cambios
   const [savedBody, setSavedBody] = useState(null); // Estado para guardar el cuerpo de la solicitud guardada
@@ -64,9 +68,9 @@ export default function Avances({ seguidores, seguidoresGanados }) {
     const avances = [
       {
         texto: "Videos Publicados",
-        sumaTotal: client.videosPublicadosAnteriores,
-        suma: client.videosPublicados - client.videosPublicadosAnteriores,
-        value: 0,
+        sumaTotal: null,
+        suma: null,
+        value: videosPublicados && videosPublicados.length,
       },
       {
         texto: "Seguidores Ganados",
