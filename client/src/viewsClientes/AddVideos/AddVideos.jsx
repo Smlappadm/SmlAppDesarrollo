@@ -1,23 +1,70 @@
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos";
+import { getClientByEmail } from "../../redux/actions";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
+  const [linkError, setLinkError] = useState("");
   const { user } = useUser();
   const userEmail = user?.emailAddresses[0].emailAddress;
+  const dispatch = useDispatch();
+  const { client } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getClientByEmail(userEmail && userEmail));
+  }, [dispatch, userEmail]);
+
+  useEffect(() => {
+    console.log(userEmail);
+  }, [client]);
 
   const newLinkVideo = async () => {
-    const body = {
-      videosPublicados: link,
-    };
-    try {
-      await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
-      console.log("asdsa");
-    } catch (error) {
-      console.log(error.message);
+    if (isInstagramPost(link) || isTikTokPost(link)) {
+      const body = {
+        videosPublicados: link,
+      };
+      try {
+        await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
+        setLinkError("");
+        setLink("");
+        sendLinkSuccess();
+      } catch (error) {
+        console.log(error.message);
+      }
+      console.log(client && client.videosPublicados[1]);
+    } else {
+      setLinkError("El link no corresponde a una publicacion");
     }
+  };
+
+  // Verificar si son links de publicaciones de tiktok o instagram ***********************************************
+  const instagramPostRegex =
+    /^https?:\/\/(www\.)?instagram\.com\/p\/([a-zA-Z0-9_\-]+)\/?$/;
+  function isInstagramPost(link) {
+    return instagramPostRegex.test(link);
+  }
+  const tiktokPostRegex =
+    /^https?:\/\/(www\.)?tiktok\.com\/(v|@[\w.-]+\/video\/\d+)\/?$/;
+  function isTikTokPost(link) {
+    return tiktokPostRegex.test(link);
+  }
+
+  const sendLinkSuccess = () => {
+    toast.success("Publicacion enviada!", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "#020131",
+        color: "white",
+        border: "1px solid",
+        borderColor: "white",
+      },
+    });
   };
 
   return (
@@ -39,6 +86,7 @@ export default function AddVideos() {
         <input
           className="text-black   rounded-lg  text-center text-[16px] rounded-l-full h-[33px] w-11/12"
           type="text"
+          value={link}
           onChange={(event) => setLink(event.target.value)}
           placeholder="Ingrese su link..."
         />
@@ -49,10 +97,9 @@ export default function AddVideos() {
           <p className="text-[22px] text-center">Añadir</p>
         </div>
       </div>
-      <div>
-        <p className="text-24 font-extrabold text-white">Historial</p>
-        <div></div>
-      </div>
+      {linkError ? <span className="text-yellow-500">{linkError}</span> : null}
+      <HistoryVideos videosPublicados={client?.videosPublicados} />
+      <Toaster />
     </div>
   );
 }

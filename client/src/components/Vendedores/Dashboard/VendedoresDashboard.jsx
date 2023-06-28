@@ -73,6 +73,11 @@ const VendedoresDashboard = () => {
   const filtrar = () => {
     dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
+  const filtrar2 = () => {
+    setProfesion("")
+    setCountry("")
+    dispatch(getLeadCheckedInactive5(body, "", ""));
+  };
 
   const filterProfesion = (event) => {
     const { value } = event.target;
@@ -119,7 +124,6 @@ const VendedoresDashboard = () => {
   //********************************* */
 
   const handleCopyClick = (copyToProps) => {
-    console.log(copyToProps);
     navigator.clipboard
       .writeText(copyToProps)
       .then(() => {
@@ -260,7 +264,7 @@ const VendedoresDashboard = () => {
             <div onClick={filtrar}>
               <BasicButtons1 />
             </div>
-            <div onClick={filtrar}>
+            <div onClick={filtrar2}>
               <BasicButtons2 />
             </div>
           </div>
@@ -303,7 +307,7 @@ const VendedoresDashboard = () => {
 
                     <div className=" w-[10%] flex justify-start items-center p-0">
                       <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.province}
+                        {item.country}
                       </p>
                     </div>
 

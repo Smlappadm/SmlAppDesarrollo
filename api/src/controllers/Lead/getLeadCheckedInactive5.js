@@ -1,6 +1,7 @@
 const Lead = require("../../models/Lead");
 
 const getLeadCheckedInactive5 = async (body) => {
+
   await Lead.updateMany(
     { vendedor: body.email, status: "Sin contactar" },
     {
@@ -16,20 +17,21 @@ const getLeadCheckedInactive5 = async (body) => {
     }
   );
 
-  // BUSCA LOS QUE TENGA MI MAIL
+  //BUSCA LOS QUE TENGA MI MAIL
   let leadQuery = {
     checked: true,
     status: "Sin contactar",
     level: { $nin: ["incidencia", "0", "", "-"] },
   };
+
   if (body.email) {
-    leadQuery["body.email"] = body.email;
+    leadQuery["email"] = body.email;
   }
-  if (body.pais) {
-    leadQuery["body.pais"] = body.pais;
+  if (body.country) {
+    leadQuery["country"] = body.country;
   }
   if (body.profesion) {
-    leadQuery["body.profesion"] = body.profesion;
+    leadQuery["profesion"] = body.profesion;
   }
 
   const leadChequedInactive = await Lead.find(leadQuery).limit(5).exec();
@@ -70,7 +72,18 @@ const getLeadCheckedInactive5 = async (body) => {
   });
   //--------------------------------------------------
 
-
+  leadQuery = {
+    vendedor: "",
+    checked: true,
+    status: "Sin contactar",
+    level: { $nin: ["incidencia", "0", "", "-", "1"] },
+  };
+  if (body.country) {
+    leadQuery["country"] = body.country;
+  }
+  if (body.profesion) {
+    leadQuery["profesion"] = body.profesion;
+  }
   
   let count = 0;
   count = 5 - leadChequedInactive.length;
@@ -78,27 +91,30 @@ const getLeadCheckedInactive5 = async (body) => {
   let leadRestNivel2 = [];
   let leadRestNivel1 = [];
 
+  
   if (count) {
     if (count > 0 && count <= 5) {
-      leadRestNivel2 = await Lead.find({
-        checked: true,
-        vendedor: "",
-        status: "Sin contactar",
-        level: { $nin: ["incidencia", "0", "", "-", "1"] },
-      })
-        .limit(count)
-        .exec();
-
+      leadRestNivel2 = await Lead.find(leadQuery)
+      .limit(count)
+      .exec();
+      
       let count2 = 0;
       count2 = count - leadRestNivel2.length;
+      leadQuery = {
+        vendedor: "",
+        checked: true,
+        status: "Sin contactar",
+        level: { $nin: ["incidencia", "0", "", "-", "2"] },
+      };
+      if (body.country) {
+        leadQuery["country"] = body.country;
+      }
+      if (body.profesion) {
+        leadQuery["profesion"] = body.profesion;
+      }
       if (count2) {
         if (count2 > 0 && count2 <= 5) {
-          leadRestNivel1 = await Lead.find({
-            checked: true,
-            vendedor: "",
-            status: "Sin contactar",
-            level: { $nin: ["incidencia", "0", "", "-", "2"] },
-          })
+          leadRestNivel1 = await Lead.find(leadQuery)
             .limit(count2)
             .exec();
         }
