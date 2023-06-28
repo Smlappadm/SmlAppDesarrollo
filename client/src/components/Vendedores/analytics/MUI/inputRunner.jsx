@@ -330,13 +330,10 @@ export default function InputRunner() {
             }}
           >
             <MenuItem value="">Estado</MenuItem>
-            <MenuItem value="Sin contactar">Sin contactar</MenuItem>
             <MenuItem value="Rechazado">Rechazado</MenuItem>
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="No responde">No responde</MenuItem>
             <MenuItem value="Agendar 2do llamado">Agendar 2do llamado</MenuItem>
-            <MenuItem value="incidencia">incidencia</MenuItem>
-            <MenuItem value="discard">discard</MenuItem>
           </Select>
         </div>
 
