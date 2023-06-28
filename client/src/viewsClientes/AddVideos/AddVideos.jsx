@@ -8,6 +8,7 @@ import { getClientByEmail } from "../../redux/actions";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
+  const [linkError, setLinkError] = useState("");
   const { user } = useUser();
   const userEmail = user?.emailAddresses[0].emailAddress;
   const dispatch = useDispatch();
@@ -22,16 +23,32 @@ export default function AddVideos() {
   }, [client]);
 
   const newLinkVideo = async () => {
-    const body = {
-      videosPublicados: link,
-    };
-    try {
-      await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
-    } catch (error) {
-      console.log(error.message);
+    if (isInstagramPost(link) || isTikTokPost(link)) {
+      const body = {
+        videosPublicados: link,
+      };
+      try {
+        await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
+      } catch (error) {
+        console.log(error.message);
+      }
+      console.log(client && client.videosPublicados[1]);
+    } else {
+      setLinkError("El link no corresponde a una publicacion");
     }
-    console.log(client && client.videosPublicados[1]);
   };
+
+  // Verificar si son links de publicaciones de tiktok o instagram ***********************************************
+  const instagramPostRegex =
+    /^https?:\/\/(www\.)?instagram\.com\/p\/([a-zA-Z0-9_\-]+)\/?$/;
+  function isInstagramPost(link) {
+    return instagramPostRegex.test(link);
+  }
+  const tiktokPostRegex =
+    /^https?:\/\/(www\.)?tiktok\.com\/(v|@[\w.-]+\/video\/\d+)\/?$/;
+  function isTikTokPost(link) {
+    return tiktokPostRegex.test(link);
+  }
 
   return (
     <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10">
@@ -63,6 +80,7 @@ export default function AddVideos() {
           <p className="text-[22px] text-center">Añadir</p>
         </div>
       </div>
+      {linkError ? <span className="text-yellow-500">{linkError}</span> : null}
       <HistoryVideos videosPublicados={client?.videosPublicados} />
     </div>
   );
