@@ -65,6 +65,17 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
     setProfesion("");
     setCategory("");
     setCountry("");
+
+    dispatch(
+      getLeadCorredores(
+        email,
+        names,
+        profesion,
+        country,
+        category,
+        marca_personal
+      )
+    );
   };
 
   return (

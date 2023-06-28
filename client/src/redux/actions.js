@@ -247,17 +247,9 @@ export const AddLeads = (body) => {
   };
 };
 
-export const getVendedorAllLeads = (
-  email,
-  fromDay,
-  toDay,
-  profesion,
-  country,
-  category,
-  level,
-  status) => {
+export const getVendedorAllLeads = (email) => {
   return async (dispatch) => {
-    const response = await axios.get(`/vendedor/email?email=${email}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`);
+    const response = await axios.get(`/vendedor/email?email=${email}`);
     const allLeads = response.data;
     const allLeadsMaps =
       allLeads &&
