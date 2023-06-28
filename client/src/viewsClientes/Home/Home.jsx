@@ -99,7 +99,7 @@ export default function Home() {
     //   `https://apiflask-td8y.onrender.com/obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "2005" };
+    const infoIG = { seguidores: "2006" };
     const infoTT = { seguidores: "200", likes: "10" };
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
