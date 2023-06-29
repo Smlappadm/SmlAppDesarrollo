@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import CustomsIcons from "./CustomsIcons/CustomsIcons";
 import trofy1 from "../../Assets/med1.png";
 import trofy2 from "../../Assets/med2.png";
 import trofy3 from "../../Assets/med3.png";
 import trofy4 from "../../Assets/med4.png";
+import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
+import CustomsIconsDesktop from "./CustomsIconsDesktop/CustomsIconsDesktop";
 
 export default function TrofeosDesktop({ nivelPadre }) {
   const [trofeos, setTrofeos] = useState([
@@ -11,11 +12,11 @@ export default function TrofeosDesktop({ nivelPadre }) {
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
-    { imagen: trofy4, isVisible: false },
+    { imagen: trofy2, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
-    { imagen: trofy3, isVisible: false },
+    { imagen: trofy2, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
@@ -37,15 +38,22 @@ export default function TrofeosDesktop({ nivelPadre }) {
   }, [nivelPadre]);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-3 w-[330px] md:w-[430px]">
-      <h1 className="text-white text-18 w-10/12 md:w-fit">Trofeos</h1>
-
-      <div className="flex justify-center items-center gap-3 w-full flex-wrap">
-        {trofeos.map((trofeo, index) => (
-          <div key={index}>
-            <CustomsIcons imagen={trofeo.imagen} isVisible={trofeo.isVisible} />
-          </div>
-        ))}
+    <div className="flex flex-col w-screen h-screen">
+      <NavBarDesktop />
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex w-5/12 mt-2">
+          <h1 className="text-white font-semibold text-[2rem]">Trofeos</h1>
+        </div>
+        <div className="flex justify-center items-center gap-3 w-6/12 flex-wrap">
+          {trofeos.map((trofeo, index) => (
+            <div key={index}>
+              <CustomsIconsDesktop
+                imagen={trofeo.imagen}
+                isVisible={trofeo.isVisible}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
