@@ -25,7 +25,7 @@ export default function AddVideos() {
 
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
-      const currentDate = new Date();
+      const currentDate = new Date(Date.now());
       const body = {
         videosPublicados: { link: link, date: currentDate },
       };
@@ -37,7 +37,6 @@ export default function AddVideos() {
       } catch (error) {
         console.log(error.message);
       }
-      console.log(client && client.videosPublicados[1]);
     } else {
       setLinkError("El link no corresponde a una publicacion");
     }
