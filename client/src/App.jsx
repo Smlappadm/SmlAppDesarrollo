@@ -38,6 +38,7 @@ import { LideresHistory } from "./components/Lideres/History/HistoryLeader";
 import BannedEmployees from "./components/C-Level/Employees/EmployBanned/BannedEmploy";
 import { CheckoutPage } from "./viewsClientes/CheckoutPage/CheckoutPage";
 import Referidos from "./viewsClientes/Referidos/Referidos";
+import TrofeosDesktop from "./componentsClientes/Trofeos/TrofeosDesktop";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -169,6 +170,11 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/home"
           element={<Landing />}
+          tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-trofeos"
+          element={<TrofeosDesktop />}
           tamañoPantalla={tamañoPantalla}
         />
         <Route
