@@ -1,7 +1,6 @@
 import React from "react";
 import FollowersDesktop from "./FollowersDesktop/FollowersDesktop";
-import NameDesktop from "./NameDesktop/NameDesktop";
-import HeaderDesktop from "./HeaderDesktop/HeaderDesktop";
+import NavBarDesktop from "./NavBarDesktop/NavBarDesktop";
 
 export default function LandingClientDesktop({
   imgInstagram,
@@ -15,7 +14,7 @@ export default function LandingClientDesktop({
 }) {
   return (
     <div>
-      <HeaderDesktop
+      <NavBarDesktop
         numberTotal={numberTotal}
         setMaxNumber={setMaxNumber}
         imgInstagram={imgInstagram}
@@ -23,8 +22,10 @@ export default function LandingClientDesktop({
       {/* <NameDesktop name={name} setName={setName} 
         numberTotal={numberTotal} 
         imgInstagram={imgInstagram}/> */}
-      <FollowersDesktop name={name} setName={setName} 
-        numberTotal={numberTotal} 
+      <FollowersDesktop
+        name={name}
+        setName={setName}
+        numberTotal={numberTotal}
         imgInstagram={imgInstagram}
         numberInstagram={numberInstagram}
         numberTiktok={numberTiktok}
