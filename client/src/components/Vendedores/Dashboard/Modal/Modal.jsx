@@ -51,7 +51,10 @@ function ChildModal({
         ...statusObj,
         pagos: {
           ...statusObj.pagos,
-          valorCuota: valorCuota
+          monto: Number(statusObj.pagos.monto),
+          valorCuota: valorCuota,
+          cuotas: Number(statusObj.pagos.cuotas),
+          cuotasRestantes: Number(statusObj.pagos.cuotas)
         },
         status_op: statusObj.pagos.monto
       });
@@ -463,6 +466,12 @@ export default function NestedModal({
     item.telephone
   );
 
+  const [editEmailApp, setEditEmailApp] = React.useState(false);
+  const [inputEmailApp, setInputEmailApp] = React.useState(item.emailApp);
+  const [updatedEmailApp, setUpdatedEmailApp] = React.useState(
+    item.emailApp
+  );
+
   const [pagoCalculo, setPagoCalculo] = React.useState({
     precio: 0,
   });
@@ -529,6 +538,7 @@ export default function NestedModal({
   };
 
   const handleSelectChangeContratado = (event) => {
+    console.log(event.target.name)
     setOpenTimeHour(false);
     const value = event.target.value;
     const property = event.target.name;
@@ -761,6 +771,23 @@ export default function NestedModal({
     setEditTelephone(false);
     SendEmailLeadAlert("Phone");
   };
+  //EDITAR DATOS EmailApp
+  const handleEditEmailApp = () => {
+    setEditEmailApp(!emailApp);
+    setEditTelephone(false);
+    setEditEmail(false);
+    setEditInstagram(false);
+  };
+  const handleChangeEmailApp = (event) => {
+    setInputEmailApp(event.target.value);
+  };
+  const handleConfirmEditEmailApp = async (id) => {
+    const body = { emailApp: inputEmailApp };
+    const response = await axios.put(`/lead/changeemail/${id}`, body);
+    setUpdatedEmailApp(response.data.telephone);
+    setEditEmailApp(false);
+    SendEmailLeadAlert("Email App");
+  };
 
   return (
     <div className="">
@@ -854,6 +881,14 @@ export default function NestedModal({
                     onClick={handleEditTelephone}
                     className={
                       editTelephone
+                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    }
+                  />
+                  <AiOutlinePhone
+                    onClick={handleEditEmailApp}
+                    className={
+                      editEmailApp
                         ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
