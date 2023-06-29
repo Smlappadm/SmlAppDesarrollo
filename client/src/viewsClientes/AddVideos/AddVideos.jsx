@@ -29,8 +29,9 @@ export default function AddVideos() {
       const minimal = link.slice(12);
       console.log(linkhttp);
       console.log(minimal);
+      const currentDate = new Date();
       const body = {
-        videosPublicados: link,
+        videosPublicados: { link: link, date: currentDate },
       };
       try {
         await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
