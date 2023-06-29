@@ -89,7 +89,7 @@ export default function Referral({ tamañoPantalla }) {
         {client && client.referred[0] ? (
           client.referred.map((item, index) => (
             <div className="flex items-center justify-between" key={index}>
-              <label className="m-4">{item}</label>
+              <p className="m-4">{item}</p>
               {verificados[index] && verificados[index] === true ? (
                 <p>✅</p>
               ) : null}
