@@ -44,7 +44,11 @@ const ClienteSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    seguidoresGanados: {
+    seguidoresGanadosIG: {
+      type: Number,
+      default: 0,
+    },
+    seguidoresGanadosTT: {
       type: Number,
       default: 0,
     },
