@@ -26,7 +26,8 @@ export default function Home() {
   const [numberTiktok, setNumberTiktok] = useState(0);
   const [numberTotal, setNumberTotal] = useState(0);
   const [maxNumber, setMaxNumber] = useState("10K");
-  const [seguidoresGanados, setseguidoresGanados] = useState(0);
+  const [seguidoresGanadosIG, setseguidoresGanadosIG] = useState(0);
+  const [seguidoresGanadosTT, setseguidoresGanadosTT] = useState(0);
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -130,9 +131,17 @@ export default function Home() {
           ? parseInt(infoIG.seguidores) + parseInt(infoTT.seguidores)
           : client?.seguidoresInstagram + parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
       //seguidores: parseInt(infoIG.seguidores),
-      seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
+      seguidoresGanadosIG: client
+        ? client.seguidoresInstagram - client.seguidoresInstagramBase
+        : 0,
+      seguidoresGanadosTT: client
+        ? client.seguidoresTiktok - client.seguidoresTiktokBase
+        : 0,
     };
-    setseguidoresGanados(body.seguidores - body.seguidoresBase);
+    setseguidoresGanadosIG(
+      body.seguidoresInstagram - body.seguidoresInstagramBase
+    );
+    setseguidoresGanadosTT(body.seguidoresTiktok - body.seguidoresTiktokBase);
     dispatch(updateClientProfile(userEmail, body));
   };
   return (
@@ -177,8 +186,10 @@ export default function Home() {
 
           {optionView === "vistaGeneral" && (
             <VistaGeneral
-              seguidores={client?.seguidores}
-              seguidoresGanados={client?.seguidoresGanados}
+              seguidoresIG={client?.seguidoresInstagram}
+              seguidoresTT={client?.seguidoresTiktok}
+              seguidoresGanadosIG={client?.seguidoresGanadosIG}
+              seguidoresGanadosTT={client?.seguidoresGanadosTT}
               videosPublicados={client?.videosPublicados}
             />
           )}
