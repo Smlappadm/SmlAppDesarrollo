@@ -59,7 +59,7 @@ function ChildModal({
           monto: Number(statusObj.pagos.monto),
           valorCuota: valorCuota,
           cuotas: Number(statusObj.pagos.cuotas),
-          cuotasRestantes: Number(statusObj.pagos.cuotas),
+          cuotasRestantes: 1,
         },
         status_op: statusObj.pagos.monto,
       });
