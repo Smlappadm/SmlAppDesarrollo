@@ -7,6 +7,8 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
+import Performance from "../../components/Lideres/Employees/Performance/Performance";
+
 export default function Home() {
   const [optionView, setOptionView] = useState("vistaGeneral");
   const [access, setAccess] = useState();
@@ -91,16 +93,18 @@ export default function Home() {
     const userTT = client.tiktok ? client.tiktok.slice(24) : "";
     localStorage.setItem("instagram", userIG);
     localStorage.setItem("tiktok", userTT);
-    // const responseTT = await axios.get(
-    //   `https://apisml.onrender.com//obtener_info_tiktok?username=${userTT}`
-    // );
-    // const infoTT = responseTT.data;
-    // const responseIG = await axios.get(
-    //   `https://apisml.onrender.com//obtener_info_instagram?username=${userIG}`
-    // );
-    // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "5700" };
-    const infoTT = { seguidores: "200", likes: "10" };
+    const responseTT = await axios.get(
+      `https://apisml.onrender.com//obtener_info_tiktok?username=${userTT}`
+    );
+    const infoTT = responseTT.data;
+    const responseIG = await axios.get(
+      `https://apisml.onrender.com//obtener_info_instagram?username=${userIG}`
+    );
+    const infoIG = responseIG.data;
+    // const infoIG = { seguidores: "5700" };
+    // const infoTT = { seguidores: "200", likes: "10" };
+    console.log(infoIG);
+    console.log(infoTT);
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
     const body = {
@@ -142,6 +146,7 @@ export default function Home() {
             numberTiktok={numberTiktok}
             maxNumber={maxNumber}
           />
+          {/* <Performance /> */}
           <div className="flex gap-8 mt-7">
             <button
               value="vistaGeneral"
