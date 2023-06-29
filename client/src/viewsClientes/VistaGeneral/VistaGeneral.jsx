@@ -2,6 +2,7 @@ import React from "react";
 import Recursos from "../../componentsClientes/Recursos/Recursos";
 import { Agendar } from "../../componentsClientes/Agendar/Agendar";
 import Avances from "../../componentsClientes/Avances/Avances";
+import AvancesDesktop from "../../componentsClientes/Avances/AvancesDesktop";
 
 export const VistaGeneral = ({
   seguidoresIG,
@@ -28,7 +29,16 @@ export const VistaGeneral = ({
             <Agendar />
           </div>
         </div>
-      ) : null}
+      ) : (
+        <AvancesDesktop
+          seguidoresIG={seguidoresIG}
+          seguidoresTT={seguidoresTT}
+          seguidoresGanadosIG={seguidoresGanadosIG}
+          seguidoresGanadosTT={seguidoresGanadosTT}
+          videosPublicados={videosPublicados}
+          tamañoPantalla={tamañoPantalla}
+        />
+      )}
     </>
   );
 };
