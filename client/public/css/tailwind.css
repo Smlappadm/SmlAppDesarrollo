@@ -660,6 +660,10 @@ video {
   top: 2.25rem;
 }
 
+.-top-20 {
+  top: -5rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1679,6 +1683,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#44a044\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(68 160 68 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -1847,6 +1856,11 @@ video {
   padding-bottom: 1rem;
 }
 
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
 .pb-1 {
   padding-bottom: 0.25rem;
 }
@@ -1905,6 +1919,14 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pl-3 {
+  padding-left: 0.75rem;
+}
+
+.pr-5 {
+  padding-right: 1.25rem;
 }
 
 .text-left {

@@ -152,7 +152,7 @@ export default function Home({ tamañoPantalla }) {
       className={
         tamañoPantalla === "Pequeña"
           ? "flex flex-col items-center bg-[#1A1A1A] w-screen h-full pb-44"
-          : "flex flex-col items-center bg-[#1A1A1A] w-screen h-screen  pb-44"
+          : "flex flex-col items-center bg-[#020131] w-screen h-screen  pb-44"
       }
     >
       {access ? (
