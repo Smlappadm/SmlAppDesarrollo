@@ -54,8 +54,8 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
         email,
         names,
         profesion,
-        country,
         category,
+        country,
         marca_personal
       )
     );
@@ -190,9 +190,9 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
             ))}
           </Select>
         </div>
-        <div className="flex w-32 items-center justify-center flex-col">
+        <div className="flex w-12 items-center justify-center flex-col">
           <div>
-            <label>Nombre Propio:</label>
+            <label>Propio:</label>
           </div>
           <div>
             <Checkbox

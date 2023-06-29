@@ -375,6 +375,16 @@ const CorredoresDashboard = () => {
               </div>
             </div>
 
+            <div>
+              <div className="flex mt-5 mb-2 items-center justify-center">
+                <InputRunner
+                  getLeadCorredores={getLeadCorredores}
+                  email={email}
+                  names={names}
+                />
+              </div>
+            </div>
+
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
               <IconLabelButtons />
             </div>
@@ -448,9 +458,6 @@ const CorredoresDashboard = () => {
               <BasicButtons />
             </div>
           </div> */}
-          <div className="flex mt-10 mb-2 items-center justify-center">
-            <InputRunner getLeadCorredores={getLeadCorredores} email={email} names={names} />
-          </div>
 
           {corredorLead && corredorLead.length > 0 ? (
             <table className="w-full">
