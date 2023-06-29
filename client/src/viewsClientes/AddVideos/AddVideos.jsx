@@ -26,8 +26,9 @@ export default function AddVideos() {
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
       const currentDate = new Date(Date.now());
+      const social = link.slice(12, 13) === "i" ? "Instagram" : "Tiktok";
       const body = {
-        videosPublicados: { link: link, date: currentDate },
+        videosPublicados: { link: link, date: currentDate, social: social },
       };
       try {
         await axios.put(`/clientes/addvideo?email=${userEmail}`, body);
