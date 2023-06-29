@@ -17,7 +17,7 @@ export default function CustomsLabelSetting({
     >
       <p className="text-[#fff] font-bold">{text}</p>
       {switchValue ? (
-        <div className="">
+        <div>
           <CustomizedSwitches />
         </div>
       ) : null}

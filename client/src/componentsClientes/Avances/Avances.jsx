@@ -118,8 +118,12 @@ export default function Avances({
           />
         </div>
 
-        <select className="bg-transparent focus:border-none">
-          <option value="">desde siempre</option>
+        <select
+          id="select"
+          name="select"
+          className="bg-transparent focus:border-none"
+        >
+          <option id="filter">desde siempre</option>
         </select>
       </div>
       <div className="flex flex-col w-10/12">
