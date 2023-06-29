@@ -53,9 +53,10 @@ const getClientByEmailHandler = async (req, res) => {
   }
 };
 const paymentClienteHandler = async (req, res) => {
-  const { id, amount, name } = req.body;
+  const { id, name, monto, cuotas, cuotasRestantes, valorCuota } = req.body;
+  console.log(id, name, monto, cuotas, cuotasRestantes, valorCuota)
   try {
-    const pago = await createPayment({ id, amount, name });
+    const pago = await createPayment({ id, name, monto, cuotas, cuotasRestantes, valorCuota });
     res.status(200).json(pago);
   } catch (error) {
     res.status(404).json({ message: error.message });
