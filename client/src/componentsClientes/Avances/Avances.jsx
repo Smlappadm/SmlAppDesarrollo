@@ -70,26 +70,31 @@ export default function Avances({
     const avances = [
       {
         texto: "Videos Publicados",
-        sumaTotal: null,
-        suma: null,
-        value: videosPublicados && videosPublicados.length,
+        ganadosIG: null,
+        ganadosTT: null,
+        IG: videosPublicados && videosPublicados.length,
+        TT: videosPublicados && videosPublicados.length,
       },
       {
         texto: "Seguidores Ganados",
-        sumaTotal: seguidoresGanados,
-        value: seguidores,
+        ganadosIG: seguidoresGanadosIG,
+        ganadosTT: seguidoresGanadosTT,
+        IG: seguidoresIG,
+        TT: seguidoresTT,
       },
       {
         texto: "Visitas Acumulados",
-        sumaTotal: client.videosAcumuladosAnteriores,
-        suma: client.videosAcumulados - client.videosAcumuladosAnteriores,
-        value: client.videosAcumulados,
+        ganadosIG: client.videosAcumuladosAnteriores,
+        ganadosTT: client.videosAcumuladosAnteriores,
+        IG: client.videosAcumulados,
+        TT: client.videosAcumulados,
       },
       {
         texto: "Me Gusta Acumulados",
-        sumaTotal: client.meGustaAcumuladosAnteriores,
-        suma: client.meGustaAcumulados - client.meGustaAcumuladosAnteriores,
-        value: client.meGustaAcumulados,
+        ganadosIG: client.meGustaAcumuladosAnteriores,
+        ganadosTT: client.meGustaAcumuladosAnteriores,
+        IG: client.meGustaAcumulados,
+        TT: client.meGustaAcumulados,
       },
     ];
 
@@ -121,9 +126,10 @@ export default function Avances({
             <CustomsLabelAvances
               key={index}
               text={avance.texto}
-              sumaTotal={avance.sumaTotal}
-              suma={avance.suma}
-              value={avance.value}
+              ganadosTT={avance.ganadosTT}
+              ganadosIG={avance.ganadosIG}
+              TT={avance.TT}
+              IG={avance.IG}
             />
           ))}
       </div>
