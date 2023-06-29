@@ -52,6 +52,7 @@ function ClerkProviderWithRoutes() {
   const isEmployee = useSelector((state) => state.isEmployee);
   const [roleReady, setRoleReady] = useState("");
   const [accesReady, setAccessReady] = useState(false);
+  const [tamañoPantalla, setTamañoPantalla] = useState("");
 
   useEffect(() => {
     const checkRole = async () => {
@@ -102,6 +103,17 @@ function ClerkProviderWithRoutes() {
   }
   const location = useLocation();
   const redirectUrl = new URLSearchParams(location.search).get("redirect_url");
+
+  // Para obtener el tamaño de la pantalla en cada renderizado
+  useEffect(() => {
+    const { innerWidth } = window;
+    if (innerWidth < 768) {
+      setTamañoPantalla("Pequeña");
+    } else {
+      setTamañoPantalla("Grande");
+    }
+  }, []);
+
   return (
     <ClerkProvider
       publishableKey={clerkPubKey}
@@ -154,12 +166,36 @@ function ClerkProviderWithRoutes() {
           element={<SignUp routing="path" path="/sign-up" />}
         />
         <Route path="*" element={<h1>error 404</h1>} />
-        <Route path="/home" element={<Landing />} />
-        <Route path="/clientes-addvideos" element={<AddVideos />} />
-        <Route path="/clientes-settings" element={<ClientesSettings />} />
-        <Route path="/clientes-pagos" element={<Pagos />} />
-        <Route path="/clientes-checkout" element={<CheckoutPage />} />
-        <Route path="/clientes-referidos" element={<Referidos />} />
+        <Route
+          path="/home"
+          element={<Landing />}
+          tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-addvideos"
+          element={<AddVideos />}
+          tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-settings"
+          element={<ClientesSettings />}
+          tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-pagos"
+          element={<Pagos />}
+          tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-checkout"
+          element={<CheckoutPage />}
+          tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-referidos"
+          element={<Referidos />}
+          tamañoPantalla={tamañoPantalla}
+        />
 
         <Route path="/" element={<Login />} />
         <Route
@@ -389,7 +425,7 @@ function ClerkProviderWithRoutes() {
           element={
             <>
               <SignedIn>
-                <Home />
+                <Home tamañoPantalla={tamañoPantalla} />
               </SignedIn>
               <SignedOut>
                 <RedirectToSignIn />
