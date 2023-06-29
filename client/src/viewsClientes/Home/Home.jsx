@@ -83,7 +83,7 @@ export default function Home() {
     } else {
       setTamañoPantalla("Grande");
     }
-  },[]);
+  }, []);
 
   if (!user || !user.emailAddresses || !user.emailAddresses[0]) {
     return <div>Loading...</div>;
@@ -158,7 +158,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-screen 2xl:h-screen pb-44">
+    <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full  pb-44">
       {access ? (
         <>
           {tamañoPantalla === "Grande" ? (
