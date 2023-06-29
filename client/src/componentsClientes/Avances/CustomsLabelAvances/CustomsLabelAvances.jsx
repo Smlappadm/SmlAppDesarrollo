@@ -18,19 +18,21 @@ export default function CustomsLabelAvances({
       {/* Contenedor para mostrar las sumas y el valor */}
       <div className="flex flex-col">
         <div className="flex gap-2">
-          <div className="flex gap-5 justify-center items-center">
+          <div className="flex gap-3 justify-center items-center">
             {ganadosTT ? (
               <p className="text-[#0f0] font-bold">+{ganadosIG}</p>
             ) : null}
-            <p className="text-[#fff] text-[1.2rem] font-bold mr-5">{IG}</p>
+            <p className="text-[#fff] text-[1.2rem] font-bold">{IG}</p>
+            <img src={igPng} alt="ig" className="w-6 h-6 mr-2" />
           </div>
         </div>
-        <div className="flex gap-2">
-          <div className="flex gap-5 justify-center items-center">
+        <div className="flex gap-1">
+          <div className="flex gap-3 justify-center items-center">
             {ganadosTT ? (
               <p className="text-[#0f0] font-bold">+{ganadosTT}</p>
             ) : null}
-            <p className="text-[#fff] text-[1.2rem] font-bold mr-5">{TT}</p>
+            <p className="text-[#fff] text-[1.2rem] font-bold ">{TT}</p>
+            <img src={tkPng} alt="tt" className="w-6 h-6 mr-2" />
           </div>
         </div>
       </div>
