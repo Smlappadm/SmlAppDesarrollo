@@ -55,14 +55,26 @@ export default function Avances({
   }, [dispatch]);
 
   useEffect(() => {
+    const postIG =
+      client &&
+      client.videosPublicados &&
+      client.videosPublicados.filter((link) => {
+        return link.social === "Instagram";
+      });
+    const postTT =
+      client &&
+      client.videosPublicados &&
+      client.videosPublicados.filter((link) => {
+        return link.social === "Tiktok";
+      });
     // Actualizar los avances cuando el estado del cliente cambie
     const avances = [
       {
         texto: "Videos Publicados",
         ganadosIG: null,
         ganadosTT: null,
-        IG: videosPublicados && videosPublicados.length,
-        TT: videosPublicados && videosPublicados.length,
+        IG: postIG && postIG.length,
+        TT: postTT && postTT.length,
       },
       {
         texto: "Seguidores Ganados",

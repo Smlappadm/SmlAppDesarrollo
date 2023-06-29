@@ -106,8 +106,8 @@ export default function Home() {
     // const infoIG = responseIG.data;
     const infoIG = { seguidores: "800" };
     const infoTT = { seguidores: "200", likes: "10" };
-    console.log(infoIG);
-    console.log(infoTT);
+    // console.log(infoIG);
+    // console.log(infoTT);
     setNumberInstagram(parseInt(infoIG.seguidores));
     setNumberTiktok(parseInt(infoTT.seguidores));
     const body = {

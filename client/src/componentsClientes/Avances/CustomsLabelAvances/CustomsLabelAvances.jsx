@@ -17,7 +17,7 @@ export default function CustomsLabelAvances({
       </div>
       {/* Contenedor para mostrar las sumas y el valor */}
       <div className="flex flex-col">
-        <div className="flex gap-2">
+        <div className="flex gap-2 justify-end">
           <div className="flex gap-3 justify-center items-center">
             {ganadosTT ? (
               <p className="text-[#0f0] font-bold">+{ganadosIG}</p>
@@ -26,7 +26,7 @@ export default function CustomsLabelAvances({
             <img src={igPng} alt="ig" className="w-6 h-6 mr-2" />
           </div>
         </div>
-        <div className="flex gap-1">
+        <div className="flex gap-2 justify-end">
           <div className="flex gap-3 justify-center items-center">
             {ganadosTT ? (
               <p className="text-[#0f0] font-bold">+{ganadosTT}</p>
