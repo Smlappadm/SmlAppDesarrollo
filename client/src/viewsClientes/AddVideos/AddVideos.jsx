@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos";
 import { getClientByEmail } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
+import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
@@ -92,7 +93,11 @@ export default function AddVideos() {
             </p>
           </Link>
         </div>
-      ) : null}
+      ) : (
+        <div className="w-screen">
+          <NavBarDesktop />
+        </div>
+      )}
       <div className=" mx-10 mt-4">
         <h2
           className={
