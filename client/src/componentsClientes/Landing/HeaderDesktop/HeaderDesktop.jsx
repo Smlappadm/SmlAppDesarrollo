@@ -38,12 +38,6 @@ export default function HeaderDesktop({
           </Link>
         </div>
       </div>
-      <div className=" pt-10 justify-center items-center relative">
-        <CircularProgressBar value={numberTotal} imageSrc={imgInstagram} />
-        <p className="font-bold bottom-0 -right-7 absolute">
-          {(numberTotal / 10000) * 100}%
-        </p>
-      </div>
     </div>
   );
 }
