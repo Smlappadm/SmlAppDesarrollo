@@ -2001,6 +2001,10 @@ video {
   font-size: 65px;
 }
 
+.text-\[20px\] {
+  font-size: 20px;
+}
+
 .font-bold {
   font-weight: 700;
 }
