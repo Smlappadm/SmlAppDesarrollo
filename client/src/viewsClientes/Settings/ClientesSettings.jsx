@@ -37,7 +37,7 @@ export default function ClientesSettings() {
   return (
     <div className=" bg-[#1A1A1A] w-screen h-screen">
       <NavBarDesktop />
-      <div className="flex flex-col justify-center items-center ">
+      <div className="flex flex-col justify-center items-center">
         <div className="w-96">
           {!profileSetting ? (
             <>
