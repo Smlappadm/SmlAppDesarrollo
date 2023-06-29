@@ -17,8 +17,11 @@ import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import BasicButtons1 from "./Select/BasicButtons1";
 import BasicButtons2 from "./Select/BasicButtons2";
 import InputRunner from "./Select/InputRunner"
-
 import Nav from "../../Nav/Nav";
+import { Toaster } from 'react-hot-toast';
+
+
+
 
 const VendedoresDashboard = () => {
   const [data, setData] = useState([]);
@@ -40,6 +43,7 @@ const VendedoresDashboard = () => {
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
 
+  const notify = () => toast('Here is your toast.');
 
   
   useEffect(() => {
@@ -196,7 +200,6 @@ const VendedoresDashboard = () => {
   return (
     <>
       <Nav />
-
       <div className="flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
           <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
