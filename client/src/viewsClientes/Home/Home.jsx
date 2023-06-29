@@ -125,7 +125,10 @@ export default function Home() {
       seguidoresBase: client
         ? client.seguidoresInstagramBase + client.seguidoresTiktokBase
         : 0,
-      seguidores: parseInt(infoIG.seguidores) + parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
+      seguidores:
+        infoIG.seguidores !== ""
+          ? parseInt(infoIG.seguidores) + parseInt(infoTT.seguidores)
+          : client?.seguidoresInstagram + parseInt(infoTT.seguidores), //Descomentar y borrar la de abajo cuando funcione la api de tiktok
       //seguidores: parseInt(infoIG.seguidores),
       seguidoresGanados: client ? client.seguidores - client.seguidoresBase : 0,
     };
