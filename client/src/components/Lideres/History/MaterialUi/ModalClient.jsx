@@ -148,6 +148,14 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <p>Fecha Op:</p>
               <p className="font-normal">{modalItems.fecha_op}</p>
             </div>
+            <div className="font-semibold flex gap-3">
+              <p>Creado:</p>
+              <p className="font-normal">{modalItems.createdAt}</p>
+            </div>
+            <div className="font-semibold flex gap-3">
+              <p>Actualizado:</p>
+              <p className="font-normal">{modalItems.updatedAt}</p>
+            </div>
           </div>
         </Box>
       </Modal>
