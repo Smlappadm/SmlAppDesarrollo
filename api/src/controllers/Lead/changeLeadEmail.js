@@ -10,7 +10,7 @@ const changeLeadEmail = async (id , key, value) => {
         { new: true }
       );
     return lead;
-    // "wght@300..900"
+
 };
 
 module.exports = changeLeadEmail;
