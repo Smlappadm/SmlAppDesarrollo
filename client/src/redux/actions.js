@@ -382,7 +382,7 @@ export const getClientByEmail = (userEmail) => {
   };
 };
 
-export const getLeadEmpresa = (emailApp) => {
+export const getClienteEmpresa = (emailApp) => {
   return async (dispatch) => {
     if (emailApp !== "undefined" && emailApp !== "") {
       const response = await axios.get(
