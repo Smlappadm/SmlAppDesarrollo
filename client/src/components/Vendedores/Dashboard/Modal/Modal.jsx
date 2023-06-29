@@ -78,6 +78,7 @@ function ChildModal({
       statusObj.status === "Agendar otro llamado"
     ) {
       statusObj.status = "Agendar 2do llamado";
+      statusObj.emailApp = item.emailApp,
       statusObj.status_op = llamadoVenta.diaHora;
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
@@ -106,6 +107,7 @@ function ChildModal({
         province: item.province,
         category: item.category,
         telephone: item.telephone,
+        emailApp: item. emailApp,
         url: item.url,
         instagram: item.instagram,
         level: item.level,
@@ -116,6 +118,7 @@ function ChildModal({
         _id: item._id,
         name: item.name,
         email: item.email,
+        emailApp: item.emailApp,
         status: statusObj.status,
         status_op: statusObj.status_op,
         pagos: statusObj.pagos,
@@ -133,6 +136,7 @@ function ChildModal({
       status: statusObj.status,
       status_op: statusObj.status_op,
       pagos: statusObj.pagos,
+      emailApp: item.emailApp,
       // vendedor: emailAddress,
       vendedor: emailAddress,
       vendedor_name: fullName,
@@ -478,6 +482,7 @@ export default function NestedModal({
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
+    emailApp: "",
     pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
@@ -724,6 +729,7 @@ export default function NestedModal({
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
     setEditEmail(!editEmail);
+    setEditEmailApp(false);
     setEditInstagram(false);
     setEditTelephone(false);
   };
@@ -741,6 +747,7 @@ export default function NestedModal({
   //EDITAR DATOS Instagram
   const handleEditInstagram = () => {
     setEditInstagram(!editInstagram);
+    setEditEmailApp(false);
     setEditEmail(false);
     setEditTelephone(false);
   };
@@ -758,6 +765,7 @@ export default function NestedModal({
   //EDITAR DATOS Phone
   const handleEditTelephone = () => {
     setEditTelephone(!editTelephone);
+    setEditEmailApp(false);
     setEditEmail(false);
     setEditInstagram(false);
   };
@@ -773,7 +781,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
-    setEditEmailApp(!emailApp);
+    setEditEmailApp(!editEmailApp);
     setEditTelephone(false);
     setEditEmail(false);
     setEditInstagram(false);
@@ -784,7 +792,7 @@ export default function NestedModal({
   const handleConfirmEditEmailApp = async (id) => {
     const body = { emailApp: inputEmailApp };
     const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedEmailApp(response.data.telephone);
+    setUpdatedEmailApp(response.data.emailApp);
     setEditEmailApp(false);
     SendEmailLeadAlert("Email App");
   };
@@ -976,6 +984,34 @@ export default function NestedModal({
 
                       <p
                         onClick={() => handleConfirmEditTelephone(item._id)}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ✔
+                      </p>
+                    </div>
+                  )}
+                  {editEmailApp && (
+                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                      <input
+                        type="text"
+                        name="contacto"
+                        onChange={handleChangeEmailApp}
+                        defaultValue={updatedEmailApp}
+                        className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        // placeholder={inputEmail}
+                        // value={inputEmail}
+                        disabled={!editEmailApp}
+                        required
+                      />
+                      <p
+                        onClick={handleEditEmailApp}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ❌
+                      </p>
+
+                      <p
+                        onClick={() => handleConfirmEditEmailApp(item._id)}
                         className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                       >
                         ✔
