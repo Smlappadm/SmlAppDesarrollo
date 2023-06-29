@@ -6,8 +6,10 @@ import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 import { IoReloadOutline } from "react-icons/io5";
 
 export default function Avances({
-  seguidores,
-  seguidoresGanados,
+  seguidoresIG,
+  seguidoresTT,
+  seguidoresGanadosIG,
+  seguidoresGanadosTT,
   videosPublicados,
 }) {
   // Estado local
