@@ -75,6 +75,16 @@ export default function Home() {
     }
   }, [loader, client]);
 
+  // Para obtener el tamaño de la pantalla en cada renderizado
+  useEffect(() => {
+    const { innerWidth } = window;
+    if (innerWidth < 768) {
+      setTamañoPantalla("Pequeña");
+    } else {
+      setTamañoPantalla("Grande");
+    }
+  },[]);
+
   if (!user || !user.emailAddresses || !user.emailAddresses[0]) {
     return <div>Loading...</div>;
   }
@@ -146,22 +156,6 @@ export default function Home() {
     setseguidoresGanadosTT(body.seguidoresTiktok - body.seguidoresTiktokBase);
     dispatch(updateClientProfile(userEmail, body));
   };
-
-  useEffect(() => {
-    function manejarCambioTamañoPantalla() {
-      const { innerWidth } = window;
-      if (innerWidth < 768) {
-        setTamañoPantalla("Pequeña");
-      } else {
-        setTamañoPantalla("Grande");
-      }
-    }
-    window.addEventListener("resize", manejarCambioTamañoPantalla);
-
-    return () => {
-      window.removeEventListener("resize", manejarCambioTamañoPantalla);
-    };
-  }, []);
 
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
