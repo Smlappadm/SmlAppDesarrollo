@@ -44,8 +44,8 @@ export default function CustomsLabelAvances({
         // Contenedor principal del avance
         <div className="flex justify-between gap-5 items-center rounded-xl py-4 my-2 bg-[#282828]">
           {/* Texto del avance */}
-          <div className="w-10">
-            <p className="text-[#fff] text-[.7rem] font-bold ml-4">{text}</p>
+          <div className="w-96">
+            <p className="text-[#fff] text-[20px] font-bold ml-4">{text}</p>
           </div>
           {/* Contenedor para mostrar las sumas y el valor */}
           <div className="flex flex-col">
