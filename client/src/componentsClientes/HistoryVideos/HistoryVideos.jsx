@@ -34,7 +34,7 @@ export default function HistoryVideos({ videosPublicados }) {
             {reverse &&
               reverse.map((video, index) => (
                 <div key={index} className="my-2 text-ellipsis w-96 px-4">
-                  <p>{Date(video.date)}</p>
+                  <p>{formatDateTime(video.date)}</p>
                   <Link to={video.link} target="_blank">
                     <p className="text-center">
                       -
