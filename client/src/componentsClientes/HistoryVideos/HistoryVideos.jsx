@@ -40,12 +40,16 @@ export default function HistoryVideos({ videosPublicados }) {
                   className="my-2 text-ellipsis w-96 px-4 flex justify-between items-center"
                 >
                   <p>{formatDateTime(video.date)}</p>
-                  <Link to={video.link} target="_blank">
+                  <img
+                    src={video.social === "Instagram" ? igPng : tkPng}
+                    alt="tt"
+                    className="w-6 h-6 mr-2"
+                  />
+                  <Link to={video.link} target="_blank" className="w-28">
                     <p className="text-center">
                       -{video.social === "Instagram" ? "Instagram" : "Tiktok"}-
                     </p>
                   </Link>
-                  im
                 </div>
               ))}
           </div>
