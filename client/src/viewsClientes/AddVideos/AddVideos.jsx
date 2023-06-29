@@ -23,6 +23,16 @@ export default function AddVideos() {
     console.log(userEmail);
   }, [client]);
 
+  // Para obtener el tamaño de la pantalla en cada renderizado
+  useEffect(() => {
+    const { innerWidth } = window;
+    if (innerWidth < 768) {
+      setTamañoPantalla("Pequeña");
+    } else {
+      setTamañoPantalla("Grande");
+    }
+  }, []);
+
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
       const currentDate = new Date(Date.now());
