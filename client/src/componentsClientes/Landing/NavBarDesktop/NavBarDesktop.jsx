@@ -11,7 +11,7 @@ export default function NavBarDesktop() {
   console.log(location.pathname);
   return (
     <div className="flex justify-center items-center ">
-      <div className="flex items-center justify-around w-10/12 mt-2 rounded-lg bg-[#363559]">
+      <div className="flex items-center justify-around w-10/12 mt-4 rounded-lg bg-[#363559]">
         <img
           className=" w-[5rem]"
           src="https://i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"

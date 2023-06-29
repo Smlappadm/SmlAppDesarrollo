@@ -5,20 +5,54 @@ import trofy3 from "../../Assets/med3.png";
 import trofy4 from "../../Assets/med4.png";
 import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
 import CustomsIconsDesktop from "./CustomsIconsDesktop/CustomsIconsDesktop";
+import "./TrofeosDesktop.module.css";
 
 export default function TrofeosDesktop({ nivelPadre }) {
   const [trofeos, setTrofeos] = useState([
+    { imagen: trofy2, isVisible: true },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy3, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy2, isVisible: false },
+    { imagen: trofy1, isVisible: true },
+    { imagen: trofy4, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy2, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: true },
+    { imagen: trofy3, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy2, isVisible: false },
+    { imagen: trofy1, isVisible: true },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy2, isVisible: true },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
     { imagen: trofy2, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: true },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy2, isVisible: false },
+    { imagen: trofy1, isVisible: true },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy2, isVisible: true },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: false },
     { imagen: trofy2, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
     { imagen: trofy1, isVisible: false },
-    { imagen: trofy2, isVisible: false },
-    { imagen: trofy1, isVisible: false },
-    { imagen: trofy1, isVisible: false },
+    { imagen: trofy1, isVisible: true },
     { imagen: trofy1, isVisible: false },
   ]);
 
@@ -34,25 +68,33 @@ export default function TrofeosDesktop({ nivelPadre }) {
     setTrofeos(nuevosTrofeos);
   };
   useEffect(() => {
-    actualizarTrofeos(nivelPadre);
+    actualizarTrofeos(8);
   }, [nivelPadre]);
 
   return (
-    <div className="flex flex-col w-screen h-screen">
+    <div className="flex bg-[#020131] flex-col w-screen h-screen">
       <NavBarDesktop />
       <div className="flex flex-col justify-center items-center">
-        <div className="flex w-5/12 mt-2">
+        <div className="flex w-8/12 mt-4">
           <h1 className="text-white font-semibold text-[2rem]">Trofeos</h1>
         </div>
-        <div className="flex justify-center items-center gap-3 w-6/12 flex-wrap">
-          {trofeos.map((trofeo, index) => (
-            <div key={index}>
-              <CustomsIconsDesktop
-                imagen={trofeo.imagen}
-                isVisible={trofeo.isVisible}
-              />
-            </div>
-          ))}
+        <div className="flex bg-[#363559] justify-center items-center rounded-3xl w-8/12 h-[40rem] py-4 pl-20 ">
+          <div
+            className="flex flex-wrap gap-5"
+            style={{
+              maxHeight: "100%",
+              overflowY: "scroll",
+            }}
+          >
+            {trofeos.map((trofeo, index) => (
+              <div key={index}>
+                <CustomsIconsDesktop
+                  imagen={trofeo.imagen}
+                  isVisible={trofeo.isVisible}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
