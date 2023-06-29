@@ -67,17 +67,14 @@ export default function Avances({
       client.videosPublicados.filter((link) => {
         return link.social === "Tiktok";
       });
-
-    console.log(postIG);
-    console.log(postTT);
     // Actualizar los avances cuando el estado del cliente cambie
     const avances = [
       {
         texto: "Videos Publicados",
         ganadosIG: null,
         ganadosTT: null,
-        IG: videosPublicados && videosPublicados.length,
-        TT: videosPublicados && videosPublicados.length,
+        IG: postIG && postIG.length,
+        TT: postTT && postTT.length,
       },
       {
         texto: "Seguidores Ganados",
