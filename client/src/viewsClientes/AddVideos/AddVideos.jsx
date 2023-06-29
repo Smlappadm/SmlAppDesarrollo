@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos";
 import { getClientByEmail } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
+import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
@@ -82,7 +83,13 @@ export default function AddVideos() {
   };
 
   return (
-    <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10">
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10"
+          : "flex bg-[#020131]  flex-col gap-2 justify-start items-center h-screen w-screen "
+      }
+    >
       {tamañoPantalla === "Pequeña" ? (
         <div className="flex ">
           <p className="text-24 font-extrabold text-white">Videos</p>
@@ -92,7 +99,11 @@ export default function AddVideos() {
             </p>
           </Link>
         </div>
-      ) : null}
+      ) : (
+        <div className="w-screen">
+          <NavBarDesktop />
+        </div>
+      )}
       <div className=" mx-10 mt-4">
         <h2
           className={

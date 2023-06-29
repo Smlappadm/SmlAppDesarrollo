@@ -30,7 +30,7 @@ export default function HistoryVideos({ videosPublicados, tamañoPantalla }) {
       className={
         tamañoPantalla === "Pequeña"
           ? "w-96 bg-[#2c2c2c] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center"
-          : "w-9/12 bg-[#2c2c2c] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center"
+          : "w-9/12 bg-[#363559] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center"
       }
     >
       <p className="text-24 font-extrabold text-white  text-center w-full">
