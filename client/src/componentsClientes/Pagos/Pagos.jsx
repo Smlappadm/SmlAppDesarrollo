@@ -49,15 +49,17 @@ export const Pagos = () => {
   // };
 
   useEffect(() => {
-    dispatch(getClienteEmpresa(email));
-    handlePagoUrlUpdate(1234, 20000, "Cuota 1/20 SML IA");
-  }, [email]);
-console.log(clienteEmpresa)
-  const handlePagoUrlUpdate = async (id, amount, name) => {
-    // const email = "facutam@gmail.com";
-    const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
+    dispatch(getClienteEmpresa("facutam@gmail.com"));
+    clienteEmpresa.name && handlePagoUrlUpdate();
+  }, [clienteEmpresa.name]);
 
+
+  const handlePagoUrlUpdate = async () => {
+    const email = "facutam@gmail.com";
+    const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
+    
     const data1 = response1.data;
+    setLeadEmpresa(data1);
     
     if(clienteEmpresa.name){
       const response2 = await axios.post("/clientes/payment", {
@@ -70,9 +72,8 @@ console.log(clienteEmpresa)
 
       });
       const data2 = response2.data;
+      setUrlPago(data2.url);
     }
-    // setLeadEmpresa(data1);
-    // setUrlPago(data2.url);
 
     // console.log(data1);
     // console.log(data2.url);
