@@ -11,6 +11,7 @@ export default function AvancesDesktop({
   seguidoresGanadosIG,
   seguidoresGanadosTT,
   videosPublicados,
+  tamañoPantalla,
 }) {
   // Estado local
   const [isSavingChanges, setIsSavingChanges] = useState(false); // Estado para guardar si se están guardando los cambios
@@ -105,7 +106,7 @@ export default function AvancesDesktop({
   useEffect(() => {}, [avances]);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8">
+    <div className="flex flex-col justify-center items-center gap-3 w-9/12 mt-8">
       <div className="flex justify-between w-10/12">
         <h1 className="text-white text-18">Avances</h1>
         <div className="text-5xl rounded-full">
@@ -131,6 +132,7 @@ export default function AvancesDesktop({
               ganadosIG={avance.ganadosIG}
               TT={avance.TT}
               IG={avance.IG}
+              tamañoPantalla={tamañoPantalla}
             />
           ))}
       </div>
