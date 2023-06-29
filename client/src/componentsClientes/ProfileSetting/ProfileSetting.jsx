@@ -86,6 +86,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
           />
           <input
             type="text"
+            id="username"
+            autoComplete="off"
             value={username}
             onChange={(event) => {
               setUsername(event.target.value);
@@ -103,6 +105,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           />
           <input
             type="text"
+            id="instagram"
             value={instagram}
             onChange={(event) => {
               setInstagram(event.target.value);
@@ -120,6 +123,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           />
           <input
             type="text"
+            id="tiktok"
             value={tiktok}
             onChange={(event) => {
               setTiktok(event.target.value);
@@ -137,6 +141,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
           />
           <input
             type="text"
+            id="drive"
             value={drive}
             onChange={(event) => {
               setDrive(event.target.value);
@@ -150,6 +155,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">📞</p>
           <input
             type="text"
+            id="phone"
+            autoComplete="off"
             value={phone}
             onChange={(event) => {
               setPhone(event.target.value);
@@ -163,6 +170,8 @@ export default function ProfileSetting({ handleProfileSetting }) {
           <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">🌍</p>
           <input
             type="text"
+            id="country"
+            autoComplete="off"
             value={country}
             onChange={(event) => {
               setCountry(event.target.value);
