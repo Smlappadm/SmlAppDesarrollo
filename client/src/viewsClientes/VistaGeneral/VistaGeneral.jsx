@@ -22,6 +22,7 @@ export const VistaGeneral = ({
             seguidoresGanadosIG={seguidoresGanadosIG}
             seguidoresGanadosTT={seguidoresGanadosTT}
             videosPublicados={videosPublicados}
+            tamañoPantalla={tamañoPantalla}
           />
 
           <div className="flex flex-col">
