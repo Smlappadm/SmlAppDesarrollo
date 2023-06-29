@@ -9,7 +9,12 @@ import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { AiOutlineConsoleSql, AiOutlinePhone } from "react-icons/ai";
+import { motion, spring } from "framer-motion";
+import {
+  AiOutlineConsoleSql,
+  AiOutlinePhone,
+  AiOutlineUserAdd,
+} from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
@@ -44,9 +49,9 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
-    if(statusObj.status === "Contratado"){
-      let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas
-      
+    if (statusObj.status === "Contratado") {
+      let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
+
       setStatusObj({
         ...statusObj,
         pagos: {
@@ -54,13 +59,11 @@ function ChildModal({
           monto: Number(statusObj.pagos.monto),
           valorCuota: valorCuota,
           cuotas: Number(statusObj.pagos.cuotas),
-          cuotasRestantes: Number(statusObj.pagos.cuotas)
+          cuotasRestantes: Number(statusObj.pagos.cuotas),
         },
-        status_op: statusObj.pagos.monto
+        status_op: statusObj.pagos.monto,
       });
-
-
-    } else{
+    } else {
       statusObj.pagos = {};
     }
 
@@ -78,8 +81,8 @@ function ChildModal({
       statusObj.status === "Agendar otro llamado"
     ) {
       statusObj.status = "Agendar 2do llamado";
-      statusObj.emailApp = item.emailApp,
-      statusObj.status_op = llamadoVenta.diaHora;
+      (statusObj.emailApp = item.emailApp),
+        (statusObj.status_op = llamadoVenta.diaHora);
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
         contacto: llamadoVenta.contacto,
@@ -107,7 +110,7 @@ function ChildModal({
         province: item.province,
         category: item.category,
         telephone: item.telephone,
-        emailApp: item. emailApp,
+        emailApp: item.emailApp,
         url: item.url,
         instagram: item.instagram,
         level: item.level,
@@ -438,6 +441,95 @@ function intelligentInfo({ setOpen }) {
   );
 }
 //************************************************************************************************ */
+function ConfirmacionEdicion({ handleConfirmEdit, id }) {
+  const [openConfirmacionEdicion, setConfirmacionEdicion] =
+    React.useState(false);
+
+  const handleClose = () => {
+    setConfirmacionEdicion(false);
+  };
+
+  const handleOpen = () => {
+    setConfirmacionEdicion(true);
+  };
+
+  const handleCancel = () => {
+    setConfirmacionEdicion(false);
+    statusObj.status = "";
+  };
+  const handleUpdate = () => {
+    handleConfirmEdit(id);
+    setConfirmacionEdicion(false);
+  };
+  return (
+    <React.Fragment>
+      <div className="flex justify-around items-center relative">
+        {/* <button
+          type="button"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          onClick={handleCancel}
+        >
+          Close x
+        </button> */}
+
+        <p
+          onClick={handleOpen}
+          // onClick={() => handleConfirmEditEmail(item._id)}
+          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+        >
+          ✔
+        </p>
+        {/* <button
+          type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          onClick={handleOpen}
+        >
+          Save Changes
+        </button> */}
+      </div>
+      <Modal
+        open={openConfirmacionEdicion}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box
+          sx={{
+            ...style,
+            width: 500,
+            borderRadius: 5,
+            backgroundColor: "#39394B",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <h2 id="child-modal-title" className="text-white text-center">
+            Quiéres Confirmar la edición?
+          </h2>
+          <div className="flex justify-around items-center m-5 mt-10">
+            <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={handleClose}
+            >
+              No
+            </button>
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              onClick={handleUpdate}
+            >
+              Yes
+            </button>
+          </div>
+        </Box>
+      </Modal>
+    </React.Fragment>
+  );
+}
+//************************************************************************************************ */
 
 export default function NestedModal({
   item,
@@ -453,6 +545,7 @@ export default function NestedModal({
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
+  const [openAlert, setOpenAlert] = React.useState(false);
 
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
@@ -472,9 +565,7 @@ export default function NestedModal({
 
   const [editEmailApp, setEditEmailApp] = React.useState(false);
   const [inputEmailApp, setInputEmailApp] = React.useState(item.emailApp);
-  const [updatedEmailApp, setUpdatedEmailApp] = React.useState(
-    item.emailApp
-  );
+  const [updatedEmailApp, setUpdatedEmailApp] = React.useState(item.emailApp);
 
   const [pagoCalculo, setPagoCalculo] = React.useState({
     precio: 0,
@@ -543,7 +634,7 @@ export default function NestedModal({
   };
 
   const handleSelectChangeContratado = (event) => {
-    console.log(event.target.name)
+    console.log(event.target.name);
     setOpenTimeHour(false);
     const value = event.target.value;
     const property = event.target.name;
@@ -551,10 +642,9 @@ export default function NestedModal({
       ...statusObj,
       pagos: {
         ...statusObj.pagos,
-        [property]: value
+        [property]: value,
       },
     });
-
   };
 
   const formattedUpdate = () => {
@@ -711,19 +801,26 @@ export default function NestedModal({
   // };
 
   const SendEmailLeadAlert = (texto) => {
-    toast.success(`✔ ${texto} Update!`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      style: {
-        zIndex: 1, // Establecer el índice Z personalizado aquí
-      },
-    });
+// Abre la alerta después de 3000 milisegundos
+
+  setOpenAlert(true);
+
+
+// Cierra la alerta después de 5000 milisegundos
+setTimeout(() => {
+  setOpenAlert(false);
+}, 3000);
+    // toast.success(`✔ ${texto} Update!`, {
+    //   position: "top-center",
+    //   autoClose: 3000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: "dark",
+    //   className: "custom-toast",
+    // });
   };
 
   //EDITAR DATOS EMAIL
@@ -822,6 +919,16 @@ export default function NestedModal({
           }}
         >
           <div className="w-full flex justify-center items-center mt-2 mb-10">
+            {openAlert && (
+              <motion.div
+              initial={{ opacity: 0, x: "-20px" }}
+              whileInView={{ x: "0px", opacity: 1}}
+              transition={{ duration: 1, delay: 0.1, type: "spring", bounce: 0.6 }}
+                className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label>✔ Lead Updated!</label>
+              </motion.div>
+            )}
             <div className="w-full flex flex-col justify-center items-center">
               <h2 id="parent-modal-title" className="text-center text-white">
                 {item.name}
@@ -893,7 +1000,7 @@ export default function NestedModal({
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
-                  <AiOutlinePhone
+                  <AiOutlineUserAdd
                     onClick={handleEditEmailApp}
                     className={
                       editEmailApp
@@ -923,13 +1030,10 @@ export default function NestedModal({
                       >
                         ❌
                       </p>
-
-                      <p
-                        onClick={() => handleConfirmEditEmail(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p>
+                      <ConfirmacionEdicion
+                        handleConfirmEdit={handleConfirmEditEmail}
+                        id={item._id}
+                      />
                     </div>
                   )}
                   {/* EDITAR DATOS Email-------------------------------------  */}
@@ -953,12 +1057,16 @@ export default function NestedModal({
                         ❌
                       </p>
 
-                      <p
+                      {/* <p
                         onClick={() => handleConfirmEditInstagram(item._id)}
                         className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                       >
                         ✔
-                      </p>
+                      </p> */}
+                      <ConfirmacionEdicion
+                        handleConfirmEdit={handleConfirmEditInstagram}
+                        id={item._id}
+                      />
                     </div>
                   )}
                   {/* EDITAR DATOS Phone-------------------------------------  */}
@@ -982,12 +1090,16 @@ export default function NestedModal({
                         ❌
                       </p>
 
-                      <p
+                      {/* <p
                         onClick={() => handleConfirmEditTelephone(item._id)}
                         className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                       >
                         ✔
-                      </p>
+                      </p> */}
+                      <ConfirmacionEdicion
+                        handleConfirmEdit={handleConfirmEditTelephone}
+                        id={item._id}
+                      />
                     </div>
                   )}
                   {editEmailApp && (
@@ -998,7 +1110,7 @@ export default function NestedModal({
                         onChange={handleChangeEmailApp}
                         defaultValue={updatedEmailApp}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
+                        placeholder="Agregar email App cliente"
                         // value={inputEmail}
                         disabled={!editEmailApp}
                         required
@@ -1010,12 +1122,16 @@ export default function NestedModal({
                         ❌
                       </p>
 
-                      <p
+                      {/* <p
                         onClick={() => handleConfirmEditEmailApp(item._id)}
                         className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                       >
                         ✔
-                      </p>
+                      </p> */}
+                      <ConfirmacionEdicion
+                        handleConfirmEdit={handleConfirmEditEmailApp}
+                        id={item._id}
+                      />
                     </div>
                   )}
                 </div>
@@ -1328,16 +1444,20 @@ export default function NestedModal({
                     name="total"
                     // defaultValue={item.status_op}
                     disabled={true}
-                    className= {statusObj.pagos.monto && statusObj.pagos.cuotas ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" : ""}
+                    className={
+                      statusObj.pagos.monto && statusObj.pagos.cuotas
+                        ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        : ""
+                    }
                     // placeholder={item.email}
                     placeholder=""
                     // value="USD"
                   >
                     {statusObj.pagos.monto &&
                       statusObj.pagos.cuotas &&
-                      `${statusObj.pagos.cuotas} pagos de €${
-                        (statusObj.pagos.monto / statusObj.pagos.cuotas).toFixed(2)
-                      }`}
+                      `${statusObj.pagos.cuotas} pagos de €${(
+                        statusObj.pagos.monto / statusObj.pagos.cuotas
+                      ).toFixed(2)}`}
                   </p>
 
                   {/* <MdPriceCheck
