@@ -38,38 +38,25 @@ export default function FollowersDesktop({
         </div>
         <div className="">
           <div className="flex flex-col justify-center items-center">
-            <div className="">
-              <label
-                htmlFor=""
-                className="text-[45px] font-semibold text-white  px-2"
-              >
+            <div className="flex items-center">
+              <p className="text-[45px] font-semibold text-white  px-2">
                 {formatearNumeroConPuntos(numberInstagram + numberTiktok)}
-              </label>
+              </p>
 
-              <label htmlFor="" className="text-[1rem] top-20 absolute">
-                / {maxNumber}
-              </label>
+              <p className="text-[1rem] top-20 ">/ {maxNumber}</p>
             </div>
-            <div className="absolute">
-              <label htmlFor="" className="font-thin ">
-                followers
-              </label>
+            <div>
+              <p className="font-thin ">followers</p>
             </div>
             <div className="flex justify-center items-center w-fit h-fit gap-4 mt-6">
               <img src={igPng} alt="icono de Instagram" className="w-8 h-8" />
-              <label
-                htmlFor=""
-                className="text-[27px] text-white font-semibold  px-2 pb-1"
-              >
+              <p className="text-[27px] text-white font-semibold  px-2 pb-1">
                 {formatearNumeroConPuntos(numberInstagram)}
-              </label>
-              <label className=" border-white bg-white w-[0.5px] h-5  text-white text-18"></label>
-              <label
-                htmlFor=""
-                className="text-[27px] text-white font-semibold px-2 pb-1"
-              >
+              </p>
+              <p className=" border-white bg-white w-[0.5px] h-5  text-white text-18"></p>
+              <p className="text-[27px] text-white font-semibold px-2 pb-1">
                 {formatearNumeroConPuntos(numberTiktok)}
-              </label>
+              </p>
               <img src={tkPng} alt="icono de Tiktok" className="w-8 h-8" />
             </div>
           </div>
