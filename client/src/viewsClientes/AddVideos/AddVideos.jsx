@@ -83,7 +83,13 @@ export default function AddVideos() {
   };
 
   return (
-    <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10">
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10"
+          : "flex bg-[#020131]  flex-col gap-2 justify-start items-center h-screen w-screen "
+      }
+    >
       {tamañoPantalla === "Pequeña" ? (
         <div className="flex ">
           <p className="text-24 font-extrabold text-white">Videos</p>
