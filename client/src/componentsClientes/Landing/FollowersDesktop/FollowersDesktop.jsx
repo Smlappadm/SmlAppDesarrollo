@@ -26,7 +26,7 @@ export default function FollowersDesktop({
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-fit relative mt-3">
-      <div className="flex justify-between w-[30rem]">
+      <div className="flex justify-between w-7/12">
         <div className=" pt-10 justify-center items-center relative">
           <CircularProgressBar value={numberTotal} imageSrc={imgInstagram} />
           <p className="font-bold bottom-0 -right-7 absolute">
