@@ -15,6 +15,8 @@ export default function AddVideos() {
   const dispatch = useDispatch();
   const { client } = useSelector((state) => state);
 
+  const [tamañoPantalla, setTamañoPantalla] = useState("");
+
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
   }, [dispatch, userEmail]);
@@ -84,9 +86,11 @@ export default function AddVideos() {
       <div className="flex ">
         <p className="text-24 font-extrabold text-white">Videos</p>
         <Link to={"/clientes-home"}>
-          <p className="text-24 text-center font-extrabold text-white absolute right-4">
-            x
-          </p>
+          {tamañoPantalla === "Pequeña" ? (
+            <p className="text-24 text-center font-extrabold text-white absolute right-4">
+              x
+            </p>
+          ) : null}
         </Link>
       </div>
       <div className=" mx-10 mt-4">
