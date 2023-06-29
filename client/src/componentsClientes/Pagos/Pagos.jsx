@@ -7,6 +7,7 @@ import ConfirmacionPago from "./ConfirmacionPago";
 import axios from "axios";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { useSelector, useDispatch } from "react-redux";
+import { getClienteEmpresa } from "../../redux/actions";
 
 // require('dotenv').config();
 
@@ -18,14 +19,20 @@ const stripePublicKey =
 const stripePromise = loadStripe(stripePublicKey);
 
 export const Pagos = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
   const [leadEmpresa, setLeadEmpresa] = useState(false);
-  const { user } = useUser();
-  const userEmail =
-    user && user.emailAddresses && user.emailAddresses[0].emailAddress;
+  // const user = useUser().user;
+  // const email = user?.emailAddresses[0]?.emailAddress;
+  
 
+  
+
+  let fullName = localStorage.getItem("fullName");
+  let email = localStorage.getItem("email");
+  console.log(fullName)
+  console.log(email)
   // const options = {
   //     passing the client secret obtained in step 3
   //     clientSecret: STRIPE_SECRET_KEY,
@@ -42,27 +49,33 @@ export const Pagos = () => {
   // };
 
   useEffect(() => {
+    dispatch(getClienteEmpresa(email));
     handlePagoUrlUpdate(1234, 20000, "Cuota 1/20 SML IA");
-  }, []);
-
+  }, [email]);
+console.log(clienteEmpresa)
   const handlePagoUrlUpdate = async (id, amount, name) => {
-    const email = "facutam@gmail.com";
+    // const email = "facutam@gmail.com";
     const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
 
-    const response2 = await axios.post("/clientes/payment", {
-      id,
-      amount: amount, //"centavos por cien seria el peso"
-      name,
-    });
-
     const data1 = response1.data;
-    const data2 = response2.data;
+    
+    if(clienteEmpresa.name){
+      const response2 = await axios.post("/clientes/payment", {
+      id: clienteEmpresa._id,
+      name: clienteEmpresa.name,
+      monto: clienteEmpresa.pagos.monto,
+      cuotas: clienteEmpresa.pagos.cuotas,
+      cuotasRestantes: clienteEmpresa.pagos.cuotasRestantes,
+      valorCuota: clienteEmpresa.pagos.valorCuota,
 
-    setLeadEmpresa(data1);
-    setUrlPago(data2.url);
+      });
+      const data2 = response2.data;
+    }
+    // setLeadEmpresa(data1);
+    // setUrlPago(data2.url);
 
-    console.log(data1);
-    console.log(data2.url);
+    // console.log(data1);
+    // console.log(data2.url);
   };
 
   // const handleClienteInfo = async (user.emailAddresses) => {
@@ -77,36 +90,36 @@ export const Pagos = () => {
   //   setUrlPago(data.url)
   //   console.log(data.url);
   // };
-
+// console.log(clienteEmpresa)
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen xl:h-screen w-screen">
-      {leadEmpresa.name ? (
+      {clienteEmpresa ? (
         <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center ">
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {leadEmpresa.name}
+            {clienteEmpresa?.name && clienteEmpresa?.name}
           </p>
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`Email: ${leadEmpresa.emailApp}`}
+            {`Email: ${clienteEmpresa.emailApp}`}
           </p>
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`Monto total: C${leadEmpresa.pagos.monto} `}
+            {`Monto total: C${clienteEmpresa.pagos.monto} `}
           </p>
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`${leadEmpresa.pagos.cuotas} cuotas de C${leadEmpresa.pagos.valorCuota}`}
+            {`${clienteEmpresa.pagos.cuotas} cuotas de C${clienteEmpresa.pagos.valorCuota}`}
           </p>
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`Cuotas restantes: ${leadEmpresa.pagos.cuotasRestantes}`}
+            {`Cuotas restantes: ${clienteEmpresa.pagos.cuotasRestantes}`}
           </p>
         </div>
       ) : (
-<div
-  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]"
-  role="status">
-  <span
-    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-    >Loading...</span
-  >
-</div>
+        <div
+          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        >
+          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+            Loading...
+          </span>
+        </div>
       )}
       <a
         href={urlPago ? urlPago : "http://localhost:5173/clientes-settings"}

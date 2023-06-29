@@ -40,6 +40,7 @@ import { CheckoutPage } from "./viewsClientes/CheckoutPage/CheckoutPage";
 import Referidos from "./viewsClientes/Referidos/Referidos";
 import TrofeosDesktop from "./componentsClientes/Trofeos/TrofeosDesktop";
 import RecursosDesktop from "./componentsClientes/Recursos/RecursosDesktop";
+import ExperienciaDesktop from "./componentsClientes/ExperienciaDesktop/ExperienciaDesktop";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -176,6 +177,11 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/clientes-trofeos"
           element={<TrofeosDesktop />}
+          tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-experiencia"
+          element={<ExperienciaDesktop />}
           tamañoPantalla={tamañoPantalla}
         />
         <Route

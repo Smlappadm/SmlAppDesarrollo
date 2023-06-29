@@ -70,7 +70,7 @@ const initialState = {
   employeesBanned: [],
   allCorredores: [],
   allVendedores: [],
-  clienteEmpresa: {},
+  clienteEmpresa: "",
 };
 
 const rootReducer = (state = initialState, action) => {
