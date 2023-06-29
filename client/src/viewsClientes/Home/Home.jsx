@@ -57,7 +57,7 @@ export default function Home() {
   //Para traer el Usuario Logueado
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
-  }, [dispatch, seguidoresGanados, numberTotal]);
+  }, [dispatch, seguidoresGanadosIG, seguidoresGanadosTT, numberTotal]);
 
   //Para setear varios datos
   useEffect(() => {
