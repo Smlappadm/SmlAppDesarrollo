@@ -9,8 +9,9 @@ import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
 import Performance from "../../components/Lideres/Employees/Performance/Performance";
 import LandingClientDesktop from "../../componentsClientes/Landing/LandingClientDesktop";
+import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
 
-export default function Home() {
+export default function Home({ tamañoPantalla }) {
   const [optionView, setOptionView] = useState("vistaGeneral");
   const [access, setAccess] = useState();
   const { signOut } = useClerk();
@@ -29,7 +30,6 @@ export default function Home() {
   const [maxNumber, setMaxNumber] = useState("10K");
   const [seguidoresGanadosIG, setseguidoresGanadosIG] = useState(0);
   const [seguidoresGanadosTT, setseguidoresGanadosTT] = useState(0);
-  const [tamañoPantalla, setTamañoPantalla] = useState("");
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -74,16 +74,6 @@ export default function Home() {
       obtainMetricsInstagram();
     }
   }, [loader, client]);
-
-  // Para obtener el tamaño de la pantalla en cada renderizado
-  useEffect(() => {
-    const { innerWidth } = window;
-    if (innerWidth < 768) {
-      setTamañoPantalla("Pequeña");
-    } else {
-      setTamañoPantalla("Grande");
-    }
-  }, []);
 
   if (!user || !user.emailAddresses || !user.emailAddresses[0]) {
     return <div>Loading...</div>;
@@ -168,16 +158,19 @@ export default function Home() {
       {access ? (
         <>
           {tamañoPantalla === "Grande" ? (
-            <LandingClientDesktop
-              imgInstagram={imgInstagram}
-              setMaxNumber={setMaxNumber}
-              numberTotal={numberTotal}
-              name={name}
-              setName={setName}
-              numberInstagram={numberInstagram}
-              numberTiktok={numberTiktok}
-              maxNumber={maxNumber}
-            />
+            <div>
+              <NavBarDesktop />
+              <LandingClientDesktop
+                imgInstagram={imgInstagram}
+                setMaxNumber={setMaxNumber}
+                numberTotal={numberTotal}
+                name={name}
+                setName={setName}
+                numberInstagram={numberInstagram}
+                numberTiktok={numberTiktok}
+                maxNumber={maxNumber}
+              />
+            </div>
           ) : (
             <LandingClient
               imgInstagram={imgInstagram}
