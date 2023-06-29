@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import igPng from "../../../Assets/instagram.png";
 import tkPng from "../../../Assets/tik-tok.png";
 
@@ -7,9 +7,17 @@ export default function Followers({
   numberTiktok,
   maxNumber,
 }) {
-  function formatearNumeroConPuntos(numero) {
+  const [loading, setLoading] = useState(true);
+
+  const formatearNumeroConPuntos = (numero) => {
     return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  }
+  };
+
+  useEffect(() => {
+    if (numberInstagram !== 0 || numberTiktok !== 0) {
+      setLoading(false);
+    }
+  }, [numberInstagram]);
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-fit relative mt-3">
@@ -20,6 +28,7 @@ export default function Followers({
         >
           {formatearNumeroConPuntos(numberInstagram + numberTiktok)}
         </label>
+
         <label htmlFor="" className="text-[.7rem] top-9 absolute">
           / {maxNumber}
         </label>
