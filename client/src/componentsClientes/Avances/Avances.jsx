@@ -54,17 +54,6 @@ export default function Avances({
     dispatch(getClientByEmail(userEmail && userEmail));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (isSavingChanges && savedBody) {
-  //     // Enviar la solicitud para actualizar el perfil del cliente y luego obtener el cliente por su correo electrónico
-  //     dispatch(updateClientProfile(userEmail, savedBody)).then(() => {
-  //       dispatch(getClientByEmail(userEmail && userEmail));
-  //     });
-  //     // Restablecer el estado de guardando cambios
-  //     // setIsSavingChanges(false);
-  //   }
-  // }, [isSavingChanges, dispatch, userEmail, savedBody]);
-
   useEffect(() => {
     // Actualizar los avances cuando el estado del cliente cambie
     const avances = [
