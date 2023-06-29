@@ -178,8 +178,7 @@ function ClerkProviderWithRoutes() {
         />
         <Route
           path="/clientes-settings"
-          element={<ClientesSettings />}
-          tamañoPantalla={tamañoPantalla}
+          element={<ClientesSettings tamañoPantalla={tamañoPantalla} />}
         />
         <Route
           path="/clientes-pagos"
