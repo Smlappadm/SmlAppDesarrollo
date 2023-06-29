@@ -9,8 +9,9 @@ import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
 import Performance from "../../components/Lideres/Employees/Performance/Performance";
 import LandingClientDesktop from "../../componentsClientes/Landing/LandingClientDesktop";
+import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
 
-export default function Home() {
+export default function Home({ tamañoPantalla }) {
   const [optionView, setOptionView] = useState("vistaGeneral");
   const [access, setAccess] = useState();
   const { signOut } = useClerk();
@@ -29,7 +30,6 @@ export default function Home() {
   const [maxNumber, setMaxNumber] = useState("10K");
   const [seguidoresGanadosIG, setseguidoresGanadosIG] = useState(0);
   const [seguidoresGanadosTT, setseguidoresGanadosTT] = useState(0);
-  const [tamañoPantalla, setTamañoPantalla] = useState("");
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -147,37 +147,30 @@ export default function Home() {
     dispatch(updateClientProfile(userEmail, body));
   };
 
-  useEffect(() => {
-    function manejarCambioTamañoPantalla() {
-      const { innerWidth } = window;
-      if (innerWidth < 768) {
-        setTamañoPantalla("Pequeña");
-      } else {
-        setTamañoPantalla("Grande");
-      }
-    }
-    window.addEventListener("resize", manejarCambioTamañoPantalla);
-
-    return () => {
-      window.removeEventListener("resize", manejarCambioTamañoPantalla);
-    };
-  }, []);
-
   return (
-    <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "flex flex-col items-center bg-[#1A1A1A] w-screen h-full pb-44"
+          : "flex flex-col items-center bg-[#020131] w-screen h-screen  pb-44"
+      }
+    >
       {access ? (
         <>
           {tamañoPantalla === "Grande" ? (
-            <LandingClientDesktop
-              imgInstagram={imgInstagram}
-              setMaxNumber={setMaxNumber}
-              numberTotal={numberTotal}
-              name={name}
-              setName={setName}
-              numberInstagram={numberInstagram}
-              numberTiktok={numberTiktok}
-              maxNumber={maxNumber}
-            />
+            <div>
+              <NavBarDesktop />
+              <LandingClientDesktop
+                imgInstagram={imgInstagram}
+                setMaxNumber={setMaxNumber}
+                numberTotal={numberTotal}
+                name={name}
+                setName={setName}
+                numberInstagram={numberInstagram}
+                numberTiktok={numberTiktok}
+                maxNumber={maxNumber}
+              />
+            </div>
           ) : (
             <LandingClient
               imgInstagram={imgInstagram}
@@ -191,30 +184,32 @@ export default function Home() {
             />
           )}
           {/* <Performance /> */}
-          <div className="flex gap-8 mt-7">
-            <button
-              value="vistaGeneral"
-              onClick={handleViewChange}
-              className={
-                optionView === "vistaGeneral"
-                  ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2  rounded-full"
-                  : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              }
-            >
-              Vista general
-            </button>
-            <button
-              value="trofeosXP"
-              onClick={handleViewChange}
-              className={
-                optionView === "trofeosXP"
-                  ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2 rounded-full"
-                  : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              }
-            >
-              Trofeos y XP
-            </button>
-          </div>
+          {tamañoPantalla === "Pequeña" ? (
+            <div className="flex gap-8 mt-7">
+              <button
+                value="vistaGeneral"
+                onClick={handleViewChange}
+                className={
+                  optionView === "vistaGeneral"
+                    ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2  rounded-full"
+                    : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                }
+              >
+                Vista general
+              </button>
+              <button
+                value="trofeosXP"
+                onClick={handleViewChange}
+                className={
+                  optionView === "trofeosXP"
+                    ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2 rounded-full"
+                    : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                }
+              >
+                Trofeos y XP
+              </button>
+            </div>
+          ) : null}
 
           {optionView === "vistaGeneral" && (
             <VistaGeneral
@@ -223,6 +218,7 @@ export default function Home() {
               seguidoresGanadosIG={client?.seguidoresGanadosIG}
               seguidoresGanadosTT={client?.seguidoresGanadosTT}
               videosPublicados={client?.videosPublicados}
+              tamañoPantalla={tamañoPantalla}
             />
           )}
           {optionView === "trofeosXP" && <TrofeosXP />}

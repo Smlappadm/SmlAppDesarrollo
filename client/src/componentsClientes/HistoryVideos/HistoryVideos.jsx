@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import igPng from "../../Assets/instagram.png";
 import tkPng from "../../Assets/tik-tok.png";
 
-export default function HistoryVideos({ videosPublicados }) {
+export default function HistoryVideos({ videosPublicados, tamañoPantalla }) {
   const [reverse, setReverse] = useState([]);
 
   useEffect(() => {
@@ -26,18 +26,28 @@ export default function HistoryVideos({ videosPublicados }) {
   };
 
   return (
-    <div className="w-96 bg-[#2c2c2c] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center">
-      <p className="text-24 font-extrabold text-white  text-center">
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "w-96 bg-[#2c2c2c] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center"
+          : "w-9/12 bg-[#363559] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center"
+      }
+    >
+      <p className="text-24 font-extrabold text-white  text-center w-full">
         Historial
       </p>
-      <div>
+      <div className="w-full">
         {videosPublicados && videosPublicados[0] ? (
           <div>
             {reverse &&
               reverse.map((video, index) => (
                 <div
                   key={index}
-                  className="my-2 text-ellipsis w-96 px-4 flex justify-between items-center"
+                  className={
+                    tamañoPantalla === "Pequeña"
+                      ? "my-2 text-ellipsis w-96 px-4 flex justify-between items-center"
+                      : "my-2 text-ellipsis w-full px-4 flex justify-between "
+                  }
                 >
                   <p className="w-32">{formatDateTime(video.date)}</p>
                   <img

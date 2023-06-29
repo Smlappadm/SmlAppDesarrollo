@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos";
 import { getClientByEmail } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
+import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
@@ -15,6 +16,8 @@ export default function AddVideos() {
   const dispatch = useDispatch();
   const { client } = useSelector((state) => state);
 
+  const [tamañoPantalla, setTamañoPantalla] = useState("");
+
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
   }, [dispatch, userEmail]);
@@ -22,6 +25,16 @@ export default function AddVideos() {
   useEffect(() => {
     console.log(userEmail);
   }, [client]);
+
+  // Para obtener el tamaño de la pantalla en cada renderizado
+  useEffect(() => {
+    const { innerWidth } = window;
+    if (innerWidth < 768) {
+      setTamañoPantalla("Pequeña");
+    } else {
+      setTamañoPantalla("Grande");
+    }
+  }, []);
 
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
@@ -70,17 +83,35 @@ export default function AddVideos() {
   };
 
   return (
-    <div className="flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10">
-      <div className="flex ">
-        <p className="text-24 font-extrabold text-white">Videos</p>
-        <Link to={"/clientes-home"}>
-          <p className="text-24 text-center font-extrabold text-white absolute right-4">
-            x
-          </p>
-        </Link>
-      </div>
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10"
+          : "flex bg-[#020131]  flex-col gap-2 justify-start items-center h-screen w-screen "
+      }
+    >
+      {tamañoPantalla === "Pequeña" ? (
+        <div className="flex ">
+          <p className="text-24 font-extrabold text-white">Videos</p>
+          <Link to={"/clientes-home"}>
+            <p className="text-24 text-center font-extrabold text-white absolute right-4">
+              x
+            </p>
+          </Link>
+        </div>
+      ) : (
+        <div className="w-screen">
+          <NavBarDesktop />
+        </div>
+      )}
       <div className=" mx-10 mt-4">
-        <h2 className="font-medium text-neutral-100 text-center text-14">
+        <h2
+          className={
+            tamañoPantalla === "Pequeña"
+              ? "font-medium text-neutral-100 text-center text-14"
+              : "font-medium text-neutral-100 text-center text-24"
+          }
+        >
           Copia y pega el link de tu nuevo video para añadirlo
         </h2>
       </div>
@@ -101,6 +132,7 @@ export default function AddVideos() {
       </div>
       {linkError ? <span className="text-yellow-500">{linkError}</span> : null}
       <HistoryVideos
+        tamañoPantalla={tamañoPantalla}
         videosPublicados={client?.videosPublicados}
         fechaVideo={client?.createdAt}
       />

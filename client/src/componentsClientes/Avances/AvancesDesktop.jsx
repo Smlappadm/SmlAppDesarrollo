@@ -5,7 +5,7 @@ import { useUser } from "@clerk/clerk-react";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 import { IoReloadOutline } from "react-icons/io5";
 
-export default function Avances({
+export default function AvancesDesktop({
   seguidoresIG,
   seguidoresTT,
   seguidoresGanadosIG,
@@ -106,7 +106,7 @@ export default function Avances({
   useEffect(() => {}, [avances]);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8">
+    <div className="flex flex-col justify-center items-center gap-3 w-9/12 mt-8">
       <div className="flex justify-between w-10/12">
         <h1 className="text-white text-18">Avances</h1>
         <div className="text-5xl rounded-full">
