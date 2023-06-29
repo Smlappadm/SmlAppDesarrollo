@@ -34,6 +34,7 @@ export const GET_CLIENT_BY_EMAIL = "GET_CLIENT_BY_EMAIL";
 export const GET_BANNED = "GET_BANNED";
 export const GET_CORREDORES = "GET_CORREDORES";
 export const GET_VENDEDORES = "GET_VENDEDORES";
+export const GET_CLIENTE_EMPRESA = "GET_CLIENTE_EMPRESA";
 
 //
 export const setRol = (rol) => {
@@ -378,5 +379,17 @@ export const getClientByEmail = (userEmail) => {
     const response = await axios.get(`/clientes/user?email=${userEmail}`);
     const client = response.data;
     dispatch({ type: GET_CLIENT_BY_EMAIL, payload: client });
+  };
+};
+
+export const getLeadEmpresa = (emailApp) => {
+  return async (dispatch) => {
+    if (emailApp !== "undefined" && emailApp !== "") {
+      const response = await axios.get(
+        `/lead/leademailapp?emailApp=${emailApp}`
+      );
+      const empresa = response.data;
+      dispatch({ type: GET_CLIENTE_EMPRESA, payload: empresa });
+    }
   };
 };

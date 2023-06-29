@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail } from "../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
-export default function Recursos() {
+export default function Recursos({ tamañoPantalla }) {
   const { client } = useSelector((state) => state);
   const { user } = useUser();
   const userEmail = user.emailAddresses[0].emailAddress;
@@ -19,7 +19,10 @@ export default function Recursos() {
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-96 mt-8 ">
-      <h1 className=" text-white text-18 w-10/12 md:w-fit">Recursos</h1>
+      {tamañoPantalla === "Pequeña" ? (
+        <h1 className=" text-white text-18 w-10/12 md:w-fit">Recursos</h1>
+      ) : null}
+
       {linkVerify.test(client && client.drive) ? (
         <Link
           to={`${client && client.drive}`}

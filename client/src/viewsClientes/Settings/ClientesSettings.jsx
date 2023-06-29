@@ -11,7 +11,7 @@ export default function ClientesSettings({ tamañoPantalla }) {
   const [urlPago, setUrlPago] = useState("");
   const navigate = useNavigate();
   const texto = "Ajustes de perfil";
-  const texto1 = "Notificaiones";
+  const texto1 = "Notificaciones";
   const switchs1 = true;
   const texto2 = "Mis pagos";
   const texto3 = "Invitar a un amigo";
@@ -70,13 +70,26 @@ export default function ClientesSettings({ tamañoPantalla }) {
                   onClick={handleProfileSetting}
                   className="w-full m-0 p-0 "
                 >
-                  <CustomsLabelSetting text={texto} />
+                  <CustomsLabelSetting
+                    text={texto}
+                    tamañoPantalla={tamañoPantalla}
+                  />
                 </button>
 
-                <CustomsLabelSetting text={texto1} switchValue={switchs1} />
+                <CustomsLabelSetting
+                  text={texto1}
+                  switchValue={switchs1}
+                  tamañoPantalla={tamañoPantalla}
+                />
 
                 <Link to={"/clientes-pagos"}>
-                  <div className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer">
+                  <div
+                    className={
+                      tamañoPantalla === "Pequeña"
+                        ? "text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
+                        : "text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#363559] hover:bg-[#3f437a] cursor-pointer"
+                    }
+                  >
                     Mis Pagos
                   </div>
                 </Link>

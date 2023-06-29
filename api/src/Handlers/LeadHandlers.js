@@ -192,14 +192,13 @@ const getLeadCorredorCheckedHandler = async (req, res) => {
   }
 };
 const getLeadByEmailAppHandler = async (req, res) => {
-  console.log("eeeeeeeeee")
-  // const { emailApp } = req.query;
-  // try {
-  //   const lead = await getLeadByEmailApp(emailApp);
-  //   res.status(200).json(lead);
-  // } catch (error) {
-  //   res.status(404).json({ error: error.message });
-  // }
+  const { emailApp } = req.query;
+  try {
+    const lead = await getLeadByEmailApp(emailApp);
+    res.status(200).json(lead);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 };
 const findLeadCorredorNameHandler = async (req, res) => {
   const { name, month, year, fromDay, toDay } = req.query;
