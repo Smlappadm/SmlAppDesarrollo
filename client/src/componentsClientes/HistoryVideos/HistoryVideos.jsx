@@ -15,11 +15,15 @@ export default function HistoryVideos({ videosPublicados }) {
         {videosPublicados && videosPublicados[0] ? (
           <div>
             {reverse &&
-              reverse.map((link, index) => (
+              reverse.map((video, index) => (
                 <div key={index} className="my-2 text-ellipsis w-96 px-4">
-                  <Link to={link} target="_blank">
+                  <Link to={video.link} target="_blank">
                     <p className="text-center">
-                      -{link.slice(12, 13) === "i" ? "Instagram" : "Tiktok"}-
+                      -
+                      {video.link.slice(12, 13) === "i"
+                        ? "Instagram"
+                        : "Tiktok"}
+                      -
                     </p>
                   </Link>
                 </div>
