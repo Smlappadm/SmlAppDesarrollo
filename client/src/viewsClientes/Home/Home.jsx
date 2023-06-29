@@ -30,6 +30,7 @@ export default function Home({ tamañoPantalla }) {
   const [maxNumber, setMaxNumber] = useState("10K");
   const [seguidoresGanadosIG, setseguidoresGanadosIG] = useState(0);
   const [seguidoresGanadosTT, setseguidoresGanadosTT] = useState(0);
+  const fullName = user.fullName;
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -59,7 +60,15 @@ export default function Home({ tamañoPantalla }) {
   //Para traer el Usuario Logueado
   useEffect(() => {
     dispatch(getClientByEmail(userEmail && userEmail));
-  }, [dispatch, seguidoresGanadosIG, seguidoresGanadosTT, numberTotal]);
+    localStorage.setItem("fullName", fullName);
+    localStorage.setItem("email", userEmail);
+  }, [
+    dispatch,
+    seguidoresGanadosIG,
+    seguidoresGanadosTT,
+    numberTotal,
+    userEmail,
+  ]);
 
   //Para setear varios datos
   useEffect(() => {
