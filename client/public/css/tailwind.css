@@ -1185,8 +1185,8 @@ video {
   width: 75%;
 }
 
-.w-\[20rem\] {
-  width: 20rem;
+.w-\[700px\] {
+  width: 700px;
 }
 
 .w-\[30rem\] {
@@ -1278,6 +1278,10 @@ video {
 
 .justify-around {
   justify-content: space-around;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
 }
 
 .gap-1 {
