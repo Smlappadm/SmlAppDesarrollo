@@ -19,9 +19,6 @@ export default function LandingClientDesktop({
         setMaxNumber={setMaxNumber}
         imgInstagram={imgInstagram}
       />
-      {/* <NameDesktop name={name} setName={setName} 
-        numberTotal={numberTotal} 
-        imgInstagram={imgInstagram}/> */}
       <FollowersDesktop
         name={name}
         setName={setName}
