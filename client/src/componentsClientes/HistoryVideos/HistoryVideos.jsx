@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import igPng from "../../Assets/instagram.png";
+import tkPng from "../../Assets/tik-tok.png";
 
 export default function HistoryVideos({ videosPublicados }) {
   const [reverse, setReverse] = useState([]);
@@ -33,15 +35,19 @@ export default function HistoryVideos({ videosPublicados }) {
           <div>
             {reverse &&
               reverse.map((video, index) => (
-                <div key={index} className="my-2 text-ellipsis w-96 px-4">
+                <div
+                  key={index}
+                  className="my-2 text-ellipsis w-96 px-4 flex justify-between items-center"
+                >
                   <p>{formatDateTime(video.date)}</p>
-                  <Link to={video.link} target="_blank">
+                  <img
+                    src={video.social === "Instagram" ? igPng : tkPng}
+                    alt="tt"
+                    className="w-6 h-6 mr-2"
+                  />
+                  <Link to={video.link} target="_blank" className="w-28">
                     <p className="text-center">
-                      -
-                      {video.link.slice(12, 13) === "i"
-                        ? "Instagram"
-                        : "Tiktok"}
-                      -
+                      -{video.social === "Instagram" ? "Instagram" : "Tiktok"}-
                     </p>
                   </Link>
                 </div>
