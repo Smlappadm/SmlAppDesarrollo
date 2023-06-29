@@ -42,6 +42,8 @@ useEffect(() => {
 
 
 const handlePagoUrlUpdate = async (id, amount, name) => {
+  // const { data } = 
+
   const { data } = await axios.post(
     "http://localhost:3001/api/clientes/payment",
     {
