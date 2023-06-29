@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 
-
 export default function ClientesSettings() {
   const [profileSetting, setProfileSetting] = useState(false);
   const [urlPago, setUrlPago] = useState("");
@@ -30,15 +29,12 @@ export default function ClientesSettings() {
   };
   //*************** */
 
-
   const handleProfileSetting = () => {
     setProfileSetting(!profileSetting);
   };
 
-
-
   return (
-    <div className="flex bg-gradient-to-br from-black via-[#020131]  to-blue-950 gap-5  flex-col justify-center items-center h-screen w-screen">
+    <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen w-screen">
       <div className="   justify-between w-96">
         {!profileSetting ? (
           <>
@@ -61,12 +57,11 @@ export default function ClientesSettings() {
 
               <CustomsLabelSetting text={texto1} switchValue={switchs1} />
 
-
-            <Link to={"/clientes-pagos"}>
-              <div className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer">
-                Mis Pagos
-              </div>
-            </Link>
+              <Link to={"/clientes-pagos"}>
+                <div className="text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer">
+                  Mis Pagos
+                </div>
+              </Link>
             </div>
             <Link to={"/clientes-referidos"}>
               <div className="w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex ">
