@@ -158,7 +158,13 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full  pb-44">
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "flex flex-col items-center bg-[#1A1A1A] w-screen h-full pb-44"
+          : "flex flex-col items-center bg-[#1A1A1A] w-screen h-screen  pb-44"
+      }
+    >
       {access ? (
         <>
           {tamañoPantalla === "Grande" ? (

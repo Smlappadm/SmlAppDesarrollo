@@ -1185,12 +1185,16 @@ video {
   width: 75%;
 }
 
-.w-\[20rem\] {
-  width: 20rem;
+.w-\[700px\] {
+  width: 700px;
 }
 
 .w-\[30rem\] {
   width: 30rem;
+}
+
+.w-7\/12 {
+  width: 58.333333%;
 }
 
 .min-w-\[180px\] {
@@ -1280,6 +1284,10 @@ video {
   justify-content: space-around;
 }
 
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
 .gap-1 {
   gap: 0.25rem;
 }
@@ -1335,6 +1343,11 @@ video {
 
 .gap-y-7 {
   row-gap: 1.75rem;
+}
+
+.gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
 }
 
 .overflow-auto {
