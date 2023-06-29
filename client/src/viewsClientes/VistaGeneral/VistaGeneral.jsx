@@ -9,21 +9,26 @@ export const VistaGeneral = ({
   seguidoresGanadosIG,
   seguidoresGanadosTT,
   videosPublicados,
+  tamañoPantalla,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row justify-center md:gap-9 items-center w-full h-full mt-8">
-      <Avances
-        seguidoresIG={seguidoresIG}
-        seguidoresTT={seguidoresTT}
-        seguidoresGanadosIG={seguidoresGanadosIG}
-        seguidoresGanadosTT={seguidoresGanadosTT}
-        videosPublicados={videosPublicados}
-      />
+    <>
+      {tamañoPantalla === "Pequeña" ? (
+        <div className="flex flex-col md:flex-row justify-center md:gap-9 items-center w-full h-full mt-8">
+          <Avances
+            seguidoresIG={seguidoresIG}
+            seguidoresTT={seguidoresTT}
+            seguidoresGanadosIG={seguidoresGanadosIG}
+            seguidoresGanadosTT={seguidoresGanadosTT}
+            videosPublicados={videosPublicados}
+          />
 
-      <div className="flex flex-col">
-        <Recursos />
-        <Agendar />
-      </div>
-    </div>
+          <div className="flex flex-col">
+            <Recursos />
+            <Agendar />
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 };
