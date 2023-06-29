@@ -55,7 +55,7 @@ export default function NavBarDesktop() {
           Experiencia
         </Link>
         <Link
-          to="/clientes-contactenos"
+          to="/clientes-home"
           className={`font-bold hover:text-white ${
             location.pathname === "/clientes-contactenos"
               ? "text-[#1C72B2]"
