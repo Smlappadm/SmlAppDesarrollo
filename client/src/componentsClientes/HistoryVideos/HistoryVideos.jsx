@@ -39,7 +39,7 @@ export default function HistoryVideos({ videosPublicados }) {
                   key={index}
                   className="my-2 text-ellipsis w-96 px-4 flex justify-between items-center"
                 >
-                  <p>{formatDateTime(video.date)}</p>
+                  <p className="w-32">{formatDateTime(video.date)}</p>
                   <img
                     src={video.social === "Instagram" ? igPng : tkPng}
                     alt="tt"
