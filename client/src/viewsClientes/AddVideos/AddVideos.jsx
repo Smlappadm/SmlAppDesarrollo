@@ -25,8 +25,6 @@ export default function AddVideos() {
 
   const newLinkVideo = async () => {
     if (isInstagramPost(link) || isTikTokPost(link)) {
-      const linkhttp = link.slice(0, 12);
-      const minimal = link.slice(12);
       const currentDate = new Date();
       const body = {
         videosPublicados: { link: link, date: currentDate },
