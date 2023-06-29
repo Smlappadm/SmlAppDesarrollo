@@ -164,7 +164,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
+    <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-screen 2xl:h-screen pb-44">
       {access ? (
         <>
           {tamañoPantalla === "Grande" ? (
@@ -191,30 +191,32 @@ export default function Home() {
             />
           )}
           {/* <Performance /> */}
-          <div className="flex gap-8 mt-7">
-            <button
-              value="vistaGeneral"
-              onClick={handleViewChange}
-              className={
-                optionView === "vistaGeneral"
-                  ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2  rounded-full"
-                  : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              }
-            >
-              Vista general
-            </button>
-            <button
-              value="trofeosXP"
-              onClick={handleViewChange}
-              className={
-                optionView === "trofeosXP"
-                  ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2 rounded-full"
-                  : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              }
-            >
-              Trofeos y XP
-            </button>
-          </div>
+          {tamañoPantalla === "Pequeña" ? (
+            <div className="flex gap-8 mt-7">
+              <button
+                value="vistaGeneral"
+                onClick={handleViewChange}
+                className={
+                  optionView === "vistaGeneral"
+                    ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2  rounded-full"
+                    : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                }
+              >
+                Vista general
+              </button>
+              <button
+                value="trofeosXP"
+                onClick={handleViewChange}
+                className={
+                  optionView === "trofeosXP"
+                    ? "border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-6 py-2 rounded-full"
+                    : "rounded-full px-6 py-2  text-gray-900 focus:outline-none bg-white  border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-transparent dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                }
+              >
+                Trofeos y XP
+              </button>
+            </div>
+          ) : null}
 
           {optionView === "vistaGeneral" && (
             <VistaGeneral
@@ -223,6 +225,7 @@ export default function Home() {
               seguidoresGanadosIG={client?.seguidoresGanadosIG}
               seguidoresGanadosTT={client?.seguidoresGanadosTT}
               videosPublicados={client?.videosPublicados}
+              tamañoPantalla={tamañoPantalla}
             />
           )}
           {optionView === "trofeosXP" && <TrofeosXP />}
