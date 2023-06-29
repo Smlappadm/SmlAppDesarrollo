@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 
 import Performance from "../../components/Lideres/Employees/Performance/Performance";
+import LandingClientDesktop from "../../componentsClientes/Landing/LandingClientDesktop";
 
 export default function Home() {
   const [optionView, setOptionView] = useState("vistaGeneral");
@@ -28,6 +29,7 @@ export default function Home() {
   const [maxNumber, setMaxNumber] = useState("10K");
   const [seguidoresGanadosIG, setseguidoresGanadosIG] = useState(0);
   const [seguidoresGanadosTT, setseguidoresGanadosTT] = useState(0);
+  const [tamañoPantalla, setTamañoPantalla] = useState("");
 
   //Para verificar el acceso a la APP
   useEffect(() => {
@@ -144,20 +146,50 @@ export default function Home() {
     setseguidoresGanadosTT(body.seguidoresTiktok - body.seguidoresTiktokBase);
     dispatch(updateClientProfile(userEmail, body));
   };
+
+  useEffect(() => {
+    function manejarCambioTamañoPantalla() {
+      const { innerWidth } = window;
+      if (innerWidth < 768) {
+        setTamañoPantalla("Pequeña");
+      } else {
+        setTamañoPantalla("Grande");
+      }
+    }
+    window.addEventListener("resize", manejarCambioTamañoPantalla);
+
+    return () => {
+      window.removeEventListener("resize", manejarCambioTamañoPantalla);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col items-center bg-[#1A1A1A] w-screen h-full 2xl:h-screen pb-44">
       {access ? (
         <>
-          <LandingClient
-            imgInstagram={imgInstagram}
-            setMaxNumber={setMaxNumber}
-            numberTotal={numberTotal}
-            name={name}
-            setName={setName}
-            numberInstagram={numberInstagram}
-            numberTiktok={numberTiktok}
-            maxNumber={maxNumber}
-          />
+          {tamañoPantalla === "Grande" ? (
+            <LandingClientDesktop
+              imgInstagram={imgInstagram}
+              setMaxNumber={setMaxNumber}
+              numberTotal={numberTotal}
+              name={name}
+              setName={setName}
+              numberInstagram={numberInstagram}
+              numberTiktok={numberTiktok}
+              maxNumber={maxNumber}
+            />
+          ) : (
+            <LandingClient
+              imgInstagram={imgInstagram}
+              setMaxNumber={setMaxNumber}
+              numberTotal={numberTotal}
+              name={name}
+              setName={setName}
+              numberInstagram={numberInstagram}
+              numberTiktok={numberTiktok}
+              maxNumber={maxNumber}
+            />
+          )}
           {/* <Performance /> */}
           <div className="flex gap-8 mt-7">
             <button
