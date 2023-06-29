@@ -656,6 +656,10 @@ video {
   top: 2.25rem;
 }
 
+.top-20 {
+  top: 5rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -2016,6 +2020,10 @@ video {
 
 .text-\[20px\] {
   font-size: 20px;
+}
+
+.text-\[1rem\] {
+  font-size: 1rem;
 }
 
 .font-bold {
