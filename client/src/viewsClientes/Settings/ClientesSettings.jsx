@@ -6,7 +6,7 @@ import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetti
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
 
-export default function ClientesSettings() {
+export default function ClientesSettings({ tamañoPantalla }) {
   const [profileSetting, setProfileSetting] = useState(false);
   const [urlPago, setUrlPago] = useState("");
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ export default function ClientesSettings() {
     user && user.emailAddresses && user.emailAddresses[0].emailAddress;
 
   const { signOut } = useClerk();
+  console.log(tamañoPantalla);
 
   const tokenAccess = localStorage.getItem("access");
   const handleLogout = async () => {
@@ -35,21 +36,35 @@ export default function ClientesSettings() {
   };
 
   return (
-    <div className=" bg-[#1A1A1A] w-screen h-screen">
-      <NavBarDesktop />
-      <div className="flex flex-col justify-center items-center">
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? " bg-[#1A1A1A] w-screen h-screen"
+          : " bg-[#020131] w-screen h-screen"
+      }
+    >
+      {tamañoPantalla === "Grande" ? (
+        <div className="w-full h-1/6">
+          <NavBarDesktop />
+        </div>
+      ) : null}
+
+      <div className="flex flex-col justify-center items-center h-5/6">
         <div className="w-96">
           {!profileSetting ? (
             <>
-              <div className=" flex mb-4 items-end justify-between pt-4">
-                <h2 className="font-bold">Personal</h2>
-                <Link
-                  to={"/clientes-home"}
-                  className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-                >
-                  <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-                </Link>
-              </div>
+              {tamañoPantalla === "Pequeña" ? (
+                <div className=" flex mb-4 items-end justify-between pt-4">
+                  <h2 className="font-bold">Personal</h2>
+                  <Link
+                    to={"/clientes-home"}
+                    className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+                  >
+                    <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+                  </Link>
+                </div>
+              ) : null}
+
               <div className="flex flex-col">
                 <button
                   onClick={handleProfileSetting}
