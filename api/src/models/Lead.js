@@ -80,6 +80,11 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: "",
     },
+    emailApp: {
+      type: String,
+      require: true,
+      default: "",
+    },
     corredor: {
       type: String,
       require: true,

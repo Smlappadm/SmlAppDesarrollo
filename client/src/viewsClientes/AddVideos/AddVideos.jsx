@@ -35,6 +35,7 @@ export default function AddVideos() {
         setLinkError("");
         setLink("");
         sendLinkSuccess();
+        dispatch(getClientByEmail(userEmail && userEmail));
       } catch (error) {
         console.log(error.message);
       }
