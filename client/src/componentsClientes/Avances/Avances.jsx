@@ -11,6 +11,7 @@ export default function Avances({
   seguidoresGanadosIG,
   seguidoresGanadosTT,
   videosPublicados,
+  tamañoPantalla,
 }) {
   // Estado local
   const [isSavingChanges, setIsSavingChanges] = useState(false); // Estado para guardar si se están guardando los cambios
@@ -131,6 +132,7 @@ export default function Avances({
               ganadosIG={avance.ganadosIG}
               TT={avance.TT}
               IG={avance.IG}
+              tamañoPantalla={tamañoPantalla}
             />
           ))}
       </div>
