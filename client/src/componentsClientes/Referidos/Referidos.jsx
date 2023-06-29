@@ -6,8 +6,9 @@ import { getClientByEmail } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
 import { IoCloseSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
 
-export default function Referral() {
+export default function Referral({ tamañoPantalla }) {
   const [verificados, setVerificados] = useState([]);
   const [uniqueKey, setUniqueKey] = useState([]);
   const { user } = useUser();
@@ -56,27 +57,49 @@ export default function Referral() {
   };
 
   return (
-    <div className="flex justify-start items-center flex-col h-screen">
-      <div className="flex flex-row items-center justify-center text-center w-full mx-4">
-        <p className="text-white text-24 mt-4">REFERIDOS</p>
-        <Link
-          to={"/clientes-home"}
-          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] text-24 mt-4 absolute right-3 "
-        >
-          <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-        </Link>
-      </div>
-      <div className="h-3/6 w-full items-start overflow-auto px-4 mt-6 bg-transparent border-opacity-5 border rounded-lg border-blue-500">
-        {client && client.referred
-          ? client.referred.map((item, index) => (
-              <div className="flex items-center justify-between" key={index}>
-                <label className="m-4">{item}</label>
-                {verificados[index] && verificados[index] === true ? (
-                  <p>✅</p>
-                ) : null}
-              </div>
-            ))
-          : "no hay nada"}
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "flex justify-start items-center flex-col h-screen w-full"
+          : "flex justify-start items-center flex-col h-screen w-full"
+      }
+    >
+      {tamañoPantalla === "Pequeña" ? (
+        <div className="flex flex-row items-center justify-center text-center w-full mx-4">
+          <p className="text-white text-24 mt-4">REFERIDOS</p>
+          <Link
+            to={"/clientes-home"}
+            className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] text-24 mt-4 absolute right-3 "
+          >
+            <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+          </Link>
+        </div>
+      ) : (
+        <div className="w-screen">
+          <NavBarDesktop />
+        </div>
+      )}
+      <div
+        className={
+          tamañoPantalla === "Pequeña"
+            ? "h-3/6 w-full items-start overflow-auto px-4 mt-6 bg-transparent border-opacity-5 border rounded-lg border-blue-500 bg-[#282828]"
+            : "h-3/6 w-full items-start overflow-auto px-4 mt-6 bg-transparent border-opacity-5 border rounded-lg border-blue-500 bg-[#363559]"
+        }
+      >
+        {client && client.referred[0] ? (
+          client.referred.map((item, index) => (
+            <div className="flex items-center justify-between" key={index}>
+              <label className="m-4">{item}</label>
+              {verificados[index] && verificados[index] === true ? (
+                <p>✅</p>
+              ) : null}
+            </div>
+          ))
+        ) : (
+          <div>
+            <p className="text-center">No tienes referidos!</p>
+          </div>
+        )}
       </div>
       <p className="text-center mt-4">
         Beneficios: Lorem ipsum dolor sit amet consectetur adipisicing elit.
