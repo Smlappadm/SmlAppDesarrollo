@@ -39,6 +39,7 @@ import BannedEmployees from "./components/C-Level/Employees/EmployBanned/BannedE
 import { CheckoutPage } from "./viewsClientes/CheckoutPage/CheckoutPage";
 import Referidos from "./viewsClientes/Referidos/Referidos";
 import TrofeosDesktop from "./componentsClientes/Trofeos/TrofeosDesktop";
+import RecursosDesktop from "./componentsClientes/Recursos/RecursosDesktop";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -202,7 +203,7 @@ function ClerkProviderWithRoutes() {
         />
         <Route
           path="/clientes-recursos"
-          element={<Referidos tamañoPantalla={tamañoPantalla} />}
+          element={<RecursosDesktop tamañoPantalla={tamañoPantalla} />}
         />
 
         <Route path="/" element={<Login />} />
