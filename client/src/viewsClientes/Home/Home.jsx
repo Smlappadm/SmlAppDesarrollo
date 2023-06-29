@@ -104,8 +104,8 @@ export default function Home({ tamañoPantalla }) {
     //   `https://apisml.onrender.com//obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "800" };
-    const infoTT = { seguidores: "200", likes: "10" };
+    const infoIG = { seguidores: "4500" };
+    const infoTT = { seguidores: "2500", likes: "10" };
     // console.log(infoIG);
     // console.log(infoTT);
     setNumberInstagram(parseInt(infoIG.seguidores));
