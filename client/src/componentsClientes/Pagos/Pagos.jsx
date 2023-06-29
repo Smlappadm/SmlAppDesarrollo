@@ -6,6 +6,7 @@ import CheckoutForm from "./CheckoutForm";
 import ConfirmacionPago from "./ConfirmacionPago";
 import axios from "axios";
 import { useClerk, useUser } from "@clerk/clerk-react";
+import { useSelector, useDispatch } from "react-redux";
 
 // require('dotenv').config();
 
@@ -17,8 +18,10 @@ const stripePublicKey =
 const stripePromise = loadStripe(stripePublicKey);
 
 export const Pagos = () => {
+  const dispatch = useDispatch()
+  const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
-  const [leadEmpresa, setLeadEmpresa] = useState("");
+  const [leadEmpresa, setLeadEmpresa] = useState(false);
   const { user } = useUser();
   const userEmail =
     user && user.emailAddresses && user.emailAddresses[0].emailAddress;
@@ -77,7 +80,7 @@ export const Pagos = () => {
 
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen xl:h-screen w-screen">
-      {leadEmpresa.name && (
+      {leadEmpresa.name ? (
         <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center ">
           <p className="border-2 text-center text-24 font-extrabold text-white">
             {leadEmpresa.name}
@@ -95,6 +98,15 @@ export const Pagos = () => {
             {`Cuotas restantes: ${leadEmpresa.pagos.cuotasRestantes}`}
           </p>
         </div>
+      ) : (
+<div
+  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]"
+  role="status">
+  <span
+    className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+    >Loading...</span
+  >
+</div>
       )}
       <a
         href={urlPago ? urlPago : "http://localhost:5173/clientes-settings"}
