@@ -33,6 +33,7 @@ import {
   GET_BANNED,
   GET_CORREDORES,
   GET_VENDEDORES,
+  GET_CLIENTE_EMPRESA,
 } from "./actions";
 
 const initialState = {
@@ -69,6 +70,7 @@ const initialState = {
   employeesBanned: [],
   allCorredores: [],
   allVendedores: [],
+  clienteEmpresa: {},
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -427,6 +429,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         client: action.payload,
+      };
+    case GET_CLIENTE_EMPRESA:
+      return {
+        ...state,
+        clienteEmpresa: action.payload,
       };
     default:
       return { ...state };
