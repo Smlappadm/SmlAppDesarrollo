@@ -141,115 +141,123 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
   };
 
   return (
-    <form
-      className="flex flex-col w-3/4 gap-y-4"
-      onSubmit={handleSubmit}
-      onChange={validateRegister}
-    >
-      <div className="flex flex-col">
-        <label className="font-bold ml-2 mb-2" htmlFor="">
-          Usuario:
-        </label>
-        <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
-          type="text"
-          value={username}
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-          placeholder="Ingresar Usuario"
-        />
-        <span className="text-red-400 text-[12px] text-center">
-          {errors.username}
-        </span>
-      </div>
-      <div className="flex flex-col">
-        <label className="font-bold ml-2" htmlFor="">
-          Nombre:
-        </label>
-        <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
-          type="text"
-          value={name}
-          onChange={(event) => {
-            setName(event.target.value);
-          }}
-          placeholder="Ingresar Nombre"
-        />
-        <span className="text-red-400 text-[12px] text-center">
-          {errors.name}
-        </span>
-      </div>
-      <div className="flex flex-col">
-        <label className="font-bold ml-2" htmlFor="">
-          Contraseña:
-        </label>
-        <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
-          <input
-            className="rounded-md bg-[#404062] h-7 pl-2 w-full"
-            type={showView === false ? "password" : "text"}
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            placeholder="Ingresar Contraseña"
-          />
-          {showView === false ? (
-            <IoEyeSharp
-              className="pr-2 text-[2rem]"
-              onClick={handlePasswordView}
-            />
-          ) : (
-            <IoEyeOffSharp
-              className="pr-2 text-[2rem]"
-              onClick={handlePasswordView}
-            />
-          )}
-        </div>
-        <span className="text-red-400 text-[12px] text-center">
-          {errors.password}
-        </span>
-      </div>
-      <div className="flex flex-col">
-        <label className="font-bold ml-2" htmlFor="">
-          Correo Electronico:
-        </label>
-        <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
-          type="email"
-          value={email}
-          onChange={handleChangeEmail}
-          placeholder="Ingresar Correo"
-        />
-        <span className="text-red-400 text-[12px] text-center">
-          {errors.email}
-        </span>
-      </div>
-      {refeerred ? (
+    <div className="flex  flex-row justify-around items-center w-screen h-screen">
+      <form
+        className="flex flex-col w-3/4 gap-y-4"
+        onSubmit={handleSubmit}
+        onChange={validateRegister}
+      >
         <div className="flex flex-col">
-          <label className="font-bold ml-2" htmlFor="">
-            Referido:
+          <label className="font-bold ml-2 mb-2" htmlFor="">
+            Usuario:
           </label>
           <input
             className="rounded-md bg-[#404062] h-7 pl-2"
             type="text"
-            value={referred}
+            value={username}
             onChange={(event) => {
-              setReferred(event.target.value);
+              setUsername(event.target.value);
+            }}
+            placeholder="Ingresar Usuario"
+          />
+          <span className="text-red-400 text-[12px] text-center">
+            {errors.username}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <label className="font-bold ml-2" htmlFor="">
+            Nombre:
+          </label>
+          <input
+            className="rounded-md bg-[#404062] h-7 pl-2"
+            type="text"
+            value={name}
+            onChange={(event) => {
+              setName(event.target.value);
             }}
             placeholder="Ingresar Nombre"
-            readOnly
           />
+          <span className="text-red-400 text-[12px] text-center">
+            {errors.name}
+          </span>
         </div>
-      ) : null}
-      <div className="flex flex-col items-center gap-y-4 mt-4">
-        <button
-          className="bg-[#07a1f8] rounded-2xl px-3 text-black"
-          type="submit"
-        >
-          Registrarse
-        </button>
-      </div>
-    </form>
+        <div className="flex flex-col">
+          <label className="font-bold ml-2" htmlFor="">
+            Contraseña:
+          </label>
+          <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
+            <input
+              className="rounded-md bg-[#404062] h-7 pl-2 w-full"
+              type={showView === false ? "password" : "text"}
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              placeholder="Ingresar Contraseña"
+            />
+            {showView === false ? (
+              <IoEyeSharp
+                className="pr-2 text-[2rem]"
+                onClick={handlePasswordView}
+              />
+            ) : (
+              <IoEyeOffSharp
+                className="pr-2 text-[2rem]"
+                onClick={handlePasswordView}
+              />
+            )}
+          </div>
+          <span className="text-red-400 text-[12px] text-center">
+            {errors.password}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <label className="font-bold ml-2" htmlFor="">
+            Correo Electronico:
+          </label>
+          <input
+            className="rounded-md bg-[#404062] h-7 pl-2"
+            type="email"
+            value={email}
+            onChange={handleChangeEmail}
+            placeholder="Ingresar Correo"
+          />
+          <span className="text-red-400 text-[12px] text-center">
+            {errors.email}
+          </span>
+        </div>
+        {refeerred ? (
+          <div className="flex flex-col">
+            <label className="font-bold ml-2" htmlFor="">
+              Referido:
+            </label>
+            <input
+              className="rounded-md bg-[#404062] h-7 pl-2"
+              type="text"
+              value={referred}
+              onChange={(event) => {
+                setReferred(event.target.value);
+              }}
+              placeholder="Ingresar Nombre"
+              readOnly
+            />
+          </div>
+        ) : null}
+        <div className="flex flex-col items-center gap-y-4 mt-4">
+          <button
+            className="bg-[#07a1f8] rounded-2xl px-3 text-black"
+            type="submit"
+          >
+            Registrarse
+          </button>
+        </div>
+      </form>
+      <hr className="border-2 border-[#8F00FF] h-4/6 w-0 mx-4 py-52 rounded-2xl" />
+      <img
+        src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+        alt="logo"
+        className="w-[300px] h-[300px]"
+      />
+    </div>
   );
 }
