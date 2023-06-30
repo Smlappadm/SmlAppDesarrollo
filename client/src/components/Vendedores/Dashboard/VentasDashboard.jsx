@@ -288,7 +288,7 @@ const VentasDashboard = () => {
                         </div>
                       )}
                     </div>
-                    <div className=" w-[17%] flex justify-center items-start p-0">
+                    <div className=" w-[17%] flex justify-center items-center p-0">
                       <div className="w-48 h-11">
                         {item.llamada_venta.contacto ? (
                           <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">

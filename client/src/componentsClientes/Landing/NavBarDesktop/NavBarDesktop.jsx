@@ -11,7 +11,7 @@ export default function NavBarDesktop() {
   console.log(location.pathname);
   return (
     <div className="flex justify-center items-center ">
-      <div className="flex items-center justify-around w-10/12 mt-4 rounded-lg bg-[#363559]">
+      <div className="flex items-center justify-around w-10/12 mt-4 rounded-lg bg-[#D9D9D9] bg-opacity-25">
         <Link to="/clientes-home">
           <img
             className=" w-[5rem]"
@@ -22,44 +22,50 @@ export default function NavBarDesktop() {
 
         <Link
           to="/clientes-home"
-          className={`font-bold hover:text-white ${
-            location.pathname === "/clientes-home" ? "text-[#1C72B2]" : ""
+          className={`font-bold  hover:text-white ${
+            location.pathname === "/clientes-home"
+              ? "text-[#1C72B2]"
+              : "text-white"
           }`}
         >
           Vista General
         </Link>
         <Link
           to="/clientes-trofeos"
-          className={`font-bold hover:text-white ${
-            location.pathname === "/clientes-trofeos" ? "text-[#1C72B2]" : ""
+          className={`font-bold  hover:text-white ${
+            location.pathname === "/clientes-trofeos"
+              ? "text-[#1C72B2]"
+              : "text-white"
           }`}
         >
           Trofeos
         </Link>
         <Link
           to="/clientes-recursos"
-          className={`font-bold hover:text-white ${
-            location.pathname === "/clientes-recursos" ? "text-[#1C72B2]" : ""
+          className={`font-bold  hover:text-white ${
+            location.pathname === "/clientes-recursos"
+              ? "text-black"
+              : "text-white"
           }`}
         >
           Recursos
         </Link>
         <Link
           to="/clientes-experiencia"
-          className={`font-bold hover:text-white ${
+          className={`font-bold  hover:text-white ${
             location.pathname === "/clientes-experiencia"
               ? "text-[#1C72B2]"
-              : ""
+              : "text-white"
           }`}
         >
           Experiencia
         </Link>
         <Link
           to="/clientes-home"
-          className={`font-bold hover:text-white ${
+          className={`font-bold  hover:text-white ${
             location.pathname === "/clientes-contactenos"
               ? "text-[#1C72B2]"
-              : ""
+              : "text-white"
           }`}
         >
           Contactenos
