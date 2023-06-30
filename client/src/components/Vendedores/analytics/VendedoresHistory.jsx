@@ -406,39 +406,39 @@ const VendedoresHistory = () => {
                 >
                   Nombre
                 </button>
-                <button
+                <label
                   className="text-start w-[15%] px-3"
-                  onClick={handlerOpenFilterSector}
+                  // onClick={handlerOpenFilterSector}
                 >
                   Profesión
-                </button>
-                <button
+                </label>
+                <label
                   className="text-start w-[10%] px-3"
-                  onClick={handlerOpenFilterPais}
+                  // onClick={handlerOpenFilterPais}
                 >
                   País
-                </button>
+                </label>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
                 <label className="text-center w-[15%] ">Phone</label>
-                <button
+                <label
                   className="  w-[10%] text-center"
-                  onClick={() => handlerFilter("level")}
+                  // onClick={() => handlerFilter("level")}
                 >
                   Nivel
-                </button>
-                <button
+                </label>
+                <label
                   className="text-center w-[17%]"
-                  onClick={handlerOpenStatus}
+                  // onClick={handlerOpenStatus}
                 >
                   Status
-                </button>
-                <button
+                </label>
+                <label
                   className="text-center w-[3%]"
-                  onClick={handlerOpenStatus}
+                  // onClick={handlerOpenStatus}
                 >
-                  Oper
-                </button>
+                  
+                </label>
               </div>
 
               <div className="">
