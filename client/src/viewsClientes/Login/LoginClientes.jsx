@@ -25,14 +25,23 @@ export default function Home({ tamañoPantalla }) {
   };
 
   return (
-    <div className="w-screen h-screen bg-gradient-to-br from-black via-[#020131]  to-blue-950  flex flex-col justify-center items-center">
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "w-screen h-screen bg-gradient-to-br flex flex-col justify-center items-center"
+          : "w-screen h-screen bg-gradient-to-br flex flex-col justify-center items-center"
+      }
+    >
       <div className="flex flex-col justify-center items-center w-96">
-        <img
-          src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-          alt=""
-          className="w-40 h-40"
-          onClick={handleOpenRegister}
-        />
+        {tamañoPantalla === "Pequeña" ? (
+          <img
+            src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+            alt=""
+            className="w-40 h-40"
+            onClick={handleOpenRegister}
+          />
+        ) : null}
+
         {register === false ? (
           tamañoPantalla === "Pequeña" ? (
             <Login
