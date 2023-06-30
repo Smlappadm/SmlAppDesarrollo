@@ -148,11 +148,11 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
         onChange={validateRegister}
       >
         <div className="flex flex-col">
-          <label className="font-bold ml-2 mb-2" htmlFor="">
+          <label className="font-bold ml-2 mb-2 text-white" htmlFor="">
             Usuario:
           </label>
           <input
-            className="rounded-md bg-[#404062] h-10 pl-2"
+            className="rounded-md bg-[#D9D9D9] bg-opacity-25 h-10 pl-2 text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-75"
             type="text"
             value={username}
             onChange={(event) => {
@@ -165,11 +165,11 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
           </span>
         </div>
         <div className="flex flex-col">
-          <label className="font-bold ml-2" htmlFor="">
+          <label className="font-bold ml-2 text-white" htmlFor="">
             Nombre:
           </label>
           <input
-            className="rounded-md bg-[#404062] h-10 pl-2"
+            className="rounded-md bg-[#D9D9D9] bg-opacity-25 h-10 pl-2 text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-75"
             type="text"
             value={name}
             onChange={(event) => {
@@ -182,10 +182,10 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
           </span>
         </div>
         <div className="flex flex-col">
-          <label className="font-bold ml-2">Contraseña:</label>
-          <div className="flex flex-row rounded-md bg-[#404062] h-10 justify-between items-center">
+          <label className="font-bold ml-2 text-white">Contraseña:</label>
+          <div className="flex flex-row rounded-md bg-[#D9D9D9] h-10 justify-between items-center text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-75 bg-opacity-25">
             <input
-              className="rounded-md bg-[#404062] h-10 pl-2 w-full"
+              className="rounded-md bg-[#D9D9D9] h-10 pl-2 w-full text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-75 bg-opacity-0"
               type={showView === false ? "password" : "text"}
               value={password}
               onChange={(event) => {
@@ -210,11 +210,11 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
           </span>
         </div>
         <div className="flex flex-col">
-          <label className="font-bold ml-2" htmlFor="">
+          <label className="font-bold ml-2 text-white" htmlFor="">
             Correo Electronico:
           </label>
           <input
-            className="rounded-md bg-[#404062] h-10 pl-2"
+            className="rounded-md bg-[#D9D9D9] h-10 pl-2 text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-75 bg-opacity-25"
             type="email"
             value={email}
             onChange={handleChangeEmail}
@@ -226,11 +226,11 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
         </div>
         {refeerred ? (
           <div className="flex flex-col">
-            <label className="font-bold ml-2" htmlFor="">
+            <label className="font-bold ml-2 text-white" htmlFor="">
               Referido:
             </label>
             <input
-              className="rounded-md bg-[#404062] h-10 pl-2"
+              className="rounded-md bg-[#D9D9D9] h-10 pl-2 text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-75 bg-opacity-25 "
               type="text"
               value={referred}
               onChange={(event) => {
