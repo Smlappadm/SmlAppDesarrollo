@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Login from "../../componentsClientes/Login/Login";
 import LoginDesktop from "../../componentsClientes/Login/LoginDesktop";
 import Register from "../../componentsClientes/Login/Register";
+import background from "../../Assets/borde1.png";
+import background2 from "../../Assets/borde2.png";
 
 export default function Home({ tamañoPantalla }) {
   const navigate = useNavigate();
@@ -24,6 +26,24 @@ export default function Home({ tamañoPantalla }) {
     setRegister(!register);
   };
 
+  const styles = () => {
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      return {
+        backgroundImage: `url(${background2})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    }
+  };
+
   return (
     <div
       className={
@@ -31,6 +51,7 @@ export default function Home({ tamañoPantalla }) {
           ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-center items-center"
           : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center"
       }
+      style={styles()}
     >
       <div className="flex flex-col justify-center items-center w-96">
         {tamañoPantalla === "Pequeña" ? (
