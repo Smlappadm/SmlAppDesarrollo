@@ -41,6 +41,7 @@ import Referidos from "./viewsClientes/Referidos/Referidos";
 import TrofeosDesktop from "./componentsClientes/Trofeos/TrofeosDesktop";
 import RecursosDesktop from "./componentsClientes/Recursos/RecursosDesktop";
 import ExperienciaDesktop from "./componentsClientes/ExperienciaDesktop/ExperienciaDesktop";
+import Guiones from "./componentsClientes/Guiones/Guiones";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -188,6 +189,10 @@ function ClerkProviderWithRoutes() {
           path="/clientes-addvideos"
           element={<AddVideos />}
           tamañoPantalla={tamañoPantalla}
+        />
+        <Route
+          path="/clientes-guiones"
+          element={<Guiones tamañoPantalla={tamañoPantalla} />}
         />
         <Route
           path="/clientes-settings"
