@@ -1173,6 +1173,7 @@ setTimeout(() => {
                   <option value="Agendar 2do llamado">
                     Agendar 2do llamado
                   </option>
+                  <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
                 </select>
@@ -1396,7 +1397,7 @@ setTimeout(() => {
                   </div>
                 </div>
               )}
-            {item.status === "Agendar 2do llamado" &&
+            {
               statusObj.status === "Contratado" && (
                 <div className="flex flex-col items-center justify-center gap-7 mt-8">
                   {/* <div className="flex flex-col items-center justify-center gap-5"> */}
