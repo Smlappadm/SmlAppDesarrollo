@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Login from "../../componentsClientes/Login/Login";
+import LoginDesktop from "../../componentsClientes/Login/LoginDesktop";
 import Register from "../../componentsClientes/Login/Register";
-export default function Home() {
+
+export default function Home({ tamañoPantalla }) {
   const navigate = useNavigate();
   const [register, setRegister] = useState(false);
   const [referred, setReferred] = useState("");
@@ -32,10 +34,17 @@ export default function Home() {
           onClick={handleOpenRegister}
         />
         {register === false ? (
-          <Login
-            handleOpenRegister={handleOpenRegister}
-            handleJoin={handleJoin}
-          />
+          tamañoPantalla === "Pequeña" ? (
+            <Login
+              handleOpenRegister={handleOpenRegister}
+              handleJoin={handleJoin}
+            />
+          ) : (
+            <LoginDesktop
+              handleOpenRegister={handleOpenRegister}
+              handleJoin={handleJoin}
+            />
+          )
         ) : (
           <Register
             handleOpenRegister={handleOpenRegister}
