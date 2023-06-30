@@ -24,7 +24,7 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
   //   };
 
   return (
-    <div className="flex">
+    <div className="flex  flex-row justify-evenly items-center w-screen h-full">
       <div className="flex flex-col">
         <div className="flex flex-col items-center gap-y-4 mt-8">
           <SignIn
@@ -72,6 +72,10 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
           </div>
         </div>
       </div>
+      <img
+        src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+        alt=""
+      />
     </div>
   );
 }
