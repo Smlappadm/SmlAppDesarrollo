@@ -11,7 +11,8 @@ import { useUser } from "@clerk/clerk-react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
-import Modal from "./Modal/Modal";
+import ModalHistory from "./Modal/ModalHistory";
+import { ToastContainer, toast } from "react-toastify";
 
 import Nav from "../../Nav/Nav";
 import InputRunner from "./MUI/InputRunner";
@@ -33,15 +34,12 @@ const VendedoresHistory = () => {
   const [filterStatus, setFilterStatus] = useState("");
 
   //copia para ver que onda
-  const { vendedoresDashboard } = useSelector((state) => state);
-  const [showEmail, setShowEmail] = useState(false);
-  const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
   //-------------
   //COSAS COPIADAS
-  const SendLeadAlert = () => {
-    toast.success("✔ Lead Update!", {
+  const SendLeadAlertBaja = () => {
+    toast.info("Lead dado de baja!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -51,10 +49,11 @@ const VendedoresHistory = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
+    // dispatch(getVendedorAllLeads(email));
   };
-  const SendErrorUpdateAlert = () => {
-    toast.error("The lead could not be updated!", {
+
+  const SendErrorUpdateAlertBaja = () => {
+    toast.error("El lead no pudo darse de baja!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -65,6 +64,7 @@ const VendedoresHistory = () => {
       theme: "dark",
     });
   };
+
   const SendIncidenceAlert = () => {
     toast.warn("incidence sent!", {
       position: "top-center",
@@ -78,7 +78,7 @@ const VendedoresHistory = () => {
     });
   };
   const cancelModal = () => {
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
+    dispatch(getVendedorAllLeads(email));
   };
   //----------------------------------
 
@@ -540,11 +540,11 @@ const VendedoresHistory = () => {
                       </div>
                       <div className=" w-[3%] flex justify-start items-start p-0">
                         {item.status === "Contratado" && (
-                          <Modal
+                          <ModalHistory
                             item={item}
-                            SendLeadAlert={SendLeadAlert}
+                            SendLeadAlertBaja={SendLeadAlertBaja}
                             SendIncidenceAlert={SendIncidenceAlert}
-                            SendErrorUpdateAlert={SendErrorUpdateAlert}
+                            SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
                             emailAddress={emailAddress}
                             cancelModal={cancelModal}
                           />
@@ -572,6 +572,7 @@ const VendedoresHistory = () => {
             />
           </div>
         )}
+        <ToastContainer />
       </div>
     </>
   );
