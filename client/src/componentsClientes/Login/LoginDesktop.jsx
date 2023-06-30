@@ -24,9 +24,9 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
   //   };
 
   return (
-    <div className="flex  flex-row justify-evenly items-center w-screen h-full">
+    <div className="flex  flex-row justify-around items-center w-screen h-screen">
       <div className="flex flex-col">
-        <div className="flex flex-col items-center gap-y-4 mt-8">
+        <div className="flex flex-col items-center gap-y-4 mt-8 w-fit h-fit">
           <SignIn
             routing="path"
             path="/sign-in"
@@ -41,7 +41,7 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
               },
               elements: {
                 socialButtonsBlockButton:
-                  "text-white bg-[#404062] m-2 h-14 w-[650px] ",
+                  "text-white bg-[#404062] m-2 h-14 w-[450px] ",
                 formButtonPrimary: "hidden",
                 formFieldInput: "hidden",
                 card: " bg-transparent m-0 p-0 flex items-center justify-center h-[200px] w-[400px]",
@@ -73,9 +73,11 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
           </div>
         </div>
       </div>
+      <hr className="border-2 border-[#8F00FF] h-4/6 w-0 mx-4 py-52 rounded-2xl" />
       <img
         src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-        alt=""
+        alt="logo"
+        className="w-[300px] h-[300px]"
       />
     </div>
   );
