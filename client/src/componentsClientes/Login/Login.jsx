@@ -27,43 +27,6 @@ export default function Login({ handleOpenRegister, handleJoin }) {
 
   return (
     <div className="flex flex-col">
-      {/* <label className="font-bold ml-2 mt-4" htmlFor="">
-        Usuario:
-      </label>
-      <input
-        className="rounded-md bg-[#404062] h-7 pl-2 mt-2"
-        type="text"
-        value={username}
-        onChange={(event) => {
-          setUsername(event.target.value);
-        }}
-        placeholder="Ingresar Usuario"
-      />
-      <label className="font-bold ml-2 mt-6" htmlFor="">
-        Contraseña:
-      </label>
-      <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center mt-2">
-        <input
-          className="rounded-md bg-[#404062] h-7 pl-2 w-full"
-          type={showView === false ? "password" : "text"}
-          value={password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          placeholder="Ingresar Contraseña"
-        />
-        {showView === false ? (
-          <IoEyeSharp
-            className="pr-2 text-[2rem]"
-            onClick={handlePasswordView}
-          />
-        ) : (
-          <IoEyeOffSharp
-            className="pr-2 text-[2rem]"
-            onClick={handlePasswordView}
-          />
-        )}
-      </div> */}
       <div className="flex flex-col items-center gap-y-4 mt-8">
         {/* <button
           className="bg-[#07a1f8] rounded-2xl px-3 text-black"
