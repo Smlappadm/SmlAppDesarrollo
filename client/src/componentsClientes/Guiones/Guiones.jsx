@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
+import AI22 from "../../Assets/AI22.png";
+import next1 from "../../Assets/next1.png";
+import ajustes1 from "../../Assets/ajustes1.png";
+import user1 from "../../Assets/user1.png";
+import SMLlogo from "../../Assets/SMLlogo.png";
+import { Link } from "react-router-dom";
+import { IoCloseSharp } from "react-icons/io5";
+import ProgressBar from "./ProgressBar/ProgressBar";
 
-export default function Guiones({ tamañoPantalla }) {
+export default function Guiones() {
+  const [progress, setProgress] = useState(0);
+
+  const nextProgress = () => {
+    setProgress(progress + 1);
+  };
+  const previousProgress = () => {
+    if (progress > 0) {
+      setProgress(progress - 1);
+    }
+  };
+
   const styles = () => {
-    if (tamañoPantalla === "Pequeña") {
+    if (progress === 0) {
       return {
         backgroundImage: `url(${background2})`,
         backgroundSize: "auto 100%",
@@ -12,18 +31,162 @@ export default function Guiones({ tamañoPantalla }) {
         backgroundRepeat: "no-repeat",
       };
     } else {
-      return {
-        backgroundImage: `url(${background})`,
-        backgroundSize: "auto 100%",
-        backgroundPosition: "left top",
-        backgroundRepeat: "no-repeat",
-      };
+      null;
     }
   };
 
   return (
-    <div className=" flex h-screen w-screen" style={styles()}>
-      Guiones
+    <div
+      className="bg-[#1a1a1a] flex flex-col justify-between items-center h-screen w-screen"
+      style={styles()}
+    >
+      <div className="flex w-10/12 justify-between items-center mt-20">
+        <div className="">
+          <img src={SMLlogo} alt="" />
+        </div>
+        <div className=" flex mb-4 items-end justify-between pt-4">
+          <Link
+            to={"/clientes-home"}
+            className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+          >
+            <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+          </Link>
+        </div>
+      </div>
+
+      {/* Nivel 0 */}
+      {progress === 0 ? (
+        <div className="flex flex-col gap-6">
+          <div
+            onClick={() => nextProgress()}
+            className="flex justify-center mt-6 items-center gap-8"
+          >
+            <div className="text-white font-semibold">Perfil</div>
+            <div className="mb-4">
+              <img src={user1} alt="" />
+            </div>
+          </div>
+          <div className="flex justify-center mb-[7rem] items-center gap-8">
+            <div className="text-white font-semibold">Ajustes</div>
+            <div>
+              <img src={ajustes1} alt="" />
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      {/* Nivel 1 */}
+      {progress === 1 ? (
+        <div className="flex flex-col justify-start h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <div className="text-white font-semibold text-[1.5rem]">
+              Información Básica
+            </div>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col mt-4">
+            <div className="flex flex-col gap-4 mb-4">
+              <div className="text-white font-semibold">Nombre</div>
+              <div className="">
+                <input
+                  className="w-[18rem] p-2 bg-[#282828] rounded-lg"
+                  type="text"
+                  placeholder="Nombre"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="text-white font-semibold">
+                Sector al que perteneces:
+              </div>
+              <div>
+                <div>
+                  <input
+                    className="w-[18rem] p-2 bg-[#282828] rounded-lg"
+                    type="text"
+                    placeholder="Ingrese su Sector"
+                    pa
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+      {/* Nivel 2 */}
+      {progress === 2 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 3 */}
+      {progress === 3 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 4 */}
+      {progress === 4 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 5 */}
+      {progress === 5 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 6 */}
+      {progress === 6 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 7 */}
+      {progress === 7 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 8 */}
+      {progress === 8 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 9 */}
+      {progress === 9 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+      {/* Nivel 10 */}
+      {progress === 10 ? (
+        <div className="flex justify-center items-center">
+          <ProgressBar valor={progress} />
+        </div>
+      ) : null}
+
+      <div className="flex justify-between w-10/12 mb-4">
+        <div>
+          <img src={AI22} alt="" />
+        </div>
+        <div className="flex items-center justify-center gap-5">
+          <div
+            className="transform rotate-180"
+            onClick={() => previousProgress()}
+          >
+            <img src={next1} alt="" />
+          </div>
+
+          {progress === 10 ? null : (
+            <div onClick={() => nextProgress()}>
+              <img src={next1} alt="" />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

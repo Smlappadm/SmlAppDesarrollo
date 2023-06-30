@@ -27,13 +27,13 @@ export default function Recursos({ tamañoPantalla }) {
         <Link
           to={`${client && client.drive}`}
           target={"_blank"}
-          className="flex justify-start items-center border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 py-0.5 rounded-full text-18 w-10/12 h-12"
+          className="flex justify-start items-center  bg-[#CDE1F4] text-[#414142] font-extrabold px-3 py-0.5 rounded-full text-18 w-10/12 h-12"
         >
           <img src={gdPng} alt="icono de Tiktok" className="mx-3 w-8 h-8" />
           Mi Carpeta Drive
         </Link>
       ) : (
-        <Link className="flex justify-start items-center border-2 border-[#07A1F8] bg-gray-500 text-white px-3 py-0.5 rounded-full text-18 w-10/12 h-12">
+        <Link className="flex justify-start items-center   bg-[#E4C9F0] text-[#414142] font-extrabold px-3 py-0.5 rounded-full text-18 w-10/12 h-12">
           <img src={gdPng} alt="icono de Tiktok" className="mx-3 w-8 h-8" />
           Mi Carpeta Drive
         </Link>
@@ -42,13 +42,13 @@ export default function Recursos({ tamañoPantalla }) {
         <Link
           to={`${client && client.instagram}`}
           target={"_blank"}
-          className="flex justify-start items-center border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 py-0.5 rounded-full text-18 w-10/12 h-12"
+          className="flex justify-start items-center   bg-[#CDE1F4] text-[#414142] font-extrabold px-3 py-0.5 rounded-full text-18 w-10/12 h-12"
         >
           <img src={igPng} alt="icono de Tiktok" className="mx-3 w-8 h-8" />
           Mi Instagram
         </Link>
       ) : (
-        <Link className="flex justify-start items-center border-2 border-[#07A1F8] bg-gray-500 text-white px-3 py-0.5 rounded-full text-18 w-10/12 h-12">
+        <Link className="flex justify-start items-center  bg-[#E4C9F0] text-[#414142]  font-extrabold px-3 py-0.5 rounded-full text-18 w-10/12 h-12">
           <img src={igPng} alt="icono de Tiktok" className="mx-3 w-8 h-8" />
           Mi Instagram
         </Link>
@@ -57,13 +57,13 @@ export default function Recursos({ tamañoPantalla }) {
         <Link
           to={`${client && client.tiktok}`}
           target={"_blank"}
-          className="flex justify-start items-center border-2 border-[#07A1F8] bg-[#07A1F8] text-white px-3 py-0.5 rounded-full text-18 w-10/12 h-12"
+          className="flex justify-start items-center   bg-[#CDE1F4] text-[#414142] font-extrabold  px-3 py-0.5 rounded-full text-18 w-10/12 h-12"
         >
           <img src={tkPng} alt="icono de Tiktok" className="mx-3 w-8 h-8" />
           Mi Tiktok
         </Link>
       ) : (
-        <Link className="flex justify-start items-center border-2 border-[#07A1F8] bg-gray-500 text-white px-3 py-0.5 rounded-full text-18 w-10/12 h-12">
+        <Link className="flex justify-start items-center   bg-[#E4C9F0] text-[#414142] font-extrabold px-3 py-0.5 rounded-full text-18 w-10/12 h-12">
           <img src={tkPng} alt="icono de Tiktok" className="mx-3 w-8 h-8" />
           Mi Tiktok
         </Link>

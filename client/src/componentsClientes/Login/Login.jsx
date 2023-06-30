@@ -40,7 +40,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
               socialButtonsPlacement: "top",
             },
             elements: {
-              socialButtonsBlockButton: "text-white bg-[#404062] m-0 ",
+              socialButtonsBlockButton: "text-white bg-[#282828] m-0 ",
               formButtonPrimary: "hidden",
               formFieldInput: "hidden",
               card: " bg-transparent m-0 p-0 flex items-center h-fit shadow-none",
@@ -64,9 +64,14 @@ export default function Login({ handleOpenRegister, handleJoin }) {
           afterSignInUrl="/clientes-home"
         />
 
-        <div className="flex ">
-          <p>¿No tienes cuenta?</p>
-          <button onClick={handleOpenRegister} className="text-black ml-1">
+        <div className="flex flex-col mt-3 absolute bottom-[250px]">
+          <p className="text-white font-extrabold text-[20px]">
+            ¿No tienes cuenta?
+          </p>
+          <button
+            onClick={handleOpenRegister}
+            className="text-[#07A1F8] ml-1 font-extrabold mt-1 text-[20px]"
+          >
             Crea una!
           </button>
         </div>
