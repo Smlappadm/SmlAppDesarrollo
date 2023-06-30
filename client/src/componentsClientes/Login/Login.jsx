@@ -28,12 +28,6 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col items-center gap-y-4 mt-8">
-        {/* <button
-          className="bg-[#07a1f8] rounded-2xl px-3 text-black"
-          onClick={handleSubmit}
-        >
-          Ingresar
-        </button> */}
         <SignIn
           routing="path"
           path="/sign-in"
