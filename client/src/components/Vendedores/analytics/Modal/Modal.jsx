@@ -14,8 +14,10 @@ import {
   AiOutlineConsoleSql,
   AiOutlinePhone,
   AiOutlineUserAdd,
+  AiOutlineEuroCircle
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
+import { BsCurrencyEuro } from "react-icons/bs";
 
 const style = {
   position: "absolute",
@@ -825,7 +827,7 @@ setTimeout(() => {
   return (
     <div className="">
       <div className="flex gap-4">
-        <CiEdit
+        <BsCurrencyEuro
           className="bg-[#6254ff] text-1 text-white w-10 h-8 rounded-md cursor-pointer "
           onClick={handleOpen}
         />
