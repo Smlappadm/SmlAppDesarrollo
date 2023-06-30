@@ -7,6 +7,7 @@ import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos"
 import { getClientByEmail } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
 import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
+import background from "../../Assets/borde1.png";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
@@ -89,6 +90,12 @@ export default function AddVideos() {
           ? "flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10"
           : "flex bg-[#020131]  flex-col gap-2 justify-start items-center h-screen w-screen "
       }
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      }}
     >
       {tamañoPantalla === "Pequeña" ? (
         <div className="flex ">
