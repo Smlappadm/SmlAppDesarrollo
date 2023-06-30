@@ -19,7 +19,17 @@ export default function Header({ numberTotal, setCustomValue, imgInstagram }) {
         <p className="font-bold bottom-0 -right-7 absolute">{(numberTotal / 10000) * 100}%</p>
       </div>
 
-      <div className="flex  justify-center items-start gap-3 pt-4">
+      <div className="flex  justify-center items-start gap-1 pt-4">
+        <Link
+          to="/clientes-guiones"
+          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+        >
+          <AiOutlineVideoCameraAdd
+            className="font-bold"
+            color="#fff"
+            size={24}
+          />
+        </Link>
         <Link
           to="/clientes-addvideos"
           className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
@@ -27,14 +37,14 @@ export default function Header({ numberTotal, setCustomValue, imgInstagram }) {
           <AiOutlineVideoCameraAdd
             className="font-bold"
             color="#fff"
-            size={30}
+            size={24}
           />
         </Link>
         <Link
           to="/clientes-settings"
           className="flex justify-center items-center font-bold pt-0.5 md:pt-0 md:border-2 md:border-[#211f52] md:rounded-lg md:w-8 md:h-8 hover:bg-[#2a286e] "
         >
-          <IoSettingsOutline className="font-bold" color="#fff" size={26} />
+          <IoSettingsOutline className="font-bold" color="#fff" size={24} />
         </Link>
       </div>
     </div>

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SignIn } from "@clerk/clerk-react";
 
-export default function Login({ handleOpenRegister, handleJoin }) {
+export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,6 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   const handlePasswordView = () => {
     setShowView(!showView);
   };
-
   const handleSubmit = async () => {
     const response = await axios.get(`/clientes/username?username=${username}`);
     const client = response.data;
