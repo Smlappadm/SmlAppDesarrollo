@@ -6,7 +6,7 @@ import { useClerk, useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
-
+import background from "../../Assets/borde1.png";
 import Performance from "../../components/Lideres/Employees/Performance/Performance";
 import LandingClientDesktop from "../../componentsClientes/Landing/LandingClientDesktop";
 import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
@@ -156,6 +156,19 @@ export default function Home({ tamañoPantalla }) {
     dispatch(updateClientProfile(userEmail, body));
   };
 
+  const styles = () => {
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div
       className={
@@ -163,6 +176,7 @@ export default function Home({ tamañoPantalla }) {
           ? "flex flex-col items-center bg-[#1A1A1A] w-screen h-full pb-44"
           : "flex flex-col items-center bg-[#020131] w-screen h-screen  pb-44"
       }
+      style={styles()}
     >
       {access ? (
         <>
