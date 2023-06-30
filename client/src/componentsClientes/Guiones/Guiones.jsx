@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import ProgressBar from "./ProgressBar/ProgressBar";
 
-export default function Guiones() {
+export default function Guiones({ tamañoPantalla }) {
   const [progress, setProgress] = useState(0);
 
   const nextProgress = () => {
@@ -23,9 +23,19 @@ export default function Guiones() {
   };
 
   const styles = () => {
-    if (progress === 0) {
+    if (tamañoPantalla === "Pequeña" && progress === 0) {
       return {
         backgroundImage: `url(${background2})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      null;
+    }
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
         backgroundSize: "auto 100%",
         backgroundPosition: "left top",
         backgroundRepeat: "no-repeat",
@@ -87,27 +97,23 @@ export default function Guiones() {
           <div className="flex flex-col mt-4">
             <div className="flex flex-col gap-4 mb-4">
               <div className="text-white font-semibold">Nombre</div>
-              <div className="">
-                <input
-                  className="w-[18rem] p-2 bg-[#282828] rounded-lg"
-                  type="text"
-                  placeholder="Nombre"
-                />
-              </div>
+              <input
+                className="w-[18rem] p-2 bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Nombre"
+              />
             </div>
             <div className="flex flex-col gap-4">
               <div className="text-white font-semibold">
                 Sector al que perteneces:
               </div>
               <div>
-                <div>
-                  <input
-                    className="w-[18rem] p-2 bg-[#282828] rounded-lg"
-                    type="text"
-                    placeholder="Ingrese su Sector"
-                    pa
-                  />
-                </div>
+                <input
+                  className="w-[18rem] p-2 bg-[#282828] rounded-lg"
+                  type="text"
+                  placeholder="Ingrese su Sector"
+                  pa
+                />
               </div>
             </div>
           </div>
@@ -115,8 +121,23 @@ export default function Guiones() {
       ) : null}
       {/* Nivel 2 */}
       {progress === 2 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <div className="text-white font-semibold text-[1.5rem]">
+              Información Básica
+            </div>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col mt-4">
+            <div className="flex flex-col gap-4 mb-4">
+              <div className="text-white font-semibold">¿Cómo ayudas a las personas?</div>
+              <input
+                className="w-[18rem] h-[18rem] p-2 bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Nombre"
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 3 */}
