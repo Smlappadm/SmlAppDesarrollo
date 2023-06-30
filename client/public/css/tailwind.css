@@ -684,6 +684,22 @@ video {
   bottom: 250px;
 }
 
+.top-10 {
+  top: 2.5rem;
+}
+
+.top-12 {
+  top: 3rem;
+}
+
+.top-14 {
+  top: 3.5rem;
+}
+
+.top-16 {
+  top: 4rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -891,6 +907,14 @@ video {
 
 .mt-1 {
   margin-top: 0.25rem;
+}
+
+.mb-\[7rem\] {
+  margin-bottom: 7rem;
+}
+
+.mt-20 {
+  margin-top: 5rem;
 }
 
 .block {
@@ -1351,6 +1375,10 @@ video {
   width: 25%;
 }
 
+.w-\[18rem\] {
+  width: 18rem;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
@@ -1369,6 +1397,11 @@ video {
 
 .-rotate-90 {
   --tw-rotate: -90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-180 {
+  --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1929,6 +1962,11 @@ video {
 .bg-\[\#468866\] {
   --tw-bg-opacity: 1;
   background-color: rgb(70 136 102 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#1a1a1a\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(26 26 26 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-25 {
