@@ -9,19 +9,19 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
   const [password, setPassword] = useState("");
   const [showView, setShowView] = useState(false);
 
-  const handlePasswordView = () => {
-    setShowView(!showView);
-  };
-  const handleSubmit = async () => {
-    const response = await axios.get(`/clientes/username?username=${username}`);
-    const client = response.data;
-    console.log(client);
-    if (username === client.username && password === client.password) {
-      handleJoin();
-    } else {
-      console.log("todo mal");
-    }
-  };
+  //   const handlePasswordView = () => {
+  //     setShowView(!showView);
+  //   };
+  //   const handleSubmit = async () => {
+  //     const response = await axios.get(`/clientes/username?username=${username}`);
+  //     const client = response.data;
+  //     console.log(client);
+  //     if (username === client.username && password === client.password) {
+  //       handleJoin();
+  //     } else {
+  //       console.log("todo mal");
+  //     }
+  //   };
 
   return (
     <div className="flex flex-col">
