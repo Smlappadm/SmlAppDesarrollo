@@ -4,6 +4,6 @@ import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClientes } from "../../redux/actions";
 
-export default function RegisterDesktop() {
+export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
   return <div>RegisterDesktop</div>;
 }
