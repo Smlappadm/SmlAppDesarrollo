@@ -45,6 +45,7 @@ function ChildModal({
   fullName,
   cancelModal,
   setStatusObj,
+  updatedEmailApp
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -110,7 +111,7 @@ function ChildModal({
         province: item.province,
         category: item.category,
         telephone: item.telephone,
-        emailApp: item.emailApp,
+        emailApp: updatedEmailApp,
         url: item.url,
         instagram: item.instagram,
         level: item.level,
@@ -121,7 +122,7 @@ function ChildModal({
         _id: item._id,
         name: item.name,
         email: item.email,
-        emailApp: item.emailApp,
+        emailApp: updatedEmailApp,
         status: statusObj.status,
         status_op: statusObj.status_op,
         pagos: statusObj.pagos,
@@ -139,7 +140,7 @@ function ChildModal({
       status: statusObj.status,
       status_op: statusObj.status_op,
       pagos: statusObj.pagos,
-      emailApp: item.emailApp,
+      emailApp: updatedEmailApp,
       // vendedor: emailAddress,
       vendedor: emailAddress,
       vendedor_name: fullName,
@@ -1553,6 +1554,7 @@ setTimeout(() => {
               fullName={fullName}
               cancelModal={cancelModal}
               setStatusObj={setStatusObj}
+              updatedEmailApp={updatedEmailApp}
             />
           </div>
         </Box>
