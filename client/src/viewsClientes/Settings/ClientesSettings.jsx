@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
+import background from "../../Assets/borde1.png";
 
 export default function ClientesSettings({ tamañoPantalla }) {
   const [profileSetting, setProfileSetting] = useState(false);
@@ -34,6 +35,18 @@ export default function ClientesSettings({ tamañoPantalla }) {
   const handleProfileSetting = () => {
     setProfileSetting(!profileSetting);
   };
+  const styles = () => {
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div
@@ -42,6 +55,7 @@ export default function ClientesSettings({ tamañoPantalla }) {
           ? " bg-[#1A1A1A] w-screen h-screen"
           : " bg-[#020131] w-screen h-screen"
       }
+      style={styles()}
     >
       {tamañoPantalla === "Grande" ? (
         <div className="w-full h-1/6">
