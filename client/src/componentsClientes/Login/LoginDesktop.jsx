@@ -40,11 +40,12 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
                 socialButtonsPlacement: "top",
               },
               elements: {
-                socialButtonsBlockButton: "text-white bg-[#404062] m-0 ",
+                socialButtonsBlockButton:
+                  "text-white bg-[#404062] m-2 h-14 w-[650px] ",
                 formButtonPrimary: "hidden",
                 formFieldInput: "hidden",
-                card: " bg-transparent m-0 p-0 flex items-center h-fit",
-                main: "flex flex-col p-0 m-0  w-3/4 bg-transparent",
+                card: " bg-transparent m-0 p-0 flex items-center justify-center h-[200px] w-[400px]",
+                main: "flex flex-col p-0 m-0  w-fit bg-transparent items-center justify-center gap-4",
                 form: "hidden",
                 formField: "hidden",
                 dividerRow: "hidden",
