@@ -26,17 +26,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   };
 
   return (
-    <div
-      className="flex flex-col"
-      // style={{
-      //   animation: "custom-bounce 2s",
-      //   "@keyframes custom-bounce": {
-      //     "0%": { transform: "translateY(0)" },
-      //     "50%": { transform: "translateY(-20px)" },
-      //     "100%": { transform: "translateY(0)" },
-      //   },
-      // }}
-    >
+    <div className="flex flex-col">
       {/* <label className="font-bold ml-2 mt-4" htmlFor="">
         Usuario:
       </label>
