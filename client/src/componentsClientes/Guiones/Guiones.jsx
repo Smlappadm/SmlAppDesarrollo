@@ -9,6 +9,8 @@ import SMLlogo from "../../Assets/SMLlogo.png";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import ProgressBar from "./ProgressBar/ProgressBar";
+import HandleGuion from "./MUI/HandleGuion";
+import HandleParametros from "./MUI/HandleParametros";
 
 export default function Guiones({ tamañoPantalla }) {
   const [progress, setProgress] = useState(0);
@@ -144,26 +146,90 @@ export default function Guiones({ tamañoPantalla }) {
       ) : null}
       {/* Nivel 3 */}
       {progress === 3 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Información Avanzada
+            </p>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col mt-4 h-full">
+            <div className="flex flex-col gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Qué problema tienes?
+              </p>
+              <textarea
+                className="w-[18rem] h-full p-2 text-white bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Describe que problemas tienes..."
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 4 */}
       {progress === 4 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Información Avanzada
+            </p>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col mt-4 h-full">
+            <div className="flex flex-col gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Qué deseas conseguir?
+              </p>
+              <textarea
+                className="w-[18rem] h-full p-2 text-white bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Describe que deseas conseguir..."
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 5 */}
       {progress === 5 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start w-10/12 h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Información Avanzada
+            </p>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col items-center justify-center mt-4 h-full">
+            <div className="flex flex-col items-center justify-center gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Qué vas a conseguir gracias a tu contenido?
+              </p>
+              <textarea
+                className="w-[18rem] h-full p-2 text-white bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Describe que deseas conseguir..."
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 6 */}
       {progress === 6 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start w-10/12 h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Crear Guión
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center mt-4 h-full">
+            <div className="flex flex-col items-center justify-center gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Qué vas a conseguir gracias a tu contenido?
+              </p>
+              <HandleGuion />
+              <HandleParametros />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 7 */}
