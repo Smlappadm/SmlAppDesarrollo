@@ -84,20 +84,29 @@ export default function Guiones() {
             </div>
             <ProgressBar valor={progress} />
           </div>
-          <div className="flex flex-col mt-4 w-10/12 justify-center items-center">
-            <div className="flex flex-col gap-4 w-10/12 justify-center items-center mb-4">
+          <div className="flex flex-col mt-4">
+            <div className="flex flex-col gap-4 mb-4">
               <div className="text-white font-semibold">Nombre</div>
-              <div className="w-10/12">
-                <input className="w-10/12" type="text" placeholder="Nombre" />
+              <div className="">
+                <input
+                  className="w-[18rem] p-2 bg-[#282828] rounded-lg"
+                  type="text"
+                  placeholder="Nombre"
+                />
               </div>
             </div>
-            <div>
+            <div className="flex flex-col gap-4">
               <div className="text-white font-semibold">
                 Sector al que perteneces:
               </div>
               <div>
                 <div>
-                  <input type="text" placeholder="Ingrese su Sector" />
+                  <input
+                    className="w-[18rem] p-2 bg-[#282828] rounded-lg"
+                    type="text"
+                    placeholder="Ingrese su Sector"
+                    pa
+                  />
                 </div>
               </div>
             </div>
