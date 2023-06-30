@@ -82,7 +82,18 @@ export default function AddVideos() {
       },
     });
   };
-
+  const styles = () => {
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      return null;
+    }
+  };
   return (
     <div
       className={
@@ -90,12 +101,7 @@ export default function AddVideos() {
           ? "flex bg-[#1A1A1A]  flex-col gap-2 justify-start items-center h-screen w-screen pt-10"
           : "flex bg-[#020131]  flex-col gap-2 justify-start items-center h-screen w-screen "
       }
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundSize: "auto 100%",
-        backgroundPosition: "left top",
-        backgroundRepeat: "no-repeat",
-      }}
+      style={styles()}
     >
       {tamañoPantalla === "Pequeña" ? (
         <div className="flex ">
