@@ -6,6 +6,7 @@ import Register from "../../componentsClientes/Login/Register";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import RegisterDesktop from "../../componentsClientes/Login/RegisterDesktop";
+import logo from "../../Assets/SMLlogo.png";
 
 export default function Home({ tamañoPantalla }) {
   const navigate = useNavigate();
@@ -57,9 +58,9 @@ export default function Home({ tamañoPantalla }) {
       <div className="flex flex-col justify-center items-center w-screen">
         {tamañoPantalla === "Pequeña" ? (
           <img
-            src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+            src={logo}
             alt=""
-            className="w-40 h-40 absolute left-3 top-3"
+            className="w-24 h-24 absolute left-3 top-16"
             onClick={handleOpenRegister}
           />
         ) : null}
