@@ -8,13 +8,14 @@ import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
+// import toast, { Toaster } from 'react-hot-toast';
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
 import {
   AiOutlineConsoleSql,
   AiOutlinePhone,
   AiOutlineUserAdd,
-  AiOutlineEuroCircle
+  AiOutlineEuroCircle,
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { BsCurrencyEuro } from "react-icons/bs";
@@ -34,12 +35,12 @@ const style = {
 };
 
 //************************************************************************************************ */
-function ChildModal({
+function ChildModalHistory({
   item,
   setOpen,
   statusObj,
-  SendLeadAlert,
-  SendErrorUpdateAlert,
+  SendLeadAlertBaja,
+  SendErrorUpdateAlertBaja,
   updateLeads,
   llamadoVenta,
   handleLlamadoVentaChange,
@@ -77,101 +78,109 @@ function ChildModal({
     setOpenChild(false);
   };
 
-  const handleUpdate = () => {
-    if (
-      statusObj.status === "Agendar 2do llamado" ||
-      statusObj.status === "Agendar otro llamado"
-    ) {
-      statusObj.status = "Agendar 2do llamado";
-      (statusObj.emailApp = item.emailApp),
-        (statusObj.status_op = llamadoVenta.diaHora);
-      statusObj.llamada_venta = {
-        dia_hora: llamadoVenta.diaHora,
-        contacto: llamadoVenta.contacto,
-        observaciones: llamadoVenta.observaciones,
-        dateObject: {
-          hora: llamadoVenta.hora,
-          minutos: llamadoVenta.minutos,
-          dia: llamadoVenta.dia,
-          mes: llamadoVenta.mes,
-          year: llamadoVenta.year,
-        },
-      };
+  
+  const handleUpdate = async() => {
+    // if (
+    //   statusObj.status === "Agendar 2do llamado" ||
+    //   statusObj.status === "Agendar otro llamado"
+    // ) {
+    //   statusObj.status = "Agendar 2do llamado";
+    //   (statusObj.emailApp = item.emailApp),
+    //     (statusObj.status_op = llamadoVenta.diaHora);
+    //   statusObj.llamada_venta = {
+    //     dia_hora: llamadoVenta.diaHora,
+    //     contacto: llamadoVenta.contacto,
+    //     observaciones: llamadoVenta.observaciones,
+    //     dateObject: {
+    //       hora: llamadoVenta.hora,
+    //       minutos: llamadoVenta.minutos,
+    //       dia: llamadoVenta.dia,
+    //       mes: llamadoVenta.mes,
+    //       year: llamadoVenta.year,
+    //     },
+    //   };
+    // }
+
+    // let dataVendedor = {};
+    // if (statusObj.status === "No responde") {
+    //   // statusObj.status_op = "";
+    //   dataVendedor = {
+    //     _id: item._id,
+    //     name: item.name,
+    //     email: item.email,
+    //     status: statusObj.status,
+    //     status_op: statusObj.status_op,
+    //     llamada_venta: statusObj.llamada_venta,
+    //     province: item.province,
+    //     category: item.category,
+    //     telephone: item.telephone,
+    //     emailApp: item.emailApp,
+    //     url: item.url,
+    //     instagram: item.instagram,
+    //     level: item.level,
+    //   };
+    // } else {
+    //   // statusObj.status_op = "";
+    //   dataVendedor = {
+    //     _id: item._id,
+    //     name: item.name,
+    //     email: item.email,
+    //     emailApp: item.emailApp,
+    //     status: statusObj.status,
+    //     status_op: statusObj.status_op,
+    //     pagos: statusObj.pagos,
+    //     llamada_venta: statusObj.llamada_venta,
+    //     province: item.province,
+    //     category: item.category,
+    //     telephone: item.telephone,
+    //     url: item.url,
+    //     instagram: item.instagram,
+    //     level: item.level,
+    //   };
+    // }
+
+    // const dataLead = {
+    //   status: statusObj.status,
+    //   status_op: statusObj.status_op,
+    //   pagos: statusObj.pagos,
+    //   emailApp: item.emailApp,
+    //   // vendedor: emailAddress,
+    //   vendedor: emailAddress,
+    //   vendedor_name: fullName,
+    //   llamados: item.llamados,
+    //   llamada_venta: statusObj.llamada_venta,
+    // };
+
+    // const dataUpdate = {
+    //   dataLead,
+    //   dataVendedor,
+    // };
+
+    // axios
+    //   .put(`/lead/vendedor/${item._id}`, dataUpdate)
+    //   .then((response) => {
+    //     // Si la respuesta es exitosa, redirige a otra página
+
+    //     if (response.data.title) {
+    //       updateLeads();
+    //       setOpen(false);
+    //     }
+    //     SendLeadAlert();
+    //   })
+    //   .catch((error) => {
+    //     // Si hay un error, muestra un mensaje de error
+    //     SendErrorUpdateAlert();
+    //   });
+    // statusObj.status = "";
+    try {
+      const body = { deleted: true };
+      const response = await axios.put(`/lead/changeemail/${item._id}`, body);
+      SendLeadAlertBaja();
+    } catch (error) {
+      SendErrorUpdateAlertBaja();
     }
-
-    let dataVendedor = {};
-    if (statusObj.status === "No responde") {
-      // statusObj.status_op = "";
-      dataVendedor = {
-        _id: item._id,
-        name: item.name,
-        email: item.email,
-        status: statusObj.status,
-        status_op: statusObj.status_op,
-        llamada_venta: statusObj.llamada_venta,
-        province: item.province,
-        category: item.category,
-        telephone: item.telephone,
-        emailApp: item.emailApp,
-        url: item.url,
-        instagram: item.instagram,
-        level: item.level,
-      };
-    } else {
-      // statusObj.status_op = "";
-      dataVendedor = {
-        _id: item._id,
-        name: item.name,
-        email: item.email,
-        emailApp: item.emailApp,
-        status: statusObj.status,
-        status_op: statusObj.status_op,
-        pagos: statusObj.pagos,
-        llamada_venta: statusObj.llamada_venta,
-        province: item.province,
-        category: item.category,
-        telephone: item.telephone,
-        url: item.url,
-        instagram: item.instagram,
-        level: item.level,
-      };
-    }
-
-    const dataLead = {
-      status: statusObj.status,
-      status_op: statusObj.status_op,
-      pagos: statusObj.pagos,
-      emailApp: item.emailApp,
-      // vendedor: emailAddress,
-      vendedor: emailAddress,
-      vendedor_name: fullName,
-      llamados: item.llamados,
-      llamada_venta: statusObj.llamada_venta,
-    };
-
-    const dataUpdate = {
-      dataLead,
-      dataVendedor,
-    };
-
-    axios
-      .put(`/lead/vendedor/${item._id}`, dataUpdate)
-      .then((response) => {
-        // Si la respuesta es exitosa, redirige a otra página
-
-        if (response.data.title) {
-          updateLeads();
-          setOpen(false);
-        }
-        SendLeadAlert();
-      })
-      .catch((error) => {
-        // Si hay un error, muestra un mensaje de error
-        SendErrorUpdateAlert();
-      });
     setOpenChild(false);
     setOpen(false);
-    statusObj.status = "";
   };
 
   const handleCancel = () => {
@@ -184,17 +193,17 @@ function ChildModal({
       <div className="flex justify-around items-center relative">
         <button
           type="button"
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-[#161616] dark:hover:bg-[#1f1f1f] focus:outline-none dark:focus:ring-blue-800"
+          onClick={handleOpen}
+        >
+          Solicitar Baja
+        </button>
+        <button
+          type="button"
           className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           onClick={handleCancel}
         >
           Close x
-        </button>
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          onClick={handleOpen}
-        >
-          Save Changes
         </button>
       </div>
       <Modal
@@ -206,7 +215,7 @@ function ChildModal({
         <Box
           sx={{
             ...style,
-            width: 500,
+            width: 400,
             borderRadius: 5,
             backgroundColor: "#39394B",
             display: "flex",
@@ -215,8 +224,8 @@ function ChildModal({
             alignContent: "center",
           }}
         >
-          <h2 id="child-modal-title" className="text-white text-center">
-            Update the lead?
+          <h2 id="child-modal-title" className="text-white text-center mb-5 ">
+            Deseas dar de baja al cliente?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -228,7 +237,7 @@ function ChildModal({
             </button>
             <button
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              className="text-[#bbbaba] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
               Yes
@@ -463,9 +472,9 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
 
 export default function NestedModal({
   item,
-  SendLeadAlert,
+  SendLeadAlertBaja,
   SendIncidenceAlert,
-  SendErrorUpdateAlert,
+  SendErrorUpdateAlertBaja,
   updateLeads,
   emailAddress,
   fullName,
@@ -476,6 +485,7 @@ export default function NestedModal({
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
+  const [openAlertError, setOpenAlertError] = React.useState(false);
 
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
@@ -496,10 +506,6 @@ export default function NestedModal({
   const [editEmailApp, setEditEmailApp] = React.useState(false);
   const [inputEmailApp, setInputEmailApp] = React.useState(item.emailApp);
   const [updatedEmailApp, setUpdatedEmailApp] = React.useState(item.emailApp);
-
-  const [pagoCalculo, setPagoCalculo] = React.useState({
-    precio: 0,
-  });
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -610,12 +616,7 @@ export default function NestedModal({
   const setDateTime = () => {
     setOpenTimeHour(!openTimeHour);
   };
-  const closeDateHour = () => {
-    setOpenTimeHour(false);
-  };
-  const changeTime = async (date) => {
-    await setDateHour({ ...date });
-  };
+
   const handleLlamadoVentaChange = (event) => {
     if (event) {
       const value = event.target.value;
@@ -660,10 +661,16 @@ export default function NestedModal({
   };
 
   const SendEmailLeadAlert = (texto) => {
-  setOpenAlert(true);
-setTimeout(() => {
-  setOpenAlert(false);
-}, 3000);
+    setOpenAlert(true);
+    setTimeout(() => {
+      setOpenAlert(false);
+    }, 3000);
+  };
+  const SendEmailLeadAlertError = (texto) => {
+    setOpenAlertError(true);
+    setTimeout(() => {
+      setOpenAlertError(false);
+    }, 3000);
   };
 
   //EDITAR DATOS EMAIL
@@ -677,11 +684,15 @@ setTimeout(() => {
     setInputEmail(event.target.value);
   };
   const handleConfirmEditEmail = async (id) => {
-    const body = { email: inputEmail };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedEmail(response.data.email);
+    try {
+      const body = { email: inputEmail };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedEmail(response.data.email);
+      SendEmailLeadAlert("Email");
+    } catch (error) {
+      SendEmailLeadAlertError("Email")
+    }
     setEditEmail(false);
-    SendEmailLeadAlert("Email");
   };
 
   //EDITAR DATOS Instagram
@@ -695,11 +706,16 @@ setTimeout(() => {
     setInputInstagram(event.target.value);
   };
   const handleConfirmEditInstagram = async (id) => {
-    const body = { instagram: inputInstagram };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedInstagram(response.data.instagram);
+    try {
+      const body = { instagram: inputInstagram };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedInstagram(response.data.instagram);
+      SendEmailLeadAlert("Instagram");
+    } catch (error) {
+      SendEmailLeadAlertError("Instagram")
+    }
+    
     setEditInstagram(false);
-    SendEmailLeadAlert("Instagram");
   };
 
   //EDITAR DATOS Phone
@@ -713,11 +729,16 @@ setTimeout(() => {
     setInputTelephone(event.target.value);
   };
   const handleConfirmEditTelephone = async (id) => {
-    const body = { telephone: inputTelephone };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedTelephone(response.data.telephone);
+    try {
+      const body = { telephone: inputTelephone };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedTelephone(response.data.telephone);
+      SendEmailLeadAlert("Phone");
+    } catch (error) {
+      SendEmailLeadAlertError("Phone")
+    }
+    
     setEditTelephone(false);
-    SendEmailLeadAlert("Phone");
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
@@ -730,18 +751,23 @@ setTimeout(() => {
     setInputEmailApp(event.target.value);
   };
   const handleConfirmEditEmailApp = async (id) => {
-    const body = { emailApp: inputEmailApp };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedEmailApp(response.data.emailApp);
+    try {
+      const body = { emailApp: inputEmailApp };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedEmailApp(response.data.emailApp);
+      SendEmailLeadAlert("Email App");
+      
+    } catch (error) {
+      SendEmailLeadAlertError("Email App")
+    }
     setEditEmailApp(false);
-    SendEmailLeadAlert("Email App");
   };
 
   return (
     <div className="">
       <div className="flex gap-4">
         <BsCurrencyEuro
-          className="bg-[#6254ff] text-1 text-white w-10 h-8 rounded-md cursor-pointer "
+          className="bg-[#468866] text-1 text-white w-10 h-8 rounded-md cursor-pointer py-1 "
           onClick={handleOpen}
         />
       </div>
@@ -761,15 +787,35 @@ setTimeout(() => {
             justifyContent: "space-between",
           }}
         >
-          <div className="w-full flex justify-center items-center mt-2 mb-10">
+          <div className="w-full flex justify-center items-center mt-2">
             {openAlert && (
               <motion.div
-              initial={{ opacity: 0, x: "-20px" }}
-              whileInView={{ x: "0px", opacity: 1}}
-              transition={{ duration: 1, delay: 0.1, type: "spring", bounce: 0.6 }}
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
                 <label>✔ Lead Updated!</label>
+              </motion.div>
+            )}
+            {openAlertError && (
+              <motion.div
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
+                className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label className=" text-white">❌ Update Error!</label>
               </motion.div>
             )}
             <div className="w-full flex flex-col justify-center items-center">
@@ -953,344 +999,50 @@ setTimeout(() => {
               </div>
             </div>
           </div>
+          <div className="flex flex-col justify-center items-center w-full my-10 gap-1 ">
+            <h1 className="text-14 text-white mb-3">- ESTADO DE CUENTA -</h1>
+            <div className="gap-3 flex flex-col justify-center items-center w-56 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              
+              <div className="w-48 flex justify-start items-center">
+              <h3 className="w-36">Valor servicio:</h3>
+              <h3>{`€${item.pagos.monto}`} </h3>
+
+              </div>
+              <div className="w-48 flex justify-start items-center">
+              <h3 className="w-36">Cantidad cuotas:</h3>
+              <h3>{`${item.pagos.cuotas}`}</h3>
+              
+              </div>
+              <div className="w-48 flex justify-start items-center">
+              <h3 className="w-36">Valor cuotas:</h3>
+              <h3>{`€${item.pagos.valorCuota}`}</h3>
+              </div>
+              <div className="w-48 flex justify-start items-center">
+              <h3 className="w-36">Pagos realizados:</h3>
+              <h3>{`${item.pagos.cuotasPagadas}/${item.pagos.cuotas}`}</h3>
+              </div>
+            </div>
+          </div>
 
           <div className=" h-fit flex items-center justify-start flex-col mb-10">
             <div className="">
-              <label
-                htmlFor="countries"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Status
-              </label>
-              {item.status !== "Agendar 2do llamado" ? (
-                <select
-                  onChange={handleSelectChange}
-                  name="status"
-                  defaultValue={statusObj.status}
-                  id="select1"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option value="Sin contactar">Sin Contactar</option>
-                  <option value="Agendar 2do llamado">
-                    Agendar 2do llamado
-                  </option>
-                  <option value="Contratado">Contratado</option>
-                  <option value="Rechazado">Rechazado</option>
-                  <option value="No responde">No Responde</option>
-                </select>
-              ) : (
-                <select
-                  onChange={handleSelectChange}
-                  name="status"
-                  defaultValue="default"
-                  id="select1"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled="disabled" value="default">
-                    Elige uno...
-                  </option>
-                  <option value="Agendar otro llamado">
-                    Agendar otro llamado
-                  </option>
-                  <option value="Contratado">Contratado</option>
-                  <option value="Rechazado">Rechazado</option>
-                  <option value="No responde">No Responde</option>
-                </select>
-              )}
+              <div className="">
+                <ChildModalHistory
+                  item={item}
+                  statusObj={statusObj}
+                  llamadoVenta={llamadoVenta}
+                  setOpen={setOpen}
+                  SendLeadAlertBaja={SendLeadAlertBaja}
+                  SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
+                  handleLlamadoVentaChange={handleLlamadoVentaChange}
+                  updateLeads={updateLeads}
+                  emailAddress={emailAddress}
+                  fullName={fullName}
+                  cancelModal={cancelModal}
+                  setStatusObj={setStatusObj}
+                />
+              </div>
             </div>
-            {statusObj.status === "Rechazado" && (
-              <div className="m-5">
-                <label
-                  htmlFor="Motivo"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Motivo
-                </label>
-                <select
-                  id="Motivo"
-                  onChange={handleSelectChange}
-                  name="status_op"
-                  defaultValue={
-                    statusObj.status_op ? statusObj.status_op : "default"
-                  }
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled="disabled" value="default">
-                    Elige uno...
-                  </option>
-                  <option value="Sin dinero">Sin Dinero</option>
-                  <option value="Sin interes">Sin Interes</option>
-                  <option value="Otro servicio">Otro Servicio</option>
-                </select>
-              </div>
-            )}
-            {(item.status === "Sin contactar" ||
-              item.status === "No responde") &&
-              statusObj.status === "Agendar 2do llamado" && (
-                <div className="flex flex-col justify-center items-center mt-5 ">
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    Contacto
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="contacto"
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                  </div>
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
-                  >
-                    Observaciones
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <textarea
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="observaciones"
-                      value={llamadoVenta.observaciones}
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                  </div>
-                  <div className="flex items-center justify-center gap-2 mt-8">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="status_op"
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      value={
-                        dateHour.$D
-                          ? `Dia: ${dateHour.$D}/${dateHour.$M}/${
-                              dateHour.$y
-                            } Hora: ${
-                              dateHour.$H && String(dateHour.$H).length === 1
-                                ? `0${dateHour.$H}`
-                                : dateHour.$H
-                            }:${
-                              dateHour.$m && String(dateHour.$m).length === 1
-                                ? `0${dateHour.$m}`
-                                : dateHour.$m
-                            }`
-                          : "Fecha y Hora"
-                      }
-                      disabled
-                      required
-                    />
-                    <a
-                      type="button"
-                      className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                      href="https://calendly.com/event_types/user/me"
-                      target="_blank"
-                    >
-                      Calendly
-                    </a>
-
-                    <CiEdit
-                      onClick={setDateTime}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    />
-                  </div>
-                </div>
-              )}
-            {item.status === "Agendar 2do llamado" &&
-              statusObj.status === "Agendar otro llamado" && (
-                <div className="flex flex-col justify-center items-center mt-5 ">
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    Contacto
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="contacto"
-                      // defaultValue={item.llamada_venta.contacto}
-                      value={
-                        llamadoVenta.contacto
-                          ? llamadoVenta.contacto
-                          : item.llamada_venta.contacto
-                      }
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
-                      placeholder=""
-                      // value="USD"
-                      required
-                    />
-                  </div>
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
-                  >
-                    Observaciones
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <textarea
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="observaciones"
-                      value={
-                        llamadoVenta.observaciones
-                          ? llamadoVenta.observaciones
-                          : item.llamada_venta.observaciones
-                      }
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      // value="USD"
-                      required
-                    />
-                  </div>
-                  <div className="flex items-center justify-center gap-2 mt-8">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="status_op"
-                      // defaultValue={item.status_op}
-                      // value={llamadoVenta.diaHora}
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      value={
-                        dateHour.$D
-                          ? `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${
-                              dateHour.$y
-                            } Hora: ${
-                              dateHour.$H && String(dateHour.$H).length === 1
-                                ? `0${dateHour.$H}`
-                                : dateHour.$H
-                            }:${
-                              dateHour.$m && String(dateHour.$m).length === 1
-                                ? `0${dateHour.$m}`
-                                : dateHour.$m
-                            }`
-                          : "Fecha y Hora"
-                      }
-                      disabled
-                      required
-                    />
-
-                    <a
-                      type="button"
-                      className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                      href="https://calendly.com/event_types/user/me"
-                      target="_blank"
-                    >
-                      Calendly
-                    </a>
-                    <CiEdit
-                      onClick={setDateTime}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    />
-                  </div>
-                </div>
-              )}
-            {
-              statusObj.status === "Contratado" && (
-                <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                  {/* <div className="flex flex-col items-center justify-center gap-5"> */}
-                  <div className="flex items-center justify-center gap-2 relative">
-                    <label
-                      htmlFor="last_name"
-                      className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                    >
-                      €
-                    </label>
-                    <input
-                      onChange={handleSelectChangeContratado}
-                      type="text"
-                      id="last_name"
-                      name="monto"
-                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
-                      placeholder="Monto"
-                      // value="USD"
-                      required
-                    />
-                    <label
-                      htmlFor="last_name"
-                      className="  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                    >
-                      /
-                    </label>
-                    <input
-                      onChange={handleSelectChangeContratado}
-                      type="text"
-                      id="last_name"
-                      name="cuotas"
-                      // defaultValue={item.status_op}
-                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
-                      placeholder="Cuotas"
-                      // value="USD"
-                      required
-                    />
-                  </div>
-
-                  <p
-                    type="text"
-                    id="last_name"
-                    name="total"
-                    // defaultValue={item.status_op}
-                    disabled={true}
-                    className={
-                      statusObj.pagos.monto && statusObj.pagos.cuotas
-                        ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        : ""
-                    }
-                    // placeholder={item.email}
-                    placeholder=""
-                    // value="USD"
-                  >
-                    {statusObj.pagos.monto &&
-                      statusObj.pagos.cuotas &&
-                      `${statusObj.pagos.cuotas} pagos de €${(
-                        statusObj.pagos.monto / statusObj.pagos.cuotas
-                      ).toFixed(2)}`}
-                  </p>
-                </div>
-              )}
-            {item.llamados > 0 && statusObj.status === "No responde" && (
-              <div className="flex flex-col justify-center items-center mt-5">
-                <div className="flex justify-center items-center flex-col">
-                  <p htmlFor="" className="text-white m-2">
-                    {`Llamados: ${item.llamados}`}
-                  </p>
-                  {formattedUpdate()}
-                </div>
-              </div>
-            )}
-          </div>
-
-
-          <div className="">
-            <ChildModal
-              item={item}
-              statusObj={statusObj}
-              llamadoVenta={llamadoVenta}
-              setOpen={setOpen}
-              SendLeadAlert={SendLeadAlert}
-              SendErrorUpdateAlert={SendErrorUpdateAlert}
-              handleLlamadoVentaChange={handleLlamadoVentaChange}
-              updateLeads={updateLeads}
-              emailAddress={emailAddress}
-              fullName={fullName}
-              cancelModal={cancelModal}
-              setStatusObj={setStatusObj}
-            />
           </div>
         </Box>
       </Modal>
