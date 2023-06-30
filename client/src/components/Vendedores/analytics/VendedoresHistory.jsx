@@ -11,6 +11,7 @@ import { useUser } from "@clerk/clerk-react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
+import Modal from "./Modal/Modal";
 
 import Nav from "../../Nav/Nav";
 import InputRunner from "./MUI/InputRunner";
@@ -30,6 +31,56 @@ const VendedoresHistory = () => {
   const [filterSector, setFilterSector] = useState("");
   const [filterPais, setFilterPais] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
+
+  //copia para ver que onda
+  const { vendedoresDashboard } = useSelector((state) => state);
+  const [showEmail, setShowEmail] = useState(false);
+  const fullName = user?.fullName;
+  localStorage.setItem("email", email);
+  let emailAddress = localStorage.getItem("email");
+  //-------------
+  //COSAS COPIADAS
+  const SendLeadAlert = () => {
+    toast.success("✔ Lead Update!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
+  };
+  const SendErrorUpdateAlert = () => {
+    toast.error("The lead could not be updated!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const SendIncidenceAlert = () => {
+    toast.warn("incidence sent!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const cancelModal = () => {
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
+  };
+  //----------------------------------
 
   useEffect(() => {
     dispatch(getVendedorAllLeads(email));
@@ -340,7 +391,10 @@ const VendedoresHistory = () => {
           </div>
 
           <div className="flex justify-center items-center mb-14">
-            <InputRunner getVendedorAllLeads={getVendedorAllLeads} emailUser={email}/>
+            <InputRunner
+              getVendedorAllLeads={getVendedorAllLeads}
+              emailUser={email}
+            />
           </div>
 
           {currentCard && currentCard.length ? (
@@ -374,10 +428,16 @@ const VendedoresHistory = () => {
                   Nivel
                 </button>
                 <button
-                  className="text-center w-[20%]"
+                  className="text-center w-[17%]"
                   onClick={handlerOpenStatus}
                 >
                   Status
+                </button>
+                <button
+                  className="text-center w-[3%]"
+                  onClick={handlerOpenStatus}
+                >
+                  Oper
                 </button>
               </div>
 
@@ -450,7 +510,7 @@ const VendedoresHistory = () => {
                           </div>
                         )}
                       </div>
-                      <div className=" w-[20%] flex justify-center items-start p-0">
+                      <div className=" w-[17%] flex justify-center items-start p-0">
                         {item.status === "Contratado" && (
                           <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                             Contratado
@@ -476,6 +536,18 @@ const VendedoresHistory = () => {
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
                             Incidencia
                           </p>
+                        )}
+                      </div>
+                      <div className=" w-[3%] flex justify-start items-start p-0">
+                        {item.status === "Contratado" && (
+                          <Modal
+                            item={item}
+                            SendLeadAlert={SendLeadAlert}
+                            SendIncidenceAlert={SendIncidenceAlert}
+                            SendErrorUpdateAlert={SendErrorUpdateAlert}
+                            emailAddress={emailAddress}
+                            cancelModal={cancelModal}
+                          />
                         )}
                       </div>
                     </div>
