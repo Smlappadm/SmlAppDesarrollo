@@ -28,8 +28,8 @@ export default function Home({ tamañoPantalla }) {
     <div
       className={
         tamañoPantalla === "Pequeña"
-          ? "w-screen h-screen bg-gradient-to-br flex flex-col justify-center items-center"
-          : "w-screen h-screen bg-gradient-to-br flex flex-col justify-center items-center"
+          ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-center items-center"
+          : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center"
       }
     >
       <div className="flex flex-col justify-center items-center w-96">
