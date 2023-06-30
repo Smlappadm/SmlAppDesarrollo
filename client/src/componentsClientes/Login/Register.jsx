@@ -148,11 +148,9 @@ export default function Register({ handleOpenRegister, refeerred }) {
       onChange={validateRegister}
     >
       <div className="flex flex-col">
-        <label className="font-bold ml-2 mb-2" htmlFor="">
-          Usuario:
-        </label>
+        <label className="font-bold ml-2 mb-2 text-white">Usuario:</label>
         <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
+          className="rounded-md bg-[#282828] h-10 pl-2 text-white"
           type="text"
           value={username}
           onChange={(event) => {
@@ -165,11 +163,11 @@ export default function Register({ handleOpenRegister, refeerred }) {
         </span>
       </div>
       <div className="flex flex-col">
-        <label className="font-bold ml-2" htmlFor="">
+        <label className="font-bold ml-2 text-white" htmlFor="">
           Nombre:
         </label>
         <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
+          className="rounded-md bg-[#282828] h-10 pl-2 text-white"
           type="text"
           value={name}
           onChange={(event) => {
@@ -182,12 +180,12 @@ export default function Register({ handleOpenRegister, refeerred }) {
         </span>
       </div>
       <div className="flex flex-col">
-        <label className="font-bold ml-2" htmlFor="">
+        <label className="font-bold ml-2 text-white" htmlFor="">
           Contraseña:
         </label>
-        <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
+        <div className="flex flex-row rounded-md bg-[#282828] h-10 justify-between items-center text-white">
           <input
-            className="rounded-md bg-[#404062] h-7 pl-2 w-full"
+            className="rounded-md bg-[#282828] h-10 pl-2 w-full text-white"
             type={showView === false ? "password" : "text"}
             value={password}
             onChange={(event) => {
@@ -197,12 +195,12 @@ export default function Register({ handleOpenRegister, refeerred }) {
           />
           {showView === false ? (
             <IoEyeSharp
-              className="pr-2 text-[2rem]"
+              className="pr-2 text-[2rem] text-white"
               onClick={handlePasswordView}
             />
           ) : (
             <IoEyeOffSharp
-              className="pr-2 text-[2rem]"
+              className="pr-2 text-[2rem] text-white"
               onClick={handlePasswordView}
             />
           )}
@@ -212,11 +210,11 @@ export default function Register({ handleOpenRegister, refeerred }) {
         </span>
       </div>
       <div className="flex flex-col">
-        <label className="font-bold ml-2" htmlFor="">
+        <label className="font-bold ml-2 text-white" htmlFor="">
           Correo Electronico:
         </label>
         <input
-          className="rounded-md bg-[#404062] h-7 pl-2"
+          className="rounded-md bg-[#282828] h-10 pl-2 text-white"
           type="email"
           value={email}
           onChange={handleChangeEmail}
@@ -228,11 +226,11 @@ export default function Register({ handleOpenRegister, refeerred }) {
       </div>
       {refeerred ? (
         <div className="flex flex-col">
-          <label className="font-bold ml-2" htmlFor="">
+          <label className="font-bold ml-2 text-white" htmlFor="">
             Referido:
           </label>
           <input
-            className="rounded-md bg-[#404062] h-7 pl-2"
+            className="rounded-md bg-[#282828] h-10 pl-2 text-white"
             type="text"
             value={referred}
             onChange={(event) => {
@@ -245,7 +243,7 @@ export default function Register({ handleOpenRegister, refeerred }) {
       ) : null}
       <div className="flex flex-col items-center gap-y-4 mt-4">
         <button
-          className="bg-[#07a1f8] rounded-2xl px-3 text-black"
+          className="bg-[#07A1F8] rounded-2xl px-3 text-black w-28 h-8 font-extrabold focus:bg-blue-500"
           type="submit"
         >
           Registrarse
