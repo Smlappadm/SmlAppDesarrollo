@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Login from "../../componentsClientes/Login/Login";
+import LoginDesktop from "../../componentsClientes/Login/LoginDesktop";
 import Register from "../../componentsClientes/Login/Register";
-export default function Home() {
+import background from "../../Assets/borde1.png";
+import background2 from "../../Assets/borde2.png";
+import RegisterDesktop from "../../componentsClientes/Login/RegisterDesktop";
+
+export default function Home({ tamañoPantalla }) {
   const navigate = useNavigate();
   const [register, setRegister] = useState(false);
   const [referred, setReferred] = useState("");
@@ -22,22 +27,62 @@ export default function Home() {
     setRegister(!register);
   };
 
+  const styles = () => {
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      return {
+        backgroundImage: `url(${background2})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    }
+  };
+
   return (
-    <div className="w-screen h-screen bg-gradient-to-br from-black via-[#020131]  to-blue-950  flex flex-col justify-center items-center">
-      <div className="flex flex-col justify-center items-center w-96">
-        <img
-          src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-          alt=""
-          className="w-40 h-40"
-          onClick={handleOpenRegister}
-        />
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-center items-center"
+          : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center"
+      }
+      style={styles()}
+    >
+      <div className="flex flex-col justify-center items-center w-screen">
+        {tamañoPantalla === "Pequeña" ? (
+          <img
+            src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+            alt=""
+            className="w-40 h-40 absolute left-3 top-3"
+            onClick={handleOpenRegister}
+          />
+        ) : null}
+
         {register === false ? (
-          <Login
+          tamañoPantalla === "Pequeña" ? (
+            <Login
+              handleOpenRegister={handleOpenRegister}
+              handleJoin={handleJoin}
+            />
+          ) : (
+            <LoginDesktop
+              handleOpenRegister={handleOpenRegister}
+              handleJoin={handleJoin}
+            />
+          )
+        ) : tamañoPantalla === "Pequeña" ? (
+          <Register
             handleOpenRegister={handleOpenRegister}
-            handleJoin={handleJoin}
+            refeerred={referred}
           />
         ) : (
-          <Register
+          <RegisterDesktop
             handleOpenRegister={handleOpenRegister}
             refeerred={referred}
           />

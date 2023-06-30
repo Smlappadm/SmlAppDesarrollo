@@ -43,8 +43,8 @@ export default function Login({ handleOpenRegister, handleJoin }) {
               socialButtonsBlockButton: "text-white bg-[#404062] m-0 ",
               formButtonPrimary: "hidden",
               formFieldInput: "hidden",
-              card: " bg-transparent m-0 p-0 flex items-center h-fit",
-              main: "flex flex-col p-0 m-0  w-3/4 bg-transparent",
+              card: " bg-transparent m-0 p-0 flex items-center h-fit shadow-none",
+              main: "flex flex-col p-0 m-0  w-3/4 bg-transparent shadow-none",
               form: "hidden",
               formField: "hidden",
               dividerRow: "hidden",
@@ -66,7 +66,7 @@ export default function Login({ handleOpenRegister, handleJoin }) {
 
         <div className="flex ">
           <p>¿No tienes cuenta?</p>
-          <button onClick={handleOpenRegister} className="text-blue-600 ml-1">
+          <button onClick={handleOpenRegister} className="text-black ml-1">
             Crea una!
           </button>
         </div>

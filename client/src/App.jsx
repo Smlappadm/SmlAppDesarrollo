@@ -160,7 +160,7 @@ function ClerkProviderWithRoutes() {
                 }}
               ></SignIn>
             ) : (
-              <LoginClientes />
+              <LoginClientes tamañoPantalla={tamañoPantalla} />
             )
           }
         />
@@ -180,11 +180,7 @@ function ClerkProviderWithRoutes() {
           element={<TrofeosDesktop />}
           tamañoPantalla={tamañoPantalla}
         />
-        <Route
-          path="/clientes-experiencia"
-          element={<ExperienciaDesktop />}
-          tamañoPantalla={tamañoPantalla}
-        />
+        <Route path="/clientes-experiencia" element={<ExperienciaDesktop />} />
         <Route
           path="/clientes-addvideos"
           element={<AddVideos />}
