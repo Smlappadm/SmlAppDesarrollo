@@ -18,7 +18,7 @@ export default function RecursosDesktop({ tamañoPantalla }) {
         <NavBarDesktop />
       </div>
       <div className="h-5/6 flex items-center justify-end w-10/12 ">
-        <div className=" bg-[#363559] h-3/6  flex rounded-2xl w-[350px]">
+        <div className=" bg-[#D9D9D9] bg-opacity-25 h-3/6  flex rounded-2xl w-[350px]">
           <Recursos tamañoPantalla={tamañoPantalla} />
         </div>
       </div>
