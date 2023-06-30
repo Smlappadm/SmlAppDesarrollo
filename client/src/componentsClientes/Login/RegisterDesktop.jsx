@@ -143,7 +143,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
   return (
     <div className="flex  flex-row justify-around items-center w-screen h-screen">
       <form
-        className="flex flex-col w-3/4 gap-y-4"
+        className="flex flex-col w-3/12 gap-y-4"
         onSubmit={handleSubmit}
         onChange={validateRegister}
       >
@@ -152,7 +152,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
             Usuario:
           </label>
           <input
-            className="rounded-md bg-[#404062] h-7 pl-2"
+            className="rounded-md bg-[#404062] h-10 pl-2"
             type="text"
             value={username}
             onChange={(event) => {
@@ -169,7 +169,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
             Nombre:
           </label>
           <input
-            className="rounded-md bg-[#404062] h-7 pl-2"
+            className="rounded-md bg-[#404062] h-10 pl-2"
             type="text"
             value={name}
             onChange={(event) => {
@@ -182,12 +182,10 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
           </span>
         </div>
         <div className="flex flex-col">
-          <label className="font-bold ml-2" htmlFor="">
-            Contraseña:
-          </label>
-          <div className="flex flex-row rounded-md bg-[#404062] h-7 justify-between items-center">
+          <label className="font-bold ml-2">Contraseña:</label>
+          <div className="flex flex-row rounded-md bg-[#404062] h-10 justify-between items-center">
             <input
-              className="rounded-md bg-[#404062] h-7 pl-2 w-full"
+              className="rounded-md bg-[#404062] h-10 pl-2 w-full"
               type={showView === false ? "password" : "text"}
               value={password}
               onChange={(event) => {
@@ -197,12 +195,12 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
             />
             {showView === false ? (
               <IoEyeSharp
-                className="pr-2 text-[2rem]"
+                className="pr-2 text-[2rem] "
                 onClick={handlePasswordView}
               />
             ) : (
               <IoEyeOffSharp
-                className="pr-2 text-[2rem]"
+                className="pr-2 text-[2rem] h-10 "
                 onClick={handlePasswordView}
               />
             )}
@@ -216,7 +214,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
             Correo Electronico:
           </label>
           <input
-            className="rounded-md bg-[#404062] h-7 pl-2"
+            className="rounded-md bg-[#404062] h-10 pl-2"
             type="email"
             value={email}
             onChange={handleChangeEmail}
@@ -232,7 +230,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
               Referido:
             </label>
             <input
-              className="rounded-md bg-[#404062] h-7 pl-2"
+              className="rounded-md bg-[#404062] h-10 pl-2"
               type="text"
               value={referred}
               onChange={(event) => {
