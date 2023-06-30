@@ -1876,6 +1876,19 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#D9D9D9\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(217 217 217 / var(--tw-bg-opacity));
+}
+
+.bg-opacity-25 {
+  --tw-bg-opacity: 0.25;
+}
+
+.bg-opacity-0 {
+  --tw-bg-opacity: 0;
+}
+
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -2456,6 +2469,10 @@ video {
   color: rgb(234 179 8 / var(--tw-text-opacity));
 }
 
+.text-opacity-100 {
+  --tw-text-opacity: 1;
+}
+
 .placeholder-white::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(255 255 255 / var(--tw-placeholder-opacity));
@@ -2509,6 +2526,32 @@ video {
 .placeholder\:text-gray-500::placeholder {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-white::-moz-placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-white::placeholder {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.placeholder\:text-opacity-100::-moz-placeholder {
+  --tw-text-opacity: 1;
+}
+
+.placeholder\:text-opacity-100::placeholder {
+  --tw-text-opacity: 1;
+}
+
+.placeholder\:text-opacity-75::-moz-placeholder {
+  --tw-text-opacity: 0.75;
+}
+
+.placeholder\:text-opacity-75::placeholder {
+  --tw-text-opacity: 0.75;
 }
 
 .hover\:absolute:hover {
