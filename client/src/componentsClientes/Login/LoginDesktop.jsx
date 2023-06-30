@@ -25,17 +25,7 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
   };
 
   return (
-    <div
-      className="flex flex-col"
-      // style={{
-      //   animation: "custom-bounce 2s",
-      //   "@keyframes custom-bounce": {
-      //     "0%": { transform: "translateY(0)" },
-      //     "50%": { transform: "translateY(-20px)" },
-      //     "100%": { transform: "translateY(0)" },
-      //   },
-      // }}
-    >
+    <div className="flex flex-col">
       <div className="flex flex-col items-center gap-y-4 mt-8">
         <SignIn
           routing="path"
