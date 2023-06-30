@@ -52,7 +52,7 @@ export const Pagos = () => {
     if (clienteEmpresa && clienteEmpresa.name) {
       handlePagoUrlUpdate();
     }
-  }, [clienteEmpresa?.name]);
+  }, []);
 
 
   const handlePagoUrlUpdate = async () => {
