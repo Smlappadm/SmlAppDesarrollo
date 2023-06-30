@@ -125,7 +125,6 @@ export default function Register({ handleOpenRegister, refeerred }) {
     validateRegister();
     console.log(errors);
     if (errors.validate) {
-      console.log("sadasdas");
       body = {
         username,
         name,
