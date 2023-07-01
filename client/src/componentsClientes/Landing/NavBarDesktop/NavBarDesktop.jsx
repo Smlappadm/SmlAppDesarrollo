@@ -12,11 +12,14 @@ export default function NavBarDesktop() {
   return (
     <div className="flex justify-center items-center ">
       <div className="flex items-center justify-around w-10/12 mt-4 rounded-lg bg-[#D9D9D9] bg-opacity-25">
-        <Link to="/clientes-home" className="shadow-black shadow-2xl">
-          <img
-            className=" w-[5rem] "
-            src="https://i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-          />
+        <Link to="/clientes-home" className="relative">
+          <div className="relative w-[5rem] h-[5rem] rounded-full overflow-hidden">
+            <div className="absolute inset-0 bg-black opacity-50 blur-3xl"></div>
+            <img
+              className=" w-[5rem] z-10 "
+              src="https://i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+            />
+          </div>
         </Link>
 
         <Link
@@ -77,7 +80,7 @@ export default function NavBarDesktop() {
             </button>
           </Link>
         )}
-        
+
         <Link
           to="/clientes-guiones"
           className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
