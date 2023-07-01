@@ -30,15 +30,15 @@ export default function HistoryVideos({ videosPublicados, tamañoPantalla }) {
       className={
         tamañoPantalla === "Pequeña"
           ? "w-96 bg-[#2c2c2c] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center"
-          : "w-9/12 bg-[#363559] mt-4 rounded-lg px-4 mx-4 flex flex-col items-center"
+          : "w-8/12  mt-4 rounded-lg px-4 mx-4 flex flex-col items-center justify-center"
       }
     >
       <p className="text-24 font-extrabold text-white  text-center w-full">
         Historial
       </p>
-      <div className="w-full">
+      <div className="flex w-full justify-center items-center">
         {videosPublicados && videosPublicados[0] ? (
-          <div>
+          <div className="  overflow-auto h-[500px]">
             {reverse &&
               reverse.map((video, index) => (
                 <div
@@ -46,20 +46,29 @@ export default function HistoryVideos({ videosPublicados, tamañoPantalla }) {
                   className={
                     tamañoPantalla === "Pequeña"
                       ? "my-2 text-ellipsis w-96 px-4 flex justify-between items-center"
-                      : "my-2 text-ellipsis w-full px-4 flex justify-between "
+                      : "my-2 text-ellipsis w-96 px-4 flex justify-between bg-[#D9D9D9] bg-opacity-25   h-20 items-center rounded-md"
                   }
                 >
                   <p className="w-32">{formatDateTime(video.date)}</p>
-                  <img
-                    src={video.social === "Instagram" ? igPng : tkPng}
-                    alt="tt"
-                    className="w-6 h-6 mr-2"
-                  />
-                  <Link to={video.link} target="_blank" className="w-28">
-                    <p className="text-center">
-                      -{video.social === "Instagram" ? "Instagram" : "Tiktok"}-
-                    </p>
+                  <Link to={video.link} target="_blank">
+                    <img
+                      src={video.social === "Instagram" ? igPng : tkPng}
+                      alt="tt"
+                      className="w-6 h-6 mr-2"
+                    />
                   </Link>
+                  {tamañoPantalla === "Pequeña" ? (
+                    <Link
+                      to={video.link}
+                      target="_blank"
+                      className=" text-center"
+                    >
+                      <p className="text-center">
+                        -{video.social === "Instagram" ? "Instagram" : "Tiktok"}
+                        -
+                      </p>
+                    </Link>
+                  ) : null}
                 </div>
               ))}
           </div>
