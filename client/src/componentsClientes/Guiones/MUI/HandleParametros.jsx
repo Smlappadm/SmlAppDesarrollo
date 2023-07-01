@@ -13,10 +13,13 @@ export default function HandleParametros() {
   };
 
   return (
-    <Box sx={{ width: 280 }}>
+    <Box sx={{ width: 280, bgcolor: "#282828", borderRadius: ".4rem" }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Parámetros</InputLabel>
+        <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">
+          Parámetros
+        </InputLabel>
         <Select
+          sx={{ color: "white" }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={categoria}
