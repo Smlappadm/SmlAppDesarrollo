@@ -12,20 +12,17 @@ export default function NavBarDesktop() {
   return (
     <div className="flex justify-center items-center ">
       <div className="flex items-center justify-around w-10/12 mt-4 rounded-lg bg-[#D9D9D9] bg-opacity-25">
-        <Link to="/clientes-home">
+        <Link to="/clientes-home" className="shadow-black shadow-2xl">
           <img
-            className=" w-[5rem]"
+            className=" w-[5rem] "
             src="https://i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-            alt=""
           />
         </Link>
 
         <Link
           to="/clientes-home"
           className={`font-bold  hover:text-white ${
-            location.pathname === "/clientes-home"
-              ? "text-[#1C72B2]"
-              : "text-white"
+            location.pathname === "/clientes-home" ? "text-black" : "text-white"
           }`}
         >
           Vista General
