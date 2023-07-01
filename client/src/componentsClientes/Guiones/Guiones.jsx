@@ -9,8 +9,10 @@ import SMLlogo from "../../Assets/SMLlogo.png";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
 import ProgressBar from "./ProgressBar/ProgressBar";
+import HandleGuion from "./MUI/HandleGuion";
+import HandleParametros from "./MUI/HandleParametros";
 
-export default function Guiones() {
+export default function Guiones({ tamañoPantalla }) {
   const [progress, setProgress] = useState(0);
 
   const nextProgress = () => {
@@ -23,9 +25,19 @@ export default function Guiones() {
   };
 
   const styles = () => {
-    if (progress === 0) {
+    if (tamañoPantalla === "Pequeña" && progress === 0) {
       return {
         backgroundImage: `url(${background2})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      null;
+    }
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
         backgroundSize: "auto 100%",
         backgroundPosition: "left top",
         backgroundRepeat: "no-repeat",
@@ -56,22 +68,23 @@ export default function Guiones() {
 
       {/* Nivel 0 */}
       {progress === 0 ? (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col">
           <div
             onClick={() => nextProgress()}
-            className="flex justify-center mt-6 items-center gap-8"
+            className="flex justify-center 
+         items-center gap-8"
           >
-            <div className="text-white font-semibold">Perfil</div>
+            <p className="text-white font-semibold">Perfil</p>
             <div className="mb-4">
               <img src={user1} alt="" />
             </div>
           </div>
-          <div className="flex justify-center mb-[7rem] items-center gap-8">
-            <div className="text-white font-semibold">Ajustes</div>
+          {/* <div className="flex justify-center mb-[7rem] items-center gap-8">
+            <p className="text-white font-semibold">Ajustes</p>
             <div>
               <img src={ajustes1} alt="" />
             </div>
-          </div>
+          </div> */}
         </div>
       ) : null}
 
@@ -79,35 +92,31 @@ export default function Guiones() {
       {progress === 1 ? (
         <div className="flex flex-col justify-start h-full items-center">
           <div className="flex flex-col items-center justify-center mt-5">
-            <div className="text-white font-semibold text-[1.5rem]">
+            <p className="text-white font-semibold text-[1.5rem]">
               Información Básica
-            </div>
+            </p>
             <ProgressBar valor={progress} />
           </div>
           <div className="flex flex-col mt-4">
             <div className="flex flex-col gap-4 mb-4">
-              <div className="text-white font-semibold">Nombre</div>
-              <div className="">
+              <p className="text-white font-semibold">Nombre</p>
+              <input
+                className="w-[18rem] p-2 bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Nombre"
+              />
+            </div>
+            <div className="flex flex-col gap-4">
+              <p className="text-white font-semibold">
+                Sector al que perteneces:
+              </p>
+              <div>
                 <input
                   className="w-[18rem] p-2 bg-[#282828] rounded-lg"
                   type="text"
-                  placeholder="Nombre"
+                  placeholder="Ingrese su Sector"
+                  pa
                 />
-              </div>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div className="text-white font-semibold">
-                Sector al que perteneces:
-              </div>
-              <div>
-                <div>
-                  <input
-                    className="w-[18rem] p-2 bg-[#282828] rounded-lg"
-                    type="text"
-                    placeholder="Ingrese su Sector"
-                    pa
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -115,32 +124,116 @@ export default function Guiones() {
       ) : null}
       {/* Nivel 2 */}
       {progress === 2 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Información Básica
+            </p>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col mt-4 h-full">
+            <div className="flex flex-col gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Cómo ayudas a las personas?
+              </p>
+              <textarea
+                className="w-[18rem] h-full p-2 text-white bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Describe como ayudas a las personas..."
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 3 */}
       {progress === 3 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Información Avanzada
+            </p>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col mt-4 h-full">
+            <div className="flex flex-col gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Qué problema tienes?
+              </p>
+              <textarea
+                className="w-[18rem] h-full p-2 text-white bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Describe que problemas tienes..."
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 4 */}
       {progress === 4 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Información Avanzada
+            </p>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col mt-4 h-full">
+            <div className="flex flex-col gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Qué deseas conseguir?
+              </p>
+              <textarea
+                className="w-[18rem] h-full p-2 text-white bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Describe que deseas conseguir..."
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 5 */}
       {progress === 5 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start w-10/12 h-full items-center">
+          <div className="flex flex-col items-center justify-center mt-5">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Información Avanzada
+            </p>
+            <ProgressBar valor={progress} />
+          </div>
+          <div className="flex flex-col items-center justify-center mt-4 h-full">
+            <div className="flex flex-col items-center justify-center gap-4 mb-4 h-full">
+              <p className="text-white text-center font-semibold">
+                ¿Qué vas a conseguir gracias a tu contenido?
+              </p>
+              <textarea
+                className="w-[18rem] h-full p-2 text-white bg-[#282828] rounded-lg"
+                type="text"
+                placeholder="Describe que deseas conseguir..."
+              />
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 6 */}
       {progress === 6 ? (
-        <div className="flex justify-center items-center">
-          <ProgressBar valor={progress} />
+        <div className="flex flex-col justify-start mt-10  w-10/12 h-full">
+          <div className="flex flex-col items-center justify-center">
+            <p className="text-white font-semibold text-[1.5rem]">
+              Crear Guión
+            </p>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <div className="flex mt-5 flex-col gap-3 items-center justify-center">
+              <div className="flex flex-col gap-2">
+                <p className="text-white mt-5 font-semibold">Tipo de guión</p>
+                <HandleGuion />
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-white mt-5 font-semibold">Parámetros</p>
+                <HandleParametros />
+              </div>
+            </div>
+          </div>
         </div>
       ) : null}
       {/* Nivel 7 */}

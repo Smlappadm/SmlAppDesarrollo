@@ -62,7 +62,7 @@ const Progress = ({ value, maxValue, color, boxNumber }) => {
   return (
     <ProgressWrapper color={color}>
       {Array.from(Array(boxNumber).keys()).map((item) => {
-        const ratio = (value / maxValue) * 10;
+        const ratio = (value / maxValue) * 5;
         return (
           <span key={item} className={getClassName(ratio, item)}>
             {ratio === item + 1 ? item + 1 : ""}
@@ -75,7 +75,7 @@ const Progress = ({ value, maxValue, color, boxNumber }) => {
 
 const ProgressBar = ({valor}) => (
   <Container>
-    <Progress value={valor} maxValue={10} color="rgb(1, 189, 111)" boxNumber={10} />
+    <Progress value={valor} maxValue={5} color="rgb(1, 189, 111)" boxNumber={5} />
   </Container>
 );
 

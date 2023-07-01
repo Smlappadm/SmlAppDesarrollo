@@ -31,8 +31,7 @@ export const Pagos = () => {
 
   let fullName = localStorage.getItem("fullName");
   let email = localStorage.getItem("email");
-  console.log(fullName)
-  console.log(email)
+
   // const options = {
   //     passing the client secret obtained in step 3
   //     clientSecret: STRIPE_SECRET_KEY,
@@ -50,8 +49,10 @@ export const Pagos = () => {
 
   useEffect(() => {
     dispatch(getClienteEmpresa("facutam@gmail.com"));
-    clienteEmpresa.name && handlePagoUrlUpdate();
-  }, [clienteEmpresa.name]);
+    if (clienteEmpresa && clienteEmpresa?.name) {
+      handlePagoUrlUpdate();
+    }
+  }, [clienteEmpresa?.name]);
 
 
   const handlePagoUrlUpdate = async () => {
@@ -67,7 +68,7 @@ export const Pagos = () => {
       name: clienteEmpresa.name,
       monto: clienteEmpresa.pagos.monto,
       cuotas: clienteEmpresa.pagos.cuotas,
-      cuotasRestantes: clienteEmpresa.pagos.cuotasRestantes,
+      cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
       valorCuota: clienteEmpresa.pagos.valorCuota,
 
       });
@@ -94,7 +95,7 @@ export const Pagos = () => {
 // console.log(clienteEmpresa)
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen xl:h-screen w-screen">
-      {clienteEmpresa ? (
+      {clienteEmpresa && clienteEmpresa.name ? (
         <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center ">
           <p className="border-2 text-center text-24 font-extrabold text-white">
             {clienteEmpresa?.name && clienteEmpresa?.name}
@@ -103,13 +104,13 @@ export const Pagos = () => {
             {`Email: ${clienteEmpresa.emailApp}`}
           </p>
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`Monto total: C${clienteEmpresa.pagos.monto} `}
+            {`Monto total: €${clienteEmpresa.pagos.monto} `}
           </p>
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`${clienteEmpresa.pagos.cuotas} cuotas de C${clienteEmpresa.pagos.valorCuota}`}
+            {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota}`}
           </p>
           <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`Cuotas restantes: ${clienteEmpresa.pagos.cuotasRestantes}`}
+            {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
           </p>
         </div>
       ) : (

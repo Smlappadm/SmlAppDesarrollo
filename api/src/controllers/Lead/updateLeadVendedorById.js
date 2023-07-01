@@ -2,7 +2,7 @@ const Lead = require("../../models/Lead");
 const Vendedor = require("../../models/Vendedor");
 
 const updateLeadVendedorById = async (id, updatedData) => {
-
+console.log(updatedData)
 
 
   const leadCountCheck = await Lead.findById(id);
