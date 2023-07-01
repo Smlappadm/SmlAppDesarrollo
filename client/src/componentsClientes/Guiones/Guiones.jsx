@@ -68,22 +68,23 @@ export default function Guiones({ tamañoPantalla }) {
 
       {/* Nivel 0 */}
       {progress === 0 ? (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col">
           <div
             onClick={() => nextProgress()}
-            className="flex justify-center mt-6 items-center gap-8"
+            className="flex justify-center 
+         items-center gap-8"
           >
             <p className="text-white font-semibold">Perfil</p>
             <div className="mb-4">
               <img src={user1} alt="" />
             </div>
           </div>
-          <div className="flex justify-center mb-[7rem] items-center gap-8">
+          {/* <div className="flex justify-center mb-[7rem] items-center gap-8">
             <p className="text-white font-semibold">Ajustes</p>
             <div>
               <img src={ajustes1} alt="" />
             </div>
-          </div>
+          </div> */}
         </div>
       ) : null}
 
@@ -215,19 +216,22 @@ export default function Guiones({ tamañoPantalla }) {
       ) : null}
       {/* Nivel 6 */}
       {progress === 6 ? (
-        <div className="flex flex-col justify-start w-10/12 h-full items-center">
-          <div className="flex flex-col items-center justify-center mt-5">
+        <div className="flex flex-col justify-start mt-10  w-10/12 h-full">
+          <div className="flex flex-col items-center justify-center">
             <p className="text-white font-semibold text-[1.5rem]">
               Crear Guión
             </p>
           </div>
-          <div className="flex flex-col items-center justify-center mt-4 h-full">
-            <div className="flex flex-col items-center justify-center gap-4 mb-4 h-full">
-              <p className="text-white text-center font-semibold">
-                ¿Qué vas a conseguir gracias a tu contenido?
-              </p>
-              <HandleGuion />
-              <HandleParametros />
+          <div className="flex flex-col items-center justify-center">
+            <div className="flex mt-5 flex-col gap-3 items-center justify-center">
+              <div className="flex flex-col gap-2">
+                <p className="text-white mt-5 font-semibold">Tipo de guión</p>
+                <HandleGuion />
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-white mt-5 font-semibold">Parámetros</p>
+                <HandleParametros />
+              </div>
             </div>
           </div>
         </div>
