@@ -25,7 +25,9 @@ export default function NavBarDesktop() {
         <Link
           to="/clientes-home"
           className={`font-bold  hover:text-white ${
-            location.pathname === "/clientes-home" ? "text-black" : "text-white"
+            location.pathname === "/clientes-home"
+              ? "text-black shadow-2xl shadow-white"
+              : "text-white"
           }`}
         >
           Vista General
@@ -34,7 +36,7 @@ export default function NavBarDesktop() {
           to="/clientes-trofeos"
           className={`font-bold  hover:text-white ${
             location.pathname === "/clientes-trofeos"
-              ? "text-[#1C72B2]"
+              ? "text-[#1C72B2] "
               : "text-white"
           }`}
         >
