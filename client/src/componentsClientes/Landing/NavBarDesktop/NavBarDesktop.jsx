@@ -26,9 +26,14 @@ export default function NavBarDesktop() {
           to="/clientes-home"
           className={`font-bold  hover:text-white ${
             location.pathname === "/clientes-home"
-              ? "text-black shadow-2xl shadow-white"
+              ? "text-black shadow-2xl"
               : "text-white"
           }`}
+          style={
+            location.pathname === "/clientes-home"
+              ? { textShadow: "0 0 10px rgba(255, 255, 255, 1)" }
+              : null
+          }
         >
           Vista General
         </Link>
@@ -36,9 +41,14 @@ export default function NavBarDesktop() {
           to="/clientes-trofeos"
           className={`font-bold  hover:text-white ${
             location.pathname === "/clientes-trofeos"
-              ? "text-[#1C72B2] "
+              ? "text-black"
               : "text-white"
           }`}
+          style={
+            location.pathname === "/clientes-trofeos"
+              ? { textShadow: "0 0 10px rgba(255, 255, 255, 1)" }
+              : null
+          }
         >
           Trofeos
         </Link>
@@ -49,6 +59,11 @@ export default function NavBarDesktop() {
               ? "text-black"
               : "text-white"
           }`}
+          style={
+            location.pathname === "/clientes-recursos"
+              ? { textShadow: "0 0 10px rgba(255, 255, 255, 1)" }
+              : null
+          }
         >
           Recursos
         </Link>
@@ -56,9 +71,14 @@ export default function NavBarDesktop() {
           to="/clientes-experiencia"
           className={`font-bold  hover:text-white ${
             location.pathname === "/clientes-experiencia"
-              ? "text-[#1C72B2]"
+              ? "text-black"
               : "text-white"
           }`}
+          style={
+            location.pathname === "/clientes-experiencia"
+              ? { textShadow: "0 0 10px rgba(255, 255, 255, 1)" }
+              : null
+          }
         >
           Experiencia
         </Link>
@@ -66,9 +86,14 @@ export default function NavBarDesktop() {
           to="/clientes-home"
           className={`font-bold  hover:text-white ${
             location.pathname === "/clientes-contactenos"
-              ? "text-[#1C72B2]"
+              ? "text-black"
               : "text-white"
           }`}
+          style={
+            location.pathname === "/clientes-contactenos"
+              ? { textShadow: "0 0 10px rgba(255, 255, 255, 1)" }
+              : null
+          }
         >
           Contactenos
         </Link>
