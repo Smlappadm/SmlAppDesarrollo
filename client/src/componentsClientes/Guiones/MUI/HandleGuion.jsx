@@ -13,10 +13,13 @@ export default function HandleGuion() {
   };
 
   return (
-    <Box sx={{ width: 280, color: "white" }}>
+    <Box sx={{ width: 280, bgcolor: "#282828", borderRadius: ".3rem" }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Guiónes</InputLabel>
+        <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">
+          Guiónes
+        </InputLabel>
         <Select
+          sx={{ color: "white" }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={categoria}
