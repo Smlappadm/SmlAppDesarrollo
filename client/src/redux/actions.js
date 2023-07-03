@@ -35,6 +35,7 @@ export const GET_BANNED = "GET_BANNED";
 export const GET_CORREDORES = "GET_CORREDORES";
 export const GET_VENDEDORES = "GET_VENDEDORES";
 export const GET_CLIENTE_EMPRESA = "GET_CLIENTE_EMPRESA";
+export const GET_LEAD_DISCARD = "GET_LEAD_DISCARD";
 
 //
 export const setRol = (rol) => {
@@ -132,10 +133,16 @@ export const getLeadChecked = () => {
     dispatch({ type: GET_LEAD_CHEQUED, payload: LeadChecked });
   };
 };
-
+export const getLeadDiscard = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/checked/discard");
+    const LeadChecked = response.data;
+    dispatch({ type: GET_LEAD_DISCARD, payload: LeadChecked });
+  };
+};
 
 export const getLeadCheckedInactive5 = (body, profesion, country) => {
-  body = {...body, profesion, country}
+  body = { ...body, profesion, country };
 
   return async (dispatch) => {
     if (
