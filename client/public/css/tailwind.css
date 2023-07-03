@@ -764,11 +764,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -811,10 +806,6 @@ video {
 
 .ml-10 {
   margin-left: 2.5rem;
-}
-
-.ml-11 {
-  margin-left: 2.75rem;
 }
 
 .ml-12 {
@@ -911,10 +902,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.ml-32 {
-  margin-left: 8rem;
 }
 
 .block {
@@ -1337,10 +1324,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-52 {
-  width: 13rem;
 }
 
 .min-w-\[180px\] {
@@ -2090,16 +2073,6 @@ video {
 .py-52 {
   padding-top: 13rem;
   padding-bottom: 13rem;
-}
-
-.py-\[5px\] {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.py-\[1px\] {
-  padding-top: 1px;
-  padding-bottom: 1px;
 }
 
 .py-\[2px\] {
