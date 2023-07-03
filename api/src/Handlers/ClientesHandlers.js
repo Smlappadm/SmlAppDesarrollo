@@ -61,10 +61,11 @@ const paymentClienteHandler = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
 const paymentCompletedClienteHandler = async (req, res) => {
-  const event = req.body;
+  // const event = req.body;
   console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-  console.log(event)
+  // // console.log(event)
   // const paymentSessionId = req.body.data.object.id;
   // console.log(paymentSessionId)
   // try {
