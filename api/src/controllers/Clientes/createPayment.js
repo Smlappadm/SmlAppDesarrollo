@@ -62,10 +62,11 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
   });
 
     // Agregar un webhook para escuchar el evento de pago completado
-    stripe.webhookEndpoints.create({
-      url: "https://tu-url-de-webhook.com/stripe/payment_completed",
+    await stripe.webhookEndpoints.create({
+      url: "https://tu-domino.com/stripe/payment_completed",
       enabled_events: ["checkout.session.completed"],
     });
+  
 
 //   console.log(session)
 
