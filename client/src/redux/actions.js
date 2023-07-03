@@ -132,10 +132,16 @@ export const getLeadChecked = () => {
     dispatch({ type: GET_LEAD_CHEQUED, payload: LeadChecked });
   };
 };
-
+export const getLeadDiscard = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/checked/discard");
+    const LeadChecked = response.data;
+    dispatch({ type: GET_LEAD_CHEQUED, payload: LeadChecked });
+  };
+};
 
 export const getLeadCheckedInactive5 = (body, profesion, country) => {
-  body = {...body, profesion, country}
+  body = { ...body, profesion, country };
 
   return async (dispatch) => {
     if (
