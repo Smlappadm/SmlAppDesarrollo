@@ -87,8 +87,6 @@ export const Pagos = ({ tamañoPantalla }) => {
       setUrlPago(data2.url);
     }
 
-    // console.log(data1);
-    // console.log(data2.url);
   };
 
   // const handleClienteInfo = async (user.emailAddresses) => {
@@ -101,9 +99,8 @@ export const Pagos = ({ tamañoPantalla }) => {
   //     }
   //   );
   //   setUrlPago(data.url)
-  //   console.log(data.url);
   // };
-  // console.log(clienteEmpresa)
+
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen">
       {tamañoPantalla === "Grande" ? (
