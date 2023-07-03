@@ -153,6 +153,24 @@ export const Pagos = ({ tamañoPantalla }) => {
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
             </p>
           </div>
+          <a
+            href={urlPago ? urlPago : ""}
+            target="_blanck"
+            className=" w-20 h-12 px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
+          >
+            {urlPago ? (
+              "pagar"
+            ) : (
+              <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              >
+                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                  Loading...
+                </span>
+              </div>
+            )}
+          </a>
         </div>
       ) : (
         <div
@@ -164,13 +182,6 @@ export const Pagos = ({ tamañoPantalla }) => {
           </span>
         </div>
       )}
-      <a
-        href={urlPago ? urlPago : "http://localhost:5173/clientes-settings"}
-        target="_blanck"
-        className=" w-fit px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
-      >
-        Pagar
-      </a>
       {/* <Elements stripe={stripePromise} > */}
       {/* <Elements stripe={stripePromise} options={options}> */}
       {/* <ConfirmacionPago/> */}
