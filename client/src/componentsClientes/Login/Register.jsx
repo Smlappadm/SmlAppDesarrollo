@@ -131,7 +131,7 @@ export default function Register({ handleOpenRegister, refeerred }) {
         password,
         email,
         photo: "",
-        rol: "cliente",
+        rol: "masivo",
         referred: referred ?? "",
       };
       newClient();
