@@ -30,14 +30,14 @@ import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
 
 export const AnalyticLeader = () => {
   const [data, setData] = useState([]);
-  const { leaderDashboard } = useSelector((state) => state);
+  const { leaderDiscard } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLeadDiscard());
   }, [dispatch]);
   useEffect(() => {
-    setData(leaderDashboard);
-  }, [leaderDashboard]);
+    setData(leaderDiscard);
+  }, [leaderDiscard]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
