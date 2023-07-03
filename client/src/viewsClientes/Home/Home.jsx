@@ -72,7 +72,7 @@ export default function Home({ tamañoPantalla }) {
 
   //Para setear varios datos
   useEffect(() => {
-    setName(client.username);
+    setName(client && client.username);
     setNumberTotal(numberTiktok + numberInstagram);
     name && setLoader(true);
   }, [client]);
