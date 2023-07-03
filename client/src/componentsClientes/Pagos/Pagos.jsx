@@ -10,7 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
-
+import { Link } from "react-router-dom";
+import { IoCloseSharp } from "react-icons/io5";
 // require('dotenv').config();
 
 // const { STRIPE_SECRET_KEY } = process.env;
@@ -112,6 +113,17 @@ export const Pagos = ({ tamañoPantalla }) => {
       ) : null}
       {clienteEmpresa && clienteEmpresa.name ? (
         <div className="flex gap-5  flex-col justify-center items-center ">
+          {tamañoPantalla === "Pequeña" ? (
+            <div className="w-full flex mb-4 items-end justify-between pt-4">
+              <h2 className="font-bold">Pagos</h2>
+              <Link
+                to={"/clientes-home"}
+                className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+              >
+                <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+              </Link>
+            </div>
+          ) : null}
           <p
             className={
               tamañoPantalla === "Pequeña"
@@ -141,6 +153,24 @@ export const Pagos = ({ tamañoPantalla }) => {
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
             </p>
           </div>
+          <a
+            href={urlPago ? urlPago : ""}
+            target="_blanck"
+            className=" w-20 h-12 px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
+          >
+            {urlPago ? (
+              "pagar"
+            ) : (
+              <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              >
+                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                  Loading...
+                </span>
+              </div>
+            )}
+          </a>
         </div>
       ) : (
         <div
@@ -152,13 +182,6 @@ export const Pagos = ({ tamañoPantalla }) => {
           </span>
         </div>
       )}
-      <a
-        href={urlPago ? urlPago : "http://localhost:5173/clientes-settings"}
-        target="_blanck"
-        className=" w-fit px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
-      >
-        Pago
-      </a>
       {/* <Elements stripe={stripePromise} > */}
       {/* <Elements stripe={stripePromise} options={options}> */}
       {/* <ConfirmacionPago/> */}
