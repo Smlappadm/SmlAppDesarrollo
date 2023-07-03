@@ -130,7 +130,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
         password,
         email,
         photo: "",
-        rol: "cliente",
+        rol: "masivo",
         referred: referred ?? "",
       };
       newClient();
