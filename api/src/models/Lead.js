@@ -137,6 +137,30 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: "",
     },
+    seguidores2000: {
+      type: Boolean,
+      default: false,
+    },
+    repercusion: {
+      type: Boolean,
+      default: false,
+    },
+    frecuencia: {
+      type: Boolean,
+      default: false,
+    },
+    contenidoPersonal: {
+      type: Boolean,
+      default: false,
+    },
+    contenidoValor: {
+      type: Boolean,
+      default: false,
+    },
+    calidadInstagram: {
+      type: Boolean,
+      default: false,
+    },
     deleted: {
       type: Boolean,
       require: true,
