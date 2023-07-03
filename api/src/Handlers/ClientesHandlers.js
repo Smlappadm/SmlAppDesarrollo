@@ -62,6 +62,9 @@ const paymentClienteHandler = async (req, res) => {
   }
 };
 const paymentCompletedClienteHandler = async (req, res) => {
+  const event = req.body;
+  console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+  console.log(event)
   // const paymentSessionId = req.body.data.object.id;
   // console.log(paymentSessionId)
   // try {
