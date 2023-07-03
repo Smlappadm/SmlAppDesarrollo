@@ -10,11 +10,11 @@ const newClient = async ({
   referred,
 }) => {
   const client = await Clientes.create({
-    username,
-    name,
+    username: username ?? "",
+    name: name ?? "",
     email,
     photo,
-    password,
+    password: password ?? "",
     rol,
     deleted: false,
   });
