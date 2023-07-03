@@ -54,13 +54,22 @@ const getClientByEmailHandler = async (req, res) => {
 };
 const paymentClienteHandler = async (req, res) => {
   const { id, name, monto, cuotas, cuotasRestantes, valorCuota } = req.body;
-  console.log(id, name, monto, cuotas, cuotasRestantes, valorCuota)
   try {
     const pago = await createPayment({ id, name, monto, cuotas, cuotasRestantes, valorCuota });
     res.status(200).json(pago);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
+};
+const paymentCompletedClienteHandler = async (req, res) => {
+  // const paymentSessionId = req.body.data.object.id;
+  // console.log(paymentSessionId)
+  // try {
+  //   const pago = await createPaymentCompleted({ id, name, monto, cuotas, cuotasRestantes, valorCuota });
+  //   res.status(200).json(pago);
+  // } catch (error) {
+  //   res.status(404).json({ message: error.message });
+  // }
 };
 const setReferredHandler = async (req, res) => {
   const body = req.body;
@@ -89,6 +98,7 @@ module.exports = {
   loginClientHandler,
   getAllClientesHandler,
   updateClientProfileHandler,
+  paymentCompletedClienteHandler,
   getClientByEmailHandler,
   paymentClienteHandler,
   setReferredHandler,
