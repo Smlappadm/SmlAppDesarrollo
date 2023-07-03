@@ -54,15 +54,20 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // },
     ],
     mode: "payment",
-    success_url: "http://www.google.com.ar",
+    success_url: "http://www.google.",
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",
     locale: "es",
   });
 
-console.log("fffffffffffffffffffffffffffffffffffffff")
-  console.log(session)
+    // Agregar un webhook para escuchar el evento de pago completado
+    // stripe.webhookEndpoints.create({
+    //   url: "https://tu-url-de-webhook.com/stripe/payment_completed",
+    //   enabled_events: ["checkout.session.completed"],
+    // });
+
+//   console.log(session)
 
 
   return session;
