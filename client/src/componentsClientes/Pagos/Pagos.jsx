@@ -8,6 +8,8 @@ import axios from "axios";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { useSelector, useDispatch } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
+import background from "../../Assets/borde1.png";
+import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
 
 // require('dotenv').config();
 
@@ -18,7 +20,7 @@ const stripePublicKey =
   "pk_test_51NJhsbGpn5uZGCfpbyEu252jvDVNlqDiljFxifEkG5rAba4tu11lt9wl3m3UP1xFL3tnUGtPxT0KLMjNSnl6SO7o00xs2avzC5";
 const stripePromise = loadStripe(stripePublicKey);
 
-export const Pagos = () => {
+export const Pagos = ({ tamañoPantalla }) => {
   const dispatch = useDispatch();
   const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
@@ -26,7 +28,18 @@ export const Pagos = () => {
   // const user = useUser().user;
   // const email = user?.emailAddresses[0]?.emailAddress;
   
-
+  const styles = () => {
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      return null;
+    }
+  };
   
 
   let fullName = localStorage.getItem("fullName");
@@ -94,7 +107,12 @@ export const Pagos = () => {
   // };
 // console.log(clienteEmpresa)
   return (
-    <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center h-screen xl:h-screen w-screen">
+    <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen" style={styles()}>
+            {tamañoPantalla === "Grande" ? (
+        <div className="w-full h-1/6">
+          <NavBarDesktop />
+        </div>
+      ) : null}
       {clienteEmpresa && clienteEmpresa.name ? (
         <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center ">
           <p className="border-2 text-center text-24 font-extrabold text-white">
