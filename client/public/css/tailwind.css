@@ -813,6 +813,10 @@ video {
   margin-left: 2.5rem;
 }
 
+.ml-11 {
+  margin-left: 2.75rem;
+}
+
 .ml-12 {
   margin-left: 3rem;
 }
@@ -907,6 +911,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.ml-32 {
+  margin-left: 8rem;
 }
 
 .block {
