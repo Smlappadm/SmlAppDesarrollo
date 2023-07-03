@@ -196,13 +196,13 @@ function ClerkProviderWithRoutes() {
         />
         <Route
           path="/clientes-pagos"
-          element={<Pagos />}
-          tamañoPantalla={tamañoPantalla}
+          element={<Pagos tamañoPantalla={tamañoPantalla}/>}
+          
         />
         <Route
           path="/clientes-checkout"
-          element={<CheckoutPage />}
-          tamañoPantalla={tamañoPantalla}
+          element={<CheckoutPage tamañoPantalla={tamañoPantalla}/>}
+          
         />
         <Route
           path="/clientes-referidos"

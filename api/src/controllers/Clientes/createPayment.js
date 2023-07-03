@@ -61,7 +61,10 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
     locale: "es",
   });
 
-  console.log(session);
+console.log("fffffffffffffffffffffffffffffffffffffff")
+  console.log(session)
+
+
   return session;
 };
 
