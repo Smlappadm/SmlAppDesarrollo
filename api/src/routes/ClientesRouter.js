@@ -6,6 +6,7 @@ const {
   updateClientProfileHandler,
   getClientByEmailHandler,
   paymentClienteHandler,
+  paymentCompletedClienteHandler,
   setReferredHandler,
   addVideosHandler,
 } = require("../Handlers/ClientesHandlers");
@@ -17,6 +18,7 @@ ClientesRouter.get("/user", getClientByEmailHandler);
 ClientesRouter.get("/", getAllClientesHandler);
 ClientesRouter.put("/update", updateClientProfileHandler);
 ClientesRouter.post("/payment", paymentClienteHandler);
+ClientesRouter.post("/payment_completed", paymentCompletedClienteHandler);
 ClientesRouter.put("/referred", setReferredHandler);
 ClientesRouter.put("/addvideo", addVideosHandler);
 
