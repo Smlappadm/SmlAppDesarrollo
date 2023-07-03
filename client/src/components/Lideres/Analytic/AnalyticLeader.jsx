@@ -22,6 +22,7 @@ import {
   filterLevel,
   filterStatus,
   getLeadChecked,
+  getLeadDiscard,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
@@ -32,7 +33,7 @@ export const AnalyticLeader = () => {
   const { leaderDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLeadChecked());
+    dispatch(getLeadDiscard());
   }, [dispatch]);
   useEffect(() => {
     setData(leaderDashboard);
@@ -43,9 +44,7 @@ export const AnalyticLeader = () => {
   const [cardXPage, setCardXpage] = useState(10);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
-  const showData = data.filter((item) => {
-    return item.status === "discard_bot";
-  });
+  const showData = data;
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
