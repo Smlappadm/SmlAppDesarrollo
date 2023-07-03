@@ -27,7 +27,7 @@ export const Pagos = ({ tamañoPantalla }) => {
   const [leadEmpresa, setLeadEmpresa] = useState(false);
   // const user = useUser().user;
   // const email = user?.emailAddresses[0]?.emailAddress;
-  
+
   const styles = () => {
     if (tamañoPantalla === "Grande") {
       return {
@@ -40,7 +40,6 @@ export const Pagos = ({ tamañoPantalla }) => {
       return null;
     }
   };
-  
 
   let fullName = localStorage.getItem("fullName");
   let email = localStorage.getItem("email");
@@ -67,23 +66,21 @@ export const Pagos = ({ tamañoPantalla }) => {
     }
   }, [clienteEmpresa?.name]);
 
-
   const handlePagoUrlUpdate = async () => {
     const email = "facutam@gmail.com";
     const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
-    
+
     const data1 = response1.data;
     setLeadEmpresa(data1);
-    
-    if(clienteEmpresa.name){
-      const response2 = await axios.post("/clientes/payment", {
-      id: clienteEmpresa._id,
-      name: clienteEmpresa.name,
-      monto: clienteEmpresa.pagos.monto,
-      cuotas: clienteEmpresa.pagos.cuotas,
-      cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
-      valorCuota: clienteEmpresa.pagos.valorCuota,
 
+    if (clienteEmpresa.name) {
+      const response2 = await axios.post("/clientes/payment", {
+        id: clienteEmpresa._id,
+        name: clienteEmpresa.name,
+        monto: clienteEmpresa.pagos.monto,
+        cuotas: clienteEmpresa.pagos.cuotas,
+        cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
+        valorCuota: clienteEmpresa.pagos.valorCuota,
       });
       const data2 = response2.data;
       setUrlPago(data2.url);
@@ -105,31 +102,45 @@ export const Pagos = ({ tamañoPantalla }) => {
   //   setUrlPago(data.url)
   //   console.log(data.url);
   // };
-// console.log(clienteEmpresa)
+  // console.log(clienteEmpresa)
   return (
-    <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen" style={styles()}>
-            {tamañoPantalla === "Grande" ? (
+    <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen">
+      {tamañoPantalla === "Grande" ? (
         <div className="w-full h-1/6">
           <NavBarDesktop />
         </div>
       ) : null}
       {clienteEmpresa && clienteEmpresa.name ? (
-        <div className="flex bg-[#020131] gap-5  flex-col justify-center items-center ">
-          <p className="border-2 text-center text-24 font-extrabold text-white">
+        <div className="flex gap-5  flex-col justify-center items-center ">
+          <p
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
+                : "w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
+            }
+          >
             {clienteEmpresa?.name && clienteEmpresa?.name}
           </p>
-          <p className="border-2 text-center text-24 font-extrabold text-white">
+          <div
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
+                : "p-3 w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
+            }
+          >
+            {/* <p className="border-2 text-center text-24 font-extrabold text-white">
             {`Email: ${clienteEmpresa.emailApp}`}
-          </p>
-          <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`Monto total: €${clienteEmpresa.pagos.monto} `}
-          </p>
-          <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota}`}
-          </p>
-          <p className="border-2 text-center text-24 font-extrabold text-white">
-            {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
-          </p>
+          </p> */}
+            <p className="text-center text-16 font-extrabold text-white">
+              {`Monto total: €${clienteEmpresa.pagos.monto} `}
+            </p>
+            <p className=" text-center text-16 font-extrabold text-white">
+              {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota}`}
+            </p>
+            <p className="text-center text-16 font-extrabold text-white">
+              {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
+            </p>
+          </div>
         </div>
       ) : (
         <div
@@ -144,9 +155,9 @@ export const Pagos = ({ tamañoPantalla }) => {
       <a
         href={urlPago ? urlPago : "http://localhost:5173/clientes-settings"}
         target="_blanck"
-        className=" w-28 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
+        className=" w-fit px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
       >
-        Pagar
+        Pago
       </a>
       {/* <Elements stripe={stripePromise} > */}
       {/* <Elements stripe={stripePromise} options={options}> */}
