@@ -684,6 +684,10 @@ video {
   top: 2.25rem;
 }
 
+.right-12 {
+  right: 3rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -804,6 +808,10 @@ video {
   margin-left: 2.5rem;
 }
 
+.ml-11 {
+  margin-left: 2.75rem;
+}
+
 .ml-12 {
   margin-left: 3rem;
 }
@@ -898,6 +906,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.ml-32 {
+  margin-left: 8rem;
 }
 
 .block {
@@ -1316,6 +1328,10 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-5 {
+  width: 1.25rem;
 }
 
 .min-w-\[180px\] {
@@ -2065,6 +2081,11 @@ video {
 .py-52 {
   padding-top: 13rem;
   padding-bottom: 13rem;
+}
+
+.py-\[2px\] {
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .pb-1 {

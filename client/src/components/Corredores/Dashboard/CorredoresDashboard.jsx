@@ -94,9 +94,9 @@ const CorredoresDashboard = () => {
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
-      const updatedDetailsLead = [...prevDetailsLead]; // Crear una copia del arreglo actual
-      updatedDetailsLead[index] = !updatedDetailsLead[index]; // Cambiar el valor en la posición especificada
-      return updatedDetailsLead; // Devolver el arreglo actualizado
+      const updatedDetailsLead = [...prevDetailsLead];
+      updatedDetailsLead[index] = !updatedDetailsLead[index];
+      return updatedDetailsLead;
     });
   };
 
@@ -682,60 +682,93 @@ const CorredoresDashboard = () => {
                         </>
                       ) : (
                         <>
-                          <td className="flex w-[10rem] gap-3 p-0 mx-3">
-                            <input
-                              type="checkbox"
-                              name="seguidores2000"
-                              checked={item.seguidores2000}
-                              onChange={(event) =>
-                                handleseguidores2000(event, index)
-                              }
-                            />
-                            <input
-                              type="checkbox"
-                              name="repercusion"
-                              checked={item.repercusion}
-                              onChange={(event) =>
-                                handleRepercusion(event, index)
-                              }
-                            />
-                            <input
-                              type="checkbox"
-                              name="frecuencia"
-                              checked={item.frecuencia}
-                              onChange={(event) =>
-                                handleFrecuencia(event, index)
-                              }
-                            />
-                            <input
-                              type="checkbox"
-                              name="contenidoPersonal"
-                              checked={item.contenidoPersonal}
-                              onChange={(event) =>
-                                handleContenidoPersonal(event, index)
-                              }
-                            />
-                            <input
-                              type="checkbox"
-                              name="contenidoValor"
-                              checked={item.contenidoValor}
-                              onChange={(event) =>
-                                handleContenidoValor(event, index)
-                              }
-                            />
-                            <input
-                              type="checkbox"
-                              name="calidadInstagram"
-                              checked={item.calidadInstagram}
-                              onChange={(event) =>
-                                handleCalidadInstagram(event, index)
-                              }
-                            />
+                          <td className="flex items-center justify-center w-fit gap-3 p-0 mx-3">
+                            <div className="flex items-center justify-center w-fit text-center gap-1 py-[2px] ">
+                              <p className="w-28 text-[.7rem]">
+                                Tiene mas de 2000 Seguidores
+                              </p>
+                              <input
+                                className="w-5 h-5"
+                                type="checkbox"
+                                name="seguidores2000"
+                                checked={item.seguidores2000}
+                                onChange={(event) =>
+                                  handleseguidores2000(event, index)
+                                }
+                              />
+                            </div>
+                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                              <p className=" w-40 text-[.7rem]">Tiene Repercusión en sus Reels-Publicaciones?</p>
+                              <input
+                                className="w-5 h-5"
+                                type="checkbox"
+                                name="repercusion"
+                                checked={item.repercusion}
+                                onChange={(event) =>
+                                  handleRepercusion(event, index)
+                                }
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                              <p className="w-32 text-[.7rem]">Sube contenido con frecuencia?</p>
+                              <input
+                                className="w-5 h-5"
+                                type="checkbox"
+                                name="frecuencia"
+                                checked={item.frecuencia}
+                                onChange={(event) =>
+                                  handleFrecuencia(event, index)
+                                }
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                              <p className=" w-36 text-[.7rem]">Su contenido tiende a la marca personal?</p>
+                              <input
+                                className="w-5 h-5"
+                                type="checkbox"
+                                name="contenidoPersonal"
+                                checked={item.contenidoPersonal}
+                                onChange={(event) =>
+                                  handleContenidoPersonal(event, index)
+                                }
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                              <p className=" w-28 text-[.7rem]">Sube Contenido de valor?</p>
+                              <input
+                                className="w-5 h-5"
+                                type="checkbox"
+                                name="contenidoValor"
+                                checked={item.contenidoValor}
+                                onChange={(event) =>
+                                  handleContenidoValor(event, index)
+                                }
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                              <p className=" w-44 text-[.7rem]">Su  cuenta de instagram esta administrada con caliad?</p>
+                              <input
+                                className="w-5 h-5"
+                                type="checkbox"
+                                name="calidadInstagram"
+                                checked={item.calidadInstagram}
+                                onChange={(event) =>
+                                  handleCalidadInstagram(event, index)
+                                }
+                              />
+                            </div>
                           </td>
                         </>
                       )}
 
-                      <div onClick={() => handleCheckList(index)}>
+                      <div
+                        className="absolute right-12"
+                        onClick={() => handleCheckList(index)}
+                      >
                         Desciprcion
                       </div>
                     </tr>
