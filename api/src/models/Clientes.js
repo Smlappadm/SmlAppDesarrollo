@@ -5,11 +5,9 @@ const ClienteSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true,
     },
     name: {
       type: String,
-      required: true,
     },
     instagram: {
       type: String,
@@ -79,7 +77,6 @@ const ClienteSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
     },
     email: {
       type: String,
@@ -102,6 +99,7 @@ const ClienteSchema = new mongoose.Schema(
 
     rol: {
       type: String,
+      default: "cliente",
       required: true,
     },
     referred: {
