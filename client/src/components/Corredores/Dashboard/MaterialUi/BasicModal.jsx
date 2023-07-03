@@ -29,7 +29,9 @@ export default function BasicModal() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  console.log(seguidores2000);
+  const currentClient = () => {
+    setSeguidores2000(!seguidores2000);
+  };
 
   return (
     <div>
@@ -43,7 +45,7 @@ export default function BasicModal() {
         <Box sx={style}>
           <div>
             <FormControlLabel
-              onClick={handleseguidores2000}
+              onClick={currentClient}
               control={<Checkbox />}
               label="Tiene mas de 2000 seguidores?"
             />

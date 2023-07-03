@@ -21,6 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
+import BasicModal from "./MaterialUi/BasicModal";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -28,6 +29,18 @@ const CorredoresDashboard = () => {
   const [country, setCountry] = useState("");
   const [marca_personal, setMarca_personal] = useState("");
   const [category, setCategory] = useState("");
+  const [detailsLead, setDetailsLead] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   const { corredorLead } = useSelector((state) => state);
 
@@ -77,6 +90,14 @@ const CorredoresDashboard = () => {
   const filterProfesion = (event) => {
     const { value } = event.target;
     setProfesion(value);
+  };
+
+  const handleCheckList = (index) => {
+    setDetailsLead((prevDetailsLead) => {
+      const updatedDetailsLead = [...prevDetailsLead]; // Crear una copia del arreglo actual
+      updatedDetailsLead[index] = !updatedDetailsLead[index]; // Cambiar el valor en la posición especificada
+      return updatedDetailsLead; // Devolver el arreglo actualizado
+    });
   };
 
   const filterCountry = (event) => {
@@ -512,8 +533,8 @@ const CorredoresDashboard = () => {
                   <th className="text-start ml-5">Web</th>
                   <th className="text-start ml-12">Mail</th>
                   <th className="text-start ml-2">Instagram</th>
-                  <th className="text-start ml-2">Descripción</th>
                   <th className="text-start ml-4">Nivel</th>
+                  <th className="text-start ml-4"></th>
                 </tr>
               </thead>
 
@@ -534,165 +555,189 @@ const CorredoresDashboard = () => {
                         </div>
                       </td>
 
-                      <td className="flex ml-10 p-0">
-                        <Link to={item.url} target="_blank">
-                          <p value={item.url}>
-                            <CiGlobe className="text-[2rem] text-[#418df0]" />
-                          </p>
-                        </Link>
-                      </td>
-
-                      <td className="flex w-[10rem] gap-3 p-0 mx-3">
-                        <div>
-                          <CiMail className="text-[2rem] text-[#418df0]" />
-                        </div>
-                        <input
-                          className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
-                            item.email !== "-" && item.email !== ""
-                              ? "border-green-500"
-                              : ""
-                          }`}
-                          type="text"
-                          name="email"
-                          value={item.email}
-                          onChange={(event) => handleChangeEmail(event, index)}
-                          placeholder="Ingrese un mail..."
-                        />
-                      </td>
-
-                      <td className="flex w-[10rem] gap-3 p-0 mx-3">
-                        <div>
-                          {item.instagram &&
-                          instagramRegex.test(item.instagram) ? (
-                            <Link to={item.instagram} target="_blank">
-                              <GrInstagram className="text-[2rem] text-[#418df0]" />
+                      {detailsLead[index] === false ? (
+                        <>
+                          <td className="flex ml-10 p-0">
+                            <Link to={item.url} target="_blank">
+                              <p value={item.url}>
+                                <CiGlobe className="text-[2rem] text-[#418df0]" />
+                              </p>
                             </Link>
-                          ) : (
-                            <GrInstagram className="text-[2rem] text-[#418df0]" />
-                          )}
-                        </div>
+                          </td>
 
-                        <input
-                          className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
-                            item.instagram ? "border-green-500" : ""
-                          }`}
-                          type="text"
-                          name="instagram"
-                          value={item.instagram}
-                          onChange={(event) =>
-                            handleChangeInstagram(event, index)
-                          }
-                          placeholder="Ingrese instagram..."
-                        />
-                      </td>
+                          <td className="flex w-[10rem] gap-3 p-0 mx-3">
+                            <div>
+                              <CiMail className="text-[2rem] text-[#418df0]" />
+                            </div>
+                            <input
+                              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+                                item.email !== "-" && item.email !== ""
+                                  ? "border-green-500"
+                                  : ""
+                              }`}
+                              type="text"
+                              name="email"
+                              value={item.email}
+                              onChange={(event) =>
+                                handleChangeEmail(event, index)
+                              }
+                              placeholder="Ingrese un mail..."
+                            />
+                          </td>
 
-                      <td className="flex w-[10rem] gap-3 p-0 mx-3">
-                        <input
-                          type="checkbox"
-                          name="seguidores2000"
-                          checked={item.seguidores2000}
-                          onChange={(event) =>
-                            handleseguidores2000(event, index)
-                          }
-                        />
-                        <input
-                          type="checkbox"
-                          name="repercusion"
-                          checked={item.repercusion}
-                          onChange={(event) => handleRepercusion(event, index)}
-                        />
-                        <input
-                          type="checkbox"
-                          name="frecuencia"
-                          checked={item.frecuencia}
-                          onChange={(event) => handleFrecuencia(event, index)}
-                        />
-                        <input
-                          type="checkbox"
-                          name="contenidoPersonal"
-                          checked={item.contenidoPersonal}
-                          onChange={(event) =>
-                            handleContenidoPersonal(event, index)
-                          }
-                        />
-                        <input
-                          type="checkbox"
-                          name="contenidoValor"
-                          checked={item.contenidoValor}
-                          onChange={(event) =>
-                            handleContenidoValor(event, index)
-                          }
-                        />
-                        <input
-                          type="checkbox"
-                          name="calidadInstagram"
-                          checked={item.calidadInstagram}
-                          onChange={(event) =>
-                            handleCalidadInstagram(event, index)
-                          }
-                        />
-                      </td>
+                          <td className="flex w-[10rem] gap-3 p-0 mx-3">
+                            <div>
+                              {item.instagram &&
+                              instagramRegex.test(item.instagram) ? (
+                                <Link to={item.instagram} target="_blank">
+                                  <GrInstagram className="text-[2rem] text-[#418df0]" />
+                                </Link>
+                              ) : (
+                                <GrInstagram className="text-[2rem] text-[#418df0]" />
+                              )}
+                            </div>
 
-                      <td className="flex ml-6 p-0">
-                        <button
-                          className={
-                            item.level === "0"
-                              ? style.buttonNivelActive
-                              : style.buttonNivel
-                          }
-                          type="button"
-                          name={item._id}
-                          value="0"
-                          onClick={(event) => handleClientClick(event, index)}
-                        >
-                          0
-                        </button>
-                        <button
-                          className={
-                            item.level === "1"
-                              ? style.buttonNivelActive
-                              : style.buttonNivel
-                          }
-                          type="button"
-                          name={item._id}
-                          value="1"
-                          onClick={(event) => handleClientClick(event, index)}
-                        >
-                          1
-                        </button>
-                        <button
-                          className={
-                            item.level === "2"
-                              ? style.buttonNivelActive
-                              : style.buttonNivel
-                          }
-                          type="button"
-                          name={item._id}
-                          value="2"
-                          onClick={(event) => handleClientClick(event, index)}
-                        >
-                          2
-                        </button>
-                        <button
-                          className={
-                            item.level === "incidencia"
-                              ? style.buttonNivelActiveIncidence
-                              : style.buttonNivel
-                          }
-                          type="button"
-                          name={item._id}
-                          value="incidencia"
-                          onClick={(event) => handleClientClick(event, index)}
-                        >
-                          ⚠
-                        </button>
+                            <input
+                              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+                                item.instagram ? "border-green-500" : ""
+                              }`}
+                              type="text"
+                              name="instagram"
+                              value={item.instagram}
+                              onChange={(event) =>
+                                handleChangeInstagram(event, index)
+                              }
+                              placeholder="Ingrese instagram..."
+                            />
+                          </td>
 
-                        {item.level === "incidencia" ? (
-                          <div>
-                            <NestedModal item={item} />
-                          </div>
-                        ) : null}
-                      </td>
+                          <td className="flex ml-6 p-0">
+                            <button
+                              className={
+                                item.level === "0"
+                                  ? style.buttonNivelActive
+                                  : style.buttonNivel
+                              }
+                              type="button"
+                              name={item._id}
+                              value="0"
+                              onClick={(event) =>
+                                handleClientClick(event, index)
+                              }
+                            >
+                              0
+                            </button>
+                            <button
+                              className={
+                                item.level === "1"
+                                  ? style.buttonNivelActive
+                                  : style.buttonNivel
+                              }
+                              type="button"
+                              name={item._id}
+                              value="1"
+                              onClick={(event) =>
+                                handleClientClick(event, index)
+                              }
+                            >
+                              1
+                            </button>
+                            <button
+                              className={
+                                item.level === "2"
+                                  ? style.buttonNivelActive
+                                  : style.buttonNivel
+                              }
+                              type="button"
+                              name={item._id}
+                              value="2"
+                              onClick={(event) =>
+                                handleClientClick(event, index)
+                              }
+                            >
+                              2
+                            </button>
+                            <button
+                              className={
+                                item.level === "incidencia"
+                                  ? style.buttonNivelActiveIncidence
+                                  : style.buttonNivel
+                              }
+                              type="button"
+                              name={item._id}
+                              value="incidencia"
+                              onClick={(event) =>
+                                handleClientClick(event, index)
+                              }
+                            >
+                              ⚠
+                            </button>
+
+                            {item.level === "incidencia" ? (
+                              <div>
+                                <NestedModal item={item} />
+                              </div>
+                            ) : null}
+                          </td>
+                        </>
+                      ) : (
+                        <>
+                          <td className="flex w-[10rem] gap-3 p-0 mx-3">
+                            <input
+                              type="checkbox"
+                              name="seguidores2000"
+                              checked={item.seguidores2000}
+                              onChange={(event) =>
+                                handleseguidores2000(event, index)
+                              }
+                            />
+                            <input
+                              type="checkbox"
+                              name="repercusion"
+                              checked={item.repercusion}
+                              onChange={(event) =>
+                                handleRepercusion(event, index)
+                              }
+                            />
+                            <input
+                              type="checkbox"
+                              name="frecuencia"
+                              checked={item.frecuencia}
+                              onChange={(event) =>
+                                handleFrecuencia(event, index)
+                              }
+                            />
+                            <input
+                              type="checkbox"
+                              name="contenidoPersonal"
+                              checked={item.contenidoPersonal}
+                              onChange={(event) =>
+                                handleContenidoPersonal(event, index)
+                              }
+                            />
+                            <input
+                              type="checkbox"
+                              name="contenidoValor"
+                              checked={item.contenidoValor}
+                              onChange={(event) =>
+                                handleContenidoValor(event, index)
+                              }
+                            />
+                            <input
+                              type="checkbox"
+                              name="calidadInstagram"
+                              checked={item.calidadInstagram}
+                              onChange={(event) =>
+                                handleCalidadInstagram(event, index)
+                              }
+                            />
+                          </td>
+                        </>
+                      )}
+
+                      <div onClick={() => handleCheckList(index)}>
+                        Desciprcion
+                      </div>
                     </tr>
                   ))}
               </tbody>

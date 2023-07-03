@@ -68,14 +68,14 @@
 .tableRow {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: 22% 13% 22% 14% 14% auto;
+  grid-template-columns: 23% 21% 17% 16% 1% auto;
   margin-left: 4rem;
 }
 
 .tableCards {
   display: grid;
   /* border: 1px solid violet; */
-  grid-template-columns: 15% 1% 13% 9% 1% 1% 1% 1%;
+  grid-template-columns: 16% 8% 8% 8% 8% 1% 1%;
   align-items: center;
   justify-content: space-between;
   background-color: #39394b;
