@@ -38,6 +38,14 @@ const updateLeadVendedorById = async (id, updatedData) => {
 // console.log(updatedData.dataVendedor.email)
   if (updatedData.dataLead.status === "Contratado") {
     const emailFilter = updatedData.dataLead.emailApp ? updatedData.dataLead.emailApp : updatedData.dataVendedor.email;
+    const leadEmailAppUpdated = await Lead.updateMany(
+      { emailApp:  { $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email] }},
+      { $set: { emailApp: ""} },
+      { new: true }
+    );
+    console.log()
+
+    // const emailFilter2 = updatedData.dataLead.emailApp ? updatedData.dataLead.emailApp : updatedData.dataVendedor.email;
     const filtro = { email: emailFilter};
     const nuevosValores = { email: emailFilter, name: updatedData.dataVendedor.name, rol: "organico"};
     const opciones = { upsert: true, new: true };
