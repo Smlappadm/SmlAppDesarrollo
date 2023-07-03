@@ -105,7 +105,10 @@ export default function Home({ tamañoPantalla }) {
     if (userIG.endsWith("/")) {
       userIG = userIG.slice(0, -1);
     }
-    const userTT = client.tiktok ? client.tiktok.slice(24) : "";
+    let userTT = client.tiktok ? client.tiktok.slice(24) : "";
+    if (userTT.endsWith("/")) {
+      userTT = userTT.slice(0, -1);
+    }
     localStorage.setItem("instagram", userIG);
     localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
