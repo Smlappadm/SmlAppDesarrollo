@@ -10,7 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
-
+import { Link } from "react-router-dom";
+import { IoCloseSharp } from "react-icons/io5";
 // require('dotenv').config();
 
 // const { STRIPE_SECRET_KEY } = process.env;
@@ -112,6 +113,17 @@ export const Pagos = ({ tamañoPantalla }) => {
       ) : null}
       {clienteEmpresa && clienteEmpresa.name ? (
         <div className="flex gap-5  flex-col justify-center items-center ">
+          {tamañoPantalla === "Pequeña" ? (
+            <div className="w-full flex mb-4 items-end justify-between pt-4">
+              <h2 className="font-bold">Pagos</h2>
+              <Link
+                to={"/clientes-home"}
+                className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+              >
+                <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+              </Link>
+            </div>
+          ) : null}
           <p
             className={
               tamañoPantalla === "Pequeña"
@@ -157,7 +169,7 @@ export const Pagos = ({ tamañoPantalla }) => {
         target="_blanck"
         className=" w-fit px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
       >
-        Pago
+        Pagar
       </a>
       {/* <Elements stripe={stripePromise} > */}
       {/* <Elements stripe={stripePromise} options={options}> */}
