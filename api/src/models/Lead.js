@@ -83,6 +83,7 @@ const LeadSchema = new mongoose.Schema(
     emailApp: {
       type: String,
       require: true,
+      unique: true,
       default: "",
     },
     corredor: {

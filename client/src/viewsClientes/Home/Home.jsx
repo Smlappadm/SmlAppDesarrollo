@@ -101,8 +101,14 @@ export default function Home({ tamañoPantalla }) {
   };
 
   const obtainMetricsInstagram = async () => {
-    const userIG = client.instagram ? client.instagram.slice(26) : "";
-    const userTT = client.tiktok ? client.tiktok.slice(24) : "";
+    let userIG = client.instagram ? client.instagram.slice(26) : "";
+    if (userIG.endsWith("/")) {
+      userIG = userIG.slice(0, -1);
+    }
+    let userTT = client.tiktok ? client.tiktok.slice(24) : "";
+    if (userTT.endsWith("/")) {
+      userTT = userTT.slice(0, -1);
+    }
     localStorage.setItem("instagram", userIG);
     localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
@@ -113,8 +119,8 @@ export default function Home({ tamañoPantalla }) {
     //   `https://apisml.onrender.com//obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
-    const infoIG = { seguidores: "1000" };
-    const infoTT = { seguidores: "200", likes: "10" };
+    const infoIG = { seguidores: "1050" };
+    const infoTT = { seguidores: "203", likes: "10" };
     // console.log(infoIG);
     // console.log(infoTT);
     setNumberInstagram(parseInt(infoIG.seguidores));
