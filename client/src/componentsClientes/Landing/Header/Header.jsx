@@ -8,15 +8,19 @@ export default function Header({ numberTotal, setCustomValue, imgInstagram }) {
   return (
     <div className="flex flex-row justify-center p-4 w-screen md:gap-60">
       <div className=" justify-center items-center relative">
-        <img
-          className=" w-[5rem]"
-          src="https://i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-          alt=""
-        />
+        <Link to={"/clientes-home"}>
+          <img
+            className=" w-[5rem]"
+            src="https://i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
+            alt=""
+          />
+        </Link>
       </div>
       <div className=" pt-10 justify-center items-center relative">
         <CircularProgressBar value={numberTotal} imageSrc={imgInstagram} />
-        <p className="font-bold bottom-0 -right-7 absolute">{(numberTotal / 10000) * 100}%</p>
+        <p className="font-bold bottom-0 -right-7 absolute">
+          {(numberTotal / 10000) * 100}%
+        </p>
       </div>
 
       <div className="flex  justify-center items-start gap-1 pt-4">
