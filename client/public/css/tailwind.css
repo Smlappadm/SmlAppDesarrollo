@@ -1335,6 +1335,10 @@ video {
   width: 100vw;
 }
 
+.w-6\/12 {
+  width: 50%;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
