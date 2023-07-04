@@ -23,7 +23,7 @@ import { Toaster } from 'react-hot-toast';
 
 
 
-const VendedoresFreelance = () => {
+const VentasDashboard = () => {
   const [data, setData] = useState([]);
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -421,4 +421,4 @@ const VendedoresFreelance = () => {
   );
 };
 
-export default VendedoresFreelance;
+export default VentasDashboard;
