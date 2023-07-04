@@ -187,8 +187,8 @@ function ClerkProviderWithRoutes() {
           tamañoPantalla={tamañoPantalla}
         />
         <Route
-          path="/clientes-guiones"
-          element={<Guiones tamañoPantalla={tamañoPantalla} />}
+          path="/clientes-estadisticas"
+          element={<Home tamañoPantalla={tamañoPantalla} />}
         />
         <Route
           path="/clientes-settings"
@@ -196,13 +196,11 @@ function ClerkProviderWithRoutes() {
         />
         <Route
           path="/clientes-pagos"
-          element={<Pagos tamañoPantalla={tamañoPantalla}/>}
-          
+          element={<Pagos tamañoPantalla={tamañoPantalla} />}
         />
         <Route
           path="/clientes-checkout"
-          element={<CheckoutPage tamañoPantalla={tamañoPantalla}/>}
-          
+          element={<CheckoutPage tamañoPantalla={tamañoPantalla} />}
         />
         <Route
           path="/clientes-referidos"
@@ -441,7 +439,7 @@ function ClerkProviderWithRoutes() {
           element={
             <>
               <SignedIn>
-                <Home tamañoPantalla={tamañoPantalla} />
+                <Guiones tamañoPantalla={tamañoPantalla} />
               </SignedIn>
               <SignedOut>
                 <RedirectToSignIn />
