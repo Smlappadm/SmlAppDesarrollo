@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import style from "./CorredoresHistory.module.css";
+import style from "./ClasificacionHistory.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import Nav from "../../Nav/Nav";
@@ -22,7 +22,7 @@ import { FaHistory } from "react-icons/fa";
 import { getLeadCorredoresChecked } from "../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
-const CorredoresHistory = () => {
+const ClasificacionHistory = () => {
   const { corredorLeadChecked } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -175,4 +175,4 @@ const CorredoresHistory = () => {
   );
 };
 
-export default CorredoresHistory;
+export default ClasificacionHistory;

@@ -3,7 +3,7 @@ import Nav from "../../Nav/Nav";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 
-const CorredoresAnlaytics = () => {
+const ClasificacionAnalytics = () => {
   return (
     <>
       <Nav />
@@ -31,4 +31,4 @@ const CorredoresAnlaytics = () => {
   );
 };
 
-export default CorredoresAnlaytics;
+export default ClasificacionAnalytics;

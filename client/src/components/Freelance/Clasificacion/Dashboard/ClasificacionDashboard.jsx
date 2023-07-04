@@ -21,9 +21,8 @@ import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
-import BasicModal from "./MaterialUi/BasicModal";
 
-const CorredoresDashboard = () => {
+const ClasificacionDashboard = () => {
   const [client, setClient] = useState([]);
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
@@ -786,4 +785,4 @@ const CorredoresDashboard = () => {
   );
 };
 
-export default CorredoresDashboard;
+export default ClasificacionDashboard;

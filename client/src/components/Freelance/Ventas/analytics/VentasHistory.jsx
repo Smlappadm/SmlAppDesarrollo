@@ -1,4 +1,4 @@
-import style from "./VendedoresHistory.module.css";
+import style from "./VentasHistory.module.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Nav from "../../Nav/Nav";
 import InputRunner from "./MUI/InputRunner";
 
-const VendedoresHistory = () => {
+const VentasHistory = () => {
   const [data, setData] = useState([]);
   const { vendedorAllLeadsHistory } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -576,4 +576,4 @@ const VendedoresHistory = () => {
   );
 };
 
-export default VendedoresHistory;
+export default VentasHistory;
