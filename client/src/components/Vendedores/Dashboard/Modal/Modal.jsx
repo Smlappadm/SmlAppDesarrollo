@@ -856,7 +856,6 @@ export default function NestedModal({
               <div className="flex flex-col justify-center items-center mt-3">
                 <div className="mt-3  flex  justify-between items-center">
                   {/* EDITAR DATOS Email-------------------------------------  */}
-                  {/* {!editEmail && ( */}
                   <CiMail
                     onClick={handleEditEmail}
                     className={
