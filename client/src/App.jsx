@@ -46,7 +46,7 @@ import ClasificacionDashboard from "./components/Freelance/Clasificacion/Dashboa
 import ClasificacionHistory from "./components/Freelance/Clasificacion/History/ClasificacionHistory";
 import ClasificacionAnalytics from "./components/Freelance/Clasificacion/Analytics/ClasificacionAnalytics";
 import VentasHistory from "./components/Freelance/Ventas/analytics/VentasHistory";
-import VendedoresFreelance from "./components/Freelance/Ventas/Dashboard/VentasDashboard";
+import VentasDashboard from "./components/Freelance/Ventas/Dashboard/VentasDashboard";
 import VentasAgenda from "./components/Freelance/Ventas/Dashboard/VentasAgenda";
 const { CLERK_API_KEY } = import.meta.env;
 
@@ -476,7 +476,7 @@ function ClerkProviderWithRoutes() {
               roleReady === "leader" ||
               roleReady === "freelance") &&
             isEmployeeReady ? (
-              <VentasDasboard />
+              <VentasDashboard />
             ) : (
               <ReturnToPage />
             )
