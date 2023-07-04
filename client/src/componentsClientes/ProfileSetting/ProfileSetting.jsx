@@ -81,7 +81,13 @@ export default function ProfileSetting({
         </button>
       </div>
       <div className="w-full flex flex-col gap-4 items-center">
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <img
             src={avatarPng}
             alt="icono de Avatar"
