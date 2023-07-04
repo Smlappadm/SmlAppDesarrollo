@@ -1288,7 +1288,6 @@ export default function NestedModal({
                   type="text"
                   id="last_name"
                   name="total"
-                  // defaultValue={item.status_op}
                   disabled={true}
                   className={
                     statusObj.pagos.monto && statusObj.pagos.cuotas
