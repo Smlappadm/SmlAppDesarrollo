@@ -4,12 +4,10 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllCountries,
-  getAllProfesion,
-} from "../../../../redux/actions";
+import { getAllCountries, getAllProfesion } from "../../../../redux/actions";
 
-export default function InputName({body, getLeadCheckedInactive5}) {
+
+export default function InputName({ body, getLeadCheckedInactive5 }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
 
@@ -30,34 +28,19 @@ export default function InputName({body, getLeadCheckedInactive5}) {
     setProfesion(value);
   };
 
-
-
   const handleChangeCountries = (event) => {
     let value = event.target.value;
     setCountry(value);
   };
 
-
   const handleFilterClick = () => {
-    console.log(profesion)
-    console.log(country)
-    dispatch(
-      getLeadCheckedInactive5(
-        body,
-        profesion,
-        country,
-      )
-    );
+    console.log(profesion);
+    console.log(country);
+    dispatch(getLeadCheckedInactive5(body, profesion, country));
   };
 
   const handleFilterReset = () => {
-    dispatch(
-      getLeadCheckedInactive5(
-        body,
-        "",
-        "",
-      )
-    )
+    dispatch(getLeadCheckedInactive5(body, "", ""));
   };
 
   return (
@@ -84,8 +67,6 @@ export default function InputName({body, getLeadCheckedInactive5}) {
       }}
     >
       <div className="flex gap-5">
-
-
         <div className="flex flex-col w-56">
           <label>Profesión:</label>
           <Select
@@ -119,7 +100,6 @@ export default function InputName({body, getLeadCheckedInactive5}) {
             ))}
           </Select>
         </div>
-
 
         <div className="flex flex-col w-36">
           <label>Países:</label>

@@ -4,10 +4,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllCountries,
-  getAllProfesion,
-} from "../../../../redux/actions";
+import { getAllCountries, getAllProfesion } from "../../../../../redux/actions";
 
 export default function InputName({body, getLeadCheckedInactive5}) {
   const dispatch = useDispatch();

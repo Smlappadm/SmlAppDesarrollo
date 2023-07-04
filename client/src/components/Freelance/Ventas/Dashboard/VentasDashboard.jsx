@@ -1,9 +1,7 @@
-import style from "./VendedoresFreelance.module.css";
+import style from "./VentasDashboard.module.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { filterLevel, getLeadCheckedInactive5, getAllProfesion, getAllCountries } from "../../../redux/actions";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
@@ -16,12 +14,16 @@ import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import BasicButtons1 from "./Select/BasicButtons1";
 import BasicButtons2 from "./Select/BasicButtons2";
-import InputRunner from "./Select/InputRunner"
-import Nav from "../../Nav/Nav";
-import { Toaster } from 'react-hot-toast';
-
-
-
+import InputRunner from "./Select/InputRunner";
+import { Toaster } from "react-hot-toast";
+import PaginationOutlined from "../../../pagination/PaginationOutlined";
+import {
+  filterLevel,
+  getLeadCheckedInactive5,
+  getAllProfesion,
+  getAllCountries,
+} from "../../../../redux/actions";
+import Nav from "../../../Nav/Nav";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
@@ -34,28 +36,26 @@ const VentasDashboard = () => {
   const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
-  
+
   const body = { name: fullName, email: emailAddress };
-  
+
   const { allCountries } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
-  
+
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
 
-  const notify = () => toast('Here is your toast.');
+  const notify = () => toast("Here is your toast.");
 
-  
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
     dispatch(getLeadCheckedInactive5(body, profesion, country));
   }, [dispatch, emailAddress]);
-  
+
   useEffect(() => {
     setData(vendedoresDashboard);
   }, [vendedoresDashboard]);
-
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,7 +63,6 @@ const VentasDashboard = () => {
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const currentCard = data.slice(indexFirstCard, indexLastCard);
-
 
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -95,7 +94,6 @@ const VentasDashboard = () => {
   // };
 
   //-------------------------------------------------------------
-
 
   // const [filters, setFilters] = useState({
   //   level: false,
@@ -226,9 +224,11 @@ const VentasDashboard = () => {
               </Link>
             </div>
             <div className="flex gap-5 justify-center items-center ml-16">
-
-              <InputRunner getLeadCheckedInactive5={getLeadCheckedInactive5} body={body}/>
-            {/* <label>Profesión: </label>
+              <InputRunner
+                getLeadCheckedInactive5={getLeadCheckedInactive5}
+                body={body}
+              />
+              {/* <label>Profesión: </label>
             <select
               className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
               value={profesion}
@@ -273,7 +273,7 @@ const VentasDashboard = () => {
             <div onClick={filtrar2}>
               <BasicButtons2 />
             </div> */}
-          </div>
+            </div>
             {/* {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (

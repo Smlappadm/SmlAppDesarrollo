@@ -5,7 +5,6 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { CiWarning, CiEdit } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
-import { orderCategory } from "../../../../redux/actions";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 const style = {
   position: "absolute",
