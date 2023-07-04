@@ -8,9 +8,20 @@ export default function Followers({
   maxNumber,
 }) {
   const [loading, setLoading] = useState(true);
+  console.log(numberTiktok);
 
   const formatearNumeroConPuntos = (numero) => {
-    return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    let numeroFormateado = numero.toString();
+
+    if (numeroFormateado.includes("M")) {
+      numeroFormateado = numeroFormateado.replace("M", "000000");
+      return numeroFormateado.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    } else if (numeroFormateado.includes("k")) {
+      numeroFormateado = numeroFormateado.replace("k", "000");
+      return numeroFormateado.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    return numeroFormateado.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
   useEffect(() => {
