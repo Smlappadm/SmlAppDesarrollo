@@ -112,19 +112,19 @@ export default function Home({ tamañoPantalla }) {
     localStorage.setItem("instagram", userIG);
     localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
-    //   `https://apisml.onrender.com/obtener_info_tiktok?username=${userIG}`
+    //   `https://apisml.onrender.com/obtener_info_tiktok?username=rosalia&num_reels=5`
     // );
     // const infoTT = responseTT.data;
     // const responseIG = await axios.get(
-    //   `https://apisml.onrender.com/obtener_info_instagram?username=${userTT}&num_reels=5}`
+    //   `https://apisml.onrender.com/obtener_info_instagram?username=${userIG}`
     // );
     // const infoIG = responseIG.data;
     const infoIG = { seguidores: "1050" };
     const infoTT = { seguidores: "203", likes: "10" };
     // console.log(infoIG);
     // console.log(infoTT);
-    setNumberInstagram(parseInt(infoIG.seguidores));
-    setNumberTiktok(parseInt(infoTT.seguidores));
+    setNumberInstagram(infoIG.seguidores);
+    setNumberTiktok(infoTT.seguidores);
     const body = {
       seguidoresInstagramBase:
         client.seguidoresInstagramBase !== 0
