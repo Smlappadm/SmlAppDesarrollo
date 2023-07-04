@@ -2,25 +2,25 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import style from "./ClasificacionDashboard.module.css";
-import Nav from "../../Nav/Nav";
 
 import { CiGlobe, CiMail } from "react-icons/ci";
 import { GrInstagram } from "react-icons/gr";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import {
-  getAllCategory,
-  getAllCountries,
-  getAllProfesion,
-  getLeadCorredores,
-} from "../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
+import Nav from "../../../Nav/Nav";
+import {
+  getAllCategory,
+  getAllCountries,
+  getAllProfesion,
+  getLeadCorredores,
+} from "../../../../redux/actions";
 
 const ClasificacionDashboard = () => {
   const [client, setClient] = useState([]);
@@ -697,7 +697,9 @@ const ClasificacionDashboard = () => {
                               />
                             </div>
                             <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-40 text-[.7rem]">Tiene Repercusión en sus Reels-Publicaciones?</p>
+                              <p className=" w-40 text-[.7rem]">
+                                Tiene Repercusión en sus Reels-Publicaciones?
+                              </p>
                               <input
                                 className="w-5 h-5"
                                 type="checkbox"
@@ -710,7 +712,9 @@ const ClasificacionDashboard = () => {
                             </div>
 
                             <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className="w-32 text-[.7rem]">Sube contenido con frecuencia?</p>
+                              <p className="w-32 text-[.7rem]">
+                                Sube contenido con frecuencia?
+                              </p>
                               <input
                                 className="w-5 h-5"
                                 type="checkbox"
@@ -723,7 +727,9 @@ const ClasificacionDashboard = () => {
                             </div>
 
                             <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-36 text-[.7rem]">Su contenido tiende a la marca personal?</p>
+                              <p className=" w-36 text-[.7rem]">
+                                Su contenido tiende a la marca personal?
+                              </p>
                               <input
                                 className="w-5 h-5"
                                 type="checkbox"
@@ -736,7 +742,9 @@ const ClasificacionDashboard = () => {
                             </div>
 
                             <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-28 text-[.7rem]">Sube Contenido de valor?</p>
+                              <p className=" w-28 text-[.7rem]">
+                                Sube Contenido de valor?
+                              </p>
                               <input
                                 className="w-5 h-5"
                                 type="checkbox"
@@ -749,7 +757,10 @@ const ClasificacionDashboard = () => {
                             </div>
 
                             <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-44 text-[.7rem]">Su  cuenta de instagram esta administrada con caliad?</p>
+                              <p className=" w-44 text-[.7rem]">
+                                Su cuenta de instagram esta administrada con
+                                caliad?
+                              </p>
                               <input
                                 className="w-5 h-5"
                                 type="checkbox"
