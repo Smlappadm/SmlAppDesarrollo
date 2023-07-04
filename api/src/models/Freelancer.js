@@ -31,18 +31,6 @@ const FreelancerSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    classifications: {
-      type: String,
-    },
-    average_delay: {
-      type: String,
-    },
-    incidences: {
-      type: String,
-    },
-    hired_leads: {
-      type: String,
-    },
     rol: {
       type: String,
       required: true,
