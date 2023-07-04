@@ -3,6 +3,6 @@ const { postFreelancerHandler } = require("../Handlers/FreelancerHandler");
 
 const FreelancerRouter = Router();
 
-FreelancerRouter.post("/new", postFreelancerHandler);
+FreelancerRouter.post("/", postFreelancerHandler);
 
 module.exports = FreelancerRouter;
