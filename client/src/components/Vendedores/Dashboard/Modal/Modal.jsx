@@ -733,19 +733,6 @@ export default function NestedModal({
   };
 
 
-  //   if (event.target.value === "pago25") {
-  //     setStatusObj({
-  //       ...statusObj,
-  //       status_op: {
-  //         cuotas: 25,
-  //         valorCuota: pagoCalculo.valorCuota25,
-  //         total: pagoCalculo.precio25,
-  //       },
-  //     });
-  //   }
-  //   console.log(statusObj.status_op);
-  // };
-
   const SendEmailLeadAlert = (texto) => {
 
 
