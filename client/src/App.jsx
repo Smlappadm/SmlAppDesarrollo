@@ -47,7 +47,7 @@ import ClasificacionHistory from "./components/Freelance/Clasificacion/History/C
 import ClasificacionAnalytics from "./components/Freelance/Clasificacion/Analytics/ClasificacionAnalytics";
 import VentasHistory from "./components/Freelance/Ventas/analytics/VentasHistory";
 import VendedoresFreelance from "./components/Freelance/Ventas/Dashboard/VentasDashboard";
-import FreelanceVentas from "./components/Freelance/Ventas/Dashboard/FreelanceVentas";
+import VentasAgenda from "./components/Freelance/Ventas/Dashboard/VentasAgenda";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -422,7 +422,7 @@ function ClerkProviderWithRoutes() {
               roleReady === "leader" ||
               roleReady === "freelance") &&
             isEmployeeReady ? (
-              <FreelanceVentas />
+              <VentasAgenda />
             ) : (
               <ReturnToPage />
             )
