@@ -36,6 +36,7 @@ export const GET_CORREDORES = "GET_CORREDORES";
 export const GET_VENDEDORES = "GET_VENDEDORES";
 export const GET_CLIENTE_EMPRESA = "GET_CLIENTE_EMPRESA";
 export const GET_LEAD_DISCARD = "GET_LEAD_DISCARD";
+export const GET_CLASIFICACION_LEAD = "GET_CLASIFICACION_LEAD";
 
 //
 export const setRol = (rol) => {
@@ -295,6 +296,25 @@ export const getLeadCorredores = (
       );
       const corredorLead = response.data;
       dispatch({ type: GET_CORREDOR_LEAD, payload: corredorLead });
+    }
+  };
+};
+
+export const getLeadClasificacion = (
+  email,
+  names,
+  profesion,
+  category,
+  country,
+  marca_personal
+) => {
+  return async (dispatch) => {
+    if (email !== "undefined" && email !== "") {
+      const response = await axios.get(
+        `lead/clasificacion?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
+      );
+      const freelanceLead = response.data;
+      dispatch({ type: GET_CLASIFICACION_LEAD, payload: freelanceLead });
     }
   };
 };

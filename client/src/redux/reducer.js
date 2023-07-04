@@ -35,6 +35,7 @@ import {
   GET_VENDEDORES,
   GET_CLIENTE_EMPRESA,
   GET_LEAD_DISCARD,
+  GET_CLASIFICACION_LEAD,
 } from "./actions";
 
 const initialState = {
@@ -73,6 +74,7 @@ const initialState = {
   allCorredores: [],
   allVendedores: [],
   clienteEmpresa: "",
+  freelanceLead: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -380,6 +382,11 @@ const rootReducer = (state = initialState, action) => {
         vendedoresVentasDashboard: action.payload,
       };
     case GET_CORREDOR_LEAD:
+      return {
+        ...state,
+        corredorLead: action.payload,
+      };
+    case GET_CLASIFICACION_LEAD:
       return {
         ...state,
         corredorLead: action.payload,
