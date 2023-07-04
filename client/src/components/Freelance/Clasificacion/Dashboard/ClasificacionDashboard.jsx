@@ -19,6 +19,7 @@ import {
   getAllCategory,
   getAllCountries,
   getAllProfesion,
+  getLeadClasificacion,
   getLeadCorredores,
 } from "../../../../redux/actions";
 
@@ -42,6 +43,7 @@ const ClasificacionDashboard = () => {
   ]);
 
   const { corredorLead } = useSelector((state) => state);
+  const { freelanceLead } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -59,6 +61,17 @@ const ClasificacionDashboard = () => {
     if (mail !== undefined) {
       dispatch(
         getLeadCorredores(
+          email,
+          names,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
+
+      dispatch(
+        getLeadClasificacion(
           email,
           names,
           profesion,
