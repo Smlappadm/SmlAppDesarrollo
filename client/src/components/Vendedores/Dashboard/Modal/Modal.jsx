@@ -37,6 +37,7 @@ function ChildModal({
   setOpen,
   statusObj,
   SendLeadAlert,
+  SendEmailLeadAlert,
   SendErrorUpdateAlert,
   updateLeads,
   llamadoVenta,
@@ -46,6 +47,8 @@ function ChildModal({
   cancelModal,
   setStatusObj,
   updatedEmailApp,
+  SendEmailLeadAlertError,
+  SendEmailLeadAlertErrorCuotas,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -53,6 +56,8 @@ function ChildModal({
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
+        SendEmailLeadAlertErrorCuotas()
+        return;
       }
       setStatusObj({
         ...statusObj,
@@ -548,7 +553,9 @@ export default function NestedModal({
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
-
+  const [openAlertError, setOpenAlertError] = React.useState(false);
+  const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
+  
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
   const [updatedEmail, setUpdatedEmail] = React.useState(item.email);
@@ -737,6 +744,18 @@ export default function NestedModal({
       setOpenAlert(false);
     }, 3000);
   };
+  const SendEmailLeadAlertError = (texto) => {
+    setOpenAlertError(true);
+    setTimeout(() => {
+      setOpenAlertError(false);
+    }, 3000);
+  };
+  const SendEmailLeadAlertErrorCuotas = (texto) => {
+    setOpenAlertErrorCuotas(true);
+    setTimeout(() => {
+      setOpenAlertErrorCuotas(false);
+    }, 3000);
+  };
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
@@ -749,11 +768,15 @@ export default function NestedModal({
     setInputEmail(event.target.value);
   };
   const handleConfirmEditEmail = async (id) => {
-    const body = { email: inputEmail };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedEmail(response.data.email);
+    try {
+      const body = { email: inputEmail };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedEmail(response.data.email);
+      SendEmailLeadAlert("Email");
+    } catch (error) {
+      SendEmailLeadAlertError("Email")
+    }
     setEditEmail(false);
-    SendEmailLeadAlert("Email");
   };
 
   //EDITAR DATOS Instagram
@@ -767,11 +790,16 @@ export default function NestedModal({
     setInputInstagram(event.target.value);
   };
   const handleConfirmEditInstagram = async (id) => {
-    const body = { instagram: inputInstagram };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedInstagram(response.data.instagram);
+    try {
+      const body = { instagram: inputInstagram };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedInstagram(response.data.instagram);
+      SendEmailLeadAlert("Instagram");
+    } catch (error) {
+      SendEmailLeadAlertError("Instagram")
+    }
+    
     setEditInstagram(false);
-    SendEmailLeadAlert("Instagram");
   };
 
   //EDITAR DATOS Phone
@@ -785,11 +813,16 @@ export default function NestedModal({
     setInputTelephone(event.target.value);
   };
   const handleConfirmEditTelephone = async (id) => {
-    const body = { telephone: inputTelephone };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedTelephone(response.data.telephone);
+    try {
+      const body = { telephone: inputTelephone };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedTelephone(response.data.telephone);
+      SendEmailLeadAlert("Phone");
+    } catch (error) {
+      SendEmailLeadAlertError("Phone")
+    }
+    
     setEditTelephone(false);
-    SendEmailLeadAlert("Phone");
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
@@ -802,11 +835,16 @@ export default function NestedModal({
     setInputEmailApp(event.target.value);
   };
   const handleConfirmEditEmailApp = async (id) => {
-    const body = { emailApp: inputEmailApp };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedEmailApp(response.data.emailApp);
+    try {
+      const body = { emailApp: inputEmailApp };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedEmailApp(response.data.emailApp);
+      SendEmailLeadAlert("Email App");
+      
+    } catch (error) {
+      SendEmailLeadAlertError("Email App")
+    }
     setEditEmailApp(false);
-    SendEmailLeadAlert("Email App");
   };
 
   return (
@@ -847,6 +885,51 @@ export default function NestedModal({
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
                 <label>✔ Lead Updated!</label>
+              </motion.div>
+            )}
+                       {openAlert && (
+              <motion.div
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
+                className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label>✔ Lead Updated!</label>
+              </motion.div>
+            )}
+            {openAlertError && (
+              <motion.div
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
+                className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label className=" text-white">❌ Update Error!</label>
+              </motion.div>
+            )}
+            {openAlertErrorCuotas && (
+              <motion.div
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
+                className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label className=" text-white">❌ Valor Cuota menor de €200</label>
               </motion.div>
             )}
             <div className="w-full flex flex-col justify-center items-center">
@@ -1389,6 +1472,9 @@ export default function NestedModal({
               statusObj={statusObj}
               llamadoVenta={llamadoVenta}
               setOpen={setOpen}
+              SendEmailLeadAlert={SendEmailLeadAlert}
+              SendEmailLeadAlertError={SendEmailLeadAlertError}
+              SendEmailLeadAlertErrorCuotas={SendEmailLeadAlertErrorCuotas}
               SendLeadAlert={SendLeadAlert}
               SendErrorUpdateAlert={SendErrorUpdateAlert}
               handleLlamadoVentaChange={handleLlamadoVentaChange}
