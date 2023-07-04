@@ -9,7 +9,7 @@ export default function Progreso({ goals, progress }) {
         <p className="text-green-400 font-semibold">+{100 - progress}</p>
         <p className="font-bold text-24 text-white">{progress}</p>
         <p className="font-bold text-24">/ {goals}</p>
-        <label className="text-red-400 font-semibold">-{100 - progress}</label>
+        <p className="text-red-400 font-semibold">-{100 - progress}</p>
       </div>
 
       {/* Barra de progreso lineal */}
