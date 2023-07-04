@@ -10,7 +10,10 @@ import tkPng from "../../Assets/tik-tok.png";
 import gdPng from "../../Assets/googleDrive.png";
 import avatarPng from "../../Assets/avatar.png";
 
-export default function ProfileSetting({ handleProfileSetting }) {
+export default function ProfileSetting({
+  handleProfileSetting,
+  tamañoPantalla,
+}) {
   const [username, setUsername] = useState("");
   const [photo, setPhoto] = useState("");
   const [instagram, setInstagram] = useState("");
