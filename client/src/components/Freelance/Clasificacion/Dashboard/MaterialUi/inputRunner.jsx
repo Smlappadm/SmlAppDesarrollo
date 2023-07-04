@@ -4,13 +4,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  findCorredoresByNameAllInfo,
-  getAllCategory,
-  getAllCountries,
-  getAllProfesion,
-} from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
+import { getAllCategory, getAllCountries, getAllProfesion } from "../../../../../redux/actions";
 
 export default function InputRunner({ getLeadCorredores, email, names }) {
   const dispatch = useDispatch();
