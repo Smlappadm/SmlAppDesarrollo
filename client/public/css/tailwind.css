@@ -688,6 +688,10 @@ video {
   top: 2.25rem;
 }
 
+.top-1 {
+  top: 0.25rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -2202,6 +2206,10 @@ video {
   text-align: start;
 }
 
+.text-end {
+  text-align: end;
+}
+
 .align-\[-0\.125em\] {
   vertical-align: -0.125em;
 }
@@ -2576,6 +2584,14 @@ video {
 
 .\!\[clip\:rect\(0\2c 0\2c 0\2c 0\)\] {
   clip: rect(0,0,0,0) !important;
+}
+
+.placeholder\:text-center::-moz-placeholder {
+  text-align: center;
+}
+
+.placeholder\:text-center::placeholder {
+  text-align: center;
 }
 
 .placeholder\:text-gray-500::-moz-placeholder {
