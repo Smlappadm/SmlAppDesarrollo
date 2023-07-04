@@ -1214,8 +1214,6 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="status_op"
-                      // defaultValue={item.status_op}
-                      // value={llamadoVenta.diaHora}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={
                         dateHour.$D
