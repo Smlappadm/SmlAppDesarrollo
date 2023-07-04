@@ -142,7 +142,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
   };
 
   return (
-    <div className="flex  flex-row justify-around items-center w-screen h-screen">
+    <div className="flex  flex-row justify-evenly items-center w-screen h-screen">
       <form
         className="flex flex-col w-3/12 gap-y-4"
         onSubmit={handleSubmit}
@@ -252,11 +252,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
         </div>
       </form>
       <hr className="border-2 border-[#8F00FF] h-4/6 w-0 mx-4 py-52 rounded-2xl" />
-      <img
-        src="https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-        alt="logo"
-        className="w-[300px] h-[300px]"
-      />
+      <img src={logo} alt="logo" className="w-[350px] h-[350px]" />
     </div>
   );
 }
