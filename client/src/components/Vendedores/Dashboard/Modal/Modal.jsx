@@ -732,22 +732,6 @@ export default function NestedModal({
     }
   };
 
-  // const handleOpenPagoSelect = () => {
-  //   setOpenPagoSelect(!openPagoSelect);
-  //   setPagoCalculo({
-  //     ...pagoCalculo,
-  //     precio1: (Number(statusObj.status_op) * 75) / 100,
-  //     precio6: (Number(statusObj.status_op) * 80) / 100,
-  //     precio12: (Number(statusObj.status_op) * 90) / 100,
-  //     precio16: (Number(statusObj.status_op) * 95) / 100,
-  //     precio25: Number(statusObj.status_op),
-  //     valorCuota1: ((Number(statusObj.status_op) * 75) / 100).toFixed(2),
-  //     valorCuota6: ((Number(statusObj.status_op) * 80) / 100 / 6).toFixed(2),
-  //     valorCuota12: ((Number(statusObj.status_op) * 90) / 100 / 12).toFixed(2),
-  //     valorCuota16: ((Number(statusObj.status_op) * 95) / 100 / 16).toFixed(2),
-  //     valorCuota25: (Number(statusObj.status_op) / 25).toFixed(2),
-  //   });
-  // };
 
   // const handleSelectpago = (event) => {
   //   if (event.target.value === "pago1") {
