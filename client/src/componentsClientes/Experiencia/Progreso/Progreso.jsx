@@ -6,9 +6,7 @@ export default function Progreso({ goals, progress }) {
     <div className="flex flex-col justify-center items-center gap-2 bg-[#404062] w-10/12 h-20 rounded-xl">
       {/* Etiquetas para mostrar el progreso */}
       <div className="flex w-full justify-center items-center gap-5">
-        <label className="text-green-400 font-semibold">
-          +{100 - progress}
-        </label>
+        <p className="text-green-400 font-semibold">+{100 - progress}</p>
         <label className="font-bold text-24 text-white">{progress}</label>
         <label className="font-bold text-24">/ {goals}</label>
         <label className="text-red-400 font-semibold">-{100 - progress}</label>
