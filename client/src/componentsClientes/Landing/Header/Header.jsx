@@ -25,16 +25,6 @@ export default function Header({ numberTotal, setCustomValue, imgInstagram }) {
 
       <div className="flex  justify-center items-start gap-1 pt-4">
         <Link
-          to="/clientes-guiones"
-          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-        >
-          <AiOutlineVideoCameraAdd
-            className="font-bold"
-            color="#fff"
-            size={24}
-          />
-        </Link>
-        <Link
           to="/clientes-addvideos"
           className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
         >

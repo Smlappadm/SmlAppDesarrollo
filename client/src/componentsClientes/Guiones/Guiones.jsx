@@ -7,7 +7,6 @@ import IA21 from "../../Assets/IA21.png";
 import user1 from "../../Assets/user1.png";
 import SMLlogo from "../../Assets/SMLlogo.png";
 import { Link } from "react-router-dom";
-import { IoCloseSharp } from "react-icons/io5";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import HandleGuion from "./MUI/HandleGuion";
 import HandleParametros from "./MUI/HandleParametros";
@@ -55,7 +54,7 @@ export default function Guiones({ tamañoPantalla }) {
       style={styles()}
     >
       
-      <div className="flex w-6/12 justify-between items-center mt-20">
+      <div className="flex w-4/6 justify-between items-center mt-20">
         <div className="">
           <img src={SMLlogo} alt="" />
         </div>
