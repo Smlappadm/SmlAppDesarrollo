@@ -743,17 +743,7 @@ export default function NestedModal({
 setTimeout(() => {
   setOpenAlert(false);
 }, 3000);
-    // toast.success(`✔ ${texto} Update!`, {
-    //   position: "top-center",
-    //   autoClose: 3000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "dark",
-    //   className: "custom-toast",
-    // });
+
   };
 
   //EDITAR DATOS EMAIL
