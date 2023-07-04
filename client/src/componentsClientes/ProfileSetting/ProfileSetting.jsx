@@ -154,7 +154,13 @@ export default function ProfileSetting({
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <img
             src={gdPng}
             alt="icono de Google Drive"
