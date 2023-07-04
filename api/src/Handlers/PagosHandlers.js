@@ -1,7 +1,7 @@
 const postInfoPago = require("../controllers/Pagos/postInfoPago");
 
 const updatePagosInfoHandler = async (req, res) => {
-  const info = req.body.info
+  const info = req.body
   
 
   try {
