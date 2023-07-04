@@ -3,7 +3,7 @@ import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import AI22 from "../../Assets/AI22.png";
 import next1 from "../../Assets/next1.png";
-import ajustes1 from "../../Assets/ajustes1.png";
+import IA21 from "../../Assets/IA21.png";
 import user1 from "../../Assets/user1.png";
 import SMLlogo from "../../Assets/SMLlogo.png";
 import { Link } from "react-router-dom";
@@ -56,33 +56,29 @@ export default function Guiones({ tamañoPantalla }) {
         <div className="">
           <img src={SMLlogo} alt="" />
         </div>
-        <div className=" flex mb-4 items-end justify-between pt-4">
-          <Link
-            to={"/clientes-estadisticas"}
-            className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-          >
-            <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-          </Link>
-        </div>
       </div>
 
       {/* Nivel 0 */}
       {progress === 0 ? (
         <div className="flex flex-col">
+          <Link to={"/clientes-estadisticas"}>
           <div
-            onClick={() => nextProgress()}
             className="flex justify-center 
          items-center gap-8"
           >
-            <p className="text-white font-semibold">Perfil</p>
+            <p className="text-white font-semibold">Estadisticas</p>
             <div className="mb-4">
               <img src={user1} alt="" />
             </div>
           </div>
-          <div className="flex justify-center mb-[7rem] items-center gap-8">
-            <p className="text-white font-semibold">Ajustes</p>
+          </Link>
+          <div
+            onClick={() => nextProgress()}
+            className="flex justify-center mb-[7rem] items-center gap-8"
+          >
+            <p className="text-white font-semibold">Guiones</p>
             <div>
-              <img src={ajustes1} alt="" />
+              <img src={IA21} alt="" />
             </div>
           </div>
         </div>
