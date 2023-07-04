@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./VendedoresAnalytics.module.css";
+import style from "./VentasAnalytics.module.css";
 import Nav from "../../Nav/Nav"
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ import { IoGrid, IoStatsChart } from "react-icons/io5";
 import {MdOutlineAttachMoney } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
 
-const VendedoresAnalytics = () => {
+const VentasAnalytics = () => {
   return (
     <>
       <Nav />
@@ -36,4 +36,4 @@ const VendedoresAnalytics = () => {
   );
 };
 
-export default VendedoresAnalytics;
+export default VentasAnalytics;
