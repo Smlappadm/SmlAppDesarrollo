@@ -25,6 +25,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
   const description = `cuotas ${cuotasRestantes}/${cuotas}`
+
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -59,11 +60,11 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
     locale: "es",
   });
 
-    // Agregar un webhook para escuchar el evento de pago completado
-    await stripe.webhookEndpoints.create({
-      url: "https://tu-domino.com/stripe/payment_completed",
-      enabled_events: ["checkout.session.completed"],
-    });
+
+    // await stripe.webhookEndpoints.create({
+    //   url: "https://tu-domino.com/stripe/payment_completed",
+    //   enabled_events: ["checkout.session.completed"],
+    // });
   
 
 //   console.log(session)
