@@ -688,6 +688,10 @@ video {
   top: 2.25rem;
 }
 
+.top-1 {
+  top: 0.25rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1431,6 +1435,10 @@ video {
   justify-content: space-evenly;
 }
 
+.justify-stretch {
+  justify-content: stretch;
+}
+
 .gap-1 {
   gap: 0.25rem;
 }
@@ -1944,6 +1952,11 @@ video {
 .via-\[\#282828\] {
   --tw-gradient-to: rgb(40 40 40 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), #282828 var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-white {
+  --tw-gradient-to: rgb(255 255 255 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), #fff var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
 .via-black {
