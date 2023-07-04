@@ -109,13 +109,22 @@ export default function ClientesSettings({ tamañoPantalla }) {
                 </Link>
               </div>
               <Link to={"/clientes-referidos"}>
-                <div className="w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex ">
-                  Referidos
+                <div
+                  className={
+                    tamañoPantalla === "Grande"
+                      ? "w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white justify-center items-center flex "
+                      : "w-full text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-[#282828] via-black  to-[#282828] text-white justify-center items-center flex "
+                  }
+                >
+                  Invitar a un amigo!
                 </div>
               </Link>
             </>
           ) : (
-            <ProfileSetting handleProfileSetting={handleProfileSetting} />
+            <ProfileSetting
+              handleProfileSetting={handleProfileSetting}
+              tamañoPantalla={tamañoPantalla}
+            />
           )}
         </div>
         <div className="flex justify-center items-center mt-10">

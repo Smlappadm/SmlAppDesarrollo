@@ -10,7 +10,10 @@ import tkPng from "../../Assets/tik-tok.png";
 import gdPng from "../../Assets/googleDrive.png";
 import avatarPng from "../../Assets/avatar.png";
 
-export default function ProfileSetting({ handleProfileSetting }) {
+export default function ProfileSetting({
+  handleProfileSetting,
+  tamañoPantalla,
+}) {
   const [username, setUsername] = useState("");
   const [photo, setPhoto] = useState("");
   const [instagram, setInstagram] = useState("");
@@ -68,17 +71,25 @@ export default function ProfileSetting({ handleProfileSetting }) {
 
   return (
     <>
-      <div className=" flex mb-4 items-end justify-between pt-4">
-        <h2 className="font-bold">Ajustes de Perfil</h2>
-        <button
-          onClick={handleProfileSetting}
-          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-        >
-          <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-        </button>
+      <div className=" flex mb-4 items-center justify-center pt-4">
+        <h2 className="font-extrabold text-white">Ajustes de Perfil</h2>
+        {tamañoPantalla === "Pequeña" ? (
+          <button
+            onClick={handleProfileSetting}
+            className="font-bold  md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] absolute right-4"
+          >
+            <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+          </button>
+        ) : null}
       </div>
       <div className="w-full flex flex-col gap-4 items-center">
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <img
             src={avatarPng}
             alt="icono de Avatar"
@@ -97,7 +108,13 @@ export default function ProfileSetting({ handleProfileSetting }) {
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <img
             src={igPng}
             alt="icono de Instagram"
@@ -115,7 +132,13 @@ export default function ProfileSetting({ handleProfileSetting }) {
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <img
             src={tkPng}
             alt="icono de Tiktok"
@@ -133,7 +156,13 @@ export default function ProfileSetting({ handleProfileSetting }) {
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <img
             src={gdPng}
             alt="icono de Google Drive"
@@ -151,7 +180,13 @@ export default function ProfileSetting({ handleProfileSetting }) {
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">📞</p>
           <input
             type="text"
@@ -166,7 +201,13 @@ export default function ProfileSetting({ handleProfileSetting }) {
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
-        <div className=" p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950">
+        <div
+          className={
+            tamañoPantalla === "Grande"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
+          }
+        >
           <p className="ml-1 mr-1 w-[24px] text-24 h-[24px]">🌍</p>
           <input
             type="text"
@@ -181,6 +222,7 @@ export default function ProfileSetting({ handleProfileSetting }) {
             className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
+        {}
         {save ? (
           <button
             className="w-5/12 text-center rounded-md mt-6 border border-white h-[40px] px-3 bg-gradient-to-t from-black via-[#020131]  to-blue-600 text-white "
