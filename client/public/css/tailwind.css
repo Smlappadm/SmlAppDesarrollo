@@ -688,6 +688,10 @@ video {
   top: 2.25rem;
 }
 
+.top-1 {
+  top: 0.25rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -2200,6 +2204,10 @@ video {
 
 .text-start {
   text-align: start;
+}
+
+.text-end {
+  text-align: end;
 }
 
 .align-\[-0\.125em\] {
