@@ -1,7 +1,11 @@
 require('dotenv').config();
 
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const { STRIPE } = process.env.STRIPE_SECRET_KEY;
+const STRIPE_KEY = STRIPE;
+
+
+const stripe = require("stripe")(STRIPE_KEY);
 
 // const createPayment = async ({id, amount}) => {
 
