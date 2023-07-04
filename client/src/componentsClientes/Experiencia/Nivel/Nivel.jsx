@@ -26,7 +26,7 @@ export default function Nivel({ nivel }) {
         {/* Etiqueta para el texto "Ranking" */}
         <p className="text-18 text-white font-medium">Ranking</p>
         {/* Etiqueta para mostrar el valor del ranking */}
-        <label className="text-[40px] text-white absolute top-5">2</label>
+        <p className="text-[40px] text-white absolute top-5">2</p>
       </div>
     </div>
   );
