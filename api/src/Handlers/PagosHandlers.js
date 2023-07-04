@@ -3,7 +3,7 @@ const postInfoPago = require("../controllers/Pagos/postInfoPago");
 
 
 const updatePagosInfoHandler = async (req, res) => {
-  const info = req.body;
+  const info = req.body.info.data.object.billing_details;
   console.log(info)
 
   try {
