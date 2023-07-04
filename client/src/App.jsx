@@ -470,7 +470,7 @@ function ClerkProviderWithRoutes() {
           }
         />
         <Route
-          path="/vendedores-ventas"
+          path="/ventas-dashboard"
           element={
             (roleReady === "clevel" ||
               roleReady === "leader" ||
