@@ -448,7 +448,7 @@ function ClerkProviderWithRoutes() {
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "vendedor") &&
+              roleReady === "freelance") &&
             isEmployeeReady ? (
               <VentasHistory />
             ) : (
@@ -474,7 +474,7 @@ function ClerkProviderWithRoutes() {
           element={
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "vendedor") &&
+              roleReady === "freelance") &&
             isEmployeeReady ? (
               <VentasDasboard />
             ) : (
