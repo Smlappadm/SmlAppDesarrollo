@@ -1,18 +1,17 @@
-const getAllLeaders = require("../controllers/Leader/getAllLeaders");
+const postInfoPago = require("../controllers/Pagos/postInfoPago");
 
 
 
 const updatePagosInfoHandler = async (req, res) => {
-    console.log("entro a pagos")
-//   const email = req.query.email;
-//   const updatedData = req.body;
+  const info = req.body;
+  console.log(info)
 
-//   try {
-//     const leader = await updateLeaderByEmail(email, updatedData);
-//     res.status(200).json(leader);
-//   } catch (error) {
-//     res.status(404).json({ error: error.message });
-//   }
+  try {
+    const infoSave = await postInfoPago(info);
+    res.status(200).json(infoSave);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 };
 
 module.exports = {updatePagosInfoHandler}
