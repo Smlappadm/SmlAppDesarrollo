@@ -1176,7 +1176,6 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="contacto"
-                      // defaultValue={item.llamada_venta.contacto}
                       value={
                         llamadoVenta.contacto
                           ? llamadoVenta.contacto
