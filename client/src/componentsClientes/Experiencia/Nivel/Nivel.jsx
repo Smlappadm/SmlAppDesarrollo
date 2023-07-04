@@ -8,7 +8,7 @@ export default function Nivel({ nivel }) {
       {/* Contenedor para el nivel */}
       <div className="flex flex-col justify-start items-center relative h-24 w-20">
         {/* Etiqueta para el texto "Nivel" */}
-        <label className="text-18 text-white font-medium">Nivel</label>
+        <p className="text-18 text-white font-medium">Nivel</p>
         {/* Etiqueta para mostrar el nivel */}
         <label className="text-[65px] absolute top-3">
           {/* Span con estilo de gradiente para el valor del nivel */}
