@@ -6,10 +6,8 @@ import {
   IoStatsChart,
   IoSettingsSharp,
   IoGrid,
-  IoCashSharp,
   IoPeople,
   IoExitOutline,
-  IoWalkOutline,
 } from "react-icons/io5";
 
 function Nav() {
@@ -103,6 +101,32 @@ function Nav() {
                       className=" text-[#e0dddd] hover:text-white"
                     >
                       Vendedores
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoGrid className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/clasificacion"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Clasificación
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoGrid className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/ventas"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Ventas
                     </Link>
                   </span>
                 </li>
