@@ -71,14 +71,16 @@ export default function ProfileSetting({
 
   return (
     <>
-      <div className=" flex mb-4 items-end justify-between pt-4">
-        <h2 className="font-bold">Ajustes de Perfil</h2>
-        <button
-          onClick={handleProfileSetting}
-          className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-        >
-          <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-        </button>
+      <div className=" flex mb-4 items-center justify-center pt-4">
+        <h2 className="font-extrabold text-white">Ajustes de Perfil</h2>
+        {tamañoPantalla === "Pequeña" ? (
+          <button
+            onClick={handleProfileSetting}
+            className="font-bold  md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] absolute right-4"
+          >
+            <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+          </button>
+        ) : null}
       </div>
       <div className="w-full flex flex-col gap-4 items-center">
         <div
