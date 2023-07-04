@@ -52,7 +52,9 @@ function ChildModal({
   const handleOpen = () => {
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
+      if(valorCuota < 200){
 
+      }
       setStatusObj({
         ...statusObj,
         pagos: {
@@ -802,12 +804,12 @@ export default function NestedModal({
   // };
 
   const SendEmailLeadAlert = (texto) => {
-// Abre la alerta después de 3000 milisegundos
+
 
   setOpenAlert(true);
 
 
-// Cierra la alerta después de 5000 milisegundos
+
 setTimeout(() => {
   setOpenAlert(false);
 }, 3000);
