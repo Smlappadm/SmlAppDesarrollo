@@ -1,11 +1,4 @@
-require('dotenv').config();
-
-
-const { STRIPE } = process.env.STRIPE_SECRET_KEY;
-const STRIPE_KEY = STRIPE;
-
-
-const stripe = require("stripe")(STRIPE_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // const createPayment = async ({id, amount}) => {
 
@@ -31,8 +24,6 @@ const stripe = require("stripe")(STRIPE_KEY);
 // };
 
 const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
-  // console.log(name)
-  // console.log(valorCuota)
   const description = `cuotas ${cuotasRestantes}/${cuotas}`
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -61,7 +52,7 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // },
     ],
     mode: "payment",
-    success_url: "http://www.google.",
+    success_url: "http://www.google.com.ar",
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",
