@@ -8,7 +8,7 @@ export default function Progreso({ goals, progress }) {
       <div className="flex w-full justify-center items-center gap-5">
         <p className="text-green-400 font-semibold">+{100 - progress}</p>
         <p className="font-bold text-24 text-white">{progress}</p>
-        <label className="font-bold text-24">/ {goals}</label>
+        <p className="font-bold text-24">/ {goals}</p>
         <label className="text-red-400 font-semibold">-{100 - progress}</label>
       </div>
 
