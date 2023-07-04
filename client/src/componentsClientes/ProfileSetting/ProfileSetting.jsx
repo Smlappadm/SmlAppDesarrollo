@@ -129,7 +129,7 @@ export default function ProfileSetting({
               setSave(true);
             }}
             placeholder="Ingresar Link de Instagram"
-            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+            className="w-10/12 text-start h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
           />
         </div>
         <div
@@ -153,7 +153,7 @@ export default function ProfileSetting({
               setSave(true);
             }}
             placeholder="Ingresar Link de TikTok"
-            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+            className="w-10/12 text-start h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none "
           />
         </div>
         <div
@@ -177,7 +177,7 @@ export default function ProfileSetting({
               setSave(true);
             }}
             placeholder="Ingresar Link de Google Drive"
-            className="w-10/12 text-center h-[40px]  bg-transparent placeholder:text-gray-500 text-white focus:border-none focus:outline-none"
+            className="w-10/12 text-start h-[40px]  bg-transparent placeholder:text-gray-500 placeholder:text-center text-white focus:border-none focus:outline-none"
           />
         </div>
         <div
