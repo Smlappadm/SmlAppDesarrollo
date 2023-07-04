@@ -86,7 +86,7 @@ export default function ProfileSetting({
         <div
           className={
             tamañoPantalla === "Grande"
-              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 "
               : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
           }
         >
@@ -111,7 +111,7 @@ export default function ProfileSetting({
         <div
           className={
             tamañoPantalla === "Grande"
-              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 "
               : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
           }
         >
@@ -135,7 +135,7 @@ export default function ProfileSetting({
         <div
           className={
             tamañoPantalla === "Grande"
-              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 "
               : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
           }
         >
@@ -159,7 +159,7 @@ export default function ProfileSetting({
         <div
           className={
             tamañoPantalla === "Grande"
-              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950"
               : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
           }
         >
@@ -183,7 +183,7 @@ export default function ProfileSetting({
         <div
           className={
             tamañoPantalla === "Grande"
-              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 "
               : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
           }
         >
@@ -204,7 +204,7 @@ export default function ProfileSetting({
         <div
           className={
             tamañoPantalla === "Grande"
-              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 #282828"
+              ? " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#020131]  to-blue-950 "
               : " p-0 m-0 flex  w-11/12 justify-start items-center border rounded-md bg-gradient-to-br from-black via-[#282828]  to-black "
           }
         >
