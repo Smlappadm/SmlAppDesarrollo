@@ -112,11 +112,11 @@ export default function Home({ tamañoPantalla }) {
     localStorage.setItem("instagram", userIG);
     localStorage.setItem("tiktok", userTT);
     // const responseTT = await axios.get(
-    //   `https://apisml.onrender.com//obtener_info_tiktok?username=${userTT}`
+    //   `https://apisml.onrender.com/obtener_info_tiktok?username=${userIG}`
     // );
     // const infoTT = responseTT.data;
     // const responseIG = await axios.get(
-    //   `https://apisml.onrender.com//obtener_info_instagram?username=${userIG}`
+    //   `https://apisml.onrender.com/obtener_info_instagram?username=${userTT}&num_reels=5}`
     // );
     // const infoIG = responseIG.data;
     const infoIG = { seguidores: "1050" };

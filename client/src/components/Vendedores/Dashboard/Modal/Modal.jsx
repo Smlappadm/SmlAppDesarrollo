@@ -856,7 +856,6 @@ export default function NestedModal({
               <div className="flex flex-col justify-center items-center mt-3">
                 <div className="mt-3  flex  justify-between items-center">
                   {/* EDITAR DATOS Email-------------------------------------  */}
-                  {/* {!editEmail && ( */}
                   <CiMail
                     onClick={handleEditEmail}
                     className={
@@ -869,16 +868,7 @@ export default function NestedModal({
                   {/* )} */}
                   {/* {!editInstagram && ( */}
 
-                  {/* <input
-                      type="text"
-                      name="contacto"
-                      // defaultValue={item.llamada_venta.contacto}
-                      className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      value={updatedInstagram}
-                      disabled={!editInstagram}
-                      required
-                    /> */}
+
                   <CiInstagram
                     onClick={handleEditInstagram}
                     className={
@@ -887,20 +877,6 @@ export default function NestedModal({
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
-
-                  {/* )} */}
-                  {/* {!editTelephone && ( */}
-
-                  {/* <input
-                      type="text"
-                      name="contacto"
-                      // defaultValue={item.llamada_venta.contacto}
-                      className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      value={updatedTelephone}
-                      disabled={!editTelephone}
-                      required
-                    /> */}
                   <AiOutlinePhone
                     onClick={handleEditTelephone}
                     className={
@@ -918,7 +894,7 @@ export default function NestedModal({
                     }
                   />
                 </div>
-                {/* )} */}
+
                 <div className="">
                   {editEmail && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
@@ -928,8 +904,6 @@ export default function NestedModal({
                         onChange={handleChangeEmail}
                         defaultValue={updatedEmail}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
-                        // value={inputEmail}
                         disabled={!editEmail}
                         required
                       />
@@ -954,8 +928,6 @@ export default function NestedModal({
                         onChange={handleChangeInstagram}
                         defaultValue={updatedInstagram}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
-                        // value={inputEmail}
                         disabled={!editInstagram}
                         required
                       />
@@ -965,13 +937,6 @@ export default function NestedModal({
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditInstagram(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditInstagram}
                         id={item._id}
@@ -987,8 +952,6 @@ export default function NestedModal({
                         onChange={handleChangeTelephone}
                         defaultValue={updatedTelephone}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
-                        // value={inputEmail}
                         disabled={!editTelephone}
                         required
                       />
@@ -998,13 +961,6 @@ export default function NestedModal({
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditTelephone(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditTelephone}
                         id={item._id}
@@ -1030,13 +986,6 @@ export default function NestedModal({
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditEmailApp(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
                         id={item._id}
@@ -1227,16 +1176,13 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="contacto"
-                      // defaultValue={item.llamada_venta.contacto}
                       value={
                         llamadoVenta.contacto
                           ? llamadoVenta.contacto
                           : item.llamada_venta.contacto
                       }
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
                       placeholder=""
-                      // value="USD"
                       required
                     />
                   </div>
@@ -1259,7 +1205,6 @@ export default function NestedModal({
                       }
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
-                      // value="USD"
                       required
                     />
                   </div>
@@ -1269,8 +1214,6 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="status_op"
-                      // defaultValue={item.status_op}
-                      // value={llamadoVenta.diaHora}
                       className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={
                         dateHour.$D
@@ -1308,7 +1251,6 @@ export default function NestedModal({
               )}
             {statusObj.status === "Contratado" && (
               <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                {/* <div className="flex flex-col items-center justify-center gap-5"> */}
                 <div className="flex items-center justify-center gap-2 relative">
                   <label
                     htmlFor="last_name"
@@ -1322,9 +1264,7 @@ export default function NestedModal({
                     id="last_name"
                     name="monto"
                     className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    // placeholder={item.email}
                     placeholder="Monto"
-                    // value="USD"
                     required
                   />
                   <label
@@ -1338,11 +1278,8 @@ export default function NestedModal({
                     type="text"
                     id="last_name"
                     name="cuotas"
-                    // defaultValue={item.status_op}
                     className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    // placeholder={item.email}
                     placeholder="Cuotas"
-                    // value="USD"
                     required
                   />
                 </div>
@@ -1351,7 +1288,6 @@ export default function NestedModal({
                   type="text"
                   id="last_name"
                   name="total"
-                  // defaultValue={item.status_op}
                   disabled={true}
                   className={
                     statusObj.pagos.monto && statusObj.pagos.cuotas
