@@ -24,7 +24,7 @@ export default function Nivel({ nivel }) {
       {/* Contenedor para el ranking */}
       <div className="flex flex-col justify-start items-center relative h-24 w-20 mt-4">
         {/* Etiqueta para el texto "Ranking" */}
-        <label className="text-18 text-white font-medium">Ranking</label>
+        <p className="text-18 text-white font-medium">Ranking</p>
         {/* Etiqueta para mostrar el valor del ranking */}
         <label className="text-[40px] text-white absolute top-5">2</label>
       </div>
