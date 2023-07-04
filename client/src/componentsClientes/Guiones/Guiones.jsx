@@ -11,7 +11,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import HandleGuion from "./MUI/HandleGuion";
 import HandleParametros from "./MUI/HandleParametros";
-
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 export default function Guiones({ tamañoPantalla }) {
   const [progress, setProgress] = useState(0);
 
@@ -47,12 +47,15 @@ export default function Guiones({ tamañoPantalla }) {
     }
   };
 
+  console.log(progress);
+
   return (
     <div
       className="bg-[#1a1a1a] flex flex-col justify-between items-center h-screen w-screen"
       style={styles()}
     >
-      <div className="flex w-10/12 justify-between items-center mt-20">
+      
+      <div className="flex w-6/12 justify-between items-center mt-20">
         <div className="">
           <img src={SMLlogo} alt="" />
         </div>
@@ -62,15 +65,15 @@ export default function Guiones({ tamañoPantalla }) {
       {progress === 0 ? (
         <div className="flex flex-col">
           <Link to={"/clientes-estadisticas"}>
-          <div
-            className="flex justify-center 
+            <div
+              className="flex justify-center 
          items-center gap-8"
-          >
-            <p className="text-white font-semibold">Estadisticas</p>
-            <div className="mb-4">
-              <img src={user1} alt="" />
+            >
+              <p className="text-white font-semibold">Estadisticas</p>
+              <div className="mb-4">
+                <img src={user1} alt="" />
+              </div>
             </div>
-          </div>
           </Link>
           <div
             onClick={() => nextProgress()}
@@ -262,16 +265,15 @@ export default function Guiones({ tamañoPantalla }) {
           <img src={AI22} alt="" />
         </div>
         <div className="flex items-center justify-center gap-5">
-          <div
-            className="transform rotate-180"
-            onClick={() => previousProgress()}
-          >
-            <img src={next1} alt="" />
-          </div>
+          {progress === 0 ? null : (
+            <div onClick={() => previousProgress()}>
+              <AiOutlineLeft className="text-[2rem] text-white font-semibold" />
+            </div>
+          )}
 
-          {progress === 10 ? null : (
+          {progress === 10 || progress === 0  ? null : (
             <div onClick={() => nextProgress()}>
-              <img src={next1} alt="" />
+              <AiOutlineRight className="text-[2rem] text-white font-semibold" />
             </div>
           )}
         </div>
