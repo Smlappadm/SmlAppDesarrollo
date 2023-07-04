@@ -52,7 +52,7 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // },
     ],
     mode: "payment",
-    success_url: "http://www.google.",
+    success_url: "http://www.google.com.ar",
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",
