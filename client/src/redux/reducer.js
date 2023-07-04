@@ -34,6 +34,7 @@ import {
   GET_CORREDORES,
   GET_VENDEDORES,
   GET_CLIENTE_EMPRESA,
+  GET_LEAD_DISCARD,
 } from "./actions";
 
 const initialState = {
@@ -43,6 +44,7 @@ const initialState = {
   leadUnchecked: [],
   leadUnchecked10: [],
   leaderDashboard: [],
+  leaderDiscard: [],
   vendedoresDashboard: [],
   vendedoresVentasDashboard: [],
   corredores: [],
@@ -119,6 +121,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         leaderDashboard: action.payload,
         leadChequed: action.payload,
+      };
+    case GET_LEAD_DISCARD:
+      return {
+        ...state,
+        leaderDiscard: action.payload,
       };
     case GET_LEAD_CHEQUED_INACTIVE_5:
       return {

@@ -23,6 +23,7 @@ const changeLeadEmail = require("../controllers/Lead/changeLeadEmail");
 const getVendedores = require("../controllers/Lead/getVendedores");
 const findLeadVendedorNameAllInfo = require("../controllers/Lead/findLeadVendedorNameAllInfo");
 const cleanValueClevel = require("../controllers/Lead/cleanValueClevel");
+const getLeadDiscard = require("../controllers/Lead/getLeadDiscard");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -100,6 +101,14 @@ const getLead10UncheckedHandler = async (req, res) => {
 const getLeadCheckedHandler = async (req, res) => {
   try {
     const leadChequed = await getLeadChecked();
+    res.status(200).json(leadChequed);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const getLeadDiscardHandler = async (req, res) => {
+  try {
+    const leadChequed = await getLeadDiscard();
     res.status(200).json(leadChequed);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -335,4 +344,5 @@ module.exports = {
   getVendedoresHandler,
   cleanValueClevelHandler,
   getLeadByEmailAppHandler,
+  getLeadDiscardHandler,
 };

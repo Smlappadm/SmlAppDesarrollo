@@ -22,6 +22,7 @@ import {
   filterLevel,
   filterStatus,
   getLeadChecked,
+  getLeadDiscard,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
@@ -29,23 +30,21 @@ import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
 
 export const AnalyticLeader = () => {
   const [data, setData] = useState([]);
-  const { leaderDashboard } = useSelector((state) => state);
+  const { leaderDiscard } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLeadChecked());
+    dispatch(getLeadDiscard());
   }, [dispatch]);
   useEffect(() => {
-    setData(leaderDashboard);
-  }, [leaderDashboard]);
+    setData(leaderDiscard);
+  }, [leaderDiscard]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardXPage, setCardXpage] = useState(10);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
-  const showData = data.filter((item) => {
-    return item.status === "discard_bot";
-  });
+  const showData = data;
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -153,6 +152,9 @@ export const AnalyticLeader = () => {
             <Link className="text-5xl" to={"/lideres-incidences"}>
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
+            <div className=" mx-36">
+              <label>Leads descartados por el bot: {showData.length}</label>
+            </div>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
           {/* {filters.level === true ? (
