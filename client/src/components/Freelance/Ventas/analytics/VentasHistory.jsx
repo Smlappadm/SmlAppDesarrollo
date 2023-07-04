@@ -2,8 +2,6 @@ import style from "./VentasHistory.module.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { filterLevel, getVendedorAllLeads } from "../../../redux/actions";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
@@ -15,7 +13,9 @@ import ModalHistory from "./Modal/ModalHistory";
 import { ToastContainer, toast } from "react-toastify";
 
 import Nav from "../../Nav/Nav";
-import InputRunner from "./MUI/InputRunner";
+import PaginationOutlined from "../../../pagination/PaginationOutlined";
+import { filterLevel, getVendedorAllLeads } from "../../../../redux/actions";
+import InputRunner from "../../Clasificacion/Dashboard/MaterialUi/inputRunner";
 
 const VentasHistory = () => {
   const [data, setData] = useState([]);
