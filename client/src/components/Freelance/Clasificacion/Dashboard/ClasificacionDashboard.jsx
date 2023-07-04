@@ -19,6 +19,7 @@ import {
   getAllCategory,
   getAllCountries,
   getAllProfesion,
+  getLeadClasificacion,
   getLeadCorredores,
 } from "../../../../redux/actions";
 
@@ -42,6 +43,7 @@ const ClasificacionDashboard = () => {
   ]);
 
   const { corredorLead } = useSelector((state) => state);
+  const { freelanceLead } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -67,6 +69,17 @@ const ClasificacionDashboard = () => {
           marca_personal
         )
       );
+
+      dispatch(
+        getLeadClasificacion(
+          email,
+          names,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
@@ -84,6 +97,17 @@ const ClasificacionDashboard = () => {
         marca_personal
       )
     );
+    
+      dispatch(
+        getLeadClasificacion(
+          email,
+          names,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
   };
 
   const filterProfesion = (event) => {
@@ -472,6 +496,17 @@ const ClasificacionDashboard = () => {
           marca_personal
         )
       );
+      
+      dispatch(
+        getLeadClasificacion(
+          email,
+          names,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
@@ -513,6 +548,7 @@ const ClasificacionDashboard = () => {
               <div className="flex mt-5 mb-2 items-center justify-center">
                 <InputRunner
                   getLeadCorredores={getLeadCorredores}
+                  getLeadClasificacion={getLeadClasificacion}
                   email={email}
                   names={names}
                 />

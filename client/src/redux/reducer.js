@@ -389,7 +389,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_CLASIFICACION_LEAD:
       return {
         ...state,
-        corredorLead: action.payload,
+        freelanceLead: action.payload,
       };
     case GET_CORREDOR_LEAD_CHECKED:
       return {
