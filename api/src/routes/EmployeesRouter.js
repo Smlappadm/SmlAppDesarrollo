@@ -7,7 +7,7 @@ const {
   deleteEmployeesByEmailHandler,
   getEmployeesBannedHandler,
   updateBannedEmployHandler,
-} = require("../Handlers/employeesHandlers");
+} = require("../Handlers/EmployeesHandlers.js");
 const EmployeesRouter = Router();
 
 EmployeesRouter.get("/", getAllEmployeesHandler);
