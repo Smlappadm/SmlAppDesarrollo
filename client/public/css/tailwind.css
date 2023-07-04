@@ -2578,6 +2578,14 @@ video {
   clip: rect(0,0,0,0) !important;
 }
 
+.placeholder\:text-center::-moz-placeholder {
+  text-align: center;
+}
+
+.placeholder\:text-center::placeholder {
+  text-align: center;
+}
+
 .placeholder\:text-gray-500::-moz-placeholder {
   --tw-text-opacity: 1;
   color: rgb(107 114 128 / var(--tw-text-opacity));
