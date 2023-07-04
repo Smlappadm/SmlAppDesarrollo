@@ -45,15 +45,14 @@ function ChildModal({
   fullName,
   cancelModal,
   setStatusObj,
-  updatedEmailApp
+  updatedEmailApp,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
-      if(valorCuota < 200){
-
+      if (valorCuota < 200) {
       }
       setStatusObj({
         ...statusObj,
@@ -732,18 +731,11 @@ export default function NestedModal({
     }
   };
 
-
   const SendEmailLeadAlert = (texto) => {
-
-
-  setOpenAlert(true);
-
-
-
-setTimeout(() => {
-  setOpenAlert(false);
-}, 3000);
-
+    setOpenAlert(true);
+    setTimeout(() => {
+      setOpenAlert(false);
+    }, 3000);
   };
 
   //EDITAR DATOS EMAIL
@@ -844,9 +836,14 @@ setTimeout(() => {
           <div className="w-full flex justify-center items-center mt-2 mb-10">
             {openAlert && (
               <motion.div
-              initial={{ opacity: 0, x: "-20px" }}
-              whileInView={{ x: "0px", opacity: 1}}
-              transition={{ duration: 1, delay: 0.1, type: "spring", bounce: 0.6 }}
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
                 <label>✔ Lead Updated!</label>
@@ -1320,76 +1317,75 @@ setTimeout(() => {
                   </div>
                 </div>
               )}
-            {
-              statusObj.status === "Contratado" && (
-                <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                  {/* <div className="flex flex-col items-center justify-center gap-5"> */}
-                  <div className="flex items-center justify-center gap-2 relative">
-                    <label
-                      htmlFor="last_name"
-                      className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                    >
-                      €
-                    </label>
-                    <input
-                      onChange={handleSelectChangeContratado}
-                      type="text"
-                      id="last_name"
-                      name="monto"
-                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
-                      placeholder="Monto"
-                      // value="USD"
-                      required
-                    />
-                    <label
-                      htmlFor="last_name"
-                      className="  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                    >
-                      /
-                    </label>
-                    <input
-                      onChange={handleSelectChangeContratado}
-                      type="text"
-                      id="last_name"
-                      name="cuotas"
-                      // defaultValue={item.status_op}
-                      className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      // placeholder={item.email}
-                      placeholder="Cuotas"
-                      // value="USD"
-                      required
-                    />
-                  </div>
-
-                  <p
+            {statusObj.status === "Contratado" && (
+              <div className="flex flex-col items-center justify-center gap-7 mt-8">
+                {/* <div className="flex flex-col items-center justify-center gap-5"> */}
+                <div className="flex items-center justify-center gap-2 relative">
+                  <label
+                    htmlFor="last_name"
+                    className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
+                  >
+                    €
+                  </label>
+                  <input
+                    onChange={handleSelectChangeContratado}
                     type="text"
                     id="last_name"
-                    name="total"
-                    // defaultValue={item.status_op}
-                    disabled={true}
-                    className={
-                      statusObj.pagos.monto && statusObj.pagos.cuotas
-                        ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        : ""
-                    }
+                    name="monto"
+                    className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     // placeholder={item.email}
-                    placeholder=""
+                    placeholder="Monto"
                     // value="USD"
+                    required
+                  />
+                  <label
+                    htmlFor="last_name"
+                    className="  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
                   >
-                    {statusObj.pagos.monto &&
-                      statusObj.pagos.cuotas &&
-                      `${statusObj.pagos.cuotas} pagos de €${(
-                        statusObj.pagos.monto / statusObj.pagos.cuotas
-                      ).toFixed(2)}`}
-                  </p>
+                    /
+                  </label>
+                  <input
+                    onChange={handleSelectChangeContratado}
+                    type="text"
+                    id="last_name"
+                    name="cuotas"
+                    // defaultValue={item.status_op}
+                    className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    // placeholder={item.email}
+                    placeholder="Cuotas"
+                    // value="USD"
+                    required
+                  />
+                </div>
 
-                  {/* <MdPriceCheck
+                <p
+                  type="text"
+                  id="last_name"
+                  name="total"
+                  // defaultValue={item.status_op}
+                  disabled={true}
+                  className={
+                    statusObj.pagos.monto && statusObj.pagos.cuotas
+                      ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      : ""
+                  }
+                  // placeholder={item.email}
+                  placeholder=""
+                  // value="USD"
+                >
+                  {statusObj.pagos.monto &&
+                    statusObj.pagos.cuotas &&
+                    `${statusObj.pagos.cuotas} pagos de €${(
+                      statusObj.pagos.monto / statusObj.pagos.cuotas
+                    ).toFixed(2)}`}
+                </p>
+
+                {/* <MdPriceCheck
                       onClick={handleOpenPagoSelect}
                       className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     /> */}
-                  {/* </div> */}
-                  {/* {openPagoSelect && (
+                {/* </div> */}
+                {/* {openPagoSelect && (
                     <select
                       onChange={handleSelectpago}
                       name="status"
@@ -1427,8 +1423,8 @@ setTimeout(() => {
                       >{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
                     </select>
                   )} */}
-                </div>
-              )}
+              </div>
+            )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
               <div className="flex flex-col justify-center items-center mt-5">
                 <div className="flex justify-center items-center flex-col">
