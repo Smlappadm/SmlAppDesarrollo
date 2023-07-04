@@ -1251,7 +1251,6 @@ export default function NestedModal({
               )}
             {statusObj.status === "Contratado" && (
               <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                {/* <div className="flex flex-col items-center justify-center gap-5"> */}
                 <div className="flex items-center justify-center gap-2 relative">
                   <label
                     htmlFor="last_name"
