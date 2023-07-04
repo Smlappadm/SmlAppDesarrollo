@@ -857,17 +857,6 @@ export default function NestedModal({
                 <div className="mt-3  flex  justify-between items-center">
                   {/* EDITAR DATOS Email-------------------------------------  */}
                   {/* {!editEmail && ( */}
-
-                  {/* <input
-                      type="text"
-                      name="contacto"
-                      // defaultValue={item.llamada_venta.contacto}
-                      className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      value={updatedEmail}
-                      disabled={!editEmail}
-                      required
-                    /> */}
                   <CiMail
                     onClick={handleEditEmail}
                     className={
