@@ -52,7 +52,9 @@ function ChildModal({
   const handleOpen = () => {
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
+      if(valorCuota < 200){
 
+      }
       setStatusObj({
         ...statusObj,
         pagos: {
@@ -730,98 +732,18 @@ export default function NestedModal({
     }
   };
 
-  // const handleOpenPagoSelect = () => {
-  //   setOpenPagoSelect(!openPagoSelect);
-  //   setPagoCalculo({
-  //     ...pagoCalculo,
-  //     precio1: (Number(statusObj.status_op) * 75) / 100,
-  //     precio6: (Number(statusObj.status_op) * 80) / 100,
-  //     precio12: (Number(statusObj.status_op) * 90) / 100,
-  //     precio16: (Number(statusObj.status_op) * 95) / 100,
-  //     precio25: Number(statusObj.status_op),
-  //     valorCuota1: ((Number(statusObj.status_op) * 75) / 100).toFixed(2),
-  //     valorCuota6: ((Number(statusObj.status_op) * 80) / 100 / 6).toFixed(2),
-  //     valorCuota12: ((Number(statusObj.status_op) * 90) / 100 / 12).toFixed(2),
-  //     valorCuota16: ((Number(statusObj.status_op) * 95) / 100 / 16).toFixed(2),
-  //     valorCuota25: (Number(statusObj.status_op) / 25).toFixed(2),
-  //   });
-  // };
-
-  // const handleSelectpago = (event) => {
-  //   if (event.target.value === "pago1") {
-  //     setStatusObj({
-  //       ...statusObj,
-  //       status_op: {
-  //         cuotas: 1,
-  //         valorCuota: pagoCalculo.valorCuota1,
-  //         total: pagoCalculo.precio1,
-  //       },
-  //     });
-  //   }
-  //   if (event.target.value === "pago6") {
-  //     setStatusObj({
-  //       ...statusObj,
-  //       status_op: {
-  //         cuotas: 6,
-  //         valorCuota: pagoCalculo.valorCuota6,
-  //         total: pagoCalculo.precio6,
-  //       },
-  //     });
-  //   }
-  //   if (event.target.value === "pago12") {
-  //     setStatusObj({
-  //       ...statusObj,
-  //       status_op: {
-  //         cuotas: 12,
-  //         valorCuota: pagoCalculo.valorCuota12,
-  //         total: pagoCalculo.precio12,
-  //       },
-  //     });
-  //   }
-  //   if (event.target.value === "pago16") {
-  //     setStatusObj({
-  //       ...statusObj,
-  //       status_op: {
-  //         cuotas: 16,
-  //         valorCuota: pagoCalculo.valorCuota16,
-  //         total: pagoCalculo.precio16,
-  //       },
-  //     });
-  //   }
-  //   if (event.target.value === "pago25") {
-  //     setStatusObj({
-  //       ...statusObj,
-  //       status_op: {
-  //         cuotas: 25,
-  //         valorCuota: pagoCalculo.valorCuota25,
-  //         total: pagoCalculo.precio25,
-  //       },
-  //     });
-  //   }
-  //   console.log(statusObj.status_op);
-  // };
 
   const SendEmailLeadAlert = (texto) => {
-// Abre la alerta después de 3000 milisegundos
+
 
   setOpenAlert(true);
 
 
-// Cierra la alerta después de 5000 milisegundos
+
 setTimeout(() => {
   setOpenAlert(false);
 }, 3000);
-    // toast.success(`✔ ${texto} Update!`, {
-    //   position: "top-center",
-    //   autoClose: 3000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "dark",
-    //   className: "custom-toast",
-    // });
+
   };
 
   //EDITAR DATOS EMAIL
