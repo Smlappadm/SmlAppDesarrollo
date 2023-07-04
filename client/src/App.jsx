@@ -42,6 +42,12 @@ import TrofeosDesktop from "./componentsClientes/Trofeos/TrofeosDesktop";
 import RecursosDesktop from "./componentsClientes/Recursos/RecursosDesktop";
 import ExperienciaDesktop from "./componentsClientes/ExperienciaDesktop/ExperienciaDesktop";
 import Guiones from "./componentsClientes/Guiones/Guiones";
+import ClasificacionDashboard from "./components/Freelance/Clasificacion/Dashboard/ClasificacionDashboard";
+import ClasificacionHistory from "./components/Freelance/Clasificacion/History/ClasificacionHistory";
+import ClasificacionAnalytics from "./components/Freelance/Clasificacion/Analytics/ClasificacionAnalytics";
+import VentasHistory from "./components/Freelance/Ventas/analytics/VentasHistory";
+import VendedoresFreelance from "./components/Freelance/Ventas/Dashboard/VentasDashboard";
+import VentasAgenda from "./components/Freelance/Ventas/Dashboard/VentasAgenda";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -323,6 +329,20 @@ function ClerkProviderWithRoutes() {
           }
         />
         <Route
+          path="/clasificacion"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" ||
+              roleReady === "leader" ||
+              roleReady === "freelance") &&
+            isEmployeeReady ? (
+              <ClasificacionDashboard />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
           path="/corredores-history"
           element={
             isRoleAllowed(roleReady) &&
@@ -337,14 +357,28 @@ function ClerkProviderWithRoutes() {
           }
         />
         <Route
-          path="/corredores-analytics"
+          path="/clasificacion-history"
           element={
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "corredor") &&
+              roleReady === "freelance") &&
             isEmployeeReady ? (
-              <CorredoresAnlaytics />
+              <ClasificacionHistory />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/clasificacion-analytics"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" ||
+              roleReady === "leader" ||
+              roleReady === "freelance") &&
+            isEmployeeReady ? (
+              <ClasificacionAnalytics />
             ) : (
               <ReturnToPage />
             )
@@ -381,6 +415,20 @@ function ClerkProviderWithRoutes() {
           }
         />
         <Route
+          path="/ventas"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" ||
+              roleReady === "leader" ||
+              roleReady === "freelance") &&
+            isEmployeeReady ? (
+              <VentasAgenda />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
           path="/vendedores-history"
           element={
             isRoleAllowed(roleReady) &&
@@ -395,7 +443,34 @@ function ClerkProviderWithRoutes() {
           }
         />
         <Route
+          path="/ventas-history"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" ||
+              roleReady === "leader" ||
+              roleReady === "vendedor") &&
+            isEmployeeReady ? (
+              <VentasHistory />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
           path="/vendedores-ventas"
+          element={
+            (roleReady === "clevel" ||
+              roleReady === "leader" ||
+              roleReady === "vendedor") &&
+            isEmployeeReady ? (
+              <VentasDasboard />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/ventas-dashboard"
           element={
             (roleReady === "clevel" ||
               roleReady === "leader" ||
