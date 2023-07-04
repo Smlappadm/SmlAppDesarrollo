@@ -436,9 +436,7 @@ const VendedoresHistory = () => {
                 <label
                   className="text-center w-[3%]"
                   // onClick={handlerOpenStatus}
-                >
-                  
-                </label>
+                ></label>
               </div>
 
               <div className="">
