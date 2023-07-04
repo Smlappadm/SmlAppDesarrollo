@@ -495,32 +495,7 @@ function ClerkProviderWithRoutes() {
             )
           }
         />
-        <Route
-          path="/clasificacion"
-          element={
-            (roleReady === "clevel" ||
-              roleReady === "leader" ||
-              roleReady === "freelancer") &&
-            isEmployeeReady ? (
-              <VendedoresAnalytics />
-            ) : (
-              <ReturnToPage />
-            )
-          }
-        />
-        <Route
-          path="/ventas"
-          element={
-            (roleReady === "clevel" ||
-              roleReady === "leader" ||
-              roleReady === "freelancer") &&
-            isEmployeeReady ? (
-              <VendedoresAnalytics />
-            ) : (
-              <ReturnToPage />
-            )
-          }
-        />
+
         <Route
           path="/protected"
           element={
