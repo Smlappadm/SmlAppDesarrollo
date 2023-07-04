@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { IoSettingsOutline } from "react-icons/io5";
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
+import logo from "../../../Assets/smllogo.svg";
 
 export default function NavBarDesktop() {
   const nameIG = localStorage.getItem("instagram");
@@ -14,11 +15,13 @@ export default function NavBarDesktop() {
       <div className="flex items-center justify-around w-10/12 mt-4 rounded-lg bg-[#D9D9D9] bg-opacity-25">
         <Link to="/clientes-home" className="relative">
           <div className="relative w-[5rem] h-[5rem] rounded-full overflow-hidden">
-            <div className="absolute inset-0 bg-black opacity-50 blur-3xl"></div>
-            <img
-              className=" w-[5rem] z-10 "
-              src="https://i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"
-            />
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `url(${logo})`,
+                backgroundSize: "cover",
+              }}
+            ></div>
           </div>
         </Link>
 
