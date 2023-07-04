@@ -1,9 +1,10 @@
 const postInfoPago = require("../controllers/Pagos/postInfoPago");
 
-
-
 const updatePagosInfoHandler = async (req, res) => {
-  if(req.body.info.data.object){
+  if (req.body.info.data.object) {
+    const info = req.body.info.data.object;
+    console.log(info);
+
     try {
       const infoSave = await postInfoPago(info);
       res.status(200).json(infoSave);
@@ -13,5 +14,4 @@ const updatePagosInfoHandler = async (req, res) => {
   }
 };
 
-module.exports = {updatePagosInfoHandler}
-
+module.exports = { updatePagosInfoHandler };
