@@ -12,10 +12,10 @@ import SelectStatus from "../Dashboard/Select/SelectStatus";
 import ModalHistory from "./Modal/ModalHistory";
 import { ToastContainer, toast } from "react-toastify";
 
-import Nav from "../../Nav/Nav";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { filterLevel, getVendedorAllLeads } from "../../../../redux/actions";
 import InputRunner from "../../Clasificacion/Dashboard/MaterialUi/inputRunner";
+import Nav from "../../../Nav/Nav";
 
 const VentasHistory = () => {
   const [data, setData] = useState([]);
