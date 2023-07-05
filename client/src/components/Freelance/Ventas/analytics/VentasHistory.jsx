@@ -14,7 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { filterLevel, getVendedorAllLeads } from "../../../../redux/actions";
-import InputRunner from "../../Clasificacion/Dashboard/MaterialUi/inputRunner";
+import InputRunner from "./MUI/InputRunner";
 import Nav from "../../../Nav/Nav";
 
 const VentasHistory = () => {
@@ -312,18 +312,18 @@ const VentasHistory = () => {
               History
             </h1>
             <div className="flex gap-7 ">
-              <Link to={"/vendedores"}>
+            <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link to={"/vendedores-ventas"}>
+              <Link to={"/ventas-agenda"}>
                 <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/vendedores-history"}>
+              <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/vendedores-analytics"}>
+              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+              </Link> */}
 
               {filters.level === true ? (
                 <div className=" flex justify-center items-center w-80">
