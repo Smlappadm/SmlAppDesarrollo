@@ -37,6 +37,7 @@ export const GET_VENDEDORES = "GET_VENDEDORES";
 export const GET_CLIENTE_EMPRESA = "GET_CLIENTE_EMPRESA";
 export const GET_LEAD_DISCARD = "GET_LEAD_DISCARD";
 export const GET_CLASIFICACION_LEAD = "GET_CLASIFICACION_LEAD";
+export const GET_ALL_FREELANCER = "GET_ALL_FREELANCER";
 
 //
 export const setRol = (rol) => {
@@ -108,6 +109,13 @@ export const getAllClevel = () => {
     const response = await axios.get("/clevel");
     const clevel = response.data;
     dispatch({ type: GET_ALL_CLEVEL, payload: clevel });
+  };
+};
+export const getAllFreelancer = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/freelancer");
+    const freelancer = response.data;
+    dispatch({ type: GET_ALL_FREELANCER, payload: freelancer });
   };
 };
 
