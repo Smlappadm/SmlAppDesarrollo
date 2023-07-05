@@ -291,14 +291,17 @@ export default function Settings() {
                   />
                 )}
               </div>
-              <div
-                onClick={desasignar}
-                className="flex flex-col cursor-pointer justify-center items-center gap-1 w-full h-fit"
-              >
-                <div className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                  Desasignar Corredores/Vendedores
+
+              {role === "clevel" || role === "leader" ? (
+                <div
+                  onClick={desasignar}
+                  className="flex flex-col cursor-pointer justify-center items-center gap-1 w-full h-fit"
+                >
+                  <div className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    Desasignar Corredores/Vendedores
+                  </div>
                 </div>
-              </div>
+              ) : null}
 
               <div className="flex flex-col justify-center items-center gap-1 w-full h-fit">
                 {editSave && (
