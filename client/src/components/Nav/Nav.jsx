@@ -145,7 +145,7 @@ function Nav() {
                       </span>
                       <span>
                         <Link
-                          to="/ventas"
+                          to="/ventas-dashboard"
                           className=" text-[#e0dddd] hover:text-white"
                         >
                           Ventas
@@ -274,7 +274,7 @@ function Nav() {
                   </span>
                   <span>
                     <Link
-                      to="/ventas"
+                      to="/ventas-dashboard"
                       className=" text-[#e0dddd] hover:text-white"
                     >
                       Ventas
