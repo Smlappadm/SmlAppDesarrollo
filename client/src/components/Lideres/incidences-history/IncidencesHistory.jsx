@@ -148,7 +148,7 @@ export const IncidencesHistory = () => {
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
-          <div className="flex gap-5">
+          <div className="flex gap-5 h-[37px]">
             <Title className={style.title}>I-Historial</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
