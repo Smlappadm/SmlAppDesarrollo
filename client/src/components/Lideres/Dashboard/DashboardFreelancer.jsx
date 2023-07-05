@@ -24,7 +24,7 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
+import { IoGrid, IoLogoSnapchat, IoStatsChart } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 
@@ -147,12 +147,15 @@ export const DashboardFreelancer = () => {
     <>
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
-        <div className="flex justify-between mx-5">
+        <div className="flex justify-between mx-5 my-1">
           <div className="flex gap-5">
-            <Title className={style.title}>History</Title>
+            <Title className={style.title}>Freelance</Title>
 
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link to={"/lideres-freelancer/"}>
+              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
             <Link className="text-5xl" to={"/lideres-analytics"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
