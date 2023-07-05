@@ -18,7 +18,12 @@ import {
   orderClients,
   orderCategory,
 } from "../../../redux/actions";
-import { IoGrid, IoStatsChart, IoPeople } from "react-icons/io5";
+import {
+  IoGrid,
+  IoStatsChart,
+  IoPeople,
+  IoLogoSnapchat,
+} from "react-icons/io5";
 import { CiGlobe } from "react-icons/ci";
 
 //
@@ -144,6 +149,9 @@ const Incidences = () => {
             <Title className={style.title}>Incidences</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link to={"/lideres-freelancer/"}>
+              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
             <Link className="text-5xl" to={"/lideres-analytics"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
