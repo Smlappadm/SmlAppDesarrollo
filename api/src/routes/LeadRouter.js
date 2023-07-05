@@ -27,6 +27,7 @@ const {
   getLeadByEmailAppHandler,
   getLeadDiscardHandler,
   getLeadClasificacionHandler,
+  dowloadCSVHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -57,5 +58,6 @@ LeadRouter.put("/cleanclevel", cleanValueClevelHandler);
 LeadRouter.put("/limpieza", limpiezaBaseHandler);
 LeadRouter.put("/:id", updateLeadHandler);
 LeadRouter.put("/vendedor/:id", updateLeadVendedorHandler);
+LeadRouter.get("/download", dowloadCSVHandler);
 
 module.exports = LeadRouter;
