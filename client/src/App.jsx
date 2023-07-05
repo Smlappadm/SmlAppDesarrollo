@@ -108,7 +108,13 @@ function ClerkProviderWithRoutes() {
   const isEmployeeReady = localStorage.getItem("isEmployeeReady");
 
   function isRoleAllowed(role) {
-    const allowedRoles = ["vendedor", "clevel", "leader", "corredor"];
+    const allowedRoles = [
+      "vendedor",
+      "clevel",
+      "leader",
+      "corredor",
+      "freelancer",
+    ];
     return allowedRoles.includes(isRoleReady);
   }
   const location = useLocation();
