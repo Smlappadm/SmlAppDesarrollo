@@ -8,6 +8,7 @@ import InputEmail from "./InputEmail";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getAllEmployees } from "../../../../../redux/actions";
+import LeadAsigned from "./LeadAsigned";
 
 const style = {
   position: "absolute",
@@ -208,11 +209,13 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [selectEmployees, setSelectEmployees] = useState("");
+  const [leadAsigned, setLeadAsigned] = useState("");
 
   const handleReset = () => {
     setInputName("");
     setInputEmail("");
     setSelectEmployees("");
+    setLeadAsigned("");
   };
 
   return (
@@ -246,6 +249,12 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
                 employees={selectEmployees}
                 setEmployees={setSelectEmployees}
               />
+              {selectEmployees === "freelancer" ? (
+                <LeadAsigned
+                leadAsigned={leadAsigned}
+                setLeadAsigned={setLeadAsigned}
+                />
+              ) : null}
             </div>
           </div>
           <ChildModal
