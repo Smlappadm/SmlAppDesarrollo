@@ -25,7 +25,7 @@ const getLeadCheckedInactive5 = async (body) => {
   };
   
   if (body.email) {
-    leadQuery["email"] = body.email;
+    leadQuery["vendedor"] = body.email;
   }
   if (body.country) {
     leadQuery["country"] = body.country;
