@@ -82,6 +82,7 @@ function ChildModal({
         alert("El campo 'rol' no es válido");
         return;
     }
+    
     try {
       await axios.post(url, {
         name: inputName,
@@ -90,6 +91,34 @@ function ChildModal({
         deleted: false,
       });
       if (selectEmployees === "clevel" || selectEmployees === "leader") {
+        await axios.post("/corredor", {
+          name: inputName,
+          email: inputEmail,
+          rol: "corredor",
+          deleted: false,
+        });
+
+        await axios.post("/vendedor", {
+          name: inputName,
+          email: inputEmail,
+          rol: "vendedor",
+          deleted: false,
+        });
+      }
+      CreateEmployees(inputName);
+    } catch (error) {
+      ErrorCreateEmployees(inputName);
+      console.log(`No se pudo enviar el post de ${selectEmployees}`);
+    }
+
+    try {
+      await axios.post(url, {
+        name: inputName,
+        email: inputEmail,
+        rol: selectEmployees,
+        deleted: false,
+      });
+      if (selectEmployees === "freelancer") {
         await axios.post("/corredor", {
           name: inputName,
           email: inputEmail,
