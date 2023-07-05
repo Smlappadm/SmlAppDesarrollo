@@ -38,6 +38,9 @@ export const GET_CLIENTE_EMPRESA = "GET_CLIENTE_EMPRESA";
 export const GET_LEAD_DISCARD = "GET_LEAD_DISCARD";
 export const GET_CLASIFICACION_LEAD = "GET_CLASIFICACION_LEAD";
 export const GET_ALL_FREELANCER = "GET_ALL_FREELANCER";
+export const FIND_FREELANCER_NAME_ALL_INFO = "FIND_FREELANCER_NAME_ALL_INFO";
+export const GET_LEAD_CHEQUED_FREELANCER = "GET_LEAD_CHEQUED_FREELANCER";
+export const GET_FREELANCER = "GET_FREELANCER";
 
 //
 export const setRol = (rol) => {
@@ -142,6 +145,13 @@ export const getLeadChecked = () => {
     dispatch({ type: GET_LEAD_CHEQUED, payload: LeadChecked });
   };
 };
+export const getLeadCheckedFreelancer = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/checkedfreelancer");
+    const LeadChecked = response.data;
+    dispatch({ type: GET_LEAD_CHEQUED_FREELANCER, payload: LeadChecked });
+  };
+};
 export const getLeadDiscard = () => {
   return async (dispatch) => {
     const response = await axios.get("/lead/checked/discard");
@@ -218,6 +228,27 @@ export const findCorredoresByNameAllInfo = (
     dispatch({
       type: FIND_CORREDORES_NAME_ALL_INFO,
       payload: corredoresByNameAllInfo,
+    });
+  };
+};
+export const findFreelancerByNameAllInfo = (
+  freelancer,
+  fromDay,
+  toDay,
+  profesion,
+  country,
+  category,
+  level,
+  status
+) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `/lead/allinfofreelancer?freelancer=${freelancer}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`
+    );
+    const freelancerByNameAllInfo = response.data;
+    dispatch({
+      type: FIND_FREELANCER_NAME_ALL_INFO,
+      payload: freelancerByNameAllInfo,
     });
   };
 };
@@ -354,6 +385,13 @@ export const getCorredor = () => {
     const response = await axios.get("/lead/allcorredor");
     const allCorredores = response.data;
     dispatch({ type: GET_CORREDORES, payload: allCorredores });
+  };
+};
+export const getFreelancers = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/allfreelancer");
+    const allCorredores = response.data;
+    dispatch({ type: GET_FREELANCER, payload: allCorredores });
   };
 };
 
