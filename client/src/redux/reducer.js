@@ -4,6 +4,7 @@ import {
   GET_LEAD_CHEQUED,
   GET_LEAD_UNCHECKED_10,
   GET_LEAD_CHEQUED_INACTIVE_5,
+  GET_LEAD_CHEQUED_FREELANCE,
   ORDER_CLIENTS,
   ORDER_CATEGORY,
   FILTER_LEVEL,
@@ -46,6 +47,7 @@ const initialState = {
   lead: [],
   leadChequed: [],
   leadCheckedInactive5: [],
+  leadCheckedFreelance: [],
   leadUnchecked: [],
   leadUnchecked10: [],
   leaderDashboard: [],
@@ -144,6 +146,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         leadCheckedInactive5: action.payload,
+        vendedoresDashboard: action.payload,
+      };
+    case GET_LEAD_CHEQUED_FREELANCE:
+      return {
+        ...state,
+        leadCheckedFreelance: action.payload,
         vendedoresDashboard: action.payload,
       };
 

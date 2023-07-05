@@ -167,7 +167,7 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
             }}
           >
         <MenuItem value="s">
-          <em>None</em>
+          <em></em>
         </MenuItem>
         <MenuItem value="1">1</MenuItem>
         <MenuItem value="2">2</MenuItem>

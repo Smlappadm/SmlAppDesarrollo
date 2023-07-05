@@ -139,8 +139,8 @@ const getLeadCheckedInactive5 = async (body) => {
       
 
       console.log(leadRest.length)
-      // console.log(body.name)
-      // console.log(leadRest)
+
+      
       if (leadRest.length > 0) {
         await Promise.all(
           leadRest.map(async (element) => {
@@ -154,6 +154,7 @@ const getLeadCheckedInactive5 = async (body) => {
   }
 
   return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
+
 };
 
 module.exports = getLeadCheckedInactive5;
