@@ -39,20 +39,12 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <hr className="border-gray-400 w-5/6 text-center" />
             </div>
             <div className="font-semibold flex gap-3">
-              <p>Corredor:</p>
+              <p>Freelancer:</p>
               <p className="font-normal">{modalItems.corredor_name}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>Corredor Email:</p>
+              <p>Freelancer Email:</p>
               <p className="font-normal">{modalItems.corredor}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Vendedor:</p>
-              <p className="font-normal">{modalItems.vendedor_name}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Vendedor Email:</p>
-              <p className="font-normal">{modalItems.vendedor}</p>
             </div>
             <div className="font-semibold flex gap-3">
               <p>Web:</p>
