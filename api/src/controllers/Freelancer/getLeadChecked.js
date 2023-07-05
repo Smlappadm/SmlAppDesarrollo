@@ -114,7 +114,7 @@ console.log(leadRestNivel1)
   //   );
   // }
 
-  BUSCA LOS NO RESPONDE --------------------------
+  //BUSCA LOS NO RESPONDE --------------------------
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
     vendedor: body.email,
