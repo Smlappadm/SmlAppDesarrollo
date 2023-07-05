@@ -11,6 +11,7 @@ import {
   getAllVendedores,
   getAllClevel,
   getAllLeader,
+  getAllFreelancer,
 } from "../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
@@ -27,7 +28,14 @@ function Landing() {
   const vendedores = useSelector((state) => state.vendedores);
   const leader = useSelector((state) => state.leader);
   const clevel = useSelector((state) => state.clevel);
-  const allEmployees = [...corredores, ...vendedores, ...clevel, ...leader];
+  const freelancer = useSelector((state) => state.freelancer);
+  const allEmployees = [
+    ...corredores,
+    ...vendedores,
+    ...clevel,
+    ...leader,
+    ...freelancer,
+  ];
   const selectedEmployee = allEmployees.find(
     (employee) => employee.email === userEmail
   );
@@ -36,13 +44,13 @@ function Landing() {
   const isEmployee = () => {
     return employees.some((employees) => employees.email === userEmail);
   };
-  console.log(roleReady);
 
   useEffect(() => {
     dispatch(getAllCorredores());
     dispatch(getAllVendedores());
     dispatch(getAllLeader());
     dispatch(getAllClevel());
+    dispatch(getAllFreelancer());
     const fetchEmployees = async () => {
       try {
         const response = await axios.get("/employees");
@@ -63,6 +71,11 @@ function Landing() {
 
     fetchEmployees();
   }, [dispatch, isEmployee()]);
+
+  useEffect(() => {
+    console.log(access);
+    console.log(role);
+  }, [access, role]);
 
   return (
     <>
