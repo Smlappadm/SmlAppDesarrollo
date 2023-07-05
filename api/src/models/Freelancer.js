@@ -18,18 +18,23 @@ const FreelancerSchema = new mongoose.Schema(
     },
     birthdate: {
       type: String,
+      default: "",
     },
     photo: {
       type: String,
+      default: "",
     },
     country: {
       type: String,
+      default: "",
     },
     contactNumber: {
       type: String,
+      default: "",
     },
     description: {
       type: String,
+      default: "",
     },
     rol: {
       type: String,
@@ -38,6 +43,7 @@ const FreelancerSchema = new mongoose.Schema(
     deleted: {
       type: Boolean,
       default: false,
+      default: "",
     },
   },
   { timestamps: true }
