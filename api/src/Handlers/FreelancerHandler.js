@@ -22,7 +22,7 @@ const getAllFreelancerHandler = async (req, res) => {
   }
 };
 
-const getLeadCheckedHandler = async (req, res) => {
+const getLeadCheckedFreelanceHandler = async (req, res) => {
   const body = req.body;
   try {
     const leadChecked = await getLeadChecked(body);
@@ -36,5 +36,5 @@ const getLeadCheckedHandler = async (req, res) => {
 module.exports = {
   postFreelancerHandler,
   getAllFreelancerHandler,
-  getLeadCheckedHandler,
+  getLeadCheckedFreelanceHandler,
 };

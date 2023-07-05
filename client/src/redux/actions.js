@@ -190,7 +190,7 @@ export const getLeadCheckedFreelance = (body, profesion, country, level) => {
       body.email !== null &&
       body.email !== ""
     ) {
-      const response = await axios.put(`/lead/checkedinactive5`, body);
+      const response = await axios.put(`/freelancer/checkedfreelance`, body);
       const LeadCheckedInactive5 = response.data;
       dispatch({
         type: GET_LEAD_CHEQUED_FREELANCE,
