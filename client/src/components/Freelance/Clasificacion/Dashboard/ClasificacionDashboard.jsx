@@ -20,7 +20,6 @@ import {
   getAllCountries,
   getAllProfesion,
   getLeadClasificacion,
-  getLeadCorredores,
 } from "../../../../redux/actions";
 
 const ClasificacionDashboard = () => {
@@ -42,9 +41,9 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
+  
   const { corredorLead } = useSelector((state) => state);
   const { freelanceLead } = useSelector((state) => state);
-
   const dispatch = useDispatch();
 
   const user = useUser().user;
@@ -59,17 +58,6 @@ const ClasificacionDashboard = () => {
 
   useEffect(() => {
     if (mail !== undefined) {
-      dispatch(
-        getLeadCorredores(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
-
       dispatch(
         getLeadClasificacion(
           email,
@@ -88,7 +76,7 @@ const ClasificacionDashboard = () => {
 
   const filtrar = () => {
     dispatch(
-      getLeadCorredores(
+      getLeadClasificacion(
         email,
         names,
         profesion,
@@ -97,17 +85,6 @@ const ClasificacionDashboard = () => {
         marca_personal
       )
     );
-    
-      dispatch(
-        getLeadClasificacion(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
   };
 
   const filterProfesion = (event) => {
@@ -301,23 +278,23 @@ const ClasificacionDashboard = () => {
   useEffect(() => {
     let clientes = [];
     let i = 0;
-    if (corredorLead && corredorLead.length > 0) {
-      for (let i = 0; i < corredorLead.length; i++) {
-        if (corredorLead[i] && corredorLead[i]._id) {
+    if (freelanceLead && freelanceLead.length > 0) {
+      for (let i = 0; i < freelanceLead.length; i++) {
+        if (freelanceLead[i] && freelanceLead[i]._id) {
           clientes.push({
-            _id: corredorLead[i]._id,
-            name: corredorLead[i].name,
-            url: corredorLead[i].url,
-            email: corredorLead[i].email,
-            instagram: corredorLead[i].instagram,
-            level: corredorLead[i].level,
-            status_op: corredorLead[i].status_op,
-            seguidores2000: corredorLead[i].seguidores2000,
-            repercusion: corredorLead[i].repercusion,
-            frecuencia: corredorLead[i].frecuencia,
-            contenidoPersonal: corredorLead[i].contenidoPersonal,
-            contenidoValor: corredorLead[i].contenidoValor,
-            calidadInstagram: corredorLead[i].calidadInstagram,
+            _id: freelanceLead[i]._id,
+            name: freelanceLead[i].name,
+            url: freelanceLead[i].url,
+            email: freelanceLead[i].email,
+            instagram: freelanceLead[i].instagram,
+            level: freelanceLead[i].level,
+            status_op: freelanceLead[i].status_op,
+            seguidores2000: freelanceLead[i].seguidores2000,
+            repercusion: freelanceLead[i].repercusion,
+            frecuencia: freelanceLead[i].frecuencia,
+            contenidoPersonal: freelanceLead[i].contenidoPersonal,
+            contenidoValor: freelanceLead[i].contenidoValor,
+            calidadInstagram: freelanceLead[i].calidadInstagram,
             checked: false,
             view: true,
           });
@@ -325,15 +302,15 @@ const ClasificacionDashboard = () => {
       }
     }
     setClient(clientes);
-  }, [corredorLead]);
+  }, [freelanceLead]);
 
   useEffect(() => {
     const updateClients = async () => {
-      if (corredorLead.length !== client.length) {
+      if (freelanceLead.length !== client.length) {
         return;
       }
 
-      const promises = corredorLead.map((lead, i) =>
+      const promises = freelanceLead.map((lead, i) =>
         axios.put(`/lead/${lead._id}`, {
           instagram: client[i].instagram,
           email: client[i].email,
@@ -424,7 +401,7 @@ const ClasificacionDashboard = () => {
     event.preventDefault();
     SendLeads(user.fullName);
     try {
-      for (let i = 0; i < corredorLead.length; i++) {
+      for (let i = 0; i < freelanceLead.length; i++) {
         const currentClient = client[i];
 
         if (currentClient.level !== "-") {
@@ -487,17 +464,6 @@ const ClasificacionDashboard = () => {
       }
 
       dispatch(
-        getLeadCorredores(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
-      
-      dispatch(
         getLeadClasificacion(
           email,
           names,
@@ -547,7 +513,6 @@ const ClasificacionDashboard = () => {
             <div>
               <div className="flex mt-5 mb-2 items-center justify-center">
                 <InputRunner
-                  getLeadCorredores={getLeadCorredores}
                   getLeadClasificacion={getLeadClasificacion}
                   email={email}
                   names={names}
@@ -560,7 +525,7 @@ const ClasificacionDashboard = () => {
             </div>
           </div>
 
-          {corredorLead && corredorLead.length > 0 ? (
+          {freelanceLead && freelanceLead.length > 0 ? (
             <table className="w-full">
               <thead className={style.tableHead}>
                 <tr className={style.tableRow}>
