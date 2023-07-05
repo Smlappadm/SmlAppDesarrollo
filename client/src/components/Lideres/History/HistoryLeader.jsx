@@ -8,7 +8,6 @@ import {
   CiPhone,
   CiWarning,
   CiGlobe,
-  CiDumbbell,
 } from "react-icons/ci";
 import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
@@ -24,6 +23,8 @@ import {
   orderClients,
 } from "../../../redux/actions";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
+import Papa from "papaparse";
+import Button from "@mui/material/Button";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -127,6 +128,18 @@ export const LideresHistory = () => {
     setModalItems(item);
   };
   const handleClose = () => setOpen(false);
+
+  const downloadCSV = () => {
+    const csv = Papa.unparse(leaderDashboard);
+
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const csvURL = URL.createObjectURL(csvData);
+    const tempLink = document.createElement("a");
+    tempLink.href = csvURL;
+    tempLink.setAttribute("download", "leaderDashboard.csv");
+    tempLink.click();
+  };
+
   return (
     <>
       <Nav />
@@ -134,6 +147,7 @@ export const LideresHistory = () => {
         <div className="flex justify-between mx-5">
           <div className="flex gap-5">
             <Title className={style.title}>History</Title>
+
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
@@ -147,7 +161,10 @@ export const LideresHistory = () => {
 
           <label>Leads chequeados: {showData.length}</label>
 
-          <div>
+          <div className="flex gap-5">
+            <Button variant="outlined" onClick={downloadCSV}>
+              Descargar CSV
+            </Button>
             <AddLead />
           </div>
         </div>
