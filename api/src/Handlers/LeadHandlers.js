@@ -25,6 +25,7 @@ const findLeadVendedorNameAllInfo = require("../controllers/Lead/findLeadVendedo
 const cleanValueClevel = require("../controllers/Lead/cleanValueClevel");
 const getLeadDiscard = require("../controllers/Lead/getLeadDiscard");
 const getAllLeadClasificacion = require("../controllers/Lead/getAllLeadClasificacion");
+const dowloadCSV = require("../controllers/Lead/downloadCSV");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -310,6 +311,16 @@ const updateChangeEmailHandler = async (req, res) => {
   }
 };
 
+const dowloadCSVHandler = async (req, res) => {
+  const niveles = req.query.nivel || [];
+  try {
+    const download = await dowloadCSV(niveles);
+    res.status(200).json(download);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 const cleanValueClevelHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -357,4 +368,5 @@ module.exports = {
   getLeadByEmailAppHandler,
   getLeadDiscardHandler,
   getLeadClasificacionHandler,
+  dowloadCSVHandler,
 };
