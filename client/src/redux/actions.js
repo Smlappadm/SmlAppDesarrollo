@@ -318,6 +318,12 @@ export const getLeadClasificacion = (
 ) => {
   return async (dispatch) => {
     if (email !== "undefined" && email !== "") {
+      console.log(email);
+      console.log(names);
+      console.log(profesion);
+      console.log(category);
+      console.log(country);
+      console.log(marca_personal);
       const response = await axios.get(
         `lead/clasificacion?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
       );

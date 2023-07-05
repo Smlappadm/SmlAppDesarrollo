@@ -26,6 +26,7 @@ const {
   cleanValueClevelHandler,
   getLeadByEmailAppHandler,
   getLeadDiscardHandler,
+  getLeadClasificacionHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -45,6 +46,7 @@ LeadRouter.get("/checked/discard", getLeadDiscardHandler);
 LeadRouter.put("/checkedinactive5", getLeadCheckedInactive5Handler);
 LeadRouter.get("/unchecked", getLeadUncheckedHandler);
 LeadRouter.get("/unchecked10", getLead10UncheckedHandler);
+LeadRouter.get("/clasificacion", getLeadClasificacionHandler);
 LeadRouter.get("/corredorchecked", getLeadCorredorCheckedHandler);
 LeadRouter.get("/name", getLeadByNameHandler);
 LeadRouter.get("/:id", getLeadByIdHandler);
