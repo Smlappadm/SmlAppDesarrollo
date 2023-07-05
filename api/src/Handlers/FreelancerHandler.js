@@ -4,6 +4,7 @@ const postFreelancer = require("../controllers/Freelancer/postFreelancer");
 const postFreelancerHandler = async (req, res) => {
   const data = req.body;
 
+
   try {
     const freelancer = await postFreelancer(data);
     res.status(200).json(freelancer);
