@@ -210,13 +210,13 @@ const VentasDashboard = () => {
               Dashboard
             </h1>
             <div className="flex gap-7">
-              <Link to={"/vendedores"}>
+              <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link to={"/vendedores-ventas"}>
+              <Link to={"/ventas-agenda"}>
                 <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/vendedores-history"}>
+              <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
               <Link className="text-5xl" to={"/vendedores-analytics"}>
