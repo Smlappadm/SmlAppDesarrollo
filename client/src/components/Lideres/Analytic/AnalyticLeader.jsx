@@ -26,7 +26,12 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
+import {
+  IoGrid,
+  IoLogoSnapchat,
+  IoPeople,
+  IoStatsChart,
+} from "react-icons/io5";
 
 export const AnalyticLeader = () => {
   const [data, setData] = useState([]);
@@ -145,6 +150,9 @@ export const AnalyticLeader = () => {
             <Title className={style.title}>Analytics</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link to={"/lideres-freelancer/"}>
+              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
             <Link className="text-5xl" to={"/lideres-analytics"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
