@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import style from "./HistoryLeader.module.css";
+import style from "./DashboardLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
 import {
@@ -8,6 +8,7 @@ import {
   CiPhone,
   CiWarning,
   CiGlobe,
+  CiDumbbell,
 } from "react-icons/ci";
 import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
@@ -19,6 +20,7 @@ import {
   filterLevel,
   filterStatus,
   getLeadChecked,
+  getLeadCheckedFreelancer,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
@@ -26,16 +28,16 @@ import { IoGrid, IoLogoSnapchat, IoStatsChart } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 
-export const LideresHistory = () => {
+export const DashboardFreelancer = () => {
   const [data, setData] = useState([]);
-  const { leaderDashboard } = useSelector((state) => state);
+  const { leaderFreelancer } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLeadChecked());
+    dispatch(getLeadCheckedFreelancer());
   }, [dispatch]);
   useEffect(() => {
-    setData(leaderDashboard);
-  }, [leaderDashboard]);
+    setData(leaderFreelancer);
+  }, [leaderFreelancer]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -73,11 +75,11 @@ export const LideresHistory = () => {
       setClientOrder("DES");
       setCategoryOrder("");
       dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
+      setData(leaderFreelancer);
     } else {
       setClientOrder("ASC");
       dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
+      setData(leaderFreelancer);
     }
     setCurrentPage(1);
   };
@@ -95,11 +97,11 @@ export const LideresHistory = () => {
       setCategoryOrder("DES");
       setClientOrder("");
       dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
+      setData(leaderFreelancer);
     } else {
       setCategoryOrder("ASC");
       dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
+      setData(leaderFreelancer);
     }
     setCurrentPage(1);
   };
@@ -110,14 +112,14 @@ export const LideresHistory = () => {
   const onChangeLevel = (value) => {
     setLevelValue(value);
     dispatch(filterLevel(value));
-    setData(leaderDashboard);
+    setData(leaderFreelancer);
     setCurrentPage(1);
   };
   const [statusValue, setStatusValue] = useState("");
   const onChangeStatus = (value) => {
     setStatusValue(value);
     dispatch(filterStatus(value));
-    setData(leaderDashboard);
+    setData(leaderFreelancer);
     setCurrentPage(1);
   };
 
@@ -130,13 +132,14 @@ export const LideresHistory = () => {
   const handleClose = () => setOpen(false);
 
   const downloadCSV = () => {
-    const csv = Papa.unparse(leaderDashboard);
+    const csv = Papa.unparse(leaderFreelancer);
 
+    // Crea un enlace de descarga
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const csvURL = URL.createObjectURL(csvData);
     const tempLink = document.createElement("a");
     tempLink.href = csvURL;
-    tempLink.setAttribute("download", "leaderDashboard.csv");
+    tempLink.setAttribute("download", "leaderFreelancer.csv");
     tempLink.click();
   };
 
@@ -144,9 +147,9 @@ export const LideresHistory = () => {
     <>
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
-        <div className="flex justify-between mx-5 mb-10">
+        <div className="flex justify-between mx-5 mb-10 ">
           <div className="flex gap-5">
-            <Title className={style.title}>History</Title>
+            <Title className={style.title}>Freelance</Title>
 
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -216,14 +219,7 @@ export const LideresHistory = () => {
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("sellers")}>
                   <Text className="text-start w-28 p-0 text-white">
-                    Corredor
-                  </Text>
-                </button>
-              </div>
-              <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Vendedor
+                    Freelancer
                   </Text>
                 </button>
               </div>
@@ -360,13 +356,7 @@ export const LideresHistory = () => {
                           </Text>
                         </div>
                       </div>
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
-                          <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.vendedor_name ? item.vendedor_name : "-"}
-                          </Text>
-                        </div>
-                      </div>
+
                       <div className="flex justify-center items-center p-0">
                         {item.status === "Contratado" ? (
                           <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">

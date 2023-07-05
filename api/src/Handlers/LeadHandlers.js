@@ -26,6 +26,9 @@ const cleanValueClevel = require("../controllers/Lead/cleanValueClevel");
 const getLeadDiscard = require("../controllers/Lead/getLeadDiscard");
 const getAllLeadClasificacion = require("../controllers/Lead/getAllLeadClasificacion");
 const dowloadCSV = require("../controllers/Lead/downloadCSV");
+const findLeadFreelancerNameAllInfo = require("../controllers/Lead/findLeadFreelancerNameAllInfo");
+const getLeadCheckedFreelancer = require("../controllers/Lead/getLeadCheckedFreelancer");
+const getFreelancers = require("../controllers/Lead/getFreelancers");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -48,6 +51,14 @@ const getAllProfesionHandler = async (req, res) => {
 const getCorredoresHandler = async (req, res) => {
   try {
     const corredores = await getCorredores();
+    res.status(200).json(corredores);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const getFreelancersHandler = async (req, res) => {
+  try {
+    const corredores = await getFreelancers();
     res.status(200).json(corredores);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -113,6 +124,14 @@ const getLeadClasificacionHandler = async (req, res) => {
 const getLeadCheckedHandler = async (req, res) => {
   try {
     const leadChequed = await getLeadChecked();
+    res.status(200).json(leadChequed);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const getLeadCheckedFreelancerHandler = async (req, res) => {
+  try {
+    const leadChequed = await getLeadCheckedFreelancer();
     res.status(200).json(leadChequed);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -265,6 +284,33 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
+  const {
+    freelancer,
+    fromDay,
+    toDay,
+    profesion,
+    country,
+    category,
+    level,
+    status,
+  } = req.query;
+  try {
+    const foundFreelancer = await findLeadFreelancerNameAllInfo(
+      freelancer,
+      fromDay,
+      toDay,
+      profesion,
+      country,
+      category,
+      level,
+      status
+    );
+    res.status(200).json(foundFreelancer);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 const findLeadVendedorNameAllInfoHandler = async (req, res) => {
   const { email, fromDay, toDay, profesion, country, category, level, status } =
@@ -369,4 +415,7 @@ module.exports = {
   getLeadDiscardHandler,
   getLeadClasificacionHandler,
   dowloadCSVHandler,
+  findLeadFreelancerNameAllInfoHandler,
+  getLeadCheckedFreelancerHandler,
+  getFreelancersHandler,
 };

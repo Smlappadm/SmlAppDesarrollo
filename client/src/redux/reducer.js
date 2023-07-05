@@ -38,6 +38,9 @@ import {
   GET_LEAD_DISCARD,
   GET_CLASIFICACION_LEAD,
   GET_ALL_FREELANCER,
+  FIND_FREELANCER_NAME_ALL_INFO,
+  GET_LEAD_CHEQUED_FREELANCER,
+  GET_FREELANCER,
 } from "./actions";
 
 const initialState = {
@@ -49,6 +52,7 @@ const initialState = {
   leadUnchecked10: [],
   leaderDashboard: [],
   leaderDiscard: [],
+  leaderFreelancer: [],
   vendedoresDashboard: [],
   vendedoresVentasDashboard: [],
   corredores: [],
@@ -127,6 +131,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         leaderDashboard: action.payload,
         leadChequed: action.payload,
+      };
+    case GET_LEAD_CHEQUED_FREELANCER:
+      return {
+        ...state,
+        leaderFreelancer: action.payload,
       };
     case GET_LEAD_DISCARD:
       return {
@@ -341,6 +350,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         leaderDashboard: corredoresByNameAllInfoSort,
       };
+    case FIND_FREELANCER_NAME_ALL_INFO:
+      const freelancerByNameAllInfo = action.payload;
+      const freelancerByNameAllInfoSort = freelancerByNameAllInfo.sort(
+        (a, b) => (b ? b.level : "") - (a ? a.level : "")
+      );
+      return {
+        ...state,
+        leaderFreelancer: freelancerByNameAllInfoSort,
+      };
     case FIND_VENDEDORES_NAME_ALL_INFO:
       const vendedoresByNameAllInfo = action.payload;
       const vendedoresByNameAllInfoSort = vendedoresByNameAllInfo.sort(
@@ -433,6 +451,11 @@ const rootReducer = (state = initialState, action) => {
         allCountries: action.payload,
       };
     case GET_CORREDORES:
+      return {
+        ...state,
+        allCorredores: action.payload,
+      };
+    case GET_FREELANCER:
       return {
         ...state,
         allCorredores: action.payload,

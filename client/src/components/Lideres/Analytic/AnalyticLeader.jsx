@@ -26,7 +26,12 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoPeople, IoStatsChart } from "react-icons/io5";
+import {
+  IoGrid,
+  IoLogoSnapchat,
+  IoPeople,
+  IoStatsChart,
+} from "react-icons/io5";
 
 export const AnalyticLeader = () => {
   const [data, setData] = useState([]);
@@ -140,11 +145,14 @@ export const AnalyticLeader = () => {
     <>
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5 relative">
-        <div className="flex justify-between items-center mx-5 mb-0">
-          <div className="flex gap-5">
+        <div className="flex justify-between items-center mx-5 mb-10 ">
+          <div className="flex gap-5 h-[37px]">
             <Title className={style.title}>Analytics</Title>
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            </Link>
+            <Link to={"/lideres-freelancer/"}>
+              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link>
             <Link className="text-5xl" to={"/lideres-analytics"}>
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
