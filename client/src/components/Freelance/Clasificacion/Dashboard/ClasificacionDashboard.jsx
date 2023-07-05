@@ -430,6 +430,7 @@ const ClasificacionDashboard = () => {
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
+              freelancer: true,
               view: true,
             });
             console.log(response.data);
@@ -451,6 +452,7 @@ const ClasificacionDashboard = () => {
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
+              freelancer: true,
               view: true,
             });
 
