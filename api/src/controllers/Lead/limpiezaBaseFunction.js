@@ -17,26 +17,26 @@
 // module.exports = limpiezaBaseFunction;
 
 
-const Lead = require("../../models/Lead");
+// const Lead = require("../../models/Lead");
 
-const limpiezaBaseFunction = async () => {
-  const leadResult = await Lead.updateMany(
-    { corredor: "voeffray.jonathan@gmail.com" },
-    {
-      $set: {
-        status: "Sin contactar",
-        status_op: "",
-        llamados: 0,
-        vendedor: "",
-        vendedor_name: "",
-        corredor: "",
-        corredor_name: "",
-        checked: false,
-        freelancer: false,
-        view: false,
-        deleted: false,
-      },
-    }
+// const limpiezaBaseFunction = async () => {
+//   const leadResult = await Lead.updateMany(
+//     { corredor: "voeffray.jonathan@gmail.com" },
+//     {
+//       $set: {
+//         status: "Sin contactar",
+//         status_op: "",
+//         llamados: 0,
+//         vendedor: "",
+//         vendedor_name: "",
+//         corredor: "",
+//         corredor_name: "",
+//         checked: false,
+//         freelancer: false,
+//         view: false,
+//         deleted: false,
+//       },
+//     }
 //     // {
 //     //   $set: {
 //     //     corredor_name: "Florencia Carballo",
@@ -95,8 +95,8 @@ const limpiezaBaseFunction = async () => {
 //     //         instagram: ""
 //     //       },
 //     //     }
-  );
-  return leadResult;
-};
+//   );
+//   return leadResult;
+// };
 
-module.exports = limpiezaBaseFunction;
+// module.exports = limpiezaBaseFunction;
