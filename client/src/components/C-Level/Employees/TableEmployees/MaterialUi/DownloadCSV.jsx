@@ -46,10 +46,22 @@ export default function DownloadCSV() {
         >
           <div>
             <div className="flex flex-col gap-5 my-5">
-              <h2 id="parent-modal-title">Nuevo empleado</h2>
-              <p id="parent-modal-description">Regristar nuevo empleado</p>
+              <h2 id="parent-modal-title">Descargar archivo CSV</h2>
             </div>
-            <div className="flex flex-col items-center justify-center gap-5"></div>
+            <div className="flex flex-col items-center justify-center gap-5">
+              <Button
+                variant="outlined"
+                sx={{
+                  bgcolor: "blueviolet",
+                }}
+              >
+                0
+              </Button>
+              <Button variant="outlined">1</Button>
+              <Button variant="outlined">2</Button>
+              <Button variant="outlined">3</Button>
+            </div>
+            <Button variant="contained">Descargar CSV</Button>
           </div>
         </Box>
       </Modal>
