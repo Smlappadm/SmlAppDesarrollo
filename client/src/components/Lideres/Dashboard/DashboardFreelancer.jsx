@@ -147,7 +147,7 @@ export const DashboardFreelancer = () => {
     <>
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
-        <div className="flex justify-between mx-5 my-1">
+        <div className="flex justify-between mx-5 mb-10 ">
           <div className="flex gap-5">
             <Title className={style.title}>Freelance</Title>
 
