@@ -2,6 +2,7 @@ const Lead = require("../../models/Lead");
 
 const getLeadCheckedInactive5 = async (body) => {
 
+
   await Lead.updateMany(
     { vendedor: body.email, status: "Sin contactar" },
     {
@@ -16,7 +17,7 @@ const getLeadCheckedInactive5 = async (body) => {
       },
     }
   );
-console.log(body)
+
   //BUSCA LOS QUE TENGA MI MAIL
   let leadQuery = {
     checked: true,
@@ -33,8 +34,11 @@ console.log(body)
   if (body.profesion) {
     leadQuery["profesion"] = body.profesion;
   }
-  if (body.status) {
-    leadQuery["status"] = body.status;
+  if (body.level && (body.level === "1" || body.level === "2")) {
+    leadQuery["level"] = body.level;
+  }
+  if (body.level && (body.level === "aleatorio")) {
+    leadQuery["level"] = { $nin: ["incidencia", "0", "", "-"] };
   }
 
   const leadChequedInactive = await Lead.find(leadQuery).limit(5).exec();
@@ -87,47 +91,52 @@ console.log(body)
   if (body.profesion) {
     leadQuery["profesion"] = body.profesion;
   }
-  if (body.status) {
-    leadQuery["status"] = body.status;
+  if (body.level && (body.level === "1" || body.level === "2")) {
+    leadQuery["level"] = body.level;
   }
-  
+  if (body.level && (body.level === "aleatorio")) {
+    leadQuery["level"] = { $nin: ["incidencia", "0", "", "-"] };
+  }
+
   let count = 0;
   count = 5 - leadChequedInactive.length;
   let leadRest = [];
   let leadRestNivel2 = [];
   let leadRestNivel1 = [];
 
-  
   if (count) {
     if (count > 0 && count <= 5) {
-      leadRestNivel2 = await Lead.find(leadQuery)
-      .limit(count)
-      .exec();
-      
-      let count2 = 0;
-      count2 = count - leadRestNivel2.length;
-      leadQuery = {
-        vendedor: "",
-        checked: true,
-        status: "Sin contactar",
-        level: { $nin: ["incidencia", "0", "", "-", "2"] },
-      };
-      if (body.country) {
-        leadQuery["country"] = body.country;
-      }
-      if (body.profesion) {
-        leadQuery["profesion"] = body.profesion;
-      }
-      if (body.status) {
-        leadQuery["status"] = body.status;
-      }
-      if (count2) {
-        if (count2 > 0 && count2 <= 5) {
-          leadRestNivel1 = await Lead.find(leadQuery)
-            .limit(count2)
-            .exec();
+      if (body.level === "aleatorio") {
+        console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        leadRestNivel2 = await Lead.find(leadQuery).limit(count).exec();
+      } else {
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        leadRestNivel2 = await Lead.find(leadQuery).limit(count).exec();
+
+        let count2 = 0;
+        count2 = count - leadRestNivel2.length;
+        leadQuery = {
+          vendedor: "",
+          checked: true,
+          status: "Sin contactar",
+          level: { $nin: ["incidencia", "0", "", "-", "2"] },
+        };
+        if (body.country) {
+          leadQuery["country"] = body.country;
+        }
+        if (body.profesion) {
+          leadQuery["profesion"] = body.profesion;
+        }
+        if (body.level && (body.level === "1" || body.level === "2")) {
+          leadQuery["level"] = body.level;
+        }
+        if (count2) {
+          if (count2 > 0 && count2 <= 5) {
+            leadRestNivel1 = await Lead.find(leadQuery).limit(count2).exec();
+          }
         }
       }
+
 
       leadRest = [...leadRestNivel2, ...leadRestNivel1];
 
@@ -144,7 +153,6 @@ console.log(body)
   }
 
   return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
-
 };
 
 module.exports = getLeadCheckedInactive5;
