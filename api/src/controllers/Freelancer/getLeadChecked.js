@@ -149,9 +149,9 @@ console.log(leadRestNivel1)
     return 0;
   });
 
+console.log(leadRest)
 
-  return [...leadRest];
-  // return [...leadRest, ...leadsNoRespondenSorted];
+  return [...leadRest, ...leadsNoRespondenSorted];
   // return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
 };
 
