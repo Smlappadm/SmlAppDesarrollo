@@ -24,6 +24,7 @@ const getVendedores = require("../controllers/Lead/getVendedores");
 const findLeadVendedorNameAllInfo = require("../controllers/Lead/findLeadVendedorNameAllInfo");
 const cleanValueClevel = require("../controllers/Lead/cleanValueClevel");
 const getLeadDiscard = require("../controllers/Lead/getLeadDiscard");
+const getAllLeadClasificacion = require("../controllers/Lead/getAllLeadClasificacion");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -93,6 +94,16 @@ const getLead10UncheckedHandler = async (req, res) => {
   try {
     const leadUnchecked = await getLead10Unchecked(query);
     res.status(200).json(leadUnchecked);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const getLeadClasificacionHandler = async (req, res) => {
+  const { query } = req;
+  try {
+    const leadClasificacion = await getAllLeadClasificacion(query);
+    res.status(200).json(leadClasificacion);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -345,4 +356,5 @@ module.exports = {
   cleanValueClevelHandler,
   getLeadByEmailAppHandler,
   getLeadDiscardHandler,
+  getLeadClasificacionHandler,
 };
