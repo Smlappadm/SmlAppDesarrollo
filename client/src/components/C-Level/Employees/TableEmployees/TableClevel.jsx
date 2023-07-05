@@ -129,7 +129,7 @@ export const TableClevel = () => {
                 </Link>
               </div>
             </div>
-            <div>
+            <div className="flex gap-2">
               <DownloadCSV />
               <NestedModal
                 CreateEmployees={CreateEmployees}
