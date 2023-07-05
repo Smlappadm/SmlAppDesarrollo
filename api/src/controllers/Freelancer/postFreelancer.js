@@ -11,6 +11,15 @@ const postFreelancer = async ({
   rol,
   deleted,
 }) => {
+
+  let leadQuery = {};
+
+  if (name) {
+    leadQuery["email"] = body.email;
+  }
+
+
+
   const freelancer = await Freelancer.create({
     name,
     email,
