@@ -150,8 +150,8 @@ export const getLeadDiscard = () => {
   };
 };
 
-export const getLeadCheckedInactive5 = (body, profesion, country) => {
-  body = { ...body, profesion, country };
+export const getLeadCheckedInactive5 = (body, profesion, country, status) => {
+  body = { ...body, profesion, country, status };
 
   return async (dispatch) => {
     if (
