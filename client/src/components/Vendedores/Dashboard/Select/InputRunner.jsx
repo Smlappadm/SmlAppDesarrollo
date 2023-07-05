@@ -10,11 +10,10 @@ import { getAllCountries, getAllProfesion } from "../../../../redux/actions";
 export default function InputName({ body, getLeadCheckedInactive5 }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
-
   const [country, setCountry] = useState("");
+  const [status, setStatus] = useState("");
 
   const { allProfesion } = useSelector((state) => state);
-
   const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
@@ -32,15 +31,23 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
     let value = event.target.value;
     setCountry(value);
   };
+  const handleChangeStatus = (event) => {
+    let value = event.target.value;
+    setStatus(value);
+  };
 
   const handleFilterClick = () => {
     console.log(profesion);
     console.log(country);
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
+    console.log(status);
+    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
   };
 
   const handleFilterReset = () => {
     dispatch(getLeadCheckedInactive5(body, "", ""));
+    setCountry("")
+    setProfesion("")
+    setStatus("")
   };
 
   return (
@@ -126,7 +133,7 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
               },
             }}
           >
-            <MenuItem value="">País</MenuItem>
+            <MenuItem value=""></MenuItem>
             {allCountries.map((country) => (
               <MenuItem key={country} value={country}>
                 {country}
@@ -134,6 +141,41 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
             ))}
           </Select>
         </div>
+
+        <div className="flex flex-col w-36">
+          <label>Status:</label>
+          <Select
+            value={status}
+            onChange={handleChangeStatus}
+            label=""
+            id="runner"
+            size="small"
+            variant="outlined"
+            displayEmpty
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
+            sx={{
+              color: "white",
+              "& .MuiOutlinedInput-input": {
+                padding: "9.5px 14px",
+              },
+              "& .MuiSelect-outlined": {
+                paddingRight: "28px",
+              },
+            }}
+          >
+        <MenuItem value="s">
+          <em>None</em>
+        </MenuItem>
+        <MenuItem value="1">1</MenuItem>
+        <MenuItem value="2">2</MenuItem>
+        <MenuItem value="aleatorio">Aleatorio</MenuItem>
+          </Select>
+        </div>
+
         <div className="flex gap-5 items-end justify-center">
           <Button onClick={handleFilterClick} variant="contained" size="large">
             Filtrar
