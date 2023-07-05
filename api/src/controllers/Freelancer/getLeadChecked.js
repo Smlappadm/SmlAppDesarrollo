@@ -79,7 +79,6 @@ const getLeadChecked = async (body) => {
 
     let count2 = 0;
     count2 = 5 - leadRestNivel2.length;
-    console.log(count2)
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -103,17 +102,17 @@ const getLeadChecked = async (body) => {
       }
     }
   }
+console.log(leadRestNivel1)
   leadRest = [...leadRestNivel2, ...leadRestNivel1];
   
-  if (leadRest.length > 0) {
-    await Promise.all(
-      leadRest.map(async (element) => {
-        element.vendedor = body.email;
-        element.vendedor_name = body.name;
-        await element.save();
-      })
-    );
-  }
+  // if (leadRest.length > 0) {
+  //   await Promise.all(
+  //     leadRest.map(async (element) => {
+  //       element.vendedor_name = body.name;
+  //       await element.save();
+  //     })
+  //   );
+  // }
 
   //BUSCA LOS NO RESPONDE --------------------------
   // const leadChequedInactiveNoResponde = await Lead.find({
