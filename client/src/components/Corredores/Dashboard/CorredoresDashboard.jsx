@@ -526,23 +526,23 @@ const CorredoresDashboard = () => {
           </div>
 
           {corredorLead && corredorLead.length > 0 ? (
-            <table className="w-full">
-              <thead className={style.tableHead}>
-                <tr className={style.tableRow}>
-                  <th className="text-start ml-20">Name</th>
-                  <th className="text-start ml-5">Web</th>
-                  <th className="text-start ml-12">Mail</th>
-                  <th className="text-start ml-2">Instagram</th>
-                  <th className="text-start ml-4">Nivel</th>
-                  <th className="text-start ml-4"></th>
-                </tr>
-              </thead>
+            <div className="w-full">
+              <div className={style.tableHead}>
+                <div className={style.tableRow}>
+                  <div className="text-start ml-20">Name</div>
+                  <div className="text-start ml-5">Web</div>
+                  <div className="text-start ml-12">Mail</div>
+                  <div className="text-start ml-2">Instagram</div>
+                  <div className="text-start ml-4">Nivel</div>
+                  <div className="text-start ml-4"></div>
+                </div>
+              </div>
 
-              <tbody className="">
+              <div className="">
                 {client &&
                   client.map((item, index) => (
-                    <tr key={index} className={style.tableCards}>
-                      <td className="flex p-0">
+                    <div key={index} className={style.tableCards}>
+                      <div className="flex p-0">
                         <div
                           className="ml-10"
                           type="text"
@@ -553,19 +553,19 @@ const CorredoresDashboard = () => {
                             {item.name}
                           </p>
                         </div>
-                      </td>
+                      </div>
 
                       {detailsLead[index] === false ? (
                         <>
-                          <td className="flex ml-10 p-0">
+                          <div className="flex ml-10 p-0">
                             <Link to={item.url} target="_blank">
                               <p value={item.url}>
                                 <CiGlobe className="text-[2rem] text-[#418df0]" />
                               </p>
                             </Link>
-                          </td>
+                          </div>
 
-                          <td className="flex w-[10rem] gap-3 p-0 mx-3">
+                          <div className="flex w-[10rem] gap-3 p-0 mx-3">
                             <div>
                               <CiMail className="text-[2rem] text-[#418df0]" />
                             </div>
@@ -583,9 +583,9 @@ const CorredoresDashboard = () => {
                               }
                               placeholder="Ingrese un mail..."
                             />
-                          </td>
+                          </div>
 
-                          <td className="flex w-[10rem] gap-3 p-0 mx-3">
+                          <div className="flex w-[10rem] gap-3 p-0 mx-3">
                             <div>
                               {item.instagram &&
                               instagramRegex.test(item.instagram) ? (
@@ -609,9 +609,9 @@ const CorredoresDashboard = () => {
                               }
                               placeholder="Ingrese instagram..."
                             />
-                          </td>
+                          </div>
 
-                          <td className="flex ml-6 p-0">
+                          <div className="flex ml-6 p-0">
                             <button
                               className={
                                 item.level === "0"
@@ -678,11 +678,11 @@ const CorredoresDashboard = () => {
                                 <NestedModal item={item} />
                               </div>
                             ) : null}
-                          </td>
+                          </div>
                         </>
                       ) : (
                         <>
-                          <td className="flex items-center justify-center w-fit gap-3 p-0 mx-3">
+                          <div className="flex items-center justify-center w-fit gap-3 p-0 mx-3">
                             <div className="flex items-center justify-center w-fit text-center gap-1 py-[2px] ">
                               <p className="w-28 text-[.7rem]">
                                 Tiene mas de 2000 Seguidores
@@ -761,7 +761,7 @@ const CorredoresDashboard = () => {
                                 }
                               />
                             </div>
-                          </td>
+                          </div>
                         </>
                       )}
 
@@ -771,10 +771,10 @@ const CorredoresDashboard = () => {
                       >
                         Desciprcion
                       </div>
-                    </tr>
+                    </div>
                   ))}
-              </tbody>
-            </table>
+              </div>
+            </div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>NO HAY LEADS CON ESE FILTRADO...</h1>
