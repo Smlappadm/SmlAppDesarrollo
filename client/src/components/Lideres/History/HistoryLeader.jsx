@@ -25,7 +25,7 @@ import {
 } from "../../../redux/actions";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import Papa from "papaparse";
-import { Button } from "@mui/base";
+import Button from '@mui/material/Button';
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -164,7 +164,7 @@ export const LideresHistory = () => {
           <label>Leads chequeados: {showData.length}</label>
 
           <div className="flex gap-5">
-            <Button variant="contained" onClick={downloadCSV}>Descargar CSV</Button>
+            <Button variant="outlined" onClick={downloadCSV}>Descargar CSV</Button>
             <AddLead />
           </div>
         </div>
