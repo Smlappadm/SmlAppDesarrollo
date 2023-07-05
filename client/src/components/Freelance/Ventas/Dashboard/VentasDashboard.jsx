@@ -28,7 +28,7 @@ import Nav from "../../../Nav/Nav";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
-  const { leadCheckedFreelance } = useSelector((state) => state);
+  const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
@@ -55,8 +55,8 @@ const VentasDashboard = () => {
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
-    setData(leadCheckedFreelance);
-  }, [leadCheckedFreelance]);
+    setData(vendedoresDashboard);
+  }, [vendedoresDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -119,7 +119,7 @@ const VentasDashboard = () => {
   const onChangeLevel = (value) => {
     setLevelValue(value);
     dispatch(filterLevel(value));
-    setData(leadCheckedFreelance);
+    setData(vendedoresDashboard);
     setCurrentPage(1);
     if (!value) {
       setFilters({ ...filters, level: !filters.level });
