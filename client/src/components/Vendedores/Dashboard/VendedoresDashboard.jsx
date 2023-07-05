@@ -42,7 +42,7 @@ const VendedoresDashboard = () => {
   
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
-  const [status, setStatus] = useState("");
+  const [level, setLevel] = useState("");
   
   const notify = () => toast('Here is your toast.');
 
@@ -50,7 +50,7 @@ const VendedoresDashboard = () => {
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   }, [dispatch, emailAddress]);
   
   useEffect(() => {
@@ -71,7 +71,7 @@ const VendedoresDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
 
   //FILTER   Profesion Country **********************
@@ -157,7 +157,7 @@ const VendedoresDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -183,7 +183,7 @@ const VendedoresDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
 
   const funcionHorario = (horario) => {
