@@ -22,4 +22,13 @@ const getAllFreelancerHandler = async (req, res) => {
   }
 };
 
-module.exports = { postFreelancerHandler, getAllFreelancerHandler };
+const getLeadCheckedHandler = async (req, res) => {
+  try {
+    const leadChequed = await getLeadChecked();
+    res.status(200).json(leadChequed);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+module.exports = { postFreelancerHandler, getAllFreelancerHandler, getLeadCheckedHandler };
