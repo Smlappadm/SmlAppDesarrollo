@@ -766,6 +766,11 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -1077,6 +1082,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.h-\[37px\] {
+  height: 37px;
 }
 
 .\!w-px {
@@ -1483,6 +1492,15 @@ video {
 
 .gap-y-7 {
   row-gap: 1.75rem;
+}
+
+.gap-x-5 {
+  -moz-column-gap: 1.25rem;
+       column-gap: 1.25rem;
+}
+
+.gap-y-10 {
+  row-gap: 2.5rem;
 }
 
 .overflow-auto {
