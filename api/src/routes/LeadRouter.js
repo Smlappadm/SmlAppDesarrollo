@@ -28,21 +28,27 @@ const {
   getLeadDiscardHandler,
   getLeadClasificacionHandler,
   dowloadCSVHandler,
+  findLeadFreelancerNameAllInfoHandler,
+  getLeadCheckedFreelancerHandler,
+  getFreelancersHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
 LeadRouter.get("/", getAllLeadHandler);
 LeadRouter.get("/profesion", getAllProfesionHandler);
 LeadRouter.get("/allcorredor", getCorredoresHandler);
+LeadRouter.get("/allfreelancer", getFreelancersHandler);
 LeadRouter.get("/allvendedor", getVendedoresHandler);
 LeadRouter.get("/category", getAllCategoryHandler);
 LeadRouter.get("/country", getAllCountriesHandler);
 LeadRouter.get("/corredor", findLeadCorredorNameHandler);
 LeadRouter.get("/allinfo", findLeadCorredorNameAllInfoHandler);
+LeadRouter.get("/allinfofreelancer", findLeadFreelancerNameAllInfoHandler);
 LeadRouter.get("/allinfovendedor", findLeadVendedorNameAllInfoHandler);
 LeadRouter.get("/vendedor", findLeadVendedorNameHandler);
 LeadRouter.get("/leademailapp", getLeadByEmailAppHandler);
 LeadRouter.get("/checked", getLeadCheckedHandler);
+LeadRouter.get("/checkedfreelancer", getLeadCheckedFreelancerHandler);
 LeadRouter.get("/checked/discard", getLeadDiscardHandler);
 LeadRouter.put("/checkedinactive5", getLeadCheckedInactive5Handler);
 LeadRouter.get("/unchecked", getLeadUncheckedHandler);
