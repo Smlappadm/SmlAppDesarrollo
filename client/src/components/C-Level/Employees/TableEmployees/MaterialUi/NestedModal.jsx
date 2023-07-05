@@ -105,14 +105,8 @@ function ChildModal({
           deleted: false,
         });
       }
+      
       if (selectEmployees === "freelancer") {
-        console.log("entro")
-        await axios.post("/freelancer", {
-          name: inputName,
-          email: inputEmail,
-          rol: "corredor",
-          deleted: false,
-        });
         await axios.post("/corredor", {
           name: inputName,
           email: inputEmail,
