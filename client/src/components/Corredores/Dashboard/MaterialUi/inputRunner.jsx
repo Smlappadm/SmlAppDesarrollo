@@ -97,7 +97,7 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
             value={profesion}
             onChange={handleChangeProfesion}
             label=""
-            id="runner"
+            id="profesion"
             size="small"
             variant="outlined"
             displayEmpty
@@ -130,7 +130,8 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
             value={category}
             onChange={handleChangeCategory}
             label=""
-            id="runner"
+            id="categoria"
+            name="categoria"
             size="small"
             variant="outlined"
             displayEmpty
@@ -163,7 +164,7 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
             value={country}
             onChange={handleChangeCountries}
             label=""
-            id="runner"
+            id="paises"
             size="small"
             variant="outlined"
             displayEmpty
@@ -196,6 +197,7 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
           </div>
           <div>
             <Checkbox
+              id="propio"
               onClick={handleChangeNombrePropio}
               value={"Si"}
               size="medium"
