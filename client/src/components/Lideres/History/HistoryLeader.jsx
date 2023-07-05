@@ -8,7 +8,6 @@ import {
   CiPhone,
   CiWarning,
   CiGlobe,
-  CiDumbbell,
 } from "react-icons/ci";
 import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
@@ -25,7 +24,7 @@ import {
 } from "../../../redux/actions";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import Papa from "papaparse";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -133,7 +132,6 @@ export const LideresHistory = () => {
   const downloadCSV = () => {
     const csv = Papa.unparse(leaderDashboard);
 
-    // Crea un enlace de descarga
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const csvURL = URL.createObjectURL(csvData);
     const tempLink = document.createElement("a");
@@ -164,7 +162,9 @@ export const LideresHistory = () => {
           <label>Leads chequeados: {showData.length}</label>
 
           <div className="flex gap-5">
-            <Button variant="outlined" onClick={downloadCSV}>Descargar CSV</Button>
+            <Button variant="outlined" onClick={downloadCSV}>
+              Descargar CSV
+            </Button>
             <AddLead />
           </div>
         </div>
