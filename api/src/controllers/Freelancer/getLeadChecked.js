@@ -102,7 +102,6 @@ const getLeadChecked = async (body) => {
       }
     }
   }
-console.log(leadRestNivel1)
   leadRest = [...leadRestNivel2, ...leadRestNivel1];
   
   // if (leadRest.length > 0) {
