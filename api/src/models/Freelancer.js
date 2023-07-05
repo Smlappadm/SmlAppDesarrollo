@@ -10,7 +10,7 @@ const FreelancerSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      // unique: true,
       validate: {
         validator: validator.isEmail,
         message: "El correo electrónico debe tener un formato válido",
