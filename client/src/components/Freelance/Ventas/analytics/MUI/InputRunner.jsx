@@ -5,13 +5,8 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  findVendedoresByNameAllInfo,
-  getAllCategory,
-  getAllCountries,
-  getAllProfesion,
-} from "../../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
+import { getAllProfesion, getAllCountries, getAllCategory, findVendedoresByNameAllInfo} from "../../../../../redux/actions";
 
 export default function InputRunner({getVendedorAllLeads, emailUser}) {
   const dispatch = useDispatch();
@@ -22,6 +17,8 @@ export default function InputRunner({getVendedorAllLeads, emailUser}) {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
+
+
 
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
