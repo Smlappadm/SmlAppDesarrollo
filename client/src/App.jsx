@@ -334,7 +334,7 @@ function ClerkProviderWithRoutes() {
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "freelance") &&
+              roleReady === "freelancer") &&
             isEmployeeReady ? (
               <ClasificacionDashboard />
             ) : (
@@ -362,7 +362,7 @@ function ClerkProviderWithRoutes() {
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "freelance") &&
+              roleReady === "freelancer") &&
             isEmployeeReady ? (
               <ClasificacionHistory />
             ) : (
@@ -376,7 +376,7 @@ function ClerkProviderWithRoutes() {
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "freelance") &&
+              roleReady === "freelancer") &&
             isEmployeeReady ? (
               <ClasificacionAnalytics />
             ) : (
@@ -420,7 +420,7 @@ function ClerkProviderWithRoutes() {
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "freelance") &&
+              roleReady === "freelancer") &&
             isEmployeeReady ? (
               <VentasAgenda />
             ) : (
@@ -448,7 +448,7 @@ function ClerkProviderWithRoutes() {
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "freelance") &&
+              roleReady === "freelancer") &&
             isEmployeeReady ? (
               <VentasHistory />
             ) : (
@@ -474,7 +474,7 @@ function ClerkProviderWithRoutes() {
           element={
             (roleReady === "clevel" ||
               roleReady === "leader" ||
-              roleReady === "freelance") &&
+              roleReady === "freelancer") &&
             isEmployeeReady ? (
               <VentasDashboard />
             ) : (

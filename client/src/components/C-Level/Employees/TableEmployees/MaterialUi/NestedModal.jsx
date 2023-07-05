@@ -75,6 +75,9 @@ function ChildModal({
       case "vendedor":
         url = "/vendedor";
         break;
+      case "freelancer":
+        url = "/freelancer";
+        break;
       default:
         alert("El campo 'rol' no es válido");
         return;

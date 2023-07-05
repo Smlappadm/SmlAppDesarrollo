@@ -58,6 +58,7 @@ export default function BasicSelect({ employees, setEmployees }) {
           <StyledMenuItem value={"leader"}>Leader</StyledMenuItem>
           <StyledMenuItem value={"corredor"}>Corredor</StyledMenuItem>
           <StyledMenuItem value={"vendedor"}>Vendedor</StyledMenuItem>
+          <StyledMenuItem value={"freelancer"}>Freelancer</StyledMenuItem>
         </StyledSelect>
       </StyledFormControl>
     </Box>
