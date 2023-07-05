@@ -26,7 +26,6 @@ const getLeadCheckedFreelanceHandler = async (req, res) => {
   const body = req.body;
   try {
     const leadChecked = await getLeadChecked(body);
-    console.log(leadChecked);
     res.status(200).json(leadChecked);
   } catch (error) {
     res.status(404).json({ error: error.message });

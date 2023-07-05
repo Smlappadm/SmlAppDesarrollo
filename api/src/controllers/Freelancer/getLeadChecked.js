@@ -79,7 +79,6 @@ const getLeadChecked = async (body) => {
 
     let count2 = 0;
     count2 = 5 - leadRestNivel2.length;
-    console.log(count2)
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -103,52 +102,52 @@ const getLeadChecked = async (body) => {
       }
     }
   }
+console.log(leadRestNivel1)
   leadRest = [...leadRestNivel2, ...leadRestNivel1];
   
-  if (leadRest.length > 0) {
-    await Promise.all(
-      leadRest.map(async (element) => {
-        element.vendedor = body.email;
-        element.vendedor_name = body.name;
-        await element.save();
-      })
-    );
-  }
+  // if (leadRest.length > 0) {
+  //   await Promise.all(
+  //     leadRest.map(async (element) => {
+  //       element.vendedor_name = body.name;
+  //       await element.save();
+  //     })
+  //   );
+  // }
 
-  //BUSCA LOS NO RESPONDE --------------------------
-  // const leadChequedInactiveNoResponde = await Lead.find({
-  //   checked: true,
-  //   vendedor: body.email,
-  //   status: "No responde",
-  //   level: { $nin: ["incidencia", "0", "", "-"] },
-  // });
+  BUSCA LOS NO RESPONDE --------------------------
+  const leadChequedInactiveNoResponde = await Lead.find({
+    checked: true,
+    vendedor: body.email,
+    status: "No responde",
+    level: { $nin: ["incidencia", "0", "", "-"] },
+  });
 
-  // const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
-  //   const dateA = a.updatedAt.toISOString();
-  //   const dateB = b.updatedAt.toISOString();
+  const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
+    const dateA = a.updatedAt.toISOString();
+    const dateB = b.updatedAt.toISOString();
 
-  //   if (dateA.slice(0, 4) !== dateB.slice(0, 4)) {
-  //     return dateA.slice(0, 4) - dateB.slice(0, 4);
-  //   }
+    if (dateA.slice(0, 4) !== dateB.slice(0, 4)) {
+      return dateA.slice(0, 4) - dateB.slice(0, 4);
+    }
 
-  //   if (dateA.slice(5, 7) !== dateB.slice(5, 7)) {
-  //     return dateA.slice(5, 7) - dateB.slice(5, 7);
-  //   }
+    if (dateA.slice(5, 7) !== dateB.slice(5, 7)) {
+      return dateA.slice(5, 7) - dateB.slice(5, 7);
+    }
 
-  //   if (dateA.slice(8, 10) !== dateB.slice(8, 10)) {
-  //     return dateA.slice(8, 10) - dateB.slice(8, 10);
-  //   }
+    if (dateA.slice(8, 10) !== dateB.slice(8, 10)) {
+      return dateA.slice(8, 10) - dateB.slice(8, 10);
+    }
 
-  //   if (dateA.slice(11, 13) !== dateB.slice(11, 13)) {
-  //     return dateA.slice(11, 13) - dateB.slice(11, 13);
-  //   }
+    if (dateA.slice(11, 13) !== dateB.slice(11, 13)) {
+      return dateA.slice(11, 13) - dateB.slice(11, 13);
+    }
 
-  //   if (dateA.slice(14, 16) !== dateB.slice(14, 16)) {
-  //     return dateA.slice(14, 16) - dateB.slice(14, 16);
-  //   }
+    if (dateA.slice(14, 16) !== dateB.slice(14, 16)) {
+      return dateA.slice(14, 16) - dateB.slice(14, 16);
+    }
 
-  //   return 0;
-  // });
+    return 0;
+  });
 
 
   return [...leadRest];
