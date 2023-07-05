@@ -572,10 +572,6 @@ video {
   visibility: visible;
 }
 
-.static {
-  position: static;
-}
-
 .fixed {
   position: fixed;
 }
@@ -927,6 +923,10 @@ video {
 
 .grid {
   display: grid;
+}
+
+.contents {
+  display: contents;
 }
 
 .hidden {
