@@ -36,6 +36,7 @@ import {
   GET_CLIENTE_EMPRESA,
   GET_LEAD_DISCARD,
   GET_CLASIFICACION_LEAD,
+  GET_ALL_FREELANCER,
 } from "./actions";
 
 const initialState = {
@@ -52,6 +53,7 @@ const initialState = {
   vendedores: [],
   leader: [],
   clevel: [],
+  freelancer: [],
   vendedorAllLeads: [],
   VendedorAllLeadsHistory: [],
   LeadsLlamadaVenta: [],
@@ -368,6 +370,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         clevel: action.payload,
+      };
+    case GET_ALL_FREELANCER:
+      return {
+        ...state,
+        freelancer: action.payload,
       };
     case GET_VENDEDOR_ALL_LEADS:
       return {
