@@ -16,7 +16,7 @@ const getLeadCheckedInactive5 = async (body) => {
       },
     }
   );
-
+console.log(body)
   //BUSCA LOS QUE TENGA MI MAIL
   let leadQuery = {
     checked: true,
@@ -32,6 +32,9 @@ const getLeadCheckedInactive5 = async (body) => {
   }
   if (body.profesion) {
     leadQuery["profesion"] = body.profesion;
+  }
+  if (body.status) {
+    leadQuery["status"] = body.status;
   }
 
   const leadChequedInactive = await Lead.find(leadQuery).limit(5).exec();
@@ -84,6 +87,9 @@ const getLeadCheckedInactive5 = async (body) => {
   if (body.profesion) {
     leadQuery["profesion"] = body.profesion;
   }
+  if (body.status) {
+    leadQuery["status"] = body.status;
+  }
   
   let count = 0;
   count = 5 - leadChequedInactive.length;
@@ -111,6 +117,9 @@ const getLeadCheckedInactive5 = async (body) => {
       }
       if (body.profesion) {
         leadQuery["profesion"] = body.profesion;
+      }
+      if (body.status) {
+        leadQuery["status"] = body.status;
       }
       if (count2) {
         if (count2 > 0 && count2 <= 5) {
