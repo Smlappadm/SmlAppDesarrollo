@@ -219,9 +219,9 @@ const VentasDashboard = () => {
               <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/vendedores-analytics"}>
+              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+              </Link> */}
             </div>
             <div className="flex gap-5 justify-center items-center ml-16">
               <InputRunner

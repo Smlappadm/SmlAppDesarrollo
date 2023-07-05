@@ -2,8 +2,9 @@ import style from "./VentasDashboard.module.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-// import { filterLevel, getLeadsLLamadaVenta } from "../../../redux/actions";
+import { filterLevel, getLeadsLLamadaVenta } from "../../../../redux/actions";
 import Modal from "./Modal/Modal";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,12 +14,11 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-
-import PaginationOutlined from "../../../pagination/PaginationOutlined";
-import { filterLevel, getLeadsLLamadaVenta } from "../../../../redux/actions";
 import Nav from "../../../Nav/Nav";
 
-const VentasAgenda = () => {
+
+
+const VentasDashboard = () => {
   const [data, setData] = useState([]);
   const { vendedoresVentasDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -27,13 +27,17 @@ const VentasAgenda = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
+  
 
+  
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
-
+  
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(emailAddress));
+
   }, [dispatch, emailAddress]);
+
 
   useEffect(() => {
     setData(vendedoresVentasDashboard);
@@ -50,8 +54,8 @@ const VentasAgenda = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
-  };
+    dispatch(getLeadsLLamadaVenta(emailAddress))
+  }
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -165,18 +169,18 @@ const VentasAgenda = () => {
               Ventas
             </h1>
             <div className="flex gap-7">
-              <Link to={"/vendedores"}>
+            <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link to={"/vendedores-ventas"}>
+              <Link to={"/ventas-agenda"}>
                 <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/vendedores-history"}>
+              <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/vendedores-analytics"}>
+              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+              </Link> */}
             </div>
             {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
@@ -368,4 +372,4 @@ const VentasAgenda = () => {
   );
 };
 
-export default VentasAgenda;
+export default VentasDashboard;
