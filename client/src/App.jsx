@@ -421,7 +421,7 @@ function ClerkProviderWithRoutes() {
           }
         />
         <Route
-          path="/ventas"
+          path="/ventas-agenda"
           element={
             isRoleAllowed(roleReady) &&
             (roleReady === "clevel" ||
