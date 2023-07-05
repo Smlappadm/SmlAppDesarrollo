@@ -2,7 +2,6 @@ const Lead = require("../../models/Lead");
 
 const getLeadCheckedInactive5 = async (body) => {
 
-
   await Lead.updateMany(
     { vendedor: body.email, status: "Sin contactar" },
     {
@@ -17,14 +16,14 @@ const getLeadCheckedInactive5 = async (body) => {
       },
     }
   );
-
+  
   //BUSCA LOS QUE TENGA MI MAIL
   let leadQuery = {
     checked: true,
     status: "Sin contactar",
     level: { $nin: ["incidencia", "0", "", "-"] },
   };
-
+  
   if (body.email) {
     leadQuery["email"] = body.email;
   }
@@ -40,9 +39,9 @@ const getLeadCheckedInactive5 = async (body) => {
   if (body.level && (body.level === "aleatorio")) {
     leadQuery["level"] = { $nin: ["incidencia", "0", "", "-"] };
   }
-
+  
   const leadChequedInactive = await Lead.find(leadQuery).limit(5).exec();
-
+  
   //BUSCA LOS NO RESPONDE --------------------------
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
@@ -62,7 +61,7 @@ const getLeadCheckedInactive5 = async (body) => {
     if (dateA.slice(5, 7) !== dateB.slice(5, 7)) {
       return dateA.slice(5, 7) - dateB.slice(5, 7);
     }
-
+    
     if (dateA.slice(8, 10) !== dateB.slice(8, 10)) {
       return dateA.slice(8, 10) - dateB.slice(8, 10);
     }
@@ -70,7 +69,7 @@ const getLeadCheckedInactive5 = async (body) => {
     if (dateA.slice(11, 13) !== dateB.slice(11, 13)) {
       return dateA.slice(11, 13) - dateB.slice(11, 13);
     }
-
+    
     if (dateA.slice(14, 16) !== dateB.slice(14, 16)) {
       return dateA.slice(14, 16) - dateB.slice(14, 16);
     }
@@ -78,7 +77,7 @@ const getLeadCheckedInactive5 = async (body) => {
     return 0;
   });
   //--------------------------------------------------
-
+  
   leadQuery = {
     vendedor: "",
     checked: true,
@@ -103,16 +102,14 @@ const getLeadCheckedInactive5 = async (body) => {
   let leadRest = [];
   let leadRestNivel2 = [];
   let leadRestNivel1 = [];
-
+  
   if (count) {
     if (count > 0 && count <= 5) {
       if (body.level === "aleatorio") {
-        console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeee")
         leadRestNivel2 = await Lead.find(leadQuery).limit(count).exec();
       } else {
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
         leadRestNivel2 = await Lead.find(leadQuery).limit(count).exec();
-
+        
         let count2 = 0;
         count2 = count - leadRestNivel2.length;
         leadQuery = {
@@ -137,9 +134,13 @@ const getLeadCheckedInactive5 = async (body) => {
         }
       }
 
-
+      
       leadRest = [...leadRestNivel2, ...leadRestNivel1];
+      
 
+      console.log(leadRest.length)
+      // console.log(body.name)
+      // console.log(leadRest)
       if (leadRest.length > 0) {
         await Promise.all(
           leadRest.map(async (element) => {
@@ -147,9 +148,9 @@ const getLeadCheckedInactive5 = async (body) => {
             element.vendedor_name = body.name;
             await element.save();
           })
-        );
+          );
+        }
       }
-    }
   }
 
   return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
