@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoGrid } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { FaBan } from "react-icons/fa";
+import DownloadCSV from "./MaterialUi/DownloadCSV";
 
 const BannedEmployees = (name) => {
   toast.success(`✔ ${name} Proceso de baneo completado exitosamente! `, {
@@ -128,10 +129,13 @@ export const TableClevel = () => {
                 </Link>
               </div>
             </div>
-            <NestedModal
-              CreateEmployees={CreateEmployees}
-              ErrorCreateEmployees={ErrorCreateEmployees}
-            />
+            <div>
+              <DownloadCSV />
+              <NestedModal
+                CreateEmployees={CreateEmployees}
+                ErrorCreateEmployees={ErrorCreateEmployees}
+              />
+            </div>
           </div>
           <div className="w-full">
             <div className={style.tableBody}>
