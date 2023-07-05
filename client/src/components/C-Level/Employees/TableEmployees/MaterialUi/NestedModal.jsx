@@ -84,12 +84,14 @@ function ChildModal({
     }
 
     try {
-      await axios.post(url, {
+      const response1 = await axios.post(url, {
         name: inputName,
         email: inputEmail,
         rol: selectEmployees,
         deleted: false,
       });
+
+      console.log(response1.data);
       if (selectEmployees === "clevel" || selectEmployees === "leader") {
         await axios.post("/corredor", {
           name: inputName,
@@ -107,13 +109,6 @@ function ChildModal({
       }
 
       if (selectEmployees === "freelancer") {
-        await axios.post("/freelancer", {
-          name: inputName,
-          email: inputEmail,
-          rol: "freelancer",
-          deleted: false,
-        });
-
         await axios.post("/corredor", {
           name: inputName,
           email: inputEmail,
