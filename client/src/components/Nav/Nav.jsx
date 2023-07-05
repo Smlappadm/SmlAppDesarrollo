@@ -8,6 +8,7 @@ import {
   IoGrid,
   IoPeople,
   IoExitOutline,
+  IoLogoSnapchat,
 } from "react-icons/io5";
 
 function Nav() {
@@ -124,8 +125,7 @@ function Nav() {
                   </div>
 
                   <div>
-                    
-                  <h2>Freelance</h2>
+                    <h2>Freelance</h2>
                     <li className="flex gap-2 items-center text-[18px]">
                       <span className=" text-lg">
                         <IoGrid className="text-[#e0dddd]" />
@@ -152,7 +152,20 @@ function Nav() {
                         </Link>
                       </span>
                     </li>
-                    
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoLogoSnapchat className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/lideres-freelancer"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Historial
+                        </Link>
+                      </span>
+                    </li>
+
                     <li className="flex gap-2 items-center text-[18px]">
                       <span className=" text-lg">
                         <IoSettingsSharp className="text-[#e0dddd]" />
