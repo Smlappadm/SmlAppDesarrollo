@@ -105,8 +105,15 @@ function ChildModal({
           deleted: false,
         });
       }
-      
+
       if (selectEmployees === "freelancer") {
+        await axios.post("/freelancer", {
+          name: inputName,
+          email: inputEmail,
+          rol: "freelancer",
+          deleted: false,
+        });
+
         await axios.post("/corredor", {
           name: inputName,
           email: inputEmail,
