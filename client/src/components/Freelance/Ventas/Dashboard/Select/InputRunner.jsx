@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCountries, getAllProfesion } from "../../../../../redux/actions";
 
-export default function InputName({ body, getLeadCheckedInactive5 }) {
+export default function InputName({ body, getLeadCheckedFreelance }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
@@ -39,11 +39,11 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
     console.log(profesion);
     console.log(country);
     console.log(status);
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, status));
   };
 
   const handleFilterReset = () => {
-    dispatch(getLeadCheckedInactive5(body, "", ""));
+    dispatch(getLeadCheckedFreelance(body, "", ""));
     setCountry("")
     setProfesion("")
     setStatus("")
