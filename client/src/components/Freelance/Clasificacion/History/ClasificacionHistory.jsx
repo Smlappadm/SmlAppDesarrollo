@@ -58,13 +58,13 @@ const ClasificacionHistory = () => {
               History
             </Title>
             <div className="flex gap-5">
-              <Link to={"/corredores"}>
+              <Link to={"/clasificacion"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/corredores-history"}>
+              <Link className="text-5xl" to={"/clasificacion-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              <Link className="text-5xl" to={"/corredores-analytics"}>
+              <Link className="text-5xl" to={"/clasificacion-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div>

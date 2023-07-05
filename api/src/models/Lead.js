@@ -106,6 +106,11 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: false,
     },
+    freelancer: {
+      type: Boolean,
+      require: true,
+      default: false,
+    },
     country: {
       type: String,
       require: true,
