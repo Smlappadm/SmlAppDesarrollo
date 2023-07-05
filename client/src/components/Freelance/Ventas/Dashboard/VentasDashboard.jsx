@@ -20,6 +20,7 @@ import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import {
   filterLevel,
   getLeadCheckedInactive5,
+  getLeadCheckedFreelance,
   getAllProfesion,
   getAllCountries,
 } from "../../../../redux/actions";
@@ -50,7 +51,7 @@ const VentasDashboard = () => {
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
 
   //FILTER   Profesion Country **********************
@@ -154,7 +155,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -180,7 +181,7 @@ const VentasDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedInactive5(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
 
   const funcionHorario = (horario) => {
@@ -225,7 +226,7 @@ const VentasDashboard = () => {
             </div>
             <div className="flex gap-5 justify-center items-center ml-16">
               <InputRunner
-                getLeadCheckedInactive5={getLeadCheckedInactive5}
+                getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
               />
               {/* <label>Profesión: </label>
