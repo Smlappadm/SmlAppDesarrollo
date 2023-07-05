@@ -1,8 +1,12 @@
 const { Router } = require("express");
-const { postFreelancerHandler } = require("../Handlers/FreelancerHandler");
+const {
+  postFreelancerHandler,
+  getAllFreelancerHandler,
+} = require("../Handlers/FreelancerHandler");
 
 const FreelancerRouter = Router();
 
 FreelancerRouter.post("/", postFreelancerHandler);
+FreelancerRouter.get("/", getAllFreelancerHandler);
 
 module.exports = FreelancerRouter;

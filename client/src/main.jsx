@@ -9,7 +9,7 @@ import store from "./redux/store";
 import axios from "axios";
 
 axios.defaults.baseURL = "http://localhost:3001/api";
-//axios.defaults.baseURL = "https://smlapp.onrender.com/api";
+// axios.defaults.baseURL = "https://smlapp.onrender.com/api";
 // axios.defaults.baseURL = "https://sml-app.com/api";
 
 const container = document.getElementById("root");

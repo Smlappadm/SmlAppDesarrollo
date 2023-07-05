@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Checkbox } from "@mui/material";
 import { getAllCategory, getAllCountries, getAllProfesion } from "../../../../../redux/actions";
 
-export default function InputRunner({ getLeadCorredores, email, names }) {
+export default function InputRunner({ getLeadClasificacion, email, names }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [category, setCategory] = useState("");
@@ -45,7 +45,7 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
 
   const handleFilterClick = () => {
     dispatch(
-      getLeadCorredores(
+      getLeadClasificacion(
         email,
         names,
         profesion,

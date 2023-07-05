@@ -38,111 +38,136 @@ function Nav() {
           <div className=" flex  w-fit mt-12 ">
             {roleReady === "clevel" || roleReady === "leader" ? (
               <ul className="flex flex-col gap-2">
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoPeople className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/clevel"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Employees
-                    </Link>
-                  </span>
-                </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoGrid className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/lideres"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Dashboard
-                    </Link>
-                  </span>
-                </li>
+                <div className="flex flex-col gap-20">
+                  <div>
+                    <h2>Empleados</h2>
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoPeople className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/clevel"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Employees
+                        </Link>
+                      </span>
+                    </li>
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoGrid className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/lideres"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Dashboard
+                        </Link>
+                      </span>
+                    </li>
 
-                <li className="flex gap-2 items-center text-[18px] text-white">
-                  <span className="text-[1.5rem]">
-                    <IoStatsChart className="w-4 text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/analytics"
-                      className="text-[#e0dddd] hover:text-white"
-                    >
-                      Analytics
-                    </Link>
-                  </span>
-                </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoGrid className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/corredores"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Corredores
-                    </Link>
-                  </span>
-                </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoGrid className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/vendedores"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Vendedores
-                    </Link>
-                  </span>
-                </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoGrid className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/clasificacion"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Clasificación
-                    </Link>
-                  </span>
-                </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoGrid className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/ventas"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Ventas
-                    </Link>
-                  </span>
-                </li>
-                <li className="flex gap-2 items-center text-[18px]">
-                  <span className=" text-lg">
-                    <IoSettingsSharp className="text-[#e0dddd]" />
-                  </span>
-                  <span>
-                    <Link
-                      to="/settings"
-                      className=" text-[#e0dddd] hover:text-white"
-                    >
-                      Settings
-                    </Link>
-                  </span>
-                </li>
+                    <li className="flex gap-2 items-center text-[18px] text-white">
+                      <span className="text-[1.5rem]">
+                        <IoStatsChart className="w-4 text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/analytics"
+                          className="text-[#e0dddd] hover:text-white"
+                        >
+                          Analytics
+                        </Link>
+                      </span>
+                    </li>
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoGrid className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/corredores"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Corredores
+                        </Link>
+                      </span>
+                    </li>
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoGrid className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/vendedores"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Vendedores
+                        </Link>
+                      </span>
+                    </li>
+
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoSettingsSharp className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/settings"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Settings
+                        </Link>
+                      </span>
+                    </li>
+                  </div>
+
+                  <div>
+                    
+                  <h2>Freelance</h2>
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoGrid className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/clasificacion"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Clasificación
+                        </Link>
+                      </span>
+                    </li>
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoGrid className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/ventas"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Ventas
+                        </Link>
+                      </span>
+                    </li>
+                    
+                    <li className="flex gap-2 items-center text-[18px]">
+                      <span className=" text-lg">
+                        <IoSettingsSharp className="text-[#e0dddd]" />
+                      </span>
+                      <span>
+                        <Link
+                          to="/settings"
+                          className=" text-[#e0dddd] hover:text-white"
+                        >
+                          Settings
+                        </Link>
+                      </span>
+                    </li>
+                  </div>
+                </div>
               </ul>
             ) : roleReady === "vendedor" ? (
               <ul className="flex flex-col gap-2">
