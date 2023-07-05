@@ -43,6 +43,7 @@ const CorredoresDashboard = () => {
   ]);
 
   const { corredorLead } = useSelector((state) => state);
+  const { freelanceLead } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -487,7 +488,6 @@ const CorredoresDashboard = () => {
   const instagramRegex =
     /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
 
-  // console.log(client);
   return (
     <>
       <Nav />
