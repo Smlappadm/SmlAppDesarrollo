@@ -186,7 +186,7 @@ function Nav() {
                   </span>
                 </li>
               </ul>
-            ) : (
+            ) : roleReady === "corredor" ? (
               <ul className="flex flex-col gap-2">
                 <li className="flex gap-2 items-center text-[18px]">
                   <span className=" text-lg">
@@ -211,6 +211,48 @@ function Nav() {
                       className="text-[#e0dddd] hover:text-white"
                     >
                       Analytics
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoSettingsSharp className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/settings"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Settings
+                    </Link>
+                  </span>
+                </li>
+              </ul>
+            ) : (
+              <ul>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoGrid className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/clasificacion"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Clasificación
+                    </Link>
+                  </span>
+                </li>
+                <li className="flex gap-2 items-center text-[18px]">
+                  <span className=" text-lg">
+                    <IoGrid className="text-[#e0dddd]" />
+                  </span>
+                  <span>
+                    <Link
+                      to="/ventas"
+                      className=" text-[#e0dddd] hover:text-white"
+                    >
+                      Ventas
                     </Link>
                   </span>
                 </li>
