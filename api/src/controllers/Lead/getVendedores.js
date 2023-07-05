@@ -1,7 +1,9 @@
 const Lead = require("../../models/Lead");
 
 const getVendedores = async () => {
-  const vendedores = await Lead.distinct("vendedor_name", { vendedor_name: { $ne: "" } });
+  const vendedores = await Lead.distinct("vendedor_name", {
+    freelancer: false,
+  });
 
   const correosSet = new Set();
 
