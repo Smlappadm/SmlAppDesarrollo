@@ -6,7 +6,7 @@ import Login from "./views/Login/Login";
 import CorredoresDashboard from "./components/Corredores/Dashboard/CorredoresDashboard";
 import VendedoresDashboard from "./components/Vendedores/Dashboard/VendedoresDashboard";
 import { AnalyticLeader } from "./components/Lideres/Analytic/AnalyticLeader";
-import { LideresDasboard } from "./components/Lideres/Dashboard/DashboardLeader";
+import { DashboardFreelancer } from "./components/Lideres/Dashboard/DashboardFreelancer";
 import VendedoresHistory from "./components/Vendedores/analytics/VendedoresHistory";
 import VendedoresAnalytics from "./components/Vendedores/analytics/VendedoresAnalytics";
 import VentasDasboard from "./components/Vendedores/Dashboard/VentasDashboard";
@@ -231,6 +231,18 @@ function ClerkProviderWithRoutes() {
             (roleReady === "clevel" || roleReady === "leader") &&
             isEmployeeReady ? (
               <LideresHistory />
+            ) : (
+              <ReturnToPage />
+            )
+          }
+        />
+        <Route
+          path="/lideres-freelancer"
+          element={
+            isRoleAllowed(roleReady) &&
+            (roleReady === "clevel" || roleReady === "leader") &&
+            isEmployeeReady ? (
+              <DashboardFreelancer />
             ) : (
               <ReturnToPage />
             )
