@@ -2,11 +2,9 @@
 
 // const limpiezaBaseFunction = async () => {
 //   const leadResult = await Lead.updateMany(
-//     { corredor: "floraye3092@gmail.com" },
+//     { checked: false },
 //     {
-//       $set: {
-//         corredor_name: "Florencia Carballo",
-//       },
+//       freelancer: false
 //     }
 
 
