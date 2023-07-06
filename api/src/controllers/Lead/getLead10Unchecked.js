@@ -22,7 +22,7 @@ const getLead10Unchecked = async (query) => {
         corredor: email,
         corredor_name: names,
         checked: false,
-        freelancer: { $ne: true },
+        freelancer: false,
         view: true,
       },
       10
@@ -35,7 +35,7 @@ const getLead10Unchecked = async (query) => {
           checked: false,
           view: false,
           corredor: "",
-          freelancer: { $ne: true },
+          freelancer: false,
           corredor_name: "",
         },
         count
@@ -54,7 +54,7 @@ const getLead10Unchecked = async (query) => {
     }
   } else {
     await updateLeadRest(
-      { corredor: email, checked: false, freelancer: { $ne: true } },
+      { corredor: email, checked: false, freelancer: false },
       {
         $set: {
           level: "",
@@ -86,7 +86,7 @@ const getLead10Unchecked = async (query) => {
         corredor_name: names,
         checked: false,
         view: true,
-        freelancer: { $ne: true },
+        freelancer: false,
         country: countryRegex,
         profesion: profesionRegex,
         category: categoryRegex,
@@ -103,7 +103,7 @@ const getLead10Unchecked = async (query) => {
           view: false,
           corredor: "",
           corredor_name: "",
-          freelancer: { $ne: true },
+          freelancer: false,
           country: countryRegex,
           profesion: profesionRegex,
           category: categoryRegex,
@@ -120,7 +120,7 @@ const getLead10Unchecked = async (query) => {
               corredor: email,
               corredor_name: names,
               view: true,
-              freelancer: { $ne: true },
+              freelancer: false,
             },
           },
         }));

@@ -6,7 +6,7 @@ import CircularProgressBar from "../CircularProgressbar/CircularProgressbar";
 
 export default function Header({ numberTotal, setCustomValue, imgInstagram }) {
   return (
-    <div className="flex flex-row justify-center p-4 w-screen md:gap-60">
+    <div className="flex flex-row justify-center p-4 w-screen gap-10 md:gap-60">
       <div className=" justify-center items-center relative">
         <Link to={"/clientes-home"}>
           <img
@@ -17,13 +17,13 @@ export default function Header({ numberTotal, setCustomValue, imgInstagram }) {
         </Link>
       </div>
       <div className=" pt-10 justify-center items-center relative">
-        <CircularProgressBar value={numberTotal} imageSrc={imgInstagram} />
+        <CircularProgressBar value={numberTotal/1000} imageSrc={imgInstagram} />
         <p className="font-bold bottom-0 -right-7 absolute">
-          {(numberTotal / 10000) * 100}%
+          {(numberTotal / 100000).toFixed(0)}%
         </p>
       </div>
 
-      <div className="flex  justify-center items-start gap-1 pt-4">
+      <div className="flex  justify-center items-start gap-3 pt-4">
         <Link
           to="/clientes-addvideos"
           className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
