@@ -24,6 +24,7 @@ import BasicButtons2 from "./Select/BasicButtons2";
 import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const VendedoresDashboard = () => {
   const [data, setData] = useState([]);
