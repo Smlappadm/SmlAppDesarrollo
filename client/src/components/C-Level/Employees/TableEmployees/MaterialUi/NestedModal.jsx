@@ -28,6 +28,7 @@ function ChildModal({
   inputName,
   inputEmail,
   selectEmployees,
+  leadAsigned,
   handleReset,
   CreateEmployees,
   ErrorCreateEmployees,
@@ -123,6 +124,14 @@ function ChildModal({
           rol: "vendedor",
           deleted: false,
         });
+
+        const response = await axios.put("/lead/asignacion", {
+          name: inputName,
+          email: inputEmail,
+          leads: leadAsigned,
+        });
+
+        console.log(response.data);
       }
       CreateEmployees(inputName);
     } catch (error) {
@@ -209,13 +218,13 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [selectEmployees, setSelectEmployees] = useState("");
-  const [leadAsigned, setLeadAsigned] = useState("");
+  const [leadAsigned, setLeadAsigned] = useState();
 
   const handleReset = () => {
     setInputName("");
     setInputEmail("");
     setSelectEmployees("");
-    setLeadAsigned("");
+    setLeadAsigned();
   };
 
   return (
@@ -251,8 +260,8 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
               />
               {selectEmployees === "freelancer" ? (
                 <LeadAsigned
-                leadAsigned={leadAsigned}
-                setLeadAsigned={setLeadAsigned}
+                  leadAsigned={leadAsigned}
+                  setLeadAsigned={setLeadAsigned}
                 />
               ) : null}
             </div>
@@ -260,6 +269,7 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
           <ChildModal
             inputName={inputName}
             inputEmail={inputEmail}
+            leadAsigned={leadAsigned}
             selectEmployees={selectEmployees}
             handleReset={handleReset}
             CreateEmployees={CreateEmployees}
