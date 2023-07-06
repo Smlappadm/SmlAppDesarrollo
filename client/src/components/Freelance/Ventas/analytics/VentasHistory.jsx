@@ -399,7 +399,7 @@ const VentasHistory = () => {
           <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0 }}
+              transition={{ duration: 1, delay: 1 }}
               className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
             >
             <InputRunner
