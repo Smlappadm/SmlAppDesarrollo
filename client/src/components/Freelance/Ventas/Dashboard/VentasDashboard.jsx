@@ -67,6 +67,7 @@ const VentasDashboard = () => {
 
 
   const [levelValue, setLevelValue] = useState("");
+
   const onChangeLevel = (value) => {
     setLevelValue(value);
     dispatch(filterLevel(value));
@@ -88,13 +89,13 @@ const VentasDashboard = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-  const openEditMenu = (index, id) => {
-    setEdit(true);
-    setEditIndex(index);
-  };
-  const sendEdit = () => {
-    setEdit(false);
-  };
+  // const openEditMenu = (index, id) => {
+  //   setEdit(true);
+  //   setEditIndex(index);
+  // };
+  // const sendEdit = () => {
+  //   setEdit(false);
+  // };
   const SendLeadAlert = () => {
     toast.success("✔ Lead Update!", {
       position: "top-center",
