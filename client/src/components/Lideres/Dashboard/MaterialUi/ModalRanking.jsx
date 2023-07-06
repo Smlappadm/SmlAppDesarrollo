@@ -36,12 +36,6 @@ export default function ChildModal() {
     console.log(freelancer);
   }, [freelancer]);
 
-  const handleInput = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
-  };
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
