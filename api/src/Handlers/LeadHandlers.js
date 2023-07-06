@@ -29,6 +29,7 @@ const dowloadCSV = require("../controllers/Lead/downloadCSV");
 const findLeadFreelancerNameAllInfo = require("../controllers/Lead/findLeadFreelancerNameAllInfo");
 const getLeadCheckedFreelancer = require("../controllers/Lead/getLeadCheckedFreelancer");
 const getFreelancers = require("../controllers/Lead/getFreelancers");
+const asignacionFreelancer = require("../controllers/Lead/asignacionFreelancer");
 const findLeadFreelancerName = require("../controllers/Lead/findLeadFreelancerName");
 
 const getAllLeadHandler = async (req, res) => {
@@ -396,6 +397,16 @@ const limpiezaBaseHandler = async (req, res) => {
   }
 };
 
+const asignacionFreelancerHandler = async (req, res) => {
+  const data = req.body
+  try {
+    const asignacion = await asignacionFreelancer(data);
+    res.status(200).json(asignacion);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllLeadHandler,
   getLeadUncheckedHandler,
@@ -428,5 +439,6 @@ module.exports = {
   findLeadFreelancerNameAllInfoHandler,
   getLeadCheckedFreelancerHandler,
   getFreelancersHandler,
+  asignacionFreelancerHandler,
   findLeadFreelancerNameHandler,
 };

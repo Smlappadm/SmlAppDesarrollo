@@ -5,6 +5,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddLeads, getFreelancers } from "../../../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -23,6 +24,8 @@ const style = {
 export default function ChildModal() {
   const { allCorredores } = useSelector((state) => state);
   const [freelancer, setFreelancer] = useState("");
+  const [infoFreelancer, setInfoFreelancer] = useState("");
+  const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,15 +36,28 @@ export default function ChildModal() {
     setFreelancer(allCorredores);
   }, [allCorredores]);
   useEffect(() => {
-    console.log(freelancer);
+    InfoFreelancer();
   }, [freelancer]);
 
-  const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const InfoFreelancer = async () => {
+    let body;
+    const infoPromises =
+      freelancer &&
+      freelancer.map(async (name) => {
+        const response = await axios.get(`/lead/freelancer?name=${name}`);
+        const data = response.data;
+        body = { [name]: data };
+        return body;
+      });
+    const info = await Promise.all(infoPromises);
+    setInfoFreelancer(info);
   };
 
   return (
@@ -61,28 +77,53 @@ export default function ChildModal() {
             ...style,
             width: "40%",
             backgroundColor: "#39394b",
-            height: "500px",
+            height: "800px",
           }}
         >
           <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
             <h2>Ranking de Freelancers</h2>
 
-            {freelancer &&
-              freelancer.map((free, index) => (
-                <div className="flex justify-between items-center bg-black h-1/5 rounded-xl p-3">
-                  <p className="w-3/12">{free}</p>
-                  <div className="w-3/12">
-                    <p>Clasificados</p>
-                    <p>1000/3000</p>
+            {infoFreelancer &&
+              infoFreelancer.map((free, index) => {
+                const firstProperty = Object.keys(infoFreelancer[index])[0];
+                const Leads = infoFreelancer[index]?.[firstProperty];
+                const totalLeadsAsignados = Leads.length || 0;
+                const LeadsChecked = Leads.reduce((total, lead) => {
+                  if (lead.checked === true) {
+                    return total + 1;
+                  }
+                  return total;
+                }, 0);
+                const LeadsVendidos = Leads.reduce((total, lead) => {
+                  if (lead.status === "contratado") {
+                    return total + 1;
+                  }
+                  return total;
+                }, 0);
+
+                return (
+                  <div
+                    className="flex justify-between items-center bg-black h-1/5 rounded-xl p-3"
+                    key={index}
+                  >
+                    <p className="w-3/12">
+                      {Object.keys(infoFreelancer[index])[0]}
+                    </p>
+                    <div className="w-3/12">
+                      <p>Clasificados</p>
+                      <p>
+                        {LeadsChecked}/{totalLeadsAsignados}
+                      </p>
+                    </div>
+                    <div className="w-3/12">
+                      <p>Ventas</p>
+                      <p>{LeadsVendidos}</p>
+                    </div>
+                    <p className="w-1/12">{index + 1}</p>
+                    <p className="w-2/12">10</p>
                   </div>
-                  <div className="w-3/12">
-                    <p>Ventas</p>
-                    <p>100</p>
-                  </div>
-                  <p className="w-1/12">{index + 1}</p>
-                  <p className="w-2/12">10</p>
-                </div>
-              ))}
+                );
+              })}
           </div>
         </Box>
       </Modal>
