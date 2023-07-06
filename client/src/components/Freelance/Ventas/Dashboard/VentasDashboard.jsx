@@ -22,7 +22,6 @@ import {
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
 
-
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
   const { vendedoresDashboard } = useSelector((state) => state);
@@ -47,7 +46,7 @@ const VentasDashboard = () => {
 
   useEffect(() => {
     setData(vendedoresDashboard);
-    console.log(vendedoresDashboard.length)
+    console.log(vendedoresDashboard.length);
   }, [vendedoresDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
@@ -64,7 +63,6 @@ const VentasDashboard = () => {
   const cancelModal = () => {
     dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
-
 
   const [levelValue, setLevelValue] = useState("");
 
@@ -159,33 +157,49 @@ const VentasDashboard = () => {
         )}
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
-              Dashboard
-            </h1>
-            <div className="flex gap-7">
-              <Link to={"/ventas-dashboard"}>
-                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link to={"/ventas-agenda"}>
-                <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/ventas-history"}>
-                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
+            <motion.div
+              initial={{ opacity: 0}}
+              whileInView={{opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0 }}
+              className="flex"
+            >
+              <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+                Dashboard
+              </h1>
+              <div className="flex gap-7">
+                <Link to={"/ventas-dashboard"}>
+                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link to={"/ventas-agenda"}>
+                  <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/ventas-history"}>
+                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link> */}
-            </div>
-            <div className="flex gap-5 justify-center items-center ml-16">
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0}}
+              whileInView={{opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0 }}
+              className="flex gap-5 justify-center items-center ml-16"
+            >
               <InputRunner
                 getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
               />
-            </div>
-
+            </motion.div>
           </div>
           {vendedoresDashboard.length ? (
-            <div className={style.table}>
+            <motion.div
+              initial={{ opacity: 0, y: "40px" }}
+              whileInView={{ y: "20px", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className={style.table}
+            >
               <div className="flex justify-start items-center  mx-6">
                 <label className="text-start w-[15%] px-3">Nombre</label>
                 <label className="text-start w-[15%] px-3">Profesión</label>
@@ -300,7 +314,7 @@ const VentasDashboard = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>No hay Leads disponibles</h1>
