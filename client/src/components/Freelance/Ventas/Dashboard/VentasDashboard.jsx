@@ -25,6 +25,7 @@ import {
   getAllCountries,
 } from "../../../../redux/actions";
 import Nav from "../../../Nav/Nav";
+import { motion } from "framer-motion";
 
 
 const VentasDashboard = () => {
@@ -107,17 +108,7 @@ const VentasDashboard = () => {
   //   status: false,
   // });
 
-  // const handlerFilter = (filter) => {
-  //   if (filter === "level") {
-  //     setFilters({ level: true, runner: false, sellers: false, status: false });
-  //   } else if (filter === "runner") {
-  //     setFilters({ level: false, runner: true, sellers: false, status: false });
-  //   } else if (filter === "sellers") {
-  //     setFilters({ level: false, runner: false, sellers: true, status: false });
-  //   } else {
-  //     setFilters({ level: false, runner: false, sellers: false, status: true });
-  //   }
-  // };
+
 
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
