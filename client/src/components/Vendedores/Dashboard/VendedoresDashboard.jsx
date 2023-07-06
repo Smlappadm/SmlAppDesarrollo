@@ -242,7 +242,12 @@ const VendedoresDashboard = () => {
             </motion.div>
           </div>
           {vendedoresDashboard.length ? (
-            <div className={style.table}>
+                        <motion.div
+                        initial={{ opacity: 0, y: "40px" }}
+                        whileInView={{ y: "20px", opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0 }}
+                        className={style.table}
+                      >
               <div className="flex justify-start items-center  mx-6">
                 <label className="text-start w-[15%] px-3">Nombre</label>
                 <label className="text-start w-[15%] px-3">Profesión</label>
@@ -357,7 +362,7 @@ const VendedoresDashboard = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>No hay Leads disponibles</h1>
