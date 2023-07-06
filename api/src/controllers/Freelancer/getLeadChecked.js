@@ -37,7 +37,7 @@ const getLeadChecked = async (body) => {
       vendedor: body.email,
       checked: true,
       status: "Sin contactar",
-      level: { $nin: ["incidencia", "0", "", "-", "1"] },
+      level: { $nin: ["incidencia", "0", "", "-", "1"]},
     }).limit(5).exec();
 
     let count2 = 0;
