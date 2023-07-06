@@ -79,12 +79,6 @@ const VentasDashboard = () => {
   };
 
 
-
-
-
-
-
-
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
     setLevelValue(value);
@@ -226,30 +220,11 @@ const VentasDashboard = () => {
                 disabled="disabled"
                 className="text-black"
                 value=""
-              ></option>
-              {allCountries &&
-                allCountries.map((option, index) => (
-                  <option className="text-black" key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              <option className="text-black" value="">
-                Otras Paises
-              </option>
-            </select>
 
-            <div onClick={filtrar}>
-              <BasicButtons1 />
-            </div>
-            <div onClick={filtrar2}>
               <BasicButtons2 />
             </div> */}
             </div>
-            {/* {filters.level === true ? (
-              <SelectLevel onChange={onChangeLevel} value={levelValue} />
-            ) : (
-              ""
-            )} */}
+
           </div>
           {vendedoresDashboard.length ? (
             <div className={style.table}>
