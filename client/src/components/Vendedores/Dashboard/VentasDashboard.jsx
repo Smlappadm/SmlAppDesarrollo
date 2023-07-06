@@ -14,7 +14,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-
+import { motion } from "framer-motion";
 
 import Nav from "../../Nav/Nav";
 
@@ -165,9 +165,14 @@ const VentasDashboard = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+          <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
+            >
               Ventas
-            </h1>
+            </motion.h1>
             <div className="flex gap-7">
               <Link to={"/vendedores"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -189,7 +194,12 @@ const VentasDashboard = () => {
             )}
           </div>
           {vendedoresVentasDashboard.length > 0 ? (
-            <div className={style.table}>
+                                    <motion.div
+                                    initial={{ opacity: 0, y: "40px" }}
+                                    whileInView={{ y: "20px", opacity: 1 }}
+                                    transition={{ duration: 0.6, delay: 0 }}
+                                    className={style.table}
+                                  >
               <div className="flex justify-start items-center  mx-6">
                 <label className=" text-start w-[15%] px-3">Nombre</label>
                 <label className=" text-start w-[11%] px-3">Profesión</label>
@@ -347,7 +357,7 @@ const VentasDashboard = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>No hay Leads disponibles</h1>
