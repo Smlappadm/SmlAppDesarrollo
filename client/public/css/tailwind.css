@@ -721,6 +721,11 @@ video {
   margin-right: 2.5rem;
 }
 
+.mx-24 {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -761,36 +766,12 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mx-12 {
-  margin-left: 3rem;
-  margin-right: 3rem;
-}
-
-.mx-32 {
-  margin-left: 8rem;
-  margin-right: 8rem;
-}
-
-.mx-28 {
-  margin-left: 7rem;
-  margin-right: 7rem;
-}
-
-.mx-24 {
-  margin-left: 6rem;
-  margin-right: 6rem;
-}
-
 .mb-0 {
   margin-bottom: 0px;
 }
 
 .mb-10 {
   margin-bottom: 2.5rem;
-}
-
-.mb-14 {
-  margin-bottom: 3.5rem;
 }
 
 .mb-2 {
@@ -851,6 +832,10 @@ video {
 
 .ml-6 {
   margin-left: 1.5rem;
+}
+
+.ml-\[55px\] {
+  margin-left: 55px;
 }
 
 .mr-1 {
@@ -921,22 +906,6 @@ video {
   margin-top: 2rem;
 }
 
-.ml-\[50px\] {
-  margin-left: 50px;
-}
-
-.ml-\[55px\] {
-  margin-left: 55px;
-}
-
-.ml-11 {
-  margin-left: 2.75rem;
-}
-
-.-ml-16 {
-  margin-left: -4rem;
-}
-
 .block {
   display: block;
 }
@@ -971,6 +940,10 @@ video {
 
 .h-1\/4 {
   height: 25%;
+}
+
+.h-1\/5 {
+  height: 20%;
 }
 
 .h-1\/6 {
@@ -1114,20 +1087,16 @@ video {
   height: 100vh;
 }
 
-.h-2\/6 {
-  height: 33.333333%;
-}
-
-.h-1\/5 {
-  height: 20%;
-}
-
 .\!w-px {
   width: 1px !important;
 }
 
 .w-0 {
   width: 0px;
+}
+
+.w-1\/12 {
+  width: 8.333333%;
 }
 
 .w-1\/5 {
@@ -1152,6 +1121,10 @@ video {
 
 .w-16 {
   width: 4rem;
+}
+
+.w-2\/12 {
+  width: 16.666667%;
 }
 
 .w-2\/5 {
@@ -1306,6 +1279,10 @@ video {
   width: 20%;
 }
 
+.w-\[20rem\] {
+  width: 20rem;
+}
+
 .w-\[24px\] {
   width: 24px;
 }
@@ -1373,18 +1350,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[20rem\] {
-  width: 20rem;
-}
-
-.w-1\/12 {
-  width: 8.333333%;
-}
-
-.w-2\/12 {
-  width: 16.666667%;
 }
 
 .min-w-\[180px\] {
@@ -2163,19 +2128,14 @@ video {
   padding-bottom: 13rem;
 }
 
-.py-\[2px\] {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-\[2px\] {
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .pb-1 {
