@@ -32,6 +32,7 @@ const {
   getLeadCheckedFreelancerHandler,
   getFreelancersHandler,
   asignacionFreelancerHandler,
+  findLeadFreelancerNameHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -43,6 +44,7 @@ LeadRouter.get("/allvendedor", getVendedoresHandler);
 LeadRouter.get("/category", getAllCategoryHandler);
 LeadRouter.get("/country", getAllCountriesHandler);
 LeadRouter.get("/corredor", findLeadCorredorNameHandler);
+LeadRouter.get("/freelancer", findLeadFreelancerNameHandler);
 LeadRouter.get("/allinfo", findLeadCorredorNameAllInfoHandler);
 LeadRouter.get("/allinfofreelancer", findLeadFreelancerNameAllInfoHandler);
 LeadRouter.get("/allinfovendedor", findLeadVendedorNameAllInfoHandler);

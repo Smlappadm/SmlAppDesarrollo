@@ -13,6 +13,7 @@ import {
 import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
 import AddLead from "./MaterialUi/ModalAddLead";
+import Ranking from "./MaterialUi/ModalRanking";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -168,6 +169,7 @@ export const DashboardFreelancer = () => {
           <label>Leads chequeados: {showData.length}</label>
 
           <div className="flex gap-5">
+            <Ranking />
             <Button variant="outlined" onClick={downloadCSV}>
               Descargar CSV
             </Button>
