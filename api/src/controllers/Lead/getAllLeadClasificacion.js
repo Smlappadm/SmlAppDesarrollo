@@ -62,7 +62,6 @@ const getAllLeadClasificacion = async (query) => {
         corredor: email,
         corredor_name: names,
         checked: false,
-        view: true,
         country: countryRegex,
         profesion: profesionRegex,
         category: categoryRegex,
@@ -70,34 +69,6 @@ const getAllLeadClasificacion = async (query) => {
       },
       10
     );
-
-    const count = 10 - leadUnchecked.length;
-    if (count > 0) {
-      limitedLeadRest = await findLeadUnchecked(
-        {
-          checked: false,
-          view: false,
-          corredor: "",
-          corredor_name: "",
-          country: countryRegex,
-          profesion: profesionRegex,
-          category: categoryRegex,
-          marca_personal: marca_personalRegex,
-        },
-        count
-      );
-
-      if (limitedLeadRest.length > 0) {
-        const updates = limitedLeadRest.map((element) => ({
-          updateOne: {
-            filter: { _id: element._id },
-            update: { corredor: email, corredor_name: names, view: true },
-          },
-        }));
-
-        await Lead.bulkWrite(updates);
-      }
-    }
   }
 
   return [...leadUnchecked, ...limitedLeadRest];
