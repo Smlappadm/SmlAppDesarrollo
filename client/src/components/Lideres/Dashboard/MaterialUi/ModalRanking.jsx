@@ -107,7 +107,7 @@ export default function ChildModal() {
                     <p>Clasificados</p>
                     <p>1000/3000</p>
                   </div>
-                  <p className="w-3/12">ventas</p>
+                  <p className="w-3/12">Ventas</p>
                   <p className="w-1/12">{index + 1}</p>
                   <p className="w-2/12">10</p>
                 </div>
