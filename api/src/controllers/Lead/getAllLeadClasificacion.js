@@ -1,4 +1,3 @@
-
 const Lead = require("../../models/Lead");
 
 const getAllLeadClasificacion = async (query) => {
@@ -6,6 +5,8 @@ const getAllLeadClasificacion = async (query) => {
   let limitedLeadRest = [];
 
   const { email, names, profesion, country, category, marca_personal } = query;
+
+  console.log(email);
 
   const findLeadUnchecked = async (conditions, limit) => {
     return Lead.find(conditions, null, { limit }).lean();
@@ -19,36 +20,10 @@ const getAllLeadClasificacion = async (query) => {
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
-        corredor_name: names,
         checked: false,
-        view: true,
       },
-      10
+      10 // Limit the results to 10
     );
-
-    const count = 10 - leadUnchecked.length;
-    if (count > 0) {
-      limitedLeadRest = await findLeadUnchecked(
-        {
-          checked: false,
-          view: false,
-          corredor: "",
-          corredor_name: "",
-        },
-        count
-      );
-
-      if (limitedLeadRest.length > 0) {
-        const updates = limitedLeadRest.map((element) => ({
-          updateOne: {
-            filter: { _id: element._id },
-            update: { corredor: email, corredor_name: names, view: true },
-          },
-        }));
-
-        await Lead.bulkWrite(updates);
-      }
-    }
   } else {
     const countryRegex = country ? new RegExp(country, "i") : /.*/;
     const profesionRegex = profesion ? new RegExp(profesion, "i") : /.*/;
@@ -60,51 +35,20 @@ const getAllLeadClasificacion = async (query) => {
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
-        corredor_name: names,
         checked: false,
-        view: true,
         country: countryRegex,
         profesion: profesionRegex,
         category: categoryRegex,
         marca_personal: marca_personalRegex,
       },
-      10
+      10 // Limit the results to 10
     );
-
-    const count = 10 - leadUnchecked.length;
-    if (count > 0) {
-      limitedLeadRest = await findLeadUnchecked(
-        {
-          checked: false,
-          view: false,
-          corredor: "",
-          corredor_name: "",
-          country: countryRegex,
-          profesion: profesionRegex,
-          category: categoryRegex,
-          marca_personal: marca_personalRegex,
-        },
-        count
-      );
-
-      if (limitedLeadRest.length > 0) {
-        const updates = limitedLeadRest.map((element) => ({
-          updateOne: {
-            filter: { _id: element._id },
-            update: { corredor: email, corredor_name: names, view: true },
-          },
-        }));
-
-        await Lead.bulkWrite(updates);
-      }
-    }
   }
 
   return [...leadUnchecked, ...limitedLeadRest];
 };
 
 module.exports = getAllLeadClasificacion;
-
 
 // const Lead = require("../../models/Lead");
 

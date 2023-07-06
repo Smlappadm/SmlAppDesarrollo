@@ -180,6 +180,7 @@ const updateLeadHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
 const updateLeadVendedorHandler = async (req, res) => {
   try {
     const id = req.params.id;
