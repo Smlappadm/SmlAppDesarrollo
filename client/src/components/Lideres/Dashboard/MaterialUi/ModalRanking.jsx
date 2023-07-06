@@ -104,7 +104,7 @@ export default function ChildModal() {
                 <div className="flex justify-between items-center bg-black h-1/6 rounded-xl p-3">
                   <p className="w-3/12">{free}</p>
                   <p className="w-3/12">checkeados</p>
-                  <p clasName="w-3/12">ventas</p>
+                  <p className="w-3/12">ventas</p>
                   <p className="w-1/12">10</p>
                   <p className="w-2/12">10</p>
                 </div>
