@@ -193,36 +193,7 @@ const VentasDashboard = () => {
                 getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
               />
-              {/* <label>Profesión: </label>
-            <select
-              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
-              value={profesion}
-              onChange={filterProfesion}
-            >
-              {allProfesion &&
-                allProfesion.map((option, index) => (
-                  <option className="text-black" key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
 
-              <option className="text-black" value="">
-                Otras Profesiones
-              </option>
-            </select>
-            <label>País: </label>
-            <select
-              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
-              value={country}
-              onChange={filterCountry}
-            >
-              <option
-                disabled="disabled"
-                className="text-black"
-                value=""
-
-              <BasicButtons2 />
-            </div> */}
             </div>
 
           </div>
