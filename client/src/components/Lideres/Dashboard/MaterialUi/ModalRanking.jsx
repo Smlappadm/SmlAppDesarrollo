@@ -22,7 +22,7 @@ const style = {
 };
 
 export default function ChildModal() {
-  const { allCorredores } = useSelector((state) => state);
+  const { allFreelancers } = useSelector((state) => state);
   const [freelancer, setFreelancer] = useState("");
   const [infoFreelancer, setInfoFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
@@ -33,11 +33,11 @@ export default function ChildModal() {
   }, [dispatch]);
 
   useEffect(() => {
-    setFreelancer(allCorredores);
-  }, [allCorredores]);
+    setFreelancer(allFreelancers);
+  }, [allFreelancers]);
   useEffect(() => {
     InfoFreelancer();
-    console.log(freelancer);
+    console.log(allFreelancers);
   }, [freelancer]);
 
   const handleOpen = () => {
