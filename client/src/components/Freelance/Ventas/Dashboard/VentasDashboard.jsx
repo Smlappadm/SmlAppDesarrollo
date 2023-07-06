@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
+import { IoGrid } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHistory } from "react-icons/fa";
@@ -15,7 +15,6 @@ import InputRunner from "./Select/InputRunner";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import {
   filterLevel,
-  getLeadCheckedInactive5,
   getLeadCheckedFreelance,
   getAllProfesion,
   getAllCountries,
