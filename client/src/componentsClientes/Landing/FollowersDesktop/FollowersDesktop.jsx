@@ -61,7 +61,9 @@ export default function FollowersDesktop({
           <div className="flex flex-col justify-center items-center">
             <div className="flex items-center">
               <p className="text-[45px] font-semibold text-white  px-2">
-                {formatearNumeroConPuntos(numberInstagram + numberTiktok)}
+                {formatearNumeroConPuntos(
+                  parseInt(numberInstagram) + parseInt(numberTiktok)
+                )}
               </p>
 
               <p className="text-[1rem] top-20 ">/ {maxNumber}</p>
