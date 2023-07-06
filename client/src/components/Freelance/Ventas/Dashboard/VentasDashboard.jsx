@@ -39,10 +39,6 @@ const VentasDashboard = () => {
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
 
-  const notify = () => toast("Here is your toast.");
-
-
-
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
