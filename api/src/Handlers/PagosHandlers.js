@@ -7,7 +7,7 @@ const updatePagosInfoHandler = async (req, res) => {
     monto: info.data.object.amount_total,
     status: info.data.object.status,
   }
-
+console.log(objeto)
   try {
     const infoSave = await postInfoPago(objeto);
     res.status(200).json(infoSave);
