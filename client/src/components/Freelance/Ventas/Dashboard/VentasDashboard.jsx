@@ -4,34 +4,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
+import { IoGrid } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHistory } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
-import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import BasicButtons1 from "./Select/BasicButtons1";
-import BasicButtons2 from "./Select/BasicButtons2";
 import InputRunner from "./Select/InputRunner";
-import { Toaster } from "react-hot-toast";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import {
   filterLevel,
-  getLeadCheckedInactive5,
   getLeadCheckedFreelance,
   getAllProfesion,
   getAllCountries,
 } from "../../../../redux/actions";
 import Nav from "../../../Nav/Nav";
+import { motion } from "framer-motion";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -40,13 +35,8 @@ const VentasDashboard = () => {
 
   const body = { name: fullName, email: emailAddress };
 
-  const { allCountries } = useSelector((state) => state);
-  const { allProfesion } = useSelector((state) => state);
-
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
-
-  const notify = () => toast("Here is your toast.");
 
   useEffect(() => {
     dispatch(getAllProfesion());
@@ -56,6 +46,7 @@ const VentasDashboard = () => {
 
   useEffect(() => {
     setData(vendedoresDashboard);
+    console.log(vendedoresDashboard.length);
   }, [vendedoresDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
@@ -73,49 +64,8 @@ const VentasDashboard = () => {
     dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
 
-  //FILTER   Profesion Country **********************
-
-  // const filtrar = () => {
-  //   dispatch(getLeadCheckedInactive5(body, profesion, country));
-  // };
-  // const filtrar2 = () => {
-  //   setProfesion("")
-  //   setCountry("")
-  //   dispatch(getLeadCheckedInactive5(body, "", ""));
-  // };
-
-  // const filterProfesion = (event) => {
-  //   const { value } = event.target;
-  //   setProfesion(value);
-  // };
-
-  // const filterCountry = (event) => {
-  //   const { value } = event.target;
-  //   setCountry(value);
-  // };
-
-  //-------------------------------------------------------------
-
-  // const [filters, setFilters] = useState({
-  //   level: false,
-  //   runner: false,
-  //   sellers: false,
-  //   status: false,
-  // });
-
-  // const handlerFilter = (filter) => {
-  //   if (filter === "level") {
-  //     setFilters({ level: true, runner: false, sellers: false, status: false });
-  //   } else if (filter === "runner") {
-  //     setFilters({ level: false, runner: true, sellers: false, status: false });
-  //   } else if (filter === "sellers") {
-  //     setFilters({ level: false, runner: false, sellers: true, status: false });
-  //   } else {
-  //     setFilters({ level: false, runner: false, sellers: false, status: true });
-  //   }
-  // };
-
   const [levelValue, setLevelValue] = useState("");
+
   const onChangeLevel = (value) => {
     setLevelValue(value);
     dispatch(filterLevel(value));
@@ -137,13 +87,13 @@ const VentasDashboard = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-  const openEditMenu = (index, id) => {
-    setEdit(true);
-    setEditIndex(index);
-  };
-  const sendEdit = () => {
-    setEdit(false);
-  };
+  // const openEditMenu = (index, id) => {
+  //   setEdit(true);
+  //   setEditIndex(index);
+  // };
+  // const sendEdit = () => {
+  //   setEdit(false);
+  // };
   const SendLeadAlert = () => {
     toast.success("✔ Lead Update!", {
       position: "top-center",
@@ -207,9 +157,14 @@ const VentasDashboard = () => {
         )}
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
+            >
               Dashboard
-            </h1>
+            </motion.h1>
             <div className="flex gap-7">
               <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -224,65 +179,26 @@ const VentasDashboard = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link> */}
             </div>
-            <div className="flex gap-5 justify-center items-center ml-16">
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="flex gap-5 justify-center items-center ml-16"
+            >
               <InputRunner
                 getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
               />
-              {/* <label>Profesión: </label>
-            <select
-              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
-              value={profesion}
-              onChange={filterProfesion}
-            >
-              {allProfesion &&
-                allProfesion.map((option, index) => (
-                  <option className="text-black" key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-
-              <option className="text-black" value="">
-                Otras Profesiones
-              </option>
-            </select>
-            <label>País: </label>
-            <select
-              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white`}
-              value={country}
-              onChange={filterCountry}
-            >
-              <option
-                disabled="disabled"
-                className="text-black"
-                value=""
-              ></option>
-              {allCountries &&
-                allCountries.map((option, index) => (
-                  <option className="text-black" key={index} value={option}>
-                    {option}
-                  </option>
-                ))}
-              <option className="text-black" value="">
-                Otras Paises
-              </option>
-            </select>
-
-            <div onClick={filtrar}>
-              <BasicButtons1 />
-            </div>
-            <div onClick={filtrar2}>
-              <BasicButtons2 />
-            </div> */}
-            </div>
-            {/* {filters.level === true ? (
-              <SelectLevel onChange={onChangeLevel} value={levelValue} />
-            ) : (
-              ""
-            )} */}
+            </motion.div>
           </div>
           {vendedoresDashboard.length ? (
-            <div className={style.table}>
+            <motion.div
+              initial={{ opacity: 0, y: "40px" }}
+              whileInView={{ y: "20px", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className={style.table}
+            >
               <div className="flex justify-start items-center  mx-6">
                 <label className="text-start w-[15%] px-3">Nombre</label>
                 <label className="text-start w-[15%] px-3">Profesión</label>
@@ -298,7 +214,7 @@ const VentasDashboard = () => {
               <div className="">
                 {currentCard.map((item, index) => (
                   <div
-                    key={item._id}
+                    key={index}
                     className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
                   >
                     <div className=" w-[15%] flex justify-start items-center  p-0 ">
@@ -377,7 +293,7 @@ const VentasDashboard = () => {
                         <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
                           <p className="text-16">{item.status}</p>
                           <label className="text-[14px]">
-                            {funcionHorario(item.updatedAt).slice(0, 16)}
+                            {funcionHorario(item.updatedAt)}
                           </label>
                         </div>
                       )}
@@ -397,7 +313,7 @@ const VentasDashboard = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>No hay Leads disponibles</h1>

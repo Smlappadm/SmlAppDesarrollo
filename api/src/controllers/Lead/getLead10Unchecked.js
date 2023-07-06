@@ -45,7 +45,7 @@ const getLead10Unchecked = async (query) => {
         const updates = limitedLeadRest.map((element) => ({
           updateOne: {
             filter: { _id: element._id },
-            update: { corredor: email, corredor_name: names, view: true },
+            update: { corredor: email, corredor_name: names, view: true, },
           },
         }));
 
@@ -54,7 +54,7 @@ const getLead10Unchecked = async (query) => {
     }
   } else {
     await updateLeadRest(
-      { corredor: email, checked: false },
+      { corredor: email, checked: false, freelancer: { $ne: true } },
       {
         $set: {
           level: "",
@@ -86,6 +86,7 @@ const getLead10Unchecked = async (query) => {
         corredor_name: names,
         checked: false,
         view: true,
+        freelancer: { $ne: true },
         country: countryRegex,
         profesion: profesionRegex,
         category: categoryRegex,
@@ -115,7 +116,12 @@ const getLead10Unchecked = async (query) => {
         const updates = limitedLeadRest.map((element) => ({
           updateOne: {
             filter: { _id: element._id },
-            update: { corredor: email, corredor_name: names, view: true },
+            update: {
+              corredor: email,
+              corredor_name: names,
+              view: true,
+              freelancer: { $ne: true },
+            },
           },
         }));
 
