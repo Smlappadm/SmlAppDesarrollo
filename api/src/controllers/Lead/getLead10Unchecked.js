@@ -22,6 +22,7 @@ const getLead10Unchecked = async (query) => {
         corredor: email,
         corredor_name: names,
         checked: false,
+        freelancer: { $ne: true },
         view: true,
       },
       10
@@ -34,6 +35,7 @@ const getLead10Unchecked = async (query) => {
           checked: false,
           view: false,
           corredor: "",
+          freelancer: { $ne: true },
           corredor_name: "",
         },
         count
@@ -100,6 +102,7 @@ const getLead10Unchecked = async (query) => {
           view: false,
           corredor: "",
           corredor_name: "",
+          freelancer: { $ne: true },
           country: countryRegex,
           profesion: profesionRegex,
           category: categoryRegex,

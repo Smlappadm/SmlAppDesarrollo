@@ -137,10 +137,6 @@ const getLeadCheckedInactive5 = async (body) => {
       
       leadRest = [...leadRestNivel2, ...leadRestNivel1];
       
-
-      console.log(leadRest.length)
-
-      
       if (leadRest.length > 0) {
         await Promise.all(
           leadRest.map(async (element) => {
