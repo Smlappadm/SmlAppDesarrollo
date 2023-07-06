@@ -78,16 +78,7 @@ const VentasDashboard = () => {
     dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
 
-  //FILTER   Profesion Country **********************
 
-  // const filtrar = () => {
-  //   dispatch(getLeadCheckedInactive5(body, profesion, country));
-  // };
-  // const filtrar2 = () => {
-  //   setProfesion("")
-  //   setCountry("")
-  //   dispatch(getLeadCheckedInactive5(body, "", ""));
-  // };
 
 
 
