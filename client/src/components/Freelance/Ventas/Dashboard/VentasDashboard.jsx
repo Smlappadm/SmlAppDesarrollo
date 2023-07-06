@@ -183,7 +183,7 @@ const VentasDashboard = () => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
               className="flex gap-5 justify-center items-center ml-16"
             >
               <InputRunner
