@@ -6,6 +6,8 @@ const getAllLeadClasificacion = async (query) => {
 
   const { email, names, profesion, country, category, marca_personal } = query;
 
+  console.log(email);
+
   const findLeadUnchecked = async (conditions, limit) => {
     return Lead.find(conditions, null, { limit }).lean();
   };
@@ -18,10 +20,9 @@ const getAllLeadClasificacion = async (query) => {
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
-        corredor_name: names,
         checked: false,
       },
-      10
+      10 // Limit the results to 10
     );
   } else {
     const countryRegex = country ? new RegExp(country, "i") : /.*/;
@@ -34,14 +35,13 @@ const getAllLeadClasificacion = async (query) => {
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
-        corredor_name: names,
         checked: false,
         country: countryRegex,
         profesion: profesionRegex,
         category: categoryRegex,
         marca_personal: marca_personalRegex,
       },
-      10
+      10 // Limit the results to 10
     );
   }
 
