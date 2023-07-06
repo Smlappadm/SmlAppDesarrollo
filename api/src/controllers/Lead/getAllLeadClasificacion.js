@@ -1,4 +1,3 @@
-
 const Lead = require("../../models/Lead");
 
 const getAllLeadClasificacion = async (query) => {
@@ -21,34 +20,9 @@ const getAllLeadClasificacion = async (query) => {
         corredor: email,
         corredor_name: names,
         checked: false,
-        view: true,
       },
       10
     );
-
-    const count = 10 - leadUnchecked.length;
-    if (count > 0) {
-      limitedLeadRest = await findLeadUnchecked(
-        {
-          checked: false,
-          view: false,
-          corredor: "",
-          corredor_name: "",
-        },
-        count
-      );
-
-      if (limitedLeadRest.length > 0) {
-        const updates = limitedLeadRest.map((element) => ({
-          updateOne: {
-            filter: { _id: element._id },
-            update: { corredor: email, corredor_name: names, view: true },
-          },
-        }));
-
-        await Lead.bulkWrite(updates);
-      }
-    }
   } else {
     const countryRegex = country ? new RegExp(country, "i") : /.*/;
     const profesionRegex = profesion ? new RegExp(profesion, "i") : /.*/;
@@ -75,7 +49,6 @@ const getAllLeadClasificacion = async (query) => {
 };
 
 module.exports = getAllLeadClasificacion;
-
 
 // const Lead = require("../../models/Lead");
 
