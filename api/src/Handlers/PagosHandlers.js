@@ -2,7 +2,7 @@ const postInfoPago = require("../controllers/Pagos/postInfoPago");
 
 const updatePagosInfoHandler = async (req, res) => {
   const info = req.body
-  console.log(info.data.object.id)
+  console.log(info.data.object.customer_details.email)
 
   try {
     const infoSave = await postInfoPago(info);
