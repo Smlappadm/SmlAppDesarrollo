@@ -209,9 +209,14 @@ const VendedoresDashboard = () => {
         )}
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+          <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
+            >
               Dashboard
-            </h1>
+            </motion.h1>
             <div className="flex gap-7">
               <Link to={"/vendedores"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -226,7 +231,12 @@ const VendedoresDashboard = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link> */}
             </div>
-            <div className="flex gap-5 justify-center items-center ml-16">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="flex gap-5 justify-center items-center ml-16"
+            >
 
               <InputRunner getLeadCheckedInactive5={getLeadCheckedInactive5} body={body}/>
             {/* <label>Profesión: </label>
@@ -274,7 +284,7 @@ const VendedoresDashboard = () => {
             <div onClick={filtrar2}>
               <BasicButtons2 />
             </div> */}
-          </div>
+          </motion.div>
             {/* {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
