@@ -37,6 +37,7 @@ export default function ChildModal() {
   }, [allCorredores]);
   useEffect(() => {
     InfoFreelancer();
+    console.log(freelancer);
   }, [freelancer]);
 
   const handleOpen = () => {
