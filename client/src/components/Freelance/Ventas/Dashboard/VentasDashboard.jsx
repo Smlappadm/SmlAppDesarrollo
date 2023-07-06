@@ -48,6 +48,8 @@ const VentasDashboard = () => {
 
   const notify = () => toast("Here is your toast.");
 
+
+
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
@@ -56,6 +58,7 @@ const VentasDashboard = () => {
 
   useEffect(() => {
     setData(vendedoresDashboard);
+    console.log(vendedoresDashboard.length)
   }, [vendedoresDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
@@ -298,7 +301,7 @@ const VentasDashboard = () => {
               <div className="">
                 {currentCard.map((item, index) => (
                   <div
-                    key={item._id}
+                    key={index}
                     className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
                   >
                     <div className=" w-[15%] flex justify-start items-center  p-0 ">
