@@ -28,7 +28,6 @@ const VentasDashboard = () => {
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -36,9 +35,6 @@ const VentasDashboard = () => {
   let emailAddress = localStorage.getItem("email");
 
   const body = { name: fullName, email: emailAddress };
-
-  const { allCountries } = useSelector((state) => state);
-  const { allProfesion } = useSelector((state) => state);
 
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
