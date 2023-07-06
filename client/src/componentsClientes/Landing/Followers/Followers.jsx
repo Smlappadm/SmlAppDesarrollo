@@ -37,7 +37,9 @@ export default function Followers({
           className="text-[45px] font-semibold text-white text-end px-2"
           id="total-redes"
         >
-          {formatearNumeroConPuntos(numberInstagram + numberTiktok)}
+          {formatearNumeroConPuntos(
+            parseInt(numberInstagram) + parseInt(numberTiktok)
+          )}
         </p>
 
         <p className="text-[.7rem] " id="max-redes">
