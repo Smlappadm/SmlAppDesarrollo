@@ -100,12 +100,12 @@ export default function ChildModal() {
             <h2>Ranking de Freelancers</h2>
 
             {freelancer &&
-              freelancer.map((free) => (
+              freelancer.map((free, index) => (
                 <div className="flex justify-between items-center bg-black h-1/6 rounded-xl p-3">
                   <p className="w-3/12">{free}</p>
                   <p className="w-3/12">checkeados</p>
                   <p className="w-3/12">ventas</p>
-                  <p className="w-1/12">10</p>
+                  <p className="w-1/12">{index + 1}</p>
                   <p className="w-2/12">10</p>
                 </div>
               ))}
