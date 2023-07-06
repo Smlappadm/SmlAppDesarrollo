@@ -83,6 +83,7 @@ const initialState = {
   allVendedores: [],
   clienteEmpresa: "",
   freelanceLead: [],
+  allFreelancers: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -458,7 +459,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_FREELANCER:
       return {
         ...state,
-        allCorredores: action.payload,
+        allFreelancers: action.payload,
       };
     case GET_VENDEDORES:
       return {
