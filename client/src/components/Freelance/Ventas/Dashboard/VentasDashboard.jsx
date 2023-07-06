@@ -89,15 +89,6 @@ const VentasDashboard = () => {
   //   dispatch(getLeadCheckedInactive5(body, "", ""));
   // };
 
-  // const filterProfesion = (event) => {
-  //   const { value } = event.target;
-  //   setProfesion(value);
-  // };
-
-  // const filterCountry = (event) => {
-  //   const { value } = event.target;
-  //   setCountry(value);
-  // };
 
 
 
