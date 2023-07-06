@@ -16,6 +16,7 @@ import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import { filterLevel, getVendedorAllLeads } from "../../../../redux/actions";
 import InputRunner from "./MUI/InputRunner";
 import Nav from "../../../Nav/Nav";
+import { motion } from "framer-motion";
 
 const VentasHistory = () => {
   const [data, setData] = useState([]);
@@ -308,9 +309,14 @@ const VentasHistory = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+          <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
+            >
               History
-            </h1>
+            </motion.h1>
             <div className="flex gap-7 ">
             <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -390,15 +396,25 @@ const VentasHistory = () => {
             </div>
           </div>
 
-          <div className="flex justify-center items-center mb-14">
+          <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
+            >
             <InputRunner
               getVendedorAllLeads={getVendedorAllLeads}
               emailUser={email}
             />
-          </div>
+          </motion.div>
 
           {currentCard && currentCard.length ? (
-            <div className={style.table}>
+                        <motion.div
+                        initial={{ opacity: 0, y: "40px" }}
+                        whileInView={{ y: "20px", opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0 }}
+                        className={style.table}
+                      >
               <div className="flex justify-start items-center  mx-6">
                 <button
                   className="text-start w-[20%] px-3"
@@ -551,7 +567,7 @@ const VentasHistory = () => {
                     </div>
                   ))}
               </div>
-            </div>
+            </motion.div>
           ) : (
             <div className="flex items-center justify-center w-full h-screen">
               <h1>No hay Leads disponibles</h1>
