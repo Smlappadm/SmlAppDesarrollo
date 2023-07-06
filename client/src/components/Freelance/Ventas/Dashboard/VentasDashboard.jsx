@@ -99,14 +99,7 @@ const VentasDashboard = () => {
   //   setCountry(value);
   // };
 
-  //-------------------------------------------------------------
 
-  // const [filters, setFilters] = useState({
-  //   level: false,
-  //   runner: false,
-  //   sellers: false,
-  //   status: false,
-  // });
 
 
 
