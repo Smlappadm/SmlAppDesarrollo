@@ -102,7 +102,6 @@ const getLeadChecked = async (body) => {
       }
     }
   }
-console.log(leadRestNivel1)
   leadRest = [...leadRestNivel2, ...leadRestNivel1];
   
   // if (leadRest.length > 0) {
@@ -114,7 +113,7 @@ console.log(leadRestNivel1)
   //   );
   // }
 
-  BUSCA LOS NO RESPONDE --------------------------
+  //BUSCA LOS NO RESPONDE --------------------------
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
     vendedor: body.email,
@@ -149,9 +148,9 @@ console.log(leadRestNivel1)
     return 0;
   });
 
+console.log(leadRest)
 
-  return [...leadRest];
-  // return [...leadRest, ...leadsNoRespondenSorted];
+  return [...leadRest, ...leadsNoRespondenSorted];
   // return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
 };
 
