@@ -2,13 +2,18 @@ const Pagos = require("../../models/Pagos");
 const Lead = require("../../models/Lead");
 
 const postInfoPago = async (objeto) => {
+
+  console.log("wwwww")
   const infoSave = await Pagos.create({info: objeto});
   
-  if(objeto.status === "complete"){
-  const leadUpdate = await Lead.find({ emailApp: objeto.email });
-
-  leadUpdate.pagos.cuotasPagadas ++;
-  leadUpdate.save();
+  let leadUpdate = ""
+  // if(objeto.status === "complete"){
+  if(true){
+  // const leadUpdate = await Lead.find({ emailApp: objeto.email });
+  leadUpdate = await Lead.find({ emailApp: "facutam@gmail.com" });
+console.log(leadUpdate)
+  // leadUpdate.pagos.cuotasPagadas ++;
+  // await leadUpdate.save();
   }
   
   
