@@ -36,44 +36,12 @@ export default function ChildModal() {
     console.log(freelancer);
   }, [freelancer]);
 
-  const handleInput = () => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
-  };
-
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const SendAddLeads = () => {
-    toast.info(`✔ ADD LEADS! `, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
-
-  const SendAddLeadsError = () => {
-    toast.error(`❌ SELECCIONA UN ARCHIVO!`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
   };
 
   return (
@@ -107,7 +75,10 @@ export default function ChildModal() {
                     <p>Clasificados</p>
                     <p>1000/3000</p>
                   </div>
-                  <p className="w-3/12">ventas</p>
+                  <div className="w-3/12">
+                    <p>Ventas</p>
+                    <p>100</p>
+                  </div>
                   <p className="w-1/12">{index + 1}</p>
                   <p className="w-2/12">10</p>
                 </div>

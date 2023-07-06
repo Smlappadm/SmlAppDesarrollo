@@ -29,6 +29,7 @@ const dowloadCSV = require("../controllers/Lead/downloadCSV");
 const findLeadFreelancerNameAllInfo = require("../controllers/Lead/findLeadFreelancerNameAllInfo");
 const getLeadCheckedFreelancer = require("../controllers/Lead/getLeadCheckedFreelancer");
 const getFreelancers = require("../controllers/Lead/getFreelancers");
+const findLeadFreelancerName = require("../controllers/Lead/findLeadFreelancerName");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -151,7 +152,7 @@ const getLeadCheckedInactive5Handler = async (req, res) => {
 
   try {
     const leadCheckedInactive5 = await getLeadCheckedInactive5(body);
-console.log(leadCheckedInactive5)
+    console.log(leadCheckedInactive5);
     res.status(200).json(leadCheckedInactive5);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -250,6 +251,15 @@ const findLeadCorredorNameHandler = async (req, res) => {
       fromDay,
       toDay
     );
+    res.status(200).json(foundCorredor);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const findLeadFreelancerNameHandler = async (req, res) => {
+  const { name } = req.query;
+  try {
+    const foundCorredor = await findLeadFreelancerName(name);
     res.status(200).json(foundCorredor);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -418,4 +428,5 @@ module.exports = {
   findLeadFreelancerNameAllInfoHandler,
   getLeadCheckedFreelancerHandler,
   getFreelancersHandler,
+  findLeadFreelancerNameHandler,
 };
