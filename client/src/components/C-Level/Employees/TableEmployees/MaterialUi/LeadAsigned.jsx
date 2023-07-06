@@ -19,6 +19,7 @@ export default function LeadAsigned({ leadAsigned, setLeadAsigned }) {
         fullWidth
         label='Asignar Leads'
         id='Asignar Leads'
+        type="number"
         value={leadAsigned}
         onChange={handleChange}
         InputProps={{
