@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import style from "./ClasificacionDashboard.module.css";
-
+import { motion } from "framer-motion";
 import { CiGlobe, CiMail } from "react-icons/ci";
 import { GrInstagram } from "react-icons/gr";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
@@ -41,7 +41,6 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
-  
   const { corredorLead } = useSelector((state) => state);
   const { freelanceLead } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -557,9 +556,25 @@ const ClasificacionDashboard = () => {
                         </div>
                       </div>
 
-                      {detailsLead[index] === false ? (
-                        <>
-                          <div className="flex ml-10 p-0">
+                      <>
+                        <motion.div
+                          className="flex"
+                          initial={
+                            detailsLead[index] === false
+                              ? { x: -200 }
+                              : { x: 0 }
+                          } // Ancho inicial en 0
+                          animate={
+                            detailsLead[index] === false
+                              ? { x: 0 }
+                              : { x: -200 }
+                          } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
+                          transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
+                          style={
+                            detailsLead[index] === true && { display: "none" }
+                          }
+                        >
+                          <div className="flex ml-[55px] p-0">
                             <Link to={item.url} target="_blank">
                               <p value={item.url}>
                                 <CiGlobe className="text-[2rem] text-[#418df0]" />
@@ -567,7 +582,7 @@ const ClasificacionDashboard = () => {
                             </Link>
                           </div>
 
-                          <div className="flex w-[10rem] gap-3 p-0 mx-3">
+                          <div className="flex w-[20rem] gap-3 p-0 mx-24">
                             <div>
                               <CiMail className="text-[2rem] text-[#418df0]" />
                             </div>
@@ -587,7 +602,7 @@ const ClasificacionDashboard = () => {
                             />
                           </div>
 
-                          <div className="flex w-[10rem] gap-3 p-0 mx-3">
+                          <div className="flex w-[20rem] gap-3 p-0 mx-3">
                             <div>
                               {item.instagram &&
                               instagramRegex.test(item.instagram) ? (
@@ -613,7 +628,7 @@ const ClasificacionDashboard = () => {
                             />
                           </div>
 
-                          <div className="flex ml-6 p-0">
+                          <div className="flex ml-16 p-0">
                             <button
                               className={
                                 item.level === "0"
@@ -681,102 +696,114 @@ const ClasificacionDashboard = () => {
                               </div>
                             ) : null}
                           </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className="flex items-center justify-center w-fit gap-3 p-0 mx-3">
-                            <div className="flex items-center justify-center w-fit text-center gap-1 py-[2px] ">
-                              <p className="w-28 text-[.7rem]">
-                                Tiene mas de 2000 Seguidores
-                              </p>
-                              <input
-                                className="w-5 h-5"
-                                type="checkbox"
-                                name="seguidores2000"
-                                checked={item.seguidores2000}
-                                onChange={(event) =>
-                                  handleseguidores2000(event, index)
-                                }
-                              />
-                            </div>
-                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-40 text-[.7rem]">
-                                Tiene Repercusión en sus Reels-Publicaciones?
-                              </p>
-                              <input
-                                className="w-5 h-5"
-                                type="checkbox"
-                                name="repercusion"
-                                checked={item.repercusion}
-                                onChange={(event) =>
-                                  handleRepercusion(event, index)
-                                }
-                              />
-                            </div>
+                        </motion.div>
 
-                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className="w-32 text-[.7rem]">
-                                Sube contenido con frecuencia?
-                              </p>
-                              <input
-                                className="w-5 h-5"
-                                type="checkbox"
-                                name="frecuencia"
-                                checked={item.frecuencia}
-                                onChange={(event) =>
-                                  handleFrecuencia(event, index)
-                                }
-                              />
-                            </div>
-
-                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-36 text-[.7rem]">
-                                Su contenido tiende a la marca personal?
-                              </p>
-                              <input
-                                className="w-5 h-5"
-                                type="checkbox"
-                                name="contenidoPersonal"
-                                checked={item.contenidoPersonal}
-                                onChange={(event) =>
-                                  handleContenidoPersonal(event, index)
-                                }
-                              />
-                            </div>
-
-                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-28 text-[.7rem]">
-                                Sube Contenido de valor?
-                              </p>
-                              <input
-                                className="w-5 h-5"
-                                type="checkbox"
-                                name="contenidoValor"
-                                checked={item.contenidoValor}
-                                onChange={(event) =>
-                                  handleContenidoValor(event, index)
-                                }
-                              />
-                            </div>
-
-                            <div className="flex items-center justify-center w-fit text-center gap-2 ">
-                              <p className=" w-44 text-[.7rem]">
-                                Su cuenta de instagram esta administrada con
-                                caliad?
-                              </p>
-                              <input
-                                className="w-5 h-5"
-                                type="checkbox"
-                                name="calidadInstagram"
-                                checked={item.calidadInstagram}
-                                onChange={(event) =>
-                                  handleCalidadInstagram(event, index)
-                                }
-                              />
-                            </div>
+                        <motion.div
+                          className="flex items-center justify-center w-fit gap-3 p-0 mx-3"
+                          initial={
+                            detailsLead[index] === true ? { x: 200 } : { x: 0 }
+                          } // Ancho inicial en 0
+                          animate={
+                            detailsLead[index] === true ? { x: 0 } : { x: 200 }
+                          } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
+                          transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
+                          style={
+                            detailsLead[index] === false && {
+                              display: "none",
+                            }
+                          }
+                        >
+                          <div className="flex items-center justify-center w-fit text-center gap-1 py-[2px] ">
+                            <p className="w-28 text-[.7rem]">
+                              Tiene mas de 2000 Seguidores
+                            </p>
+                            <input
+                              className="w-5 h-5"
+                              type="checkbox"
+                              name="seguidores2000"
+                              checked={item.seguidores2000}
+                              onChange={(event) =>
+                                handleseguidores2000(event, index)
+                              }
+                            />
                           </div>
-                        </>
-                      )}
+                          <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                            <p className=" w-40 text-[.7rem]">
+                              Tiene Repercusión en sus Reels-Publicaciones?
+                            </p>
+                            <input
+                              className="w-5 h-5"
+                              type="checkbox"
+                              name="repercusion"
+                              checked={item.repercusion}
+                              onChange={(event) =>
+                                handleRepercusion(event, index)
+                              }
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                            <p className="w-32 text-[.7rem]">
+                              Sube contenido con frecuencia?
+                            </p>
+                            <input
+                              className="w-5 h-5"
+                              type="checkbox"
+                              name="frecuencia"
+                              checked={item.frecuencia}
+                              onChange={(event) =>
+                                handleFrecuencia(event, index)
+                              }
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                            <p className=" w-36 text-[.7rem]">
+                              Su contenido tiende a la marca personal?
+                            </p>
+                            <input
+                              className="w-5 h-5"
+                              type="checkbox"
+                              name="contenidoPersonal"
+                              checked={item.contenidoPersonal}
+                              onChange={(event) =>
+                                handleContenidoPersonal(event, index)
+                              }
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                            <p className=" w-28 text-[.7rem]">
+                              Sube Contenido de valor?
+                            </p>
+                            <input
+                              className="w-5 h-5"
+                              type="checkbox"
+                              name="contenidoValor"
+                              checked={item.contenidoValor}
+                              onChange={(event) =>
+                                handleContenidoValor(event, index)
+                              }
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-center w-fit text-center gap-2 ">
+                            <p className=" w-44 text-[.7rem]">
+                              Su cuenta de instagram esta administrada con
+                              caliad?
+                            </p>
+                            <input
+                              className="w-5 h-5"
+                              type="checkbox"
+                              name="calidadInstagram"
+                              checked={item.calidadInstagram}
+                              onChange={(event) =>
+                                handleCalidadInstagram(event, index)
+                              }
+                            />
+                          </div>
+                        </motion.div>
+                      </>
 
                       <div
                         className="absolute right-12"
@@ -800,3 +827,224 @@ const ClasificacionDashboard = () => {
 };
 
 export default ClasificacionDashboard;
+
+// {detailsLead[index] === false ? (
+//   <>
+//     <div className="flex ml-10 p-0">
+//       <Link to={item.url} target="_blank">
+//         <p value={item.url}>
+//           <CiGlobe className="text-[2rem] text-[#418df0]" />
+//         </p>
+//       </Link>
+//     </div>
+
+//     <div className="flex w-[10rem] gap-3 p-0 mx-3">
+//       <div>
+//         <CiMail className="text-[2rem] text-[#418df0]" />
+//       </div>
+//       <input
+//         className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+//           item.email !== "-" && item.email !== ""
+//             ? "border-green-500"
+//             : ""
+//         }`}
+//         type="text"
+//         name="email"
+//         value={item.email}
+//         onChange={(event) =>
+//           handleChangeEmail(event, index)
+//         }
+//         placeholder="Ingrese un mail..."
+//       />
+//     </div>
+
+//     <div className="flex w-[10rem] gap-3 p-0 mx-3">
+//       <div>
+//         {item.instagram &&
+//         instagramRegex.test(item.instagram) ? (
+//           <Link to={item.instagram} target="_blank">
+//             <GrInstagram className="text-[2rem] text-[#418df0]" />
+//           </Link>
+//         ) : (
+//           <GrInstagram className="text-[2rem] text-[#418df0]" />
+//         )}
+//       </div>
+
+//       <input
+//         className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+//           item.instagram ? "border-green-500" : ""
+//         }`}
+//         type="text"
+//         name="instagram"
+//         value={item.instagram}
+//         onChange={(event) =>
+//           handleChangeInstagram(event, index)
+//         }
+//         placeholder="Ingrese instagram..."
+//       />
+//     </div>
+
+//     <div className="flex ml-6 p-0">
+//       <button
+//         className={
+//           item.level === "0"
+//             ? style.buttonNivelActive
+//             : style.buttonNivel
+//         }
+//         type="button"
+//         name={item._id}
+//         value="0"
+//         onClick={(event) =>
+//           handleClientClick(event, index)
+//         }
+//       >
+//         0
+//       </button>
+//       <button
+//         className={
+//           item.level === "1"
+//             ? style.buttonNivelActive
+//             : style.buttonNivel
+//         }
+//         type="button"
+//         name={item._id}
+//         value="1"
+//         onClick={(event) =>
+//           handleClientClick(event, index)
+//         }
+//       >
+//         1
+//       </button>
+//       <button
+//         className={
+//           item.level === "2"
+//             ? style.buttonNivelActive
+//             : style.buttonNivel
+//         }
+//         type="button"
+//         name={item._id}
+//         value="2"
+//         onClick={(event) =>
+//           handleClientClick(event, index)
+//         }
+//       >
+//         2
+//       </button>
+//       <button
+//         className={
+//           item.level === "incidencia"
+//             ? style.buttonNivelActiveIncidence
+//             : style.buttonNivel
+//         }
+//         type="button"
+//         name={item._id}
+//         value="incidencia"
+//         onClick={(event) =>
+//           handleClientClick(event, index)
+//         }
+//       >
+//         ⚠
+//       </button>
+
+//       {item.level === "incidencia" ? (
+//         <div>
+//           <NestedModal item={item} />
+//         </div>
+//       ) : null}
+//     </div>
+//   </>
+// ) : (
+//   <>
+//     <div className="flex items-center justify-center w-fit gap-3 p-0 mx-3">
+//       <div className="flex items-center justify-center w-fit text-center gap-1 py-[2px] ">
+//         <p className="w-28 text-[.7rem]">
+//           Tiene mas de 2000 Seguidores
+//         </p>
+//         <input
+//           className="w-5 h-5"
+//           type="checkbox"
+//           name="seguidores2000"
+//           checked={item.seguidores2000}
+//           onChange={(event) =>
+//             handleseguidores2000(event, index)
+//           }
+//         />
+//       </div>
+//       <div className="flex items-center justify-center w-fit text-center gap-2 ">
+//         <p className=" w-40 text-[.7rem]">
+//           Tiene Repercusión en sus Reels-Publicaciones?
+//         </p>
+//         <input
+//           className="w-5 h-5"
+//           type="checkbox"
+//           name="repercusion"
+//           checked={item.repercusion}
+//           onChange={(event) =>
+//             handleRepercusion(event, index)
+//           }
+//         />
+//       </div>
+
+//       <div className="flex items-center justify-center w-fit text-center gap-2 ">
+//         <p className="w-32 text-[.7rem]">
+//           Sube contenido con frecuencia?
+//         </p>
+//         <input
+//           className="w-5 h-5"
+//           type="checkbox"
+//           name="frecuencia"
+//           checked={item.frecuencia}
+//           onChange={(event) =>
+//             handleFrecuencia(event, index)
+//           }
+//         />
+//       </div>
+
+//       <div className="flex items-center justify-center w-fit text-center gap-2 ">
+//         <p className=" w-36 text-[.7rem]">
+//           Su contenido tiende a la marca personal?
+//         </p>
+//         <input
+//           className="w-5 h-5"
+//           type="checkbox"
+//           name="contenidoPersonal"
+//           checked={item.contenidoPersonal}
+//           onChange={(event) =>
+//             handleContenidoPersonal(event, index)
+//           }
+//         />
+//       </div>
+
+//       <div className="flex items-center justify-center w-fit text-center gap-2 ">
+//         <p className=" w-28 text-[.7rem]">
+//           Sube Contenido de valor?
+//         </p>
+//         <input
+//           className="w-5 h-5"
+//           type="checkbox"
+//           name="contenidoValor"
+//           checked={item.contenidoValor}
+//           onChange={(event) =>
+//             handleContenidoValor(event, index)
+//           }
+//         />
+//       </div>
+
+//       <div className="flex items-center justify-center w-fit text-center gap-2 ">
+//         <p className=" w-44 text-[.7rem]">
+//           Su cuenta de instagram esta administrada con
+//           caliad?
+//         </p>
+//         <input
+//           className="w-5 h-5"
+//           type="checkbox"
+//           name="calidadInstagram"
+//           checked={item.calidadInstagram}
+//           onChange={(event) =>
+//             handleCalidadInstagram(event, index)
+//           }
+//         />
+//       </div>
+//     </div>
+//   </>
+// )}

@@ -721,6 +721,11 @@ video {
   margin-right: 2.5rem;
 }
 
+.mx-24 {
+  margin-left: 6rem;
+  margin-right: 6rem;
+}
+
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -746,11 +751,6 @@ video {
   margin-right: 1.5rem;
 }
 
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-
 .my-10 {
   margin-top: 2.5rem;
   margin-bottom: 2.5rem;
@@ -764,11 +764,6 @@ video {
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
-}
-
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 
 .mb-0 {
@@ -841,6 +836,10 @@ video {
 
 .ml-6 {
   margin-left: 1.5rem;
+}
+
+.ml-\[55px\] {
+  margin-left: 55px;
 }
 
 .mr-1 {
@@ -1055,6 +1054,10 @@ video {
   height: 36.5px;
 }
 
+.h-\[37px\] {
+  height: 37px;
+}
+
 .h-\[40px\] {
   height: 40px;
 }
@@ -1082,10 +1085,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-\[37px\] {
-  height: 37px;
 }
 
 .\!w-px {
@@ -1270,6 +1269,10 @@ video {
 
 .w-\[20\%\] {
   width: 20%;
+}
+
+.w-\[20rem\] {
+  width: 20rem;
 }
 
 .w-\[24px\] {
@@ -1492,15 +1495,6 @@ video {
 
 .gap-y-7 {
   row-gap: 1.75rem;
-}
-
-.gap-x-5 {
-  -moz-column-gap: 1.25rem;
-       column-gap: 1.25rem;
-}
-
-.gap-y-10 {
-  row-gap: 2.5rem;
 }
 
 .overflow-auto {
