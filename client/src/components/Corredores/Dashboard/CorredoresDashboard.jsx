@@ -561,15 +561,15 @@ const CorredoresDashboard = () => {
                           className="flex"
                           initial={
                             detailsLead[index] === false
-                              ? { x: -300 }
+                              ? { x: -200 }
                               : { x: 0 }
                           } // Ancho inicial en 0
                           animate={
                             detailsLead[index] === false
                               ? { x: 0 }
-                              : { x: -300 }
+                              : { x: -200 }
                           } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
-                          transition={{ duration: 1.5 }} // Duración de la animación en segundos y tipo de transición "tween"
+                          transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
                           style={
                             detailsLead[index] === true && { display: "none" }
                           }
@@ -700,8 +700,12 @@ const CorredoresDashboard = () => {
 
                         <motion.div
                           className="flex items-center justify-center w-fit gap-3 p-0 mx-3"
-                          initial={{}} // Ancho inicial en 0
-                          animate={{}} // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
+                          initial={
+                            detailsLead[index] === true ? { x: 200 } : { x: 0 }
+                          } // Ancho inicial en 0
+                          animate={
+                            detailsLead[index] === true ? { x: 0 } : { x: 200 }
+                          } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
                           transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
                           style={
                             detailsLead[index] === false && {
