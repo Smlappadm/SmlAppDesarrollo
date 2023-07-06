@@ -13,9 +13,8 @@ import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import BasicButtons1 from "./Select/BasicButtons1";
-import BasicButtons2 from "./Select/BasicButtons2";
 import InputRunner from "./Select/InputRunner";
-import { Toaster } from "react-hot-toast";
+
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import {
   filterLevel,
@@ -193,7 +192,6 @@ const VentasDashboard = () => {
                 getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
               />
-
             </div>
 
           </div>
