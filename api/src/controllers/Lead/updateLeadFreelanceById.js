@@ -2,7 +2,7 @@ const Lead = require("../../models/Lead");
 const Vendedor = require("../../models/Vendedor");
 const Clientes = require("../../models/Clientes");
 
-const updateLeadVendedorById = async (id, updatedData) => {
+const updateLeadFreelanceById = async (id, updatedData) => {
   const leadCountCheck = await Lead.findById(id);
 
   
@@ -119,4 +119,4 @@ const updateLeadVendedorById = async (id, updatedData) => {
   return data;
 };
 
-module.exports = updateLeadVendedorById;
+module.exports = updateLeadFreelanceById;

@@ -10,6 +10,7 @@ const {
   getLead10UncheckedHandler,
   getLeadCheckedInactive5Handler,
   updateLeadVendedorHandler,
+  updateLeadFreelanceHandler,
   getLeadVendedorHandler,
   getLeadCorredorCheckedHandler,
   limpiezaBaseHandler,
@@ -68,6 +69,7 @@ LeadRouter.put("/limpieza", limpiezaBaseHandler);
 LeadRouter.put("/asignacion", asignacionFreelancerHandler);
 LeadRouter.put("/:id", updateLeadHandler);
 LeadRouter.put("/vendedor/:id", updateLeadVendedorHandler);
+LeadRouter.put("/freelance/:id", updateLeadFreelanceHandler);
 LeadRouter.get("/download", dowloadCSVHandler);
 
 module.exports = LeadRouter;
