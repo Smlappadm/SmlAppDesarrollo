@@ -83,7 +83,9 @@ export default function ChildModal() {
           }}
         >
           <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
-            <h2>Ranking de Freelancers</h2>
+            <h2 className="font-extrabold text-white text-24 mb-8">
+              Ranking de Freelancers!
+            </h2>
 
             {infoFreelancer &&
               infoFreelancer.map((free, index) => {
@@ -105,7 +107,7 @@ export default function ChildModal() {
 
                 return (
                   <div
-                    className="flex justify-between items-center bg-[#222131] h-1/6 rounded-xl p-3"
+                    className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
                     key={index}
                   >
                     <p className="w-3/12">
