@@ -16,6 +16,7 @@ import {
   AiOutlineUserAdd,
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
+import { BsCheck } from "react-icons/bs";
 
 const style = {
   position: "absolute",
@@ -56,7 +57,7 @@ function ChildModal({
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
-        SendEmailLeadAlertErrorCuotas()
+        SendEmailLeadAlertErrorCuotas();
         return;
       }
       setStatusObj({
@@ -478,14 +479,10 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
         >
           Close x
         </button> */}
-
-        <p
+        <BsCheck
           onClick={handleOpen}
-          // onClick={() => handleConfirmEditEmail(item._id)}
-          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-        >
-          ✔
-        </p>
+          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
+        />
         {/* <button
           type="button"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -555,7 +552,7 @@ export default function NestedModal({
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
   const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
-  
+
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
   const [updatedEmail, setUpdatedEmail] = React.useState(item.email);
@@ -774,7 +771,7 @@ export default function NestedModal({
       setUpdatedEmail(response.data.email);
       SendEmailLeadAlert("Email");
     } catch (error) {
-      SendEmailLeadAlertError("Email")
+      SendEmailLeadAlertError("Email");
     }
     setEditEmail(false);
   };
@@ -796,9 +793,9 @@ export default function NestedModal({
       setUpdatedInstagram(response.data.instagram);
       SendEmailLeadAlert("Instagram");
     } catch (error) {
-      SendEmailLeadAlertError("Instagram")
+      SendEmailLeadAlertError("Instagram");
     }
-    
+
     setEditInstagram(false);
   };
 
@@ -819,9 +816,9 @@ export default function NestedModal({
       setUpdatedTelephone(response.data.telephone);
       SendEmailLeadAlert("Phone");
     } catch (error) {
-      SendEmailLeadAlertError("Phone")
+      SendEmailLeadAlertError("Phone");
     }
-    
+
     setEditTelephone(false);
   };
   //EDITAR DATOS EmailApp
@@ -840,9 +837,8 @@ export default function NestedModal({
       const response = await axios.put(`/lead/changeemail/${id}`, body);
       setUpdatedEmailApp(response.data.emailApp);
       SendEmailLeadAlert("Email App");
-      
     } catch (error) {
-      SendEmailLeadAlertError("Email App")
+      SendEmailLeadAlertError("Email App");
     }
     setEditEmailApp(false);
   };
@@ -887,7 +883,7 @@ export default function NestedModal({
                 <label>✔ Lead Updated!</label>
               </motion.div>
             )}
-                       {openAlert && (
+            {openAlert && (
               <motion.div
                 initial={{ opacity: 0, x: "-20px" }}
                 whileInView={{ x: "0px", opacity: 1 }}
@@ -899,7 +895,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label className="text-white">✔ Lead Updated!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -929,7 +925,9 @@ export default function NestedModal({
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Valor Cuota menor de €200</label>
+                <label className=" text-white">
+                  ❌ Valor Cuota menor de €200
+                </label>
               </motion.div>
             )}
             <div className="w-full flex flex-col justify-center items-center">
@@ -950,7 +948,6 @@ export default function NestedModal({
 
                   {/* )} */}
                   {/* {!editInstagram && ( */}
-
 
                   <CiInstagram
                     onClick={handleEditInstagram}
