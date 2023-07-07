@@ -3,11 +3,7 @@ const Vendedor = require("../../models/Vendedor");
 const Clientes = require("../../models/Clientes");
 
 const updateLeadVendedorById = async (id, updatedData) => {
-
-
-
   const leadCountCheck = await Lead.findById(id);
-
 
   if (!updatedData.dataLead.llamados) {
     updatedData.dataLead.llamados = 0;
@@ -30,33 +26,41 @@ const updateLeadVendedorById = async (id, updatedData) => {
     updatedData.dataVendedor.status_op = "3 llamados";
   }
 
-
- 
-//   console.log("primero")
-// console.log(updatedData.dataLead.emailApp)
-// console.log("segundo")
-// console.log(updatedData.dataVendedor.email)
   if (updatedData.dataLead.status === "Contratado") {
-    const emailFilter = updatedData.dataLead.emailApp ? updatedData.dataLead.emailApp : updatedData.dataVendedor.email;
+    //Busca un registro que tenga ese emailApp para borrarselo, porque luego se añadira a un nuevo lead
+    const emailFilter = updatedData.dataLead.emailApp
+      ? updatedData.dataLead.emailApp
+      : updatedData.dataVendedor.email;
     const leadEmailAppUpdated = await Lead.updateMany(
-      { emailApp:  { $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email] }},
-      { $set: { emailApp: ""} },
+      {
+        emailApp: {
+          $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email],
+        },
+      },
+      { $set: { emailApp: "" } },
       { new: true }
     );
-    console.log()
 
-    // const emailFilter2 = updatedData.dataLead.emailApp ? updatedData.dataLead.emailApp : updatedData.dataVendedor.email;
-    const filtro = { email: emailFilter};
-    const nuevosValores = { email: emailFilter, name: updatedData.dataVendedor.name, rol: "organico"};
+
+    //Setea el Cliente con el email filtado del modelo Cliente
+    const filtro = { email: emailFilter };
+    const nuevosValores = {
+      email: emailFilter,
+      name: updatedData.dataVendedor.name,
+      rol: "organico",
+    };
     const opciones = { upsert: true, new: true };
-    const cliente = await Clientes.findOneAndUpdate(filtro, nuevosValores, opciones);
+    const cliente = await Clientes.findOneAndUpdate(
+      filtro,
+      nuevosValores,
+      opciones
+    );
   }
 
+  // se setea el nuevo lead con la info nueva, incluyendo el emailApp
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
-
-
 
   const valor = updatedData.dataVendedor;
 
@@ -66,8 +70,6 @@ const updateLeadVendedorById = async (id, updatedData) => {
     { $set: { "leads.$": valor } },
     { new: true }
   );
-
-
 
   if (!vendedor) {
     vendedor = await Vendedor.findOneAndUpdate(
