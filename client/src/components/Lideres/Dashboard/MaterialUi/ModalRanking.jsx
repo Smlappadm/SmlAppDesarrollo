@@ -57,16 +57,16 @@ export default function ChildModal() {
         return body;
       });
     const info = await Promise.all(infoPromises);
-    const infoMap = info.map((ventas) => {
-      const ventasArray = ventas[Object.keys(ventas)];
-      const ventasMap = ventasArray.reduce((total, ventas) => {
-        if (ventas.status === "Contratado") {
-          return total + 1;
-        }
-        return total;
-      }, 0);
-      return ventasMap;
-    });
+    // const infoMap = info.map((ventas) => {
+    //   const ventasArray = ventas[Object.keys(ventas)];
+    //   const ventasMap = ventasArray.reduce((total, ventas) => {
+    //     if (ventas.status === "Contratado") {
+    //       return total + 1;
+    //     }
+    //     return total;
+    //   }, 0);
+    //   return ventasMap;
+    // });
     const sortedInfo = [...info].sort((a, b) => {
       const first = b[Object.keys(b)[0]];
       const sortedB = first.reduce((total, ventas) => {
@@ -152,8 +152,11 @@ export default function ChildModal() {
                       <p>Ventas</p>
                       <p>{LeadsVendidos}</p>
                     </div>
-                    <p className="w-1/12">{index + 1}</p>
-                    <p className="w-2/12">10</p>
+                    <div className="w-3/12">
+                      <p>Rank</p>
+                      <p>{index + 1}</p>
+                    </div>
+                    <p className="w-2/12">Loguito</p>
                   </div>
                 );
               })}
