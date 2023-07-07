@@ -37,7 +37,6 @@ export default function ChildModal() {
   }, [allFreelancers]);
   useEffect(() => {
     InfoFreelancer();
-    console.log(allFreelancers);
   }, [freelancer]);
 
   const handleOpen = () => {
@@ -58,7 +57,18 @@ export default function ChildModal() {
         return body;
       });
     const info = await Promise.all(infoPromises);
-    console.log(info);
+    const infoMap = info.map((ventas) => {
+      const ventasArray = ventas[Object.keys(ventas)];
+      const ventasMap = ventasArray.reduce((total, ventas) => {
+        if (ventas.status === "Contratado") {
+          return total + 1;
+        }
+        return total;
+      }, 0);
+      return ventasMap;
+    });
+    console.log(infoMap);
+    //console.log(info[0][Object.keys(info[0])[0]][0].status);
     setInfoFreelancer(info);
   };
 
@@ -83,7 +93,9 @@ export default function ChildModal() {
           }}
         >
           <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
-            <h2>Ranking de Freelancers</h2>
+            <h2 className="font-extrabold text-white text-24 mb-8">
+              Ranking de Freelancers!
+            </h2>
 
             {infoFreelancer &&
               infoFreelancer.map((free, index) => {
@@ -105,7 +117,7 @@ export default function ChildModal() {
 
                 return (
                   <div
-                    className="flex justify-between items-center bg-black h-1/5 rounded-xl p-3"
+                    className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
                     key={index}
                   >
                     <p className="w-3/12">
