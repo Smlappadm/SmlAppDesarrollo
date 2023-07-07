@@ -228,7 +228,7 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
   const [inputName, setInputName] = useState("");
   const [inputEmail, setInputEmail] = useState("");
   const [selectEmployees, setSelectEmployees] = useState("");
-  const [leadAsigned, setLeadAsigned] = useState();
+  const [leadAsigned, setLeadAsigned] = useState(0);
 
   const handleReset = () => {
     setInputName("");
