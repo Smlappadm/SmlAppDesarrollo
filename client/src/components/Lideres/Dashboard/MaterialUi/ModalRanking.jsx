@@ -58,6 +58,7 @@ export default function ChildModal() {
         return body;
       });
     const info = await Promise.all(infoPromises);
+    console.log(info);
     setInfoFreelancer(info);
   };
 
