@@ -153,7 +153,6 @@ const getLeadCheckedInactive5Handler = async (req, res) => {
 
   try {
     const leadCheckedInactive5 = await getLeadCheckedInactive5(body);
-    console.log(leadCheckedInactive5);
     res.status(200).json(leadCheckedInactive5);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -359,8 +358,6 @@ const updateChangeEmailHandler = async (req, res) => {
   const keys = Object.keys(req.body);
   const newValue = Object.values(req.body);
 
-  console.log(keys[0]);
-  console.log(newValue[0]);
   try {
     const leadEmailChanged = await changeLeadEmail(id, keys[0], newValue[0]);
     res.status(200).json(leadEmailChanged);
