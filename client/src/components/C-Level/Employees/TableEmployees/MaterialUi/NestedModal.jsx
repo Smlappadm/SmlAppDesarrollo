@@ -125,19 +125,23 @@ function ChildModal({
           deleted: false,
         });
 
-        // const response = await axios.get(
-        //   `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
-        // );
+        dispatch(getAllEmployees());
+        setOpen(false);
+        handleReset();
 
-        // console.log(response.data);
-
-        const response = await axios.put("/lead/asignacion", {
-          name: inputName,
-          email: inputEmail,
-          leads: leadAsigned,
-        });
+        const response = await axios.get(
+          `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
+        );
 
         console.log(response.data);
+
+        // const response = await axios.put("/lead/asignacion", {
+        //   name: inputName,
+        //   email: inputEmail,
+        //   leads: leadAsigned,
+        // });
+
+        // console.log(response.data);
       }
       CreateEmployees(inputName);
     } catch (error) {
