@@ -159,7 +159,7 @@ export default function ChildModal() {
                     </div>
                     <div className="w-3/12">
                       <p>Rank</p>
-                      <p>{index + 1}</p>
+                      <p>#{index + 1}</p>
                     </div>
                     <p className="w-2/12">Loguito</p>
                   </div>
