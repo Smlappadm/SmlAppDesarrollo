@@ -41,7 +41,6 @@ const updateLeadVendedorById = async (id, updatedData) => {
       { new: true }
     );
 
-
     //Setea el Cliente con el email filtado del modelo Cliente
     const filtro = { email: emailFilter };
     const nuevosValores = {
@@ -55,9 +54,37 @@ const updateLeadVendedorById = async (id, updatedData) => {
       nuevosValores,
       opciones
     );
+
+    //Seteo de los detalles de los pagos
+    updatedData.dataLead.pagos.detalles = [];
+
+    let fechaActual = new Date();
+    let prueba = new Date();
+    prueba.setDate(prueba.getDate() + 7);
+    updatedData.dataLead.pagos.detalles.push({ contrato: fechaActual, prueba: prueba });
+    
+    let sumador = 0;
+    for (let i = 0; i < updatedData.dataLead.pagos.cuotas; i++) {
+      fechaActual.setDate(fechaActual.getDate() + sumador);
+      updatedData.dataLead.pagos.detalles.push(new Date(fechaActual));
+      sumador += 30;
+    }
+  
+    // let detallesArray = [];
+    // fechaActual.setDate(fechaActual.getDate() + 30);
+    // var diaActualizado = fechaActual.getDate();
+    // var mesActualizado = fechaActual.getMonth();
+    // console.log(
+    //   "Fecha actualizada: " + diaActualizado + "-" + (mesActualizado + 1)
+    // );
+
+    // updatedData.dataLead.pagos.detalle =
   }
 
   // se setea el nuevo lead con la info nueva, incluyendo el emailApp
+  if (updatedData.dataLead.emailApp === "") {
+    updatedData.dataLead.emailApp = updatedData.dataVendedor.email;
+  }
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
