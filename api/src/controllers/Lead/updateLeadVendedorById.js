@@ -70,10 +70,8 @@ if (!updatedData.dataLead.llamados) {
       contrato: new Date(fechaActual),
       prueba: new Date(prueba),
     });
-    updatedData.dataLead.pagos.detallesRestantes.push({
-      contrato: new Date(fechaActual),
-      prueba: new Date(prueba),
-    });
+  //poner la prueba primero
+    // updatedData.dataLead.pagos.detallesRestantes.push(new Date(prueba));
 
     let sumador = 30;
     for (let i = 0; i < updatedData.dataLead.pagos.cuotas; i++) {
