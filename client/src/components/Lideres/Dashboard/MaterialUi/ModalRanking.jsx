@@ -105,7 +105,7 @@ export default function ChildModal() {
 
                 return (
                   <div
-                    className="flex justify-between items-center bg-black h-1/5 rounded-xl p-3"
+                    className="flex justify-between items-center bg-[#222131] h-1/6 rounded-xl p-3"
                     key={index}
                   >
                     <p className="w-3/12">
