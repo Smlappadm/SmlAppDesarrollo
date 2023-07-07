@@ -6,15 +6,15 @@ const updateLeadFreelanceById = async (id, updatedData) => {
   const leadCountCheck = await Lead.findById(id);
 
   
-
-  if (!updatedData.dataLead.llamados) {
-    updatedData.dataLead.llamados = 0;
+// console.log("111111111")
+if (!updatedData.dataLead.llamados) {
+  updatedData.dataLead.llamados = 0;
   }
 
   if (
     updatedData.dataLead.status === "No responde" &&
     leadCountCheck.llamados < 2
-  ) {
+    ) {
     updatedData.dataLead.llamados++;
     updatedData.dataVendedor.llamados = updatedData.dataLead.llamados;
   } else if (
@@ -33,7 +33,7 @@ const updateLeadFreelanceById = async (id, updatedData) => {
     const emailFilter = updatedData.dataLead.emailApp
       ? updatedData.dataLead.emailApp
       : updatedData.dataVendedor.email;
-    const leadEmailAppUpdated = await Lead.updateMany(
+    const leadEmailAppUpdated = await Lead.updateOne(
       {
         emailApp: {
           $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email],
@@ -42,7 +42,8 @@ const updateLeadFreelanceById = async (id, updatedData) => {
       { $set: { emailApp: "" } },
       { new: true }
     );
-
+    
+    // console.log("2222222222222")
     //Setea el Cliente con el email filtado del modelo Cliente
     const filtro = { email: emailFilter };
     const nuevosValores = {
@@ -57,8 +58,10 @@ const updateLeadFreelanceById = async (id, updatedData) => {
       opciones
     );
 
+    // console.log("33333333333")
     //Seteo de los detalles de los pagos
     updatedData.dataLead.pagos.detalles = [];
+    updatedData.dataLead.pagos.detallesRestantes = [];
 
     let fechaActual = new Date();
     let prueba = new Date();
@@ -67,13 +70,21 @@ const updateLeadFreelanceById = async (id, updatedData) => {
       contrato: new Date(fechaActual),
       prueba: new Date(prueba),
     });
+    updatedData.dataLead.pagos.detallesRestantes.push(new Date(prueba));
 
     let sumador = 30;
     for (let i = 0; i < updatedData.dataLead.pagos.cuotas; i++) {
       fechaActual.setDate(fechaActual.getDate() + sumador); // Sumar 30 días a la fecha actual
       updatedData.dataLead.pagos.detalles.push(new Date(fechaActual));
+      updatedData.dataLead.pagos.detallesRestantes.push(new Date(fechaActual));
     }
 
+    
+    
+
+    // console.log("44444444444")
+    
+    
     // let detallesArray = [];
     // fechaActual.setDate(fechaActual.getDate() + 30);
     // var diaActualizado = fechaActual.getDate();
@@ -92,26 +103,28 @@ const updateLeadFreelanceById = async (id, updatedData) => {
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
-
+  
+  // console.log("555555555")
   const valor = updatedData.dataVendedor;
-
+  
   let vendedor = [];
   vendedor = await Vendedor.findOneAndUpdate(
     { email: updatedData.dataLead.vendedor, "leads.name": valor.name },
     { $set: { "leads.$": valor } },
     { new: true }
-  );
-
-  if (!vendedor) {
+    );
+  
+    if (!vendedor) {
     vendedor = await Vendedor.findOneAndUpdate(
       { email: updatedData.dataLead.vendedor },
       { $addToSet: { leads: { $each: [valor] } } },
       { new: true }
-    );
+      );
   } else {
     await vendedor.save();
   }
 
+  // console.log("66666666666")
   const data = {
     leadUpdate,
     vendedor,

@@ -2,15 +2,30 @@ import React, { useState } from "react";
 import LeadAsigned from "../TableEmployees/MaterialUi/LeadAsigned";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Detail({ cardEmail }) {
   const [leadAsigned, setLeadAsigned] = useState(0);
+
+  const SendLeads = (name) => {
+    toast.success(`✔ Leads asignados a el Freelancer ${name}  `, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   const asignar = async () => {
     const response = await axios.get(
       `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}`
     );
-    console.log(response.data);
+    SendLeads(cardEmail.name);
   };
 
   return (
@@ -71,17 +86,19 @@ function Detail({ cardEmail }) {
               </div>
             </div>
 
-            <div className="flex gap-5 items-center justify-start">
-              <LeadAsigned
-                leadAsigned={leadAsigned}
-                setLeadAsigned={setLeadAsigned}
-              />
-              <div onClick={asignar}>
-                <Button size="large" variant="outlined">
-                  Asignar
-                </Button>
+            {cardEmail.rol === "freelancer" ? (
+              <div className="flex gap-5 items-center justify-start">
+                <LeadAsigned
+                  leadAsigned={leadAsigned}
+                  setLeadAsigned={setLeadAsigned}
+                />
+                <div onClick={asignar}>
+                  <Button size="large" variant="outlined">
+                    Asignar
+                  </Button>
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       ) : (
