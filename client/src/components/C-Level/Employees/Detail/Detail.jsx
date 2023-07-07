@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import LeadAsigned from "../TableEmployees/MaterialUi/LeadAsigned";
+import { Button } from "@mui/material";
+import axios from "axios";
 
 function Detail({ cardEmail }) {
-  
   const [leadAsigned, setLeadAsigned] = useState(0);
 
-  console.log(leadAsigned);
+  const asignar = async () => {
+    const response = await axios.get(
+      `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}`
+    );
+    console.log(response.data);
+  };
 
   return (
     <div className="flex bg-slate-700 justify-start items-center w-4/12 flex-col">
@@ -65,10 +71,17 @@ function Detail({ cardEmail }) {
               </div>
             </div>
 
-            <LeadAsigned
-              leadAsigned={leadAsigned}
-              setLeadAsigned={setLeadAsigned}
-            />
+            <div className="flex gap-5 items-center justify-start">
+              <LeadAsigned
+                leadAsigned={leadAsigned}
+                setLeadAsigned={setLeadAsigned}
+              />
+              <div onClick={asignar}>
+                <Button size="large" variant="outlined">
+                  Asignar
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
