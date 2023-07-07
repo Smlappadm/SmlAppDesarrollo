@@ -169,11 +169,11 @@ export const Pagos = ({ tamañoPantalla }) => {
           </div>
           <a
             href={urlPago ? urlPago : ""}
-            target="_blanck"
-            className=" w-20 h-12 px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#39394b] hover:bg-[#3f437a] cursor-pointer"
+            // target="_blanck"
+            className=" w-40 h-12 px-2 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 my-2 bg-[#24668d] hover:bg-[#2e84b6] cursor-pointer"
           >
             {urlPago ? (
-              "pagar"
+              `pagar cuota ${clienteEmpresa.pagos.cuotasPagadas + 1}`
             ) : (
               <div
                 className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]"
