@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import LeadAsigned from "../TableEmployees/MaterialUi/LeadAsigned";
 
 function Detail({ cardEmail }) {
+  
+  const [leadAsigned, setLeadAsigned] = useState(0);
+
+  console.log(leadAsigned);
+
   return (
     <div className="flex bg-slate-700 justify-start items-center w-4/12 flex-col">
       {cardEmail ? (
@@ -58,6 +64,11 @@ function Detail({ cardEmail }) {
                 </p>
               </div>
             </div>
+
+            <LeadAsigned
+              leadAsigned={leadAsigned}
+              setLeadAsigned={setLeadAsigned}
+            />
           </div>
         </div>
       ) : (
