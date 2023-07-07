@@ -11,7 +11,7 @@ function Detail({ cardEmail }) {
   const SendLeads = (name) => {
     toast.success(`✔ Leads asignados a el Freelancer ${name}  `, {
       position: "top-center",
-      autoClose: 500,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
