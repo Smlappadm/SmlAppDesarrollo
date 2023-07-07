@@ -7,21 +7,16 @@ const postInfoPago = async (objeto) => {
   let leadUpdate = {};
   // if (objeto.status === "complete") {
   // const leadUpdate = await Lead.findOne({ emailApp: objeto.email });
-  try {
-    leadUpdate = await Lead.findOne({ emailApp: "facutam@gmail.com" });
-  
-    if (leadUpdate) {
-      leadUpdate.pagos.detallesRestantes.shift();
-      leadUpdate.pagos.cuotasPagadas++;
-      await leadUpdate.save();
-  
-      console.log("Cambios guardados correctamente:", leadUpdate);
-    } else {
-      console.log("No se encontró ningún Lead con ese correo electrónico.");
-    }
-  } catch (error) {
-    console.log("Error al guardar los cambios:", error);
-  }
+  leadUpdate = await Lead.findOne({ emailApp: "facutam@gmail.com" });
+
+  leadUpdate.pagos.detallesRestantes.shift();
+  leadUpdate.pagos.cuotasPagadas++;
+
+  await Lead.updateOne(
+    { emailApp: "facutam@gmail.com" },
+    leadUpdate, // Pasar leadUpdate directamente como objeto de actualización
+    { new: true }
+  );
 
   return { info: infoSave, lead: leadUpdate };
 };
