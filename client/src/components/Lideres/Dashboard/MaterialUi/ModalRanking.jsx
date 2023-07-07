@@ -102,6 +102,11 @@ export default function ChildModal() {
         onClose={handleClose}
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
+        BackdropProps={{
+          sx: {
+            backgroundColor: "rgba(00, 00, 00, 0.9)",
+          },
+        }}
       >
         <Box
           sx={{
