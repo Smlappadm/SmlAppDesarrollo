@@ -14,7 +14,7 @@ const getFreelancers = async () => {
 
   const correos = Array.from(correosSet);
 
-  return corredores;
+  return correos;
 };
 
 module.exports = getFreelancers;
