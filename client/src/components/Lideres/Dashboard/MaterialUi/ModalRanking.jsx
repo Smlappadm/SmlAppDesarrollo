@@ -67,9 +67,28 @@ export default function ChildModal() {
       }, 0);
       return ventasMap;
     });
-    console.log(infoMap);
+    const sortedInfo = [...info].sort((a, b) => {
+      const first = b[Object.keys(b)[0]];
+      const sortedB = first.reduce((total, ventas) => {
+        if (ventas.status === "Contratado") {
+          return total + 1;
+        }
+        return total;
+      }, 0);
+
+      const last = a[Object.keys(a)[0]];
+      const sortedA = last.reduce((total, ventas) => {
+        if (ventas.status === "Contratado") {
+          return total + 1;
+        }
+        return total;
+      }, 0);
+
+      return sortedB - sortedA;
+    });
+    // console.log(sortedInfo);
     //console.log(info[0][Object.keys(info[0])[0]][0].status);
-    setInfoFreelancer(info);
+    setInfoFreelancer(sortedInfo);
   };
 
   return (
