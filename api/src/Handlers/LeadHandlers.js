@@ -8,6 +8,7 @@ const getLeadUnchecked = require("../controllers/Lead/getLeadUnchecked");
 const getLeadCheckedInactive5 = require("../controllers/Lead/getLeadCheckedInactive5");
 const getLead10Unchecked = require("../controllers/Lead/getLead10Unchecked");
 const updateLeadVendedorById = require("../controllers/Lead/updateLeadVendedorById");
+const updateLeadFreelanceById = require("../controllers/Lead/updateLeadFreelanceById");
 const getLeadVendedorById = require("../controllers/Lead/getLeadVendedorById");
 const getLeadCorredorChecked = require("../controllers/Lead/getLeadCorredoresChecked");
 const limpiezaBaseFunction = require("../controllers/Lead/limpiezaBaseFunction");
@@ -186,6 +187,17 @@ const updateLeadVendedorHandler = async (req, res) => {
     const updatedData = req.body;
 
     const lead = await updateLeadVendedorById(id, updatedData);
+    res.status(200).json(lead);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const updateLeadFreelanceHandler = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updatedData = req.body;
+
+    const lead = await updateLeadFreelanceById(id, updatedData);
     res.status(200).json(lead);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -416,6 +428,7 @@ module.exports = {
   getLeadByIdHandler,
   getLeadByNameHandler,
   updateLeadVendedorHandler,
+  updateLeadFreelanceHandler,
   getLeadVendedorHandler,
   getLeadCorredorCheckedHandler,
   limpiezaBaseHandler,
