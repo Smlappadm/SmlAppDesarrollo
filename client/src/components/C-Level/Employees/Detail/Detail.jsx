@@ -71,17 +71,19 @@ function Detail({ cardEmail }) {
               </div>
             </div>
 
-            <div className="flex gap-5 items-center justify-start">
-              <LeadAsigned
-                leadAsigned={leadAsigned}
-                setLeadAsigned={setLeadAsigned}
-              />
-              <div onClick={asignar}>
-                <Button size="large" variant="outlined">
-                  Asignar
-                </Button>
+            {cardEmail.rol === "freelancer" ? (
+              <div className="flex gap-5 items-center justify-start">
+                <LeadAsigned
+                  leadAsigned={leadAsigned}
+                  setLeadAsigned={setLeadAsigned}
+                />
+                <div onClick={asignar}>
+                  <Button size="large" variant="outlined">
+                    Asignar
+                  </Button>
+                </div>
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       ) : (
