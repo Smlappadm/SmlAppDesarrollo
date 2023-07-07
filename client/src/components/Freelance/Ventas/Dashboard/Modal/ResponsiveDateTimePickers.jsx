@@ -45,7 +45,7 @@ export default function ResponsiveDateTimePickers({
           <StaticDateTimePicker
             sx={{
               width: 300,
-              height: 500,
+              height: 550,
               borderRadius: 5,
               backgroundColor: "#39394B",
               color: "white",
