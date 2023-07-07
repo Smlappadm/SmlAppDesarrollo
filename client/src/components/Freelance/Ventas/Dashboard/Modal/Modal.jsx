@@ -16,6 +16,7 @@ import {
   AiOutlineUserAdd,
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
+import { BsCheck } from "react-icons/bs";
 
 const style = {
   position: "absolute",
@@ -142,9 +143,9 @@ function ChildModal({
       status_op: statusObj.status_op,
       pagos: statusObj.pagos,
       emailApp: updatedEmailApp,
+
       // vendedor: emailAddress,
-      vendedor: emailAddress,
-      vendedor_name: fullName,
+      // vendedor_name: fullName,
       llamados: item.llamados,
       llamada_venta: statusObj.llamada_venta,
     };
@@ -155,7 +156,7 @@ function ChildModal({
     };
 
     axios
-      .put(`/lead/vendedor/${item._id}`, dataUpdate)
+      .put(`/lead/freelance/${item._id}`, dataUpdate)
       .then((response) => {
         // Si la respuesta es exitosa, redirige a otra página
 
@@ -474,13 +475,10 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
           Close x
         </button> */}
 
-        <p
+<BsCheck
           onClick={handleOpen}
-          // onClick={() => handleConfirmEditEmail(item._id)}
-          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-        >
-          ✔
-        </p>
+          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
+        />
         {/* <button
           type="button"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
