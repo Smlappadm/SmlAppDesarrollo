@@ -97,7 +97,7 @@ export default function ChildModal() {
                   return total;
                 }, 0);
                 const LeadsVendidos = Leads.reduce((total, lead) => {
-                  if (lead.status === "contratado") {
+                  if (lead.status === "Contratado") {
                     return total + 1;
                   }
                   return total;
