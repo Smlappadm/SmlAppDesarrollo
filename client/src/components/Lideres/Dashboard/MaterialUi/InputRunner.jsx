@@ -27,7 +27,7 @@ export default function InputName({ name }) {
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
 
-  const { allCorredores } = useSelector((state) => state);
+  const { allFreelancers } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
@@ -92,7 +92,7 @@ export default function InputName({ name }) {
   };
 
   const handleFilterReset = () => {
-    setCorredor("");
+    setFreelancer("");
     setFromDay("");
     setToDay("");
     setProfesion("");
@@ -152,7 +152,7 @@ export default function InputName({ name }) {
             }}
           >
             <MenuItem value="">Freelancer</MenuItem>
-            {allCorredores.map((corredor) => (
+            {allFreelancers.map((corredor) => (
               <MenuItem key={corredor} value={corredor}>
                 {corredor}
               </MenuItem>
