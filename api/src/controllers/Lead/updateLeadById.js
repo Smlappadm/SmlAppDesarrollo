@@ -1,7 +1,6 @@
 const Lead = require("../../models/Lead");
 
 const updateLeadById = async (id, updatedData) => {
-  console.log(updatedData);
   try {
     const lead = await Lead.findByIdAndUpdate(id, updatedData, {
       new: true,
