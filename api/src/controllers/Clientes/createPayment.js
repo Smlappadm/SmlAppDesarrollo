@@ -24,7 +24,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // };
 
 const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
-  const description = `cuotas ${cuotasRestantes}/${cuotas}`
+  const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -53,7 +53,8 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // },
     ],
     mode: "payment",
-    success_url: "http://www.google.com.ar",
+    // success_url: "www.google.com.ar",
+    success_url: "http://localhost:5173/clientes-pagos",
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",
