@@ -5,9 +5,9 @@ const postInfoPago = async (objeto) => {
   const infoSave = await Pagos.create({ info: objeto });
 
   let leadUpdate = "";
-  if (objeto.status === "complete") {
+  // if (objeto.status === "complete") {
     // const leadUpdate = await Lead.findOne({ emailApp: objeto.email });
-    const leadUpdate = await Lead.findOne({ emailApp: "facutam@gmail.com" });
+     leadUpdate = await Lead.findOne({ emailApp: "facutam@gmail.com" });
 
     if (leadUpdate) {
       leadUpdate.pagos.detallesRestantes.shift();
@@ -18,7 +18,7 @@ const postInfoPago = async (objeto) => {
     } else {
       console.log("No se encontró ningún Lead con ese correo electrónico.");
     }
-  }
+  // }
 
   return { info: infoSave, lead: leadUpdate };
 };
