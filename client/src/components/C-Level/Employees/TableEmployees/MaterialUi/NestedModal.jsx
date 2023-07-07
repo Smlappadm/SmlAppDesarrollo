@@ -125,6 +125,10 @@ function ChildModal({
           deleted: false,
         });
 
+        dispatch(getAllEmployees());
+        setOpen(false);
+        handleReset();
+
         const response = await axios.get(
           `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
         );
