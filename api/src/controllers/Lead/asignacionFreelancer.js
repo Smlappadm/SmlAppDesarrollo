@@ -2,18 +2,21 @@ const Lead = require("../../models/Lead");
 
 const asignacionFreelancer = async (data) => {
   const { name, email, leads } = data;
+
+  // Verificar si leads es un número y luego convertirlo a entero
   const parsedLeads = parseInt(leads, 10);
 
+  // Verificar si parsedLeads es un entero válido
   if (isNaN(parsedLeads) || !Number.isInteger(parsedLeads)) {
     throw new Error("El valor de leads debe ser un número entero");
   }
 
   const profesiones = await Lead.distinct("profesion");
-  const totalProfesiones = profesiones.length;
 
-  const asignacionesPromises = [];
+  const asignaciones = [];
+
   for (let i = 0; i < parsedLeads; i++) {
-    const profesion = profesiones[i % totalProfesiones];
+    const profesion = profesiones[i];
 
     const lead = await Lead.findOneAndUpdate(
       {
@@ -36,10 +39,8 @@ const asignacionFreelancer = async (data) => {
       { new: true }
     );
 
-    asignacionesPromises.push(lead);
+    asignaciones.push(lead);
   }
-
-  const asignaciones = await Promise.all(asignacionesPromises);
 
   return asignaciones.filter((lead) => lead !== null);
 };

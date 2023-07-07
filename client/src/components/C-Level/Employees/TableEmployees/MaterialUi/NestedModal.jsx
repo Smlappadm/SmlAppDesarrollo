@@ -129,7 +129,7 @@ function ChildModal({
         //   `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
         // );
 
-        //console.log(response.data);
+        // console.log(response.data);
 
         const response = await axios.put("/lead/asignacion", {
           name: inputName,
