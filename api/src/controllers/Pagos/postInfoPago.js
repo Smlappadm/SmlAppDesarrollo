@@ -6,7 +6,8 @@ const postInfoPago = async (objeto) => {
 
   let leadUpdate = "";
   if (objeto.status === "complete") {
-    const leadUpdate = await Lead.findOne({ emailApp: objeto.email });
+    // const leadUpdate = await Lead.findOne({ emailApp: objeto.email });
+    const leadUpdate = await Lead.findOne({ emailApp: "facutam@gmail.com" });
 
     if (leadUpdate) {
       leadUpdate.pagos.detallesRestantes.shift();
