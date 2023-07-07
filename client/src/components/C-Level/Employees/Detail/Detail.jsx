@@ -2,15 +2,30 @@ import React, { useState } from "react";
 import LeadAsigned from "../TableEmployees/MaterialUi/LeadAsigned";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Detail({ cardEmail }) {
   const [leadAsigned, setLeadAsigned] = useState(0);
+
+  const SendLeads = (name) => {
+    toast.success(`✔ Leads asignados a el Freelancer ${name}  `, {
+      position: "top-center",
+      autoClose: 500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   const asignar = async () => {
     const response = await axios.get(
       `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}`
     );
-    console.log(response.data);
+    SendLeads(cardEmail.name);
   };
 
   return (
