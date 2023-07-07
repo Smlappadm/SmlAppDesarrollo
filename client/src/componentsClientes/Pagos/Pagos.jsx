@@ -100,6 +100,20 @@ export const Pagos = ({ tamañoPantalla }) => {
   //   );
   //   setUrlPago(data.url)
   // };
+  const funcionHorario = (horario) => {
+    const fechaHoraISO = horario;
+  
+    const fechaHora = new Date(fechaHoraISO);
+  
+    const dia = fechaHora.getDate();
+    const mes = fechaHora.getMonth() + 1; // Se suma 1 ya que los meses van de 0 a 11
+    const año = fechaHora.getFullYear();
+  
+    const fechaHoraLocal = `${dia}/${mes}/${año}`;
+  
+    return fechaHoraLocal;
+  };
+
 
   return (
     <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen">
@@ -148,6 +162,9 @@ export const Pagos = ({ tamañoPantalla }) => {
             </p>
             <p className="text-center text-16 font-extrabold text-white">
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
+            </p>
+            <p className="text-center text-16 font-extrabold text-white">
+              {`Próximo vencimiento: ${funcionHorario(clienteEmpresa.pagos.detallesRestantes[0])}`}
             </p>
           </div>
           <a
