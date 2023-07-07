@@ -37,7 +37,6 @@ export default function ChildModal() {
   }, [allFreelancers]);
   useEffect(() => {
     InfoFreelancer();
-    console.log(allFreelancers);
   }, [freelancer]);
 
   const handleOpen = () => {
@@ -58,7 +57,18 @@ export default function ChildModal() {
         return body;
       });
     const info = await Promise.all(infoPromises);
-    console.log(info);
+    const infoMap = info.map((ventas) => {
+      const ventasArray = ventas[Object.keys(ventas)];
+      const ventasMap = ventasArray.reduce((total, ventas) => {
+        if (ventas.status === "Contratado") {
+          return total + 1;
+        }
+        return total;
+      }, 0);
+      return ventasMap;
+    });
+    console.log(infoMap);
+    //console.log(info[0][Object.keys(info[0])[0]][0].status);
     setInfoFreelancer(info);
   };
 
