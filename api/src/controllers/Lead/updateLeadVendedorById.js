@@ -5,6 +5,8 @@ const Clientes = require("../../models/Clientes");
 const updateLeadVendedorById = async (id, updatedData) => {
   const leadCountCheck = await Lead.findById(id);
 
+  
+
   if (!updatedData.dataLead.llamados) {
     updatedData.dataLead.llamados = 0;
   }
@@ -61,15 +63,17 @@ const updateLeadVendedorById = async (id, updatedData) => {
     let fechaActual = new Date();
     let prueba = new Date();
     prueba.setDate(prueba.getDate() + 7);
-    updatedData.dataLead.pagos.detalles.push({ contrato: fechaActual, prueba: prueba });
-    
-    let sumador = 0;
+    updatedData.dataLead.pagos.detalles.push({
+      contrato: new Date(fechaActual),
+      prueba: new Date(prueba),
+    });
+
+    let sumador = 30;
     for (let i = 0; i < updatedData.dataLead.pagos.cuotas; i++) {
-      fechaActual.setDate(fechaActual.getDate() + sumador);
+      fechaActual.setDate(fechaActual.getDate() + sumador); // Sumar 30 días a la fecha actual
       updatedData.dataLead.pagos.detalles.push(new Date(fechaActual));
-      sumador += 30;
     }
-  
+
     // let detallesArray = [];
     // fechaActual.setDate(fechaActual.getDate() + 30);
     // var diaActualizado = fechaActual.getDate();
