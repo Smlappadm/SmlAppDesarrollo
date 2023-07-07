@@ -11,7 +11,7 @@ const postInfoPago = async (objeto) => {
   // if(true){
   // const leadUpdate = await Lead.find({ emailApp: objeto.email });
   leadUpdate = await Lead.find({ emailApp: "facutam@gmail.com" });
-console.log(leadUpdate)
+  console.log(leadUpdate)
   // leadUpdate.pagos.cuotasPagadas ++;
   // await leadUpdate.save();
   }
