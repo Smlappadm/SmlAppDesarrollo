@@ -9,6 +9,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getAllEmployees } from "../../../../../redux/actions";
 import LeadAsigned from "./LeadAsigned";
+import "./Loader.css";
 
 const style = {
   position: "absolute",
@@ -36,6 +37,7 @@ function ChildModal({
 }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  const [loading, setLoading] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -125,13 +127,13 @@ function ChildModal({
           deleted: false,
         });
 
-        dispatch(getAllEmployees());
-        setOpen(false);
-        handleReset();
+        setLoading(true);
 
         const response = await axios.get(
           `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
         );
+
+        setLoading(false);
 
         console.log(response.data);
 
@@ -181,7 +183,7 @@ function ChildModal({
         aria-describedby="child-modal-description"
       >
         <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b" }}>
-          <div className="flex flex-col gap-5 p-2">
+          <div className="flex flex-col items-center justify-center gap-5 p-2">
             <h2 id="child-modal-title">Creacion de empleado</h2>
             <div className="flex flex-col gap-2 justify-start items-start">
               <div className="flex gap-2">
@@ -196,6 +198,25 @@ function ChildModal({
                 <h2 id="child-modal-description">Rol: </h2>
                 <p id="child-modal-description">{selectEmployees}</p>
               </div>
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <h2 id="child-modal-description">
+                      Asignado Leads a Freelancer{" "}
+                    </h2>
+                    <div class="lds-roller">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
             </div>
             <p id="child-modal-description">
               Estas seguro que queres crear este empleado?
