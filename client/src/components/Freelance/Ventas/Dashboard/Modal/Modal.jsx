@@ -47,6 +47,8 @@ function ChildModal({
   cancelModal,
   setStatusObj,
   updatedEmailApp,
+  SendEmailLeadAlertError,
+  SendEmailLeadAlertErrorCuotas,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -54,6 +56,8 @@ function ChildModal({
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
+        SendEmailLeadAlertErrorCuotas();
+        return;
       }
       setStatusObj({
         ...statusObj,
@@ -546,6 +550,8 @@ export default function NestedModal({
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
+  const [openAlertError, setOpenAlertError] = React.useState(false);
+  const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
 
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
@@ -735,6 +741,18 @@ export default function NestedModal({
       setOpenAlert(false);
     }, 3000);
   };
+  const SendEmailLeadAlertError = (texto) => {
+    setOpenAlertError(true);
+    setTimeout(() => {
+      setOpenAlertError(false);
+    }, 3000);
+  };
+  const SendEmailLeadAlertErrorCuotas = (texto) => {
+    setOpenAlertErrorCuotas(true);
+    setTimeout(() => {
+      setOpenAlertErrorCuotas(false);
+    }, 3000);
+  };
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
@@ -832,7 +850,7 @@ export default function NestedModal({
           }}
         >
           <div className="w-full flex justify-center items-center mt-2 mb-10">
-            {openAlert && (
+          {openAlert && (
               <motion.div
                 initial={{ opacity: 0, x: "-20px" }}
                 whileInView={{ x: "0px", opacity: 1 }}
@@ -845,6 +863,53 @@ export default function NestedModal({
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
                 <label>✔ Lead Updated!</label>
+              </motion.div>
+            )}
+            {openAlert && (
+              <motion.div
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
+                className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label className="text-white">✔ Lead Updated!</label>
+              </motion.div>
+            )}
+            {openAlertError && (
+              <motion.div
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
+                className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label className=" text-white">❌ Update Error!</label>
+              </motion.div>
+            )}
+            {openAlertErrorCuotas && (
+              <motion.div
+                initial={{ opacity: 0, x: "-20px" }}
+                whileInView={{ x: "0px", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.1,
+                  type: "spring",
+                  bounce: 0.6,
+                }}
+                className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
+              >
+                <label className=" text-white">
+                  ❌ Valor Cuota menor de €200
+                </label>
               </motion.div>
             )}
             <div className="w-full flex flex-col justify-center items-center">
@@ -1389,6 +1454,8 @@ export default function NestedModal({
               setOpen={setOpen}
               SendLeadAlert={SendLeadAlert}
               SendErrorUpdateAlert={SendErrorUpdateAlert}
+              SendEmailLeadAlertError={SendEmailLeadAlertError}
+              SendEmailLeadAlertErrorCuotas={SendEmailLeadAlertErrorCuotas}
               handleLlamadoVentaChange={handleLlamadoVentaChange}
               updateLeads={updateLeads}
               emailAddress={emailAddress}
