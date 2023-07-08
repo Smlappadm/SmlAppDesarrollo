@@ -809,7 +809,7 @@ const CorredoresDashboard = () => {
                         className="absolute right-12"
                         onClick={() => handleCheckList(index)}
                       >
-                        Desciprcion
+                        Descripción
                       </div>
                     </div>
                   ))}
