@@ -197,17 +197,19 @@ const VendedoresDashboard = () => {
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link> */}
             </div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="flex gap-5 justify-center items-center ml-16"
-            >
-              <InputRunner
-                getLeadCheckedInactive5={getLeadCheckedInactive5}
-                body={body}
-              />
-            </motion.div>
+            {!openModalPago && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="flex gap-5 justify-center items-center ml-16"
+              >
+                <InputRunner
+                  getLeadCheckedInactive5={getLeadCheckedInactive5}
+                  body={body}
+                />
+              </motion.div>
+            )}
           </div>
           {!openModalPago ? (
             <>
@@ -352,7 +354,7 @@ const VendedoresDashboard = () => {
             </div>
           )}
         </div>
-        {data.length > 10 && (
+        {data.length > 10 && !openModalPago && (
           <div className="mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}
