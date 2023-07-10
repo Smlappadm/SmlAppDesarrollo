@@ -32,6 +32,7 @@ const VendedoresDashboard = () => {
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
+  const [openModalPagos, setOpenModalPagos] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -74,47 +75,7 @@ const VendedoresDashboard = () => {
     dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
 
-  //FILTER   Profesion Country **********************
 
-  // const filtrar = () => {
-  //   dispatch(getLeadCheckedInactive5(body, profesion, country));
-  // };
-  // const filtrar2 = () => {
-  //   setProfesion("")
-  //   setCountry("")
-  //   dispatch(getLeadCheckedInactive5(body, "", ""));
-  // };
-
-  // const filterProfesion = (event) => {
-  //   const { value } = event.target;
-  //   setProfesion(value);
-  // };
-
-  // const filterCountry = (event) => {
-  //   const { value } = event.target;
-  //   setCountry(value);
-  // };
-
-  //-------------------------------------------------------------
-
-  // const [filters, setFilters] = useState({
-  //   level: false,
-  //   runner: false,
-  //   sellers: false,
-  //   status: false,
-  // });
-
-  // const handlerFilter = (filter) => {
-  //   if (filter === "level") {
-  //     setFilters({ level: true, runner: false, sellers: false, status: false });
-  //   } else if (filter === "runner") {
-  //     setFilters({ level: false, runner: true, sellers: false, status: false });
-  //   } else if (filter === "sellers") {
-  //     setFilters({ level: false, runner: false, sellers: true, status: false });
-  //   } else {
-  //     setFilters({ level: false, runner: false, sellers: false, status: true });
-  //   }
-  // };
 
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
@@ -197,6 +158,11 @@ const VendedoresDashboard = () => {
     return fechaHoraLocal;
   };
 
+  const openModalFunction = () => {
+    console.log("eeeeeeeeeeeeeeeeeeeeeeee")
+    setOpenModalPagos()
+  }
+
   return (
     <>
       <Nav />
@@ -242,6 +208,11 @@ const VendedoresDashboard = () => {
               />
             </motion.div>
           </div>
+          {openModalPagos && (
+            <div>
+              <h1>sddddddddddddddddddddkldfljajnlgnj</h1>
+            </div>
+          )}
           {vendedoresDashboard.length ? (
                         <motion.div
                         initial={{ opacity: 0, y: "40px" }}
@@ -358,6 +329,7 @@ const VendedoresDashboard = () => {
                         emailAddress={body.email}
                         fullName={fullName}
                         cancelModal={cancelModal}
+                        openModalFunction={openModalFunction}
                       />
                     </div>
                   </div>
