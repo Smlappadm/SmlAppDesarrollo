@@ -94,7 +94,7 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
         <div className="flex flex-col">
           <label>Profesion:</label>
           <Select
-            value={profesion}
+            value={profesion || ""}
             onChange={handleChangeProfesion}
             label=""
             id="profesion"
@@ -127,7 +127,7 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
         <div className="flex flex-col">
           <label>Categoria:</label>
           <Select
-            value={category}
+            value={category || ""}
             onChange={handleChangeCategory}
             label=""
             id="categoria"
@@ -161,7 +161,7 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
         <div className="flex flex-col">
           <label>Paises:</label>
           <Select
-            value={country}
+            value={country || ""}
             onChange={handleChangeCountries}
             label=""
             id="paises"
