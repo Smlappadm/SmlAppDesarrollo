@@ -9,6 +9,7 @@ import {
   getAllVendedores,
   getAllClevel,
   getAllLeader,
+  getAllFreelancer,
 } from "../../redux/actions";
 import UploadWidget from "../../components/UploadWidget/UploadWidget";
 import { Image } from "cloudinary-react";
@@ -172,6 +173,7 @@ export default function Settings() {
     dispatch(getAllVendedores());
     dispatch(getAllLeader());
     dispatch(getAllClevel());
+    dispatch(getAllFreelancer());
   }, [dispatch]);
 
   useEffect(() => {
