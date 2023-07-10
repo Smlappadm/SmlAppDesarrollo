@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddLeads, getFreelancers } from "../../../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import gold from "../../../../Assets/gold.png";
+import silver from "../../../../Assets/silver.png";
+import bronze from "../../../../Assets/bronze.png";
 
 const style = {
   position: "absolute",
@@ -27,6 +30,7 @@ export default function ChildModal() {
   const [infoFreelancer, setInfoFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  const place = [gold, silver, bronze];
 
   useEffect(() => {
     dispatch(getFreelancers());
