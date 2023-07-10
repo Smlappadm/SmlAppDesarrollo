@@ -33,7 +33,7 @@ import LoginClientes from "./viewsClientes/Login/LoginClientes";
 import Home from "./viewsClientes/Home/Home";
 import AddVideos from "./viewsClientes/AddVideos/AddVideos";
 import ClientesSettings from "./viewsClientes/Settings/ClientesSettings";
-import { Pagos } from "./componentsClientes/Pagos/Pagos";
+import  Pagos  from "./componentsClientes/Pagos/Pagos";
 import { LideresHistory } from "./components/Lideres/History/HistoryLeader";
 import BannedEmployees from "./components/C-Level/Employees/EmployBanned/BannedEmploy";
 import { CheckoutPage } from "./viewsClientes/CheckoutPage/CheckoutPage";
