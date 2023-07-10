@@ -50,6 +50,7 @@ function ChildModal({
   updatedEmailApp,
   SendEmailLeadAlertError,
   SendEmailLeadAlertErrorCuotas,
+  openModalPagoFunction,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -175,8 +176,11 @@ function ChildModal({
         // Si hay un error, muestra un mensaje de error
         SendErrorUpdateAlert();
       });
-    setOpenChild(false);
-    setOpen(false);
+      if (statusObj.status === "Contratado") {
+      openModalPagoFunction();
+      }
+      setOpenChild(false);
+      setOpen(false);
     statusObj.status = "";
   };
 
@@ -544,6 +548,7 @@ export default function NestedModal({
   emailAddress,
   fullName,
   cancelModal,
+  openModalPagoFunction,
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
@@ -1481,6 +1486,7 @@ export default function NestedModal({
               cancelModal={cancelModal}
               setStatusObj={setStatusObj}
               updatedEmailApp={updatedEmailApp}
+              openModalPagoFunction={openModalPagoFunction}
             />
           </div>
         </Box>
