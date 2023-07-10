@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Detail({ cardEmail }) {
+  const [loading, setLoading] = useState(false);
   const [leadAsigned, setLeadAsigned] = useState(0);
 
   const SendLeads = (name) => {
@@ -22,9 +23,14 @@ function Detail({ cardEmail }) {
   };
 
   const asignar = async () => {
+    setLoading(true);
+
     const response = await axios.get(
       `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}`
     );
+
+    setLoading(false);
+
     SendLeads(cardEmail.name);
   };
 
@@ -96,6 +102,26 @@ function Detail({ cardEmail }) {
                   <Button size="large" variant="outlined">
                     Asignar
                   </Button>
+                </div>
+              </div>
+            ) : null}
+
+            {loading ? (
+              <div className="flex items-center justify-center">
+                <div className="flex flex-col items-center justify-center gap-2">
+                  <h2 id="child-modal-description">
+                    Asignado Leads a Freelancer{" "}
+                  </h2>
+                  <div class="lds-roller">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
                 </div>
               </div>
             ) : null}
