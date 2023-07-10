@@ -794,6 +794,10 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
 .mb-\[7rem\] {
   margin-bottom: 7rem;
 }
@@ -906,10 +910,6 @@ video {
   margin-top: 2rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
 .block {
   display: block;
 }
@@ -944,10 +944,6 @@ video {
 
 .h-1\/4 {
   height: 25%;
-}
-
-.h-1\/5 {
-  height: 20%;
 }
 
 .h-1\/6 {
@@ -1038,6 +1034,10 @@ video {
   height: 2.25rem;
 }
 
+.h-\[13\%\] {
+  height: 13%;
+}
+
 .h-\[200px\] {
   height: 200px;
 }
@@ -1091,24 +1091,12 @@ video {
   height: 100vh;
 }
 
-.h-\[10\%\] {
-  height: 10%;
-}
-
-.h-\[13\%\] {
-  height: 13%;
-}
-
 .\!w-px {
   width: 1px !important;
 }
 
 .w-0 {
   width: 0px;
-}
-
-.w-1\/12 {
-  width: 8.333333%;
 }
 
 .w-1\/5 {
@@ -1362,6 +1350,10 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-1\/12 {
+  width: 8.333333%;
 }
 
 .min-w-\[180px\] {
@@ -1724,6 +1716,11 @@ video {
   background-color: rgb(34 33 49 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#24668d\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(36 102 141 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#26af7f\] {
   --tw-bg-opacity: 1;
   background-color: rgb(38 175 127 / var(--tw-bg-opacity));
@@ -1924,11 +1921,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#24668d\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(36 102 141 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-0 {
@@ -2688,6 +2680,11 @@ video {
   background-color: rgb(42 40 110 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#2e84b6\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(46 132 182 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-\[\#3f437a\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(63 67 122 / var(--tw-bg-opacity));
@@ -2716,11 +2713,6 @@ video {
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-\[\#2e84b6\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(46 132 182 / var(--tw-bg-opacity));
 }
 
 .hover\:text-\[\#3570bd\]:hover {
