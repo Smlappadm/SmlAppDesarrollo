@@ -50,6 +50,8 @@ export default function ChildModal() {
     setOpen(false);
   };
 
+  console.log(allFreelancers);
+
   const InfoFreelancer = async () => {
     let body;
     const infoPromises =
