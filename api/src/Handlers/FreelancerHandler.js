@@ -2,6 +2,8 @@ const getAllFreelancer = require("../controllers/Freelancer/getAllFreelancer");
 const postFreelancer = require("../controllers/Freelancer/postFreelancer");
 const getLeadChecked = require("../controllers/Freelancer/getLeadChecked");
 const getAllFreelancers = require("../controllers/Freelancer/getAllFreelancer");
+const updateFreelancerByEmail = require("../controllers/Freelancer/updateFreelancerByEmail");
+const updateFreelancerById = require("../controllers/Freelancer/updateFreelancerById");
 
 const postFreelancerHandler = async (req, res) => {
   const data = req.body;
@@ -41,10 +43,33 @@ const getAllFreelancersHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+const updateFreelancerByEmailHandler = async (req, res) => {
+  const { email } = req.query;
+  const updateData = req.body;
+  try {
+    const freelancer = await updateFreelancerByEmail(email, updateData);
+    res.status(200).json(freelancer);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const updateFreelancerByIdHandler = async (req, res) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+
+  try {
+    const corredores = await updateFreelancerById(id, updatedData);
+    res.status(200).json(corredores);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 module.exports = {
   postFreelancerHandler,
   getAllFreelancerHandler,
   getLeadCheckedFreelanceHandler,
   getAllFreelancersHandler,
+  updateFreelancerByEmailHandler,
+  updateFreelancerByIdHandler,
 };
