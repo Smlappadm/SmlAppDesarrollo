@@ -25,13 +25,16 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const VendedoresDashboard = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
+  const [openModalPagos, setOpenModalPagos] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -74,47 +77,7 @@ const VendedoresDashboard = () => {
     dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
 
-  //FILTER   Profesion Country **********************
 
-  // const filtrar = () => {
-  //   dispatch(getLeadCheckedInactive5(body, profesion, country));
-  // };
-  // const filtrar2 = () => {
-  //   setProfesion("")
-  //   setCountry("")
-  //   dispatch(getLeadCheckedInactive5(body, "", ""));
-  // };
-
-  // const filterProfesion = (event) => {
-  //   const { value } = event.target;
-  //   setProfesion(value);
-  // };
-
-  // const filterCountry = (event) => {
-  //   const { value } = event.target;
-  //   setCountry(value);
-  // };
-
-  //-------------------------------------------------------------
-
-  // const [filters, setFilters] = useState({
-  //   level: false,
-  //   runner: false,
-  //   sellers: false,
-  //   status: false,
-  // });
-
-  // const handlerFilter = (filter) => {
-  //   if (filter === "level") {
-  //     setFilters({ level: true, runner: false, sellers: false, status: false });
-  //   } else if (filter === "runner") {
-  //     setFilters({ level: false, runner: true, sellers: false, status: false });
-  //   } else if (filter === "sellers") {
-  //     setFilters({ level: false, runner: false, sellers: true, status: false });
-  //   } else {
-  //     setFilters({ level: false, runner: false, sellers: false, status: true });
-  //   }
-  // };
 
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
@@ -197,10 +160,15 @@ const VendedoresDashboard = () => {
     return fechaHoraLocal;
   };
 
+  const openModalFunction = () => {
+    console.log("eeeeeeeeeeeeeeeeeeeeeeee")
+    navigate('/venta-pagos');
+  }
+
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-between items-center w-screen  z-0">
+      <div className="flex flex-col justify-between items-center w-screen  z-0 relative">
         {showCopiedMessage && (
           <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
             Copiado!
@@ -358,6 +326,7 @@ const VendedoresDashboard = () => {
                         emailAddress={body.email}
                         fullName={fullName}
                         cancelModal={cancelModal}
+                        openModalFunction={openModalFunction}
                       />
                     </div>
                   </div>
