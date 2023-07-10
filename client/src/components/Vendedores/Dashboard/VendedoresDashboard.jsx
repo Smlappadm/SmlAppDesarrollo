@@ -25,7 +25,7 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const VendedoresDashboard = () => {
   const navigate = useNavigate();
@@ -76,8 +76,6 @@ const VendedoresDashboard = () => {
   const cancelModal = () => {
     dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
-
-
 
   const [levelValue, setLevelValue] = useState("");
   const onChangeLevel = (value) => {
@@ -161,9 +159,8 @@ const VendedoresDashboard = () => {
   };
 
   const openModalFunction = () => {
-    console.log("eeeeeeeeeeeeeeeeeeeeeeee")
-    navigate('/venta-pagos');
-  }
+    navigate("/ventas-pagos");
+  };
 
   return (
     <>
@@ -210,13 +207,14 @@ const VendedoresDashboard = () => {
               />
             </motion.div>
           </div>
+
           {vendedoresDashboard.length ? (
-                        <motion.div
-                        initial={{ opacity: 0, y: "40px" }}
-                        whileInView={{ y: "20px", opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0 }}
-                        className={style.table}
-                      >
+            <motion.div
+              initial={{ opacity: 0, y: "40px" }}
+              whileInView={{ y: "20px", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className={style.table}
+            >
               <div className="flex justify-start items-center  mx-6">
                 <label className="text-start w-[15%] px-3">Nombre</label>
                 <label className="text-start w-[15%] px-3">Profesión</label>
