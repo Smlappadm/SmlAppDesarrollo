@@ -143,6 +143,11 @@ export default function Settings() {
       axios.put(`/corredor/email/email/?email=${mail}`, formData);
       axios.put(`/vendedor/email/email/?email=${mail}`, formData);
     }
+    if (role === "freelancer") {
+      axios.put(`/freelancer/email/email/?email=${mail}`, formData);
+      axios.put(`/corredor/email/email/?email=${mail}`, formData);
+      axios.put(`/vendedor/email/email/?email=${mail}`, formData);
+    }
 
     axios
       .put(`${selectedEmployee.rol}/${selectedEmployee._id}`, formData)
@@ -152,6 +157,7 @@ export default function Settings() {
         dispatch(getAllVendedores());
         dispatch(getAllLeader());
         dispatch(getAllClevel());
+        dispatch(getAllFreelancer());
       })
       .catch((error) => {
         console.error(error);
