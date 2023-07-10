@@ -209,7 +209,7 @@ const VendedoresDashboard = () => {
               />
             </motion.div>
           </div>
-          {openModalPago ? (
+          {!openModalPago ? (
             <>
               {vendedoresDashboard.length ? (
                 <motion.div
@@ -341,8 +341,14 @@ const VendedoresDashboard = () => {
               )}
             </>
           ) : (
-            <div>
-              <h1>sadsa</h1>
+            <div className="border-2 flex flex-col justify-center items-center w-full mt-24">
+              <button
+                className="border-2 bg-[#3a5fc5] w-12 h-12 rounded-full text-24 my-5"
+                onClick={closeModalPago}
+              >
+                x
+              </button>
+              <Pagos />
             </div>
           )}
         </div>
