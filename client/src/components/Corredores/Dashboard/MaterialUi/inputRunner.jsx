@@ -5,14 +5,13 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  findCorredoresByNameAllInfo,
   getAllCategory,
   getAllCountries,
   getAllProfesion,
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
 
-export default function InputRunner({ getLeadCorredores, email, names }) {
+export default function InputRunner({getLeadClasificacion, getLeadCorredores, email, names }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [category, setCategory] = useState("");
@@ -199,7 +198,6 @@ export default function InputRunner({ getLeadCorredores, email, names }) {
             <Checkbox
               id="propio"
               onClick={handleChangeNombrePropio}
-              value={"Si"}
               size="medium"
             />
           </div>
