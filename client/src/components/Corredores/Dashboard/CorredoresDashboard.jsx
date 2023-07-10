@@ -26,10 +26,6 @@ import { Hidden } from "@mui/material";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
-  const [profesion, setProfesion] = useState();
-  const [country, setCountry] = useState();
-  const [marca_personal, setMarca_personal] = useState();
-  const [category, setCategory] = useState();
   const [detailsLead, setDetailsLead] = useState([
     false,
     false,
@@ -44,7 +40,6 @@ const CorredoresDashboard = () => {
   ]);
 
   const { corredorLead } = useSelector((state) => state);
-  const { freelanceLead } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -60,39 +55,9 @@ const CorredoresDashboard = () => {
 
   useEffect(() => {
     if (mail !== undefined) {
-      dispatch(
-        getLeadCorredores(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
-      dispatch(getAllProfesion());
-      dispatch(getAllCountries());
-      dispatch(getAllCategory());
+      dispatch(getLeadCorredores(email, names, "", "", "", ""));
     }
   }, [dispatch, mail]);
-
-  const filtrar = () => {
-    dispatch(
-      getLeadCorredores(
-        email,
-        names,
-        profesion,
-        category,
-        country,
-        marca_personal
-      )
-    );
-  };
-
-  const filterProfesion = (event) => {
-    const { value } = event.target;
-    setProfesion(value);
-  };
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
@@ -101,28 +66,6 @@ const CorredoresDashboard = () => {
       return updatedDetailsLead;
     });
   };
-
-  const filterCountry = (event) => {
-    const { value } = event.target;
-    setCountry(value);
-  };
-
-  const filterCategory = (event) => {
-    const { value } = event.target;
-    setCategory(value);
-  };
-
-  const checkMarcaPersonal = () => {
-    if (marca_personal) {
-      setMarca_personal("SI");
-    } else {
-      setMarca_personal("");
-    }
-  };
-
-  useEffect(() => {
-    checkMarcaPersonal();
-  }, [checkMarcaPersonal]);
 
   const handleChangeInstagram = (event, index) => {
     const { name, value } = event.target;
@@ -138,19 +81,6 @@ const CorredoresDashboard = () => {
     });
   };
 
-  const handleChangeIncidencia = (event, index) => {
-    const { name, value } = event.target;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        status_op: value,
-      };
-      return updatedClient;
-    });
-  };
 
   const handleChangeEmail = (event, index) => {
     const { name, value } = event.target;
@@ -465,19 +395,7 @@ const CorredoresDashboard = () => {
         }
       }
 
-      dispatch(
-        getLeadCorredores(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
-      dispatch(getAllProfesion());
-      dispatch(getAllCountries());
-      dispatch(getAllCategory());
+      dispatch(getLeadCorredores(email, names, "", "", "", ""));
 
       SendLeadsSuccess();
     } catch (error) {

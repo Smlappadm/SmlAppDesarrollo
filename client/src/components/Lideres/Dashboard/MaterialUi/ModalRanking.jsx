@@ -43,7 +43,6 @@ export default function ChildModal() {
 
   useEffect(() => {
     setFreelancer(freelancer);
-    console.log(freelancer);
   }, [freelancer]);
   useEffect(() => {
     InfoFreelancer();
@@ -154,11 +153,19 @@ export default function ChildModal() {
                     className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
                     key={index}
                   >
-                    <div className="w-1/12">
-                      <img src={infoFreelancer.photo} alt="" />
+                    <div className="w-1/12 ">
+                      {infoFreelancer[index].photo ? (
+                        <img
+                          src={infoFreelancer[index].photo}
+                          alt="photo"
+                          className="rounded-full"
+                        />
+                      ) : null}
                     </div>
                     <div className="w-3/12">
-                      <p>{Object.keys(infoFreelancer[index])[0]}</p>
+                      <p className="text-center pl-3">
+                        {Object.keys(infoFreelancer[index])[0]}
+                      </p>
                     </div>
                     <div className="w-3/12">
                       <p>Clasificados</p>

@@ -9,6 +9,7 @@ import {
   getAllVendedores,
   getAllClevel,
   getAllLeader,
+  getAllFreelancer,
 } from "../../redux/actions";
 import UploadWidget from "../../components/UploadWidget/UploadWidget";
 import { Image } from "cloudinary-react";
@@ -36,6 +37,7 @@ export default function Settings() {
 
   const { corredores } = useSelector((state) => state);
   const { vendedores } = useSelector((state) => state);
+  const { freelancer } = useSelector((state) => state);
   const { leader } = useSelector((state) => state);
   const { clevel } = useSelector((state) => state);
 
@@ -43,7 +45,13 @@ export default function Settings() {
 
   const dispatch = useDispatch();
 
-  const allEmployees = [...corredores, ...vendedores, ...clevel, ...leader];
+  const allEmployees = [
+    ...corredores,
+    ...vendedores,
+    ...clevel,
+    ...leader,
+    ...freelancer,
+  ];
 
   const selectedEmployee = allEmployees.find(
     (employee) => employee.email === userEmail
@@ -135,6 +143,11 @@ export default function Settings() {
       axios.put(`/corredor/email/email/?email=${mail}`, formData);
       axios.put(`/vendedor/email/email/?email=${mail}`, formData);
     }
+    if (role === "freelancer") {
+      axios.put(`/freelancer/email/email/?email=${mail}`, formData);
+      axios.put(`/corredor/email/email/?email=${mail}`, formData);
+      axios.put(`/vendedor/email/email/?email=${mail}`, formData);
+    }
 
     axios
       .put(`${selectedEmployee.rol}/${selectedEmployee._id}`, formData)
@@ -144,6 +157,7 @@ export default function Settings() {
         dispatch(getAllVendedores());
         dispatch(getAllLeader());
         dispatch(getAllClevel());
+        dispatch(getAllFreelancer());
       })
       .catch((error) => {
         console.error(error);
@@ -163,7 +177,7 @@ export default function Settings() {
     setProfileImageUrl(imageUrl);
     setFormData((prevFormData) => ({
       ...prevFormData,
-      photo: imageUrl,
+      photo: imageUrl !== "" ? imageUrl : selectedEmployee?.photo,
     }));
   };
 
@@ -172,6 +186,7 @@ export default function Settings() {
     dispatch(getAllVendedores());
     dispatch(getAllLeader());
     dispatch(getAllClevel());
+    dispatch(getAllFreelancer());
   }, [dispatch]);
 
   useEffect(() => {
