@@ -26,10 +26,10 @@ import { Hidden } from "@mui/material";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
-  const [profesion, setProfesion] = useState("");
-  const [country, setCountry] = useState("");
-  const [marca_personal, setMarca_personal] = useState("");
-  const [category, setCategory] = useState("");
+  const [profesion, setProfesion] = useState();
+  const [country, setCountry] = useState();
+  const [marca_personal, setMarca_personal] = useState();
+  const [category, setCategory] = useState();
   const [detailsLead, setDetailsLead] = useState([
     false,
     false,
