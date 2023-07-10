@@ -177,7 +177,7 @@ export default function Settings() {
     setProfileImageUrl(imageUrl);
     setFormData((prevFormData) => ({
       ...prevFormData,
-      photo: imageUrl,
+      photo: imageUrl !== "" ? imageUrl : selectedEmployee?.photo,
     }));
   };
 
