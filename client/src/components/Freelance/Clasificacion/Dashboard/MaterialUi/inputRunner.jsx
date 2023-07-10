@@ -89,7 +89,7 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
         <div className="flex flex-col">
           <label>Profesion:</label>
           <Select
-            value={profesion}
+            value={profesion || ""}
             onChange={handleChangeProfesion}
             label=""
             id="runner"
@@ -122,7 +122,7 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
         <div className="flex flex-col">
           <label>Categoria:</label>
           <Select
-            value={category}
+            value={category || ""}
             onChange={handleChangeCategory}
             label=""
             id="runner"
@@ -155,7 +155,7 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
         <div className="flex flex-col">
           <label>Paises:</label>
           <Select
-            value={country}
+            value={country || ""}
             onChange={handleChangeCountries}
             label=""
             id="runner"
@@ -192,7 +192,7 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
           <div>
             <Checkbox
               onClick={handleChangeNombrePropio}
-              value={"Si"}
+              value={"SI"}
               size="medium"
             />
           </div>
