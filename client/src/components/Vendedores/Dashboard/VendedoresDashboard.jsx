@@ -25,16 +25,13 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 
 const VendedoresDashboard = () => {
-  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
-  const [openModalPagos, setOpenModalPagos] = useState(false);
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -158,14 +155,10 @@ const VendedoresDashboard = () => {
     return fechaHoraLocal;
   };
 
-  const openModalFunction = () => {
-    navigate("/ventas-pagos");
-  };
-
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-between items-center w-screen  z-0 relative">
+      <div className="flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
           <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
             Copiado!
@@ -207,7 +200,6 @@ const VendedoresDashboard = () => {
               />
             </motion.div>
           </div>
-
           {vendedoresDashboard.length ? (
             <motion.div
               initial={{ opacity: 0, y: "40px" }}
@@ -324,7 +316,6 @@ const VendedoresDashboard = () => {
                         emailAddress={body.email}
                         fullName={fullName}
                         cancelModal={cancelModal}
-                        openModalFunction={openModalFunction}
                       />
                     </div>
                   </div>
