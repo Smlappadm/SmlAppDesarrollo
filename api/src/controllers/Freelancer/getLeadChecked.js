@@ -7,7 +7,6 @@ const getLeadChecked = async (body) => {
   let leadQuery = {};
 
   if (body.level == "2") {
-    console.log("entro 2");
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -25,7 +24,6 @@ const getLeadChecked = async (body) => {
 
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "1") {
-    console.log("entro 1");
     leadQuery = {
       checked: true,
       status: "Sin contactar",
