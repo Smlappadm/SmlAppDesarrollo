@@ -43,7 +43,6 @@ export default function ChildModal() {
 
   useEffect(() => {
     setFreelancer(freelancer);
-    console.log(freelancer);
   }, [freelancer]);
   useEffect(() => {
     InfoFreelancer();
@@ -55,8 +54,6 @@ export default function ChildModal() {
   const handleClose = () => {
     setOpen(false);
   };
-
-  console.log(allFreelancers);
 
   const InfoFreelancer = async () => {
     let body;
