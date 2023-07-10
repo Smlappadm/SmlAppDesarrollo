@@ -166,51 +166,51 @@ const VendedoresDashboard = () => {
 
   return (
     <>
-      {!openModalPago ? (
-        <>
-          <Nav />
-          <div className="flex flex-col justify-between items-center w-screen  z-0">
-            {showCopiedMessage && (
-              <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
-                Copiado!
-              </p>
-            )}
-            <div className="w-full flex flex-col justify-center items-center">
-              <div className={style.divTitle}>
-                <motion.h1
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0 }}
-                  className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
-                >
-                  Dashboard
-                </motion.h1>
-                <div className="flex gap-7">
-                  <Link to={"/vendedores"}>
-                    <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                  </Link>
-                  <Link to={"/vendedores-ventas"}>
-                    <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                  </Link>
-                  <Link className="text-5xl" to={"/vendedores-history"}>
-                    <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                  </Link>
-                  {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
+      <Nav />
+      <div className="flex flex-col justify-between items-center w-screen  z-0">
+        {showCopiedMessage && (
+          <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
+            Copiado!
+          </p>
+        )}
+        <div className="w-full flex flex-col justify-center items-center">
+          <div className={style.divTitle}>
+            <motion.h1
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0 }}
+              className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
+            >
+              Dashboard
+            </motion.h1>
+            <div className="flex gap-7">
+              <Link to={"/vendedores"}>
+                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              </Link>
+              <Link to={"/vendedores-ventas"}>
+                <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              </Link>
+              <Link className="text-5xl" to={"/vendedores-history"}>
+                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              </Link>
+              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link> */}
-                </div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="flex gap-5 justify-center items-center ml-16"
-                >
-                  <InputRunner
-                    getLeadCheckedInactive5={getLeadCheckedInactive5}
-                    body={body}
-                  />
-                </motion.div>
-              </div>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="flex gap-5 justify-center items-center ml-16"
+            >
+              <InputRunner
+                getLeadCheckedInactive5={getLeadCheckedInactive5}
+                body={body}
+              />
+            </motion.div>
+          </div>
+          {openModalPago ? (
+            <>
               {vendedoresDashboard.length ? (
                 <motion.div
                   initial={{ opacity: 0, y: "40px" }}
@@ -339,71 +339,42 @@ const VendedoresDashboard = () => {
                   <h1>No hay Leads disponibles</h1>
                 </div>
               )}
+            </>
+          ) : (
+            <div>
+              <h1>sadsa</h1>
             </div>
-            {data.length > 10 && (
-              <div className="mb-5">
-                <PaginationOutlined
-                  pageStyle={pageStyle}
-                  setPageStyle={setPageStyle}
-                  cardXPage={cardXPage}
-                  data={data}
-                  pages={pages}
-                  current={currentPage}
-                />
-              </div>
-            )}
-            <ToastContainer />
+          )}
+        </div>
+        {data.length > 10 && (
+          <div className="mb-5">
+            <PaginationOutlined
+              pageStyle={pageStyle}
+              setPageStyle={setPageStyle}
+              cardXPage={cardXPage}
+              data={data}
+              pages={pages}
+              current={currentPage}
+            />
           </div>
-        </>
-      ) : (
-        <>
-          <Nav />
-          <div className="flex flex-col justify-between items-center w-screen  z-0">
-            {showCopiedMessage && (
-              <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
-                Copiado!
-              </p>
-            )}
-            <div className="w-full flex flex-col justify-center items-center">
-              <div className={style.divTitle}>
-                <motion.h1
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0 }}
-                  className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
-                >
-                  Dashboard
-                </motion.h1>
-                <div className="flex gap-7">
-                  <Link to={"/vendedores"}>
-                    <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                  </Link>
-                  <Link to={"/vendedores-ventas"}>
-                    <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                  </Link>
-                  <Link className="text-5xl" to={"/vendedores-history"}>
-                    <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                  </Link>
-                  {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-            </Link> */}
-                </div>
-              </div>
-              <div className="border-2 flex flex-col justify-center items-center w-full mt-24">
-                <button
-                  className="border-2 bg-[#3a5fc5] w-12 h-12 rounded-full text-24 my-5"
-                  onClick={closeModalPago}
-                >
-                  x
-                </button>
-                <Pagos />
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+        )}
+
+        <ToastContainer />
+      </div>
     </>
   );
 };
 
 export default VendedoresDashboard;
+
+{
+  /* <div className="border-2 flex flex-col justify-center items-center w-full mt-24">
+<button
+  className="border-2 bg-[#3a5fc5] w-12 h-12 rounded-full text-24 my-5"
+  onClick={closeModalPago}
+>
+  x
+</button>
+<Pagos />
+</div> */
+}
