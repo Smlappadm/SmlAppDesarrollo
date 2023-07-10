@@ -9,10 +9,11 @@ import axios from "axios";
 import gold from "../../../../Assets/gold.png";
 import silver from "../../../../Assets/silver.png";
 import bronze from "../../../../Assets/bronze.png";
+import { useUser } from "@clerk/clerk-react";
 
 const style = {
   position: "absolute",
-  top: "40%",
+  top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
   boxShadow: 24,
@@ -166,7 +167,7 @@ export default function ChildModal() {
                       <p>#{index + 1}</p>
                     </div>
                     <div className="w-1/12">
-                      {index < 2 ? <img src={place[index]} alt="place" /> : ""}
+                      {index < 3 ? <img src={place[index]} alt="place" /> : ""}
                     </div>
                   </div>
                 );
