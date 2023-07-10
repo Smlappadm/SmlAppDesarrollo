@@ -15,10 +15,19 @@ import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import Nav from "../../../Nav/Nav";
-import { getLeadClasificacion } from "../../../../redux/actions";
+import {
+  getAllCategory,
+  getAllCountries,
+  getAllProfesion,
+  getLeadClasificacion,
+} from "../../../../redux/actions";
 
 const ClasificacionDashboard = () => {
   const [client, setClient] = useState([]);
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [marca_personal, setMarca_personal] = useState("");
+  const [category, setCategory] = useState("");
   const [detailsLead, setDetailsLead] = useState([
     false,
     false,
@@ -32,6 +41,7 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
+  const { corredorLead } = useSelector((state) => state);
   const { freelanceLead } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -47,9 +57,39 @@ const ClasificacionDashboard = () => {
 
   useEffect(() => {
     if (mail !== undefined) {
-      dispatch(getLeadClasificacion, (email, names, "", "", "", ""));
+      dispatch(
+        getLeadClasificacion(
+          email,
+          names,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
+      dispatch(getAllProfesion());
+      dispatch(getAllCountries());
+      dispatch(getAllCategory());
     }
   }, [dispatch, mail]);
+
+  const filtrar = () => {
+    dispatch(
+      getLeadClasificacion(
+        email,
+        names,
+        profesion,
+        category,
+        country,
+        marca_personal
+      )
+    );
+  };
+
+  const filterProfesion = (event) => {
+    const { value } = event.target;
+    setProfesion(value);
+  };
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
@@ -58,6 +98,28 @@ const ClasificacionDashboard = () => {
       return updatedDetailsLead;
     });
   };
+
+  const filterCountry = (event) => {
+    const { value } = event.target;
+    setCountry(value);
+  };
+
+  const filterCategory = (event) => {
+    const { value } = event.target;
+    setCategory(value);
+  };
+
+  const checkMarcaPersonal = () => {
+    if (marca_personal) {
+      setMarca_personal("SI");
+    } else {
+      setMarca_personal("");
+    }
+  };
+
+  useEffect(() => {
+    checkMarcaPersonal();
+  }, [checkMarcaPersonal]);
 
   const handleChangeInstagram = (event, index) => {
     const { name, value } = event.target;
@@ -68,6 +130,20 @@ const ClasificacionDashboard = () => {
         ...updatedClient[index],
         [name]: value,
         instagram: value,
+      };
+      return updatedClient;
+    });
+  };
+
+  const handleChangeIncidencia = (event, index) => {
+    const { name, value } = event.target;
+
+    setClient((prevState) => {
+      const updatedClient = [...prevState];
+      updatedClient[index] = {
+        ...updatedClient[index],
+        [name]: value,
+        status_op: value,
       };
       return updatedClient;
     });
@@ -388,7 +464,19 @@ const ClasificacionDashboard = () => {
         }
       }
 
-      dispatch(getLeadClasificacion, (email, names, "", "", "", ""));
+      dispatch(
+        getLeadClasificacion(
+          email,
+          names,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
+      dispatch(getAllProfesion());
+      dispatch(getAllCountries());
+      dispatch(getAllCategory());
 
       SendLeadsSuccess();
     } catch (error) {
@@ -400,6 +488,7 @@ const ClasificacionDashboard = () => {
   const instagramRegex =
     /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
 
+  // console.log(client);
   return (
     <>
       <Nav />
@@ -474,13 +563,13 @@ const ClasificacionDashboard = () => {
                             detailsLead[index] === false
                               ? { x: -200 }
                               : { x: 0 }
-                          }
+                          } // Ancho inicial en 0
                           animate={
                             detailsLead[index] === false
                               ? { x: 0 }
                               : { x: -200 }
-                          }
-                          transition={{ duration: 0.5 }}
+                          } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
+                          transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
                           style={
                             detailsLead[index] === true && { display: "none" }
                           }
