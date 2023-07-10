@@ -25,6 +25,7 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
+import Pagos from "../../../componentsClientes/Pagos/Pagos";
 
 const VendedoresDashboard = () => {
   const [data, setData] = useState([]);
@@ -156,15 +157,12 @@ const VendedoresDashboard = () => {
     return fechaHoraLocal;
   };
 
-
   const openModalPagoFunction = () => {
-    setOpenModalPago(true)
-  }
+    setOpenModalPago(true);
+  };
   const closeModalPago = () => {
-    setOpenModalPago(false)
-  }
-
-
+    setOpenModalPago(false);
+  };
 
   return (
     <>
@@ -390,13 +388,16 @@ const VendedoresDashboard = () => {
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
             </Link> */}
                 </div>
-
-
               </div>
-                    <div className="mt-24">
-                      <button onClick={closeModalPago}>X</button>
-                      <h1>saaddsdasdas</h1>
-                      </div>
+              <div className="border-2 flex flex-col justify-center items-center w-full mt-24">
+                <button
+                  className="border-2 bg-[#3a5fc5] w-12 h-12 rounded-full text-24 my-5"
+                  onClick={closeModalPago}
+                >
+                  x
+                </button>
+                <Pagos />
+              </div>
             </div>
           </div>
         </>
