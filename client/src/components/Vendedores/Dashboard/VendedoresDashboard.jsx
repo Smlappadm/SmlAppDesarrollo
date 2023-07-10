@@ -25,8 +25,10 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 const VendedoresDashboard = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -160,13 +162,13 @@ const VendedoresDashboard = () => {
 
   const openModalFunction = () => {
     console.log("eeeeeeeeeeeeeeeeeeeeeeee")
-    setOpenModalPagos()
+    navigate('/venta-pagos');
   }
 
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-between items-center w-screen  z-0">
+      <div className="flex flex-col justify-between items-center w-screen  z-0 relative">
         {showCopiedMessage && (
           <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
             Copiado!
@@ -208,11 +210,6 @@ const VendedoresDashboard = () => {
               />
             </motion.div>
           </div>
-          {openModalPagos && (
-            <div>
-              <h1>sddddddddddddddddddddkldfljajnlgnj</h1>
-            </div>
-          )}
           {vendedoresDashboard.length ? (
                         <motion.div
                         initial={{ opacity: 0, y: "40px" }}
