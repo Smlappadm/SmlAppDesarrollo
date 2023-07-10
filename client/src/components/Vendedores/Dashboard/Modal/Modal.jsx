@@ -176,11 +176,11 @@ function ChildModal({
         // Si hay un error, muestra un mensaje de error
         SendErrorUpdateAlert();
       });
+      setOpenChild(false);
+      setOpen(false);
       if (statusObj.status === "Contratado") {
       openModalPagoFunction();
       }
-      setOpenChild(false);
-      setOpen(false);
     statusObj.status = "";
   };
 
