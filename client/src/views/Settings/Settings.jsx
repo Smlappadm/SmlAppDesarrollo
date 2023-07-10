@@ -45,7 +45,13 @@ export default function Settings() {
 
   const dispatch = useDispatch();
 
-  const allEmployees = [...corredores, ...vendedores, ...clevel, ...leader];
+  const allEmployees = [
+    ...corredores,
+    ...vendedores,
+    ...clevel,
+    ...leader,
+    ...freelancer,
+  ];
 
   const selectedEmployee = allEmployees.find(
     (employee) => employee.email === userEmail
