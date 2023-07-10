@@ -6,19 +6,17 @@
 //       freelancer: false
 //     }
 
-
 //   );
 //   return leadResult;
 // };
 
 // module.exports = limpiezaBaseFunction;
 
-
 const Lead = require("../../models/Lead");
 
 const limpiezaBaseFunction = async () => {
   const leadResult = await Lead.updateMany(
-    { corredor: "nikitoocja@gmail.com" },
+    { corredor: "akosjev@gmail.com" },
     {
       $set: {
         status: "Sin contactar",
@@ -34,28 +32,28 @@ const limpiezaBaseFunction = async () => {
         deleted: false,
       },
     }
-//     // {
-//     //   $set: {
-//     //     corredor_name: "Florencia Carballo",
-//     //   },
-//     // }
-//     // { vendedor: "undefined" },
-//     // {
-//     //   $set: {
-//     //     // level: "",
-//     //     status: "Sin contactar",
-//     //     status_op: "",
-//     //     llamados: 0,
-//     //     vendedor: "",
-//     //     vendedor_name: "",
-//     //     // corredor: "",
-//     //     // corredor_name: "",
-//     //     checked: true,
-//     //     view: true,
-//     //     deleted: false,
-//     //     // instagram: ""
-//     //   },
-//     // }
+    //     // {
+    //     //   $set: {
+    //     //     corredor_name: "Florencia Carballo",
+    //     //   },
+    //     // }
+    //     // { vendedor: "undefined" },
+    //     // {
+    //     //   $set: {
+    //     //     // level: "",
+    //     //     status: "Sin contactar",
+    //     //     status_op: "",
+    //     //     llamados: 0,
+    //     //     vendedor: "",
+    //     //     vendedor_name: "",
+    //     //     // corredor: "",
+    //     //     // corredor_name: "",
+    //     //     checked: true,
+    //     //     view: true,
+    //     //     deleted: false,
+    //     //     // instagram: ""
+    //     //   },
+    //     // }
 
     // { corredor: 'email' },
     // {
@@ -75,23 +73,23 @@ const limpiezaBaseFunction = async () => {
     //   },
     // }
 
-//     //     { level: "" },
-//     //     {
-//     //       $set: {
-//     //         level: "",
-//     //         status: "Sin contactar",
-//     //         status_op: "",
-//     //         llamados: 0,
-//     //         vendedor: "",
-//     //         vendedor_name: "",
-//     //         corredor: "",
-//     //         corredor_name: "",
-//     //         checked: false,
-//     //         view: false,
-//     //         deleted: false,
-//     //         instagram: ""
-//     //       },
-//     //     }
+    //     //     { level: "" },
+    //     //     {
+    //     //       $set: {
+    //     //         level: "",
+    //     //         status: "Sin contactar",
+    //     //         status_op: "",
+    //     //         llamados: 0,
+    //     //         vendedor: "",
+    //     //         vendedor_name: "",
+    //     //         corredor: "",
+    //     //         corredor_name: "",
+    //     //         checked: false,
+    //     //         view: false,
+    //     //         deleted: false,
+    //     //         instagram: ""
+    //     //       },
+    //     //     }
   );
   return leadResult;
 };
