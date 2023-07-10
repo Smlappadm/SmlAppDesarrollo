@@ -3,7 +3,11 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AddLeads, getFreelancers } from "../../../../redux/actions";
+import {
+  AddLeads,
+  getAllFreelancer,
+  getFreelancers,
+} from "../../../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import gold from "../../../../Assets/gold.png";
@@ -26,23 +30,24 @@ const style = {
 };
 
 export default function ChildModal() {
-  const { allFreelancers } = useSelector((state) => state);
-  const [freelancer, setFreelancer] = useState("");
+  const { freelancer } = useSelector((state) => state);
+  const [allFreelancer, setFreelancer] = useState("");
   const [infoFreelancer, setInfoFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const place = [gold, silver, bronze];
 
   useEffect(() => {
-    dispatch(getFreelancers());
+    dispatch(getAllFreelancer());
   }, [dispatch]);
 
   useEffect(() => {
-    setFreelancer(allFreelancers);
-  }, [allFreelancers]);
+    setFreelancer(freelancer);
+    console.log(freelancer);
+  }, [freelancer]);
   useEffect(() => {
     InfoFreelancer();
-  }, [freelancer]);
+  }, [allFreelancer]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,11 +59,11 @@ export default function ChildModal() {
   const InfoFreelancer = async () => {
     let body;
     const infoPromises =
-      freelancer &&
-      freelancer.map(async (name) => {
-        const response = await axios.get(`/lead/freelancer?name=${name}`);
+      allFreelancer &&
+      allFreelancer.map(async (free) => {
+        const response = await axios.get(`/lead/freelancer?name=${free.name}`);
         const data = response.data;
-        body = { [name]: data };
+        body = { [free.name]: data, photo: free.photo };
         return body;
       });
     const info = await Promise.all(infoPromises);
@@ -149,6 +154,9 @@ export default function ChildModal() {
                     className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
                     key={index}
                   >
+                    <div className="w-1/12">
+                      <img src={infoFreelancer.photo} alt="" />
+                    </div>
                     <div className="w-3/12">
                       <p>{Object.keys(infoFreelancer[index])[0]}</p>
                     </div>

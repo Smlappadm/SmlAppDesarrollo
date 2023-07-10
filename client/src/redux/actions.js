@@ -404,8 +404,8 @@ export const getCorredor = () => {
 export const getFreelancers = () => {
   return async (dispatch) => {
     const response = await axios.get("/lead/allfreelancer");
-    const allCorredores = response.data;
-    dispatch({ type: GET_FREELANCER, payload: allCorredores });
+    const allFreelancer = response.data;
+    dispatch({ type: GET_FREELANCER, payload: allFreelancer });
   };
 };
 
