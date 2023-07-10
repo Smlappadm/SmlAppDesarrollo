@@ -391,19 +391,9 @@ const VendedoresDashboard = () => {
             </Link> */}
                 </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="flex gap-5 justify-center items-center ml-16"
-                  >
-                  <InputRunner
-                    getLeadCheckedInactive5={getLeadCheckedInactive5}
-                    body={body}
-                    />
-                </motion.div>
+
               </div>
-                    <div>
+                    <div className="mt-24">
                       <button onClick={closeModalPago}>X</button>
                       <h1>saaddsdasdas</h1>
                       </div>
