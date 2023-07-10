@@ -21,7 +21,7 @@ const stripePublicKey =
   "pk_test_51NJhsbGpn5uZGCfpbyEu252jvDVNlqDiljFxifEkG5rAba4tu11lt9wl3m3UP1xFL3tnUGtPxT0KLMjNSnl6SO7o00xs2avzC5";
 const stripePromise = loadStripe(stripePublicKey);
 
-export const Pagos = ({ tamañoPantalla }) => {
+const Pagos = ({ tamañoPantalla }) => {
   const dispatch = useDispatch();
   const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
@@ -204,3 +204,6 @@ export const Pagos = ({ tamañoPantalla }) => {
     </div>
   );
 };
+
+
+export default Pagos;
