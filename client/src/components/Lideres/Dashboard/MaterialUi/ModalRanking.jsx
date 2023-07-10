@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddLeads, getFreelancers } from "../../../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import gold from "../../../../Assets/gold.png";
+import silver from "../../../../Assets/silver.png";
+import bronze from "../../../../Assets/bronze.png";
 
 const style = {
   position: "absolute",
@@ -27,6 +30,7 @@ export default function ChildModal() {
   const [infoFreelancer, setInfoFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  const place = [gold, silver, bronze];
 
   useEffect(() => {
     dispatch(getFreelancers());
@@ -144,9 +148,9 @@ export default function ChildModal() {
                     className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
                     key={index}
                   >
-                    <p className="w-3/12">
-                      {Object.keys(infoFreelancer[index])[0]}
-                    </p>
+                    <div className="w-3/12">
+                      <p>{Object.keys(infoFreelancer[index])[0]}</p>
+                    </div>
                     <div className="w-3/12">
                       <p>Clasificados</p>
                       <p>
@@ -157,11 +161,13 @@ export default function ChildModal() {
                       <p>Ventas</p>
                       <p>{LeadsVendidos}</p>
                     </div>
-                    <div className="w-3/12">
+                    <div className="w-1/12">
                       <p>Rank</p>
                       <p>#{index + 1}</p>
                     </div>
-                    <p className="w-2/12">Loguito</p>
+                    <div className="w-1/12">
+                      {index < 2 ? <img src={place[index]} alt="place" /> : ""}
+                    </div>
                   </div>
                 );
               })}
