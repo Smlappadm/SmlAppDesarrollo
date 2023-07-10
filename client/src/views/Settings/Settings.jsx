@@ -37,6 +37,7 @@ export default function Settings() {
 
   const { corredores } = useSelector((state) => state);
   const { vendedores } = useSelector((state) => state);
+  const { freelancer } = useSelector((state) => state);
   const { leader } = useSelector((state) => state);
   const { clevel } = useSelector((state) => state);
 
