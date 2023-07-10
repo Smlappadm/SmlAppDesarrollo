@@ -148,9 +148,9 @@ export default function ChildModal() {
                     className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
                     key={index}
                   >
-                    <p className="w-3/12">
-                      {Object.keys(infoFreelancer[index])[0]}
-                    </p>
+                    <div className="w-3/12">
+                      <p>{Object.keys(infoFreelancer[index])[0]}</p>
+                    </div>
                     <div className="w-3/12">
                       <p>Clasificados</p>
                       <p>
@@ -161,11 +161,13 @@ export default function ChildModal() {
                       <p>Ventas</p>
                       <p>{LeadsVendidos}</p>
                     </div>
-                    <div className="w-3/12">
+                    <div className="w-1/12">
                       <p>Rank</p>
                       <p>#{index + 1}</p>
                     </div>
-                    <p className="w-2/12">Loguito</p>
+                    <div className="w-1/12">
+                      {index < 2 ? <img src={place[index]} alt="place" /> : ""}
+                    </div>
                   </div>
                 );
               })}
