@@ -182,7 +182,14 @@ function ChildModal({
         aria-labelledby="child-modal-title"
         aria-describedby="child-modal-description"
       >
-        <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b" }}>
+        <Box
+          sx={{
+            ...style,
+            width: "27%",
+            height: "fit-content",
+            backgroundColor: "#39394b",
+          }}
+        >
           <div className="flex flex-col items-center justify-center gap-5 p-2">
             <h2 id="child-modal-title">Creacion de empleado</h2>
             <div className="flex flex-col gap-2 justify-start items-start">
@@ -273,7 +280,7 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
           sx={{
             ...style,
             width: "30%",
-            height: "50%",
+            height: "fit-content",
             bgcolor: "#39394b",
           }}
         >

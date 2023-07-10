@@ -112,7 +112,7 @@ function Detail({ cardEmail }) {
                   <h2 id="child-modal-description">
                     Asignado Leads a Freelancer{" "}
                   </h2>
-                  <div class="lds-roller">
+                  <div className="lds-roller">
                     <div></div>
                     <div></div>
                     <div></div>
