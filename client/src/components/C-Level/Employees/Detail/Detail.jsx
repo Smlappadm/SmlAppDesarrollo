@@ -25,9 +25,17 @@ function Detail({ cardEmail }) {
   const asignar = async () => {
     setLoading(true);
 
+    const startTime = performance.now(); 
+
     const response = await axios.get(
       `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}`
     );
+
+    const endTime = performance.now(); 
+    const duration = endTime - startTime;
+
+    console.log(`La asignacion de ${leadAsigned} leads tardó ${(duration / 1000).toFixed(2)} segundos`);
+
 
     setLoading(false);
 
