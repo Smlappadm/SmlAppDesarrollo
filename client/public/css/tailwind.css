@@ -688,10 +688,6 @@ video {
   z-index: 0;
 }
 
-.z-50 {
-  z-index: 50;
-}
-
 .\!-m-px {
   margin: -1px !important;
 }
@@ -1097,10 +1093,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-56 {
-  height: 14rem;
 }
 
 .\!w-px {

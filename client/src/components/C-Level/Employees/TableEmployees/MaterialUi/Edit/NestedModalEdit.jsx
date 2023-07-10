@@ -53,7 +53,7 @@ function ChildModalDelete({
   };
   const handleCreate = async () => {
     try {
-      if (itemRol === "clevel" || itemRol === "leader") {
+      if (itemRol === "clevel" || itemRol === "leader" || itemRol === "freelancer") {
         await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
           deleted: true,
         });
@@ -186,6 +186,34 @@ function ChildModal({
       }
       if (itemRol === "leader") {
         await axios.put(`/leader/email/email?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
+
+        await axios.put(`/corredor/email/email?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
+
+        await axios.put(`/vendedor/email/email?email=${inputEmail}`, {
+          name: inputName,
+          email: inputEmail,
+          contactNumber: inputPhone,
+          birthdate: inputBirthdate,
+          description: inputDescription,
+          country: inputCountry,
+        });
+      }
+      if (itemRol === "freelancer") {
+        await axios.put(`/freelancer/email/email?email=${inputEmail}`, {
           name: inputName,
           email: inputEmail,
           contactNumber: inputPhone,

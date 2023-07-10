@@ -3,18 +3,12 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  AddLeads,
-  getAllFreelancer,
-  getFreelancers,
-} from "../../../../redux/actions";
+import { getAllFreelancer } from "../../../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import gold from "../../../../Assets/gold.png";
 import silver from "../../../../Assets/silver.png";
 import bronze from "../../../../Assets/bronze.png";
-import { useUser } from "@clerk/clerk-react";
-
 const style = {
   position: "absolute",
   top: "50%",

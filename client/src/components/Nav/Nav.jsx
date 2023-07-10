@@ -124,7 +124,7 @@ function Nav() {
                     </li>
                   </div>
 
-                  <div>
+                  {/* <div>
                     <h2>Freelance</h2>
                     <li className="flex gap-2 items-center text-[18px]">
                       <span className=" text-lg">
@@ -179,7 +179,7 @@ function Nav() {
                         </Link>
                       </span>
                     </li>
-                  </div>
+                  </div> */}
                 </div>
               </ul>
             ) : roleReady === "vendedor" ? (
