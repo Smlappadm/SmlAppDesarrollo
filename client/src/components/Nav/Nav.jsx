@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 import { useClerk } from "@clerk/clerk-react";
+import logo from "../../Assets/SMLlogo.png";
 import {
   IoStatsChart,
   IoSettingsSharp,
@@ -23,12 +24,13 @@ function Nav() {
 
   return (
     <div className="bg-[#39394B] flex flex-col justify-between items-center h-screen min-w-[190px]">
-      <div className="flex flex-col items-center justify-center mt-16">
-        <div className="flex flex-col items-center justify-center m-1">
+      <div className="flex flex-col items-center justify-center mt-4">
+        <div className="flex flex-col items-center justify-center">
           <Link to={"/protected"}>
             <img
               className="opacity-80 w-44"
-              src="https://i.postimg.cc/Kvj4Yr5X/White-Logo-Social-Media-Lab.webp"
+              src={logo}
+              // src="https://i.postimg.cc/Kvj4Yr5X/White-Logo-Social-Media-Lab.webp"
             />
           </Link>
         </div>
@@ -36,7 +38,7 @@ function Nav() {
         {!isEmployee || !roleReady ? (
           <div className={styles.loader}></div>
         ) : (
-          <div className=" flex  w-fit mt-12 ">
+          <div className=" flex  w-fit mt-4 ">
             {roleReady === "clevel" || roleReady === "leader" ? (
               <ul className="flex flex-col gap-2">
                 <div className="flex flex-col gap-20">
