@@ -51,6 +51,10 @@ function ChildModal({
   SendEmailLeadAlertError,
   SendEmailLeadAlertErrorCuotas,
   openModalPagoFunction,
+  editEmail,
+  editInstagram,
+  editTelephone,
+  editEmailApp,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -176,11 +180,11 @@ function ChildModal({
         // Si hay un error, muestra un mensaje de error
         SendErrorUpdateAlert();
       });
-      setOpenChild(false);
-      setOpen(false);
-      if (statusObj.status === "Contratado") {
+    setOpenChild(false);
+    setOpen(false);
+    if (statusObj.status === "Contratado") {
       openModalPagoFunction();
-      }
+    }
     statusObj.status = "";
   };
 
@@ -192,20 +196,46 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        <button
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          onClick={handleCancel}
-        >
-          Close x
-        </button>
-        <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          onClick={handleOpen}
-        >
-          Save Changes
-        </button>
+        {editEmail || editInstagram || editTelephone || editEmailApp ? (
+          <>
+          <button
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
+            onClick={handleCancel}
+            disabled= "true"
+          >
+            Close x
+          </button>
+
+          <button
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
+            onClick={handleOpen}
+            disabled= "true"
+          >
+            Save Changes
+          </button>
+        </>
+        ) : (
+
+                  <>
+                  <button
+                    type="button"
+                    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    onClick={handleCancel}
+                  >
+                    Close x
+                  </button>
+      
+                  <button
+                    type="button"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    onClick={handleOpen}
+                  >
+                    Save Changes
+                  </button>
+                </>
+        )}
       </div>
       <Modal
         open={openChild}
@@ -1383,7 +1413,7 @@ export default function NestedModal({
                   placeholder=""
                   // value="USD"
                 >
-                  {statusObj.pagos.monto && 
+                  {statusObj.pagos.monto &&
                     statusObj.pagos.cuotas &&
                     `${statusObj.pagos.cuotas} pagos de €${(
                       statusObj.pagos.monto / statusObj.pagos.cuotas
@@ -1487,6 +1517,10 @@ export default function NestedModal({
               setStatusObj={setStatusObj}
               updatedEmailApp={updatedEmailApp}
               openModalPagoFunction={openModalPagoFunction}
+              editEmail={editEmail}
+              editInstagram={editInstagram}
+              editTelephone={editTelephone}
+              editEmailApp={editEmailApp}
             />
           </div>
         </Box>
