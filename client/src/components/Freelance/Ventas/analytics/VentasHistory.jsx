@@ -301,9 +301,9 @@ const VentasHistory = () => {
       <Nav />
 
       <div className="flex flex-col justify-between items-center w-screen  z-0">
-        {showCopiedMessage && (
-          <p className="mt-2 p-3 bg-[#b9b9b978] text-white rounded-md absolute">
-            Copiado al portapapeles
+      {showCopiedMessage && (
+          <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
+            Copiado!
           </p>
         )}
 
