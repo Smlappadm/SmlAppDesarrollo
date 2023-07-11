@@ -56,16 +56,16 @@ const getClientByEmailHandler = async (req, res) => {
 const paymentClienteHandler = async (req, res) => {
   const { id, name, monto, cuotas, cuotasRestantes, valorCuota } = req.body;
   try {
-    const pago = await createPayment({ id, name, monto, cuotas, cuotasRestantes, valorCuota });
+    const pago = await createPayment({ id, name, monto, cuotas, cuotasRestantes, valorCuota});
     res.status(200).json(pago);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
 const paymentClienteVendedoresHandler = async (req, res) => {
-  const { emailApp } = req.query;
+  const { id, name, monto, cuotas, cuotasRestantes, valorCuota, link} = req.body;
   try {
-    const pago = await createPaymentVendedor(emailApp);
+    const pago = await createPaymentVendedor({ id, name, monto, cuotas, cuotasRestantes, valorCuota, link});
     res.status(200).json(pago);
   } catch (error) {
     res.status(404).json({ message: error.message });
