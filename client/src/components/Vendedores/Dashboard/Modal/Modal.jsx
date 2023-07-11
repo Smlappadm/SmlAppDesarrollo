@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import styles from "./Modal.module.css";
+import styles from "./Modal.module.css"
 import { CiEdit } from "react-icons/ci";
 import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
@@ -56,7 +56,7 @@ function ChildModal({
   editInstagram,
   editTelephone,
   editEmailApp,
-  saveEmailAppFunction,
+  saveEmailAppFunction
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -78,10 +78,10 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
-      if (updatedEmailApp === "-" || updatedEmailApp === "") {
-        saveEmailAppFunction(item.email);
-      } else {
-        saveEmailAppFunction(updatedEmailApp);
+      if(updatedEmailApp === "-" || updatedEmailApp === ""){
+        saveEmailAppFunction(item.email)
+      }else{
+        saveEmailAppFunction(updatedEmailApp)
       }
     } else {
       statusObj.pagos = {};
@@ -205,42 +205,43 @@ function ChildModal({
       <div className="flex justify-around items-center relative">
         {editEmail || editInstagram || editTelephone || editEmailApp ? (
           <>
-            <button
-              type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
-              onClick={handleCancel}
-              disabled={true}
-            >
-              Close x
-            </button>
+          <button
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
+            onClick={handleCancel}
+            disabled={true}
+          >
+            Close x
+          </button>
 
-            <button
-              type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
-              onClick={handleOpen}
-              disabled={true}
-            >
-              Save Changes
-            </button>
-          </>
+          <button
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
+            onClick={handleOpen}
+            disabled={true}
+          >
+            Save Changes
+          </button>
+        </>
         ) : (
-          <>
-            <button
-              type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              onClick={handleCancel}
-            >
-              Close x
-            </button>
 
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              onClick={handleOpen}
-            >
-              Save Changes
-            </button>
-          </>
+                  <>
+                  <button
+                    type="button"
+                    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    onClick={handleCancel}
+                  >
+                    Close x
+                  </button>
+      
+                  <button
+                    type="button"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    onClick={handleOpen}
+                  >
+                    Save Changes
+                  </button>
+                </>
         )}
       </div>
       <Modal
@@ -585,7 +586,7 @@ export default function NestedModal({
   fullName,
   cancelModal,
   openModalPagoFunction,
-  saveEmailAppFunction,
+  saveEmailAppFunction
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
@@ -594,7 +595,6 @@ export default function NestedModal({
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
   const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
-  const [showCopiedMessage, setShowCopiedMessage] = useState(false);
 
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
@@ -658,17 +658,6 @@ export default function NestedModal({
     setOpen(false);
     statusObj.status = "";
   };
-
-  const handleCopyClick = (copyToProps) => {
-    navigator.clipboard
-      .writeText(copyToProps)
-      .then(() => {
-        setShowCopiedMessage(true);
-        setTimeout(() => setShowCopiedMessage(false), 2000);
-      })
-      .catch((err) => alert(`Error al copiar: ${err}`));
-  };
-
 
   const handleSelectChange = (event) => {
     setOpenTimeHour(false);
@@ -899,11 +888,6 @@ export default function NestedModal({
 
   return (
     <div className="">
-            {showCopiedMessage && (
-          <p className="absolute w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-32 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
-            Copiado!
-          </p>
-        )}
       <div className="flex gap-4">
         <CiEdit
           className="bg-[#6254ff] text-1 text-white w-10 h-8 rounded-md cursor-pointer "
@@ -1032,16 +1016,6 @@ export default function NestedModal({
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
-                  <p
-                    onClick={() =>
-                      handleCopyClick(
-                        `http://localhost:5173/pagos-sml?emailApp=${item.emailApp}`
-                      )
-                    }
-                    className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                  >
-                    Link de Pago
-                  </p>
                 </div>
 
                 <div className="">
