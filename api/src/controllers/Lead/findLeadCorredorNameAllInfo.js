@@ -41,7 +41,7 @@ const findLeadCorredorNameAllInfo = async (
       59,
       59
     );
-    query.updatedAt = {
+    query.updateCorredor = {
       $gte: startDate,
       $lt: endDate,
     };
