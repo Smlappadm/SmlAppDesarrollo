@@ -33,7 +33,7 @@ if (!updatedData.dataLead.llamados) {
     const emailFilter = updatedData.dataLead.emailApp
       ? updatedData.dataLead.emailApp
       : updatedData.dataVendedor.email;
-    const leadEmailAppUpdated = await Lead.updateOne(
+    const leadEmailAppUpdated = await Lead.updateMany(
       {
         emailApp: {
           $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email],
