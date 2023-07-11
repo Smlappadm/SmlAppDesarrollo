@@ -4,21 +4,21 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCountries, getAllProfesion } from "../../../../../redux/actions";
+import { getAllCountriesFreelance, getAllProfesionFreelance } from "../../../../../redux/actions";
 
-export default function InputName({ body, getLeadCheckedFreelance }) {
+export default function InputName({ body, getLeadCheckedFreelance, emailAddress}) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
 
-  const { allProfesion } = useSelector((state) => state);
-  const { allCountries } = useSelector((state) => state);
+  const { allProfesionFreelance } = useSelector((state) => state);
+  const { allCountriesFreelance } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(getAllProfesion());
+    dispatch(getAllCountriesFreelance(emailAddress));
 
-    dispatch(getAllCountries());
+    dispatch(getAllProfesionFreelance(emailAddress));
   }, [dispatch]);
 
   const handleChangeProfesion = (event) => {
@@ -99,7 +99,7 @@ export default function InputName({ body, getLeadCheckedFreelance }) {
             }}
           >
             <MenuItem value="">Profesión</MenuItem>
-            {allProfesion.map((profesion) => (
+            {allProfesionFreelance.map((profesion) => (
               <MenuItem key={profesion} value={profesion}>
                 {profesion}
               </MenuItem>
@@ -133,7 +133,7 @@ export default function InputName({ body, getLeadCheckedFreelance }) {
             }}
           >
             <MenuItem value=""></MenuItem>
-            {allCountries.map((country) => (
+            {allCountriesFreelance.map((country) => (
               <MenuItem key={country} value={country}>
                 {country}
               </MenuItem>
