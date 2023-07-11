@@ -21,6 +21,7 @@ import {
   getAllProfesion,
   getLeadClasificacion,
 } from "../../../../redux/actions";
+import AddLead from "../Dashboard/MaterialUi/ModalAddLead.jsx";
 
 const ClasificacionDashboard = () => {
   const [client, setClient] = useState([]);
@@ -520,7 +521,7 @@ const ClasificacionDashboard = () => {
                 />
               </div>
             </div>
-
+            <AddLead />
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
               <IconLabelButtons />
             </div>
