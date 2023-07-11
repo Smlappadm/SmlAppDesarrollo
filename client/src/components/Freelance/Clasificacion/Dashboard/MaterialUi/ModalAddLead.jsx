@@ -125,26 +125,46 @@ export default function ChildModal() {
               Añadir clientes!
             </h2>
 
-            <div className="flex flex-col bg-black">
-              <div className="flex bg-transparent">
+            <div className="flex flex-col  gap-5">
+              <div className="flex bg-black">
                 <label>A</label>
-                <input type="text" placeholder="algo" />
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
               </div>
               <div className="flex bg-transparent">
                 <label>A</label>
-                <input type="text" placeholder="algo" />
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
               </div>
               <div className="flex bg-transparent">
                 <label>A</label>
-                <input type="text" placeholder="algo" />
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
               </div>
               <div className="flex bg-transparent">
                 <label>A</label>
-                <input type="text" placeholder="algo" />
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
               </div>
               <div className="flex bg-transparent">
                 <label>A</label>
-                <input type="text" placeholder="algo" />
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
               </div>
             </div>
           </div>
