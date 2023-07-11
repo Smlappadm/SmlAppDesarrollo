@@ -13,7 +13,7 @@ const {
 } = require("../Handlers/ClientesHandlers");
 const ClientesRouter = Router();
 
-console.log("sss")
+
 ClientesRouter.post("/new", newClientHandler);
 ClientesRouter.get("/username", loginClientHandler);
 ClientesRouter.get("/user", getClientByEmailHandler);
