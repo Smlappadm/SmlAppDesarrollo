@@ -1383,7 +1383,7 @@ export default function NestedModal({
                   placeholder=""
                   // value="USD"
                 >
-                  {statusObj.pagos.monto &&
+                  {statusObj.pagos.monto && 
                     statusObj.pagos.cuotas &&
                     `${statusObj.pagos.cuotas} pagos de €${(
                       statusObj.pagos.monto / statusObj.pagos.cuotas
