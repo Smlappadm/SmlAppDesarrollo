@@ -150,7 +150,7 @@ export default function ChildModal() {
                   className=" bg-transparent"
                 />
               </div>
-              <div className="flex bg-black">
+              <div className="flex bg-black h-10  items-center  px-3 gap-4">
                 <label>A</label>
                 <input
                   type="text"
