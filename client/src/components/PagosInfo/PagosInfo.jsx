@@ -120,7 +120,7 @@ console.log(link)
 
       {clienteEmpresa && clienteEmpresa.name ? (
         <div className="bg-[#1a2e44] flex gap-5  flex-col justify-center items-center p-5 rounded-lg">
-          <div className="w-full flex mb-4 items-center justify-center pt-4">
+          <div className="w-full flex mb-1 items-center justify-center pt-2">
             <h2 className="font-bold text-center text-white">PAGOS</h2>
             {/* <Link
               to={"/clientes-home"}
