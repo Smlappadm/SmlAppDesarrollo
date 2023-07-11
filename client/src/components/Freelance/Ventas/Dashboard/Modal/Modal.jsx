@@ -54,6 +54,7 @@ function ChildModal({
   editInstagram,
   editTelephone,
   editEmailApp,
+  editContacto,
   saveEmailAppFunction,
   openModalPagoFunction,
 }) {
@@ -202,7 +203,7 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        {editEmail || editInstagram || editTelephone || editEmailApp ? (
+        {editEmail || editInstagram || editTelephone || editEmailApp || editContacto ? (
           <>
           <button
             type="button"
@@ -616,6 +617,10 @@ export default function NestedModal({
   const [inputEmailApp, setInputEmailApp] = React.useState(item.emailApp);
   const [updatedEmailApp, setUpdatedEmailApp] = React.useState(item.emailApp);
 
+  const [editContacto, setEditContacto] = React.useState(false);
+  const [inputContacto, setInputContacto] = React.useState(item.contacto);
+  const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
+
   const [pagoCalculo, setPagoCalculo] = React.useState({
     precio: 0,
   });
@@ -803,6 +808,7 @@ export default function NestedModal({
     setEditEmailApp(false);
     setEditInstagram(false);
     setEditTelephone(false);
+      setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
     setInputEmail(event.target.value);
@@ -821,6 +827,7 @@ export default function NestedModal({
     setEditEmailApp(false);
     setEditEmail(false);
     setEditTelephone(false);
+      setEditContacto(false);
   };
   const handleChangeInstagram = (event) => {
     setInputInstagram(event.target.value);
@@ -839,6 +846,7 @@ export default function NestedModal({
     setEditEmailApp(false);
     setEditEmail(false);
     setEditInstagram(false);
+      setEditContacto(false);
   };
   const handleChangeTelephone = (event) => {
     setInputTelephone(event.target.value);
@@ -856,6 +864,7 @@ export default function NestedModal({
     setEditTelephone(false);
     setEditEmail(false);
     setEditInstagram(false);
+      setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
     setInputEmailApp(event.target.value);
@@ -866,6 +875,29 @@ export default function NestedModal({
     setUpdatedEmailApp(response.data.emailApp);
     setEditEmailApp(false);
     SendEmailLeadAlert("Email App");
+  };
+
+    //EDITAR DATOS Contacto
+  const handleEditContacto = () => {
+    setEditContacto(!editContacto);
+    setEditEmailApp(false);
+    setEditTelephone(false);
+    setEditEmail(false);
+    setEditInstagram(false);
+  };
+  const handleChangeContacto = (event) => {
+    setInputContacto(event.target.value);
+  };
+  const handleConfirmEditContacto = async (id) => {
+    try {
+      const body = { contacto: inputContacto };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedContacto(response.data.contacto);
+      SendEmailLeadAlert("Contacto");
+    } catch (error) {
+      SendEmailLeadAlertError("Contacto");
+    }
+    setEditContacto(false);
   };
 
   return (
@@ -992,13 +1024,21 @@ export default function NestedModal({
                     }
                   />
                   <AiOutlineUserAdd
-                    onClick={handleEditEmailApp}
+                    onClick={handleEditContacto}
                     className={
-                      editEmailApp
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      editContacto
+                      ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                      : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
+                    <p
+                      onClick={handleEditEmailApp}
+                      className={
+                        editEmailApp
+                          ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    >APP</p>
                 </div>
 
                 <div className="">
@@ -1094,6 +1134,31 @@ export default function NestedModal({
                       </p>
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
+                        id={item._id}
+                      />
+                    </div>
+                  )}
+                                    {editContacto && (
+                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                      <input
+                        type="text"
+                        name="contacto"
+                        onChange={handleChangeContacto}
+                        defaultValue={updatedContacto}
+                        className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Agregar nombre de contacto"
+                        // value={inputEmail}
+                        disabled={!editContacto}
+                        required
+                      />
+                      <p
+                        onClick={handleEditContacto}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ❌
+                      </p>
+                      <ConfirmacionEdicion
+                        handleConfirmEdit={handleConfirmEditContacto}
                         id={item._id}
                       />
                     </div>
@@ -1510,6 +1575,7 @@ export default function NestedModal({
               editInstagram={editInstagram}
               editTelephone={editTelephone}
               editEmailApp={editEmailApp}
+              editContacto={editContacto}
               openModalPagoFunction={openModalPagoFunction}
               saveEmailAppFunction={saveEmailAppFunction}
             />
