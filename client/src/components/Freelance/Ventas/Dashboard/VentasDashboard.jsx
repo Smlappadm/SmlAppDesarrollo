@@ -16,8 +16,8 @@ import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import {
   filterLevel,
   getLeadCheckedFreelance,
-  getAllProfesion,
-  getAllCountries,
+  getAllProfesionFreelance,
+  getAllCountriesFreelance,
 } from "../../../../redux/actions";
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
@@ -39,14 +39,13 @@ const VentasDashboard = () => {
   const [country, setCountry] = useState("");
 
   useEffect(() => {
-    dispatch(getAllProfesion());
-    dispatch(getAllCountries());
+    dispatch(getAllProfesionFreelance(emailAddress));
+    dispatch(getAllCountriesFreelance(emailAddress));
     dispatch(getLeadCheckedFreelance(body, profesion, country));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
     setData(vendedoresDashboard);
-    console.log(vendedoresDashboard.length);
   }, [vendedoresDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
@@ -189,6 +188,7 @@ const VentasDashboard = () => {
               <InputRunner
                 getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
+                emailAddress={emailAddress}
               />
             </motion.div>
           </div>
