@@ -3,7 +3,6 @@ import axios from "axios";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClientes } from "../../redux/actions";
-import logo from "../../Assets/SMLlogo.png";
 
 export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
   const [username, setUsername] = useState("");
