@@ -2,8 +2,9 @@
 
 // const limpiezaBaseFunction = async () => {
 //   const leadResult = await Lead.updateMany(
+
 //     {
-//       freelancer: false
+//       updateVendedor: ""
 //     }
 
 //   );
@@ -16,7 +17,7 @@ const Lead = require("../../models/Lead");
 
 const limpiezaBaseFunction = async () => {
   const leadResult = await Lead.updateMany(
-    { corredor: "akosjev@gmail.com" },
+    { corredor_name: "luciano bs" },
     {
       $set: {
         status: "Sin contactar",

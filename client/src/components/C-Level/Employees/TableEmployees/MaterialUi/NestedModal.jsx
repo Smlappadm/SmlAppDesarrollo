@@ -133,8 +133,8 @@ function ChildModal({
         setLoading(true);
 
         const response = await axios.get(
-          `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
-          // `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
+          // `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
+          `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
         );
 
         setLoading(false);
