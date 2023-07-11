@@ -80,7 +80,7 @@ if (!updatedData.dataLead.llamados) {
       updatedData.dataLead.pagos.detallesRestantes.push(new Date(fechaActual));
     }
 
-    
+    updatedData.dataLead.pagos.detallesRestantes.push("cierre");
     
 
     // console.log("44444444444")
