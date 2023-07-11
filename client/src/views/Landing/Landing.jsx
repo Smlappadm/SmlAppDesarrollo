@@ -97,7 +97,10 @@ function Landing() {
               <h3 className={style.role}>Rol: {roleReady} </h3>
             </div>
           ) : (
-            <h1 className={style.notWellcome}>entrada no autorizada</h1>
+            <div className="flex flex-col gap-2 items-center justify-center bg-[#7B0BC0] px-10 py-2 rounded-lg">
+              <h2 className="text-white text-[2rem]">Usuario no autorizado</h2>
+              <p className="text-white">Solicité acceso al líder</p>
+            </div>
           )}
         </div>
       </div>

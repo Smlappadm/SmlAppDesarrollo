@@ -63,9 +63,9 @@ const paymentClienteHandler = async (req, res) => {
   }
 };
 const paymentClienteVendedoresHandler = async (req, res) => {
-  const { id, name, monto, cuotas, cuotasRestantes, valorCuota, link} = req.body;
+  const { id, name, monto, cuotas, cuotasRestantes, valorCuota, link, email} = req.body;
   try {
-    const pago = await createPaymentVendedor({ id, name, monto, cuotas, cuotasRestantes, valorCuota, link});
+    const pago = await createPaymentVendedor({ id, name, monto, cuotas, cuotasRestantes, valorCuota, link, email});
     res.status(200).json(pago);
   } catch (error) {
     res.status(404).json({ message: error.message });

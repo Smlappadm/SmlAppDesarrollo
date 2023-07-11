@@ -209,7 +209,7 @@ function ChildModal({
             type="button"
             className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
             onClick={handleCancel}
-            disabled= "true"
+            disabled={true}
           >
             Close x
           </button>
@@ -218,7 +218,7 @@ function ChildModal({
             type="button"
             className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
             onClick={handleOpen}
-            disabled= "true"
+            disabled={true}
           >
             Save Changes
           </button>

@@ -156,15 +156,14 @@ const VentasDashboard = () => {
   };
 
   const saveEmailAppFunction = (email) => {
-    console.log("entra?????");
     setSaveEmailApp(email);
   };
   return (
     <>
       <Nav />
       <div className="flex flex-col justify-between items-center w-screen  z-0">
-        {showCopiedMessage && (
-          <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
+      {showCopiedMessage && (
+          <p className="absolute w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-32 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
             Copiado!
           </p>
         )}
@@ -324,6 +323,8 @@ const VentasDashboard = () => {
                             emailAddress={body.email}
                             fullName={fullName}
                             cancelModal={cancelModal}
+                            saveEmailAppFunction={saveEmailAppFunction}
+                            openModalPagoFunction={openModalPagoFunction}
                           />
                         </div>
                       </div>
