@@ -126,44 +126,52 @@ export default function ChildModal() {
             </h2>
 
             <div className="flex flex-col  gap-3">
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+              <div className="flex  h-10  items-center  px-3 gap-4">
+                <label>Nombre: </label>
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+              <div className="flex  h-10  items-center  px-3 gap-4">
+                <label>Pais: </label>
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+              <div className="flex  h-10  items-center  px-3 gap-4">
+                <label>Cuidad: </label>
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+              <div className="flex  h-10  items-center  px-3 gap-4">
+                <label>Web: </label>
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+              <div className="flex  h-10  items-center  px-3 gap-4">
+                <label>Email: </label>
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                />
+              </div>
+              <div className="flex h-10  items-center  px-3 gap-4">
+                <label>Telefono: </label>
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
             </div>
