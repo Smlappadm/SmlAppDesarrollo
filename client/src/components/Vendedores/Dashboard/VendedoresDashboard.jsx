@@ -158,7 +158,7 @@ const VendedoresDashboard = () => {
   };
 
   const openModalPagoFunction = () => {
-    setOpenModalPago(true);
+    // setOpenModalPago(true);
   };
   const closeModalPago = () => {
     setOpenModalPago(false);
