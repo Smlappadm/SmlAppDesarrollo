@@ -36,6 +36,7 @@ const {
   getFreelancersHandler,
   asignacionFreelancerHandler,
   findLeadFreelancerNameHandler,
+  postLeadFreelancerHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -67,6 +68,7 @@ LeadRouter.get("/name", getLeadByNameHandler);
 LeadRouter.get("/:id", getLeadByIdHandler);
 LeadRouter.get("/leadvendedor/:id", getLeadVendedorHandler);
 LeadRouter.post("/", postLeadHandler);
+LeadRouter.post("/new", postLeadFreelancerHandler);
 LeadRouter.put("/changeemail/:id", updateChangeEmailHandler);
 LeadRouter.put("/cleanclevel", cleanValueClevelHandler);
 LeadRouter.put("/limpieza", limpiezaBaseHandler);
