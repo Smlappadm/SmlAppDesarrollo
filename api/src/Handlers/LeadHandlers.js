@@ -15,8 +15,10 @@ const limpiezaBaseFunction = require("../controllers/Lead/limpiezaBaseFunction")
 const findLeadCorredorName = require("../controllers/Lead/findLeadCorredorName");
 const findLeadVendedorName = require("../controllers/Lead/findLeadVendedorName");
 const getAllProfession = require("../controllers/Lead/getAllProfesion");
+const getAllProfessionFreelance = require("../controllers/Lead/getAllProfesionFreelance");
 const getLeadByEmailApp = require("../controllers/Lead/getLeadByEmailApp");
 const getAllCountry = require("../controllers/Lead/getAllCountry");
+const getAllCountryFreelance = require("../controllers/Lead/getAllCountryFreelance");
 const findLeadCorredorNameAllInfo = require("../controllers/Lead/findLeadCorredorNameAllInfo");
 const getAllCategory = require("../controllers/Lead/getAllCategory");
 const getCorredores = require("../controllers/Lead/getCorredores");
@@ -45,6 +47,15 @@ const getAllLeadHandler = async (req, res) => {
 const getAllProfesionHandler = async (req, res) => {
   try {
     const profesion = await getAllProfession();
+    res.status(200).json(profesion);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const getAllProfesionFreelanceHandler = async (req, res) => {
+  const {email} = req.query
+  try {
+    const profesion = await getAllProfessionFreelance(email);
     res.status(200).json(profesion);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -89,6 +100,15 @@ const getAllCategoryHandler = async (req, res) => {
 const getAllCountriesHandler = async (req, res) => {
   try {
     const country = await getAllCountry();
+    res.status(200).json(country);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const getAllCountriesFreelanceHandler = async (req, res) => {
+  const {email} = req.query
+  try {
+    const country = await getAllCountryFreelance(email);
     res.status(200).json(country);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -435,7 +455,9 @@ module.exports = {
   findLeadCorredorNameHandler,
   findLeadVendedorNameHandler,
   getAllProfesionHandler,
+  getAllProfesionFreelanceHandler,
   getAllCountriesHandler,
+  getAllCountriesFreelanceHandler,
   getAllCategoryHandler,
   findLeadCorredorNameAllInfoHandler,
   findLeadVendedorNameAllInfoHandler,
