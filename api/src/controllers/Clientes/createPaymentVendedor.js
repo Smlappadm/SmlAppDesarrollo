@@ -36,6 +36,15 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // },
     ],
     mode: "payment",
+    payment_method_types: ["card"],
+    payment_intent_data: {
+      payment_method_options: {
+        card: {
+          installments: cuotas // Establece el número de cuotas del pago
+        }
+      },
+      description: description // Establece el detalle del pago
+    },
     // success_url: "www.google.com.ar",
     success_url: link,
     // cancel_url: "http://localhost:3002/cancel",
