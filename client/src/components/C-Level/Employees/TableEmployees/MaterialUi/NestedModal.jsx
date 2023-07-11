@@ -133,7 +133,8 @@ function ChildModal({
         setLoading(true);
 
         const response = await axios.get(
-          `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
+          `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
+          // `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
         );
 
         setLoading(false);
@@ -320,6 +321,8 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
           <ChildModal
             inputName={inputName}
             inputEmail={inputEmail}
+            profesion={profesion}
+            country={country}
             leadAsigned={leadAsigned}
             selectEmployees={selectEmployees}
             handleReset={handleReset}
