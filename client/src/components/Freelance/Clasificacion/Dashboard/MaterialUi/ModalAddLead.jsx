@@ -158,7 +158,7 @@ export default function ChildModal({ email }) {
                     placeholder="algo"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                     value={values.telefono}
-                    onChange={handleChange}
+                    onChange={(event) => handleChange(event)}
                   />
                 </div>
               </div>
