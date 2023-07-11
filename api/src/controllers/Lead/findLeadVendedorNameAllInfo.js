@@ -38,7 +38,7 @@ const findLeadVendedorNameAllInfo = async (
       59,
       59
     );
-    query.updatedAt = {
+    query.updateVendedor = {
       $gte: startDate,
       $lt: endDate,
     };
