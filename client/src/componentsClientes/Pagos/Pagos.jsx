@@ -163,14 +163,14 @@ const Pagos = ({ tamañoPantalla }) => {
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
-              {clienteEmpresa.pagos.detallesRestantes[0] !== "" ||
+            {clienteEmpresa.pagos.detallesRestantes[0] !== "" &&
                 (clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" &&
                   `Próximo vencimiento: ${funcionHorario(
                     clienteEmpresa.pagos.detallesRestantes[0]
                   )}`)}
             </p>
           </div>
-          {clienteEmpresa.pagos.detallesRestantes[0] === "cierre" ? (
+          {clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" ? (
             <a
               href={urlPago ? urlPago : ""}
               // target="_blanck"
