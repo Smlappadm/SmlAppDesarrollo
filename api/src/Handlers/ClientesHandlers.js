@@ -4,6 +4,7 @@ const getAllClientes = require("../controllers/Clientes/getAllClients");
 const updateClientProfile = require("../controllers/Clientes/updateClientProfile");
 const getClientByEmail = require("../controllers/Clientes/getClientByEmail");
 const createPayment = require("../controllers/Clientes/createPayment");
+const createPaymentVendedor = require("../controllers/Clientes/createPaymentVendedor");
 const setReferred = require("../controllers/Clientes/setReferred");
 const addVideos = require("../controllers/Clientes/addVideos");
 
@@ -61,6 +62,16 @@ const paymentClienteHandler = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+const paymentClienteVendedoresHandler = async (req, res) => {
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
+  const { emailApp } = req.query;
+  try {
+    const pago = await createPaymentVendedor(emailApp);
+    res.status(200).json(pago);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
 const paymentCompletedClienteHandler = async (req, res) => {
   // const event = req.body;
@@ -104,6 +115,7 @@ module.exports = {
   getAllClientesHandler,
   updateClientProfileHandler,
   paymentCompletedClienteHandler,
+  paymentClienteVendedoresHandler,
   getClientByEmailHandler,
   paymentClienteHandler,
   setReferredHandler,
