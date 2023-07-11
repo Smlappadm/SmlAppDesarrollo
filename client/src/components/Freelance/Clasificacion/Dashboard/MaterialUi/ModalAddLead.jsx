@@ -134,7 +134,7 @@ export default function ChildModal({ email }) {
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-20">Pais: </label>
+                  <label className="w-24">Pais: </label>
                   <input
                     type="text"
                     id="pais"
@@ -145,7 +145,7 @@ export default function ChildModal({ email }) {
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-20">Ciudad: </label>
+                  <label className="w-24">Ciudad: </label>
                   <input
                     type="text"
                     id="ciudad"
@@ -156,7 +156,7 @@ export default function ChildModal({ email }) {
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-20">Web: </label>
+                  <label className="w-24">Web: </label>
                   <input
                     id="web"
                     type="text"
@@ -167,7 +167,7 @@ export default function ChildModal({ email }) {
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-20">Email: </label>
+                  <label className="w-24">Email: </label>
                   <input
                     id="email"
                     type="text"
@@ -178,7 +178,7 @@ export default function ChildModal({ email }) {
                   />
                 </div>
                 <div className="flex h-10  items-center  px-3 gap-x-2">
-                  <label className="w-20">Telefono: </label>
+                  <label className="w-24">Telefono: </label>
                   <input
                     id="telefono"
                     type="text"
