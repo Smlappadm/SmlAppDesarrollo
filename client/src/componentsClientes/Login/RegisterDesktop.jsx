@@ -3,7 +3,7 @@ import axios from "axios";
 import { IoEyeOffSharp, IoEyeSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClientes } from "../../redux/actions";
-
+import logo from "../../Assets/smllogo.png";
 export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
@@ -251,7 +251,7 @@ export default function RegisterDesktop({ handleOpenRegister, refeerred }) {
         </div>
       </form>
       <hr className="border-2 border-[#8F00FF] h-4/6 w-0 mx-4 py-52 rounded-2xl" />
-      {/* <img src={logo} alt="logo" className="w-[350px] h-[350px]" /> */}
+      <img src={logo} alt="logo" className="w-[350px] h-[350px]" />
     </div>
   );
 }
