@@ -78,8 +78,7 @@ function ChildModalHistory({
     setOpenChild(false);
   };
 
-  
-  const handleUpdate = async() => {
+  const handleUpdate = async () => {
     // if (
     //   statusObj.status === "Agendar 2do llamado" ||
     //   statusObj.status === "Agendar otro llamado"
@@ -486,6 +485,7 @@ export default function NestedModal({
   const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
+  const [showCopiedMessage, setShowCopiedMessage] = React.useState(false);
 
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
@@ -536,6 +536,16 @@ export default function NestedModal({
   useEffect(() => {
     setUpdatedEmail(inputEmail);
   }, [updatedEmail]);
+
+  const handleCopyClick = (copyToProps) => {
+    navigator.clipboard
+      .writeText(copyToProps)
+      .then(() => {
+        setShowCopiedMessage(true);
+        setTimeout(() => setShowCopiedMessage(false), 2000);
+      })
+      .catch((err) => alert(`Error al copiar: ${err}`));
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -690,7 +700,7 @@ export default function NestedModal({
       setUpdatedEmail(response.data.email);
       SendEmailLeadAlert("Email");
     } catch (error) {
-      SendEmailLeadAlertError("Email")
+      SendEmailLeadAlertError("Email");
     }
     setEditEmail(false);
   };
@@ -712,9 +722,9 @@ export default function NestedModal({
       setUpdatedInstagram(response.data.instagram);
       SendEmailLeadAlert("Instagram");
     } catch (error) {
-      SendEmailLeadAlertError("Instagram")
+      SendEmailLeadAlertError("Instagram");
     }
-    
+
     setEditInstagram(false);
   };
 
@@ -735,9 +745,9 @@ export default function NestedModal({
       setUpdatedTelephone(response.data.telephone);
       SendEmailLeadAlert("Phone");
     } catch (error) {
-      SendEmailLeadAlertError("Phone")
+      SendEmailLeadAlertError("Phone");
     }
-    
+
     setEditTelephone(false);
   };
   //EDITAR DATOS EmailApp
@@ -756,9 +766,8 @@ export default function NestedModal({
       const response = await axios.put(`/lead/changeemail/${id}`, body);
       setUpdatedEmailApp(response.data.emailApp);
       SendEmailLeadAlert("Email App");
-      
     } catch (error) {
-      SendEmailLeadAlertError("Email App")
+      SendEmailLeadAlertError("Email App");
     }
     setEditEmailApp(false);
   };
@@ -788,6 +797,11 @@ export default function NestedModal({
           }}
         >
           <div className="w-full flex justify-center items-center mt-2">
+            {showCopiedMessage && (
+              <p className="absolute -top-32 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-2 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
+              Copiado!
+            </p>
+            )}
             {openAlert && (
               <motion.div
                 initial={{ opacity: 0, x: "-20px" }}
@@ -856,6 +870,17 @@ export default function NestedModal({
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
+
+                  <p
+                    onClick={() =>
+                      handleCopyClick(
+                        `http://localhost:5173/pagos-sml?emailApp=${inputEmailApp}`
+                      )
+                    }
+                    className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                  >
+                    Link
+                  </p>
                 </div>
                 <div className="">
                   {editEmail && (
@@ -1002,24 +1027,21 @@ export default function NestedModal({
           <div className="flex flex-col justify-center items-center w-full my-10 gap-1 ">
             <h1 className="text-14 text-white mb-3">- ESTADO DE CUENTA -</h1>
             <div className="gap-3 flex flex-col justify-center items-center w-56 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              
               <div className="w-48 flex justify-start items-center">
-              <h3 className="w-36">Valor servicio:</h3>
-              <h3>{`€${item.pagos.monto}`} </h3>
-
+                <h3 className="w-36">Valor servicio:</h3>
+                <h3>{`€${item.pagos.monto}`} </h3>
               </div>
               <div className="w-48 flex justify-start items-center">
-              <h3 className="w-36">Cantidad cuotas:</h3>
-              <h3>{`${item.pagos.cuotas}`}</h3>
-              
+                <h3 className="w-36">Cantidad cuotas:</h3>
+                <h3>{`${item.pagos.cuotas}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
-              <h3 className="w-36">Valor cuotas:</h3>
-              <h3>{`€${item.pagos.valorCuota}`}</h3>
+                <h3 className="w-36">Valor cuotas:</h3>
+                <h3>{`€${item.pagos.valorCuota}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
-              <h3 className="w-36">Pagos realizados:</h3>
-              <h3>{`${item.pagos.cuotasPagadas}/${item.pagos.cuotas}`}</h3>
+                <h3 className="w-36">Pagos realizados:</h3>
+                <h3>{`${item.pagos.cuotasPagadas}/${item.pagos.cuotas}`}</h3>
               </div>
             </div>
           </div>

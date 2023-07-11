@@ -3,6 +3,10 @@ const Vendedor = require("../../models/Vendedor");
 const Clientes = require("../../models/Clientes");
 
 const updateLeadVendedorById = async (id, updatedData) => {
+  const date = new Date();
+  const formattedTime = date.toISOString();
+  updatedData.dataLead.updateVendedor = formattedTime;
+
   const leadCountCheck = await Lead.findById(id);
 
   

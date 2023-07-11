@@ -34,6 +34,7 @@ const getLeadCheckedFreelancer = require("../controllers/Lead/getLeadCheckedFree
 const getFreelancers = require("../controllers/Lead/getFreelancers");
 const asignacionFreelancer = require("../controllers/Lead/asignacionFreelancer");
 const findLeadFreelancerName = require("../controllers/Lead/findLeadFreelancerName");
+const postLeadFreelancer = require("../controllers/Lead/postLeadFreelancer");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -53,7 +54,7 @@ const getAllProfesionHandler = async (req, res) => {
   }
 };
 const getAllProfesionFreelanceHandler = async (req, res) => {
-  const {email} = req.query
+  const { email } = req.query;
   try {
     const profesion = await getAllProfessionFreelance(email);
     res.status(200).json(profesion);
@@ -106,7 +107,7 @@ const getAllCountriesHandler = async (req, res) => {
   }
 };
 const getAllCountriesFreelanceHandler = async (req, res) => {
-  const {email} = req.query
+  const { email } = req.query;
   try {
     const country = await getAllCountryFreelance(email);
     res.status(200).json(country);
@@ -184,6 +185,15 @@ const postLeadHandler = async (req, res) => {
   const data = req.body;
   try {
     const lead = await postLead(data);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+const postLeadFreelancerHandler = async (req, res) => {
+  const data = req.body;
+  try {
+    const lead = await postLeadFreelancer(data);
     res.status(200).json(data);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -428,7 +438,7 @@ const limpiezaBaseHandler = async (req, res) => {
 };
 
 const asignacionFreelancerHandler = async (req, res) => {
-  const data = req.body
+  const data = req.body;
   try {
     const asignacion = await asignacionFreelancer(data);
     res.status(200).json(asignacion);
@@ -474,4 +484,5 @@ module.exports = {
   getFreelancersHandler,
   asignacionFreelancerHandler,
   findLeadFreelancerNameHandler,
+  postLeadFreelancerHandler,
 };

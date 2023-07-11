@@ -116,17 +116,12 @@ console.log(link)
   };
 
   return (
-    <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen mt-52">
-      {tamañoPantalla === "Grande" ? (
-        <div className="w-full h-1/6">
-          <NavBarDesktop />
-        </div>
-      ) : null}
+    <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen mt-40">
 
       {clienteEmpresa && clienteEmpresa.name ? (
-        <div className="flex gap-5  flex-col justify-center items-center ">
-          <div className="w-full flex mb-4 items-end justify-between pt-4">
-            <h2 className="font-bold">Pagos</h2>
+        <div className="bg-[#00000046] flex gap-5  flex-col justify-center items-center p-5 rounded-lg">
+          <div className="w-full flex mb-1 items-center justify-center pt-2">
+            <h2 className="font-bold text-center text-white">PAGOS</h2>
             {/* <Link
               to={"/clientes-home"}
               className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
@@ -136,13 +131,13 @@ console.log(link)
           </div>
 
           <p
-            className="w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
+            className="w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#464545] hover:bg-[#3f437a] cursor-pointer"
             // "w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
           >
             {clienteEmpresa?.name && clienteEmpresa?.name}
           </p>
           <div
-            className="w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
+            className="p-2 w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#464545] hover:bg-[#3f437a] cursor-pointer"
             // "p-3 w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
           >
             {/* <p className="border-2 text-center text-24 font-extrabold text-white">
