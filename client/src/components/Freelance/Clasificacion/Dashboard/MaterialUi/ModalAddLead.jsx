@@ -24,6 +24,8 @@ export default function ChildModal({ email }) {
   const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  const [countries, setCountries] = useState([]);
+  const [cities, setCities] = useState([]);
   const [values, setValues] = useState({
     nombre: "",
     pais: "",
@@ -37,7 +39,29 @@ export default function ChildModal({ email }) {
   useEffect(() => {
     dispatch(getAllFreelancer());
     dispatch(getAllCategory());
+    fetch("https://restcountries.com/v3.1/all")
+      .then((response) => response.json())
+      .then((data) => {
+        const countryNames = data.map((country) => country.name.common);
+        const sortedCountries = countryNames.sort();
+        setCountries(sortedCountries);
+      })
+      .catch((error) => console.log(error));
   }, [dispatch]);
+  useEffect(() => {
+    if (values.pais !== "") {
+      if (values.pais !== "") {
+        fetch(`https://restcountries.com/v3.1/name/${values.pais}`)
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            const capital = data[0]?.capital[0] || "";
+            setCities([capital]);
+          })
+          .catch((error) => console.log(error));
+      }
+    }
+  }, [values.pais]);
 
   useEffect(() => {
     const free =
@@ -116,11 +140,13 @@ export default function ChildModal({ email }) {
                   <select
                     type="text"
                     id="categoria"
-                    placeholder="algo"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                    value={values.nombre}
+                    value={values.categoria}
                     onChange={(event) => handleChange(event)}
                   >
+                    <option value="" disabled selected>
+                      Seleccione una categoría
+                    </option>
                     {allCategory &&
                       allCategory.map((category) => (
                         <option
@@ -135,25 +161,43 @@ export default function ChildModal({ email }) {
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Pais: </label>
-                  <input
-                    type="text"
+                  <select
                     id="pais"
-                    placeholder="algo"
-                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    className="bg-transparent w-full rounded-lg pl-3 h-full border border-white"
                     value={values.pais}
                     onChange={(event) => handleChange(event)}
-                  />
+                  >
+                    <option value="" disabled selected>
+                      Seleccione un país
+                    </option>
+                    {countries.map((country) => (
+                      <option
+                        value={country}
+                        key={country}
+                        className="text-black"
+                      >
+                        {country}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Ciudad: </label>
-                  <input
-                    type="text"
+                  <select
                     id="ciudad"
-                    placeholder="algo"
-                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    className="bg-transparent w-full rounded-lg pl-3 h-full border border-white"
                     value={values.ciudad}
                     onChange={(event) => handleChange(event)}
-                  />
+                  >
+                    <option value="" disabled selected>
+                      Seleccione una ciudad
+                    </option>
+                    {cities.map((city) => (
+                      <option value={city} key={city} className="text-black">
+                        {city}
+                      </option>
+                    ))}
+                  </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Web: </label>
@@ -183,7 +227,7 @@ export default function ChildModal({ email }) {
                     id="telefono"
                     type="text"
                     placeholder="algo"
-                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white text-white"
                     value={values.telefono}
                     onChange={(event) => handleChange(event)}
                   />
