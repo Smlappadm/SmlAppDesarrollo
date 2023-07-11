@@ -5,7 +5,7 @@ import AI22 from "../../Assets/AI22.png";
 import next1 from "../../Assets/next1.png";
 import IA21 from "../../Assets/IA21.png";
 import user1 from "../../Assets/user1.png";
-import SMLlogo from "../../Assets/SMLlogo.png";
+import SMLlogo from "../../Assets/smllogo.png";
 import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import HandleGuion from "./MUI/HandleGuion";
@@ -53,7 +53,6 @@ export default function Guiones({ tamañoPantalla }) {
       className="bg-[#1a1a1a] flex flex-col justify-between items-center h-screen w-screen"
       style={styles()}
     >
-      
       <div className="flex w-4/6 justify-between items-center mt-20">
         <div className="">
           <img src={SMLlogo} alt="" />
@@ -270,7 +269,7 @@ export default function Guiones({ tamañoPantalla }) {
             </div>
           )}
 
-          {progress === 10 || progress === 0  ? null : (
+          {progress === 10 || progress === 0 ? null : (
             <div onClick={() => nextProgress()}>
               <AiOutlineRight className="text-[2rem] text-white font-semibold" />
             </div>

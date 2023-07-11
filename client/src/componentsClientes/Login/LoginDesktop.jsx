@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SignIn } from "@clerk/clerk-react";
-// import logo from "../../Assets/smllogo.png";
+import logo from "../../Assets/smllogo.png";
 export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -74,7 +74,7 @@ export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
         </div>
       </div>
       <hr className="border-2 border-[#8F00FF] h-4/6 w-0 mx-4 py-52 rounded-2xl" />
-      {/* <img src={logo} alt="logo" className="w-[350px] h-[350px]" /> */}
+      <img src={logo} alt="logo" className="w-[350px] h-[350px]" />
     </div>
   );
 }
