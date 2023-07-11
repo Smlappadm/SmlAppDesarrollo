@@ -171,7 +171,7 @@ export default function ChildModal() {
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border"
                 />
               </div>
             </div>
