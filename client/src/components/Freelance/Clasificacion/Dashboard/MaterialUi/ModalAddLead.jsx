@@ -123,6 +123,8 @@ export default function ChildModal({ email }) {
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.cuidad}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
@@ -132,6 +134,8 @@ export default function ChildModal({ email }) {
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.web}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
@@ -141,6 +145,8 @@ export default function ChildModal({ email }) {
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex h-10  items-center  px-3 gap-4">
@@ -150,6 +156,8 @@ export default function ChildModal({ email }) {
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.telefono}
+                  onChange={handleChange}
                 />
               </div>
             </form>
