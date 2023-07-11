@@ -126,7 +126,7 @@ export default function ChildModal({ email }) {
     }));
   };
   useEffect(() => {}, [errors]);
-  const handleSubmit = async (event) => {
+  const handleSubmitAdd = async (event) => {
     event.preventDefault();
 
     const body = {
@@ -178,6 +178,16 @@ export default function ChildModal({ email }) {
         try {
           console.log(body);
           const response = await axios.post("/lead/new", body);
+          setValues({
+            nombre: "",
+            pais: "",
+            ciudad: "",
+            web: "",
+            email: "",
+            telefono: "",
+            categoria: "",
+          });
+          setOpen(false);
 
           console.log("todo");
           console.log(response.data);
@@ -187,6 +197,18 @@ export default function ChildModal({ email }) {
       }
     }
     //console.log(body);
+  };
+
+  const handleClean = () => {
+    setValues({
+      nombre: "",
+      pais: "",
+      ciudad: "",
+      web: "",
+      email: "",
+      telefono: "",
+      categoria: "",
+    });
   };
 
   return (
@@ -218,7 +240,7 @@ export default function ChildModal({ email }) {
               Añadir clientes!
             </h2>
 
-            <form className="flex flex-col " onSubmit={handleSubmit}>
+            <form className="flex flex-col " onSubmit={handleSubmitAdd}>
               <div className="flex flex-col gap-3">
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Nombre: </label>
@@ -333,8 +355,8 @@ export default function ChildModal({ email }) {
                 </div>
               </div>
               <div className="flex justify-around mt-10">
-                <button>CLEAN</button>
-                <button type="submit">ADD</button>
+                <button onClick={handleClean}>LIMPIAR</button>
+                <button type="submit">AGREGAR</button>
               </div>
             </form>
           </div>
