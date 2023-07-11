@@ -63,7 +63,6 @@ const paymentClienteHandler = async (req, res) => {
   }
 };
 const paymentClienteVendedoresHandler = async (req, res) => {
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaaa")
   const { emailApp } = req.query;
   try {
     const pago = await createPaymentVendedor(emailApp);
