@@ -56,6 +56,7 @@ function ChildModal({
   editInstagram,
   editTelephone,
   editEmailApp,
+  saveEmailAppFunction
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -77,6 +78,11 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
+      if(updatedEmailApp === "-" || updatedEmailApp === ""){
+        saveEmailAppFunction(item.email)
+      }else{
+        saveEmailAppFunction(updatedEmailApp)
+      }
     } else {
       statusObj.pagos = {};
     }
@@ -580,6 +586,7 @@ export default function NestedModal({
   fullName,
   cancelModal,
   openModalPagoFunction,
+  saveEmailAppFunction
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
@@ -1522,6 +1529,7 @@ export default function NestedModal({
               editInstagram={editInstagram}
               editTelephone={editTelephone}
               editEmailApp={editEmailApp}
+              saveEmailAppFunction={saveEmailAppFunction}
             />
           </div>
         </Box>
