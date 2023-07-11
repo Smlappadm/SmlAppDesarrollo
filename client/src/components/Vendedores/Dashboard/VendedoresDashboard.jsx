@@ -25,7 +25,7 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import Pagos from "../../../componentsClientes/Pagos/Pagos";
+import PagosInfo from "../Dashboard/Select/PagosInfo";
 
 const VendedoresDashboard = () => {
   const [data, setData] = useState([]);
@@ -350,7 +350,7 @@ const VendedoresDashboard = () => {
               >
                 x
               </button>
-              <Pagos />
+              <PagosInfo />
             </div>
           )}
         </div>
