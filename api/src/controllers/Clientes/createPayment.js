@@ -1,37 +1,14 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// const createPayment = async ({id, amount}) => {
-
-// console.log(id)
-// console.log(amount)
-//     const payment = await stripe.paymentIntents.create({
-//       amount: amount, // Precio en centavos (por ejemplo, $1.00)
-//       currency: "USD",
-//       payment_method: id, // Aquí debes proporcionar el ID del método de pago
-//       confirm: true,
-//       mode: "payment",
-//       success_url: "http://www.google.com.ar"
-//     });
-
-//     // res.send({
-//     //   clientSecret: paymentIntent.client_secret, message: "Pago realizado"
-//     // });
-//     return payment;
-//   // } catch (error) {
-//   //   res.send(error.raw.message);
-//   //   console.log(error.raw.message);
-//   // }
-// };
-
 const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
-  // console.log("aaaaaaaaaaaa")
-  // valorCuota = Number(valorCuota.toFixed(2))
 
-  console.log(cuotas)
-  console.log((cuotasRestantes+1))
-  console.log(valorCuota)
+//     const infoLead = await find({emailApp:emailApp})
+// console.log(infoLead.pagos)
+
+// return infoLead.pagos
+
   const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`
-  
+
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -48,10 +25,10 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
         quantity: 1,
       },
       // {
-        //   price_data: {
-          //     product_data: {
-            //       name: "TV",
-            //     },
+      //   price_data: {
+      //     product_data: {
+      //       name: "TV",
+      //     },
       //     currency: "usd",
       //     unit_amount: 1000,
       //   },
@@ -59,22 +36,22 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // },
     ],
     mode: "payment",
-    success_url: "www.google.com.ar",
-    // success_url: "http://localhost:5173/clientes-pagos",
+    // success_url: "www.google.com.ar",
+    success_url: "http://localhost:5173/clientes-pagos",
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",
     locale: "es",
   });
 
-  
+
     // await stripe.webhookEndpoints.create({
-      //   url: "https://tu-domino.com/stripe/payment_completed",
-      //   enabled_events: ["checkout.session.completed"],
-      // });
-      
-      
-  console.log(session)
+    //   url: "https://tu-domino.com/stripe/payment_completed",
+    //   enabled_events: ["checkout.session.completed"],
+    // });
+  
+
+//   console.log(session)
 
 
   return session;
