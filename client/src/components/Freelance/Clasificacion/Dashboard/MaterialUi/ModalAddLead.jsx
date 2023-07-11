@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { getAllFreelancer } from "../../../../../redux/actions";
+import { getAllCategory, getAllFreelancer } from "../../../../../redux/actions";
 const style = {
   position: "absolute",
   top: "50%",
@@ -20,7 +20,7 @@ const style = {
 };
 
 export default function ChildModal({ email }) {
-  const { freelancer } = useSelector((state) => state);
+  const { freelancer, allCategory } = useSelector((state) => state);
   const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -31,10 +31,12 @@ export default function ChildModal({ email }) {
     web: "",
     email: "",
     telefono: "",
+    categoria: "",
   });
 
   useEffect(() => {
     dispatch(getAllFreelancer());
+    dispatch(getAllCategory());
   }, [dispatch]);
 
   useEffect(() => {
@@ -60,7 +62,10 @@ export default function ChildModal({ email }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
+    const body = {
+      ...values,
+    };
+    console.log(body);
   };
 
   return (
@@ -93,10 +98,10 @@ export default function ChildModal({ email }) {
               Añadir clientes!
             </h2>
 
-            <form className="flex flex-col " onChange={handleSubmit}>
+            <form className="flex flex-col " onSubmit={handleSubmit}>
               <div className="flex flex-col gap-3">
-                <div className="flex  h-10  items-center  px-3 gap-4">
-                  <label className="w-20">Nombre: </label>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24">Nombre: </label>
                   <input
                     type="text"
                     id="nombre"
@@ -106,7 +111,29 @@ export default function ChildModal({ email }) {
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
-                <div className="flex  h-10  items-center  px-3 gap-4">
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24">Categoría: </label>
+                  <select
+                    type="text"
+                    id="categoria"
+                    placeholder="algo"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.nombre}
+                    onChange={(event) => handleChange(event)}
+                  >
+                    {allCategory &&
+                      allCategory.map((category) => (
+                        <option
+                          value={category}
+                          key={category}
+                          className="text-black"
+                        >
+                          {category}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-20">Pais: </label>
                   <input
                     type="text"
@@ -117,18 +144,18 @@ export default function ChildModal({ email }) {
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
-                <div className="flex  h-10  items-center  px-3 gap-4">
-                  <label className="w-20">Cuidad: </label>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-20">Ciudad: </label>
                   <input
-                    id="cuidad"
                     type="text"
+                    id="ciudad"
                     placeholder="algo"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                     value={values.ciudad}
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
-                <div className="flex  h-10  items-center  px-3 gap-4">
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-20">Web: </label>
                   <input
                     id="web"
@@ -139,7 +166,7 @@ export default function ChildModal({ email }) {
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
-                <div className="flex  h-10  items-center  px-3 gap-4">
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-20">Email: </label>
                   <input
                     id="email"
@@ -150,7 +177,7 @@ export default function ChildModal({ email }) {
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
-                <div className="flex h-10  items-center  px-3 gap-4">
+                <div className="flex h-10  items-center  px-3 gap-x-2">
                   <label className="w-20">Telefono: </label>
                   <input
                     id="telefono"
