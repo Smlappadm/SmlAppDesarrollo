@@ -25,8 +25,10 @@ export const FIND_CORREDORES_NAME = "FIND_CORREDORES_NAME";
 export const FIND_VENDEDORES_NAME = "FIND_VENDEDORES_NAME";
 export const GET_ALL_EMPLOYEES = "GET_ALL_EMPLOYEES";
 export const GET_ALL_PROFESION = "GET_ALL_PROFESION";
-export const GET_ALL_CATEGORY = "GET_ALL_CATEGORY";
+export const GET_ALL_PROFESION_FREELANCE = "GET_ALL_PROFESION_FREELANCE";
 export const GET_ALL_COUNTRY = "GET_ALL_COUNTRY";
+export const GET_ALL_COUNTRY_FREELANCE = "GET_ALL_COUNTRY_FREELANCE";
+export const GET_ALL_CATEGORY = "GET_ALL_CATEGORY";
 export const GET_DETAIL_EMPLOY = " GET_DETAIL_EMPLOY";
 export const FIND_CORREDORES_NAME_ALL_INFO = " FIND_CORREDORES_NAME_ALL_INFO";
 export const FIND_VENDEDORES_NAME_ALL_INFO = " FIND_VENDEDORES_NAME_ALL_INFO";
@@ -424,20 +426,34 @@ export const getAllProfesion = () => {
     dispatch({ type: GET_ALL_PROFESION, payload: allProfesion });
   };
 };
-
-export const getAllCategory = () => {
+export const getAllProfesionFreelance = () => {
   return async (dispatch) => {
-    const response = await axios.get("/lead/category");
-    const allCategory = response.data;
-    dispatch({ type: GET_ALL_CATEGORY, payload: allCategory });
+    const response = await axios.get("/lead/profesionfreelance");
+    const allProfesion = response.data;
+    dispatch({ type: GET_ALL_PROFESION_FREELANCE, payload: allProfesion });
   };
 };
+
 
 export const getAllCountries = () => {
   return async (dispatch) => {
     const response = await axios.get("/lead/country");
     const allCountries = response.data;
     dispatch({ type: GET_ALL_COUNTRY, payload: allCountries });
+  };
+};
+export const getAllCountriesFreelance = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/countryfreelance");
+    const allCountries = response.data;
+    dispatch({ type: GET_ALL_COUNTRY_FREELANCE, payload: allCountries });
+  };
+};
+export const getAllCategory = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/category");
+    const allCategory = response.data;
+    dispatch({ type: GET_ALL_CATEGORY, payload: allCategory });
   };
 };
 export const getDetailEmploy = (email) => {
