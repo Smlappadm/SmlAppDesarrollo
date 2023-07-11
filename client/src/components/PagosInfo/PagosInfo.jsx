@@ -23,7 +23,9 @@ const Pagos = ({ tamañoPantalla }) => {
   const [urlPago, setUrlPago] = useState("");
   const [leadEmpresa, setLeadEmpresa] = useState(false);
   const emailApp = useLocation().search.split("=")[1]
-console.log(emailApp)
+const {pathname, search} = useLocation()
+const link= `http://localhost:5173${pathname}${search}`
+console.log(link)
   // const user = useUser().user;
   // const email = user?.emailAddresses[0]?.emailAddress;
 
@@ -73,13 +75,14 @@ console.log(emailApp)
     setLeadEmpresa(data1);
 
     if (clienteEmpresa.name) {
-      const response2 = await axios.post("/clientes/payment", {
+      const response2 = await axios.post("/clientes/pagos-sml", {
         id: clienteEmpresa._id,
         name: clienteEmpresa.name,
         monto: clienteEmpresa.pagos.monto,
         cuotas: clienteEmpresa.pagos.cuotas,
         cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
         valorCuota: clienteEmpresa.pagos.valorCuota,
+        link: link
       });
       const data2 = response2.data;
       setUrlPago(data2.url);
@@ -110,7 +113,7 @@ console.log(emailApp)
 
     return fechaHoraLocal;
   };
-
+console.log(clienteEmpresa.pagos.detallesRestantes[0])
   return (
     <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen mt-52">
       {tamañoPantalla === "Grande" ? (
