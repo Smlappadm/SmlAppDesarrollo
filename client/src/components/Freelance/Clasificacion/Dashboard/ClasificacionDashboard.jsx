@@ -479,7 +479,7 @@ const ClasificacionDashboard = () => {
       dispatch(getAllCountries());
       dispatch(getAllCategory());
 
-      SendLeadsSuccess();
+      //SendLeadsSuccess();
     } catch (error) {
       //SendLeadsError();
       console.log({ error: error.message });
@@ -494,8 +494,8 @@ const ClasificacionDashboard = () => {
     <>
       <Nav />
       <div className="w-full m-5 bg-[#222131]">
-        <ToastContainer />
         <form onSubmit={handleSubmit}>
+          <ToastContainer />
           <div className="flex justify-between items-center">
             <div className="flex gap-10  mt-2 mx-5 ">
               <h1 className="font-bold text-[#e2e2e2] text-lg">Dashboard</h1>
