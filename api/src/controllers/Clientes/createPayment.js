@@ -24,8 +24,14 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 // };
 
 const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
-  const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`
+  // console.log("aaaaaaaaaaaa")
+  valorCuota = Number(valorCuota.toFixed(2))
 
+  console.log(cuotas)
+  console.log(cuotasRestantes)
+  console.log(valorCuota)
+  const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`
+  
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -42,10 +48,10 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
         quantity: 1,
       },
       // {
-      //   price_data: {
-      //     product_data: {
-      //       name: "TV",
-      //     },
+        //   price_data: {
+          //     product_data: {
+            //       name: "TV",
+            //     },
       //     currency: "usd",
       //     unit_amount: 1000,
       //   },
@@ -53,21 +59,22 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // },
     ],
     mode: "payment",
-    // success_url: "www.google.com.ar",
-    success_url: "http://localhost:5173/clientes-pagos",
+    success_url: "www.google.com.ar",
+    // success_url: "http://localhost:5173/clientes-pagos",
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",
     locale: "es",
   });
 
-
-    // await stripe.webhookEndpoints.create({
-    //   url: "https://tu-domino.com/stripe/payment_completed",
-    //   enabled_events: ["checkout.session.completed"],
-    // });
+  console.log(name)
   
-
+    // await stripe.webhookEndpoints.create({
+      //   url: "https://tu-domino.com/stripe/payment_completed",
+      //   enabled_events: ["checkout.session.completed"],
+      // });
+      
+      
 //   console.log(session)
 
 
