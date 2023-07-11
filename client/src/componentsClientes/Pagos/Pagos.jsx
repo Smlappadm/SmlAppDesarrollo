@@ -61,14 +61,14 @@ const Pagos = ({ tamañoPantalla }) => {
   // };
 
   useEffect(() => {
-    dispatch(getClienteEmpresa("facutam@gmail.com"));
+    dispatch(getClienteEmpresa(email));
     if (clienteEmpresa && clienteEmpresa?.name) {
       handlePagoUrlUpdate();
     }
   }, [clienteEmpresa?.name]);
 
   const handlePagoUrlUpdate = async () => {
-    const email = "facutam@gmail.com";
+    const email = email;
     const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
 
     const data1 = response1.data;
