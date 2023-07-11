@@ -127,7 +127,7 @@ export default function ChildModal() {
 
             <div className="flex flex-col  gap-3">
               <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+                <label>Nombre: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -135,7 +135,7 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+                <label>Pais: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -143,7 +143,7 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+                <label>Cuidad: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -151,7 +151,7 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+                <label>Web: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -159,7 +159,31 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>A</label>
+                <label>Email: </label>
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
+              </div>
+              <div className="flex bg-black h-10  items-center  px-3 gap-4">
+                <label>Telefono: </label>
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
+              </div>
+              <div className="flex bg-black h-10  items-center  px-3 gap-4">
+                <label>Email: </label>
+                <input
+                  type="text"
+                  placeholder="algo"
+                  className=" bg-transparent"
+                />
+              </div>
+              <div className="flex bg-black h-10  items-center  px-3 gap-4">
+                <label>Email: </label>
                 <input
                   type="text"
                   placeholder="algo"
