@@ -115,19 +115,19 @@ export default function ChildModal() {
         <Box
           sx={{
             ...style,
-            width: "40%",
+            width: "30%",
             backgroundColor: "#39394b",
-            height: "800px",
+            height: "600px",
           }}
         >
-          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
+          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full justify-evenly">
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>
 
             <div className="flex flex-col  gap-3">
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Nombre: </label>
+                <label className="w-20">Nombre: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -135,7 +135,7 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Pais: </label>
+                <label className="w-20">Pais: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -143,7 +143,7 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Cuidad: </label>
+                <label className="w-20">Cuidad: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -151,7 +151,7 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Web: </label>
+                <label className="w-20">Web: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -159,7 +159,7 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Email: </label>
+                <label className="w-20">Email: </label>
                 <input
                   type="text"
                   placeholder="algo"
@@ -167,13 +167,17 @@ export default function ChildModal() {
                 />
               </div>
               <div className="flex h-10  items-center  px-3 gap-4">
-                <label>Telefono: </label>
+                <label className="w-20">Telefono: </label>
                 <input
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
+            </div>
+            <div className="flex justify-around">
+              <button>CLEAN</button>
+              <button>ADD</button>
             </div>
           </div>
         </Box>
