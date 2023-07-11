@@ -163,7 +163,7 @@ export default function ChildModal() {
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
               <div className="flex h-10  items-center  px-3 gap-4">
@@ -171,7 +171,7 @@ export default function ChildModal() {
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white"
+                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
             </div>
