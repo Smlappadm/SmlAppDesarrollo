@@ -160,11 +160,11 @@ export default function ChildModal({ email }) {
                   onChange={handleChange}
                 />
               </div>
+              <div className="flex justify-around">
+                <button>CLEAN</button>
+                <button>ADD</button>
+              </div>
             </form>
-            <div className="flex justify-around">
-              <button>CLEAN</button>
-              <button>ADD</button>
-            </div>
           </div>
         </Box>
       </Modal>
