@@ -48,6 +48,8 @@ import ClasificacionAnalytics from "./components/Freelance/Clasificacion/Analyti
 import VentasHistory from "./components/Freelance/Ventas/analytics/VentasHistory";
 import VentasDashboard from "./components/Freelance/Ventas/Dashboard/VentasDashboard";
 import VentasAgenda from "./components/Freelance/Ventas/Dashboard/VentasAgenda";
+import PagosInfo from "./components/PagosInfo/PagosInfo"
+import PagoOk from "./components/PagosInfo/PagoOk"
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -221,6 +223,14 @@ function ClerkProviderWithRoutes() {
         <Route
           path="/clientes-recursos"
           element={<RecursosDesktop tamañoPantalla={tamañoPantalla} />}
+        />
+        <Route
+          path="/pago-ok"
+          element={<PagoOk />}
+        />
+        <Route
+          path="/pagos-sml"
+          element={<PagosInfo/>}
         />
 
         <Route path="/" element={<Login />} />
