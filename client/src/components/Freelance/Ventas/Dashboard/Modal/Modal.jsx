@@ -54,6 +54,7 @@ function ChildModal({
   editInstagram,
   editTelephone,
   editEmailApp,
+  saveEmailAppFunction
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -75,6 +76,11 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
+      if(updatedEmailApp === "-" || updatedEmailApp === ""){
+        saveEmailAppFunction(item.email)
+      }else{
+        saveEmailAppFunction(updatedEmailApp)
+      }
     } else {
       statusObj.pagos = {};
     }
@@ -181,6 +187,9 @@ function ChildModal({
       });
     setOpenChild(false);
     setOpen(false);
+    if (statusObj.status === "Contratado") {
+      openModalPagoFunction();
+    }
     statusObj.status = "";
   };
 
