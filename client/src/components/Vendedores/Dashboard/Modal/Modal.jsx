@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import styles from "./Modal.module.css"
 import { CiEdit } from "react-icons/ci";
 import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
@@ -55,6 +56,7 @@ function ChildModal({
   editInstagram,
   editTelephone,
   editEmailApp,
+  saveEmailAppFunction
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -76,6 +78,11 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
+      if(updatedEmailApp === "-" || updatedEmailApp === ""){
+        saveEmailAppFunction(item.email)
+      }else{
+        saveEmailAppFunction(updatedEmailApp)
+      }
     } else {
       statusObj.pagos = {};
     }
@@ -579,6 +586,7 @@ export default function NestedModal({
   fullName,
   cancelModal,
   openModalPagoFunction,
+  saveEmailAppFunction
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
@@ -1375,10 +1383,10 @@ export default function NestedModal({
                   </label>
                   <input
                     onChange={handleSelectChangeContratado}
-                    type="text"
+                    type="number"
                     id="last_name"
                     name="monto"
-                    className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
                     placeholder="Monto"
                     required
                   />
@@ -1390,10 +1398,10 @@ export default function NestedModal({
                   </label>
                   <input
                     onChange={handleSelectChangeContratado}
-                    type="text"
+                    type="number"
                     id="last_name"
                     name="cuotas"
-                    className="text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
                     placeholder="Cuotas"
                     required
                   />
@@ -1521,6 +1529,7 @@ export default function NestedModal({
               editInstagram={editInstagram}
               editTelephone={editTelephone}
               editEmailApp={editEmailApp}
+              saveEmailAppFunction={saveEmailAppFunction}
             />
           </div>
         </Box>

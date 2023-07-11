@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { getAllEmployees } from "../../../../../redux/actions";
 import LeadAsigned from "./LeadAsigned";
 import "./Loader.css";
+import Profesion from "./Profesion";
 
 const style = {
   position: "absolute",
@@ -29,6 +30,8 @@ function ChildModal({
   inputName,
   inputEmail,
   selectEmployees,
+  profesion,
+  country,
   leadAsigned,
   handleReset,
   CreateEmployees,
@@ -131,6 +134,7 @@ function ChildModal({
 
         const response = await axios.get(
           `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
+          // `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
         );
 
         setLoading(false);
@@ -185,7 +189,7 @@ function ChildModal({
         <Box
           sx={{
             ...style,
-            width: "27%",
+            width: "fit-content",
             height: "fit-content",
             backgroundColor: "#39394b",
           }}
@@ -257,6 +261,8 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
   const [inputEmail, setInputEmail] = useState("");
   const [selectEmployees, setSelectEmployees] = useState("");
   const [leadAsigned, setLeadAsigned] = useState(0);
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
 
   const handleReset = () => {
     setInputName("");
@@ -279,7 +285,7 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
         <Box
           sx={{
             ...style,
-            width: "30%",
+            width: "35%",
             height: "fit-content",
             bgcolor: "#39394b",
           }}
@@ -297,16 +303,26 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
                 setEmployees={setSelectEmployees}
               />
               {selectEmployees === "freelancer" ? (
-                <LeadAsigned
-                  leadAsigned={leadAsigned}
-                  setLeadAsigned={setLeadAsigned}
-                />
+                <div className="flex flex-col justify-center items-center gap-10 m-2">
+                  <LeadAsigned
+                    leadAsigned={leadAsigned}
+                    setLeadAsigned={setLeadAsigned}
+                  />
+                  <Profesion
+                    profesion={profesion}
+                    setProfesion={setProfesion}
+                    country={country}
+                    setCountry={setCountry}
+                  />
+                </div>
               ) : null}
             </div>
           </div>
           <ChildModal
             inputName={inputName}
             inputEmail={inputEmail}
+            profesion={profesion}
+            country={country}
             leadAsigned={leadAsigned}
             selectEmployees={selectEmployees}
             handleReset={handleReset}

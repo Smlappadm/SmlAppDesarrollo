@@ -25,7 +25,7 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import Pagos from "../../../componentsClientes/Pagos/Pagos";
+import PagosInfo from "../../PagosInfo/PagosInfo";
 
 const VendedoresDashboard = () => {
   const [data, setData] = useState([]);
@@ -34,6 +34,7 @@ const VendedoresDashboard = () => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
   const [openModalPago, setOpenModalPago] = useState(false);
+  const [saveEmailApp, setSaveEmailApp] = useState("");
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -158,18 +159,23 @@ const VendedoresDashboard = () => {
   };
 
   const openModalPagoFunction = () => {
-    // setOpenModalPago(true);
+    setOpenModalPago(true);
   };
   const closeModalPago = () => {
     setOpenModalPago(false);
   };
 
+  const saveEmailAppFunction = (email) => {
+    console.log("entra?????")
+    setSaveEmailApp(email)
+  }
+console.log(saveEmailApp)
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-between items-center w-screen  z-0">
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
-          <p className="mt-2 p-3 bg-[#b9b9b978] text-green rounded-md absolute">
+          <p className="absolute w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-32 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
             Copiado!
           </p>
         )}
@@ -330,6 +336,7 @@ const VendedoresDashboard = () => {
                             fullName={fullName}
                             cancelModal={cancelModal}
                             openModalPagoFunction={openModalPagoFunction}
+                            saveEmailAppFunction={saveEmailAppFunction}
                           />
                         </div>
                       </div>
@@ -343,14 +350,23 @@ const VendedoresDashboard = () => {
               )}
             </>
           ) : (
-            <div className="border-2 flex flex-col justify-center items-center w-full mt-24">
+            <div className=" flex flex-col justify-center items-center w-44 mt-56 gap-7">
               <button
-                className="border-2 bg-[#3a5fc5] w-12 h-12 rounded-full text-24 my-5"
+                className=" -top-3 -right-14 bg-[#485d94] text-white hover:bg-[#294ba7] w-10 h-10 rounded-full text-24 my-5 "
                 onClick={closeModalPago}
               >
                 x
               </button>
-              <Pagos />
+              <p
+                onClick={() =>
+                  handleCopyClick(
+                    `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
+                  )
+                }
+                className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+              >
+                Link de Pago
+              </p>
             </div>
           )}
         </div>

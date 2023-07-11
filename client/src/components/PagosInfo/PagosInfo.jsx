@@ -1,17 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import CheckoutForm from "./CheckoutForm";
-import ConfirmacionPago from "./ConfirmacionPago";
 import axios from "axios";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { useSelector, useDispatch } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
-import background from "../../Assets/borde1.png";
-import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
+import { useLocation } from "react-router-dom";
 // require('dotenv').config();
 
 // const { STRIPE_SECRET_KEY } = process.env;
@@ -26,6 +22,10 @@ const Pagos = ({ tamañoPantalla }) => {
   const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
   const [leadEmpresa, setLeadEmpresa] = useState(false);
+  const emailApp = useLocation().search.split("=")[1]
+const {pathname, search} = useLocation()
+const link= `http://localhost:5173${pathname}${search}`
+console.log(link)
   // const user = useUser().user;
   // const email = user?.emailAddresses[0]?.emailAddress;
 
@@ -61,27 +61,28 @@ const Pagos = ({ tamañoPantalla }) => {
   // };
 
   useEffect(() => {
-    dispatch(getClienteEmpresa("facutam@gmail.com"));
+    dispatch(getClienteEmpresa(emailApp));
     if (clienteEmpresa && clienteEmpresa?.name) {
       handlePagoUrlUpdate();
     }
   }, [clienteEmpresa?.name]);
 
   const handlePagoUrlUpdate = async () => {
-    const email = "facutam@gmail.com";
+    const email = emailApp;
     const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
 
     const data1 = response1.data;
     setLeadEmpresa(data1);
 
     if (clienteEmpresa.name) {
-      const response2 = await axios.post("/clientes/payment", {
+      const response2 = await axios.post("/clientes/pagos-sml", {
         id: clienteEmpresa._id,
         name: clienteEmpresa.name,
         monto: clienteEmpresa.pagos.monto,
         cuotas: clienteEmpresa.pagos.cuotas,
         cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
         valorCuota: clienteEmpresa.pagos.valorCuota,
+        link: link
       });
       const data2 = response2.data;
       setUrlPago(data2.url);
@@ -112,9 +113,9 @@ const Pagos = ({ tamañoPantalla }) => {
 
     return fechaHoraLocal;
   };
-
+console.log(clienteEmpresa.pagos.detallesRestantes[0])
   return (
-    <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen">
+    <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen mt-52">
       {tamañoPantalla === "Grande" ? (
         <div className="w-full h-1/6">
           <NavBarDesktop />
@@ -123,32 +124,25 @@ const Pagos = ({ tamañoPantalla }) => {
 
       {clienteEmpresa && clienteEmpresa.name ? (
         <div className="flex gap-5  flex-col justify-center items-center ">
-          {tamañoPantalla === "Pequeña" ? (
-            <div className="w-full flex mb-4 items-end justify-between pt-4">
-              <h2 className="font-bold">Pagos</h2>
-              <Link
-                to={"/clientes-home"}
-                className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
-              >
-                <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
-              </Link>
-            </div>
-          ) : null}
+          <div className="w-full flex mb-4 items-end justify-between pt-4">
+            <h2 className="font-bold">Pagos</h2>
+            {/* <Link
+              to={"/clientes-home"}
+              className="font-bold  md:border-2 md:border-[#211f52] md:rounded-lg hover:bg-[#2a286e] "
+            >
+              <IoCloseSharp className="font-bold text-[#fff] text-[2rem]" />
+            </Link> */}
+          </div>
+
           <p
-            className={
-              tamañoPantalla === "Pequeña"
-                ? "w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
-                : "w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
-            }
+            className="w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
+            // "w-full text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
           >
             {clienteEmpresa?.name && clienteEmpresa?.name}
           </p>
           <div
-            className={
-              tamañoPantalla === "Pequeña"
-                ? "w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
-                : "p-3 w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
-            }
+            className="w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#282828] hover:bg-[#3f437a] cursor-pointer"
+            // "p-3 w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
           >
             {/* <p className="border-2 text-center text-24 font-extrabold text-white">
             {`Email: ${clienteEmpresa.emailApp}`}
@@ -157,13 +151,13 @@ const Pagos = ({ tamañoPantalla }) => {
               {`Monto total: €${clienteEmpresa.pagos.monto} `}
             </p>
             <p className=" text-center text-16 font-extrabold text-white">
-              {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota}`}
+              {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota.toFixed(2)}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
-            {clienteEmpresa.pagos.detallesRestantes[0] !== "" &&
+              {clienteEmpresa.pagos.detallesRestantes[0] !== "" &&
                 (clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" &&
                   `Próximo vencimiento: ${funcionHorario(
                     clienteEmpresa.pagos.detallesRestantes[0]
@@ -190,7 +184,9 @@ const Pagos = ({ tamañoPantalla }) => {
               )}
             </a>
           ) : (
-            <p className="bg-[#26ad5f] p-2 mt-2 rounded-lg text-white">¡Las Cuotas ya fueron abonadas!</p>
+            <p className="bg-[#26ad5f] p-2 mt-2 rounded-lg text-white">
+              ¡Las Cuotas ya fueron abonadas!
+            </p>
           )}
         </div>
       ) : (
@@ -203,11 +199,6 @@ const Pagos = ({ tamañoPantalla }) => {
           </span>
         </div>
       )}
-      {/* <Elements stripe={stripePromise} > */}
-      {/* <Elements stripe={stripePromise} options={options}> */}
-      {/* <ConfirmacionPago/> */}
-      {/* <CheckoutForm /> */}
-      {/* </Elements> */}
     </div>
   );
 };

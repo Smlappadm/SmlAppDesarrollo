@@ -17,7 +17,9 @@ const {
   findLeadCorredorNameHandler,
   findLeadVendedorNameHandler,
   getAllProfesionHandler,
+  getAllProfesionFreelanceHandler,
   getAllCountriesHandler,
+  getAllCountriesFreelanceHandler,
   findLeadCorredorNameAllInfoHandler,
   getAllCategoryHandler,
   getCorredoresHandler,
@@ -39,11 +41,13 @@ const LeadRouter = Router();
 
 LeadRouter.get("/", getAllLeadHandler);
 LeadRouter.get("/profesion", getAllProfesionHandler);
+LeadRouter.get("/profesionFreelance", getAllProfesionFreelanceHandler);
 LeadRouter.get("/allcorredor", getCorredoresHandler);
 LeadRouter.get("/allfreelancer", getFreelancersHandler);
 LeadRouter.get("/allvendedor", getVendedoresHandler);
 LeadRouter.get("/category", getAllCategoryHandler);
 LeadRouter.get("/country", getAllCountriesHandler);
+LeadRouter.get("/countryFreelance", getAllCountriesFreelanceHandler);
 LeadRouter.get("/corredor", findLeadCorredorNameHandler);
 LeadRouter.get("/freelancer", findLeadFreelancerNameHandler);
 LeadRouter.get("/allinfo", findLeadCorredorNameAllInfoHandler);

@@ -1,6 +1,6 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
+const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota, link }) => {
 
 //     const infoLead = await find({emailApp:emailApp})
 // console.log(infoLead.pagos)
@@ -37,7 +37,7 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
     ],
     mode: "payment",
     // success_url: "www.google.com.ar",
-    success_url: "http://localhost:5173/clientes-pagos",
+    success_url: link,
     // cancel_url: "http://localhost:3002/cancel",
     // success_url: "http://localhost:3001/success",
     // cancel_url: "http://localhost:3002/cancel",

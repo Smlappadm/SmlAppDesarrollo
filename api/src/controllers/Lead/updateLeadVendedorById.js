@@ -33,7 +33,7 @@ if (!updatedData.dataLead.llamados) {
     const emailFilter = updatedData.dataLead.emailApp
       ? updatedData.dataLead.emailApp
       : updatedData.dataVendedor.email;
-    const leadEmailAppUpdated = await Lead.updateOne(
+    const leadEmailAppUpdated = await Lead.updateMany(
       {
         emailApp: {
           $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email],
@@ -72,7 +72,7 @@ if (!updatedData.dataLead.llamados) {
     });
   //poner la prueba primero
     // updatedData.dataLead.pagos.detallesRestantes.push(new Date(prueba));
-
+    updatedData.dataLead.pagos.detallesRestantes.push("");
     let sumador = 30;
     for (let i = 0; i < updatedData.dataLead.pagos.cuotas - 1; i++) {
       fechaActual.setDate(fechaActual.getDate() + sumador); // Sumar 30 días a la fecha actual
@@ -80,7 +80,7 @@ if (!updatedData.dataLead.llamados) {
       updatedData.dataLead.pagos.detallesRestantes.push(new Date(fechaActual));
     }
 
-    
+    updatedData.dataLead.pagos.detallesRestantes.push("cierre");
     
 
     // console.log("44444444444")

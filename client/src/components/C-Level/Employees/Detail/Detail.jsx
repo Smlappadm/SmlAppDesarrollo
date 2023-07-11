@@ -4,10 +4,13 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Profesion from "./MUI/Profesion";
 
 function Detail({ cardEmail }) {
   const [loading, setLoading] = useState(false);
   const [leadAsigned, setLeadAsigned] = useState(0);
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
 
   const SendLeads = (name) => {
     toast.success(`✔ Leads asignados a el Freelancer ${name}  `, {
@@ -25,17 +28,21 @@ function Detail({ cardEmail }) {
   const asignar = async () => {
     setLoading(true);
 
-    const startTime = performance.now(); 
+    const startTime = performance.now();
 
     const response = await axios.get(
-      `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}`
+      `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
+      // `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
     );
 
-    const endTime = performance.now(); 
+    const endTime = performance.now();
     const duration = endTime - startTime;
 
-    console.log(`La asignacion de ${leadAsigned} leads tardó ${(duration / 1000).toFixed(2)} segundos`);
-
+    console.log(
+      `La asignacion de ${leadAsigned} leads tardó ${(duration / 1000).toFixed(
+        2
+      )} segundos`
+    );
 
     setLoading(false);
 
@@ -55,7 +62,7 @@ function Detail({ cardEmail }) {
               />
             </div>
           </div>
-          <div className="h-1/4 flex flex-col gap-7">
+          <div className="h-1/4 flex flex-col gap-4">
             <div className="flex justify-center">
               <h1 className="text-24 text-gray-200">
                 Información del empleado
@@ -101,11 +108,20 @@ function Detail({ cardEmail }) {
             </div>
 
             {cardEmail.rol === "freelancer" ? (
-              <div className="flex gap-5 items-center justify-start">
-                <LeadAsigned
-                  leadAsigned={leadAsigned}
-                  setLeadAsigned={setLeadAsigned}
-                />
+              <div className="flex flex-col gap-5 items-center justify-center">
+                <h2>Asignacion de Leads</h2>
+                <div className="flex flex-col gap-10 mb-5 justify-center items-center w-fit">
+                  <LeadAsigned
+                    leadAsigned={leadAsigned}
+                    setLeadAsigned={setLeadAsigned}
+                  />
+                  <Profesion
+                    profesion={profesion}
+                    setProfesion={setProfesion}
+                    country={country}
+                    setCountry={setCountry}
+                  />
+                </div>
                 <div onClick={asignar}>
                   <Button size="large" variant="outlined">
                     Asignar

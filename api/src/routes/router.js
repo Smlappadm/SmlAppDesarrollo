@@ -10,6 +10,7 @@ const LeaderRouter = require("./LeaderRouter");
 const PagosRouter = require("./PagosRouter");
 const FreelancerRouter = require("./FreelancerRouter");
 
+console.log("asddddddddd")
 router.use("/employees", EmployeesRouter);
 router.use("/clevel", CLevelRouter);
 router.use("/corredor", CorredorRouter);

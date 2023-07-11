@@ -24,8 +24,10 @@ import {
   FIND_VENDEDORES_NAME,
   GET_ALL_EMPLOYEES,
   GET_ALL_PROFESION,
-  GET_ALL_CATEGORY,
+  GET_ALL_PROFESION_FREELANCE,
   GET_ALL_COUNTRY,
+  GET_ALL_COUNTRY_FREELANCE,
+  GET_ALL_CATEGORY,
   GET_DETAIL_EMPLOY,
   FIND_CORREDORES_NAME_ALL_INFO,
   FIND_VENDEDORES_NAME_ALL_INFO,
@@ -70,8 +72,10 @@ const initialState = {
   corredorLeadChecked: [],
   allEmployees: [],
   allProfesion: [],
-  allCategory: [],
+  allProfesionFreelance: [],
   allCountries: [],
+  allCountriesFreelance: [],
+  allCategory: [],
   detailEmploy: [],
   corredoresByNameAllInfo: [],
   vendedoresByNameAllInfo: [],
@@ -441,16 +445,26 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allProfesion: action.payload,
       };
-    case GET_ALL_CATEGORY:
+    case GET_ALL_PROFESION_FREELANCE:
       return {
         ...state,
-        allCategory: action.payload,
+        allProfesionFreelance: action.payload,
       };
-    case GET_ALL_COUNTRY:
-      return {
-        ...state,
-        allCountries: action.payload,
-      };
+      case GET_ALL_COUNTRY:
+        return {
+          ...state,
+          allCountries: action.payload,
+        };
+      case GET_ALL_COUNTRY_FREELANCE:
+        return {
+          ...state,
+          allCountriesFreelance: action.payload,
+        };
+        case GET_ALL_CATEGORY:
+          return {
+            ...state,
+            allCategory: action.payload,
+          };
     case GET_CORREDORES:
       return {
         ...state,
