@@ -171,23 +171,7 @@ export default function ChildModal() {
                 <input
                   type="text"
                   placeholder="algo"
-                  className=" bg-transparent"
-                />
-              </div>
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>Email: </label>
-                <input
-                  type="text"
-                  placeholder="algo"
-                  className=" bg-transparent"
-                />
-              </div>
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
-                <label>Email: </label>
-                <input
-                  type="text"
-                  placeholder="algo"
-                  className=" bg-transparent"
+                  className=" bg-white w-full rounded-lg pl-3"
                 />
               </div>
             </div>
