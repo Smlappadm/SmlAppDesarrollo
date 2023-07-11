@@ -126,7 +126,7 @@ export default function ChildModal() {
             </h2>
 
             <div className="flex flex-col  gap-3">
-              <div className="flex bg-black h-10">
+              <div className="flex bg-black h-10  items-center  px-3 gap-4">
                 <label>A</label>
                 <input
                   type="text"
