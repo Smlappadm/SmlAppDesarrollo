@@ -134,7 +134,7 @@ export default function ChildModal() {
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
-              <div className="flex bg-black h-10  items-center  px-3 gap-4">
+              <div className="flex  h-10  items-center  px-3 gap-4">
                 <label>Pais: </label>
                 <input
                   type="text"
