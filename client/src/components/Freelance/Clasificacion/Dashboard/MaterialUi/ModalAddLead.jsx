@@ -5,6 +5,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { getAllCategory, getAllFreelancer } from "../../../../../redux/actions";
+import axios from "axios";
 const style = {
   position: "absolute",
   top: "50%",
@@ -26,6 +27,16 @@ export default function ChildModal({ email }) {
   const dispatch = useDispatch();
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
+  const [errors, setErrors] = useState({
+    nombre: "",
+    pais: "",
+    ciudad: "",
+    web: "",
+    email: "",
+    telefono: "",
+    categoria: "",
+  });
+  const [error, setError] = useState(false);
   const [values, setValues] = useState({
     nombre: "",
     pais: "",
@@ -48,25 +59,12 @@ export default function ChildModal({ email }) {
       })
       .catch((error) => console.log(error));
   }, [dispatch]);
-  useEffect(() => {
-    if (values.pais !== "") {
-      if (values.pais !== "") {
-        fetch(`https://restcountries.com/v3.1/name/${values.pais}`)
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            const capital = data[0]?.capital[0] || "";
-            setCities([capital]);
-          })
-          .catch((error) => console.log(error));
-      }
-    }
-  }, [values.pais]);
 
   useEffect(() => {
     const free =
       freelancer && freelancer.filter((free) => free.email === email);
     setOneFreelancer(free);
+    console.log(free);
   }, [freelancer]);
 
   const handleOpen = () => {
@@ -76,25 +74,123 @@ export default function ChildModal({ email }) {
     setOpen(false);
   };
 
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+  const validateURL = (url) => {
+    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+    return regex.test(url);
+  };
+  const validaciones = (id) => {
+    if (id === "email") {
+      if (!validateEmail(values.email)) {
+        // Si el email no es válido, muestra un mensaje de error
+        setErrors(
+          (prevErrors) => ({
+            ...prevErrors,
+            email: "Ingrese un email válido",
+          }),
+          console.log("b")
+        );
+      } else {
+        setErrors(
+          (prevErrors) => ({
+            ...prevErrors,
+            email: "",
+          }),
+          console.log("a")
+        );
+      }
+    }
+    if (id === "web") {
+      if (!validateURL(values.web)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          web: "Ingrese una URL válida",
+        }));
+      } else {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          web: "",
+        }));
+      }
+    }
+  };
   const handleChange = (event) => {
     const { id, value } = event.target;
+    validaciones(id);
     setValues((prevValues) => ({
       ...prevValues,
       [id]: value,
     }));
   };
+  useEffect(() => {}, [errors]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
     const body = {
-      ...values,
+      name: values.nombre,
+      category: values.categoria,
+      province: values.pais,
+      country: values.pais,
+      city: values.ciudad,
+      email: values.email,
+      url: values.web,
+      telephone: values.telefono,
+      checked: false,
+      view: false,
+      profesion: values.categoria,
+      corredor: OneFreelancer && OneFreelancer[0].email,
+      corredor_name: OneFreelancer && OneFreelancer[0].name,
+      instagra: "",
+      level: "",
+      freelancer: true,
+      vendedor: OneFreelancer && OneFreelancer[0].email,
+      vendedor_name: OneFreelancer && OneFreelancer[0].name,
+      from: OneFreelancer && OneFreelancer[0].email,
+      status: "Sin contactar",
+      marca_personal: "No",
     };
-    console.log(body);
+
+    if (
+      values.nombre === "" ||
+      values.pais === "" ||
+      values.ciudad === "" ||
+      values.web === "" ||
+      values.email === "" ||
+      values.telefono === "" ||
+      values.categoria === ""
+    ) {
+      console.log("nada");
+    } else {
+      if (
+        errors.nombre !== "" ||
+        errors.pais !== "" ||
+        errors.ciudad !== "" ||
+        errors.web !== "" ||
+        errors.email !== "" ||
+        errors.telefono !== "" ||
+        errors.categoria !== ""
+      ) {
+        console.log("errores");
+      } else {
+        try {
+          console.log(body);
+          const response = await axios.post("/lead/new", body);
+
+          console.log("todo");
+          console.log(response.data);
+        } catch (error) {
+          console.log({ error: error.message });
+        }
+      }
+    }
+    //console.log(body);
   };
 
   return (
     <React.Fragment>
-      <ToastContainer />
       <Button variant="contained" sx={{}} onClick={handleOpen}>
         NUEVO CLIENTE
       </Button>
@@ -129,7 +225,7 @@ export default function ChildModal({ email }) {
                   <input
                     type="text"
                     id="nombre"
-                    placeholder="algo"
+                    placeholder="Ingrese el nombre del nuevo cliente"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                     value={values.nombre}
                     onChange={(event) => handleChange(event)}
@@ -140,12 +236,16 @@ export default function ChildModal({ email }) {
                   <select
                     type="text"
                     id="categoria"
-                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    className={
+                      values.categoria !== ""
+                        ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                        : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
+                    }
                     value={values.categoria}
                     onChange={(event) => handleChange(event)}
                   >
                     <option value="" disabled selected>
-                      Seleccione una categoría
+                      Seleccione una categoría del cliente
                     </option>
                     {allCategory &&
                       allCategory.map((category) => (
@@ -163,12 +263,16 @@ export default function ChildModal({ email }) {
                   <label className="w-24">Pais: </label>
                   <select
                     id="pais"
-                    className="bg-transparent w-full rounded-lg pl-3 h-full border border-white"
+                    className={
+                      values.pais !== ""
+                        ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                        : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
+                    }
                     value={values.pais}
                     onChange={(event) => handleChange(event)}
                   >
                     <option value="" disabled selected>
-                      Seleccione un país
+                      Seleccione el país del cliente
                     </option>
                     {countries.map((country) => (
                       <option
@@ -183,50 +287,45 @@ export default function ChildModal({ email }) {
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Ciudad: </label>
-                  <select
+                  <input
                     id="ciudad"
-                    className="bg-transparent w-full rounded-lg pl-3 h-full border border-white"
+                    type="text"
+                    placeholder="Ingrese la cuidad de el cliente"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                     value={values.ciudad}
                     onChange={(event) => handleChange(event)}
-                  >
-                    <option value="" disabled selected>
-                      Seleccione una ciudad
-                    </option>
-                    {cities.map((city) => (
-                      <option value={city} key={city} className="text-black">
-                        {city}
-                      </option>
-                    ))}
-                  </select>
+                  />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Web: </label>
                   <input
                     id="web"
                     type="text"
-                    placeholder="algo"
+                    placeholder="Ingrese el sitio web"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                     value={values.web}
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
+                {errors.web !== "" && <span>{errors.web}</span>}
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Email: </label>
                   <input
                     id="email"
                     type="text"
-                    placeholder="algo"
+                    placeholder="Ingrese el email del cliente"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                     value={values.email}
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
+                {errors.email !== "" && <span>{errors.email}</span>}
                 <div className="flex h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Telefono: </label>
                   <input
                     id="telefono"
-                    type="text"
-                    placeholder="algo"
+                    type="number"
+                    placeholder="Ingrese numero de Telefono del cliente"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white text-white"
                     value={values.telefono}
                     onChange={(event) => handleChange(event)}
