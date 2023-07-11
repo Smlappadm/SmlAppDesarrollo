@@ -82,7 +82,8 @@ console.log(link)
         cuotas: clienteEmpresa.pagos.cuotas,
         cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
         valorCuota: clienteEmpresa.pagos.valorCuota,
-        link: link
+        link: link,
+        email: email,
       });
       const data2 = response2.data;
       setUrlPago(data2.url);
