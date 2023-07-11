@@ -692,6 +692,14 @@ video {
   top: 1.25rem;
 }
 
+.top-1 {
+  top: 0.25rem;
+}
+
+.-top-32 {
+  top: -8rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1975,11 +1983,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#550000\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(85 0 0 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#7B0BC0\] {
