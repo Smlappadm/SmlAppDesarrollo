@@ -24,7 +24,8 @@ const Pagos = ({ tamañoPantalla }) => {
   const [leadEmpresa, setLeadEmpresa] = useState(false);
   const emailApp = useLocation().search.split("=")[1]
 const {pathname, search} = useLocation()
-const link= `http://localhost:5173${pathname}${search}`
+// const link= `http://localhost:5173${pathname}${search}`
+const link= `https://sml-app.vercel.app${pathname}${search}`
 console.log(link)
   // const user = useUser().user;
   // const email = user?.emailAddresses[0]?.emailAddress;

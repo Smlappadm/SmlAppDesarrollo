@@ -161,14 +161,14 @@ const VentasDashboard = () => {
   return (
     <>
       <Nav />
-      <div className="flex flex-col justify-between items-center w-screen  z-0">
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
+        <div className="w-full flex flex-col justify-center items-center">
+          <div className={style.divTitle}>
       {showCopiedMessage && (
-          <p className="absolute w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-32 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
+          <p className="absolute top-2  w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
             Copiado!
           </p>
         )}
-        <div className="w-full flex flex-col justify-center items-center">
-          <div className={style.divTitle}>
             <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
