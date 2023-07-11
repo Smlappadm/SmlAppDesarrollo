@@ -46,7 +46,8 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       description: description // Establece el detalle del pago
     },
     // success_url: "www.google.com.ar",
-    success_url: "http://localhost:5173/clientes-pagos",
+    // success_url: "http://localhost:5173/clientes-pagos",
+    success_url: "https://sml-app.vercel.app/clientes-pagos",
     // cancel_url: "http://localhost:3002/cancel",
     locale: "es",
   });
