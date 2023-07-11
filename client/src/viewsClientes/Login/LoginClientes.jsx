@@ -6,7 +6,7 @@ import Register from "../../componentsClientes/Login/Register";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import RegisterDesktop from "../../componentsClientes/Login/RegisterDesktop";
-import logo from "../../Assets/SMLlogo.png";
+import logo from "../../Assets/smllogo.png";
 
 export default function Home({ tamañoPantalla }) {
   const navigate = useNavigate();
