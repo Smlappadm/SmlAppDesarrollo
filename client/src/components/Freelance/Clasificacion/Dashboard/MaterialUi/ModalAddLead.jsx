@@ -125,8 +125,8 @@ export default function ChildModal() {
               Añadir clientes!
             </h2>
 
-            <div className="flex flex-col  gap-5">
-              <div className="flex bg-black">
+            <div className="flex flex-col  gap-3">
+              <div className="flex bg-black h-10">
                 <label>A</label>
                 <input
                   type="text"
