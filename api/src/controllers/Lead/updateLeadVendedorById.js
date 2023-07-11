@@ -74,7 +74,7 @@ if (!updatedData.dataLead.llamados) {
     // updatedData.dataLead.pagos.detallesRestantes.push(new Date(prueba));
     updatedData.dataLead.pagos.detallesRestantes.push("");
     let sumador = 30;
-    for (let i = 0; i < updatedData.dataLead.pagos.cuotas - 1; i++) {
+    for (let i = 0; i < updatedData.dataLead.pagos.cuotas; i++) {
       fechaActual.setDate(fechaActual.getDate() + sumador); // Sumar 30 días a la fecha actual
       updatedData.dataLead.pagos.detalles.push(new Date(fechaActual));
       updatedData.dataLead.pagos.detallesRestantes.push(new Date(fechaActual));
