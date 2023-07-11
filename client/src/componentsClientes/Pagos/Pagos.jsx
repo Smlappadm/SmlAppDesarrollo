@@ -122,6 +122,7 @@ const Pagos = ({ tamañoPantalla }) => {
           <NavBarDesktop />
         </div>
       ) : null}
+      
       {clienteEmpresa && clienteEmpresa.name ? (
         <div className="flex gap-5  flex-col justify-center items-center ">
           {tamañoPantalla === "Pequeña" ? (
@@ -164,7 +165,7 @@ const Pagos = ({ tamañoPantalla }) => {
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
-              {`Próximo vencimiento: ${funcionHorario(clienteEmpresa.pagos.detallesRestantes[0])}`}
+              {clienteEmpresa.pagos.detallesRestantes[0] !=="" && `Próximo vencimiento: ${funcionHorario(clienteEmpresa.pagos.detallesRestantes[0])}`}
             </p>
           </div>
           <a
