@@ -24,6 +24,14 @@ export default function ChildModal({ email }) {
   const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  const [values, setValues] = useState({
+    nombre: "",
+    pais: "",
+    ciudad: "",
+    web: "",
+    email: "",
+    telefono: "",
+  });
 
   useEffect(() => {
     dispatch(getAllFreelancer());
@@ -40,6 +48,19 @@ export default function ChildModal({ email }) {
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values);
   };
 
   return (
@@ -72,13 +93,16 @@ export default function ChildModal({ email }) {
               Añadir clientes!
             </h2>
 
-            <div className="flex flex-col  gap-3">
+            <form className="flex flex-col  gap-3" onChange={handleSubmit}>
               <div className="flex  h-10  items-center  px-3 gap-4">
                 <label className="w-20">Nombre: </label>
                 <input
                   type="text"
+                  id="nombre"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.nombre}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
@@ -88,6 +112,8 @@ export default function ChildModal({ email }) {
                   id="pais"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.pais}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
@@ -126,7 +152,7 @@ export default function ChildModal({ email }) {
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
               </div>
-            </div>
+            </form>
             <div className="flex justify-around">
               <button>CLEAN</button>
               <button>ADD</button>
