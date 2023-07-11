@@ -481,7 +481,7 @@ const ClasificacionDashboard = () => {
 
       SendLeadsSuccess();
     } catch (error) {
-      SendLeadsError();
+      //SendLeadsError();
       console.log({ error: error.message });
     }
   };
