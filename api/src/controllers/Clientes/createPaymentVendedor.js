@@ -1,8 +1,9 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const Lead = require("../../models/Lead");
 
 const createPayment = async (emailApp) => {
-
-    const infoLead = await find({emailApp:emailApp})
+console.log("entro")
+    const infoLead = await Lead.find({emailApp:emailApp})
 console.log(infoLead.pagos)
 
 return infoLead.pagos
