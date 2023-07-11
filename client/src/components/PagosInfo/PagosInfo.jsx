@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";
+import { useLocation } from "react-router-dom";
 // require('dotenv').config();
 
 // const { STRIPE_SECRET_KEY } = process.env;
@@ -21,6 +22,8 @@ const Pagos = ({ tamañoPantalla }) => {
   const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
   const [leadEmpresa, setLeadEmpresa] = useState(false);
+  const emailApp = useLocation().search.split("=")[1]
+console.log(emailApp)
   // const user = useUser().user;
   // const email = user?.emailAddresses[0]?.emailAddress;
 
@@ -56,14 +59,14 @@ const Pagos = ({ tamañoPantalla }) => {
   // };
 
   useEffect(() => {
-    dispatch(getClienteEmpresa("facutam@gmail.com"));
+    dispatch(getClienteEmpresa(emailApp));
     if (clienteEmpresa && clienteEmpresa?.name) {
       handlePagoUrlUpdate();
     }
   }, [clienteEmpresa?.name]);
 
   const handlePagoUrlUpdate = async () => {
-    const email = "facutam@gmail.com";
+    const email = emailApp;
     const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
 
     const data1 = response1.data;
@@ -109,7 +112,7 @@ const Pagos = ({ tamañoPantalla }) => {
   };
 
   return (
-    <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen">
+    <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen mt-52">
       {tamañoPantalla === "Grande" ? (
         <div className="w-full h-1/6">
           <NavBarDesktop />
@@ -145,20 +148,20 @@ const Pagos = ({ tamañoPantalla }) => {
               {`Monto total: €${clienteEmpresa.pagos.monto} `}
             </p>
             <p className=" text-center text-16 font-extrabold text-white">
-              {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota}`}
+              {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota.toFixed(2)}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
-              {clienteEmpresa.pagos.detallesRestantes[0] !== "" ||
+              {clienteEmpresa.pagos.detallesRestantes[0] !== "" &&
                 (clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" &&
                   `Próximo vencimiento: ${funcionHorario(
                     clienteEmpresa.pagos.detallesRestantes[0]
                   )}`)}
             </p>
           </div>
-          {clienteEmpresa.pagos.detallesRestantes[0] === "cierre" ? (
+          {clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" ? (
             <a
               href={urlPago ? urlPago : ""}
               // target="_blanck"
