@@ -25,10 +25,10 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
   // console.log("aaaaaaaaaaaa")
-  valorCuota = Number(valorCuota.toFixed(2))
+  // valorCuota = Number(valorCuota.toFixed(2))
 
   console.log(cuotas)
-  console.log(cuotasRestantes)
+  console.log((cuotasRestantes+1))
   console.log(valorCuota)
   const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`
   
@@ -67,7 +67,6 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
     locale: "es",
   });
 
-  console.log(name)
   
     // await stripe.webhookEndpoints.create({
       //   url: "https://tu-domino.com/stripe/payment_completed",
@@ -75,7 +74,7 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
       // });
       
       
-//   console.log(session)
+  console.log(session)
 
 
   return session;
