@@ -113,7 +113,7 @@ console.log(link)
 
     return fechaHoraLocal;
   };
-console.log(clienteEmpresa.pagos.detallesRestantes[0])
+
   return (
     <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen mt-52">
       {tamañoPantalla === "Grande" ? (
