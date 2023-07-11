@@ -156,7 +156,6 @@ const VentasDashboard = () => {
   };
 
   const saveEmailAppFunction = (email) => {
-    console.log("entra?????");
     setSaveEmailApp(email);
   };
   return (
@@ -324,6 +323,8 @@ const VentasDashboard = () => {
                             emailAddress={body.email}
                             fullName={fullName}
                             cancelModal={cancelModal}
+                            saveEmailAppFunction={saveEmailAppFunction}
+                            openModalPagoFunction={openModalPagoFunction}
                           />
                         </div>
                       </div>
