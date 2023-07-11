@@ -426,9 +426,9 @@ export const getAllProfesion = () => {
     dispatch({ type: GET_ALL_PROFESION, payload: allProfesion });
   };
 };
-export const getAllProfesionFreelance = () => {
+export const getAllProfesionFreelance = (emailAddress) => {
   return async (dispatch) => {
-    const response = await axios.get("/lead/profesionfreelance");
+    const response = await axios.get(`/lead/profesionfreelance?email=${emailAddress}`);
     const allProfesion = response.data;
     dispatch({ type: GET_ALL_PROFESION_FREELANCE, payload: allProfesion });
   };
@@ -442,9 +442,9 @@ export const getAllCountries = () => {
     dispatch({ type: GET_ALL_COUNTRY, payload: allCountries });
   };
 };
-export const getAllCountriesFreelance = () => {
+export const getAllCountriesFreelance = (emailAddress) => {
   return async (dispatch) => {
-    const response = await axios.get("/lead/countryfreelance");
+    const response = await axios.get(`/lead/countryfreelance?email=${emailAddress}`);
     const allCountries = response.data;
     dispatch({ type: GET_ALL_COUNTRY_FREELANCE, payload: allCountries });
   };
