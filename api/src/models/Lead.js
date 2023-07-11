@@ -166,6 +166,18 @@ const LeadSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    from: {
+      type: String,
+      require: true,
+    },
+    updateCorredor: {
+      type: Date,
+      require: true,
+    },
+    updateVendedor: {
+      type: Date,
+      require: true,
+    },
     deleted: {
       type: Boolean,
       require: true,
