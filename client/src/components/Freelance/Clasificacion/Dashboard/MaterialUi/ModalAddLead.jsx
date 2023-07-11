@@ -38,9 +38,9 @@ export default function ChildModal({ email }) {
   }, [dispatch]);
 
   useEffect(() => {
-    const free = freelancer.filter((free) => free.email === email);
+    const free =
+      freelancer && freelancer.filter((free) => free.email === email);
     setOneFreelancer(free);
-    console.log(free);
   }, [freelancer]);
 
   const handleOpen = () => {
@@ -88,81 +88,83 @@ export default function ChildModal({ email }) {
             height: "600px",
           }}
         >
-          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full justify-evenly">
+          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>
 
-            <form className="flex flex-col  gap-3" onChange={handleSubmit}>
-              <div className="flex  h-10  items-center  px-3 gap-4">
-                <label className="w-20">Nombre: </label>
-                <input
-                  type="text"
-                  id="nombre"
-                  placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                  value={values.nombre}
-                  onChange={handleChange}
-                />
+            <form className="flex flex-col " onChange={handleSubmit}>
+              <div className="flex flex-col gap-3">
+                <div className="flex  h-10  items-center  px-3 gap-4">
+                  <label className="w-20">Nombre: </label>
+                  <input
+                    type="text"
+                    id="nombre"
+                    placeholder="algo"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.nombre}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-4">
+                  <label className="w-20">Pais: </label>
+                  <input
+                    type="text"
+                    id="pais"
+                    placeholder="algo"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.pais}
+                    onChange={(event) => handleChange(event)}
+                  />
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-4">
+                  <label className="w-20">Cuidad: </label>
+                  <input
+                    id="cuidad"
+                    type="text"
+                    placeholder="algo"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.cuidad}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-4">
+                  <label className="w-20">Web: </label>
+                  <input
+                    id="web"
+                    type="text"
+                    placeholder="algo"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.web}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-4">
+                  <label className="w-20">Email: </label>
+                  <input
+                    id="email"
+                    type="text"
+                    placeholder="algo"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex h-10  items-center  px-3 gap-4">
+                  <label className="w-20">Telefono: </label>
+                  <input
+                    id="telefono"
+                    type="text"
+                    placeholder="algo"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.telefono}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-              <div className="flex  h-10  items-center  px-3 gap-4">
-                <label className="w-20">Pais: </label>
-                <input
-                  type="text"
-                  id="pais"
-                  placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                  value={values.pais}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex  h-10  items-center  px-3 gap-4">
-                <label className="w-20">Cuidad: </label>
-                <input
-                  id="cuidad"
-                  type="text"
-                  placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                  value={values.cuidad}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex  h-10  items-center  px-3 gap-4">
-                <label className="w-20">Web: </label>
-                <input
-                  id="web"
-                  type="text"
-                  placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                  value={values.web}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex  h-10  items-center  px-3 gap-4">
-                <label className="w-20">Email: </label>
-                <input
-                  id="email"
-                  type="text"
-                  placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                  value={values.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex h-10  items-center  px-3 gap-4">
-                <label className="w-20">Telefono: </label>
-                <input
-                  id="telefono"
-                  type="text"
-                  placeholder="algo"
-                  className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                  value={values.telefono}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="flex justify-around">
+              <div className="flex justify-around mt-10">
                 <button>CLEAN</button>
-                <button>ADD</button>
+                <button type="submit">ADD</button>
               </div>
             </form>
           </div>
