@@ -99,7 +99,7 @@ export default function ChildModal() {
     <React.Fragment>
       <ToastContainer />
       <Button variant="contained" sx={{}} onClick={handleOpen}>
-        RANKING
+        NUEVO CLIENTE
       </Button>
       <Modal
         open={open}
@@ -122,66 +122,8 @@ export default function ChildModal() {
         >
           <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
             <h2 className="font-extrabold text-white text-24 mb-8">
-              Ranking de Freelancers!
+              Añadir clientes!
             </h2>
-
-            {infoFreelancer &&
-              infoFreelancer.map((free, index) => {
-                const firstProperty = Object.keys(infoFreelancer[index])[0];
-                const Leads = infoFreelancer[index]?.[firstProperty];
-                const totalLeadsAsignados = Leads.length || 0;
-                const LeadsChecked = Leads.reduce((total, lead) => {
-                  if (lead.checked === true) {
-                    return total + 1;
-                  }
-                  return total;
-                }, 0);
-                const LeadsVendidos = Leads.reduce((total, lead) => {
-                  if (lead.status === "Contratado") {
-                    return total + 1;
-                  }
-                  return total;
-                }, 0);
-
-                return (
-                  <div
-                    className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
-                    key={index}
-                  >
-                    <div className="w-1/12 ">
-                      {infoFreelancer[index].photo ? (
-                        <img
-                          src={infoFreelancer[index].photo}
-                          alt="photo"
-                          className="rounded-full"
-                        />
-                      ) : null}
-                    </div>
-                    <div className="w-3/12">
-                      <p className="text-center pl-3">
-                        {Object.keys(infoFreelancer[index])[0]}
-                      </p>
-                    </div>
-                    <div className="w-3/12">
-                      <p>Clasificados</p>
-                      <p>
-                        {LeadsChecked}/{totalLeadsAsignados}
-                      </p>
-                    </div>
-                    <div className="w-3/12">
-                      <p>Ventas</p>
-                      <p>{LeadsVendidos}</p>
-                    </div>
-                    <div className="w-1/12">
-                      <p>Rank</p>
-                      <p>#{index + 1}</p>
-                    </div>
-                    <div className="w-1/12">
-                      {index < 3 ? <img src={place[index]} alt="place" /> : ""}
-                    </div>
-                  </div>
-                );
-              })}
           </div>
         </Box>
       </Modal>
