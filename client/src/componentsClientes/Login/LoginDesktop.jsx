@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SignIn } from "@clerk/clerk-react";
-import logo from "../../Assets/smllogo.png";
 
 export default function LoginDesktop({ handleOpenRegister, handleJoin }) {
   const navigate = useNavigate();
