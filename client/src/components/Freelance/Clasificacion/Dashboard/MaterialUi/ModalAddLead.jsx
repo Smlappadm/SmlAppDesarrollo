@@ -124,6 +124,29 @@ export default function ChildModal() {
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>
+
+            <div className="flex flex-col bg-black">
+              <div className="flex bg-transparent">
+                <label>A</label>
+                <input type="text" placeholder="algo" />
+              </div>
+              <div className="flex bg-transparent">
+                <label>A</label>
+                <input type="text" placeholder="algo" />
+              </div>
+              <div className="flex bg-transparent">
+                <label>A</label>
+                <input type="text" placeholder="algo" />
+              </div>
+              <div className="flex bg-transparent">
+                <label>A</label>
+                <input type="text" placeholder="algo" />
+              </div>
+              <div className="flex bg-transparent">
+                <label>A</label>
+                <input type="text" placeholder="algo" />
+              </div>
+            </div>
           </div>
         </Box>
       </Modal>
