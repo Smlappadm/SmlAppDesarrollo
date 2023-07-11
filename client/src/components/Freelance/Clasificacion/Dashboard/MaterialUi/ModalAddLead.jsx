@@ -21,6 +21,7 @@ const style = {
 
 export default function ChildModal({ email }) {
   const { freelancer } = useSelector((state) => state);
+  const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -29,7 +30,9 @@ export default function ChildModal({ email }) {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log(freelancer);
+    const free = freelancer.filter((free) => free.email === email);
+    setOneFreelancer(free);
+    console.log(free);
   }, [freelancer]);
 
   const handleOpen = () => {
@@ -82,6 +85,7 @@ export default function ChildModal({ email }) {
                 <label className="w-20">Pais: </label>
                 <input
                   type="text"
+                  id="pais"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                 />
@@ -89,6 +93,7 @@ export default function ChildModal({ email }) {
               <div className="flex  h-10  items-center  px-3 gap-4">
                 <label className="w-20">Cuidad: </label>
                 <input
+                  id="cuidad"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
@@ -97,6 +102,7 @@ export default function ChildModal({ email }) {
               <div className="flex  h-10  items-center  px-3 gap-4">
                 <label className="w-20">Web: </label>
                 <input
+                  id="web"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
@@ -105,6 +111,7 @@ export default function ChildModal({ email }) {
               <div className="flex  h-10  items-center  px-3 gap-4">
                 <label className="w-20">Email: </label>
                 <input
+                  id="email"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
@@ -113,6 +120,7 @@ export default function ChildModal({ email }) {
               <div className="flex h-10  items-center  px-3 gap-4">
                 <label className="w-20">Telefono: </label>
                 <input
+                  id="telefono"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
