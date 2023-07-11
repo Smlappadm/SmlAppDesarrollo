@@ -3,12 +3,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
-import gold from "../../../../../Assets/gold.png";
-import silver from "../../../../../Assets/silver.png";
-import bronze from "../../../../../Assets/bronze.png";
 import { getAllFreelancer } from "../../../../../redux/actions";
 const style = {
   position: "absolute",
@@ -24,24 +19,29 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ChildModal() {
+export default function ChildModal({ email }) {
   const { freelancer } = useSelector((state) => state);
-  const [allFreelancer, setFreelancer] = useState("");
-  const [infoFreelancer, setInfoFreelancer] = useState("");
+  const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
-  const place = [gold, silver, bronze];
+  const [values, setValues] = useState({
+    nombre: "",
+    pais: "",
+    ciudad: "",
+    web: "",
+    email: "",
+    telefono: "",
+  });
 
   useEffect(() => {
     dispatch(getAllFreelancer());
   }, [dispatch]);
 
   useEffect(() => {
-    setFreelancer(freelancer);
+    const free = freelancer.filter((free) => free.email === email);
+    setOneFreelancer(free);
+    console.log(free);
   }, [freelancer]);
-  useEffect(() => {
-    InfoFreelancer();
-  }, [allFreelancer]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -50,49 +50,17 @@ export default function ChildModal() {
     setOpen(false);
   };
 
-  const InfoFreelancer = async () => {
-    let body;
-    const infoPromises =
-      allFreelancer &&
-      allFreelancer.map(async (free) => {
-        const response = await axios.get(`/lead/freelancer?name=${free.name}`);
-        const data = response.data;
-        body = { [free.name]: data, photo: free.photo };
-        return body;
-      });
-    const info = await Promise.all(infoPromises);
-    // const infoMap = info.map((ventas) => {
-    //   const ventasArray = ventas[Object.keys(ventas)];
-    //   const ventasMap = ventasArray.reduce((total, ventas) => {
-    //     if (ventas.status === "Contratado") {
-    //       return total + 1;
-    //     }
-    //     return total;
-    //   }, 0);
-    //   return ventasMap;
-    // });
-    const sortedInfo = [...info].sort((a, b) => {
-      const first = b[Object.keys(b)[0]];
-      const sortedB = first.reduce((total, ventas) => {
-        if (ventas.status === "Contratado") {
-          return total + 1;
-        }
-        return total;
-      }, 0);
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setValues((prevValues) => ({
+      ...prevValues,
+      [id]: value,
+    }));
+  };
 
-      const last = a[Object.keys(a)[0]];
-      const sortedA = last.reduce((total, ventas) => {
-        if (ventas.status === "Contratado") {
-          return total + 1;
-        }
-        return total;
-      }, 0);
-
-      return sortedB - sortedA;
-    });
-    // console.log(sortedInfo);
-    //console.log(info[0][Object.keys(info[0])[0]][0].status);
-    setInfoFreelancer(sortedInfo);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values);
   };
 
   return (
@@ -115,65 +83,87 @@ export default function ChildModal() {
         <Box
           sx={{
             ...style,
-            width: "40%",
+            width: "30%",
             backgroundColor: "#39394b",
-            height: "800px",
+            height: "600px",
           }}
         >
-          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
+          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full justify-evenly">
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>
 
-            <div className="flex flex-col  gap-3">
+            <form className="flex flex-col  gap-3" onChange={handleSubmit}>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Nombre: </label>
+                <label className="w-20">Nombre: </label>
                 <input
                   type="text"
+                  id="nombre"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.nombre}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Pais: </label>
+                <label className="w-20">Pais: </label>
                 <input
                   type="text"
+                  id="pais"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.pais}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Cuidad: </label>
+                <label className="w-20">Cuidad: </label>
                 <input
+                  id="cuidad"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.cuidad}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Web: </label>
+                <label className="w-20">Web: </label>
                 <input
+                  id="web"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.web}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex  h-10  items-center  px-3 gap-4">
-                <label>Email: </label>
+                <label className="w-20">Email: </label>
                 <input
+                  id="email"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex h-10  items-center  px-3 gap-4">
-                <label>Telefono: </label>
+                <label className="w-20">Telefono: </label>
                 <input
+                  id="telefono"
                   type="text"
                   placeholder="algo"
                   className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                  value={values.telefono}
+                  onChange={handleChange}
                 />
               </div>
+            </form>
+            <div className="flex justify-around">
+              <button>CLEAN</button>
+              <button>ADD</button>
             </div>
           </div>
         </Box>

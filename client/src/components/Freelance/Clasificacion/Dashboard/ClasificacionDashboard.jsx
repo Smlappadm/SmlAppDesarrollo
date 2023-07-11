@@ -521,7 +521,7 @@ const ClasificacionDashboard = () => {
                 />
               </div>
             </div>
-            <AddLead />
+            <AddLead email={email} />
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
               <IconLabelButtons />
             </div>
