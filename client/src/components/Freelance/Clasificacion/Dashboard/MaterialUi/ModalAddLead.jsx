@@ -86,7 +86,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
   const validaciones = (id) => {
     if (id === "email") {
       if (!validateEmail(values.email)) {
-        // Si el email no es válido, muestra un mensaje de error
         setErrors(
           (prevErrors) => ({
             ...prevErrors,
