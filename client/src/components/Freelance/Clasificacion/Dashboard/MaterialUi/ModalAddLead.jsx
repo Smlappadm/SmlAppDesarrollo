@@ -89,6 +89,9 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     const regex = /^(ftp|http|https):\/\/[^ "]+$/;
     return regex.test(url);
   };
+  useEffect(() => {
+    console.log("Valor actualizado:", errors.email);
+  }, [errors.email]);
   const validaciones = (id) => {
     if (id === "email") {
       if (!validateEmail(values.email)) {
@@ -97,7 +100,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
             ...prevErrors,
             email: "Ingrese un email válido",
           };
-          console.log("b", updatedErrors); // Console.log con el valor actualizado
+          return updatedErrors;
         });
       } else {
         setErrors((prevErrors) => {
@@ -105,7 +108,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
             ...prevErrors,
             email: "",
           };
-          console.log("a", updatedErrors); // Console.log con el valor actualizado
+          return updatedErrors;
         });
       }
     }
