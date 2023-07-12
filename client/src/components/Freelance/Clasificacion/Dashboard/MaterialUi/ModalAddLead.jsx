@@ -36,6 +36,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     email: "",
     telefono: "",
     categoria: "",
+    profesion: "",
   });
   const [error, setError] = useState(false);
   const [values, setValues] = useState({
@@ -46,6 +47,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     email: "",
     telefono: "",
     categoria: "",
+    profesion: "",
   });
 
   useEffect(() => {
