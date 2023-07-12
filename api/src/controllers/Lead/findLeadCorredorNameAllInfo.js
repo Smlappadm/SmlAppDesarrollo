@@ -18,6 +18,7 @@ const findLeadCorredorNameAllInfo = async (
     vendedor_name: regexVendedor,
     checked: true,
     view: true,
+    freelancer: { $ne: true },
   };
 
   if (fromDay && toDay) {
@@ -40,7 +41,7 @@ const findLeadCorredorNameAllInfo = async (
       59,
       59
     );
-    query.updatedAt = {
+    query.updateCorredor = {
       $gte: startDate,
       $lt: endDate,
     };
