@@ -86,6 +86,44 @@ const ErrorCreateEmployees = (name) => {
   });
 };
 
+
+const okLeads = (message) => {
+  toast.success(`${message}`, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+};
+const almostLeads = (message) => {
+  toast.warning(`${message}`, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+};
+const errorLeads = (message) => {
+  toast.error(`${message}`, {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "dark",
+  });
+};
+
 export const TableClevel = () => {
   const { detailEmploy } = useSelector((state) => state);
   const { allEmployees } = useSelector((state) => state);
@@ -131,6 +169,9 @@ export const TableClevel = () => {
             <div className="flex gap-2">
               <NestedModal
                 CreateEmployees={CreateEmployees}
+                okLeads={okLeads}
+                almostLeads={almostLeads}
+                errorLeads={errorLeads}
                 ErrorCreateEmployees={ErrorCreateEmployees}
               />
             </div>
