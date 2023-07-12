@@ -209,18 +209,6 @@ export default function ChildModal({ email }) {
       theme: "dark",
     });
   };
-  const AddLeadError = () => {
-    toast.error(`✔ Error al crear Lead`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
 
   const handleClean = () => {
     setValues({
