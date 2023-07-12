@@ -15,7 +15,6 @@ const findLeadVendedorNameAllInfo = async (
     vendedor: regexVendedor,
     checked: true,
     view: true,
-    freelancer: { $ne: true },
   };
 
   if (fromDay && toDay) {
@@ -38,7 +37,7 @@ const findLeadVendedorNameAllInfo = async (
       59,
       59
     );
-    query.updateVendedor = {
+    query.updatedAt = {
       $gte: startDate,
       $lt: endDate,
     };

@@ -65,10 +65,6 @@ const LeadSchema = new mongoose.Schema(
       type: Object,
       require: true,
     },
-    contacto: {
-      type: String,
-      require: true,
-    },
     llamados: {
       type: Number,
       require: true,
@@ -87,6 +83,7 @@ const LeadSchema = new mongoose.Schema(
     emailApp: {
       type: String,
       require: true,
+      unique: true,
       default: "",
     },
     corredor: {
@@ -105,11 +102,6 @@ const LeadSchema = new mongoose.Schema(
       default: false,
     },
     view: {
-      type: Boolean,
-      require: true,
-      default: false,
-    },
-    freelancer: {
       type: Boolean,
       require: true,
       default: false,
@@ -169,18 +161,6 @@ const LeadSchema = new mongoose.Schema(
     calidadInstagram: {
       type: Boolean,
       default: false,
-    },
-    from: {
-      type: String,
-      require: true,
-    },
-    updateCorredor: {
-      type: Date,
-      require: true,
-    },
-    updateVendedor: {
-      type: Date,
-      require: true,
     },
     deleted: {
       type: Boolean,

@@ -8,17 +8,14 @@ const getLeadUnchecked = require("../controllers/Lead/getLeadUnchecked");
 const getLeadCheckedInactive5 = require("../controllers/Lead/getLeadCheckedInactive5");
 const getLead10Unchecked = require("../controllers/Lead/getLead10Unchecked");
 const updateLeadVendedorById = require("../controllers/Lead/updateLeadVendedorById");
-const updateLeadFreelanceById = require("../controllers/Lead/updateLeadFreelanceById");
 const getLeadVendedorById = require("../controllers/Lead/getLeadVendedorById");
 const getLeadCorredorChecked = require("../controllers/Lead/getLeadCorredoresChecked");
 const limpiezaBaseFunction = require("../controllers/Lead/limpiezaBaseFunction");
 const findLeadCorredorName = require("../controllers/Lead/findLeadCorredorName");
 const findLeadVendedorName = require("../controllers/Lead/findLeadVendedorName");
 const getAllProfession = require("../controllers/Lead/getAllProfesion");
-const getAllProfessionFreelance = require("../controllers/Lead/getAllProfesionFreelance");
 const getLeadByEmailApp = require("../controllers/Lead/getLeadByEmailApp");
 const getAllCountry = require("../controllers/Lead/getAllCountry");
-const getAllCountryFreelance = require("../controllers/Lead/getAllCountryFreelance");
 const findLeadCorredorNameAllInfo = require("../controllers/Lead/findLeadCorredorNameAllInfo");
 const getAllCategory = require("../controllers/Lead/getAllCategory");
 const getCorredores = require("../controllers/Lead/getCorredores");
@@ -26,15 +23,6 @@ const changeLeadEmail = require("../controllers/Lead/changeLeadEmail");
 const getVendedores = require("../controllers/Lead/getVendedores");
 const findLeadVendedorNameAllInfo = require("../controllers/Lead/findLeadVendedorNameAllInfo");
 const cleanValueClevel = require("../controllers/Lead/cleanValueClevel");
-const getLeadDiscard = require("../controllers/Lead/getLeadDiscard");
-const getAllLeadClasificacion = require("../controllers/Lead/getAllLeadClasificacion");
-const dowloadCSV = require("../controllers/Lead/downloadCSV");
-const findLeadFreelancerNameAllInfo = require("../controllers/Lead/findLeadFreelancerNameAllInfo");
-const getLeadCheckedFreelancer = require("../controllers/Lead/getLeadCheckedFreelancer");
-const getFreelancers = require("../controllers/Lead/getFreelancers");
-const asignacionFreelancer = require("../controllers/Lead/asignacionFreelancer");
-const findLeadFreelancerName = require("../controllers/Lead/findLeadFreelancerName");
-const postLeadFreelancer = require("../controllers/Lead/postLeadFreelancer");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -53,27 +41,10 @@ const getAllProfesionHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-const getAllProfesionFreelanceHandler = async (req, res) => {
-  const { email } = req.query;
-  try {
-    const profesion = await getAllProfessionFreelance(email);
-    res.status(200).json(profesion);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
 
 const getCorredoresHandler = async (req, res) => {
   try {
     const corredores = await getCorredores();
-    res.status(200).json(corredores);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-const getFreelancersHandler = async (req, res) => {
-  try {
-    const corredores = await getFreelancers();
     res.status(200).json(corredores);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -106,15 +77,6 @@ const getAllCountriesHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-const getAllCountriesFreelanceHandler = async (req, res) => {
-  const { email } = req.query;
-  try {
-    const country = await getAllCountryFreelance(email);
-    res.status(200).json(country);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
 
 const getLeadUncheckedHandler = async (req, res) => {
   try {
@@ -135,35 +97,9 @@ const getLead10UncheckedHandler = async (req, res) => {
   }
 };
 
-const getLeadClasificacionHandler = async (req, res) => {
-  const { query } = req;
-  try {
-    const leadClasificacion = await getAllLeadClasificacion(query);
-    res.status(200).json(leadClasificacion);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-
 const getLeadCheckedHandler = async (req, res) => {
   try {
     const leadChequed = await getLeadChecked();
-    res.status(200).json(leadChequed);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-const getLeadCheckedFreelancerHandler = async (req, res) => {
-  try {
-    const leadChequed = await getLeadCheckedFreelancer();
-    res.status(200).json(leadChequed);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-const getLeadDiscardHandler = async (req, res) => {
-  try {
-    const leadChequed = await getLeadDiscard();
     res.status(200).json(leadChequed);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -175,6 +111,7 @@ const getLeadCheckedInactive5Handler = async (req, res) => {
 
   try {
     const leadCheckedInactive5 = await getLeadCheckedInactive5(body);
+
     res.status(200).json(leadCheckedInactive5);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -185,15 +122,6 @@ const postLeadHandler = async (req, res) => {
   const data = req.body;
   try {
     const lead = await postLead(data);
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-const postLeadFreelancerHandler = async (req, res) => {
-  const data = req.body;
-  try {
-    const lead = await postLeadFreelancer(data);
     res.status(200).json(data);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -210,24 +138,12 @@ const updateLeadHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-
 const updateLeadVendedorHandler = async (req, res) => {
   try {
     const id = req.params.id;
     const updatedData = req.body;
 
     const lead = await updateLeadVendedorById(id, updatedData);
-    res.status(200).json(lead);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-const updateLeadFreelanceHandler = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const updatedData = req.body;
-
-    const lead = await updateLeadFreelanceById(id, updatedData);
     res.status(200).json(lead);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -299,15 +215,6 @@ const findLeadCorredorNameHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
-const findLeadFreelancerNameHandler = async (req, res) => {
-  const { name } = req.query;
-  try {
-    const foundCorredor = await findLeadFreelancerName(name);
-    res.status(200).json(foundCorredor);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
 const findLeadCorredorNameAllInfoHandler = async (req, res) => {
   const {
     corredor,
@@ -333,33 +240,6 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
       status
     );
     res.status(200).json(foundCorredor);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
-  const {
-    freelancer,
-    fromDay,
-    toDay,
-    profesion,
-    country,
-    category,
-    level,
-    status,
-  } = req.query;
-  try {
-    const foundFreelancer = await findLeadFreelancerNameAllInfo(
-      freelancer,
-      fromDay,
-      toDay,
-      profesion,
-      country,
-      category,
-      level,
-      status
-    );
-    res.status(200).json(foundFreelancer);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -400,19 +280,11 @@ const updateChangeEmailHandler = async (req, res) => {
   const keys = Object.keys(req.body);
   const newValue = Object.values(req.body);
 
+  console.log(keys[0]);
+  console.log(newValue[0]);
   try {
     const leadEmailChanged = await changeLeadEmail(id, keys[0], newValue[0]);
     res.status(200).json(leadEmailChanged);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-
-const dowloadCSVHandler = async (req, res) => {
-  const niveles = req.query.nivel || [];
-  try {
-    const download = await dowloadCSV(niveles);
-    res.status(200).json(download);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -437,16 +309,6 @@ const limpiezaBaseHandler = async (req, res) => {
   }
 };
 
-const asignacionFreelancerHandler = async (req, res) => {
-  const data = req.body;
-  try {
-    const asignacion = await asignacionFreelancer(data);
-    res.status(200).json(asignacion);
-  } catch (error) {
-    res.status(404).json({ error: error.message });
-  }
-};
-
 module.exports = {
   getAllLeadHandler,
   getLeadUncheckedHandler,
@@ -458,16 +320,13 @@ module.exports = {
   getLeadByIdHandler,
   getLeadByNameHandler,
   updateLeadVendedorHandler,
-  updateLeadFreelanceHandler,
   getLeadVendedorHandler,
   getLeadCorredorCheckedHandler,
   limpiezaBaseHandler,
   findLeadCorredorNameHandler,
   findLeadVendedorNameHandler,
   getAllProfesionHandler,
-  getAllProfesionFreelanceHandler,
   getAllCountriesHandler,
-  getAllCountriesFreelanceHandler,
   getAllCategoryHandler,
   findLeadCorredorNameAllInfoHandler,
   findLeadVendedorNameAllInfoHandler,
@@ -476,13 +335,4 @@ module.exports = {
   getVendedoresHandler,
   cleanValueClevelHandler,
   getLeadByEmailAppHandler,
-  getLeadDiscardHandler,
-  getLeadClasificacionHandler,
-  dowloadCSVHandler,
-  findLeadFreelancerNameAllInfoHandler,
-  getLeadCheckedFreelancerHandler,
-  getFreelancersHandler,
-  asignacionFreelancerHandler,
-  findLeadFreelancerNameHandler,
-  postLeadFreelancerHandler,
 };

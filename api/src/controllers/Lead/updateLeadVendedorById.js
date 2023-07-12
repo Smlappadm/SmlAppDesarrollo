@@ -3,22 +3,20 @@ const Vendedor = require("../../models/Vendedor");
 const Clientes = require("../../models/Clientes");
 
 const updateLeadVendedorById = async (id, updatedData) => {
-  const date = new Date();
-  const formattedTime = date.toISOString();
-  updatedData.dataLead.updateVendedor = formattedTime;
+
+
 
   const leadCountCheck = await Lead.findById(id);
 
-  
-// console.log("111111111")
-if (!updatedData.dataLead.llamados) {
-  updatedData.dataLead.llamados = 0;
+
+  if (!updatedData.dataLead.llamados) {
+    updatedData.dataLead.llamados = 0;
   }
 
   if (
     updatedData.dataLead.status === "No responde" &&
     leadCountCheck.llamados < 2
-    ) {
+  ) {
     updatedData.dataLead.llamados++;
     updatedData.dataVendedor.llamados = updatedData.dataLead.llamados;
   } else if (
@@ -32,104 +30,55 @@ if (!updatedData.dataLead.llamados) {
     updatedData.dataVendedor.status_op = "3 llamados";
   }
 
+
+ 
+//   console.log("primero")
+// console.log(updatedData.dataLead.emailApp)
+// console.log("segundo")
+// console.log(updatedData.dataVendedor.email)
   if (updatedData.dataLead.status === "Contratado") {
-    //Busca un registro que tenga ese emailApp para borrarselo, porque luego se añadira a un nuevo lead
-    const emailFilter = updatedData.dataLead.emailApp
-      ? updatedData.dataLead.emailApp
-      : updatedData.dataVendedor.email;
+    const emailFilter = updatedData.dataLead.emailApp ? updatedData.dataLead.emailApp : updatedData.dataVendedor.email;
     const leadEmailAppUpdated = await Lead.updateMany(
-      {
-        emailApp: {
-          $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email],
-        },
-      },
-      { $set: { emailApp: "" } },
+      { emailApp:  { $in: [updatedData.dataLead.emailApp, updatedData.dataVendedor.email] }},
+      { $set: { emailApp: ""} },
       { new: true }
     );
-    
-    // console.log("2222222222222")
-    //Setea el Cliente con el email filtado del modelo Cliente
-    const filtro = { email: emailFilter };
-    const nuevosValores = {
-      email: emailFilter,
-      name: updatedData.dataVendedor.name,
-      rol: "organico",
-    };
+    console.log()
+
+    // const emailFilter2 = updatedData.dataLead.emailApp ? updatedData.dataLead.emailApp : updatedData.dataVendedor.email;
+    const filtro = { email: emailFilter};
+    const nuevosValores = { email: emailFilter, name: updatedData.dataVendedor.name, rol: "organico"};
     const opciones = { upsert: true, new: true };
-    const cliente = await Clientes.findOneAndUpdate(
-      filtro,
-      nuevosValores,
-      opciones
-    );
-
-    // console.log("33333333333")
-    //Seteo de los detalles de los pagos
-    updatedData.dataLead.pagos.detalles = [];
-    updatedData.dataLead.pagos.detallesRestantes = [];
-
-    let fechaActual = new Date();
-    let prueba = new Date();
-    prueba.setDate(prueba.getDate() + 7);
-    updatedData.dataLead.pagos.detalles.push({
-      contrato: new Date(fechaActual),
-      prueba: new Date(prueba),
-    });
-  //poner la prueba primero
-    // updatedData.dataLead.pagos.detallesRestantes.push(new Date(prueba));
-    updatedData.dataLead.pagos.detallesRestantes.push("");
-    let sumador = 30;
-    for (let i = 0; i < updatedData.dataLead.pagos.cuotas; i++) {
-      fechaActual.setDate(fechaActual.getDate() + sumador); // Sumar 30 días a la fecha actual
-      updatedData.dataLead.pagos.detalles.push(new Date(fechaActual));
-      updatedData.dataLead.pagos.detallesRestantes.push(new Date(fechaActual));
-    }
-
-    updatedData.dataLead.pagos.detallesRestantes.push("cierre");
-    
-
-    // console.log("44444444444")
-    
-    
-    // let detallesArray = [];
-    // fechaActual.setDate(fechaActual.getDate() + 30);
-    // var diaActualizado = fechaActual.getDate();
-    // var mesActualizado = fechaActual.getMonth();
-    // console.log(
-    //   "Fecha actualizada: " + diaActualizado + "-" + (mesActualizado + 1)
-    // );
-
-    // updatedData.dataLead.pagos.detalle =
+    const cliente = await Clientes.findOneAndUpdate(filtro, nuevosValores, opciones);
   }
 
-  // se setea el nuevo lead con la info nueva, incluyendo el emailApp
-  if (updatedData.dataLead.emailApp === "") {
-    updatedData.dataLead.emailApp = updatedData.dataVendedor.email;
-  }
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
-  
-  // console.log("555555555")
+
+
+
   const valor = updatedData.dataVendedor;
-  
+
   let vendedor = [];
   vendedor = await Vendedor.findOneAndUpdate(
     { email: updatedData.dataLead.vendedor, "leads.name": valor.name },
     { $set: { "leads.$": valor } },
     { new: true }
-    );
-  
-    if (!vendedor) {
+  );
+
+
+
+  if (!vendedor) {
     vendedor = await Vendedor.findOneAndUpdate(
       { email: updatedData.dataLead.vendedor },
       { $addToSet: { leads: { $each: [valor] } } },
       { new: true }
-      );
+    );
   } else {
     await vendedor.save();
   }
 
-  // console.log("66666666666")
   const data = {
     leadUpdate,
     vendedor,
