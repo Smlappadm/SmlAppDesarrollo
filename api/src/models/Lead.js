@@ -61,11 +61,6 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: "",
     },
-    link_op: {
-      type: String,
-      require: true,
-      default: "",
-    },
     pagos: {
       type: Object,
       require: true,
