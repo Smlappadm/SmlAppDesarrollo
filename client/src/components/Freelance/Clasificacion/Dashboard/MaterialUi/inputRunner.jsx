@@ -17,6 +17,7 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
   const [category, setCategory] = useState("");
   const [country, setCountry] = useState("");
   const [marca_personal, setMarca_personal] = useState("");
+  const [freelancer, setFreelancer] = useState("");
 
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
@@ -47,6 +48,10 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
     setMarca_personal(event.target.checked ? "SI" : "");
   };
 
+  const handleChangeFreelancer = (event) => {
+    setFreelancer(event.target.checked ? email : "");
+  };
+
   const handleFilterClick = () => {
     dispatch(
       getLeadClasificacion(
@@ -55,7 +60,8 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
         profesion,
         category,
         country,
-        marca_personal
+        marca_personal,
+        freelancer
       )
     );
   };
@@ -197,6 +203,18 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
             <Checkbox
               id="propio"
               onClick={handleChangeNombrePropio}
+              size="medium"
+            />
+          </div>
+        </div>
+        <div className="flex w-18 items-center justify-center flex-col">
+          <div>
+            <label>Freelancer:</label>
+          </div>
+          <div>
+            <Checkbox
+              id="freelancer"
+              onClick={handleChangeFreelancer}
               size="medium"
             />
           </div>
