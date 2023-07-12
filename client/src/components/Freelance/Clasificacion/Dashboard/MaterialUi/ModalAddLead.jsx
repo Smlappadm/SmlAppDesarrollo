@@ -110,6 +110,12 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       return updatedErrors;
     });
   };
+
+  useEffect(() => {
+    console.log(values.email);
+    validaciones();
+  }, [values]);
+
   const handleChange = (event) => {
     const { id, value } = event.target;
     setValues((prevValues) => ({
@@ -117,13 +123,9 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       [id]: value,
     }));
   };
-  useEffect(() => {
-    console.log(values.email);
-    validaciones();
-  }, [values]);
+
   const handleSubmitAdd = async (event) => {
     event.preventDefault();
-
     const body = {
       name: values.nombre,
       category: values.categoria,
