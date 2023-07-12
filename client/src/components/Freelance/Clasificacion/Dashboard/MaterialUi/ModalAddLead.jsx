@@ -25,7 +25,12 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ChildModal({ email, AddLeadError, AddLeads }) {
+export default function ChildModal({
+  email,
+  AddLeadError,
+  AddLeads,
+  AddLeadsIncomplete,
+}) {
   const { freelancer, allCategory, allProfesion } = useSelector(
     (state) => state
   );
@@ -162,7 +167,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       values.profesion === "" ||
       values.categoria === ""
     ) {
-      AddLeadError();
+      AddLeadsIncomplete();
     } else {
       if (
         errors.nombre !== "" ||
@@ -243,8 +248,9 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
 
             <form className="flex flex-col " onSubmit={handleSubmitAdd}>
               <div className="flex flex-col gap-3">
+                <p>(*)Campos obligatorios</p>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Nombre: </label>
+                  <label className="w-24 text-left">*Nombre: </label>
                   <input
                     type="text"
                     id="nombre"
@@ -255,7 +261,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Profesion: </label>
+                  <label className="w-24 text-left">*Profesion: </label>
                   <select
                     type="text"
                     id="profesion"
@@ -283,7 +289,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Categoría: </label>
+                  <label className="w-24 text-left">*Categoría: </label>
                   <select
                     type="text"
                     id="categoria"
@@ -311,7 +317,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Pais: </label>
+                  <label className="w-24 text-left">*Pais: </label>
                   <select
                     id="pais"
                     className={
@@ -337,7 +343,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Ciudad: </label>
+                  <label className="w-24 text-left">Ciudad: </label>
                   <input
                     id="ciudad"
                     type="text"
@@ -348,7 +354,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Web: </label>
+                  <label className="w-24 text-left">*Web: </label>
                   <input
                     id="web"
                     type="text"
@@ -360,7 +366,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                 </div>
                 {errors.web !== "" && <span>{errors.web}</span>}
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Email: </label>
+                  <label className="w-24 text-left">*Email: </label>
                   <input
                     id="email"
                     type="text"
@@ -372,7 +378,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                 </div>
                 {errors.email !== "" && <span>{errors.email}</span>}
                 <div className="flex h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Telefono: </label>
+                  <label className="w-24 text-left">*Telefono: </label>
                   <input
                     id="telefono"
                     type="number"
