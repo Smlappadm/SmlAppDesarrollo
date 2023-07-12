@@ -365,6 +365,8 @@ const VentasDashboard = () => {
                             SendErrorUpdateAlert={SendErrorUpdateAlert}
                             emailAddress={emailAddress}
                             cancelModal={cancelModal}
+                            openModalPagoFunction={openModalPagoFunction}
+                            saveEmailAppFunction={saveEmailAppFunction}
                           />
                         </div>
                       </div>
