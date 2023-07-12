@@ -279,7 +279,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     {allProfesion &&
                       allProfesion.map((profesion) => (
                         <option
-                          value={category}
+                          value={profesion}
                           key={category}
                           className="text-black"
                         >
