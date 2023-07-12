@@ -92,10 +92,16 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
 
   const validaciones = (id) => {
     if (id === "email") {
-      if (!validateEmail(values.email)) {
-        setErrors({ ...errors, email: "Ingrese un email valido" });
-      } else {
-        setErrors({ ...errors, email: "" });
+      if (id === "email") {
+        setErrors((prevErrors) => {
+          const updatedErrors = { ...prevErrors };
+          if (!validateEmail(values.email)) {
+            updatedErrors.email = "Ingrese un email válido";
+          } else {
+            updatedErrors.email = "";
+          }
+          return updatedErrors;
+        });
       }
     }
     if (id === "web") {
