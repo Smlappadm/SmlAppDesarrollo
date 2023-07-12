@@ -30,10 +30,10 @@ server.use((req, res, next) => {
 
 server.use("/api", routes);
 
-// server.use(express.static(path.join(__dirname, "..", "client", "dist")));
-// server.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
-// });
+server.use(express.static(path.join(__dirname, "..", "client", "dist")));
+server.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
+});
 
 // Error catching endware.
 server.use((err, req, res, next) => {
