@@ -149,7 +149,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       telephone: values.telefono,
       checked: false,
       view: false,
-      profesion: values.categoria,
+      profesion: values.profesion,
       corredor: OneFreelancer && OneFreelancer[0].email,
       corredor_name: OneFreelancer && OneFreelancer[0].name,
       instagra: "",
@@ -169,6 +169,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       values.web === "" ||
       values.email === "" ||
       values.telefono === "" ||
+      values.profesion === "" ||
       values.categoria === ""
     ) {
       AddLeadError();
@@ -180,6 +181,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
         errors.web !== "" ||
         errors.email !== "" ||
         errors.telefono !== "" ||
+        errors.profesion !== "" ||
         errors.categoria !== ""
       ) {
         AddLeadError();
@@ -194,6 +196,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
             email: "",
             telefono: "",
             categoria: "",
+            profesion: "",
           });
           setOpen(false);
           AddLeads();
@@ -214,6 +217,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       email: "",
       telefono: "",
       categoria: "",
+      profesion: "",
     });
   };
 
