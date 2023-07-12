@@ -319,7 +319,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     value={values.pais}
                     onChange={(event) => handleChange(event)}
                   >
-                    <option value="" disabled selected>
+                    <option value="" disabled>
                       Seleccione el país del cliente
                     </option>
                     {countries.map((country) => (
