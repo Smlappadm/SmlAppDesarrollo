@@ -117,6 +117,10 @@ function ChildModal({
       };
     }
 
+
+
+    
+
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
       // statusObj.status_op = "";
@@ -680,6 +684,8 @@ export default function NestedModal({
         status_op: "",
       });
     } else if (value === "Agendar 2do llamado") {
+      llamadoVenta.observaciones = ""
+      dateHour.$D = ""
       setStatusObj({
         ...statusObj,
         [property]: value,
