@@ -33,7 +33,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
   const [errors, setErrors] = useState({
     nombre: "",
     pais: "",
