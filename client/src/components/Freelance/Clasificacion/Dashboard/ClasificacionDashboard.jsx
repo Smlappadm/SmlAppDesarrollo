@@ -167,11 +167,21 @@ const ClasificacionDashboard = () => {
 
     setClient((prevState) => {
       const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        level: value,
-      };
+      const currentValue = updatedClient[index].level;
+
+      if (currentValue === value) {
+        updatedClient[index] = {
+          ...updatedClient[index],
+          [name]: "",
+          level: "",
+        };
+      } else {
+        updatedClient[index] = {
+          ...updatedClient[index],
+          [name]: value,
+          level: value,
+        };
+      }
 
       return updatedClient;
     });

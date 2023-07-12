@@ -166,10 +166,10 @@ const VendedoresDashboard = () => {
   };
 
   const saveEmailAppFunction = (email) => {
-    console.log("entra?????")
     setSaveEmailApp(email)
   }
-console.log(saveEmailApp)
+
+
   return (
     <>
       <Nav />

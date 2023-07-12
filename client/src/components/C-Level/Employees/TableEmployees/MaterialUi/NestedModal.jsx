@@ -35,6 +35,9 @@ function ChildModal({
   leadAsigned,
   handleReset,
   CreateEmployees,
+  okLeads,
+  almostLeads,
+  errorLeads,
   ErrorCreateEmployees,
   handleCloseChild,
 }) {
@@ -132,15 +135,38 @@ function ChildModal({
 
         setLoading(true);
 
-
-
-        const response = await axios.get(
-          `https://apisml.onrender.com/freelance-desarrollo?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
-        );
+        if (axios.defaults.baseURL === "https://sml-app.com/api") {
+          const response = await axios.get(
+            `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
+          );
+          if (response.data.message === "Carga completa de leads") {
+            okLeads(response.data.message);
+          } else if (
+            response.data.message === "No hay leads con la profesion solicitada"
+          ) {
+            errorLeads(response.data.message);
+          } else {
+            almostLeads(response.data.message);
+          }
+        } else if (
+          axios.defaults.baseURL === "http://localhost:3001/api" ||
+          axios.defaults.baseURL === "https://smlapp.onrender.com/api"
+        ) {
+          const response = await axios.get(
+            `https://apisml.onrender.com/freelance_desarrollo?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
+          );
+          if (response.data.message === "Carga completa de leads") {
+            okLeads(response.data.message);
+          } else if (
+            response.data.message === "No hay leads con la profesion solicitada"
+          ) {
+            errorLeads(response.data.message);
+          } else {
+            almostLeads(response.data.message);
+          }
+        }
 
         setLoading(false);
-
-        console.log(response.data);
 
         // const response = await axios.put("/lead/asignacion", {
         //   name: inputName,
@@ -248,7 +274,13 @@ function ChildModal({
   );
 }
 
-export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
+export default function NestedModal({
+  CreateEmployees,
+  okLeads,
+  almostLeads,
+  errorLeads,
+  ErrorCreateEmployees,
+}) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -328,6 +360,9 @@ export default function NestedModal({ CreateEmployees, ErrorCreateEmployees }) {
             selectEmployees={selectEmployees}
             handleReset={handleReset}
             CreateEmployees={CreateEmployees}
+            okLeads={okLeads}
+            almostLeads={almostLeads}
+            errorLeads={errorLeads}
             ErrorCreateEmployees={ErrorCreateEmployees}
             handleCloseChild={handleClose}
           />
