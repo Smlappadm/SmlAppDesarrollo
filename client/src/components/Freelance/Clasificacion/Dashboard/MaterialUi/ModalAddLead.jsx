@@ -347,7 +347,7 @@ export default function ChildModal({
                   <input
                     id="ciudad"
                     type="text"
-                    placeholder="Ingrese la cuidad de el cliente"
+                    placeholder="Ingrese la ciudad de el cliente"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                     value={values.ciudad}
                     onChange={(event) => handleChange(event)}
