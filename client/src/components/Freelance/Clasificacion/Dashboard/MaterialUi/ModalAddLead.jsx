@@ -254,6 +254,34 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24">Profesion: </label>
+                  <select
+                    type="text"
+                    id="profesion"
+                    className={
+                      values.profesion !== ""
+                        ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                        : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
+                    }
+                    value={values.profesion}
+                    onChange={(event) => handleChange(event)}
+                  >
+                    <option value="" disabled selected>
+                      Seleccione una Profesion del cliente
+                    </option>
+                    {allCategory &&
+                      allCategory.map((category) => (
+                        <option
+                          value={category}
+                          key={category}
+                          className="text-black"
+                        >
+                          {category}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Categoría: </label>
                   <select
                     type="text"
