@@ -4,7 +4,11 @@ import Button from "@mui/material/Button";
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { getAllCategory, getAllFreelancer } from "../../../../../redux/actions";
+import {
+  getAllCategory,
+  getAllFreelancer,
+  getAllProfesion,
+} from "../../../../../redux/actions";
 import axios from "axios";
 import { red } from "@mui/material/colors";
 const style = {
@@ -53,6 +57,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
   useEffect(() => {
     dispatch(getAllFreelancer());
     dispatch(getAllCategory());
+    dispatch(getAllProfesion());
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
       .then((data) => {
