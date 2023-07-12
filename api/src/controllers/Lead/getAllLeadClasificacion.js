@@ -6,7 +6,6 @@ const getAllLeadClasificacion = async (query) => {
 
   const { email, names, profesion, country, category, marca_personal, freelancer } = query;
 
-  console.log(freelancer);
 
   const findLeadUnchecked = async (conditions, limit) => {
     return Lead.find(conditions, null, { limit }).lean();
