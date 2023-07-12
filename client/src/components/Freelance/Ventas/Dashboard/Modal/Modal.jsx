@@ -81,23 +81,23 @@ function ChildModal({
         
       })
 
-        let updatedPagos = {};
+        let updatedPagos = "";
         if (statusObj.status_op === "1/4000/4000") {
-          updatedPagos = { link: "www.1" };
+          updatedPagos =  "www.1" ;
         } else if (statusObj.status_op === "2/2500/5000") {
-          updatedPagos = { link: "www.2" };
+          updatedPagos =  "www.2" ;
         } else if (statusObj.status_op === "4/1250/5000") {
-          updatedPagos = { link: "www.3" };
+          updatedPagos = "www.3" ;
         } else if (statusObj.status_op === "6/1000/6000") {
-          updatedPagos = { link: "www.4" };
+          updatedPagos =  "www.4" ;
         } else if (statusObj.status_op === "1/3200/3200") {
-          updatedPagos = { link: "www.5" };
+          updatedPagos =  "www.5" ;
         } else if (statusObj.status_op === "2/2000/4000") {
-          updatedPagos = { link: "www.6" };
+          updatedPagos =  "www.6" ;
         } else if (statusObj.status_op === "4/1000/4000") {
-          updatedPagos = { link: "www.7" };
+          updatedPagos = "www.7" ;
         } else if (statusObj.status_op === "6/800/4800") {
-          updatedPagos = { link: "www.8" };
+          updatedPagos =  "www.8" ;
         }
         
         setStatusObj({
