@@ -406,7 +406,7 @@ const ClasificacionDashboard = () => {
     });
   };
   const AddLeadError = () => {
-    toast.error(`✔ Error al crear Lead`, {
+    toast.error(` Error al crear Lead`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -419,6 +419,18 @@ const ClasificacionDashboard = () => {
   };
   const AddLeads = () => {
     toast.success(`✔ Se creo Lead exitosamente!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const AddLeadsIncomplete = () => {
+    toast.error(`Completa los datos requeridos`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -557,6 +569,7 @@ const ClasificacionDashboard = () => {
               email={email}
               AddLeadError={AddLeadError}
               AddLeads={AddLeads}
+              AddLeadsIncomplete={AddLeadsIncomplete}
             />
           </div>
           <form onSubmit={handleSubmit}>
