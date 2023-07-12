@@ -109,18 +109,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       }
       return updatedErrors;
     });
-
-    // if (!validateURL(values.web)) {
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     web: "Ingrese una URL válida",
-    //   }));
-    // } else {
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     web: "",
-    //   }));
-    // }
   };
   const handleChange = (event) => {
     const { id, value } = event.target;
