@@ -156,12 +156,25 @@ const VentasDashboard = () => {
     <>
       <Nav />
 
-      <div className="flex flex-col justify-between items-center w-screen  z-0">
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
           <p className="mt-2 p-3 bg-[#b9b9b978] text-white rounded-md absolute">
             Copiado al portapapeles
           </p>
         )}
+            {showObservaciones && (
+              <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
+                <p className=" p-3    ">
+                  Observaciones: {observationMessage}
+                </p>
+                <button
+                  onClick={closeObservacionesHandler}
+                  className="border-2 text-white mx-3 text-18  px-2 rounded-md"
+                >
+                  x
+                </button>
+              </div>
+            )}
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
@@ -254,19 +267,6 @@ const VentasDashboard = () => {
                       )}
                     </div>
                     <div className=" w-[5%] flex justify-center items-center p-0">
-                      {showObservaciones && (
-                        <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
-                          <p className=" p-3    ">
-                            Observaciones: {observationMessage}
-                          </p>
-                          <button
-                            onClick={closeObservacionesHandler}
-                            className="border-2 text-white mx-3 text-18  px-2 rounded-md"
-                          >
-                            x
-                          </button>
-                        </div>
-                      )}
                       {item.instagram ? (
                         <div onClick={() => handleCopyClick(item.instagram)}>
                           <div className="cursor-pointer">

@@ -656,10 +656,6 @@ video {
   right: 0.25rem;
 }
 
-.right-10 {
-  right: 2.5rem;
-}
-
 .right-12 {
   right: 3rem;
 }
@@ -702,18 +698,6 @@ video {
 
 .top-5 {
   top: 1.25rem;
-}
-
-.right-40 {
-  right: 10rem;
-}
-
-.top-10 {
-  top: 2.5rem;
-}
-
-.top-8 {
-  top: 2rem;
 }
 
 .z-0 {
