@@ -194,7 +194,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
         }
       }
     }
-    //console.log(body);
   };
 
   const handleClean = () => {
