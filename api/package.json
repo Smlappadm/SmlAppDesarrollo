@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
     "test": "mocha -w ./tests/**/*.spec.js"
