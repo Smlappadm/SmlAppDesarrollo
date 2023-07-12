@@ -90,7 +90,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     return regex.test(url);
   };
 
-  const validaciones = (id) => {
+  const validaciones = () => {
     setErrors((prevErrors) => {
       const updatedErrors = { ...prevErrors };
       if (!validateEmail(values.email)) {
