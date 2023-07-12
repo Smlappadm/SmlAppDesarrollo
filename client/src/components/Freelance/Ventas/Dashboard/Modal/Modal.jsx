@@ -10,7 +10,7 @@ import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
-import styles from "./Modal.module.css"
+import styles from "./Modal.module.css";
 import {
   AiOutlineConsoleSql,
   AiOutlinePhone,
@@ -50,7 +50,7 @@ function ChildModal({
   updatedEmailApp,
   SendEmailLeadAlertError,
   SendEmailLeadAlertErrorCuotas,
-    editEmail,
+  editEmail,
   editInstagram,
   editTelephone,
   editEmailApp,
@@ -78,10 +78,10 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
-      if(updatedEmailApp === "-" || updatedEmailApp === ""){
-        saveEmailAppFunction(item.email)
-      }else{
-        saveEmailAppFunction(updatedEmailApp)
+      if (updatedEmailApp === "-" || updatedEmailApp === "") {
+        saveEmailAppFunction(item.email);
+      } else {
+        saveEmailAppFunction(updatedEmailApp);
       }
     } else {
       statusObj.pagos = {};
@@ -203,45 +203,48 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        {editEmail || editInstagram || editTelephone || editEmailApp || editContacto ? (
+        {editEmail ||
+        editInstagram ||
+        editTelephone ||
+        editEmailApp ||
+        editContacto ? (
           <>
-          <button
-            type="button"
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
-            onClick={handleCancel}
-            disabled={true}
-          >
-            Close x
-          </button>
+            <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
+              onClick={handleCancel}
+              disabled={true}
+            >
+              Close x
+            </button>
 
-          <button
-            type="button"
-            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
-            onClick={handleOpen}
-            disabled={true}
-          >
-            Save Changes
-          </button>
-        </>
+            <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
+              onClick={handleOpen}
+              disabled={true}
+            >
+              Save Changes
+            </button>
+          </>
         ) : (
+          <>
+            <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={handleCancel}
+            >
+              Close x
+            </button>
 
-                  <>
-                  <button
-                    type="button"
-                    className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                    onClick={handleCancel}
-                  >
-                    Close x
-                  </button>
-      
-                  <button
-                    type="button"
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                    onClick={handleOpen}
-                  >
-                    Save Changes
-                  </button>
-                </>
+            <button
+              type="button"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              onClick={handleOpen}
+            >
+              Save Changes
+            </button>
+          </>
         )}
       </div>
       <Modal
@@ -521,7 +524,7 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
           Close x
         </button> */}
 
-<BsCheck
+        <BsCheck
           onClick={handleOpen}
           className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
         />
@@ -587,7 +590,7 @@ export default function NestedModal({
   fullName,
   cancelModal,
   saveEmailAppFunction,
-  openModalPagoFunction, 
+  openModalPagoFunction,
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
@@ -808,7 +811,7 @@ export default function NestedModal({
     setEditEmailApp(false);
     setEditInstagram(false);
     setEditTelephone(false);
-      setEditContacto(false);
+    setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
     setInputEmail(event.target.value);
@@ -827,7 +830,7 @@ export default function NestedModal({
     setEditEmailApp(false);
     setEditEmail(false);
     setEditTelephone(false);
-      setEditContacto(false);
+    setEditContacto(false);
   };
   const handleChangeInstagram = (event) => {
     setInputInstagram(event.target.value);
@@ -846,7 +849,7 @@ export default function NestedModal({
     setEditEmailApp(false);
     setEditEmail(false);
     setEditInstagram(false);
-      setEditContacto(false);
+    setEditContacto(false);
   };
   const handleChangeTelephone = (event) => {
     setInputTelephone(event.target.value);
@@ -864,7 +867,7 @@ export default function NestedModal({
     setEditTelephone(false);
     setEditEmail(false);
     setEditInstagram(false);
-      setEditContacto(false);
+    setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
     setInputEmailApp(event.target.value);
@@ -877,7 +880,7 @@ export default function NestedModal({
     SendEmailLeadAlert("Email App");
   };
 
-    //EDITAR DATOS Contacto
+  //EDITAR DATOS Contacto
   const handleEditContacto = () => {
     setEditContacto(!editContacto);
     setEditEmailApp(false);
@@ -925,7 +928,7 @@ export default function NestedModal({
           }}
         >
           <div className="w-full flex justify-center items-center mt-2 mb-10">
-          {openAlert && (
+            {openAlert && (
               <motion.div
                 initial={{ opacity: 0, x: "-20px" }}
                 whileInView={{ x: "0px", opacity: 1 }}
@@ -1006,7 +1009,6 @@ export default function NestedModal({
                   {/* )} */}
                   {/* {!editInstagram && ( */}
 
-
                   <CiInstagram
                     onClick={handleEditInstagram}
                     className={
@@ -1027,18 +1029,20 @@ export default function NestedModal({
                     onClick={handleEditContacto}
                     className={
                       editContacto
-                      ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                      : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
-                    <p
-                      onClick={handleEditEmailApp}
-                      className={
-                        editEmailApp
-                          ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                          : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      }
-                    >APP</p>
+                  <p
+                    onClick={handleEditEmailApp}
+                    className={
+                      editEmailApp
+                        ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                        : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                    }
+                  >
+                    APP
+                  </p>
                 </div>
 
                 <div className="">
@@ -1138,7 +1142,7 @@ export default function NestedModal({
                       />
                     </div>
                   )}
-                                    {editContacto && (
+                  {editContacto && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
                       <input
                         type="text"
