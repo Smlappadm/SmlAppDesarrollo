@@ -264,7 +264,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     value={values.profesion}
                     onChange={(event) => handleChange(event)}
                   >
-                    <option value="" disabled selected>
+                    <option value="" disabled>
                       Seleccione una Profesion del cliente
                     </option>
                     {allProfesion &&
