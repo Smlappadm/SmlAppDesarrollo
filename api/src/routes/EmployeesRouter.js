@@ -1,13 +1,14 @@
 const { Router } = require("express");
 const {
+  getAllEmployeesHandler,
+  getEmployeesBannedHandler,
   postEmployeesHandler,
   getEmployeesByEmailHandler,
-  updateEmployByEmailHandler,
-  getAllEmployeesHandler,
   deleteEmployeesByEmailHandler,
-  getEmployeesBannedHandler,
+  updateEmployByEmailHandler,
   updateBannedEmployHandler,
-} = require("../Handlers/employeesHandlers");
+} = require("../Handlers/EmployeesHandlers");
+
 const EmployeesRouter = Router();
 
 EmployeesRouter.get("/", getAllEmployeesHandler);
