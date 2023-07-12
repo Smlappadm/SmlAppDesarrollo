@@ -90,46 +90,41 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     return regex.test(url);
   };
 
-  const validaciones = (id) => {
-    if (id === "email") {
-      if (id === "email") {
-        setErrors((prevErrors) => {
-          const updatedErrors = { ...prevErrors };
-          if (!validateEmail(values.email)) {
-            updatedErrors.email = "Ingrese un email válido";
-          } else {
-            updatedErrors.email = "";
-          }
-          return updatedErrors;
-        });
-      }
-    }
-    if (id === "web") {
-      if (!validateURL(values.web)) {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          web: "Ingrese una URL válida",
-        }));
+  const validaciones = () => {
+    setErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+      if (!validateEmail(values.email)) {
+        updatedErrors.email = "Ingrese un email válido";
       } else {
-        setErrors((prevErrors) => ({
-          ...prevErrors,
-          web: "",
-        }));
+        updatedErrors.email = "";
       }
-    }
+      return updatedErrors;
+    });
+    setErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+      if (!validateURL(values.web)) {
+        updatedErrors.web = "Ingrese una URL válida";
+      } else {
+        updatedErrors.web = "";
+      }
+      return updatedErrors;
+    });
   };
+
+  useEffect(() => {
+    validaciones();
+  }, [values]);
+
   const handleChange = (event) => {
     const { id, value } = event.target;
-    validaciones(id);
     setValues((prevValues) => ({
       ...prevValues,
       [id]: value,
     }));
   };
-  useEffect(() => {}, [errors]);
+
   const handleSubmitAdd = async (event) => {
     event.preventDefault();
-
     const body = {
       name: values.nombre,
       category: values.categoria,
