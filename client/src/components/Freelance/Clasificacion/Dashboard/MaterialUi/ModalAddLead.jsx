@@ -354,7 +354,7 @@ export default function ChildModal({
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">*Web: </label>
+                  <label className="w-24 text-left">*Web: </label>
                   <input
                     id="web"
                     type="text"
@@ -366,7 +366,7 @@ export default function ChildModal({
                 </div>
                 {errors.web !== "" && <span>{errors.web}</span>}
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">*Email: </label>
+                  <label className="w-24 text-left">*Email: </label>
                   <input
                     id="email"
                     type="text"
@@ -378,7 +378,7 @@ export default function ChildModal({
                 </div>
                 {errors.email !== "" && <span>{errors.email}</span>}
                 <div className="flex h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">*Telefono: </label>
+                  <label className="w-24 text-left">*Telefono: </label>
                   <input
                     id="telefono"
                     type="number"
