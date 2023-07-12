@@ -21,7 +21,7 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ChildModal({ email }) {
+export default function ChildModal({ email, AddLeadError }) {
   const { freelancer, allCategory } = useSelector((state) => state);
   const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
