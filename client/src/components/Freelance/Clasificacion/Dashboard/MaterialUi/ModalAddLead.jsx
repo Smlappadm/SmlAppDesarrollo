@@ -167,7 +167,7 @@ export default function ChildModal({
       values.profesion === "" ||
       values.categoria === ""
     ) {
-      AddLeadError();
+      AddLeadsIncomplete();
     } else {
       if (
         errors.nombre !== "" ||
