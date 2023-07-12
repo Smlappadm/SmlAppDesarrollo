@@ -100,18 +100,27 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       }
       return updatedErrors;
     });
+    setErrors((prevErrors) => {
+      const updatedErrors = { ...prevErrors };
+      if (!validateURL(values.web)) {
+        updatedErrors.web = "Ingrese una URL válida";
+      } else {
+        updatedErrors.web = "";
+      }
+      return updatedErrors;
+    });
 
-    if (!validateURL(values.web)) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        web: "Ingrese una URL válida",
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        web: "",
-      }));
-    }
+    // if (!validateURL(values.web)) {
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     web: "Ingrese una URL válida",
+    //   }));
+    // } else {
+    //   setErrors((prevErrors) => ({
+    //     ...prevErrors,
+    //     web: "",
+    //   }));
+    // }
   };
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -119,10 +128,10 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       ...prevValues,
       [id]: value,
     }));
-    validaciones(id);
   };
   useEffect(() => {
     console.log(values.email);
+    validaciones();
   }, [values]);
   const handleSubmitAdd = async (event) => {
     event.preventDefault();
