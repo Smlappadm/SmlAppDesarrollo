@@ -322,6 +322,7 @@ const ClasificacionDashboard = () => {
     };
 
     updateClients();
+    console.log(email);
   }, [client]);
 
   const SendLeads = (name) => {
@@ -386,6 +387,30 @@ const ClasificacionDashboard = () => {
   };
   const SendLeadsError = (name) => {
     toast.error(`✔ Error al enviar los leads! ${name}`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const AddLeadError = () => {
+    toast.error(`✔ Error al crear Lead`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const AddLeads = () => {
+    toast.success(`✔ Se creo Lead exitosamente!`, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -521,7 +546,11 @@ const ClasificacionDashboard = () => {
             </div>
           </div>
           <div className="">
-            <AddLead email={email} />
+            <AddLead
+              email={email}
+              AddLeadError={AddLeadError}
+              AddLeads={AddLeads}
+            />
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>

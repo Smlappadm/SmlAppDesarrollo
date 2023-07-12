@@ -21,7 +21,7 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ChildModal({ email }) {
+export default function ChildModal({ email, AddLeadError, AddLeads }) {
   const { freelancer, allCategory } = useSelector((state) => state);
   const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
@@ -65,7 +65,7 @@ export default function ChildModal({ email }) {
     const free =
       freelancer && freelancer.filter((free) => free.email === email);
     setOneFreelancer(free);
-    console.log(free);
+    console.log(email);
   }, [freelancer]);
 
   const handleOpen = () => {
@@ -86,7 +86,6 @@ export default function ChildModal({ email }) {
   const validaciones = (id) => {
     if (id === "email") {
       if (!validateEmail(values.email)) {
-        // Si el email no es válido, muestra un mensaje de error
         setErrors(
           (prevErrors) => ({
             ...prevErrors,
@@ -195,31 +194,6 @@ export default function ChildModal({ email }) {
         }
       }
     }
-    //console.log(body);
-  };
-  const AddLeads = () => {
-    toast.success(`✔ Se creo Lead exitosamente!`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
-  const AddLeadError = () => {
-    toast.error(`✔ Error al crear Lead`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
   };
 
   const handleClean = () => {
