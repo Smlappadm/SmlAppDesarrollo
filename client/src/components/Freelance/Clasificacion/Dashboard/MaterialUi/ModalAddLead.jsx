@@ -283,7 +283,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                           key={profesion}
                           className="text-black"
                         >
-                          {category}
+                          {profesion}
                         </option>
                       ))}
                   </select>
