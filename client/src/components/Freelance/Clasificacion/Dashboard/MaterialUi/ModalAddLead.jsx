@@ -112,7 +112,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
   };
 
   useEffect(() => {
-    console.log(values.email);
     validaciones();
   }, [values]);
 
