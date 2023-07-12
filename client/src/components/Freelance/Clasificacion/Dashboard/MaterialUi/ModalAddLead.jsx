@@ -43,7 +43,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     categoria: "",
     profesion: "",
   });
-  const [error, setError] = useState(false);
   const [values, setValues] = useState({
     nombre: "",
     pais: "",
