@@ -82,7 +82,7 @@ function Landing() {
       <Nav />
       <div className={style.container}>
         <div className="flex flex-col gap-5">
-          {isEmployeeReady ? (
+          {isEmployeeReady && isEmployeeReady ? (
             <div className={style.containerWellcome}>
               {selectedEmployee?.photo ? (
                 <img
