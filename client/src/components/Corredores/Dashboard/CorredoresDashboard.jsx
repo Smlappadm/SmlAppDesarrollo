@@ -119,21 +119,6 @@ const CorredoresDashboard = () => {
     });
   };
 
-  // const handleClientClick = (event, index) => {
-  //   const { name, value } = event.target;
-
-  //   setClient((prevState) => {
-  //     const updatedClient = [...prevState];
-  //     updatedClient[index] = {
-  //       ...updatedClient[index],
-  //       [name]: value,
-  //       level: value,
-  //     };
-
-  //     return updatedClient;
-  //   });
-  // };
-
   const handleseguidores2000 = (event, index) => {
     const { name, checked } = event.target;
     const value = checked ? true : false;
