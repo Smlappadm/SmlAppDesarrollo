@@ -5,16 +5,7 @@ const getCorredores = async () => {
     freelancer: false,
   });
 
-  const correosSet = new Set();
-
-  corredores.forEach((corredor) => {
-    const correo = corredor.split("fullName=")[0];
-    correosSet.add(correo);
-  });
-
-  const correos = Array.from(correosSet);
-
-  return correos;
+  return corredores;
 };
 
 module.exports = getCorredores;

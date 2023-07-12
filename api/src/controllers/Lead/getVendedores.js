@@ -5,16 +5,7 @@ const getVendedores = async () => {
     freelancer: false,
   });
 
-  const correosSet = new Set();
-
-  vendedores.forEach((vendedor) => {
-    const correo = vendedor.split("fullName=")[0];
-    correosSet.add(correo);
-  });
-
-  const correos = Array.from(correosSet);
-
-  return correos;
+  return vendedores;
 };
 
 module.exports = getVendedores;
