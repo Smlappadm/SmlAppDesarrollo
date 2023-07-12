@@ -42,7 +42,6 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
-  const { corredorLead } = useSelector((state) => state);
   const { freelanceLead } = useSelector((state) => state);
   const dispatch = useDispatch();
 
