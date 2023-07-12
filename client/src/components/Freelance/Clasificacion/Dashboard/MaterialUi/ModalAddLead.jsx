@@ -276,8 +276,8 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     <option value="" disabled selected>
                       Seleccione una Profesion del cliente
                     </option>
-                    {allCategory &&
-                      allCategory.map((category) => (
+                    {allProfesion &&
+                      allProfesion.map((profesion) => (
                         <option
                           value={category}
                           key={category}
