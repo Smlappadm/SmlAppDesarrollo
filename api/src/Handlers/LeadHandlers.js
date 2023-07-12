@@ -368,8 +368,6 @@ const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
 const findLeadVendedorNameAllInfoHandler = async (req, res) => {
   const { email, fromDay, toDay, profesion, country, category, level, status } =
     req.query;
-console.log({ email, fromDay, toDay, profesion, country, category, level, status })
-    console.log("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
   try {
     const foundVendedor = await findLeadVendedorNameAllInfo(
       email,
