@@ -26,7 +26,9 @@ const style = {
 };
 
 export default function ChildModal({ email, AddLeadError, AddLeads }) {
-  const { freelancer, allCategory } = useSelector((state) => state);
+  const { freelancer, allCategory, allProfesion } = useSelector(
+    (state) => state
+  );
   const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
