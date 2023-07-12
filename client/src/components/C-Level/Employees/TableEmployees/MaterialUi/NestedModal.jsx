@@ -132,9 +132,10 @@ function ChildModal({
 
         setLoading(true);
 
+
+
         const response = await axios.get(
-          // `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
-          `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
+          `https://apisml.onrender.com/freelance-desarrollo?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
         );
 
         setLoading(false);
@@ -215,7 +216,7 @@ function ChildModal({
                     <h2 id="child-modal-description">
                       Asignado Leads a Freelancer{" "}
                     </h2>
-                    <div class="lds-roller">
+                    <div className="lds-roller">
                       <div></div>
                       <div></div>
                       <div></div>
