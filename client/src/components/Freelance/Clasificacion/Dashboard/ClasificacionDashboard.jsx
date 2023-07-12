@@ -533,7 +533,7 @@ const ClasificacionDashboard = () => {
             </div>
           </div>
           <div className="">
-            <AddLead email={email} />
+            <AddLead email={email} AddLeadError={AddLeadError} />
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
