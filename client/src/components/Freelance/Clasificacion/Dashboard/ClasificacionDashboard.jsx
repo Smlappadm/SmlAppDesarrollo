@@ -42,7 +42,6 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
-  const { corredorLead } = useSelector((state) => state);
   const { freelanceLead } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -322,7 +321,6 @@ const ClasificacionDashboard = () => {
     };
 
     updateClients();
-    console.log(email);
   }, [client]);
 
   const SendLeads = (name) => {
@@ -514,7 +512,6 @@ const ClasificacionDashboard = () => {
   const instagramRegex =
     /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
 
-  // console.log(client);
   return (
     <>
       <Nav />

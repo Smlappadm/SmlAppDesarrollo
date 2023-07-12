@@ -367,12 +367,12 @@ export const getLeadClasificacion = (
   profesion,
   category,
   country,
-  marca_personal
+  marca_personal, freelancer
 ) => {
   return async (dispatch) => {
     if (email !== "undefined" && email !== "") {
       const response = await axios.get(
-        `lead/clasificacion?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
+        `lead/clasificacion?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}&freelancer=${freelancer}`
       );
       const freelanceLead = response.data;
       dispatch({ type: GET_CLASIFICACION_LEAD, payload: freelanceLead });

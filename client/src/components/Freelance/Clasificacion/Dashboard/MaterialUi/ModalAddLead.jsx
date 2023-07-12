@@ -4,7 +4,11 @@ import Button from "@mui/material/Button";
 import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { getAllCategory, getAllFreelancer } from "../../../../../redux/actions";
+import {
+  getAllCategory,
+  getAllFreelancer,
+  getAllProfesion,
+} from "../../../../../redux/actions";
 import axios from "axios";
 import { red } from "@mui/material/colors";
 const style = {
@@ -22,12 +26,13 @@ const style = {
 };
 
 export default function ChildModal({ email, AddLeadError, AddLeads }) {
-  const { freelancer, allCategory } = useSelector((state) => state);
+  const { freelancer, allCategory, allProfesion } = useSelector(
+    (state) => state
+  );
   const [OneFreelancer, setOneFreelancer] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const [countries, setCountries] = useState([]);
-  const [cities, setCities] = useState([]);
   const [errors, setErrors] = useState({
     nombre: "",
     pais: "",
@@ -36,8 +41,8 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     email: "",
     telefono: "",
     categoria: "",
+    profesion: "",
   });
-  const [error, setError] = useState(false);
   const [values, setValues] = useState({
     nombre: "",
     pais: "",
@@ -46,11 +51,13 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     email: "",
     telefono: "",
     categoria: "",
+    profesion: "",
   });
 
   useEffect(() => {
     dispatch(getAllFreelancer());
     dispatch(getAllCategory());
+    dispatch(getAllProfesion());
     fetch("https://restcountries.com/v3.1/all")
       .then((response) => response.json())
       .then((data) => {
@@ -65,8 +72,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     const free =
       freelancer && freelancer.filter((free) => free.email === email);
     setOneFreelancer(free);
-    console.log(email);
-  }, [freelancer]);
+  }, [freelancer, email]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -83,24 +89,27 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     const regex = /^(ftp|http|https):\/\/[^ "]+$/;
     return regex.test(url);
   };
+  useEffect(() => {
+    console.log("Valor actualizado:", errors.email);
+  }, [errors.email]);
   const validaciones = (id) => {
     if (id === "email") {
       if (!validateEmail(values.email)) {
-        setErrors(
-          (prevErrors) => ({
+        setErrors((prevErrors) => {
+          const updatedErrors = {
             ...prevErrors,
             email: "Ingrese un email válido",
-          }),
-          console.log("b")
-        );
+          };
+          return updatedErrors;
+        });
       } else {
-        setErrors(
-          (prevErrors) => ({
+        setErrors((prevErrors) => {
+          const updatedErrors = {
             ...prevErrors,
             email: "",
-          }),
-          console.log("a")
-        );
+          };
+          return updatedErrors;
+        });
       }
     }
     if (id === "web") {
@@ -140,7 +149,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       telephone: values.telefono,
       checked: false,
       view: false,
-      profesion: values.categoria,
+      profesion: values.profesion,
       corredor: OneFreelancer && OneFreelancer[0].email,
       corredor_name: OneFreelancer && OneFreelancer[0].name,
       instagra: "",
@@ -160,6 +169,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       values.web === "" ||
       values.email === "" ||
       values.telefono === "" ||
+      values.profesion === "" ||
       values.categoria === ""
     ) {
       AddLeadError();
@@ -171,6 +181,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
         errors.web !== "" ||
         errors.email !== "" ||
         errors.telefono !== "" ||
+        errors.profesion !== "" ||
         errors.categoria !== ""
       ) {
         AddLeadError();
@@ -185,6 +196,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
             email: "",
             telefono: "",
             categoria: "",
+            profesion: "",
           });
           setOpen(false);
           AddLeads();
@@ -205,6 +217,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
       email: "",
       telefono: "",
       categoria: "",
+      profesion: "",
     });
   };
 
@@ -250,6 +263,34 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     value={values.nombre}
                     onChange={(event) => handleChange(event)}
                   />
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24">Profesion: </label>
+                  <select
+                    type="text"
+                    id="profesion"
+                    className={
+                      values.profesion !== ""
+                        ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                        : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
+                    }
+                    value={values.profesion}
+                    onChange={(event) => handleChange(event)}
+                  >
+                    <option value="" disabled selected>
+                      Seleccione una Profesion del cliente
+                    </option>
+                    {allProfesion &&
+                      allProfesion.map((profesion) => (
+                        <option
+                          value={profesion}
+                          key={profesion}
+                          className="text-black"
+                        >
+                          {profesion}
+                        </option>
+                      ))}
+                  </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24">Categoría: </label>
