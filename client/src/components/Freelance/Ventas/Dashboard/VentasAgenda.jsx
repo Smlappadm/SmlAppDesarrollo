@@ -17,7 +17,6 @@ import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
 
-
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
   const { vendedoresVentasDashboard } = useSelector((state) => state);
@@ -25,19 +24,17 @@ const VentasDashboard = () => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [showObservaciones, setShowObservaciones] = useState(false);
   const [observationMessage, setObservationMessage] = useState("false");
+  const [openModalPago, setOpenModalPago] = useState(false);
+  const [saveEmailApp, setSaveEmailApp] = useState("");
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-  
 
-  
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
-  
+
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(emailAddress));
-
   }, [dispatch, emailAddress]);
-
 
   useEffect(() => {
     setData(vendedoresVentasDashboard);
@@ -54,8 +51,8 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(emailAddress))
-  }
+    dispatch(getLeadsLLamadaVenta(emailAddress));
+  };
 
   //FILTER**********************
   const [filters, setFilters] = useState({
@@ -152,6 +149,17 @@ const VentasDashboard = () => {
     setShowObservaciones(false);
   };
 
+  const openModalPagoFunction = () => {
+    setOpenModalPago(true);
+  };
+  const closeModalPago = () => {
+    setOpenModalPago(false);
+  };
+
+  const saveEmailAppFunction = (email) => {
+    setSaveEmailApp(email);
+  };
+
   return (
     <>
       <Nav />
@@ -164,9 +172,7 @@ const VentasDashboard = () => {
         )}
         {showObservaciones && (
           <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
-            <p className=" p-3    ">
-              Observaciones: {observationMessage}
-            </p>
+            <p className=" p-3    ">Observaciones: {observationMessage}</p>
             <button
               onClick={closeObservacionesHandler}
               className="border-2 text-white mx-3 text-18  px-2 rounded-md"
@@ -178,7 +184,7 @@ const VentasDashboard = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-          <motion.h1
+            <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0 }}
@@ -187,7 +193,7 @@ const VentasDashboard = () => {
               Ventas
             </motion.h1>
             <div className="flex gap-7">
-            <Link to={"/ventas-dashboard"}>
+              <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
               <Link to={"/ventas-agenda"}>
@@ -206,165 +212,193 @@ const VentasDashboard = () => {
               ""
             )}
           </div>
-          {vendedoresVentasDashboard.length > 0 ? (
-                        <motion.div
-                        initial={{ opacity: 0, y: "40px" }}
-                        whileInView={{ y: "20px", opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0 }}
-                        className={style.table}
-                      >
-              <div className="flex justify-start items-center  mx-6">
-                <label className=" text-start w-[15%] px-3">Nombre</label>
-                <label className=" text-start w-[11%] px-3">Profesión</label>
-                <label className=" text-start w-[9%] px-3">País</label>
-                <label className=" text-center w-[5%] ">Email</label>
-                <label className=" text-center w-[5%] ">Instagram</label>
-                <label className=" text-center w-[13%] ">Phone</label>
-                <button
-                  className=" text-center w-[5%]"
-                  onClick={() => handlerFilter("level")}
+          {!openModalPago ? (
+            <>
+              {vendedoresVentasDashboard.length > 0 ? (
+                <motion.div
+                  initial={{ opacity: 0, y: "40px" }}
+                  whileInView={{ y: "20px", opacity: 1 }}
+                  transition={{ duration: 0.6, delay: 0 }}
+                  className={style.table}
                 >
-                  Nivel
-                </button>
-                <label className=" text-center w-[17%] ">Llamar</label>
-                <label className=" text-center w-[15%] ">Status</label>
-                <label className=" text-center w-[5%] "></label>
-              </div>
-              <div className="">
-                {currentCard.map((item, index) => (
-                  <div
-                    key={item._id}
-                    className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
-                  >
-                    <div className=" w-[15%] flex justify-start items-center  p-0 ">
-                      <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.name}
-                      </p>
-                    </div>
-                    <div className=" w-[11%] flex justify-start items-center p-0 ">
-                      <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.category}
-                      </p>
-                    </div>
-
-                    <div className=" w-[9%] flex justify-start items-center p-0">
-                      <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.province}
-                      </p>
-                    </div>
-
-                    <div className=" w-[5%] flex justify-center items-center p-0">
-                      {item.email !== "-" ? (
-                        <div onClick={() => handleCopyClick(item.email)}>
-                          <div className="cursor-pointer">
-                            <CiMail className="text-[35px] mr-5 text-[#418df0] z-0" />
-                          </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <CiMail className="text-[35px] mr-5 text-[#9eabbe]" />
-                        </div>
-                      )}
-                    </div>
-                    <div className=" w-[5%] flex justify-center items-center p-0">
-                      {item.instagram ? (
-                        <div onClick={() => handleCopyClick(item.instagram)}>
-                          <div className="cursor-pointer">
-                            <CiInstagram className="text-[35px] mr-5 text-[#ff598b]" />
-                          </div>
-                        </div>
-                      ) : (
-                        <div>
-                          <CiInstagram className="text-[35px] mr-5 text-[#9eabbe]" />
-                        </div>
-                      )}
-                    </div>
-                    <div className=" w-[13%] flex justify-center items-center p-0 ">
-                      <p
-                        onClick={() => handleCopyClick(item.telephone)}
-                        className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                  <div className="flex justify-start items-center  mx-6">
+                    <label className=" text-start w-[15%] px-3">Nombre</label>
+                    <label className=" text-start w-[11%] px-3">
+                      Profesión
+                    </label>
+                    <label className=" text-start w-[9%] px-3">País</label>
+                    <label className=" text-center w-[5%] ">Email</label>
+                    <label className=" text-center w-[5%] ">Instagram</label>
+                    <label className=" text-center w-[13%] ">Phone</label>
+                    <button
+                      className=" text-center w-[5%]"
+                      onClick={() => handlerFilter("level")}
+                    >
+                      Nivel
+                    </button>
+                    <label className=" text-center w-[17%] ">Llamar</label>
+                    <label className=" text-center w-[15%] ">Status</label>
+                    <label className=" text-center w-[5%] "></label>
+                  </div>
+                  <div className="">
+                    {currentCard.map((item, index) => (
+                      <div
+                        key={item._id}
+                        className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
                       >
-                        {item.telephone}
-                      </p>
-                    </div>
-                    <div className=" w-[5%] flex justify-center items-start p-0">
-                      {item.level !== "incidencia" ? (
-                        <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
-                          {item.level}
-                        </p>
-                      ) : (
-                        <div className="bg-[#6254ff] text-[#e8e8e9] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
-                          <CiWarning className="text-[#fdfa3a] p-0 text-[35px] font-bold" />
+                        <div className=" w-[15%] flex justify-start items-center  p-0 ">
+                          <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                            {item.name}
+                          </p>
                         </div>
-                      )}
-                    </div>
-                    <div className=" w-[17%] flex justify-center items-center p-0">
-                      <div className="w-48 h-11">
-                        {item.llamada_venta.contacto ? (
-                          <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                            {item.llamada_venta.contacto}
+                        <div className=" w-[11%] flex justify-start items-center p-0 ">
+                          <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                            {item.category}
                           </p>
-                        ) : (
-                          <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                            Sin contacto
-                          </p>
-                        )}
+                        </div>
 
-                        <div className=" flex justify-start items-center">
-                          {typeof item.llamada_venta.dia_hora !== "undefined" &&
-                          item.llamada_venta?.dia_hora[5] !== "u" ? (
-                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              {item.llamada_venta.dia_hora}
+                        <div className=" w-[9%] flex justify-start items-center p-0">
+                          <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                            {item.province}
+                          </p>
+                        </div>
+
+                        <div className=" w-[5%] flex justify-center items-center p-0">
+                          {item.email !== "-" ? (
+                            <div onClick={() => handleCopyClick(item.email)}>
+                              <div className="cursor-pointer">
+                                <CiMail className="text-[35px] mr-5 text-[#418df0] z-0" />
+                              </div>
+                            </div>
+                          ) : (
+                            <div>
+                              <CiMail className="text-[35px] mr-5 text-[#9eabbe]" />
+                            </div>
+                          )}
+                        </div>
+                        <div className=" w-[5%] flex justify-center items-center p-0">
+                          {item.instagram ? (
+                            <div
+                              onClick={() => handleCopyClick(item.instagram)}
+                            >
+                              <div className="cursor-pointer">
+                                <CiInstagram className="text-[35px] mr-5 text-[#ff598b]" />
+                              </div>
+                            </div>
+                          ) : (
+                            <div>
+                              <CiInstagram className="text-[35px] mr-5 text-[#9eabbe]" />
+                            </div>
+                          )}
+                        </div>
+                        <div className=" w-[13%] flex justify-center items-center p-0 ">
+                          <p
+                            onClick={() => handleCopyClick(item.telephone)}
+                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                          >
+                            {item.telephone}
+                          </p>
+                        </div>
+                        <div className=" w-[5%] flex justify-center items-start p-0">
+                          {item.level !== "incidencia" ? (
+                            <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
+                              {item.level}
                             </p>
                           ) : (
-                            <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              Sin Día/Hora
+                            <div className="bg-[#6254ff] text-[#e8e8e9] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
+                              <CiWarning className="text-[#fdfa3a] p-0 text-[35px] font-bold" />
+                            </div>
+                          )}
+                        </div>
+                        <div className=" w-[17%] flex justify-center items-center p-0">
+                          <div className="w-48 h-11">
+                            {item.llamada_venta.contacto ? (
+                              <p className="w-64  rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                {item.llamada_venta.contacto}
+                              </p>
+                            ) : (
+                              <p className="w-64 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                Sin contacto
+                              </p>
+                            )}
+
+                            <div className=" flex justify-start items-center">
+                              {typeof item.llamada_venta.dia_hora !==
+                                "undefined" &&
+                              item.llamada_venta?.dia_hora[5] !== "u" ? (
+                                <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  {item.llamada_venta.dia_hora}
+                                </p>
+                              ) : (
+                                <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  Sin Día/Hora
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          <AiOutlineInfoCircle
+                            className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer "
+                            onClick={() => {
+                              showObservacionesHandler(
+                                item.llamada_venta.observaciones
+                              );
+                            }}
+                          />
+                        </div>
+                        <div className=" w-[15%] flex justify-center items-start p-0">
+                          {item.status === "Sin contactar" && (
+                            <p className="bg-[#ff69b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                              {item.status}
+                            </p>
+                          )}
+                          {item.status === "Agendar 2do llamado" && (
+                            <p className="bg-[#21b46f] w-48 h-11 flex justify-center items-center text-white rounded-3xl text-16">
+                              {item.status && "En proceso"}
                             </p>
                           )}
                         </div>
+                        <div className=" w-[5%] flex justify-center items-start p-0">
+                          <Modal
+                            item={item}
+                            SendLeadAlert={SendLeadAlert}
+                            SendIncidenceAlert={SendIncidenceAlert}
+                            SendErrorUpdateAlert={SendErrorUpdateAlert}
+                            emailAddress={emailAddress}
+                            cancelModal={cancelModal}
+                          />
+                        </div>
                       </div>
-                      <AiOutlineInfoCircle
-                        className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer "
-                        onClick={() => {
-                          showObservacionesHandler(
-                            item.llamada_venta.observaciones
-                          );
-                        }}
-                      />
-                    </div>
-                    <div className=" w-[15%] flex justify-center items-start p-0">
-                      {item.status === "Sin contactar" && (
-                        <p className="bg-[#ff69b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                          {item.status}
-                        </p>
-                      )}
-                      {item.status === "Agendar 2do llamado" && (
-                        <p className="bg-[#21b46f] w-48 h-11 flex justify-center items-center text-white rounded-3xl text-16">
-                          {item.status && "En proceso"}
-                        </p>
-                      )}
-                    </div>
-                    <div className=" w-[5%] flex justify-center items-start p-0">
-                      <Modal
-                        item={item}
-                        SendLeadAlert={SendLeadAlert}
-                        SendIncidenceAlert={SendIncidenceAlert}
-                        SendErrorUpdateAlert={SendErrorUpdateAlert}
-                        emailAddress={emailAddress}
-                        cancelModal={cancelModal}
-                      />
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </motion.div>
+                </motion.div>
+              ) : (
+                <div className="flex items-center justify-center w-full h-screen">
+                  <h1>No hay Leads disponibles</h1>
+                </div>
+              )}
+            </>
           ) : (
-            <div className="flex items-center justify-center w-full h-screen">
-              <h1>No hay Leads disponibles</h1>
+            <div className=" flex flex-col justify-center items-center w-44 mt-56 gap-7">
+              <button
+                className=" -top-3 -right-14 bg-[#485d94] text-white hover:bg-[#294ba7] w-10 h-10 rounded-full text-24 my-5 "
+                onClick={closeModalPago}
+              >
+                x
+              </button>
+              <p
+                onClick={() =>
+                  handleCopyClick(
+                    `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
+                  )
+                }
+                className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+              >
+                Link de Pago
+              </p>
             </div>
           )}
         </div>
-        {data.length > 10 && (
+        {data.length > 10 && !openModalPago && (
           <div className="mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}
