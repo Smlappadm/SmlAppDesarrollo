@@ -408,6 +408,18 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+  const AddLeads = () => {
+    toast.success(`✔ Se creo Lead exitosamente!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -533,7 +545,11 @@ const ClasificacionDashboard = () => {
             </div>
           </div>
           <div className="">
-            <AddLead email={email} AddLeadError={AddLeadError} />
+            <AddLead
+              email={email}
+              AddLeadError={AddLeadError}
+              AddLeads={AddLeads}
+            />
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
