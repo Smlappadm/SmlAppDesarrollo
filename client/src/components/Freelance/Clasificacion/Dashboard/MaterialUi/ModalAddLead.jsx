@@ -317,7 +317,7 @@ export default function ChildModal({
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">*Pais: </label>
+                  <label className="w-24 text-left">*Pais: </label>
                   <select
                     id="pais"
                     className={
