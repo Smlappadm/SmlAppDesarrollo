@@ -340,7 +340,7 @@ const VentasDashboard = () => {
                       )}
                       {item.status === "Agendar 2do llamado" && (
                         <p className="bg-[#21b46f] w-48 h-11 flex justify-center items-center text-white rounded-3xl text-16">
-                          {item.status}
+                          {item.status && "En proceso"}
                         </p>
                       )}
                     </div>

@@ -42,7 +42,6 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
-  const { corredorLead } = useSelector((state) => state);
   const { freelanceLead } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -396,6 +395,30 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+  const AddLeadError = () => {
+    toast.error(`✔ Error al crear Lead`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const AddLeads = () => {
+    toast.success(`✔ Se creo Lead exitosamente!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -521,7 +544,11 @@ const ClasificacionDashboard = () => {
             </div>
           </div>
           <div className="">
-            <AddLead email={email} />
+            <AddLead
+              email={email}
+              AddLeadError={AddLeadError}
+              AddLeads={AddLeads}
+            />
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
