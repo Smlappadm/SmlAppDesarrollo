@@ -110,30 +110,30 @@ const VentasHistory = () => {
     status: false,
   });
 
-  const handlerFilter = (filter) => {
-    dispatch(getVendedorAllLeads(email));
-    setFilterSector("");
-    setFilterName("");
-    setFilterPais("");
-    setOpenFilterName(false);
-    setOpenFilterSector(false);
-    setOpenFilterPais(false);
-    setOpenFilterStatus(false);
-    if (filter === "level") {
-      setFilters({
-        level: !filters.level,
-        runner: false,
-        sellers: false,
-        status: false,
-      });
-    } else if (filter === "runner") {
-      setFilters({ level: false, runner: true, sellers: false, status: false });
-    } else if (filter === "sellers") {
-      setFilters({ level: false, runner: false, sellers: true, status: false });
-    } else {
-      setFilters({ level: false, runner: false, sellers: false, status: true });
-    }
-  };
+  // const handlerFilter = (filter) => {
+  //   dispatch(getVendedorAllLeads(email));
+  //   setFilterSector("");
+  //   setFilterName("");
+  //   setFilterPais("");
+  //   setOpenFilterName(false);
+  //   setOpenFilterSector(false);
+  //   setOpenFilterPais(false);
+  //   setOpenFilterStatus(false);
+  //   if (filter === "level") {
+  //     setFilters({
+  //       level: !filters.level,
+  //       runner: false,
+  //       sellers: false,
+  //       status: false,
+  //     });
+  //   } else if (filter === "runner") {
+  //     setFilters({ level: false, runner: true, sellers: false, status: false });
+  //   } else if (filter === "sellers") {
+  //     setFilters({ level: false, runner: false, sellers: true, status: false });
+  //   } else {
+  //     setFilters({ level: false, runner: false, sellers: false, status: true });
+  //   }
+  // };
 
   const [levelValue, setLevelValue] = useState("");
   const [statusValue, setStatusValue] = useState("");
