@@ -117,11 +117,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
         }
         return updatedErrors;
       });
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        web: "Debes poner una direccion web para continuar",
-      }));
     }
   };
 
