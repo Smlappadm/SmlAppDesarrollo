@@ -1512,27 +1512,6 @@ export default function NestedModal({
                     value="con"
                   >Con Editores</option>
                 </select>
-                {openPagoSelect === "sin" && <select
-                  onChange={handleSelectPago}
-                  name="status"
-                  defaultValue="default"
-                  id="select1"
-                  className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled="disabled" value="default">
-                    Tipo de pago
-                  </option>
-                  <option
-                    className="text-justify"
-                    name="sinEditores"
-                    value="sin"
-                  >Sin Editores</option>
-                  <option
-                    className="text-justify"
-                    name="conEditores"
-                    value="con"
-                  >Con Editores</option>
-                </select>}
                 {openPagoSelect === "con" && <select
                   onChange={handleSelectPago}
                   name="status"
@@ -1541,18 +1520,59 @@ export default function NestedModal({
                   className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option disabled="disabled" value="default">
-                    Tipo de servicio
+                  Tipo de Pago - €5000
                   </option>
                   <option
                     className="text-justify"
                     name="sinEditores"
                     value="sin"
-                  >Sin Editores</option>
+                  >1 pago = -20% (€4000)</option>
                   <option
                     className="text-justify"
                     name="conEditores"
                     value="con"
-                  >Con Editores</option>
+                  >2 pagos = (€5000) / cuotas de €2500</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >4 pagos = (€5000) / cuotas de €1250</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >6 pagos = +20% (€6000) / cuotas de €1000</option>
+                </select>}
+                {openPagoSelect === "sin" && <select
+                  onChange={handleSelectPago}
+                  name="status"
+                  defaultValue="default"
+                  id="select1"
+                  className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option disabled="disabled" value="default">
+                    Tipo de Pago - €4000
+                  </option>
+                  <option
+                    className="text-justify"
+                    name="sinEditores"
+                    value="sin"
+                  >1 pago = -20% (€3200)</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >2 pagos = (€4000) / cuotas de €2000</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >4 pagos = (€4000) / cuotas de €1000</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >6 pagos = +20% (€4800) / cuotas de €800</option>
                 </select>}
               </div>
             )}

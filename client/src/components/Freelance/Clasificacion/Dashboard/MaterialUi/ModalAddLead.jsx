@@ -156,7 +156,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     if (
       values.nombre === "" ||
       values.pais === "" ||
-      values.ciudad === "" ||
       values.web === "" ||
       values.email === "" ||
       values.telefono === "" ||
@@ -234,7 +233,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
             ...style,
             width: "30%",
             backgroundColor: "#39394b",
-            height: "700px",
+            height: "800px",
           }}
         >
           <div className="flex flex-col gap-5 px-1 py-8 h-full w-full justify-center items-center">
