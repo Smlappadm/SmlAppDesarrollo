@@ -117,10 +117,6 @@ function ChildModal({
       };
     }
 
-
-
-    
-
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
       // statusObj.status_op = "";
@@ -599,7 +595,7 @@ export default function NestedModal({
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
-  const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
+  const [openPagoSelect, setOpenPagoSelect] = React.useState("");
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
   const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
@@ -672,6 +668,7 @@ export default function NestedModal({
   };
 
   const handleSelectChange = (event) => {
+    setOpenPagoSelect("")
     setOpenTimeHour(false);
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     statusObj.pagos = {};
@@ -684,8 +681,8 @@ export default function NestedModal({
         status_op: "",
       });
     } else if (value === "Agendar 2do llamado") {
-      llamadoVenta.observaciones = ""
-      dateHour.$D = ""
+      llamadoVenta.observaciones = "";
+      dateHour.$D = "";
       setStatusObj({
         ...statusObj,
         [property]: value,
@@ -810,6 +807,12 @@ export default function NestedModal({
       setOpenAlertErrorCuotas(false);
     }, 3000);
   };
+
+  const handleSelectPago = (e) => {
+    setOpenPagoSelect(e.target.value)
+  }
+
+
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
@@ -1209,9 +1212,7 @@ export default function NestedModal({
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option value="Sin contactar">Sin Contactar</option>
-                  <option value="Agendar 2do llamado">
-                  En proceso
-                  </option>
+                  <option value="Agendar 2do llamado">En proceso</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
@@ -1227,9 +1228,7 @@ export default function NestedModal({
                   <option disabled="disabled" value="default">
                     Elige uno...
                   </option>
-                  <option value="Agendar otro llamado">
-                  En proceso
-                  </option>
+                  <option value="Agendar otro llamado">En proceso</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
@@ -1432,7 +1431,7 @@ export default function NestedModal({
               )}
             {statusObj.status === "Contratado" && (
               <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                <div className="flex items-center justify-center gap-2 relative">
+                {/* <div className="flex items-center justify-center gap-2 relative">
                   <label
                     htmlFor="last_name"
                     className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
@@ -1463,9 +1462,9 @@ export default function NestedModal({
                     placeholder="Cuotas"
                     required
                   />
-                </div>
+                </div> */}
 
-                <p
+                {/* <p
                   type="text"
                   id="last_name"
                   name="total"
@@ -1484,51 +1483,97 @@ export default function NestedModal({
                     `${statusObj.pagos.cuotas} pagos de €${(
                       statusObj.pagos.monto / statusObj.pagos.cuotas
                     ).toFixed(2)}`}
-                </p>
+                </p> */}
 
                 {/* <MdPriceCheck
                       onClick={handleOpenPagoSelect}
                       className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     /> */}
                 {/* </div> */}
-                {/* {openPagoSelect && (
-                    <select
-                      onChange={handleSelectpago}
-                      name="status"
-                      defaultValue="default"
-                      id="select1"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option disabled="disabled" value="default">
-                        Modo de pago
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="1"
-                        value="pago1"
-                      >{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1} - 35%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="6"
-                        value="pago6"
-                      >{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6} - 20%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="12"
-                        value="pago12"
-                      >{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12} - 10%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="16"
-                        value="pago16"
-                      >{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16} - 5%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="25"
-                        value="pago25"
-                      >{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
-                    </select>
-                  )} */}
+
+                <select
+                  onChange={handleSelectPago}
+                  name="status"
+                  defaultValue="default"
+                  id="select1"
+                  className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option disabled="disabled" value="default">
+                    Tipo de servicio
+                  </option>
+                  <option
+                    className="text-justify"
+                    name="sinEditores"
+                    value="sin"
+                  >Sin Editores</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >Con Editores</option>
+                </select>
+                {openPagoSelect === "con" && <select
+                  onChange={handleSelectPago}
+                  name="status"
+                  defaultValue="default"
+                  id="select1"
+                  className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option disabled="disabled" value="default">
+                  Tipo de Pago - €5000
+                  </option>
+                  <option
+                    className="text-justify"
+                    name="sinEditores"
+                    value="sin"
+                  >1 pago = -20% (€4000)</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >2 pagos = (€5000) / cuotas de €2500</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >4 pagos = (€5000) / cuotas de €1250</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >6 pagos = +20% (€6000) / cuotas de €1000</option>
+                </select>}
+                {openPagoSelect === "sin" && <select
+                  onChange={handleSelectPago}
+                  name="status"
+                  defaultValue="default"
+                  id="select1"
+                  className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option disabled="disabled" value="default">
+                    Tipo de Pago - €4000
+                  </option>
+                  <option
+                    className="text-justify"
+                    name="sinEditores"
+                    value="sin"
+                  >1 pago = -20% (€3200)</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >2 pagos = (€4000) / cuotas de €2000</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >4 pagos = (€4000) / cuotas de €1000</option>
+                  <option
+                    className="text-justify"
+                    name="conEditores"
+                    value="con"
+                  >6 pagos = +20% (€4800) / cuotas de €800</option>
+                </select>}
               </div>
             )}
             {item.llamados > 0 && statusObj.status === "No responde" && (

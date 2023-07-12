@@ -17,7 +17,7 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
   const [category, setCategory] = useState("");
   const [country, setCountry] = useState("");
   const [marca_personal, setMarca_personal] = useState("");
-  const [freelancer, setFreelancer] = useState("");
+  const [freelancer, setFreelancer] = useState("undefined");
 
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
@@ -49,7 +49,7 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
   };
 
   const handleChangeFreelancer = (event) => {
-    setFreelancer(event.target.checked ? email : "");
+    setFreelancer(event.target.checked ? email : "undefined");
   };
 
   const handleFilterClick = () => {
