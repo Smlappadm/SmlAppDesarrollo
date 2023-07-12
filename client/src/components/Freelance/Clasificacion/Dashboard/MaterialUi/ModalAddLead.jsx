@@ -248,8 +248,9 @@ export default function ChildModal({
 
             <form className="flex flex-col " onSubmit={handleSubmitAdd}>
               <div className="flex flex-col gap-3">
+                <p>(*)Campos obligatorios</p>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Nombre: </label>
+                  <label className="w-24">*Nombre: </label>
                   <input
                     type="text"
                     id="nombre"
@@ -260,7 +261,7 @@ export default function ChildModal({
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Profesion: </label>
+                  <label className="w-24">*Profesion: </label>
                   <select
                     type="text"
                     id="profesion"
@@ -288,7 +289,7 @@ export default function ChildModal({
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Categoría: </label>
+                  <label className="w-24">*Categoría: </label>
                   <select
                     type="text"
                     id="categoria"
@@ -316,7 +317,7 @@ export default function ChildModal({
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Pais: </label>
+                  <label className="w-24">*Pais: </label>
                   <select
                     id="pais"
                     className={
@@ -353,7 +354,7 @@ export default function ChildModal({
                   />
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Web: </label>
+                  <label className="w-24">*Web: </label>
                   <input
                     id="web"
                     type="text"
@@ -365,7 +366,7 @@ export default function ChildModal({
                 </div>
                 {errors.web !== "" && <span>{errors.web}</span>}
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Email: </label>
+                  <label className="w-24">*Email: </label>
                   <input
                     id="email"
                     type="text"
@@ -377,7 +378,7 @@ export default function ChildModal({
                 </div>
                 {errors.email !== "" && <span>{errors.email}</span>}
                 <div className="flex h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">Telefono: </label>
+                  <label className="w-24">*Telefono: </label>
                   <input
                     id="telefono"
                     type="number"
