@@ -39,6 +39,10 @@ export default function InputName({ name }) {
     dispatch(getAllCountries());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log(allFreelancers);
+  }, [allFreelancers]);
+
   const handleChangeCorredor = (event) => {
     let value = event.target.value;
     setFreelancer(value);
