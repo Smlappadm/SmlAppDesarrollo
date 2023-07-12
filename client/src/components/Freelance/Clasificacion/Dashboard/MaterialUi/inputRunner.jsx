@@ -49,9 +49,8 @@ export default function InputRunner({ getLeadClasificacion, email, names }) {
   };
 
   const handleChangeFreelancer = (event) => {
-    setFreelancer(event.target.checked ? { email } : "");
+    setFreelancer(event.target.checked ? email : "");
   };
-
 
   const handleFilterClick = () => {
     dispatch(
