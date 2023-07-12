@@ -393,7 +393,7 @@ export default function ChildModal({ email }) {
                 opacity: 0.7,
                 "&:hover": {
                   backgroundColor: "red",
-                  opacity: 1, // Cambia 'red' al color deseado al hacer hover
+                  opacity: 1,
                 },
               }}
             >
