@@ -91,24 +91,28 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
   };
 
   const validaciones = () => {
-    setErrors((prevErrors) => {
-      const updatedErrors = { ...prevErrors };
-      if (!validateEmail(values.email)) {
-        updatedErrors.email = "Ingrese un email válido";
-      } else {
-        updatedErrors.email = "";
-      }
-      return updatedErrors;
-    });
-    setErrors((prevErrors) => {
-      const updatedErrors = { ...prevErrors };
-      if (!validateURL(values.web)) {
-        updatedErrors.web = "Ingrese una URL válida";
-      } else {
-        updatedErrors.web = "";
-      }
-      return updatedErrors;
-    });
+    if (values.email !== "") {
+      setErrors((prevErrors) => {
+        const updatedErrors = { ...prevErrors };
+        if (!validateEmail(values.email)) {
+          updatedErrors.email = "Ingrese un email válido";
+        } else {
+          updatedErrors.email = "";
+        }
+        return updatedErrors;
+      });
+    }
+    if (values.web !== "") {
+      setErrors((prevErrors) => {
+        const updatedErrors = { ...prevErrors };
+        if (!validateURL(values.web)) {
+          updatedErrors.web = "Ingrese una URL válida";
+        } else {
+          updatedErrors.web = "";
+        }
+        return updatedErrors;
+      });
+    }
   };
 
   useEffect(() => {
