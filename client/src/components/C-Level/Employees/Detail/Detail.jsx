@@ -12,10 +12,34 @@ function Detail({ cardEmail }) {
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
 
-  const SendLeads = (name) => {
-    toast.success(`✔ Leads asignados a el Freelancer ${name}  `, {
+  const okLeads = (message) => {
+    toast.success(`${message}`, {
       position: "top-center",
-      autoClose: 2000,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const almostLeads = (message) => {
+    toast.warning(`${message}`, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const errorLeads = (message) => {
+    toast.error(`${message}`, {
+      position: "top-center",
+      autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -30,10 +54,36 @@ function Detail({ cardEmail }) {
 
     const startTime = performance.now();
 
-    const response = await axios.get(
-      // `https://apisml.onrender.com/freelance?freelance=${inputName}&email=${inputEmail}&num_leads=${leadAsigned}`
-      `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
-    );
+    if (axios.defaults.baseURL === "https://sml-app.com/api") {
+      const response = await axios.get(
+        `https://apisml.onrender.com/freelance?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
+      );
+      if (response.data.message === "Carga completa de leads") {
+        okLeads(response.data.message);
+      } else if (
+        response.data.message === "No hay leads con la profesion solicitada"
+      ) {
+        errorLeads(response.data.message);
+      } else {
+        almostLeads(response.data.message);
+      }
+    } else if (
+      axios.defaults.baseURL === "http://localhost:3001/api" ||
+      axios.defaults.baseURL === "https://smlapp.onrender.com/api"
+    ) {
+      const response = await axios.get(
+        `https://apisml.onrender.com/freelance_desarrollo?freelance=${cardEmail.name}&email=${cardEmail.email}&num_leads=${leadAsigned}&profesion=${profesion}&country=${country}`
+      );
+      if (response.data.message === "Carga completa de leads") {
+        okLeads(response.data.message);
+      } else if (
+        response.data.message === "No hay leads con la profesion solicitada"
+      ) {
+        errorLeads(response.data.message);
+      } else {
+        almostLeads(response.data.message);
+      }
+    }
 
     const endTime = performance.now();
     const duration = endTime - startTime;
@@ -45,8 +95,6 @@ function Detail({ cardEmail }) {
     );
 
     setLoading(false);
-
-    SendLeads(cardEmail.name);
   };
 
   return (
