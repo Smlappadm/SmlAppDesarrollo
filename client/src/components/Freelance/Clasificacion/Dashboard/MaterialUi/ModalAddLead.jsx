@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { getAllCategory, getAllFreelancer } from "../../../../../redux/actions";
 import axios from "axios";
+import { red } from "@mui/material/colors";
 const style = {
   position: "absolute",
   top: "50%",
@@ -162,7 +163,7 @@ export default function ChildModal({ email }) {
       values.telefono === "" ||
       values.categoria === ""
     ) {
-      console.log("nada");
+      AddLeadError();
     } else {
       if (
         errors.nombre !== "" ||
@@ -173,11 +174,10 @@ export default function ChildModal({ email }) {
         errors.telefono !== "" ||
         errors.categoria !== ""
       ) {
-        console.log("errores");
+        AddLeadError();
       } else {
         try {
-          console.log(body);
-          const response = await axios.post("/lead/new", body);
+          await axios.post("/lead/new", body);
           setValues({
             nombre: "",
             pais: "",
@@ -188,15 +188,38 @@ export default function ChildModal({ email }) {
             categoria: "",
           });
           setOpen(false);
-
-          console.log("todo");
-          console.log(response.data);
+          AddLeads();
         } catch (error) {
           console.log({ error: error.message });
+          AddLeadError();
         }
       }
     }
     //console.log(body);
+  };
+  const AddLeads = () => {
+    toast.success(`✔ Se creo Lead exitosamente!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const AddLeadError = () => {
+    toast.error(`✔ Error al crear Lead`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   const handleClean = () => {
@@ -213,6 +236,7 @@ export default function ChildModal({ email }) {
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <Button variant="contained" sx={{}} onClick={handleOpen}>
         NUEVO CLIENTE
       </Button>
@@ -232,10 +256,10 @@ export default function ChildModal({ email }) {
             ...style,
             width: "30%",
             backgroundColor: "#39394b",
-            height: "600px",
+            height: "700px",
           }}
         >
-          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full ">
+          <div className="flex flex-col gap-5 px-1 py-8 h-full w-full justify-center items-center">
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>
@@ -355,10 +379,26 @@ export default function ChildModal({ email }) {
                 </div>
               </div>
               <div className="flex justify-around mt-10">
-                <button onClick={handleClean}>LIMPIAR</button>
-                <button type="submit">AGREGAR</button>
+                <Button variant="contained" type="submit" sx={{}}>
+                  AGREGAR
+                </Button>
               </div>
             </form>
+            <Button
+              variant="contained"
+              onClick={handleClean}
+              sx={{
+                backgroundColor: "red",
+                width: "fit-content",
+                opacity: 0.7,
+                "&:hover": {
+                  backgroundColor: "red",
+                  opacity: 1, // Cambia 'red' al color deseado al hacer hover
+                },
+              }}
+            >
+              LIMPIAR
+            </Button>
           </div>
         </Box>
       </Modal>
