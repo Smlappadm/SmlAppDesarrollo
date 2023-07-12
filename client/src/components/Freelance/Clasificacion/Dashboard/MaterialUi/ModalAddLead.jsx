@@ -250,7 +250,7 @@ export default function ChildModal({
               <div className="flex flex-col gap-3">
                 <p>(*)Campos obligatorios</p>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">*Nombre: </label>
+                  <label className="w-24 text-left">*Nombre: </label>
                   <input
                     type="text"
                     id="nombre"
