@@ -1210,7 +1210,7 @@ export default function NestedModal({
                 >
                   <option value="Sin contactar">Sin Contactar</option>
                   <option value="Agendar 2do llamado">
-                    Agendar 2do llamado
+                  En proceso
                   </option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
@@ -1228,7 +1228,7 @@ export default function NestedModal({
                     Elige uno...
                   </option>
                   <option value="Agendar otro llamado">
-                    Agendar otro llamado
+                  En proceso
                   </option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
