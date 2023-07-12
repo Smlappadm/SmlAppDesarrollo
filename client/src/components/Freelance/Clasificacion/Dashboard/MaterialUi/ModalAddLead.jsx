@@ -92,21 +92,21 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
   const validaciones = (id) => {
     if (id === "email") {
       if (!validateEmail(values.email)) {
-        setErrors(
-          (prevErrors) => ({
+        setErrors((prevErrors) => {
+          const updatedErrors = {
             ...prevErrors,
             email: "Ingrese un email válido",
-          }),
-          console.log("b")
-        );
+          };
+          console.log("b", updatedErrors); // Console.log con el valor actualizado
+        });
       } else {
-        setErrors(
-          (prevErrors) => ({
+        setErrors((prevErrors) => {
+          const updatedErrors = {
             ...prevErrors,
             email: "",
-          }),
-          console.log("a")
-        );
+          };
+          console.log("a", updatedErrors); // Console.log con el valor actualizado
+        });
       }
     }
     if (id === "web") {
