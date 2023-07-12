@@ -65,7 +65,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     const free =
       freelancer && freelancer.filter((free) => free.email === email);
     setOneFreelancer(free);
-    console.log(free);
+    console.log(email);
   }, [freelancer]);
 
   const handleOpen = () => {
