@@ -559,6 +559,7 @@ const ClasificacionDashboard = () => {
               email={email}
               AddLeadError={AddLeadError}
               AddLeads={AddLeads}
+              AddLeadsIncomplete={AddLeadsIncomplete}
             />
           </div>
           <form onSubmit={handleSubmit}>
