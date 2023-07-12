@@ -18,33 +18,64 @@ const getAllLeadClasificacion = async (query) => {
     return Lead.find(conditions, null, { limit }).lean();
   };
 
-  if (!profesion && !country && !category && !marca_personal) {
-    leadUnchecked = await findLeadUnchecked(
-      {
-        corredor: email,
-        checked: false,
-      },
-      10 // Limit the results to 10
-    );
-  } else {
-    const countryRegex = country ? new RegExp(country, "i") : /.*/;
-    const profesionRegex = profesion ? new RegExp(profesion, "i") : /.*/;
-    const categoryRegex = category ? new RegExp(category, "i") : /.*/;
-    const marca_personalRegex = marca_personal
-      ? new RegExp(marca_personal, "i")
-      : /.*/;
+  if (freelancer === "undefined") {
+    if (!profesion && !country && !category && !marca_personal) {
+      leadUnchecked = await findLeadUnchecked(
+        {
+          corredor: email,
+          checked: false,
+        },
+        10 // Limit the results to 10
+      );
+    } else {
+      const countryRegex = country ? new RegExp(country, "i") : /.*/;
+      const profesionRegex = profesion ? new RegExp(profesion, "i") : /.*/;
+      const categoryRegex = category ? new RegExp(category, "i") : /.*/;
+      const marca_personalRegex = marca_personal
+        ? new RegExp(marca_personal, "i")
+        : /.*/;
 
-    leadUnchecked = await findLeadUnchecked(
-      {
-        corredor: email,
-        checked: false,
-        country: countryRegex,
-        profesion: profesionRegex,
-        category: categoryRegex,
-        marca_personal: marca_personalRegex,
-      },
-      10 // Limit the results to 10
-    );
+      leadUnchecked = await findLeadUnchecked(
+        {
+          corredor: email,
+          checked: false,
+          country: countryRegex,
+          profesion: profesionRegex,
+          category: categoryRegex,
+          marca_personal: marca_personalRegex,
+        },
+        10 // Limit the results to 10
+      );
+    }
+  } else {
+    if (!profesion && !country && !category && !marca_personal) {
+      leadUnchecked = await findLeadUnchecked(
+        {
+          from: email,
+          checked: false,
+        },
+        10 // Limit the results to 10
+      );
+    } else {
+      const countryRegex = country ? new RegExp(country, "i") : /.*/;
+      const profesionRegex = profesion ? new RegExp(profesion, "i") : /.*/;
+      const categoryRegex = category ? new RegExp(category, "i") : /.*/;
+      const marca_personalRegex = marca_personal
+        ? new RegExp(marca_personal, "i")
+        : /.*/;
+
+      leadUnchecked = await findLeadUnchecked(
+        {
+          from: email,
+          checked: false,
+          country: countryRegex,
+          profesion: profesionRegex,
+          category: categoryRegex,
+          marca_personal: marca_personalRegex,
+        },
+        10 // Limit the results to 10
+      );
+    }
   }
 
   return [...leadUnchecked, ...limitedLeadRest];
