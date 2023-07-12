@@ -322,6 +322,7 @@ const ClasificacionDashboard = () => {
     };
 
     updateClients();
+    console.log(email);
   }, [client]);
 
   const SendLeads = (name) => {
