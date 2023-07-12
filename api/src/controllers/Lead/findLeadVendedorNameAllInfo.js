@@ -15,7 +15,7 @@ const findLeadVendedorNameAllInfo = async (
     vendedor: regexVendedor,
     checked: true,
     view: true,
-    freelancer: { $ne: true },
+    // freelancer: { $ne: true },
   };
 
   if (fromDay && toDay) {
