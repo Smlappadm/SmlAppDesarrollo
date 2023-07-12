@@ -197,18 +197,6 @@ export default function ChildModal({ email, AddLeadError }) {
     }
     //console.log(body);
   };
-  const AddLeads = () => {
-    toast.success(`✔ Se creo Lead exitosamente!`, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-  };
 
   const handleClean = () => {
     setValues({
