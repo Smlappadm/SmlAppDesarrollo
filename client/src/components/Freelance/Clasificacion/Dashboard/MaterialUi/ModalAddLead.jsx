@@ -101,11 +101,6 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
         }
         return updatedErrors;
       });
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "Debes poner un email para continuar",
-      }));
     }
     if (values.web !== "") {
       setErrors((prevErrors) => {
