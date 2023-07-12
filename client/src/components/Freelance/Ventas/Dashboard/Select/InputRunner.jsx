@@ -169,6 +169,7 @@ export default function InputName({ body, getLeadCheckedFreelance, emailAddress}
         <MenuItem value="s">
           <em></em>
         </MenuItem>
+        <MenuItem value="0">0</MenuItem>
         <MenuItem value="1">1</MenuItem>
         <MenuItem value="2">2</MenuItem>
         <MenuItem value="aleatorio">Aleatorio</MenuItem>
