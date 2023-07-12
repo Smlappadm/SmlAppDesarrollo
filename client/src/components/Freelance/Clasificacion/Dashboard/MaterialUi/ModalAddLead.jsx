@@ -91,24 +91,28 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
   };
 
   const validaciones = () => {
-    setErrors((prevErrors) => {
-      const updatedErrors = { ...prevErrors };
-      if (!validateEmail(values.email)) {
-        updatedErrors.email = "Ingrese un email válido";
-      } else {
-        updatedErrors.email = "";
-      }
-      return updatedErrors;
-    });
-    setErrors((prevErrors) => {
-      const updatedErrors = { ...prevErrors };
-      if (!validateURL(values.web)) {
-        updatedErrors.web = "Ingrese una URL válida";
-      } else {
-        updatedErrors.web = "";
-      }
-      return updatedErrors;
-    });
+    if (values.email !== "") {
+      setErrors((prevErrors) => {
+        const updatedErrors = { ...prevErrors };
+        if (!validateEmail(values.email)) {
+          updatedErrors.email = "Ingrese un email válido";
+        } else {
+          updatedErrors.email = "";
+        }
+        return updatedErrors;
+      });
+    }
+    if (values.web !== "") {
+      setErrors((prevErrors) => {
+        const updatedErrors = { ...prevErrors };
+        if (!validateURL(values.web)) {
+          updatedErrors.web = "Ingrese una URL válida";
+        } else {
+          updatedErrors.web = "";
+        }
+        return updatedErrors;
+      });
+    }
   };
 
   useEffect(() => {
@@ -264,7 +268,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     value={values.profesion}
                     onChange={(event) => handleChange(event)}
                   >
-                    <option value="" disabled selected>
+                    <option value="" disabled>
                       Seleccione una Profesion del cliente
                     </option>
                     {allProfesion &&
@@ -292,7 +296,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     value={values.categoria}
                     onChange={(event) => handleChange(event)}
                   >
-                    <option value="" disabled selected>
+                    <option value="" disabled>
                       Seleccione una categoría del cliente
                     </option>
                     {allCategory &&
@@ -319,7 +323,7 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
                     value={values.pais}
                     onChange={(event) => handleChange(event)}
                   >
-                    <option value="" disabled selected>
+                    <option value="" disabled>
                       Seleccione el país del cliente
                     </option>
                     {countries.map((country) => (
