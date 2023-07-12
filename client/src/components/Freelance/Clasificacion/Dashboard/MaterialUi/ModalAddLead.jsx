@@ -289,7 +289,7 @@ export default function ChildModal({
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
-                  <label className="w-24">*Categoría: </label>
+                  <label className="w-24 text-left">*Categoría: </label>
                   <select
                     type="text"
                     id="categoria"
