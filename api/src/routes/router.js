@@ -7,8 +7,8 @@ const VendedorRouter = require("./VendedorRouter");
 const EmployeesRouter = require("./EmployeesRouter");
 const ClientesRouter = require("./ClientesRouter");
 const LeaderRouter = require("./LeaderRouter");
-const PagosRouter = require("./PagosRouter");
 const FreelancerRouter = require("./FreelancerRouter");
+const PagosRouter = require("./PagosRouter");
 
 router.use("/employees", EmployeesRouter);
 router.use("/clevel", CLevelRouter);
