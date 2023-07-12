@@ -15,6 +15,7 @@ import {
 } from "../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 function Landing() {
   const user = useUser().user;
@@ -82,7 +83,7 @@ function Landing() {
       <Nav />
       <div className={style.container}>
         <div className="flex flex-col gap-5">
-          {isEmployeeReady && isEmployeeReady ? (
+          {isEmployeeReady ? (
             <div className={style.containerWellcome}>
               {selectedEmployee?.photo ? (
                 <img
@@ -97,10 +98,15 @@ function Landing() {
               <h3 className={style.role}>Rol: {roleReady} </h3>
             </div>
           ) : (
-            <div className="flex flex-col gap-2 items-center justify-center bg-[#7B0BC0] px-10 py-2 rounded-lg">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 3.5 }}
+              className="flex flex-col gap-2 items-center justify-center bg-[#7B0BC0] px-10 py-2 rounded-lg"
+            >
               <h2 className="text-white text-[2rem]">Usuario no autorizado</h2>
               <p className="text-white">Solicité acceso al líder</p>
-            </div>
+            </motion.div>
           )}
         </div>
       </div>
