@@ -89,27 +89,13 @@ export default function ChildModal({ email, AddLeadError, AddLeads }) {
     const regex = /^(ftp|http|https):\/\/[^ "]+$/;
     return regex.test(url);
   };
-  useEffect(() => {
-    console.log("Valor actualizado:", errors.email);
-  }, [errors.email]);
+
   const validaciones = (id) => {
     if (id === "email") {
       if (!validateEmail(values.email)) {
-        setErrors((prevErrors) => {
-          const updatedErrors = {
-            ...prevErrors,
-            email: "Ingrese un email válido",
-          };
-          return updatedErrors;
-        });
+        setErrors({ ...errors, email: "Ingrese un email valido" });
       } else {
-        setErrors((prevErrors) => {
-          const updatedErrors = {
-            ...prevErrors,
-            email: "",
-          };
-          return updatedErrors;
-        });
+        setErrors({ ...errors, email: "" });
       }
     }
     if (id === "web") {
