@@ -25,7 +25,12 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ChildModal({ email, AddLeadError, AddLeads }) {
+export default function ChildModal({
+  email,
+  AddLeadError,
+  AddLeads,
+  AddLeadsIncomplete,
+}) {
   const { freelancer, allCategory, allProfesion } = useSelector(
     (state) => state
   );
