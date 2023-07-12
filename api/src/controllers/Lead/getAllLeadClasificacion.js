@@ -4,15 +4,18 @@ const getAllLeadClasificacion = async (query) => {
   let leadUnchecked = [];
   let limitedLeadRest = [];
 
-  const { email, names, profesion, country, category, marca_personal, freelancer } = query;
-
+  const {
+    email,
+    names,
+    profesion,
+    country,
+    category,
+    marca_personal,
+    freelancer,
+  } = query;
 
   const findLeadUnchecked = async (conditions, limit) => {
     return Lead.find(conditions, null, { limit }).lean();
-  };
-
-  const updateLeadRest = async (conditions, updates) => {
-    return Lead.updateMany(conditions, updates);
   };
 
   if (!profesion && !country && !category && !marca_personal) {
