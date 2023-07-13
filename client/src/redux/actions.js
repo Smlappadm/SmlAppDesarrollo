@@ -240,11 +240,12 @@ export const findCorredoresByNameAllInfo = (
   country,
   category,
   level,
-  status
+  status,
+  descargados
 ) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `/lead/allinfo?corredor=${corredor}&vendedor=${vendedor}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`
+      `/lead/allinfo?corredor=${corredor}&vendedor=${vendedor}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}&descargados=${descargados}`
     );
     const corredoresByNameAllInfo = response.data;
     dispatch({
@@ -368,7 +369,8 @@ export const getLeadClasificacion = (
   profesion,
   category,
   country,
-  marca_personal, freelancer
+  marca_personal,
+  freelancer
 ) => {
   return async (dispatch) => {
     if (email !== "undefined" && email !== "") {
@@ -429,12 +431,13 @@ export const getAllProfesion = () => {
 };
 export const getAllProfesionFreelance = (emailAddress) => {
   return async (dispatch) => {
-    const response = await axios.get(`/lead/profesionfreelance?email=${emailAddress}`);
+    const response = await axios.get(
+      `/lead/profesionfreelance?email=${emailAddress}`
+    );
     const allProfesion = response.data;
     dispatch({ type: GET_ALL_PROFESION_FREELANCE, payload: allProfesion });
   };
 };
-
 
 export const getAllCountries = () => {
   return async (dispatch) => {
@@ -445,7 +448,9 @@ export const getAllCountries = () => {
 };
 export const getAllCountriesFreelance = (emailAddress) => {
   return async (dispatch) => {
-    const response = await axios.get(`/lead/countryfreelance?email=${emailAddress}`);
+    const response = await axios.get(
+      `/lead/countryfreelance?email=${emailAddress}`
+    );
     const allCountries = response.data;
     dispatch({ type: GET_ALL_COUNTRY_FREELANCE, payload: allCountries });
   };
