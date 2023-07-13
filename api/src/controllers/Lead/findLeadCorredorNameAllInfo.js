@@ -16,7 +16,7 @@ const findLeadCorredorNameAllInfo = async (
   const regexVendedor = vendedor ? new RegExp(vendedor, "i") : /.*/;
   const query = {
     corredor_name: corredor,
-    vendedor_name: regexVendedor,
+    vendedor_name: vendedor,
     checked: true,
     view: true,
     freelancer: false,
