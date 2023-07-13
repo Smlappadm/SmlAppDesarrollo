@@ -487,7 +487,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detailEmploy: action.payload,
       };
-    case GET_CORREDOR_LEAD_CHECKED_DESCARGADOS:
+    case GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS:
       return {
         ...state,
         corredorLeadCheckedDescagados: action.payload,
