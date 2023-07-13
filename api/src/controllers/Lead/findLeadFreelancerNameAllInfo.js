@@ -12,7 +12,7 @@ const findLeadFreelancerNameAllInfo = async (
   descargados
 ) => {
   const query = {
-    corredor_name: freelancer !== "" ? freelancer : null,
+    // corredor_name: freelancer !== "" ? freelancer : null,
     checked: true,
     view: true,
     freelancer: true,
