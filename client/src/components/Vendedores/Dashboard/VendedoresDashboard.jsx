@@ -191,9 +191,12 @@ const VendedoresDashboard = () => {
             </motion.h1>
 
             <div className="flex gap-7">
-                <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
-                  Ingresa al Dashboard
-                </p>
+              <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
+                Ingresa al Dashboard
+              </p>
+              <Link to={"/vendedores"}>
+                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              </Link>
               <Link to={"/vendedores-ventas"}>
                 <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>

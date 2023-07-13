@@ -61,7 +61,7 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
-    console.log("wwwwwwwwwwwwwwwwwwwwwwwww")
+    console.log("wwwwwwwwwwwwwwwwwwwwwwwww");
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -78,38 +78,35 @@ function ChildModal({
           cuotasPagadas: 0,
         },
         // status_op: statusObj.pagos.monto,
-        
-      })
+      });
 
-        let updatedPagos = "";
-        if (statusObj.status_op === "1/4000/4000") {
-          updatedPagos =  "www.1" ;
-        } else if (statusObj.status_op === "2/2500/5000") {
-          updatedPagos =  "www.2" ;
-        } else if (statusObj.status_op === "4/1250/5000") {
-          updatedPagos = "www.3" ;
-        } else if (statusObj.status_op === "6/1000/6000") {
-          updatedPagos =  "www.4" ;
-        } else if (statusObj.status_op === "1/3200/3200") {
-          updatedPagos =  "www.5" ;
-        } else if (statusObj.status_op === "2/2000/4000") {
-          updatedPagos =  "www.6" ;
-        } else if (statusObj.status_op === "4/1000/4000") {
-          updatedPagos = "www.7" ;
-        } else if (statusObj.status_op === "6/800/4800") {
-          updatedPagos =  "www.8" ;
-        }
-        
-        setStatusObj({
-          ...statusObj,
-          pagos: {
-            ...statusObj.pagos,
-            link: updatedPagos
-          }
-        });
+      let updatedPagos = "";
+      if (statusObj.status_op === "1/4000/4000") {
+        updatedPagos = "www.1";
+      } else if (statusObj.status_op === "2/2500/5000") {
+        updatedPagos = "www.2";
+      } else if (statusObj.status_op === "4/1250/5000") {
+        updatedPagos = "www.3";
+      } else if (statusObj.status_op === "6/1000/6000") {
+        updatedPagos = "www.4";
+      } else if (statusObj.status_op === "1/3200/3200") {
+        updatedPagos = "www.5";
+      } else if (statusObj.status_op === "2/2000/4000") {
+        updatedPagos = "www.6";
+      } else if (statusObj.status_op === "4/1000/4000") {
+        updatedPagos = "www.7";
+      } else if (statusObj.status_op === "6/800/4800") {
+        updatedPagos = "www.8";
+      }
 
+      setStatusObj({
+        ...statusObj,
+        pagos: {
+          ...statusObj.pagos,
+          link: updatedPagos,
+        },
+      });
 
-   
       if (updatedEmailApp === "-" || updatedEmailApp === "") {
         saveEmailAppFunction(updatedPagos);
       } else {
@@ -700,7 +697,7 @@ export default function NestedModal({
   };
 
   const handleSelectChange = (event) => {
-    setOpenPagoSelect("")
+    setOpenPagoSelect("");
     setOpenTimeHour(false);
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     statusObj.pagos = {};
@@ -841,11 +838,11 @@ export default function NestedModal({
   };
 
   const handleSelectPago = (e) => {
-    setOpenPagoSelect(e.target.value)
-  }
+    setOpenPagoSelect(e.target.value);
+  };
 
   const handleUpdatePago = (e) => {
-    const value = e.target.value.split("/")
+    const value = e.target.value.split("/");
     // console.log(value)
     setStatusObj({
       ...statusObj,
@@ -858,9 +855,9 @@ export default function NestedModal({
         cuotasPagadas: 0,
       },
     });
-  }
+  };
 
-console.log(statusObj)
+  console.log(statusObj);
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
@@ -1054,54 +1051,74 @@ console.log(statusObj)
               <div className="flex flex-col justify-center items-center mt-3">
                 <div className="mt-3  flex  justify-between items-center">
                   {/* EDITAR DATOS Email-------------------------------------  */}
-                  <CiMail
-                    onClick={handleEditEmail}
-                    className={
-                      editEmail
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-
-                  {/* )} */}
-                  {/* {!editInstagram && ( */}
-
-                  <CiInstagram
-                    onClick={handleEditInstagram}
-                    className={
-                      editInstagram
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-                  <AiOutlinePhone
-                    onClick={handleEditTelephone}
-                    className={
-                      editTelephone
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-                  <AiOutlineUserAdd
-                    onClick={handleEditContacto}
-                    className={
-                      editContacto
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-                  <p
-                    onClick={handleEditEmailApp}
-                    className={
-                      editEmailApp
-                        ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  >
-                    APP
-                  </p>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar email lead
+                    </p>
+                    <CiMail
+                      onClick={handleEditEmail}
+                      className={
+                        editEmail
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar instagram
+                    </p>
+                    <CiInstagram
+                      onClick={handleEditInstagram}
+                      className={
+                        editInstagram
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar phone
+                    </p>
+                    <AiOutlinePhone
+                      onClick={handleEditTelephone}
+                      className={
+                        editTelephone
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar contacto
+                    </p>
+                    <AiOutlineUserAdd
+                      onClick={handleEditContacto}
+                      className={
+                        editContacto
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar email app
+                    </p>
+                    <p
+                      onClick={handleEditEmailApp}
+                      className={
+                        editEmailApp
+                          ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    >
+                      APP
+                    </p>
+                  </div>
                 </div>
-
                 <div className="">
                   {editEmail && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
@@ -1553,75 +1570,99 @@ console.log(statusObj)
                     className="text-justify"
                     name="sinEditores"
                     value="sin"
-                  >Sin Editores</option>
+                  >
+                    Sin Editores
+                  </option>
                   <option
                     className="text-justify"
                     name="conEditores"
                     value="con"
-                  >Con Editores</option>
+                  >
+                    Con Editores
+                  </option>
                 </select>
-                {openPagoSelect === "con" && <select
-                  onChange={handleUpdatePago}
-                  name="status"
-                  defaultValue="default"
-                  id="select1"
-                  className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled="disabled" value="default">
-                  Tipo de Pago - €5000
-                  </option>
-                  <option
-                    className="text-justify"
-                    name="1"
-                    value="1/4000/4000"
-                  >1 pago = -20% (€4000)</option>
-                  <option
-                    className="text-justify"
-                    name="2"
-                    value="2/2500/5000"
-                  >2 pagos = (€5000) / cuotas de €2500</option>
-                  <option
-                    className="text-justify"
-                    name="4"
-                    value="4/1250/5000"
-                  >4 pagos = (€5000) / cuotas de €1250</option>
-                  <option
-                    className="text-justify"
-                    name="6"
-                    value="6/1000/6000"
-                  >6 pagos = +20% (€6000) / cuotas de €1000</option>
-                </select>}
-                {openPagoSelect === "sin" && <select
-                  onChange={handleUpdatePago}
-                  name="status"
-                  defaultValue="default"
-                  id="select1"
-                  className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled="disabled" value="default">
-                    Tipo de Pago - €4000
-                  </option>
-                  <option
-                    className="text-justify"
-                    name="1"
-                    value="1/3200/3200"
-                  >1 pago = -20% (€3200)</option>
-                  <option
-                    className="text-justify"
-                    name="2"
-                    value="2/2000/4000"
-                  >2 pagos = (€4000) / cuotas de €2000</option>
-                  <option
-                    className="text-justify"
-                    name="4"
-                    value="4/1000/4000"
-                  >4 pagos = (€4000) / cuotas de €1000</option>
-                  <option
-                    className="text-justify"
-                    name="6"
-                    value="6/800/4800"
-                  >6 pagos = +20% (€4800) / cuotas de €800</option>
-                </select>}
+                {openPagoSelect === "con" && (
+                  <select
+                    onChange={handleUpdatePago}
+                    name="status"
+                    defaultValue="default"
+                    id="select1"
+                    className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option disabled="disabled" value="default">
+                      Tipo de Pago - €5000
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="1"
+                      value="1/4000/4000"
+                    >
+                      1 pago = -20% (€4000)
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="2"
+                      value="2/2500/5000"
+                    >
+                      2 pagos = (€5000) / cuotas de €2500
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="4"
+                      value="4/1250/5000"
+                    >
+                      4 pagos = (€5000) / cuotas de €1250
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="6"
+                      value="6/1000/6000"
+                    >
+                      6 pagos = +20% (€6000) / cuotas de €1000
+                    </option>
+                  </select>
+                )}
+                {openPagoSelect === "sin" && (
+                  <select
+                    onChange={handleUpdatePago}
+                    name="status"
+                    defaultValue="default"
+                    id="select1"
+                    className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option disabled="disabled" value="default">
+                      Tipo de Pago - €4000
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="1"
+                      value="1/3200/3200"
+                    >
+                      1 pago = -20% (€3200)
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="2"
+                      value="2/2000/4000"
+                    >
+                      2 pagos = (€4000) / cuotas de €2000
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="4"
+                      value="4/1000/4000"
+                    >
+                      4 pagos = (€4000) / cuotas de €1000
+                    </option>
+                    <option
+                      className="text-justify"
+                      name="6"
+                      value="6/800/4800"
+                    >
+                      6 pagos = +20% (€4800) / cuotas de €800
+                    </option>
+                  </select>
+                )}
               </div>
             )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
