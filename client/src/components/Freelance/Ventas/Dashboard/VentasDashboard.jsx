@@ -23,6 +23,7 @@ import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
 import PagosInfo from "../../../PagosInfo/PagosInfo";
 
+
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
   const { vendedoresDashboard } = useSelector((state) => state);

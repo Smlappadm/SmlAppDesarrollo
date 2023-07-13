@@ -62,7 +62,7 @@ root.render(
 // HOVER
 
 // <div className="relative h-fit w-fit group flex justify-center items-center">
-// <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+// <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
 //   Ingresa al Dashboard
 // </p>
 // ACA VA EL LABEL, P o H1

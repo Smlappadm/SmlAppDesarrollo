@@ -57,6 +57,7 @@ function ChildModal({
   editContacto,
   saveEmailAppFunction,
   openModalPagoFunction,
+  flagPago
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -232,7 +233,8 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        {editEmail ||
+        {!flagPago ||
+        editEmail ||
         editInstagram ||
         editTelephone ||
         editEmailApp ||
@@ -628,6 +630,7 @@ export default function NestedModal({
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
   const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
+  const [flagPago, setFlagPago] = React.useState(true);
 
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
@@ -697,12 +700,17 @@ export default function NestedModal({
   };
 
   const handleSelectChange = (event) => {
-    setOpenPagoSelect("");
-    setOpenTimeHour(false);
-    //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    statusObj.pagos = {};
     const value = event.target.value;
     const property = event.target.name;
+    setOpenPagoSelect("");
+    setOpenTimeHour(false);
+    if(value === "Contratado"){
+      setFlagPago(false)
+    }else{
+      setFlagPago(true)
+    }
+    //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    statusObj.pagos = {};
     if (value === "No responde" || value === "Sin contactar") {
       setStatusObj({
         ...statusObj,
@@ -838,10 +846,18 @@ export default function NestedModal({
   };
 
   const handleSelectPago = (e) => {
+    setFlagPago(false)
     setOpenPagoSelect(e.target.value);
   };
 
   const handleUpdatePago = (e) => {
+
+    if(e.target.value === "1/4000/4000" || e.target.value === "2/2500/5000" || e.target.value === "4/1250/5000" || e.target.value === "6/1000/6000" || e.target.value === "1/3200/3200" || e.target.value === "2/2000/4000" || e.target.value === "4/1000/4000" || e.target.value === "6/800/4800"){
+      setFlagPago(true)
+    } else {
+      setFlagPago(false)
+    }
+
     const value = e.target.value.split("/");
     // console.log(value)
     setStatusObj({
@@ -857,7 +873,6 @@ export default function NestedModal({
     });
   };
 
-  console.log(statusObj);
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
@@ -1564,7 +1579,7 @@ export default function NestedModal({
                   className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option disabled="disabled" value="default">
-                    Tipo de servicio
+                    Seleccionar servicio
                   </option>
                   <option
                     className="text-justify"
@@ -1589,8 +1604,8 @@ export default function NestedModal({
                     id="select1"
                     className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    <option disabled="disabled" value="default">
-                      Tipo de Pago - €5000
+                    <option disabled="disabled" value="default" >
+                    Seleccionar tipo de Pago - €5000
                     </option>
                     <option
                       className="text-justify"
@@ -1631,7 +1646,7 @@ export default function NestedModal({
                     className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option disabled="disabled" value="default">
-                      Tipo de Pago - €4000
+                      Seleccionar tipo de Pago - €4000
                     </option>
                     <option
                       className="text-justify"
@@ -1722,6 +1737,7 @@ export default function NestedModal({
               editContacto={editContacto}
               openModalPagoFunction={openModalPagoFunction}
               saveEmailAppFunction={saveEmailAppFunction}
+              flagPago={flagPago}
             />
           </div>
         </Box>
