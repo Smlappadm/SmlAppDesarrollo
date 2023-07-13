@@ -383,8 +383,8 @@ export default function InputName({ name }) {
             <MenuItem value="discard">discard</MenuItem>
           </Select>
         </div>
-        <div className="flex w-32 items-center justify-center flex-col">
-          <label className="mr-1">No descargas:</label>
+        <div className="flex w-36 items-center justify-center flex-col">
+          <label className="mr-1">No descargados:</label>
           <div className="flex  items-center ">
             <Checkbox
               id="descargado"
