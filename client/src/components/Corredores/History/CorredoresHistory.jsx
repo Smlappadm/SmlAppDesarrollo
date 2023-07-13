@@ -33,12 +33,11 @@ const CorredoresHistory = () => {
     (state) => state
   );
   const dispatch = useDispatch();
-
+  let email = localStorage.getItem("email");
   const user = useUser().user;
-  const email = user?.emailAddresses[0]?.emailAddress;
 
   useEffect(() => {
-    dispatch(getLeadCorredoresCheckedDescargados(email));
+    dispatch(getLeadCorredoresCheckedDescargados(email && email));
     dispatch(getLeadCorredoresChecked(email));
   }, [dispatch]);
 
