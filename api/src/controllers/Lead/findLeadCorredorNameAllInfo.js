@@ -68,9 +68,13 @@ const findLeadCorredorNameAllInfo = async (
     query.status = status;
   }
 
-  if (descargados === false) {
+  if (descargados === "false") {
     query.descargadosLeader = descargados;
   }
+
+  console.log(descargados);
+
+  console.log(query);
 
   const leads = await Lead.find(query).exec();
   return leads;
