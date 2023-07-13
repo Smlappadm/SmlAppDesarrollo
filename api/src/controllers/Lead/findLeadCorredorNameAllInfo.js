@@ -13,12 +13,16 @@ const findLeadCorredorNameAllInfo = async (
   descargados
 ) => {
   const query = {
-    corredor_name: corredor,
-    vendedor_name: vendedor,
     checked: true,
     view: true,
     freelancer: false,
   };
+  if (corredor !== "") {
+    query.corredor_name = corredor;
+  }
+  if (vendedor !== "") {
+    query.corredor_name = vendedor;
+  }
 
   if (fromDay && toDay) {
     const [fromYear, fromMonth, fromDayOfMonth] = fromDay.split("-");
@@ -67,10 +71,8 @@ const findLeadCorredorNameAllInfo = async (
   }
 
   if (descargados === "false") {
-    query.descargadosLeader = descargados;
+    query.descargadosLeader = false;
   }
-
-
 
   const leads = await Lead.find(query).exec();
   return leads;

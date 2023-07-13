@@ -191,7 +191,7 @@ export const DashboardFreelancer = () => {
         </div>
         <div>
           <div className="flex gap-5 mt-5 mb-5 justify-around items-center">
-            <InputRunner />
+            <InputRunner setCurrentPage={setCurrentPage} />
           </div>
         </div>
         <div className="w-full">
