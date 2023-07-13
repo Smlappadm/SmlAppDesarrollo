@@ -16,7 +16,6 @@ const getLead10Unchecked = async (query) => {
   };
 
   if (!profesion && !country && !category && !marca_personal) {
-    console.log(names);
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,

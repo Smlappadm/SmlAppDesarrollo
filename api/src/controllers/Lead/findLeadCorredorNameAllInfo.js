@@ -12,8 +12,6 @@ const findLeadCorredorNameAllInfo = async (
   status,
   descargados
 ) => {
-
-  console.log(descargados);
   const regexCorredor = corredor ? new RegExp(corredor, "i") : /.*/;
   const regexVendedor = vendedor ? new RegExp(vendedor, "i") : /.*/;
   const query = {
@@ -21,7 +19,7 @@ const findLeadCorredorNameAllInfo = async (
     vendedor_name: regexVendedor,
     checked: true,
     view: true,
-    freelancer: { $ne: true },
+    freelancer: false,
   };
 
   if (fromDay && toDay) {
@@ -69,9 +67,12 @@ const findLeadCorredorNameAllInfo = async (
   if (status) {
     query.status = status;
   }
-  if (status) {
+
+  if (descargados === "false") {
     query.descargadosLeader = descargados;
   }
+
+
 
   const leads = await Lead.find(query).exec();
   return leads;

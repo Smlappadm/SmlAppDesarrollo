@@ -17,7 +17,6 @@ const getAllEmployeesHandler = async (req, res) => {
 
 const postEmployeesHandler = async (req, res) => {
   const data = req.body;
-  console.log(data);
   try {
     const Employees = await postEmployees(data);
     res.status(200).json(data);

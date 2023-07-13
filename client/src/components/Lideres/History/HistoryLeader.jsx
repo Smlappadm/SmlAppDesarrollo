@@ -25,6 +25,7 @@ import {
 import { IoGrid, IoLogoSnapchat, IoStatsChart } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
+import axios from "axios";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -138,6 +139,18 @@ export const LideresHistory = () => {
     tempLink.href = csvURL;
     tempLink.setAttribute("download", "leaderDashboard.csv");
     tempLink.click();
+
+    const updateLeaderDashboard = async () => {
+      const promises = leaderDashboard.map((lead) =>
+        axios.put(`/lead/${lead._id}`, {
+          descargadosLeader: true,
+        })
+      );
+
+      await Promise.all(promises);
+    };
+
+    updateLeaderDashboard();
   };
 
   return (

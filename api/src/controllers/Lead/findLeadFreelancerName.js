@@ -6,7 +6,6 @@ const findLeadFreelancerName = async (name) => {
     corredor_name: regex,
     freelancer: true,
   }).exec();
-  console.log(leads);
   return leads;
 };
 

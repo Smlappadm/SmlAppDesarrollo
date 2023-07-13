@@ -28,7 +28,7 @@ export default function InputName({ name }) {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
-  const [descargados, setDescargados] = useState(false);
+  const [descargados, setDescargados] = useState(true);
 
   const { allFreelancers } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
@@ -80,7 +80,7 @@ export default function InputName({ name }) {
   };
 
   const handleChangeDescargados = (event) => {
-    setDescargados(event.target.checked ? true : false);
+    setDescargados(event.target.checked ? false : true);
   };
 
   const handleFilterClick = () => {
@@ -108,6 +108,7 @@ export default function InputName({ name }) {
     setCountry("");
     setLevel("");
     setStatus("");
+    setDescargados(false);
   };
 
   return (
@@ -382,23 +383,23 @@ export default function InputName({ name }) {
             <MenuItem value="discard">discard</MenuItem>
           </Select>
         </div>
-        <div className="flex w-32 items-center justify-center flex-col">
-          <label className="mr-1">No descargas:</label>
-          <div className="flex  items-center">
+        <div className="flex w-36 items-center justify-center flex-col">
+          <label className="mr-1">No descargados:</label>
+          <div className="flex  items-center ">
             <Checkbox
               id="descargado"
               onClick={handleChangeDescargados}
               size="medium"
             />
             <div className="relative h-fit w-fit group flex justify-center items-center">
-              <p className="w-32 h-fit  p-1 hidden absolute text-black -top-6 group-hover:block bg-white">
+              <p className="w-32 h-fit  p-1 hidden absolute text-black -top-6 group-hover:block bg-white z-10">
                 Si marcas este checkbox traera los leads no descargados
               </p>
               <AiOutlineQuestionCircle className="text-white" />
             </div>
           </div>
         </div>
-        <div className="flex gap-5 items-end justify-center relative">
+        <div className="flex gap-5 items-end justify-center ">
           <Button onClick={handleFilterClick} variant="contained" size="large">
             Filtrar
           </Button>
