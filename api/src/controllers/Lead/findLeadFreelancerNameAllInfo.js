@@ -12,11 +12,14 @@ const findLeadFreelancerNameAllInfo = async (
   descargados
 ) => {
   const query = {
-    corredor_name: freelancer,
+    corredor_name: freelancer !== "" ? freelancer : null,
     checked: true,
     view: true,
     freelancer: true,
   };
+  if (freelancer !== "") {
+    query.corredor_name = freelancer;
+  }
 
   if (fromDay && toDay) {
     const [fromYear, fromMonth, fromDayOfMonth] = fromDay.split("-");
