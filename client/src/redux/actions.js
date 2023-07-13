@@ -266,7 +266,7 @@ export const findFreelancerByNameAllInfo = (
 ) => {
   return async (dispatch) => {
     const response = await axios.get(
-      `/lead/allinfofreelancer?freelancer=${freelancer}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`
+      `/lead/allinfofreelancer?freelancer=${freelancer}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}&descargados=${descargados}`
     );
     const freelancerByNameAllInfo = response.data;
     dispatch({
