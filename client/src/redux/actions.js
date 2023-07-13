@@ -261,7 +261,8 @@ export const findFreelancerByNameAllInfo = (
   country,
   category,
   level,
-  status
+  status,
+  descargados
 ) => {
   return async (dispatch) => {
     const response = await axios.get(
