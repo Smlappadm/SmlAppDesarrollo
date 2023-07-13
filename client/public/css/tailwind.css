@@ -708,6 +708,10 @@ video {
   z-index: 0;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .\!-m-px {
   margin: -1px !important;
 }
