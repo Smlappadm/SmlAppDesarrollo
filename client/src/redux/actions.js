@@ -400,7 +400,7 @@ export const getLeadCorredoresCheckedDescargados = (email) => {
     );
     const corredorLeadCheckedDescagados = response.data;
     dispatch({
-      type: GET_CORREDOR_LEAD_CHECKED_DESCARGADOS,
+      type: GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS,
       payload: corredorLeadCheckedDescagados,
     });
   };
