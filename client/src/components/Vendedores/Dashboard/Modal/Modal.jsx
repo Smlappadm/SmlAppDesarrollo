@@ -204,7 +204,11 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        {editEmail || editInstagram || editTelephone || editEmailApp || editContacto ? (
+        {editEmail ||
+        editInstagram ||
+        editTelephone ||
+        editEmailApp ||
+        editContacto ? (
           <>
             <button
               type="button"
@@ -615,7 +619,7 @@ export default function NestedModal({
   const [editEmailApp, setEditEmailApp] = React.useState(false);
   const [inputEmailApp, setInputEmailApp] = React.useState(item.emailApp);
   const [updatedEmailApp, setUpdatedEmailApp] = React.useState(item.emailApp);
-  
+
   const [editContacto, setEditContacto] = React.useState(false);
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
@@ -1010,6 +1014,10 @@ export default function NestedModal({
               <div className="flex flex-col justify-center items-center mt-3">
                 <div className="mt-3  flex  justify-between items-center">
                   {/* EDITAR DATOS Email-------------------------------------  */}
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar email lead
+                    </p>
                   <CiMail
                     onClick={handleEditEmail}
                     className={
@@ -1018,10 +1026,11 @@ export default function NestedModal({
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
-
-                  {/* )} */}
-                  {/* {!editInstagram && ( */}
-
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar instagram
+                    </p>
                   <CiInstagram
                     onClick={handleEditInstagram}
                     className={
@@ -1030,6 +1039,11 @@ export default function NestedModal({
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
+                  </div>
+                                    <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar phone
+                    </p>
                   <AiOutlinePhone
                     onClick={handleEditTelephone}
                     className={
@@ -1038,14 +1052,24 @@ export default function NestedModal({
                         : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
+                  </div>
+                                    <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar contacto
+                    </p>
                   <AiOutlineUserAdd
                     onClick={handleEditContacto}
                     className={
                       editContacto
-                      ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                      : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                     }
                   />
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Editar email app
+                    </p>
                     <p
                       onClick={handleEditEmailApp}
                       className={
@@ -1053,7 +1077,10 @@ export default function NestedModal({
                           ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
                           : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
                       }
-                    >APP</p>
+                    >
+                      APP
+                    </p>
+                  </div>
                 </div>
                 <div className="">
                   {editEmail && (
@@ -1213,9 +1240,7 @@ export default function NestedModal({
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option value="Sin contactar">Sin Contactar</option>
-                  <option value="Agendar 2do llamado">
-                    En proceso
-                  </option>
+                  <option value="Agendar 2do llamado">En proceso</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
@@ -1231,9 +1256,7 @@ export default function NestedModal({
                   <option disabled="disabled" value="default">
                     Elige uno...
                   </option>
-                  <option value="Agendar otro llamado">
-                  En proceso
-                  </option>
+                  <option value="Agendar otro llamado">En proceso</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>

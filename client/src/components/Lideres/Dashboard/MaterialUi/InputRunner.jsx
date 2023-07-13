@@ -16,6 +16,7 @@ import {
   getVendedor,
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
@@ -81,7 +82,6 @@ export default function InputName({ name }) {
   const handleChangeDescargados = (event) => {
     setDescargados(event.target.checked ? true : false);
   };
-
 
   const handleFilterClick = () => {
     dispatch(
@@ -383,21 +383,23 @@ export default function InputName({ name }) {
             <MenuItem value="discard">discard</MenuItem>
           </Select>
         </div>
-
-        <div className="flex w-36 items-center justify-center flex-col">
-          <div>
-            <label>No Descargados:</label>
-          </div>
-          <div>
+        <div className="flex w-32 items-center justify-center flex-col">
+          <label className="mr-1">No descargas:</label>
+          <div className="flex  items-center ">
             <Checkbox
-              id="propio"
+              id="descargado"
               onClick={handleChangeDescargados}
               size="medium"
             />
+            <div className="relative h-fit w-fit group flex justify-center items-center">
+              <p className="w-32 h-fit  p-1 hidden absolute text-black -top-6 group-hover:block bg-white z-10">
+                Si marcas este checkbox traera los leads no descargados
+              </p>
+              <AiOutlineQuestionCircle className="text-white" />
+            </div>
           </div>
         </div>
-
-        <div className="flex gap-5 items-end justify-center">
+        <div className="flex gap-5 items-end justify-center ">
           <Button onClick={handleFilterClick} variant="contained" size="large">
             Filtrar
           </Button>
