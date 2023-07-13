@@ -8,7 +8,8 @@ const findLeadVendedorNameAllInfo = async (
   country,
   category,
   level,
-  status
+  status,
+  descargados
 ) => {
   const regexVendedor = email ? new RegExp(email, "i") : /.*/;
   const query = {
@@ -66,6 +67,10 @@ const findLeadVendedorNameAllInfo = async (
     }
   } else {
     query.status = { $ne: "Sin contactar" };
+  }
+
+  if (status) {
+    query.descargadosLeader = descargados;
   }
 
   const leads = await Lead.find(query).exec();
