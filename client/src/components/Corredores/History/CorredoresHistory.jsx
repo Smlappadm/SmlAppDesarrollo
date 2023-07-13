@@ -26,6 +26,7 @@ import {
 import { useUser } from "@clerk/clerk-react";
 import { Button } from "@mui/material";
 import Papa from "papaparse";
+import axios from "axios";
 
 const CorredoresHistory = () => {
   const { corredorLeadChecked, corredorLeadCheckedDescagados } = useSelector(
@@ -40,6 +41,8 @@ const CorredoresHistory = () => {
     dispatch(getLeadCorredoresCheckedDescargados(email));
     dispatch(getLeadCorredoresChecked(email));
   }, [dispatch]);
+
+  console.log(corredorLeadCheckedDescagados);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
