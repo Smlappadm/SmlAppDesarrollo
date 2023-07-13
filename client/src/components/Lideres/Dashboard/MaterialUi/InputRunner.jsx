@@ -383,7 +383,7 @@ export default function InputName({ name }) {
           </Select>
         </div>
         <div className="flex w-32 items-center justify-center flex-col">
-          <label className="mr-1">No descargas</label>
+          <label className="mr-1">No descargas:</label>
           <div className="flex  items-center">
             <Checkbox
               id="descargado"
@@ -391,15 +391,14 @@ export default function InputName({ name }) {
               size="medium"
             />
             <div className="relative h-fit w-fit group flex justify-center items-center">
-              <p className="w-18  whitespace-nowrap hidden absolute text-black -top-6 group-hover:block bg-white">
+              <p className="w-32 h-fit  p-1 hidden absolute text-black -top-6 group-hover:block bg-white">
                 Si marcas este checkbox traera los leads no descargados
               </p>
               <AiOutlineQuestionCircle className="text-white" />
             </div>
           </div>
         </div>
-
-        <div className="flex gap-5 items-end justify-center">
+        <div className="flex gap-5 items-end justify-center relative">
           <Button onClick={handleFilterClick} variant="contained" size="large">
             Filtrar
           </Button>
