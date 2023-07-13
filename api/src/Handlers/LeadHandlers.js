@@ -35,6 +35,7 @@ const getFreelancers = require("../controllers/Lead/getFreelancers");
 const asignacionFreelancer = require("../controllers/Lead/asignacionFreelancer");
 const findLeadFreelancerName = require("../controllers/Lead/findLeadFreelancerName");
 const postLeadFreelancer = require("../controllers/Lead/postLeadFreelancer");
+const getLeadCorredoresCheckedDescargados = require("../controllers/Lead/getLeadCorredoresCheckedDescargados");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -275,6 +276,16 @@ const getLeadCorredorCheckedHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+const getLeadCorredoresCheckedDescargadosHandler = async (req, res) => {
+  const { email } = req.query;
+  try {
+    const leadChecked = await getLeadCorredoresCheckedDescargados(email);
+    res.status(200).json(leadChecked);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 const getLeadByEmailAppHandler = async (req, res) => {
   const { emailApp } = req.query;
   try {
@@ -465,6 +476,7 @@ module.exports = {
   updateLeadFreelanceHandler,
   getLeadVendedorHandler,
   getLeadCorredorCheckedHandler,
+  getLeadCorredoresCheckedDescargadosHandler,
   limpiezaBaseHandler,
   findLeadCorredorNameHandler,
   findLeadVendedorNameHandler,
