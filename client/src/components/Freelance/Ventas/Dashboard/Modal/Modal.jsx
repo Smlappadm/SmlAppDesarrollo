@@ -111,9 +111,9 @@ function ChildModal({
 
    
       if (updatedEmailApp === "-" || updatedEmailApp === "") {
-        saveEmailAppFunction(item.email);
+        saveEmailAppFunction(updatedPagos);
       } else {
-        saveEmailAppFunction(updatedEmailApp);
+        saveEmailAppFunction(updatedPagos);
       }
     } else {
       statusObj.pagos = {};
