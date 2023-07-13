@@ -5,13 +5,7 @@ const getLeadCheckedFreelancer = async () => {
     checked: true,
     freelancer: true,
     status: {
-      $nin: [
-        "No responde",
-        "Agendar 2do llamado",
-        "incidencia",
-        "discard",
-        "discard_bot",
-      ],
+      $nin: ["incidencia", "discard", "discard_bot"],
     },
   });
   return leadChequed;
