@@ -13,7 +13,7 @@ let baseURL;
 
 if (currentUrl.includes("sml-app.com")) {
   baseURL = "https://sml-app.com/api";
-} else if (currentUrl.includes("smlappadm.vercel.app")) {
+} else if (currentUrl.includes("smlappadm")) {
   baseURL = "https://smlapp.onrender.com/api";
 } else {
   baseURL = "http://localhost:3001/api";
