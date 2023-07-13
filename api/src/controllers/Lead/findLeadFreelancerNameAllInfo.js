@@ -11,7 +11,6 @@ const findLeadFreelancerNameAllInfo = async (
   status,
   descargados
 ) => {
-  const regexCorredor = freelancer ? new RegExp(freelancer, "i") : /.*/;
   const query = {
     corredor_name: freelancer,
     checked: true,
