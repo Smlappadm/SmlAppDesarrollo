@@ -27,18 +27,17 @@ import { useUser } from "@clerk/clerk-react";
 import { Button } from "@mui/material";
 import Papa from "papaparse";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const CorredoresHistory = () => {
-  const { corredorLeadChecked, corredorLeadCheckedDescagados } = useSelector(
-    (state) => state
-  );
+  const { corredorLeadChecked } = useSelector((state) => state);
+  const { corredorLeadCheckedDescagados } = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  let email = localStorage.getItem("email");
   const user = useUser().user;
-  const email = user?.emailAddresses[0]?.emailAddress;
 
   useEffect(() => {
-    dispatch(getLeadCorredoresCheckedDescargados(email));
+    dispatch(getLeadCorredoresCheckedDescargados(email && email));
     dispatch(getLeadCorredoresChecked(email));
   }, [dispatch]);
 
@@ -56,6 +55,32 @@ const CorredoresHistory = () => {
   if (currentCard.length === 1 && currentCard[0].hasOwnProperty("error")) {
     return <p className={style.noResults}>No hay resultados...</p>;
   }
+
+  const descargaOk = () => {
+    toast.success(`✔ Leads descargados con exito! `, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const descargaW = (name) => {
+    toast.warning(`✔ Ya descargaste todos los Leads! `, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   const downloadCSV = () => {
     const csv = Papa.unparse(corredorLeadCheckedDescagados);
@@ -77,12 +102,13 @@ const CorredoresHistory = () => {
 
       await Promise.all(promises);
     };
-
+    descargaOk();
     updateLeadCorredor();
   };
 
   return (
     <>
+      <ToastContainer />
       <Nav />
       <div className=" flex flex-col justify-start items-center w-full h-screen mx-5 ">
         <Card className="w-full m-5 h-screen bg-[#222131]">
@@ -103,6 +129,8 @@ const CorredoresHistory = () => {
                 </Link>
               </div>
             </div>
+
+            <label>Leads chequeados: {corredorLeadChecked.length}</label>
             <Button variant="outlined" onClick={downloadCSV}>
               Descargar CSV
             </Button>

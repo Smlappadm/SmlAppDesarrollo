@@ -27,7 +27,7 @@ const ClasificacionHistory = () => {
   const dispatch = useDispatch();
 
   const user = useUser().user;
-  const email = user?.emailAddresses[0]?.emailAddress;
+  let email = localStorage.getItem("email");
 
   useEffect(() => {
     dispatch(getLeadCorredoresChecked(email));
@@ -54,9 +54,7 @@ const ClasificacionHistory = () => {
       <div className=" flex flex-col justify-start items-center w-full h-screen mx-5 ">
         <Card className="w-full m-5 h-screen bg-[#222131]">
           <div className="flex gap-10 items-center mt-2 mx-5 ">
-            <Title className="font-bold text-[#e2e2e2] text-lg">
-              History
-            </Title>
+            <Title className="font-bold text-[#e2e2e2] text-lg">History</Title>
             <div className="flex gap-5">
               <Link to={"/clasificacion"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />

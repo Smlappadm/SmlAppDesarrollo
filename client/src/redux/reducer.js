@@ -43,7 +43,7 @@ import {
   FIND_FREELANCER_NAME_ALL_INFO,
   GET_LEAD_CHEQUED_FREELANCER,
   GET_FREELANCER,
-  GET_CORREDOR_LEAD_CHECKED_DESCARGADOS,
+  GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS,
 } from "./actions";
 
 const initialState = {
@@ -487,7 +487,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         detailEmploy: action.payload,
       };
-    case GET_CORREDOR_LEAD_CHECKED_DESCARGADOS:
+    case GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS:
       return {
         ...state,
         corredorLeadCheckedDescagados: action.payload,
