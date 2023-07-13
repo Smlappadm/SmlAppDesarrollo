@@ -391,7 +391,7 @@ export default function InputName({ name }) {
               size="medium"
             />
             <div className="relative h-fit w-fit group flex justify-center items-center">
-              <p className="w-18  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
+              <p className="w-18  whitespace-nowrap hidden absolute text-black -top-6 group-hover:block bg-white">
                 Si marcas este checkbox traera los leads no descargados
               </p>
               <AiOutlineQuestionCircle className="text-white" />
