@@ -398,10 +398,10 @@ export const getLeadCorredoresCheckedDescargados = (email) => {
     const response = await axios.get(
       `lead/corredorcheckeddescargados?email=${email}`
     );
-    const corredorLeadCheckedDescagados = response.data;
+    const corredorLeadCheckedDescargados = response.data;
     dispatch({
       type: GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS,
-      payload: corredorLeadCheckedDescagados,
+      payload: corredorLeadCheckedDescargados,
     });
   };
 };
