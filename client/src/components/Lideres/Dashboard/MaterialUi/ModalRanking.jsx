@@ -60,7 +60,6 @@ export default function ChildModal() {
         return body;
       });
     const info = await Promise.all(infoPromises);
-
     const sortedInfo = [...info].sort((a, b) => {
       const first = b[Object.keys(b)[0]];
       const sortedB = first.reduce((total, ventas) => {
