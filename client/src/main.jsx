@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import axios from "axios";
 
-// axios.defaults.baseURL = "http://localhost:3001/api";
-axios.defaults.baseURL = "https://smlapp.onrender.com/api";
+axios.defaults.baseURL = "http://localhost:3001/api";
+// axios.defaults.baseURL = "https://smlapp.onrender.com/api";
 // axios.defaults.baseURL = "https://sml-app.com/api";
 
 const container = document.getElementById("root");
@@ -23,3 +23,15 @@ root.render(
     </Provider>
   </IntlProvider>
 );
+
+
+
+
+// HOVER
+
+// <div className="relative h-fit w-fit group flex justify-center items-center">
+// <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
+//   Ingresa al Dashboard
+// </p>
+// ACA VA EL LABEL, P o H1
+// </div>
