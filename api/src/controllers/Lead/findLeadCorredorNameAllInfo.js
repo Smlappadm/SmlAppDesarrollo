@@ -19,7 +19,7 @@ const findLeadCorredorNameAllInfo = async (
     vendedor_name: regexVendedor,
     checked: true,
     view: true,
-    freelancer: { $ne: true },
+    freelancer: false,
   };
 
   if (fromDay && toDay) {
@@ -67,6 +67,7 @@ const findLeadCorredorNameAllInfo = async (
   if (status) {
     query.status = status;
   }
+
   if (descargados === false) {
     query.descargadosLeader = descargados;
   }
