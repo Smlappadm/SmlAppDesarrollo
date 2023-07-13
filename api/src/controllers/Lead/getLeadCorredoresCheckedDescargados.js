@@ -4,7 +4,7 @@ const getLeadCorredoresCheckedDescargados = async (email) => {
   const leads = await Lead.find({
     corredor: email,
     checked: true,
-    descargadosCorredor: { $ne: true },
+    descargadosCorredor: false,
   }).exec();
   return leads;
 };
