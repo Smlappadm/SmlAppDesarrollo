@@ -3,7 +3,7 @@ const Lead = require("../../models/Lead");
 const findLeadCorredorName = async (name) => {
   const regex = name ? new RegExp(name, "i") : /.*/;
   const leads = await Lead.find({
-    corredor: regex,
+    corredor: name,
     checked: true,
     view: true,
     status: {
