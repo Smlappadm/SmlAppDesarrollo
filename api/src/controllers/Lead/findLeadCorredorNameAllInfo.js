@@ -21,7 +21,7 @@ const findLeadCorredorNameAllInfo = async (
     query.corredor_name = corredor;
   }
   if (vendedor !== "") {
-    query.corredor_name = vendedor;
+    query.vendedor_name = vendedor;
   }
 
   if (fromDay && toDay) {
