@@ -67,7 +67,7 @@ const CorredoresHistory = () => {
     tempLink.setAttribute("download", "CorredorHistory.csv");
     tempLink.click();
 
-    const updateLeaderDashboard = async () => {
+    const updateLeadCorredor = async () => {
       const promises = corredorLeadCheckedDescagados.map((lead) =>
         axios.put(`/lead/${lead._id}`, {
           descargadosCorredor: true,
@@ -77,7 +77,7 @@ const CorredoresHistory = () => {
       await Promise.all(promises);
     };
 
-    updateLeaderDashboard();
+    updateLeadCorredor();
   };
 
   return (
