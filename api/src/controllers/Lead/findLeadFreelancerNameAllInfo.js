@@ -8,7 +8,8 @@ const findLeadFreelancerNameAllInfo = async (
   country,
   category,
   level,
-  status
+  status,
+  descargados
 ) => {
   const regexCorredor = freelancer ? new RegExp(freelancer, "i") : /.*/;
   const query = {
@@ -63,6 +64,12 @@ const findLeadFreelancerNameAllInfo = async (
   if (status) {
     query.status = status;
   }
+
+  if (descargados) {
+    query.descargadosLeader = descargados;
+  }
+
+  
 
   const leads = await Lead.find(query).exec();
   return leads;
