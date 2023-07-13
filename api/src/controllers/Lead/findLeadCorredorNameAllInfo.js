@@ -67,7 +67,7 @@ const findLeadCorredorNameAllInfo = async (
   if (status) {
     query.status = status;
   }
-  if (descargados) {
+  if (descargados === false) {
     query.descargadosLeader = descargados;
   }
 

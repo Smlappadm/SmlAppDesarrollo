@@ -27,7 +27,7 @@ export default function InputName({ name }) {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
-  const [descargados, setDescargados] = useState(false);
+  const [descargados, setDescargados] = useState(true);
 
   const { allCorredores } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
@@ -86,7 +86,7 @@ export default function InputName({ name }) {
   };
 
   const handleChangeDescargados = (event) => {
-    setDescargados(event.target.checked ? true : false);
+    setDescargados(event.target.checked ? false : true);
   };
 
   const handleFilterClick = () => {
