@@ -12,7 +12,6 @@ const findLeadCorredorNameAllInfo = async (
   status,
   descargados
 ) => {
-  const regexCorredor = corredor ? new RegExp(corredor, "i") : /.*/;
   const regexVendedor = vendedor ? new RegExp(vendedor, "i") : /.*/;
   const query = {
     corredor_name: corredor,
