@@ -279,6 +279,7 @@ const getLeadCorredorCheckedHandler = async (req, res) => {
 
 const getLeadCorredoresCheckedDescargadosHandler = async (req, res) => {
   const { email } = req.query;
+  console.log("email");
   try {
     const leadChecked = await getLeadCorredoresCheckedDescargados(email);
     res.status(200).json(leadChecked);
