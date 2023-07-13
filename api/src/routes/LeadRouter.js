@@ -66,7 +66,7 @@ LeadRouter.get("/unchecked10", getLead10UncheckedHandler);
 LeadRouter.get("/clasificacion", getLeadClasificacionHandler);
 LeadRouter.get("/corredorchecked", getLeadCorredorCheckedHandler);
 LeadRouter.get(
-  "/corredorcheckeddescagados",
+  "/corredorcheckeddescargados",
   getLeadCorredoresCheckedDescargadosHandler
 );
 LeadRouter.get("/name", getLeadByNameHandler);
