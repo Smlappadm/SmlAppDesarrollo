@@ -77,12 +77,43 @@ function ChildModal({
           cuotas: Number(statusObj.pagos.cuotas),
           cuotasPagadas: 0,
         },
-        status_op: statusObj.pagos.monto,
-      });
+        // status_op: statusObj.pagos.monto,
+        
+      })
+
+        let updatedPagos = "";
+        if (statusObj.status_op === "1/4000/4000") {
+          updatedPagos =  "www.1" ;
+        } else if (statusObj.status_op === "2/2500/5000") {
+          updatedPagos =  "www.2" ;
+        } else if (statusObj.status_op === "4/1250/5000") {
+          updatedPagos = "www.3" ;
+        } else if (statusObj.status_op === "6/1000/6000") {
+          updatedPagos =  "www.4" ;
+        } else if (statusObj.status_op === "1/3200/3200") {
+          updatedPagos =  "www.5" ;
+        } else if (statusObj.status_op === "2/2000/4000") {
+          updatedPagos =  "www.6" ;
+        } else if (statusObj.status_op === "4/1000/4000") {
+          updatedPagos = "www.7" ;
+        } else if (statusObj.status_op === "6/800/4800") {
+          updatedPagos =  "www.8" ;
+        }
+        
+        setStatusObj({
+          ...statusObj,
+          pagos: {
+            ...statusObj.pagos,
+            link: updatedPagos
+          }
+        });
+
+
+   
       if (updatedEmailApp === "-" || updatedEmailApp === "") {
-        saveEmailAppFunction(item.email);
+        saveEmailAppFunction(updatedPagos);
       } else {
-        saveEmailAppFunction(updatedEmailApp);
+        saveEmailAppFunction(updatedPagos);
       }
     } else {
       statusObj.pagos = {};
@@ -813,7 +844,23 @@ export default function NestedModal({
     setOpenPagoSelect(e.target.value)
   }
 
+  const handleUpdatePago = (e) => {
+    const value = e.target.value.split("/")
+    // console.log(value)
+    setStatusObj({
+      ...statusObj,
+      status_op: e.target.value,
+      pagos: {
+        ...statusObj.pagos,
+        monto: Number(value[2]),
+        valorCuota: Number(value[1]),
+        cuotas: Number(value[0]),
+        cuotasPagadas: 0,
+      },
+    });
+  }
 
+console.log(statusObj)
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
@@ -1514,7 +1561,7 @@ export default function NestedModal({
                   >Con Editores</option>
                 </select>
                 {openPagoSelect === "con" && <select
-                  onChange={handleSelectPago}
+                  onChange={handleUpdatePago}
                   name="status"
                   defaultValue="default"
                   id="select1"
@@ -1525,27 +1572,27 @@ export default function NestedModal({
                   </option>
                   <option
                     className="text-justify"
-                    name="sinEditores"
-                    value="sin"
+                    name="1"
+                    value="1/4000/4000"
                   >1 pago = -20% (€4000)</option>
                   <option
                     className="text-justify"
-                    name="conEditores"
-                    value="con"
+                    name="2"
+                    value="2/2500/5000"
                   >2 pagos = (€5000) / cuotas de €2500</option>
                   <option
                     className="text-justify"
-                    name="conEditores"
-                    value="con"
+                    name="4"
+                    value="4/1250/5000"
                   >4 pagos = (€5000) / cuotas de €1250</option>
                   <option
                     className="text-justify"
-                    name="conEditores"
-                    value="con"
+                    name="6"
+                    value="6/1000/6000"
                   >6 pagos = +20% (€6000) / cuotas de €1000</option>
                 </select>}
                 {openPagoSelect === "sin" && <select
-                  onChange={handleSelectPago}
+                  onChange={handleUpdatePago}
                   name="status"
                   defaultValue="default"
                   id="select1"
@@ -1556,23 +1603,23 @@ export default function NestedModal({
                   </option>
                   <option
                     className="text-justify"
-                    name="sinEditores"
-                    value="sin"
+                    name="1"
+                    value="1/3200/3200"
                   >1 pago = -20% (€3200)</option>
                   <option
                     className="text-justify"
-                    name="conEditores"
-                    value="con"
+                    name="2"
+                    value="2/2000/4000"
                   >2 pagos = (€4000) / cuotas de €2000</option>
                   <option
                     className="text-justify"
-                    name="conEditores"
-                    value="con"
+                    name="4"
+                    value="4/1000/4000"
                   >4 pagos = (€4000) / cuotas de €1000</option>
                   <option
                     className="text-justify"
-                    name="conEditores"
-                    value="con"
+                    name="6"
+                    value="6/800/4800"
                   >6 pagos = +20% (€4800) / cuotas de €800</option>
                 </select>}
               </div>

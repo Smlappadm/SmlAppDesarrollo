@@ -348,7 +348,8 @@ const VentasDashboard = () => {
               <p
                 onClick={() =>
                   handleCopyClick(
-                    `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
+                    // `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
+                    saveEmailApp
                   )
                 }
                 className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -358,7 +359,7 @@ const VentasDashboard = () => {
             </div>
           )}
         </div>
-        {data.length > 10 && !openModalPago && (
+        {data.length > 10 && !openModalPago &&(
           <div className="mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}

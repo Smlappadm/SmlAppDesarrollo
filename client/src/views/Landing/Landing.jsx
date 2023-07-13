@@ -101,7 +101,7 @@ function Landing() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 3.5 }}
+              transition={{ delay: 5 }}
               className="flex flex-col gap-2 items-center justify-center bg-[#7B0BC0] px-10 py-2 rounded-lg"
             >
               <h2 className="text-white text-[2rem]">Usuario no autorizado</h2>
