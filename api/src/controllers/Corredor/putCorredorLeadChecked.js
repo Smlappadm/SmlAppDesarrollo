@@ -7,7 +7,6 @@ const putCorredorLeadChecked = async (email, leadChecked) => {
       { $set: { "leads.$[leadId].checked": true } },
       { new: true, arrayFilters: [{ "leadId._id": leadChecked.id }] }
     );
-    console.log("Información del lead actualizada correctamente:", corredor);
     return corredor;
   } catch (error) {
     console.error("Error al actualizar información del lead:", error);
