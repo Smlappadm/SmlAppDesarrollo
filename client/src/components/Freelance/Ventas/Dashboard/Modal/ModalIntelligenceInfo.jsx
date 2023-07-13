@@ -66,7 +66,7 @@ export default function ModalIntelligentInfo({ item }) {
     <div>
       <div className="flex gap-4">
       <div className="relative h-fit w-fit group flex justify-center items-center">
-                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-5 group-hover:block">
+                    <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
                       Lead Info AI
                     </p>
       <CgFileAdd className="text-[33px] text-[#9c9b9b]  cursor-pointer" onClick={handleOpen}/>
