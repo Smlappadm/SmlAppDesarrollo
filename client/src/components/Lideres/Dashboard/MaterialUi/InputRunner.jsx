@@ -15,6 +15,7 @@ import {
   getFreelancers,
   getVendedor,
 } from "../../../../redux/actions";
+import { Checkbox } from "@mui/material";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
@@ -377,6 +378,18 @@ export default function InputName({ name }) {
             <MenuItem value="incidencia">incidencia</MenuItem>
             <MenuItem value="discard">discard</MenuItem>
           </Select>
+        </div>
+        <div className="flex w-18 items-center justify-center flex-col">
+          <div>
+            <label>Freelancer:</label>
+          </div>
+          <div>
+            <Checkbox
+              id="freelancer"
+              onClick={handleChangeFreelancer}
+              size="medium"
+            />
+          </div>
         </div>
         <div className="flex gap-5 items-end justify-center">
           <Button onClick={handleFilterClick} variant="contained" size="large">
