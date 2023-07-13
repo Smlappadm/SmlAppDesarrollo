@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllFreelancer } from "../../../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
@@ -60,16 +60,6 @@ export default function ChildModal() {
         return body;
       });
     const info = await Promise.all(infoPromises);
-    // const infoMap = info.map((ventas) => {
-    //   const ventasArray = ventas[Object.keys(ventas)];
-    //   const ventasMap = ventasArray.reduce((total, ventas) => {
-    //     if (ventas.status === "Contratado") {
-    //       return total + 1;
-    //     }
-    //     return total;
-    //   }, 0);
-    //   return ventasMap;
-    // });
     const sortedInfo = [...info].sort((a, b) => {
       const first = b[Object.keys(b)[0]];
       const sortedB = first.reduce((total, ventas) => {
@@ -123,64 +113,69 @@ export default function ChildModal() {
             <h2 className="font-extrabold text-white text-24 mb-8">
               Ranking de Freelancers!
             </h2>
+            <div className="flex flex-col gap-5 overflow-scroll h-full">
+              {infoFreelancer &&
+                infoFreelancer.map((free, index) => {
+                  const firstProperty = Object.keys(infoFreelancer[index])[0];
+                  const Leads = infoFreelancer[index]?.[firstProperty];
+                  const totalLeadsAsignados = Leads.length || 0;
+                  const LeadsChecked = Leads.reduce((total, lead) => {
+                    if (lead.checked === true) {
+                      return total + 1;
+                    }
+                    return total;
+                  }, 0);
+                  const LeadsVendidos = Leads.reduce((total, lead) => {
+                    if (lead.status === "Contratado") {
+                      return total + 1;
+                    }
+                    return total;
+                  }, 0);
 
-            {infoFreelancer &&
-              infoFreelancer.map((free, index) => {
-                const firstProperty = Object.keys(infoFreelancer[index])[0];
-                const Leads = infoFreelancer[index]?.[firstProperty];
-                const totalLeadsAsignados = Leads.length || 0;
-                const LeadsChecked = Leads.reduce((total, lead) => {
-                  if (lead.checked === true) {
-                    return total + 1;
-                  }
-                  return total;
-                }, 0);
-                const LeadsVendidos = Leads.reduce((total, lead) => {
-                  if (lead.status === "Contratado") {
-                    return total + 1;
-                  }
-                  return total;
-                }, 0);
-
-                return (
-                  <div
-                    className="flex justify-between items-center bg-[#222131] h-[13%] rounded-xl p-3 "
-                    key={index}
-                  >
-                    <div className="w-1/12 ">
-                      {infoFreelancer[index].photo ? (
-                        <img
-                          src={infoFreelancer[index].photo}
-                          alt="photo"
-                          className="rounded-full"
-                        />
-                      ) : null}
+                  return (
+                    <div
+                      className="flex justify-between items-center bg-[#222131] h-[80px] rounded-xl p-3 "
+                      key={index}
+                    >
+                      <div className="w-1/12 ">
+                        {infoFreelancer[index].photo ? (
+                          <img
+                            src={infoFreelancer[index].photo}
+                            alt="photo"
+                            className="rounded-full"
+                          />
+                        ) : null}
+                      </div>
+                      <div className="w-3/12">
+                        <p className="text-center pl-3">
+                          {Object.keys(infoFreelancer[index])[0]}
+                        </p>
+                      </div>
+                      <div className="w-3/12">
+                        <p>Clasificados</p>
+                        <p>
+                          {LeadsChecked}/{totalLeadsAsignados}
+                        </p>
+                      </div>
+                      <div className="w-3/12">
+                        <p>Ventas</p>
+                        <p>{LeadsVendidos}</p>
+                      </div>
+                      <div className="w-1/12">
+                        <p>Rank</p>
+                        <p>#{index + 1}</p>
+                      </div>
+                      <div className="w-1/12">
+                        {index < 3 ? (
+                          <img src={place[index]} alt="place" />
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
-                    <div className="w-3/12">
-                      <p className="text-center pl-3">
-                        {Object.keys(infoFreelancer[index])[0]}
-                      </p>
-                    </div>
-                    <div className="w-3/12">
-                      <p>Clasificados</p>
-                      <p>
-                        {LeadsChecked}/{totalLeadsAsignados}
-                      </p>
-                    </div>
-                    <div className="w-3/12">
-                      <p>Ventas</p>
-                      <p>{LeadsVendidos}</p>
-                    </div>
-                    <div className="w-1/12">
-                      <p>Rank</p>
-                      <p>#{index + 1}</p>
-                    </div>
-                    <div className="w-1/12">
-                      {index < 3 ? <img src={place[index]} alt="place" /> : ""}
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+            </div>
           </div>
         </Box>
       </Modal>
