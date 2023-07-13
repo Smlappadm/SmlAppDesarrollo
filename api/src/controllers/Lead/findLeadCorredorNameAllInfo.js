@@ -15,7 +15,7 @@ const findLeadCorredorNameAllInfo = async (
   const regexCorredor = corredor ? new RegExp(corredor, "i") : /.*/;
   const regexVendedor = vendedor ? new RegExp(vendedor, "i") : /.*/;
   const query = {
-    corredor_name: regexCorredor,
+    corredor_name: corredor,
     vendedor_name: regexVendedor,
     checked: true,
     view: true,
@@ -81,6 +81,3 @@ const findLeadCorredorNameAllInfo = async (
 };
 
 module.exports = findLeadCorredorNameAllInfo;
-
-
-
