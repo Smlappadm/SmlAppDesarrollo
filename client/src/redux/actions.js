@@ -394,7 +394,7 @@ export const getLeadCorredoresChecked = (email) => {
 
 export const getLeadCorredoresCheckedDescargados = (email) => {
   return async (dispatch) => {
-    const response = await axios.get(`lead/corredorchecked?email=${email}`);
+    const response = await axios.get(`lead/corredorcheckeddescargados?email=${email}`);
     const corredorLeadCheckedDescagados = response.data;
     dispatch({ type: GET_CORREDOR_LEAD_CHECKED_DESCARGADOS, payload: corredorLeadCheckedDescagados });
   };
