@@ -381,7 +381,7 @@ export default function InputName({ name }) {
         </div>
         <div className="flex w-18 items-center justify-center flex-col">
           <div>
-            <label>Freelancer:</label>
+            <label>Descargados:</label>
           </div>
           <div>
             <Checkbox id="freelancer" size="medium" />
