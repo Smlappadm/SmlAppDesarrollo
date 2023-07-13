@@ -19,19 +19,25 @@ import {
 import { CiGlobe, CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
-import { getLeadCorredoresChecked } from "../../../redux/actions";
+import {
+  getLeadCorredoresChecked,
+  getLeadCorredoresCheckedDescargados,
+} from "../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 import { Button } from "@mui/material";
 import Papa from "papaparse";
 
 const CorredoresHistory = () => {
-  const { corredorLeadChecked } = useSelector((state) => state);
+  const { corredorLeadChecked, corredorLeadCheckedDescagados } = useSelector(
+    (state) => state
+  );
   const dispatch = useDispatch();
 
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
 
   useEffect(() => {
+    dispatch(getLeadCorredoresCheckedDescargados(email));
     dispatch(getLeadCorredoresChecked(email));
   }, [dispatch]);
 
@@ -51,7 +57,7 @@ const CorredoresHistory = () => {
   }
 
   const downloadCSV = () => {
-    const csv = Papa.unparse(corredorLeadChecked);
+    const csv = Papa.unparse(corredorLeadCheckedDescagados);
 
     // Crea un enlace de descarga
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
@@ -62,9 +68,9 @@ const CorredoresHistory = () => {
     tempLink.click();
 
     const updateLeaderDashboard = async () => {
-      const promises = corredorLeadChecked.map((lead) =>
+      const promises = corredorLeadCheckedDescagados.map((lead) =>
         axios.put(`/lead/${lead._id}`, {
-          descargadosLeader: true,
+          descargadosCorredor: true,
         })
       );
 
