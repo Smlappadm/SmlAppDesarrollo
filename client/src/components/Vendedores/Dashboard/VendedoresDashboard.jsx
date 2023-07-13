@@ -166,9 +166,8 @@ const VendedoresDashboard = () => {
   };
 
   const saveEmailAppFunction = (email) => {
-    setSaveEmailApp(email)
-  }
-
+    setSaveEmailApp(email);
+  };
 
   return (
     <>
@@ -176,11 +175,12 @@ const VendedoresDashboard = () => {
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-        {showCopiedMessage && (
-          <p className="absolute top-2 left-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
-            Copiado!
-          </p>
-        )}
+            {showCopiedMessage && (
+              <p className="absolute top-2 left-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
+                Copiado!
+              </p>
+            )}
+
             <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -189,10 +189,11 @@ const VendedoresDashboard = () => {
             >
               Dashboard
             </motion.h1>
+
             <div className="flex gap-7">
-              <Link to={"/vendedores"}>
-                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+                <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
+                  Ingresa al Dashboard
+                </p>
               <Link to={"/vendedores-ventas"}>
                 <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
