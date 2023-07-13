@@ -10,8 +10,6 @@ import axios from "axios";
 
 const getServerUrl = () => {
   const { hostname } = window.location;
-
-  console.log(hostname);
   if (hostname.includes("localhost")) {
     return "http://localhost:3001/api";
   } else if (hostname.includes("smlappadm.vercel.app")) {
