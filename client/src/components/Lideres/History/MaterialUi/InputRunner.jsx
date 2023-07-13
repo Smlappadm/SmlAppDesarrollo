@@ -13,6 +13,7 @@ import {
   getCorredor,
   getVendedor,
 } from "../../../../redux/actions";
+import { Checkbox } from "@mui/material";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ export default function InputName({ name }) {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
+  const [descargados, setDescargados] = useState(false);
 
   const { allCorredores } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
@@ -82,6 +84,10 @@ export default function InputName({ name }) {
     setStatus(value);
   };
 
+  const handleChangeDescargados = (event) => {
+    setDescargados(event.target.checked ? true : false);
+  };
+
   const handleFilterClick = () => {
     dispatch(
       findCorredoresByNameAllInfo(
@@ -93,7 +99,8 @@ export default function InputName({ name }) {
         country,
         category,
         level,
-        status
+        status,
+        descargados
       )
     );
   };
@@ -108,6 +115,7 @@ export default function InputName({ name }) {
     setCountry("");
     setLevel("");
     setStatus("");
+    setDescargados(false);
   };
 
   return (
@@ -414,6 +422,19 @@ export default function InputName({ name }) {
             <MenuItem value="incidencia">incidencia</MenuItem>
             <MenuItem value="discard">discard</MenuItem>
           </Select>
+        </div>
+
+        <div className="flex w-36 items-center justify-center flex-col">
+          <div>
+            <label>No Descargados:</label>
+          </div>
+          <div>
+            <Checkbox
+              id="propio"
+              onClick={handleChangeDescargados}
+              size="medium"
+            />
+          </div>
         </div>
         <div className="flex gap-5 items-end justify-center">
           <Button onClick={handleFilterClick} variant="contained" size="large">
