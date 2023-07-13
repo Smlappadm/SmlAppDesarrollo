@@ -40,8 +40,10 @@ const CorredoresHistory = () => {
   localStorage.setItem("email", mail);
   let email = localStorage.getItem("email");
 
+console.log(email);
+
   useEffect(() => {
-    if (mail !== undefined) {
+    if (email !== "undefined") {
       dispatch(getLeadCorredoresCheckedDescargados(email));
       dispatch(getLeadCorredoresChecked(email));
     }
