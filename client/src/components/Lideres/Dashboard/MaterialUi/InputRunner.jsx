@@ -28,6 +28,7 @@ export default function InputName({ name }) {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
+  const [descargados, setDescargados] = useState(false);
 
   const { allFreelancers } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
@@ -40,10 +41,6 @@ export default function InputName({ name }) {
     dispatch(getAllCategory());
     dispatch(getAllCountries());
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log(allFreelancers);
-  }, [allFreelancers]);
 
   const handleChangeCorredor = (event) => {
     let value = event.target.value;
@@ -82,6 +79,10 @@ export default function InputName({ name }) {
     setStatus(value);
   };
 
+  const handleChangeDescargados = (event) => {
+    setDescargados(event.target.checked ? true : false);
+  };
+
   const handleFilterClick = () => {
     dispatch(
       findFreelancerByNameAllInfo(
@@ -92,7 +93,8 @@ export default function InputName({ name }) {
         country,
         category,
         level,
-        status
+        status,
+        descargados
       )
     );
   };
@@ -380,16 +382,23 @@ export default function InputName({ name }) {
             <MenuItem value="discard">discard</MenuItem>
           </Select>
         </div>
-        <div className="flex w-18 items-center justify-center flex-col">
-          <div className="flex justify-center items-center">
-            <label className="mr-1">Descargas </label>
-            <AiOutlineQuestionCircle className="text-white" />
-          </div>
-          <div>
-            <Checkbox id="freelancer" size="medium" />
+        <div className="flex w-32 items-center justify-center flex-col">
+          <label className="mr-1">No descargas:</label>
+          <div className="flex  items-center">
+            <Checkbox
+              id="descargado"
+              onClick={handleChangeDescargados}
+              size="medium"
+            />
+            <div className="relative h-fit w-fit group flex justify-center items-center">
+              <p className="w-32 h-fit  p-1 hidden absolute text-black -top-6 group-hover:block bg-white">
+                Si marcas este checkbox traera los leads no descargados
+              </p>
+              <AiOutlineQuestionCircle className="text-white" />
+            </div>
           </div>
         </div>
-        <div className="flex gap-5 items-end justify-center">
+        <div className="flex gap-5 items-end justify-center relative">
           <Button onClick={handleFilterClick} variant="contained" size="large">
             Filtrar
           </Button>

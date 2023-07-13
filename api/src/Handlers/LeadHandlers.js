@@ -319,6 +319,7 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
     category,
     level,
     status,
+    descargados,
   } = req.query;
   try {
     const foundCorredor = await findLeadCorredorNameAllInfo(
@@ -330,7 +331,8 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
       country,
       category,
       level,
-      status
+      status,
+      descargados
     );
     res.status(200).json(foundCorredor);
   } catch (error) {
@@ -347,6 +349,7 @@ const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
     category,
     level,
     status,
+    descargados,
   } = req.query;
   try {
     const foundFreelancer = await findLeadFreelancerNameAllInfo(
@@ -357,7 +360,8 @@ const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
       country,
       category,
       level,
-      status
+      status,
+      descargados
     );
     res.status(200).json(foundFreelancer);
   } catch (error) {

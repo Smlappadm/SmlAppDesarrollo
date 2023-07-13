@@ -9,8 +9,11 @@ const findLeadCorredorNameAllInfo = async (
   country,
   category,
   level,
-  status
+  status,
+  descargados
 ) => {
+
+  console.log(descargados);
   const regexCorredor = corredor ? new RegExp(corredor, "i") : /.*/;
   const regexVendedor = vendedor ? new RegExp(vendedor, "i") : /.*/;
   const query = {
@@ -65,6 +68,9 @@ const findLeadCorredorNameAllInfo = async (
 
   if (status) {
     query.status = status;
+  }
+  if (status) {
+    query.descargadosLeader = descargados;
   }
 
   const leads = await Lead.find(query).exec();
