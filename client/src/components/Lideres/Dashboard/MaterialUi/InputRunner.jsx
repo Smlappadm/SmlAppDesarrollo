@@ -16,6 +16,7 @@ import {
   getVendedor,
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
+import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 export default function InputName({ name }) {
   const dispatch = useDispatch();
@@ -380,8 +381,9 @@ export default function InputName({ name }) {
           </Select>
         </div>
         <div className="flex w-18 items-center justify-center flex-col">
-          <div>
-            <label>Descargados:</label>
+          <div className="flex justify-center items-center">
+            <label className="mr-1">Descargas </label>
+            <AiOutlineQuestionCircle className="text-white" />
           </div>
           <div>
             <Checkbox id="freelancer" size="medium" />
