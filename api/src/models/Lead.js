@@ -119,6 +119,16 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: false,
     },
+    descargadosLeader: {
+      type: Boolean,
+      require: true,
+      default: false,
+    },
+    descargadosCorredor: {
+      type: Boolean,
+      require: true,
+      default: false,
+    },
     country: {
       type: String,
       require: true,
