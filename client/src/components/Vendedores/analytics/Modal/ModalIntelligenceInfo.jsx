@@ -7,6 +7,7 @@ import { CiWarning, CiEdit } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
 import { orderCategory } from "../../../../redux/actions";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { CgFileAdd } from "react-icons/cg";
 const style = {
   position: "absolute",
   top: "50%",
@@ -65,10 +66,7 @@ export default function ModalIntelligentInfo({ item }) {
   return (
     <div>
       <div className="flex gap-4">
-        <AiOutlineInfoCircle
-          className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-10 h-8 rounded-md cursor-pointer"
-          onClick={handleOpen}
-        />
+      <CgFileAdd className="text-[33px] text-[#4a8637] cursor-pointer" onClick={handleOpen}/>
       </div>
       <Modal
         open={open}

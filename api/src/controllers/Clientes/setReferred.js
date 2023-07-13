@@ -6,7 +6,6 @@ const setReferred = async ({ email, referred }) => {
     { $addToSet: { referred: email } },
     { new: true }
   );
-  console.log(referred);
   return referido;
 };
 module.exports = setReferred;

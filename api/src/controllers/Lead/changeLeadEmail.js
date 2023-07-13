@@ -2,9 +2,6 @@ const Lead = require("../../models/Lead");
 
 
 const changeLeadEmail = async (id , key, value) => {
-  console.log("entroooooooo")
-  console.log(key)
-  console.log(value)
     if(key === "emailApp"){
       const leadsearch = await Lead.updateMany(
         { emailApp: value},
@@ -15,7 +12,6 @@ const changeLeadEmail = async (id , key, value) => {
         }
       )
 
-      console.log(leadsearch)
     }
 
     const lead = await Lead.findOneAndUpdate(
