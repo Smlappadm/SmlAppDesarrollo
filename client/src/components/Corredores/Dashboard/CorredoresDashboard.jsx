@@ -21,8 +21,6 @@ import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
-import BasicModal from "./MaterialUi/BasicModal";
-import { Hidden } from "@mui/material";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
