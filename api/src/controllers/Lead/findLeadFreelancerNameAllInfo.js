@@ -68,7 +68,7 @@ const findLeadFreelancerNameAllInfo = async (
   }
 
   if (descargados === "false") {
-    query.descargadosLeader = descargados;
+    query.descargadosLeader = false;
   } else {
     query.descargadosLeader = true;
   }
