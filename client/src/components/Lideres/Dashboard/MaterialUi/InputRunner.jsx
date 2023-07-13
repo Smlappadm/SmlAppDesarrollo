@@ -108,6 +108,7 @@ export default function InputName({ name }) {
     setCountry("");
     setLevel("");
     setStatus("");
+    setDescargados(false);
   };
 
   return (
