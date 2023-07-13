@@ -11,9 +11,8 @@ const findLeadVendedorNameAllInfo = async (
   status,
   descargados
 ) => {
-  const regexVendedor = email ? new RegExp(email, "i") : /.*/;
   const query = {
-    vendedor: regexVendedor,
+    vendedor: email,
     checked: true,
     view: true,
     // freelancer: { $ne: true },

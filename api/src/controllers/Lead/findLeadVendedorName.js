@@ -1,9 +1,8 @@
 const Lead = require("../../models/Lead");
 
 const findLeadVendedorName = async (name) => {
-  const regex = name ? new RegExp(name, "i") : /.*/;
   const leads = await Lead.find({
-    vendedor: regex,
+    vendedor: name,
     checked: true,
     view: true,
     status: {

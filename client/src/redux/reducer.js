@@ -43,6 +43,7 @@ import {
   FIND_FREELANCER_NAME_ALL_INFO,
   GET_LEAD_CHEQUED_FREELANCER,
   GET_FREELANCER,
+  GET_CORREDOR_LEAD_CHECKED_DESCARGADOS,
 } from "./actions";
 
 const initialState = {
@@ -88,6 +89,7 @@ const initialState = {
   clienteEmpresa: "",
   freelanceLead: [],
   allFreelancers: [],
+  corredorLeadCheckedDescagados: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -450,21 +452,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allProfesionFreelance: action.payload,
       };
-      case GET_ALL_COUNTRY:
-        return {
-          ...state,
-          allCountries: action.payload,
-        };
-      case GET_ALL_COUNTRY_FREELANCE:
-        return {
-          ...state,
-          allCountriesFreelance: action.payload,
-        };
-        case GET_ALL_CATEGORY:
-          return {
-            ...state,
-            allCategory: action.payload,
-          };
+    case GET_ALL_COUNTRY:
+      return {
+        ...state,
+        allCountries: action.payload,
+      };
+    case GET_ALL_COUNTRY_FREELANCE:
+      return {
+        ...state,
+        allCountriesFreelance: action.payload,
+      };
+    case GET_ALL_CATEGORY:
+      return {
+        ...state,
+        allCategory: action.payload,
+      };
     case GET_CORREDORES:
       return {
         ...state,
@@ -484,6 +486,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         detailEmploy: action.payload,
+      };
+    case GET_CORREDOR_LEAD_CHECKED_DESCARGADOS:
+      return {
+        ...state,
+        corredorLeadCheckedDescagados: action.payload,
       };
 
     // *******************************Clientes *******************************

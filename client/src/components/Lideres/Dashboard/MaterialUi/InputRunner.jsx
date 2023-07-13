@@ -18,7 +18,7 @@ import {
 import { Checkbox } from "@mui/material";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 
-export default function InputName({ name }) {
+export default function InputName({ name, setCurrentPage }) {
   const dispatch = useDispatch();
   const [freelancer, setFreelancer] = useState("");
   const [fromDay, setFromDay] = useState("");
@@ -97,6 +97,7 @@ export default function InputName({ name }) {
         descargados
       )
     );
+    setCurrentPage(1);
   };
 
   const handleFilterReset = () => {

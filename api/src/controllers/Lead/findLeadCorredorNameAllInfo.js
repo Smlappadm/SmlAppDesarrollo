@@ -12,15 +12,17 @@ const findLeadCorredorNameAllInfo = async (
   status,
   descargados
 ) => {
-  const regexCorredor = corredor ? new RegExp(corredor, "i") : /.*/;
-  const regexVendedor = vendedor ? new RegExp(vendedor, "i") : /.*/;
   const query = {
-    corredor_name: regexCorredor,
-    vendedor_name: regexVendedor,
     checked: true,
     view: true,
     freelancer: false,
   };
+  if (corredor !== "") {
+    query.corredor_name = corredor;
+  }
+  if (vendedor !== "") {
+    query.corredor_name = vendedor;
+  }
 
   if (fromDay && toDay) {
     const [fromYear, fromMonth, fromDayOfMonth] = fromDay.split("-");
@@ -69,16 +71,11 @@ const findLeadCorredorNameAllInfo = async (
   }
 
   if (descargados === "false") {
-    query.descargadosLeader = descargados;
+    query.descargadosLeader = false;
   }
-
-
 
   const leads = await Lead.find(query).exec();
   return leads;
 };
 
 module.exports = findLeadCorredorNameAllInfo;
-
-
-

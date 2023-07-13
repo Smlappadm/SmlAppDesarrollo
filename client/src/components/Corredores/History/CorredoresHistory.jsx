@@ -19,17 +19,26 @@ import {
 import { CiGlobe, CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
-import { getLeadCorredoresChecked } from "../../../redux/actions";
+import {
+  getLeadCorredoresChecked,
+  getLeadCorredoresCheckedDescargados,
+} from "../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
+import { Button } from "@mui/material";
+import Papa from "papaparse";
+import axios from "axios";
 
 const CorredoresHistory = () => {
-  const { corredorLeadChecked } = useSelector((state) => state);
+  const { corredorLeadChecked, corredorLeadCheckedDescagados } = useSelector(
+    (state) => state
+  );
   const dispatch = useDispatch();
 
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
 
   useEffect(() => {
+    dispatch(getLeadCorredoresCheckedDescargados(email));
     dispatch(getLeadCorredoresChecked(email));
   }, [dispatch]);
 
@@ -48,26 +57,55 @@ const CorredoresHistory = () => {
     return <p className={style.noResults}>No hay resultados...</p>;
   }
 
+  const downloadCSV = () => {
+    const csv = Papa.unparse(corredorLeadCheckedDescagados);
+
+    // Crea un enlace de descarga
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const csvURL = URL.createObjectURL(csvData);
+    const tempLink = document.createElement("a");
+    tempLink.href = csvURL;
+    tempLink.setAttribute("download", "CorredorHistory.csv");
+    tempLink.click();
+
+    const updateLeadCorredor = async () => {
+      const promises = corredorLeadCheckedDescagados.map((lead) =>
+        axios.put(`/lead/${lead._id}`, {
+          descargadosCorredor: true,
+        })
+      );
+
+      await Promise.all(promises);
+    };
+
+    updateLeadCorredor();
+  };
+
   return (
     <>
       <Nav />
       <div className=" flex flex-col justify-start items-center w-full h-screen mx-5 ">
         <Card className="w-full m-5 h-screen bg-[#222131]">
-          <div className="flex gap-10 items-center mt-2 mx-5 ">
-            <Title className="font-bold text-[#e2e2e2] text-lg">
-              History
-            </Title>
+          <div className="flex gap-10 items-center mt-2 mx-5 justify-between">
             <div className="flex gap-5">
-              <Link to={"/corredores"}>
-                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/corredores-history"}>
-                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/corredores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+              <Title className="font-bold text-[#e2e2e2] text-lg">
+                History
+              </Title>
+              <div className="flex gap-5">
+                <Link to={"/corredores"}>
+                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/corredores-history"}>
+                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/corredores-analytics"}>
+                  <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+              </div>
             </div>
+            <Button variant="outlined" onClick={downloadCSV}>
+              Descargar CSV
+            </Button>
           </div>
           <Table className="flex">
             <TableHead className="text-gray-400 text-14 font-thin">

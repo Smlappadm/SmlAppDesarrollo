@@ -11,13 +11,15 @@ const findLeadFreelancerNameAllInfo = async (
   status,
   descargados
 ) => {
-  const regexCorredor = freelancer ? new RegExp(freelancer, "i") : /.*/;
   const query = {
-    corredor_name: regexCorredor,
+    // corredor_name: freelancer !== "" ? freelancer : null,
     checked: true,
     view: true,
     freelancer: true,
   };
+  if (freelancer !== "") {
+    query.corredor_name = freelancer;
+  }
 
   if (fromDay && toDay) {
     const [fromYear, fromMonth, fromDayOfMonth] = fromDay.split("-");
@@ -66,11 +68,11 @@ const findLeadFreelancerNameAllInfo = async (
   }
 
   if (descargados === "false") {
-    query.descargadosLeader = descargados;
+    query.descargadosLeader = false;
+  } else {
+    query.descargadosLeader = true;
   }
-
-  
-
+  console.log(query);
   const leads = await Lead.find(query).exec();
   return leads;
 };

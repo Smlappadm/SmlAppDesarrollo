@@ -44,6 +44,7 @@ export const GET_ALL_FREELANCER = "GET_ALL_FREELANCER";
 export const FIND_FREELANCER_NAME_ALL_INFO = "FIND_FREELANCER_NAME_ALL_INFO";
 export const GET_LEAD_CHEQUED_FREELANCER = "GET_LEAD_CHEQUED_FREELANCER";
 export const GET_FREELANCER = "GET_FREELANCER";
+export const GET_CORREDOR_LEAD_CHECKED_DESCARGADOS = "GET_CORREDOR_LEAD_CHECKED_DESCARGADOS";
 
 //
 export const setRol = (rol) => {
@@ -388,6 +389,14 @@ export const getLeadCorredoresChecked = (email) => {
     const response = await axios.get(`lead/corredorchecked?email=${email}`);
     const corredorLeadChecked = response.data;
     dispatch({ type: GET_CORREDOR_LEAD_CHECKED, payload: corredorLeadChecked });
+  };
+};
+
+export const getLeadCorredoresCheckedDescargados = (email) => {
+  return async (dispatch) => {
+    const response = await axios.get(`lead/corredorchecked?email=${email}`);
+    const corredorLeadCheckedDescagados = response.data;
+    dispatch({ type: GET_CORREDOR_LEAD_CHECKED_DESCARGADOS, payload: corredorLeadCheckedDescagados });
   };
 };
 
