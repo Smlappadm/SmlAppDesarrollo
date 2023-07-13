@@ -57,7 +57,7 @@ function ChildModal({
   editContacto,
   saveEmailAppFunction,
   openModalPagoFunction,
-  flagPago
+  flagPago,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -524,7 +524,7 @@ function intelligentInfo({ setOpen }) {
   );
 }
 //************************************************************************************************ */
-function ConfirmacionEdicion({ handleConfirmEdit, id }) {
+function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator, emailAppValidator }) {
   const [openConfirmacionEdicion, setConfirmacionEdicion] =
     React.useState(false);
 
@@ -554,11 +554,20 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
         >
           Close x
         </button> */}
-
-        <BsCheck
-          onClick={handleOpen}
-          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
-        />
+        {console.log(emailValidator)}
+        {emailValidator ? (
+          <BsCheck
+            onClick={handleOpen}
+            className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
+          />
+        ) : (
+          <>
+            <BsCheck className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#f73d3d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#f73d3d] dark:hover:bg-gray-700 " />
+            <p className="absolute whitespace-nowrap text-red-600 -left-64 -bottom-7">
+              email invalido
+            </p>
+          </>
+        )}
         {/* <button
           type="button"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
@@ -656,6 +665,9 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
+  const [emailValidator, setEmailValidator] = React.useState(false);
+  const [emailAppValidator, setEmailAppValidator] = React.useState(false);
+
   const [pagoCalculo, setPagoCalculo] = React.useState({
     precio: 0,
   });
@@ -704,10 +716,10 @@ export default function NestedModal({
     const property = event.target.name;
     setOpenPagoSelect("");
     setOpenTimeHour(false);
-    if(value === "Contratado"){
-      setFlagPago(false)
-    }else{
-      setFlagPago(true)
+    if (value === "Contratado") {
+      setFlagPago(false);
+    } else {
+      setFlagPago(true);
     }
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     statusObj.pagos = {};
@@ -846,16 +858,24 @@ export default function NestedModal({
   };
 
   const handleSelectPago = (e) => {
-    setFlagPago(false)
+    setFlagPago(false);
     setOpenPagoSelect(e.target.value);
   };
 
   const handleUpdatePago = (e) => {
-
-    if(e.target.value === "1/4000/4000" || e.target.value === "2/2500/5000" || e.target.value === "4/1250/5000" || e.target.value === "6/1000/6000" || e.target.value === "1/3200/3200" || e.target.value === "2/2000/4000" || e.target.value === "4/1000/4000" || e.target.value === "6/800/4800"){
-      setFlagPago(true)
+    if (
+      e.target.value === "1/4000/4000" ||
+      e.target.value === "2/2500/5000" ||
+      e.target.value === "4/1250/5000" ||
+      e.target.value === "6/1000/6000" ||
+      e.target.value === "1/3200/3200" ||
+      e.target.value === "2/2000/4000" ||
+      e.target.value === "4/1000/4000" ||
+      e.target.value === "6/800/4800"
+    ) {
+      setFlagPago(true);
     } else {
-      setFlagPago(false)
+      setFlagPago(false);
     }
 
     const value = e.target.value.split("/");
@@ -873,9 +893,39 @@ export default function NestedModal({
     });
   };
 
+  // Email Validator FUNCTION
+  const validatorEmailFunction = (email) => {
+    setEmailValidator(false);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      setEmailValidator(true);
+      console.log("correcto");
+    } else {
+      setEmailValidator(false);
+      console.log("incorrecto")
+    }
+  };
+
+  const validatorEmailAppFunction = (email) => {
+    setEmailValidator(false);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      setEmailValidator(true);
+      console.log("correcto");
+    } else {
+      setEmailValidator(false);
+      console.log("incorrecto")
+    }
+  };
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // if (emailRegex.test(item.email)) {
+    //   setEmailValidator(true);
+      console.log("cccccccccccccccccccc")
+    // }
+    setEmailValidator(true);
     setEditEmail(!editEmail);
     setEditEmailApp(false);
     setEditInstagram(false);
@@ -883,7 +933,9 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    setInputEmail(event.target.value);
+    const emailChecked = event.target.value.trim()
+    setInputEmail(emailChecked);
+    validatorEmailFunction(emailChecked);
   };
   const handleConfirmEditEmail = async (id) => {
     const body = { email: inputEmail };
@@ -895,11 +947,13 @@ export default function NestedModal({
 
   //EDITAR DATOS Instagram
   const handleEditInstagram = () => {
+    setEmailValidator(true);
     setEditInstagram(!editInstagram);
     setEditEmailApp(false);
     setEditEmail(false);
     setEditTelephone(false);
     setEditContacto(false);
+
   };
   const handleChangeInstagram = (event) => {
     setInputInstagram(event.target.value);
@@ -914,6 +968,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Phone
   const handleEditTelephone = () => {
+    setEmailValidator(true);
     setEditTelephone(!editTelephone);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -932,6 +987,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
+    setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
     setEditTelephone(false);
     setEditEmail(false);
@@ -939,7 +995,9 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    setInputEmailApp(event.target.value);
+    const emailChecked = event.target.value.trim()
+    setInputEmailApp(emailChecked);
+    validatorEmailAppFunction(emailChecked);
   };
   const handleConfirmEditEmailApp = async (id) => {
     const body = { emailApp: inputEmailApp };
@@ -951,6 +1009,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Contacto
   const handleEditContacto = () => {
+    setEmailValidator(true);
     setEditContacto(!editContacto);
     setEditEmailApp(false);
     setEditTelephone(false);
@@ -1155,10 +1214,11 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmail}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
-                  {/* EDITAR DATOS Email-------------------------------------  */}
+                  {/* EDITAR DATOS Instagram-------------------------------------  */}
                   {editInstagram && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
                       <input
@@ -1179,6 +1239,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditInstagram}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1203,9 +1264,11 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditTelephone}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
+                  {/* EDITAR DATOS EmailApp-------------------------------------  */}
                   {editEmailApp && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
                       <input
@@ -1228,6 +1291,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
                         id={item._id}
+                        emailValidator={emailValidator}     
                       />
                     </div>
                   )}
@@ -1253,6 +1317,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditContacto}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1604,8 +1669,8 @@ export default function NestedModal({
                     id="select1"
                     className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    <option disabled="disabled" value="default" >
-                    Seleccionar tipo de Pago - €5000
+                    <option disabled="disabled" value="default">
+                      Seleccionar tipo de Pago - €5000
                     </option>
                     <option
                       className="text-justify"
