@@ -8,18 +8,22 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import axios from "axios";
 
-const currentUrl = window.location.href;
-let baseURL;
+const getServerUrl = () => {
+  const { hostname } = window.location;
 
-if (currentUrl.includes("sml-app.com")) {
-  baseURL = "https://sml-app.com/api";
-} else if (currentUrl.includes("smlappadm")) {
-  baseURL = "https://smlapp.onrender.com/api";
-} else {
-  baseURL = "http://localhost:3001/api";
-}
+  console.log(hostname);
+  if (hostname.includes("localhost")) {
+    return "http://localhost:3001/api";
+  } else if (hostname.includes("smlappadm.vercel.app")) {
+    return "https://smlapp.onrender.com/api";
+  } else if (hostname.includes("sml-app.com")) {
+    return "https://sml-app.com/api";
+  }
+  
+  return "http://localhost:3001/api";
+};
 
-axios.defaults.baseURL = baseURL;
+axios.defaults.baseURL = getServerUrl();
 
 const container = document.getElementById("root");
 const root = createRoot(container);
