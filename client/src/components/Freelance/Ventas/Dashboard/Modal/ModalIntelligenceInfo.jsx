@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import { CiWarning, CiEdit } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { CgFileAdd } from "react-icons/cg";
 const style = {
   position: "absolute",
   top: "50%",
@@ -64,10 +65,12 @@ export default function ModalIntelligentInfo({ item }) {
   return (
     <div>
       <div className="flex gap-4">
-        <AiOutlineInfoCircle
-          className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-10 h-8 rounded-md cursor-pointer"
-          onClick={handleOpen}
-        />
+      <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-5 group-hover:block">
+                      Lead Info AI
+                    </p>
+      <CgFileAdd className="text-[33px] text-[#9c9b9b]  cursor-pointer" onClick={handleOpen}/>
+      </div>
       </div>
       <Modal
         open={open}
