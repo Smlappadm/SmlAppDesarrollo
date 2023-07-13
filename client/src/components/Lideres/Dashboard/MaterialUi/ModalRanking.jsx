@@ -60,16 +60,7 @@ export default function ChildModal() {
         return body;
       });
     const info = await Promise.all(infoPromises);
-    // const infoMap = info.map((ventas) => {
-    //   const ventasArray = ventas[Object.keys(ventas)];
-    //   const ventasMap = ventasArray.reduce((total, ventas) => {
-    //     if (ventas.status === "Contratado") {
-    //       return total + 1;
-    //     }
-    //     return total;
-    //   }, 0);
-    //   return ventasMap;
-    // });
+
     const sortedInfo = [...info].sort((a, b) => {
       const first = b[Object.keys(b)[0]];
       const sortedB = first.reduce((total, ventas) => {
