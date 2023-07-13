@@ -103,6 +103,8 @@ const CorredoresHistory = () => {
                 </Link>
               </div>
             </div>
+
+            <label>Leads chequeados: {corredorLeadChecked.length}</label>
             <Button variant="outlined" onClick={downloadCSV}>
               Descargar CSV
             </Button>
