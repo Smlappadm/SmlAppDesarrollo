@@ -384,11 +384,7 @@ export default function InputName({ name }) {
             <label>Freelancer:</label>
           </div>
           <div>
-            <Checkbox
-              id="freelancer"
-              onClick={handleChangeFreelancer}
-              size="medium"
-            />
+            <Checkbox id="freelancer" size="medium" />
           </div>
         </div>
         <div className="flex gap-5 items-end justify-center">
