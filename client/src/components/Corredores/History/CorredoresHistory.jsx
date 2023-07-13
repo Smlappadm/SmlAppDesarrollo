@@ -22,6 +22,7 @@ import { FaHistory } from "react-icons/fa";
 import { getLeadCorredoresChecked } from "../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 import { Button } from "@mui/material";
+import Papa from "papaparse";
 
 const CorredoresHistory = () => {
   const { corredorLeadChecked } = useSelector((state) => state);
