@@ -131,7 +131,7 @@ export default function BannedEmploy() {
         <div className="bg-[#222131] rounded-none w-full h-screen p-5">
           <div className="flex justify-between items-center">
             <div className="flex gap-5">
-              <h1 className="font-bold text-[#e2e2e2] text-lg">Employees</h1>
+              <h1 className="font-bold text-[#e2e2e2] text-lg">Baneados</h1>
               <div className="flex gap-5">
                 <Link to={"/clevel"}>
                   <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />

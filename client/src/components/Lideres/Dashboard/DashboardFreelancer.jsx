@@ -163,7 +163,9 @@ export const DashboardFreelancer = () => {
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between mx-5 mb-10 ">
           <div className="flex gap-5">
-            <Title className={style.title}>Freelance</Title>
+            <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
+              Historial Freelancer
+            </Title>
 
             <Link to={"/lideres/"}>
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />

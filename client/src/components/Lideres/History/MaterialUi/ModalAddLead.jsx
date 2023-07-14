@@ -112,7 +112,7 @@ export default function ChildModal() {
     <React.Fragment>
       <ToastContainer />
       <Button variant="contained" sx={{}} onClick={handleOpen}>
-        Add Leads
+        Agregar Leads
       </Button>
       <Modal
         open={open}
