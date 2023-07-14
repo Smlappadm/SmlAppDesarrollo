@@ -296,7 +296,7 @@ console.log(level)
               },
             }}
           >
-            <MenuItem value="">Level</MenuItem>
+            <MenuItem value="">Nivel</MenuItem>
             <MenuItem value="0">0</MenuItem>
             <MenuItem value="1">1</MenuItem>
             <MenuItem value="2">2</MenuItem>
