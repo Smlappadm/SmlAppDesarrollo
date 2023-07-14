@@ -23,7 +23,7 @@ const updateLeadVendedorById = async (id, updatedData) => {
     console.log("No responde")
     const dateNoResponde = new Date();
     const formattedTimeNoResponde  = date.toISOString();
-    updatedData.dataLead.updateRechazado  = formattedTimeNoResponde ;
+    updatedData.dataLead.updateNoResponde  = formattedTimeNoResponde ;
   }
   if(updatedData.dataLead.status === "Agendar 2do llamado"){
     console.log("Agendar 2do llamado")
