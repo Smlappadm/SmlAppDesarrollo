@@ -238,7 +238,7 @@ const VentasDashboard = () => {
                       Nivel
                     </button>
                     <label className=" text-center w-[17%] ">Llamar</label>
-                    <label className=" text-center w-[15%] ">Status</label>
+                    <label className=" text-center w-[15%] ">Estado</label>
                     <label className=" text-center w-[5%] "></label>
                   </div>
                   <div className="">
