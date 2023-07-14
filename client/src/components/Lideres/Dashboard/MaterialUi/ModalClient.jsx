@@ -192,7 +192,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 {freelance === false ? (
                   <h2 className="text-24 font-bold">Freelancer ⮳</h2>
                 ) : (
-                  <h2 className="text-24 font-bold">Freelancer</h2>
+                  <h2 className="text-24 font-bold">Freelancer ⮷</h2>
                 )}
               </div>
               <motion.div
