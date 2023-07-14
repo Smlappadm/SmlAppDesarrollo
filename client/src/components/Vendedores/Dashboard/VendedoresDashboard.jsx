@@ -169,7 +169,6 @@ const VendedoresDashboard = () => {
     setSaveEmailApp(email);
   };
 
-
   // const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
 
   // const handleMouseMove = (event) => {
@@ -180,8 +179,8 @@ const VendedoresDashboard = () => {
   return (
     <>
       <Nav />
-      <div className="relative flex flex-col justify-between items-center w-screen  z-0" onMouseMove={handleMouseMove}>
-      {/* <div onMouseMove={handleMouseMove} style={{ position: 'relative', height: '100vh' }}>
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
+        {/* <div onMouseMove={handleMouseMove} style={{ position: 'relative', height: '100vh' }}>
       <div
         style={{
           position: 'fixed',
