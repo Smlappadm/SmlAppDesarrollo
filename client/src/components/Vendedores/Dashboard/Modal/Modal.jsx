@@ -815,17 +815,6 @@ export default function NestedModal({
     }
   };
 
-  const validatorEmailAppFunction = (email) => {
-    setEmailValidator(false);
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(email)) {
-      setEmailValidator(true);
-      console.log("correcto");
-    } else {
-      setEmailValidator(false);
-      console.log("incorrecto")
-    }
-  };
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
