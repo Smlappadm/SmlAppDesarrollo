@@ -125,6 +125,29 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   {funcionHorario(modalItems.createdAt)}
                 </p>
               </div>
+              <div className="font-semibold flex gap-3">
+                <p>Estado:</p>
+                <p className="font-normal">{modalItems.status}</p>
+              </div>
+              {modalItems.status === "Contratado" && (
+                <div>
+                  <div className="font-semibold flex gap-3">
+                    <p>Monto:</p>
+                    <p className="font-normal">{modalItems.pagos.monto}</p>
+                  </div>
+                  <div className="font-semibold flex gap-3">
+                    <p>Cuotas:</p>
+                    <p className="font-normal">
+                      {modalItems.pagos.cuotasPagadas} /{" "}
+                      {modalItems.pagos.cuotas}{" "}
+                    </p>
+                  </div>
+                  <div className="font-semibold flex gap-3">
+                    <p>Valor cuota:</p>
+                    <p className="font-normal">{modalItems.pagos.valorCuota}</p>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="">
@@ -145,62 +168,46 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   {funcionHorario(modalItems.updateCorredor)}
                 </p>
               </div>
-              <div className="font-semibold flex gap-3">
-                <p>Estado Actual:</p>
-                <p className="font-normal">
-                  {modalItems.status === "Sin contactar"
-                    ? `Sin contactar ${funcionHorario(modalItems.updateCorredor)}`
-                    : null}
-                  {modalItems.status === "Rechazado"
-                    ? `Rechazado ${funcionHorario(modalItems.updateRechazado)}`
-                    : null}
-                  {modalItems.status === "Contratado"
-                    ? `Contratado ${funcionHorario(
-                        modalItems.updateContratado
-                      )}`
-                    : null}
-                  {modalItems.status === "No responde"
-                    ? `No responde ${funcionHorario(
-                        modalItems.updateNoResponde
-                      )}`
-                    : null}
-                  {modalItems.status === "Agendar 2do llamado"
-                    ? `Agendar 2do llamado ${funcionHorario(
-                        modalItems.updateSegundoLlamado
-                      )}`
-                    : null}
-                  {modalItems.status === "incidencia"
-                    ? `Incidencia ${funcionHorario(
-                        modalItems.updateIncidencia
-                      )}`
-                    : null}
-                </p>
-              </div>
-            </div>
-
-            <div className="font-semibold flex gap-3">
-              <p>LLamados:</p>
-              <p className="font-normal">{modalItems.llamados}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>LLamada Venta:</p>
-              <p className="font-normal">{modalItems.llamada_venta}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Cuotas:</p>
-              <p className="font-normal">{modalItems.cuotas}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Speech:</p>
-              <p className="font-normal">{modalItems.speech}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Monto Op:</p>
-              <p className="font-normal">{modalItems.monto_op}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Fecha Op:</p>
-              <p className="font-normal">{modalItems.fecha_op}</p>
+              {modalItems.updateContratado && (
+                <div className="font-semibold flex gap-3">
+                  <p>Contratado:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateContratado)}
+                  </p>
+                </div>
+              )}
+              {modalItems.updateRechazado && (
+                <div className="font-semibold flex gap-3">
+                  <p>Rechazado:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateRechazado)}
+                  </p>
+                </div>
+              )}
+              {modalItems.updateNoResponde && (
+                <div className="font-semibold flex gap-3">
+                  <p>No responde:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateNoResponde)}
+                  </p>
+                </div>
+              )}
+              {modalItems.updateSegundoLlamado && (
+                <div className="font-semibold flex gap-3">
+                  <p>En proceso:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateSegundoLlamado)}
+                  </p>
+                </div>
+              )}
+              {modalItems.updateIncidencia && (
+                <div className="font-semibold flex gap-3">
+                  <p>Incidencia:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateIncidencia)}
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </Box>
