@@ -66,8 +66,6 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 ) : (
                   <h2 className="text-24 font-bold">Empresa ▼</h2>
                 )}
-
-                <h2 className="text-24 font-bold">Empresa ▼</h2>
               </motion.div>
               <motion.div
                 initial={
