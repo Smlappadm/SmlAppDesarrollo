@@ -169,6 +169,7 @@ const VendedoresDashboard = () => {
     setSaveEmailApp(email);
   };
 
+
   // const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
 
   // const handleMouseMove = (event) => {
@@ -180,7 +181,7 @@ const VendedoresDashboard = () => {
     <>
       <Nav />
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
-        {/* <div onMouseMove={handleMouseMove} style={{ position: 'relative', height: '100vh' }}>
+      {/* <div onMouseMove={handleMouseMove} style={{ position: 'relative', height: '100vh' }}>
       <div
         style={{
           position: 'fixed',
@@ -193,7 +194,7 @@ const VendedoresDashboard = () => {
       >
        ---Usted esta en el pixel: {hoverPosition.x}px, {hoverPosition.y}px
       </div>
-    </div> */}
+    </div>  */}
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
             {showCopiedMessage && (
@@ -257,9 +258,9 @@ const VendedoresDashboard = () => {
                     <label className="text-start w-[10%] px-3">País</label>
                     <label className="text-center w-[5%] ">Email</label>
                     <label className="text-center w-[5%] ">Instagram</label>
-                    <label className="text-center w-[10%] ">Phone</label>
+                    <label className="text-center w-[10%] ">Teléfono</label>
                     <label className="text-center w-[10%]">Nivel</label>
-                    <label className="text-center w-[20%] ">Status</label>
+                    <label className="text-center w-[20%] ">Estado</label>
                     <label className="text-start w-[10%] "></label>
                   </div>
 
@@ -319,7 +320,7 @@ const VendedoresDashboard = () => {
                         <div className=" w-[10%] flex justify-center items-center p-0 ">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="text-center w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                           >
                             {item.telephone}
                           </p>
