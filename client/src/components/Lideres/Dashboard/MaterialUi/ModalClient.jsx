@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { motion } from "framer-motion";
 
 const style = {
   position: "absolute",
@@ -19,6 +20,17 @@ const style = {
 };
 
 export default function BasicModal({ modalItems, open, handleClose }) {
+  const funcionHorario = (horario) => {
+    const fechaHoraISO = horario;
+
+    const fechaHora = new Date(fechaHoraISO);
+
+    const opciones = { hour12: false };
+
+    const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
+
+    return fechaHoraLocal;
+  };
   return (
     <div>
       <Modal
@@ -36,82 +48,133 @@ export default function BasicModal({ modalItems, open, handleClose }) {
           <div className="flex flex-col gap-2 justify-between h-full">
             <div className="font-semibold flex flex-col gap-3 items-center text-24 mb-5">
               <h1>{modalItems.name}</h1>
-              <hr className="border-gray-400 w-5/6 text-center" />
             </div>
-            <div className="font-semibold flex gap-3">
-              <p>Freelancer:</p>
-              <p className="font-normal">{modalItems.corredor_name}</p>
+            <div>
+              <div className="w-full flex items-center justify-start mb-1">
+                <h2 className="text-24 font-bold">Empresa</h2>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Web:</p>
+                <a
+                  href={modalItems.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {modalItems.url}
+                </a>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Instagram:</p>
+                <a
+                  href={modalItems.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {modalItems.instagram}
+                </a>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Descripción:</p>
+                <p className="font-normal">{modalItems.description}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Categoria:</p>
+                <p className="font-normal">{modalItems.category}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Profesion:</p>
+                <p className="font-normal">{modalItems.profesion}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Pais:</p>
+                <p className="font-normal">{modalItems.country}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Provincia:</p>
+                <p className="font-normal">{modalItems.province}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Ciudad:</p>
+                <p className="font-normal">{modalItems.city}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Email:</p>
+                <p className="font-normal">{modalItems.email}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Telefono:</p>
+                <p className="font-normal">{modalItems.telephone}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Nivel:</p>
+                <p className="font-normal">{modalItems.level}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Detalle:</p>
+                <p className="font-normal">
+                  {modalItems.status_op ? modalItems.status_op : "-"}
+                </p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Marca Personal:</p>
+                <p className="font-normal">{modalItems.marca_personal}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Creado:</p>
+                <p className="font-normal">
+                  {funcionHorario(modalItems.createdAt)}
+                </p>
+              </div>
             </div>
-            <div className="font-semibold flex gap-3">
-              <p>Freelancer Email:</p>
-              <p className="font-normal">{modalItems.corredor}</p>
+
+            <div className="">
+              <div className="w-full flex items-center justify-start mb-1">
+                <h2 className="text-24 font-bold">Freelancer</h2>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Freelancer:</p>
+                <p className="font-normal">{modalItems.corredor_name}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Freelancer Email:</p>
+                <p className="font-normal">{modalItems.corredor}</p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Clasificado:</p>
+                <p className="font-normal">
+                  {funcionHorario(modalItems.updateCorredor)}
+                </p>
+              </div>
+              <div className="font-semibold flex gap-3">
+                <p>Estado Actual:</p>
+                <p className="font-normal">
+                  {modalItems.status === "Rechazado"
+                    ? `Rechazado ${funcionHorario(modalItems.updateRechazado)}`
+                    : null}
+                  {modalItems.status === "Contratado"
+                    ? `Contratado ${funcionHorario(
+                        modalItems.updateContratado
+                      )}`
+                    : null}
+                  {modalItems.status === "No responde"
+                    ? `No responde ${funcionHorario(
+                        modalItems.updateNoResponde
+                      )}`
+                    : null}
+                  {modalItems.status === "Agendar 2do llamado"
+                    ? `Agendar 2do llamado ${funcionHorario(
+                        modalItems.updateSegundoLlamado
+                      )}`
+                    : null}
+                  {modalItems.status === "incidencia"
+                    ? `Incidencia ${funcionHorario(
+                        modalItems.updateIncidencia
+                      )}`
+                    : null}
+                </p>
+              </div>
             </div>
-            <div className="font-semibold flex gap-3">
-              <p>Web:</p>
-              <a
-                href={modalItems.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {modalItems.url}
-              </a>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Instagram:</p>
-              <a
-                href={modalItems.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {modalItems.instagram}
-              </a>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Descripción:</p>
-              <p className="font-normal">{modalItems.description}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Categoria:</p>
-              <p className="font-normal">{modalItems.category}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Profesion:</p>
-              <p className="font-normal">{modalItems.profesion}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Pais:</p>
-              <p className="font-normal">{modalItems.country}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Provincia:</p>
-              <p className="font-normal">{modalItems.province}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Ciudad:</p>
-              <p className="font-normal">{modalItems.city}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Nivel:</p>
-              <p className="font-normal">{modalItems.level}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Email:</p>
-              <p className="font-normal">{modalItems.email}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Telefono:</p>
-              <p className="font-normal">{modalItems.telephone}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Estado:</p>
-              <p className="font-normal">{modalItems.status}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Detalle:</p>
-              <p className="font-normal">
-                {modalItems.status_op ? modalItems.status_op : "-"}
-              </p>
-            </div>
+
             <div className="font-semibold flex gap-3">
               <p>LLamados:</p>
               <p className="font-normal">{modalItems.llamados}</p>
@@ -125,10 +188,6 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <p className="font-normal">{modalItems.cuotas}</p>
             </div>
             <div className="font-semibold flex gap-3">
-              <p>Marca Personal:</p>
-              <p className="font-normal">{modalItems.marca_personal}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
               <p>Speech:</p>
               <p className="font-normal">{modalItems.speech}</p>
             </div>
@@ -139,14 +198,6 @@ export default function BasicModal({ modalItems, open, handleClose }) {
             <div className="font-semibold flex gap-3">
               <p>Fecha Op:</p>
               <p className="font-normal">{modalItems.fecha_op}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Creado:</p>
-              <p className="font-normal">{modalItems.createdAt}</p>
-            </div>
-            <div className="font-semibold flex gap-3">
-              <p>Actualizado:</p>
-              <p className="font-normal">{modalItems.updatedAt}</p>
             </div>
           </div>
         </Box>
