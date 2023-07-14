@@ -169,10 +169,32 @@ const VendedoresDashboard = () => {
     setSaveEmailApp(email);
   };
 
+
+  // const [hoverPosition, setHoverPosition] = useState({ x: 0, y: 0 });
+
+  // const handleMouseMove = (event) => {
+  //   const { clientX, clientY } = event;
+  //   setHoverPosition({ x: clientX, y: clientY });
+  // };
+
   return (
     <>
       <Nav />
-      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0" onMouseMove={handleMouseMove}>
+      {/* <div onMouseMove={handleMouseMove} style={{ position: 'relative', height: '100vh' }}>
+      <div
+        style={{
+          position: 'fixed',
+          top: (hoverPosition.y + 40) + 'px',
+          left: (hoverPosition.x + 20)+ 'px',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          color: 'white',
+          padding: '10px',
+        }}
+      >
+       ---Usted esta en el pixel: {hoverPosition.x}px, {hoverPosition.y}px
+      </div>
+    </div> */}
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
             {showCopiedMessage && (
