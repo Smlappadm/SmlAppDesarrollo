@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 const style = {
