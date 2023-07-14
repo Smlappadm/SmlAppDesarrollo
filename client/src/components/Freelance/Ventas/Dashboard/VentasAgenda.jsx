@@ -229,7 +229,7 @@ const VentasDashboard = () => {
                     <label className=" text-start w-[9%] px-3">País</label>
                     <label className=" text-center w-[5%] ">Email</label>
                     <label className=" text-center w-[5%] ">Instagram</label>
-                    <label className=" text-center w-[13%] ">Phone</label>
+                    <label className=" text-center w-[13%] ">Teléfono</label>
                     <button
                       className=" text-center w-[5%]"
                       onClick={() => handlerFilter("level")}
@@ -237,7 +237,7 @@ const VentasDashboard = () => {
                       Nivel
                     </button>
                     <label className=" text-center w-[17%] ">Llamar</label>
-                    <label className=" text-center w-[15%] ">Status</label>
+                    <label className=" text-center w-[15%] ">Estado</label>
                     <label className=" text-center w-[5%] "></label>
                   </div>
                   <div className="">
@@ -294,7 +294,7 @@ const VentasDashboard = () => {
                         <div className=" w-[13%] flex justify-center items-center p-0 ">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="text-center w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                           >
                             {item.telephone}
                           </p>
