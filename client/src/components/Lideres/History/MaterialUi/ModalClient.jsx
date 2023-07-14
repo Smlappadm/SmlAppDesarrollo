@@ -251,7 +251,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                     : { opacity: 0, height: 0, overflow: "hidden" }
                 }
                 transition={{ duration: 0.5 }}
-              ></motion.div>
+              >
               <div className="font-semibold flex gap-3">
                 <p>Vendedor:</p>
                 <p className="font-normal">{modalItems.corredor_name}</p>
