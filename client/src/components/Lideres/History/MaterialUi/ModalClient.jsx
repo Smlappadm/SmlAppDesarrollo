@@ -32,7 +32,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
     setCorredor(!corredor);
   };
   const vendedorVisible = () => {
-    setFreelance(!freelance);
+    setVendedor(!vendedor);
   };
 
   const funcionHorario = (horario) => {
