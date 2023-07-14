@@ -43,7 +43,6 @@ function Nav() {
               <ul className="flex flex-col gap-2">
                 <div className="flex flex-col gap-20">
                   <div>
-                    <h2>Empleados</h2>
                     <li className="flex gap-2 items-center text-[18px]">
                       <span className=" text-lg">
                         <IoPeople className="text-[#e0dddd]" />
@@ -53,7 +52,7 @@ function Nav() {
                           to="/clevel"
                           className=" text-[#e0dddd] hover:text-white"
                         >
-                          Employees
+                          Empleados
                         </Link>
                       </span>
                     </li>
@@ -80,7 +79,7 @@ function Nav() {
                           to="/analytics"
                           className="text-[#e0dddd] hover:text-white"
                         >
-                          Analytics
+                          Estadísticas
                         </Link>
                       </span>
                     </li>
@@ -120,7 +119,7 @@ function Nav() {
                           to="/settings"
                           className=" text-[#e0dddd] hover:text-white"
                         >
-                          Settings
+                          Configuración
                         </Link>
                       </span>
                     </li>
@@ -208,7 +207,7 @@ function Nav() {
                       to="/vendedores-history"
                       className=" text-[#e0dddd] hover:text-white"
                     >
-                      Analytics
+                      Estadísticas
                     </Link>
                   </span>
                 </li>
@@ -221,7 +220,7 @@ function Nav() {
                       to="/settings"
                       className=" text-[#e0dddd] hover:text-white"
                     >
-                      Settings
+                      Configuración
                     </Link>
                   </span>
                 </li>
@@ -250,7 +249,7 @@ function Nav() {
                       to="/corredores-history"
                       className="text-[#e0dddd] hover:text-white"
                     >
-                      Analytics
+                      Estadísticas
                     </Link>
                   </span>
                 </li>
@@ -263,7 +262,7 @@ function Nav() {
                       to="/settings"
                       className=" text-[#e0dddd] hover:text-white"
                     >
-                      Settings
+                      Configuración
                     </Link>
                   </span>
                 </li>
@@ -305,7 +304,7 @@ function Nav() {
                       to="/settings"
                       className=" text-[#e0dddd] hover:text-white"
                     >
-                      Settings
+                      Configuración
                     </Link>
                   </span>
                 </li>
