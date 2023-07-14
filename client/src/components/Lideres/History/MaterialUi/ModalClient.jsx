@@ -21,6 +21,11 @@ const style = {
 export default function BasicModal({ modalItems, open, handleClose }) {
   const [empresa, setEmpresa] = useState(false);
   const [freelance, setFreelance] = useState(false);
+
+  const empresaVisible = () => {
+    setEmpresa(!empresa);
+  };
+
   const funcionHorario = (horario) => {
     const fechaHoraISO = horario;
 
