@@ -195,7 +195,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                     : { opacity: 0.1, height: "auto" }
                 }
                 animate={
-                  empresa === true
+                  freelance === true
                     ? { opacity: 1, height: "auto" }
                     : { opacity: 0, height: 0 }
                 }
