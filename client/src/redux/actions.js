@@ -184,8 +184,9 @@ export const getLeadCheckedInactive5 = (body, profesion, country, level) => {
     }
   };
 };
-export const getLeadCheckedFreelance = (body, profesion, country, level) => {
-  body = { ...body, profesion, country, level };
+export const getLeadCheckedFreelance = (body, profesion, country, level, freelance) => {
+  body = { ...body, profesion, country, level, freelance };
+  console.log(body)
 
   return async (dispatch) => {
     if (
