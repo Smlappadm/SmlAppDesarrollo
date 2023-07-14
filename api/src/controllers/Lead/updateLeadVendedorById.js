@@ -31,6 +31,12 @@ const updateLeadVendedorById = async (id, updatedData) => {
     const formattedTimeSdoLlamado  = date.toISOString();
     updatedData.dataLead.updateSegundoLlamado  = formattedTimeSdoLlamado;
   }
+  if(updatedData.dataLead.status === "incidencia"){
+    console.log("Incidencia")
+    const dateIncidencia = new Date();
+    const formattedTimeIncidencia  = date.toISOString();
+    updatedData.dataLead.updateIncidencia  = formattedTimeIncidencia;
+  }
 
 
   const leadCountCheck = await Lead.findById(id);
