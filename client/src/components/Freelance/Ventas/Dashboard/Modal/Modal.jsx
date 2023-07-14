@@ -254,7 +254,7 @@ function ChildModal({
               onClick={handleOpen}
               disabled={true}
             >
-              Save Changes
+              Guardar Cambios
             </button>
           </>
         ) : (
@@ -264,7 +264,7 @@ function ChildModal({
               className="text-white bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-400 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleOpen}
             >
-              Save Changes
+              Guardar Cambios
             </button>
           </>
         )}
@@ -288,7 +288,7 @@ function ChildModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center">
-            Update the lead?
+            Actualizar Lead?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -303,7 +303,7 @@ function ChildModal({
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -408,7 +408,7 @@ function IncidenceModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5">
-            Send Incidence?
+            Enviar incidencia?
           </h2>
           <textarea
             name="observation"
@@ -1652,7 +1652,7 @@ export default function NestedModal({
                     className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option disabled="disabled" value="default">
-                      Seleccionar tipo de Pago - €5000
+                      Seleccionar tipo de Pago
                     </option>
                     <option
                       className="text-justify"
@@ -1693,7 +1693,7 @@ export default function NestedModal({
                     className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option disabled="disabled" value="default">
-                      Seleccionar tipo de Pago - €4000
+                      Seleccionar tipo de Pago
                     </option>
                     <option
                       className="text-justify"
