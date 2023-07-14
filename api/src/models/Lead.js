@@ -192,6 +192,30 @@ const LeadSchema = new mongoose.Schema(
       type: Date,
       require: true,
     },
+    updateSinContactar: {
+      type: Date,
+      require: true,
+    },
+    updateRechazado: {
+      type: Date,
+      require: true,
+    },
+    updateContratado: {
+      type: Date,
+      require: true,
+    },
+    updateNoResponde: {
+      type: Date,
+      require: true,
+    },
+    updateSegundoLlamado: {
+      type: Date,
+      require: true,
+    },
+    updateIncidencia: {
+      type: Date,
+      require: true,
+    },
     deleted: {
       type: Boolean,
       require: true,
@@ -204,3 +228,5 @@ const LeadSchema = new mongoose.Schema(
 const Lead = new mongoose.model("lead", LeadSchema);
 
 module.exports = Lead;
+
+
