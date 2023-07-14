@@ -315,7 +315,7 @@ const VentasHistory = () => {
               transition={{ duration: 1, delay: 0 }}
               className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
             >
-              History
+              Historial
             </motion.h1>
             <div className="flex gap-7 ">
             <Link to={"/ventas-dashboard"}>
