@@ -180,7 +180,7 @@ const VendedoresDashboard = () => {
   return (
     <>
       <Nav />
-      <div className="relative flex flex-col justify-between items-center w-screen  z-0">  */}
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
       {/* <div onMouseMove={handleMouseMove} style={{ position: 'relative', height: '100vh' }}>
       <div
         style={{
