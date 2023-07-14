@@ -203,7 +203,7 @@ function ChildModalHistory({
           className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           onClick={handleCancel}
         >
-          Close x
+          Cerrar x
         </button>
       </div>
       <Modal
@@ -225,7 +225,7 @@ function ChildModalHistory({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5 ">
-            Deseas dar de baja al cliente?
+            Quiéres dar de baja al cliente?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -240,7 +240,7 @@ function ChildModalHistory({
               className="text-[#bbbaba] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -345,7 +345,7 @@ function IncidenceModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5">
-            Send Incidence?
+            Enviar Incidencia?
           </h2>
           <textarea
             name="observation"
@@ -370,7 +370,7 @@ function IncidenceModal({
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={confirmSendIncidence}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -466,7 +466,7 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -888,7 +888,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label>✔ Lead Actualizado!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -903,7 +903,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Update Error!</label>
+                <label className=" text-white">❌ Error al Actualizar!</label>
               </motion.div>
             )}
             <div className="w-full flex flex-col justify-center items-center">
@@ -940,7 +940,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
-                      Editar phone
+                      Editar Teléfono
                     </p>
                     <AiOutlinePhone
                       onClick={handleEditTelephone}

@@ -314,7 +314,7 @@ const VendedoresHistory = () => {
               transition={{ duration: 1, delay: 0 }}
               className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
             >
-              History
+              Historial
             </motion.h1>
             <div className="flex gap-7 ">
               <Link to={"/vendedores"}>
@@ -435,7 +435,7 @@ const VendedoresHistory = () => {
                 </label>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
-                <label className="text-center w-[15%] ">Phone</label>
+                <label className="text-center w-[15%] ">Teléfono</label>
                 <label
                   className="  w-[10%] text-center"
                   // onClick={() => handlerFilter("level")}
@@ -446,7 +446,7 @@ const VendedoresHistory = () => {
                   className="text-center w-[17%]"
                   // onClick={handlerOpenStatus}
                 >
-                  Status
+                  Estado
                 </label>
                 <label
                   className="text-center w-[3%]"

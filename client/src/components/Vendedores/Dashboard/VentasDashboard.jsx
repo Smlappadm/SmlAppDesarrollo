@@ -230,7 +230,7 @@ const VentasDashboard = () => {
                     <label className=" text-start w-[9%] px-3">País</label>
                     <label className=" text-center w-[5%] ">Email</label>
                     <label className=" text-center w-[5%] ">Instagram</label>
-                    <label className=" text-center w-[13%] ">Phone</label>
+                    <label className=" text-center w-[13%] ">Teléfono</label>
                     <button
                       className=" text-center w-[5%]"
                       onClick={() => handlerFilter("level")}

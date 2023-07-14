@@ -209,7 +209,7 @@ function ChildModal({
               className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={handleCancel}
             >
-              Close x
+              Cerrar x
             </button>
         {editEmail ||
         editInstagram ||
@@ -223,7 +223,7 @@ function ChildModal({
               onClick={handleOpen}
               disabled={true}
             >
-              Save Changes
+              Guardar Cambios
             </button>
           </>
         ) : (
@@ -233,7 +233,7 @@ function ChildModal({
               className="text-white bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-400 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleOpen}
             >
-              Save Changes
+              Guardar Cambios
             </button>
           </>
         )}
@@ -257,7 +257,7 @@ function ChildModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center">
-            Update the lead?
+          Actualizar Lead?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -272,7 +272,7 @@ function ChildModal({
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -402,7 +402,7 @@ function IncidenceModal({
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={confirmSendIncidence}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -452,7 +452,7 @@ function intelligentInfo({ setOpen }) {
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5">
-            Send Incidence?
+            Enviar Incidencia?
           </h2>
           <textarea
             name=""
@@ -475,7 +475,7 @@ function intelligentInfo({ setOpen }) {
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={confirmSendIncidence}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -569,7 +569,7 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -977,7 +977,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label>✔ Cliente Actualizado!</label>
               </motion.div>
             )}
             {openAlert && (
@@ -992,7 +992,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className="text-white">✔ Lead Updated!</label>
+                <label className="text-white">✔ Lead Actualizado!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -1007,7 +1007,7 @@ export default function NestedModal({
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Update Error!</label>
+                <label className=" text-white">❌ Error al Actualizar!</label>
               </motion.div>
             )}
             {openAlertErrorCuotas && (
@@ -1062,7 +1062,7 @@ export default function NestedModal({
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
-                      Editar phone
+                      Editar Teléfono
                     </p>
                     <AiOutlinePhone
                       onClick={handleEditTelephone}
@@ -1254,7 +1254,7 @@ export default function NestedModal({
                 htmlFor="countries"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Status
+                Estado
               </label>
               {item.status !== "Agendar 2do llamado" ? (
                 <select
