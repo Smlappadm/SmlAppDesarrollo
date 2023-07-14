@@ -19,7 +19,7 @@ export default function InputName({
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
-  const [freelancer, setFreelancer] = useState("undefined");
+  const [freelancer, setFreelancer] = useState("");
 
   const { allProfesionFreelance } = useSelector((state) => state);
   const { allCountriesFreelance } = useSelector((state) => state);
@@ -46,14 +46,15 @@ export default function InputName({
 
   //AGREGADO
   const handleChangeFreelancer = (event) => {
-    setFreelancer(event.target.checked ? email : "undefined");
+    setFreelancer(event.target.checked ? emailAddress : "undefined");
   };
+console.log(freelancer)
 
   const handleFilterClick = () => {
     console.log(profesion);
     console.log(country);
     console.log(status);
-    dispatch(getLeadCheckedFreelance(body, profesion, country, status));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, status, freelancer));
   };
 
   const handleFilterReset = () => {
