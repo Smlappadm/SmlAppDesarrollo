@@ -22,6 +22,9 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
 
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "1") {
@@ -38,6 +41,9 @@ const getLeadChecked = async (body) => {
     }
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
+    }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
     }
 
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
@@ -56,6 +62,9 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "aleatorio") {
     leadQuery = {
@@ -71,6 +80,9 @@ const getLeadChecked = async (body) => {
     }
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
+    }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
     }
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else {
@@ -88,6 +100,9 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
 
     leadQuery = {
@@ -103,6 +118,9 @@ const getLeadChecked = async (body) => {
     }
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
+    }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
     }
 
     let count2 = 0;
@@ -125,6 +143,9 @@ const getLeadChecked = async (body) => {
     }
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
+    }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
     }
 
     let count3 = 0;

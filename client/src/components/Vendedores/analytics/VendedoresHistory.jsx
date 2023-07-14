@@ -507,7 +507,7 @@ const VendedoresHistory = () => {
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
                         <p
                           onClick={() => handleCopyClick(item.telephone)}
-                          className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                          className="text-center w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                         >
                           {item.telephone}
                         </p>
