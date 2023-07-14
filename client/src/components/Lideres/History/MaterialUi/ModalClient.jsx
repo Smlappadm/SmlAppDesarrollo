@@ -211,21 +211,22 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                     : { opacity: 0, height: 0, overflow: "hidden" }
                 }
                 transition={{ duration: 0.5 }}
-              ></motion.div>
-              <div className="font-semibold flex gap-3">
-                <p>Corredor:</p>
-                <p className="font-normal">{modalItems.corredor_name}</p>
-              </div>
-              <div className="font-semibold flex gap-3">
-                <p>Corredor Email:</p>
-                <p className="font-normal">{modalItems.corredor}</p>
-              </div>
-              <div className="font-semibold flex gap-3">
-                <p>Clasificado:</p>
-                <p className="font-normal">
-                  {funcionHorario(modalItems.updateCorredor)}
-                </p>
-              </div>
+              >
+                <div className="font-semibold flex gap-3">
+                  <p>Corredor:</p>
+                  <p className="font-normal">{modalItems.corredor_name}</p>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>Corredor Email:</p>
+                  <p className="font-normal">{modalItems.corredor}</p>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>Clasificado:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateCorredor)}
+                  </p>
+                </div>
+              </motion.div>
             </div>
             <div className="">
               <div
