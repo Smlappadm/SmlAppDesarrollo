@@ -436,7 +436,7 @@ const VentasHistory = () => {
                 </label>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
-                <label className="text-center w-[15%] ">Phone</label>
+                <label className="text-center w-[15%] ">Teléfono</label>
                 <label
                   className="  w-[10%] text-center"
                   // onClick={() => handlerFilter("level")}
@@ -447,7 +447,7 @@ const VentasHistory = () => {
                   className="text-center w-[17%]"
                   // onClick={handlerOpenStatus}
                 >
-                  Status
+                  Estado
                 </label>
                 <label
                   className="text-center w-[3%]"

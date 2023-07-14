@@ -157,7 +157,7 @@ console.log(freelancer)
         </div>
 
         <div className="flex flex-col w-36">
-          <label>Level:</label>
+          <label>Nivel:</label>
           <Select
             value={status}
             onChange={handleChangeStatus}
