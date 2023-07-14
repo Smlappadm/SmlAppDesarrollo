@@ -169,7 +169,10 @@ export default function BasicModal({ modalItems, open, handleClose }) {
             </div>
 
             <div className="">
-              <div className="w-full flex items-center justify-start mb-1">
+              <div
+                className="w-full flex items-center justify-start mb-1"
+                onClick={corredorVisible}
+              >
                 <h2 className="text-24 font-bold">Corredor</h2>
               </div>
               <div className="font-semibold flex gap-3">
