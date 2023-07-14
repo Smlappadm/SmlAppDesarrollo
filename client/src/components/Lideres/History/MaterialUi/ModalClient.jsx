@@ -28,6 +28,9 @@ export default function BasicModal({ modalItems, open, handleClose }) {
   const empresaVisible = () => {
     setEmpresa(!empresa);
   };
+  const corredorVisible = () => {
+    setCorredor(!corredor);
+  };
   const freelanceVisible = () => {
     setFreelance(!freelance);
   };
