@@ -61,7 +61,11 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 className="w-full flex items-center justify-start mb-1"
                 onClick={empresaVisible}
               >
-                {empresa === false ? <h2 className="text-24 font-bold">Empresa ▶</h2> : }
+                {empresa === false ? (
+                  <h2 className="text-24 font-bold">Empresa ▶</h2>
+                ) : (
+                  <h2 className="text-24 font-bold">Empresa ▼</h2>
+                )}
                 <h2 className="text-24 font-bold">Empresa ▶</h2>
                 <h2 className="text-24 font-bold">Empresa ▼</h2>
               </motion.div>
