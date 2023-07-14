@@ -64,14 +64,16 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 <h2 className="text-24 font-bold">Empresa</h2>
               </motion.div>
               <motion.div
-                initial={{
-                  opacity: empresaVisible ? 0 : 1,
-                  height: empresaVisible ? 0 : "auto",
-                }}
-                animate={{
-                  opacity: empresaVisible ? 1 : 0,
-                  height: empresaVisible ? "auto" : 0,
-                }}
+                initial={
+                  empresa === true
+                    ? { opacity: 0, height: 0 }
+                    : { opacity: 0.1, height: "auto" }
+                }
+                animate={
+                  empresa === true
+                    ? { opacity: 1, height: "auto" }
+                    : { opacity: 0, height: 0 }
+                }
                 transition={{ duration: 0.5 }}
               >
                 <div className="font-semibold flex gap-3">
