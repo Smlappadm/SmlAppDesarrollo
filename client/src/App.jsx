@@ -387,6 +387,20 @@ function ClerkProviderWithRoutes() {
             }
           />
           <Route
+            path="/corredores-analytics"
+            element={
+              isRoleAllowed(roleReady) &&
+              (roleReady === "clevel" ||
+                roleReady === "leader" ||
+                roleReady === "corredor") &&
+              isEmployeeReady ? (
+                <CorredoresAnlaytics />
+              ) : (
+                <ReturnToPage />
+              )
+            }
+          />
+          <Route
             path="/clasificacion-history"
             element={
               isRoleAllowed(roleReady) &&
