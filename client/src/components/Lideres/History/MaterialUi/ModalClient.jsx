@@ -246,7 +246,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                     : { opacity: 0.1, height: "auto", overflow: "hidden" }
                 }
                 animate={
-                  corredor === true
+                  vendedor === true
                     ? { opacity: 1, height: "auto", overflow: "visible" }
                     : { opacity: 0, height: 0, overflow: "hidden" }
                 }
