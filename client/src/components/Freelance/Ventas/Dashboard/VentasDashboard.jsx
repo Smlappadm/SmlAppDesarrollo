@@ -315,7 +315,8 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
-                          <ModalIntelligentInfo />
+                          <ModalIntelligentInfo 
+                          item={item}/>
                           <Modal
                             item={item}
                             SendLeadAlert={SendLeadAlert}
