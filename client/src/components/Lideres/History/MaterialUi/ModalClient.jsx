@@ -199,6 +199,19 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <h2 className="text-24 font-bold">Corredor ⮷</h2>
                 )}
               </div>
+              <motion.div
+                initial={
+                  empresa === true
+                    ? { opacity: 0, height: 0, overflow: "hidden" }
+                    : { opacity: 0.1, height: "auto", overflow: "hidden" }
+                }
+                animate={
+                  empresa === true
+                    ? { opacity: 1, height: "auto", overflow: "visible" }
+                    : { opacity: 0, height: 0, overflow: "hidden" }
+                }
+                transition={{ duration: 0.5 }}
+              ></motion.div>
               <div className="font-semibold flex gap-3">
                 <p>Corredor:</p>
                 <p className="font-normal">{modalItems.corredor_name}</p>
