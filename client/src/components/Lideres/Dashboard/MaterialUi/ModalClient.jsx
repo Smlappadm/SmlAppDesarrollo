@@ -74,13 +74,13 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <motion.div
                 initial={
                   empresa === true
-                    ? { opacity: 0, height: 0 }
-                    : { opacity: 0.1, height: "auto" }
+                    ? { opacity: 0, height: 0, overflow: "hidden" }
+                    : { opacity: 0.1, height: "auto", overflow: "hidden" }
                 }
                 animate={
                   empresa === true
-                    ? { opacity: 1, height: "auto" }
-                    : { opacity: 0, height: 0, display: "none" }
+                    ? { opacity: 1, height: "auto", overflow: "visible" }
+                    : { opacity: 0, height: 0, overflow: "hidden" }
                 }
                 transition={{ duration: 0.5 }}
               >
