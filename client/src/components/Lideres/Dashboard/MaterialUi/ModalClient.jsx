@@ -168,22 +168,6 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   {funcionHorario(modalItems.updateCorredor)}
                 </p>
               </div>
-              {modalItems.updateContratado && (
-                <div className="font-semibold flex gap-3">
-                  <p>Contratado:</p>
-                  <p className="font-normal">
-                    {funcionHorario(modalItems.updateContratado)}
-                  </p>
-                </div>
-              )}
-              {modalItems.updateRechazado && (
-                <div className="font-semibold flex gap-3">
-                  <p>Rechazado:</p>
-                  <p className="font-normal">
-                    {funcionHorario(modalItems.updateRechazado)}
-                  </p>
-                </div>
-              )}
               {modalItems.updateNoResponde && (
                 <div className="font-semibold flex gap-3">
                   <p>No responde:</p>
@@ -205,6 +189,22 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <p>Incidencia:</p>
                   <p className="font-normal">
                     {funcionHorario(modalItems.updateIncidencia)}
+                  </p>
+                </div>
+              )}
+              {modalItems.updateContratado && (
+                <div className="font-semibold flex gap-3">
+                  <p>Contratado:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateContratado)}
+                  </p>
+                </div>
+              )}
+              {modalItems.updateRechazado && (
+                <div className="font-semibold flex gap-3">
+                  <p>Rechazado:</p>
+                  <p className="font-normal">
+                    {funcionHorario(modalItems.updateRechazado)}
                   </p>
                 </div>
               )}
