@@ -182,6 +182,9 @@ export default function BasicModal({ modalItems, open, handleClose }) {
             </div>
 
             <div className="">
+              <div className="w-full flex items-center justify-start mb-1">
+                <h2 className="text-24 font-bold">Freelancer</h2>
+              </div>
               <motion.div
                 initial={
                   empresa === true
@@ -195,9 +198,6 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 }
                 transition={{ duration: 0.5 }}
               >
-                <div className="w-full flex items-center justify-start mb-1">
-                  <h2 className="text-24 font-bold">Freelancer</h2>
-                </div>
                 <div className="font-semibold flex gap-3">
                   <p>Freelancer:</p>
                   <p className="font-normal">{modalItems.corredor_name}</p>
