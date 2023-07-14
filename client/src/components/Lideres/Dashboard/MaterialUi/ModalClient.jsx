@@ -148,6 +148,9 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               <div className="font-semibold flex gap-3">
                 <p>Estado Actual:</p>
                 <p className="font-normal">
+                  {modalItems.status === "Sin contactar"
+                    ? `Sin contactar ${funcionHorario(modalItems.updateCorredor)}`
+                    : null}
                   {modalItems.status === "Rechazado"
                     ? `Rechazado ${funcionHorario(modalItems.updateRechazado)}`
                     : null}
