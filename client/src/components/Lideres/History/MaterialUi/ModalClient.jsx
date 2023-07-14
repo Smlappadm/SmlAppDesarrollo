@@ -31,7 +31,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
   const corredorVisible = () => {
     setCorredor(!corredor);
   };
-  const freelanceVisible = () => {
+  const vendedorVisible = () => {
     setFreelance(!freelance);
   };
 
