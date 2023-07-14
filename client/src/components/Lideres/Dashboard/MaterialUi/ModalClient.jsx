@@ -51,7 +51,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
         aria-describedby="modal-modal-description"
         BackdropProps={{
           sx: {
-            backgroundColor: "rgba(00, 00, 00, 0.3)",
+            backgroundColor: "rgba(00, 00, 00, 0.7)",
           },
         }}
       >
