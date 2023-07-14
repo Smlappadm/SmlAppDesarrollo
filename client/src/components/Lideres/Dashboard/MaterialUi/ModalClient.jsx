@@ -185,7 +185,10 @@ export default function BasicModal({ modalItems, open, handleClose }) {
             </div>
 
             <div className="">
-              <div className="w-full flex items-center justify-start mb-1">
+              <div
+                className="w-full flex items-center justify-start mb-1"
+                onClick={freelanceVisible}
+              >
                 <h2 className="text-24 font-bold">Freelancer</h2>
               </div>
               <motion.div
