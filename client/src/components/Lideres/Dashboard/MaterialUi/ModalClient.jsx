@@ -197,7 +197,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 animate={
                   freelance === true
                     ? { opacity: 1, height: "auto" }
-                    : { opacity: 0, height: 0 }
+                    : { opacity: 0, height: 0, display: "none" }
                 }
                 transition={{ duration: 0.5 }}
               >
