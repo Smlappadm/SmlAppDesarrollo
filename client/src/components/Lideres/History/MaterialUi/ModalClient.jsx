@@ -252,60 +252,61 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 }
                 transition={{ duration: 0.5 }}
               >
-              <div className="font-semibold flex gap-3">
-                <p>Vendedor:</p>
-                <p className="font-normal">{modalItems.corredor_name}</p>
-              </div>
-              <div className="font-semibold flex gap-3">
-                <p>Vendedor Email:</p>
-                <p className="font-normal">{modalItems.corredor}</p>
-              </div>
-              <div className="font-semibold flex gap-3">
-                <p>Clasificado:</p>
-                <p className="font-normal">
-                  {funcionHorario(modalItems.updateCorredor)}
-                </p>
-              </div>
-              {modalItems.updateNoResponde && (
                 <div className="font-semibold flex gap-3">
-                  <p>No responde:</p>
+                  <p>Vendedor:</p>
+                  <p className="font-normal">{modalItems.corredor_name}</p>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>Vendedor Email:</p>
+                  <p className="font-normal">{modalItems.corredor}</p>
+                </div>
+                <div className="font-semibold flex gap-3">
+                  <p>Clasificado:</p>
                   <p className="font-normal">
-                    {funcionHorario(modalItems.updateNoResponde)}
+                    {funcionHorario(modalItems.updateCorredor)}
                   </p>
                 </div>
-              )}
-              {modalItems.updateSegundoLlamado && (
-                <div className="font-semibold flex gap-3">
-                  <p>En proceso:</p>
-                  <p className="font-normal">
-                    {funcionHorario(modalItems.updateSegundoLlamado)}
-                  </p>
-                </div>
-              )}
-              {modalItems.updateIncidencia && (
-                <div className="font-semibold flex gap-3">
-                  <p>Incidencia:</p>
-                  <p className="font-normal">
-                    {funcionHorario(modalItems.updateIncidencia)}
-                  </p>
-                </div>
-              )}
-              {modalItems.updateContratado && (
-                <div className="font-semibold flex gap-3">
-                  <p>Contratado:</p>
-                  <p className="font-normal">
-                    {funcionHorario(modalItems.updateContratado)}
-                  </p>
-                </div>
-              )}
-              {modalItems.updateRechazado && (
-                <div className="font-semibold flex gap-3">
-                  <p>Rechazado:</p>
-                  <p className="font-normal">
-                    {funcionHorario(modalItems.updateRechazado)}
-                  </p>
-                </div>
-              )}
+                {modalItems.updateNoResponde && (
+                  <div className="font-semibold flex gap-3">
+                    <p>No responde:</p>
+                    <p className="font-normal">
+                      {funcionHorario(modalItems.updateNoResponde)}
+                    </p>
+                  </div>
+                )}
+                {modalItems.updateSegundoLlamado && (
+                  <div className="font-semibold flex gap-3">
+                    <p>En proceso:</p>
+                    <p className="font-normal">
+                      {funcionHorario(modalItems.updateSegundoLlamado)}
+                    </p>
+                  </div>
+                )}
+                {modalItems.updateIncidencia && (
+                  <div className="font-semibold flex gap-3">
+                    <p>Incidencia:</p>
+                    <p className="font-normal">
+                      {funcionHorario(modalItems.updateIncidencia)}
+                    </p>
+                  </div>
+                )}
+                {modalItems.updateContratado && (
+                  <div className="font-semibold flex gap-3">
+                    <p>Contratado:</p>
+                    <p className="font-normal">
+                      {funcionHorario(modalItems.updateContratado)}
+                    </p>
+                  </div>
+                )}
+                {modalItems.updateRechazado && (
+                  <div className="font-semibold flex gap-3">
+                    <p>Rechazado:</p>
+                    <p className="font-normal">
+                      {funcionHorario(modalItems.updateRechazado)}
+                    </p>
+                  </div>
+                )}
+              </motion.div>
             </div>
           </div>
         </Box>
