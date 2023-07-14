@@ -7,7 +7,7 @@ export default function IconLabelButtons() {
   return (
     <Stack>
       <Button variant="contained" endIcon={<SendIcon />}>
-        Send
+        Enviar
       </Button>
     </Stack>
   );
