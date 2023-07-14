@@ -941,7 +941,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                                     </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
-                      Editar phone
+                      Editar Teléfono
                     </p>
                   <AiOutlinePhone
                     onClick={handleEditTelephone}
