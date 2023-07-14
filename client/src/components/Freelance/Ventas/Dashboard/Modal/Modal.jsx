@@ -238,7 +238,7 @@ function ChildModal({
               className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={handleCancel}
             >
-              Close x
+              Cerrar x
             </button>
         {!flagPago ||
         editEmail ||
@@ -765,7 +765,7 @@ export default function NestedModal({
 
     return (
       <p htmlFor="" className="text-white m-2">
-        {`Date: ${fechaDay}/${fechaMonth}/${fechaYear} - Hour: ${
+        {`Día: ${fechaDay}/${fechaMonth}/${fechaYear} - Hora: ${
           timeHour - 3
         }${timeMinute}`}
       </p>
@@ -1135,7 +1135,7 @@ export default function NestedModal({
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
-                      Editar phone
+                      Editar Teléfono
                     </p>
                     <AiOutlinePhone
                       onClick={handleEditTelephone}
@@ -1328,7 +1328,7 @@ export default function NestedModal({
                 htmlFor="countries"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Status
+                Estado
               </label>
               {item.status !== "Agendar 2do llamado" ? (
                 <select
