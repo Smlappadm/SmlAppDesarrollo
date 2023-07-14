@@ -222,7 +222,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 {vendedor === false ? (
                   <h2 className="text-24 font-bold">Vendedor ⮳</h2>
                 ) : (
-                  <h2 className="text-24 font-bold">Freelancer ⮷</h2>
+                  <h2 className="text-24 font-bold">Vendedor ⮷</h2>
                 )}
               </div>
               <div className="font-semibold flex gap-3">
