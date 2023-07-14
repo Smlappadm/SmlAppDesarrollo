@@ -8,6 +8,31 @@ const updateLeadFreelanceById = async (id, updatedData) => {
   const formattedTime = date.toISOString();
   updatedData.dataLead.updateVendedor = formattedTime;
 
+  if(updatedData.dataLead.status === "Contratado"){
+    console.log("Contratado")
+    const dateContratado = new Date();
+    const formattedTimeContratado = date.toISOString();
+    updatedData.dataLead.updateContratado = formattedTimeContratado;
+  }
+  if(updatedData.dataLead.status === "Rechazado"){
+    console.log("Rechazado")
+    const dateRechazado = new Date();
+    const formattedTimeRechazado  = date.toISOString();
+    updatedData.dataLead.updateRechazado  = formattedTimeRechazado ;
+  }
+  if(updatedData.dataLead.status === "No responde"){
+    console.log("No responde")
+    const dateNoResponde = new Date();
+    const formattedTimeNoResponde  = date.toISOString();
+    updatedData.dataLead.updateRechazado  = formattedTimeNoResponde ;
+  }
+  if(updatedData.dataLead.status === "Agendar 2do llamado"){
+    console.log("Agendar 2do llamado")
+    const dateSdoLlamado = new Date();
+    const formattedTimeSdoLlamado  = date.toISOString();
+    updatedData.dataLead.updateSegundoLlamado  = formattedTimeSdoLlamado;
+  }
+
 
   const leadCountCheck = await Lead.findById(id);
 
@@ -110,6 +135,8 @@ if (!updatedData.dataLead.llamados) {
   if (updatedData.dataLead.emailApp === "") {
     updatedData.dataLead.emailApp = updatedData.dataVendedor.email;
   }
+
+
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
