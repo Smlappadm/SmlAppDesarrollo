@@ -25,6 +25,9 @@ export default function BasicModal({ modalItems, open, handleClose }) {
   const empresaVisible = () => {
     setEmpresa(!empresa);
   };
+  const freelanceVisible = () => {
+    setFreelance(!freelance);
+  };
 
   const funcionHorario = (horario) => {
     const fechaHoraISO = horario;
