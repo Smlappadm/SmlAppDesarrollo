@@ -190,7 +190,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               </div>
               <motion.div
                 initial={
-                  empresa === true
+                  freelance === true
                     ? { opacity: 0, height: 0 }
                     : { opacity: 0.1, height: "auto" }
                 }
