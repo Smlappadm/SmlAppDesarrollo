@@ -3,14 +3,23 @@ import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import { Checkbox } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCountriesFreelance, getAllProfesionFreelance } from "../../../../../redux/actions";
+import {
+  getAllCountriesFreelance,
+  getAllProfesionFreelance,
+} from "../../../../../redux/actions";
 
-export default function InputName({ body, getLeadCheckedFreelance, emailAddress}) {
+export default function InputName({
+  body,
+  getLeadCheckedFreelance,
+  emailAddress,
+}) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
+  const [freelancer, setFreelancer] = useState("undefined");
 
   const { allProfesionFreelance } = useSelector((state) => state);
   const { allCountriesFreelance } = useSelector((state) => state);
@@ -35,6 +44,11 @@ export default function InputName({ body, getLeadCheckedFreelance, emailAddress}
     setStatus(value);
   };
 
+  //AGREGADO
+  const handleChangeFreelancer = (event) => {
+    setFreelancer(event.target.checked ? email : "undefined");
+  };
+
   const handleFilterClick = () => {
     console.log(profesion);
     console.log(country);
@@ -44,9 +58,9 @@ export default function InputName({ body, getLeadCheckedFreelance, emailAddress}
 
   const handleFilterReset = () => {
     dispatch(getLeadCheckedFreelance(body, "", ""));
-    setCountry("")
-    setProfesion("")
-    setStatus("")
+    setCountry("");
+    setProfesion("");
+    setStatus("");
   };
 
   return (
@@ -142,7 +156,7 @@ export default function InputName({ body, getLeadCheckedFreelance, emailAddress}
         </div>
 
         <div className="flex flex-col w-36">
-          <label>Status:</label>
+          <label>Level:</label>
           <Select
             value={status}
             onChange={handleChangeStatus}
@@ -166,16 +180,27 @@ export default function InputName({ body, getLeadCheckedFreelance, emailAddress}
               },
             }}
           >
-        <MenuItem value="s">
-          <em></em>
-        </MenuItem>
-        <MenuItem value="0">0</MenuItem>
-        <MenuItem value="1">1</MenuItem>
-        <MenuItem value="2">2</MenuItem>
-        <MenuItem value="aleatorio">Aleatorio</MenuItem>
+            <MenuItem value="s">
+              <em></em>
+            </MenuItem>
+            <MenuItem value="0">0</MenuItem>
+            <MenuItem value="1">1</MenuItem>
+            <MenuItem value="2">2</MenuItem>
+            <MenuItem value="aleatorio">Aleatorio</MenuItem>
           </Select>
         </div>
-
+        <div className="flex w-18 items-center justify-center flex-col">
+          <div>
+            <label>Freelancer:</label>
+          </div>
+          <div>
+            <Checkbox
+              id="freelancer"
+              onClick={handleChangeFreelancer}
+              size="medium"
+            />
+          </div>
+        </div>
         <div className="flex gap-5 items-end justify-center">
           <Button onClick={handleFilterClick} variant="contained" size="large">
             Filtrar
