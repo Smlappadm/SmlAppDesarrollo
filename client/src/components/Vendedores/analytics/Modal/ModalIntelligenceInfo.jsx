@@ -8,6 +8,7 @@ import { useUser } from "@clerk/clerk-react";
 import { orderCategory } from "../../../../redux/actions";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { CgFileAdd } from "react-icons/cg";
+import { BsCheck } from "react-icons/bs";
 const style = {
   position: "absolute",
   top: "50%",
@@ -80,42 +81,16 @@ export default function ModalIntelligentInfo({ item }) {
           <div className="flex flex-col items-center justify-center gap-y-7">
             <h1 className="text-24 text-[#e4e1e1]">Información Cliente</h1>
             <div>
-              {/* seguidores2000
-repercusion
-contenidoPersonal
-contenidoValor
-calidadInstagram
-frecuencia */}
-              {item.seguidores2000 ? (
-                <p>Seguidores +2000: ☑️✔️✅</p>
-              ) : (
-                <p>Seguidores +2000: ❌</p>
-              )}
-              {item.repercusion ? (
-                <p>Repercusion: ☑️✔️✅</p>
-              ) : (
-                <p>Repercusion: ❌</p>
-              )}
-              {item.contenidoPersonal ? (
-                <p>Contenido Personal: ☑️✔️✅</p>
-              ) : (
-                <p>Contenido Personal: ❌</p>
-              )}
-              {item.contenidoValor ? (
-                <p>Contenido de Valor: ☑️✔️✅</p>
-              ) : (
-                <p>Contenido de Valor: ❌</p>
-              )}
-              {item.calidadInstagram ? (
-                <p>Calidad Instagram: ☑️✔️✅</p>
-              ) : (
-                <p>Calidad Instagram: ❌</p>
-              )}
-              {item.frecuencia ? (
-                <p>frecuencia: ☑️✔️✅</p>
-              ) : (
-                <p>frecuencia: ❌</p>
-              )}
+
+{item.seguidores2000 ? <p>Seguidores +2000: ☑️✔️✅</p> : <p>Seguidores +2000: ❌</p>}
+{item.repercusion ? <p>Repercusion: ☑️✔️✅</p> : <p>Repercusion: ❌</p>}
+{item.contenidoPersonal ? <p>Contenido Personal: ☑️✔️✅</p> : <p>Contenido Personal: ❌</p>}
+{item.contenidoValor ? <p>Contenido de Valor: ☑️✔️✅</p> : <p>Contenido de Valor: ❌</p>}
+{item.calidadInstagram ? <p>Calidad Instagram: ☑️✔️✅</p> : <p>Calidad Instagram: ❌</p>}
+{item.frecuencia ? <p>Frecuencia: ☑️✔️✅</p> : <p>Frecuencia: ❌</p>}
+
+
+              
             </div>
             <button
               type="button"
