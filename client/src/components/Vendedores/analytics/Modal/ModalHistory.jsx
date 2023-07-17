@@ -79,30 +79,6 @@ function ChildModalHistory({
   };
 
   const handleUpdate = async () => {
-    // if (
-    //   statusObj.status === "Agendar 2do llamado" ||
-    //   statusObj.status === "Agendar otro llamado"
-    // ) {
-    //   statusObj.status = "Agendar 2do llamado";
-    //   (statusObj.emailApp = item.emailApp),
-    //     (statusObj.status_op = llamadoVenta.diaHora);
-    //   statusObj.llamada_venta = {
-    //     dia_hora: llamadoVenta.diaHora,
-    //     contacto: llamadoVenta.contacto,
-    //     observaciones: llamadoVenta.observaciones,
-    //     dateObject: {
-    //       hora: llamadoVenta.hora,
-    //       minutos: llamadoVenta.minutos,
-    //       dia: llamadoVenta.dia,
-    //       mes: llamadoVenta.mes,
-    //       year: llamadoVenta.year,
-    //     },
-    //   };
-    // }
-
-
-
-
     try {
       const body = { deleted: true };
       const response = await axios.put(`/lead/changeemail/${item._id}`, body);
