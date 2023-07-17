@@ -393,6 +393,7 @@ const CorredoresDashboard = () => {
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
               view: true,
+              descargadosLeader: false,
               descargadosCorredor: false,
             });
 
