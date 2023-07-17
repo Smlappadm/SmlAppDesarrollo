@@ -5,6 +5,7 @@ const getAllFreelancers = require("../controllers/Freelancer/getAllFreelancer");
 const updateFreelancerByEmail = require("../controllers/Freelancer/updateFreelancerByEmail");
 const updateFreelancerById = require("../controllers/Freelancer/updateFreelancerById");
 
+// Registrar nuevo freelancer
 const postFreelancerHandler = async (req, res) => {
   const data = req.body;
 
@@ -16,6 +17,7 @@ const postFreelancerHandler = async (req, res) => {
   }
 };
 
+// Obtener todos los freelancers
 const getAllFreelancerHandler = async (req, res) => {
   try {
     const freelancers = await getAllFreelancer();
@@ -25,6 +27,7 @@ const getAllFreelancerHandler = async (req, res) => {
   }
 };
 
+// Obtener lead verificado de freelancer
 const getLeadCheckedFreelanceHandler = async (req, res) => {
   const body = req.body;
   try {
@@ -34,6 +37,8 @@ const getLeadCheckedFreelanceHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener todos los freelancers por correo electrónico
 const getAllFreelancersHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -43,6 +48,8 @@ const getAllFreelancersHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Actualizar freelancer por correo electrónico
 const updateFreelancerByEmailHandler = async (req, res) => {
   const { email } = req.query;
   const updateData = req.body;
@@ -53,6 +60,8 @@ const updateFreelancerByEmailHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Actualizar freelancer por ID
 const updateFreelancerByIdHandler = async (req, res) => {
   const id = req.params.id;
   const updatedData = req.body;
