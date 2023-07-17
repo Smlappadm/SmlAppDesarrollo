@@ -38,6 +38,7 @@ const {
   findLeadFreelancerNameHandler,
   postLeadFreelancerHandler,
   getLeadCorredoresCheckedDescargadosHandler,
+  cambioNombreFreelancerHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -77,6 +78,7 @@ LeadRouter.post("/new", postLeadFreelancerHandler);
 LeadRouter.put("/changeemail/:id", updateChangeEmailHandler);
 LeadRouter.put("/cleanclevel", cleanValueClevelHandler);
 LeadRouter.put("/limpieza", limpiezaBaseHandler);
+LeadRouter.put("/cambiarnombre", cambioNombreFreelancerHandler);
 LeadRouter.put("/asignacion", asignacionFreelancerHandler);
 LeadRouter.put("/:id", updateLeadHandler);
 LeadRouter.put("/vendedor/:id", updateLeadVendedorHandler);
