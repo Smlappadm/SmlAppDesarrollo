@@ -1533,17 +1533,6 @@ export default function NestedModal({
               </div>
             )}
           </div>
-          {/* <div className="flex justify-center items-center absolute -right-80 top-0">
-            {openTimeHour && (
-              <ResponsiveDateTimePickers
-                closeDateHour={closeDateHour}
-                changeTime={changeTime}
-                className={style.dateTime}
-                handleLlamadoVentaChange ={handleLlamadoVentaChange }
-              />
-            )}
-          </div> */}
-
           <div className="flex justify-center items-center absolute -right-80 top-0">
             {openTimeHour && (
               <ResponsiveDateTimePickers
