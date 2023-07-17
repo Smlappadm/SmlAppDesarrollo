@@ -113,7 +113,7 @@ export default function ChildModal() {
             <h2 className="font-extrabold text-white text-24 mb-8">
               Ranking de Freelancers!
             </h2>
-            <div className="flex flex-col gap-5 overflow-scroll h-full">
+            <div className="flex flex-col gap-5 overflow-scroll h-full pt-1">
               {infoFreelancer &&
                 infoFreelancer.map((free, index) => {
                   const firstProperty = Object.keys(infoFreelancer[index])[0];

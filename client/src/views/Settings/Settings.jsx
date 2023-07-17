@@ -42,6 +42,7 @@ export default function Settings() {
   const { clevel } = useSelector((state) => state);
 
   const role = localStorage.getItem("roleReady");
+  const img = localStorage.getItem("imagenProfile");
 
   const dispatch = useDispatch();
 
@@ -174,7 +175,7 @@ export default function Settings() {
   };
 
   const handleImageUpload = (imageUrl) => {
-    setProfileImageUrl(imageUrl);
+    setProfileImageUrl(imageUrl ?? selectedEmployee?.photo);
     setFormData((prevFormData) => ({
       ...prevFormData,
       photo: imageUrl !== "" ? imageUrl : selectedEmployee?.photo,
@@ -192,6 +193,9 @@ export default function Settings() {
   useEffect(() => {
     if (selectedEmployee && selectedEmployee.birthdate !== null) {
       setSaveDate(selectedEmployee.birthdate);
+    }
+    if (selectedEmployee && selectedEmployee.photo !== "") {
+      setProfileImageUrl(selectedEmployee.photo);
     }
   }, [selectedEmployee]);
 
@@ -294,6 +298,7 @@ export default function Settings() {
                 <UploadWidget
                   onImageUpload={handleImageUpload}
                   setEditSave={setEditSave}
+                  setProfileImageUrl={setProfileImageUrl}
                 />
                 {profileImageUrl && (
                   <Image
