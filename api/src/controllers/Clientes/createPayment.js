@@ -32,16 +32,6 @@ const createPayment = async ({
         },
         quantity: 1,
       },
-      // {
-      //   price_data: {
-      //     product_data: {
-      //       name: "TV",
-      //     },
-      //     currency: "usd",
-      //     unit_amount: 1000,
-      //   },
-      //   quantity: 2,
-      // },
     ],
     mode: "payment",
     payment_method_types: ["card"],
