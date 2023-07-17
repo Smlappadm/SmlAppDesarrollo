@@ -175,7 +175,7 @@ export default function Settings() {
   };
 
   const handleImageUpload = (imageUrl) => {
-    setProfileImageUrl(imageUrl);
+    setProfileImageUrl(imageUrl ?? selectedEmployee?.photo);
     setFormData((prevFormData) => ({
       ...prevFormData,
       photo: imageUrl !== "" ? imageUrl : selectedEmployee?.photo,
@@ -188,7 +188,7 @@ export default function Settings() {
     dispatch(getAllLeader());
     dispatch(getAllClevel());
     dispatch(getAllFreelancer());
-  }, [dispatch, img]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (selectedEmployee && selectedEmployee.birthdate !== null) {
