@@ -20,7 +20,6 @@ export default function ResponsiveDateTimePickers({
   const today = dayjs();
 
   const handleAcept = (date) => {
-// setSelectedDate(date);
     closeDateHour();
   };
   const handleDateChange = (date) => {
