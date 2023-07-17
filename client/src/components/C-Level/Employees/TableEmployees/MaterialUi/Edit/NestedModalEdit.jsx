@@ -186,6 +186,11 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
+        
+        await axios.put(`/lead/cambiarnombreclevel`, {
+          name: inputName,
+          email: inputEmail,
+        });
       }
       if (itemRol === "leader") {
         await axios.put(`/leader/email/email?email=${inputEmail}`, {
@@ -213,6 +218,12 @@ function ChildModal({
           birthdate: inputBirthdate,
           description: inputDescription,
           country: inputCountry,
+        });
+
+        
+        await axios.put(`/lead/cambiarnombreleader`, {
+          name: inputName,
+          email: inputEmail,
         });
       }
       if (itemRol === "freelancer") {
@@ -243,7 +254,7 @@ function ChildModal({
           country: inputCountry,
         });
 
-        await axios.put(`/lead/cambiarnombre`, {
+        await axios.put(`/lead/cambiarnombrefreelancer`, {
           name: inputName,
           email: inputEmail,
         });
@@ -259,6 +270,13 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
+
+        
+        await axios.put(`/lead/cambiarnombrevendedor`, {
+          name: inputName,
+          email: inputEmail,
+        });
+        
       }
 
       if (itemRol === "corredor") {
@@ -269,6 +287,11 @@ function ChildModal({
           birthdate: inputBirthdate,
           description: inputDescription,
           country: inputCountry,
+        });
+        
+        await axios.put(`/lead/cambiarnombrecorredor`, {
+          name: inputName,
+          email: inputEmail,
         });
       }
 
