@@ -477,6 +477,8 @@ const ClasificacionDashboard = () => {
               checked: true,
               freelancer: true,
               view: true,
+              descargadosLeader: false,
+              descargadosCorredor: false,
             });
             console.log(response.data);
           } else if (
