@@ -42,6 +42,7 @@ const cambioNombreVendedor = require("../controllers/Lead/cambioNombreVendedor")
 const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
 const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
 
+// Obtener todos los leads
 const getAllLeadHandler = async (req, res) => {
   try {
     const lead = await getAllLeads();
@@ -51,6 +52,7 @@ const getAllLeadHandler = async (req, res) => {
   }
 };
 
+// Obtener todas las profesiones
 const getAllProfesionHandler = async (req, res) => {
   try {
     const profesion = await getAllProfession();
@@ -59,6 +61,8 @@ const getAllProfesionHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener todas las profesiones de freelancers filtradas por email
 const getAllProfesionFreelanceHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -69,6 +73,7 @@ const getAllProfesionFreelanceHandler = async (req, res) => {
   }
 };
 
+// Obtener todos los corredores
 const getCorredoresHandler = async (req, res) => {
   try {
     const corredores = await getCorredores();
@@ -77,6 +82,8 @@ const getCorredoresHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener todos los freelancers
 const getFreelancersHandler = async (req, res) => {
   try {
     const corredores = await getFreelancers();
@@ -86,6 +93,7 @@ const getFreelancersHandler = async (req, res) => {
   }
 };
 
+// Obtener todos los vendedores
 const getVendedoresHandler = async (req, res) => {
   try {
     const corredores = await getVendedores();
@@ -95,6 +103,7 @@ const getVendedoresHandler = async (req, res) => {
   }
 };
 
+// Obtener todas las categorías
 const getAllCategoryHandler = async (req, res) => {
   try {
     const category = await getAllCategory();
@@ -104,6 +113,7 @@ const getAllCategoryHandler = async (req, res) => {
   }
 };
 
+// Obtener todos los países
 const getAllCountriesHandler = async (req, res) => {
   try {
     const country = await getAllCountry();
@@ -112,6 +122,8 @@ const getAllCountriesHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener todos los países para freelancers filtrados por email
 const getAllCountriesFreelanceHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -122,6 +134,7 @@ const getAllCountriesFreelanceHandler = async (req, res) => {
   }
 };
 
+// Obtener leads no verificados
 const getLeadUncheckedHandler = async (req, res) => {
   try {
     const leadUnchecked = await getLeadUnchecked();
@@ -131,6 +144,7 @@ const getLeadUncheckedHandler = async (req, res) => {
   }
 };
 
+// Obtener los primeros 10 leads no verificados
 const getLead10UncheckedHandler = async (req, res) => {
   const { query } = req;
   try {
@@ -141,6 +155,7 @@ const getLead10UncheckedHandler = async (req, res) => {
   }
 };
 
+// Obtener leads por clasificación
 const getLeadClasificacionHandler = async (req, res) => {
   const { query } = req;
   try {
@@ -151,6 +166,7 @@ const getLeadClasificacionHandler = async (req, res) => {
   }
 };
 
+// Obtener leads verificados
 const getLeadCheckedHandler = async (req, res) => {
   try {
     const leadChequed = await getLeadChecked();
@@ -159,6 +175,8 @@ const getLeadCheckedHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener leads verificados para freelancers
 const getLeadCheckedFreelancerHandler = async (req, res) => {
   try {
     const leadChequed = await getLeadCheckedFreelancer();
@@ -167,6 +185,8 @@ const getLeadCheckedFreelancerHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener leads descartados
 const getLeadDiscardHandler = async (req, res) => {
   try {
     const leadChequed = await getLeadDiscard();
@@ -176,6 +196,7 @@ const getLeadDiscardHandler = async (req, res) => {
   }
 };
 
+// Obtener leads verificados pero inactivos durante 5 días
 const getLeadCheckedInactive5Handler = async (req, res) => {
   const body = req.body;
 
@@ -187,6 +208,7 @@ const getLeadCheckedInactive5Handler = async (req, res) => {
   }
 };
 
+// Cambiar nombre de lead C-level
 const cambioNombreClevelHandler = async (req, res) => {
   const body = req.body;
 
@@ -198,6 +220,7 @@ const cambioNombreClevelHandler = async (req, res) => {
   }
 };
 
+// Cambiar nombre de lead Leader
 const cambioNombreLeaderHandler = async (req, res) => {
   const body = req.body;
 
@@ -209,6 +232,7 @@ const cambioNombreLeaderHandler = async (req, res) => {
   }
 };
 
+// Cambiar nombre de lead Freelancer
 const cambioNombreFreelancerHandler = async (req, res) => {
   const body = req.body;
 
@@ -220,6 +244,7 @@ const cambioNombreFreelancerHandler = async (req, res) => {
   }
 };
 
+// Cambiar nombre de lead Corredor
 const cambioNombreCorredorHandler = async (req, res) => {
   const body = req.body;
 
@@ -231,6 +256,7 @@ const cambioNombreCorredorHandler = async (req, res) => {
   }
 };
 
+// Cambiar nombre de lead Vendedor
 const cambioNombreVendedorHandler = async (req, res) => {
   const body = req.body;
 
@@ -242,6 +268,7 @@ const cambioNombreVendedorHandler = async (req, res) => {
   }
 };
 
+// Publicar un nuevo lead
 const postLeadHandler = async (req, res) => {
   const data = req.body;
   try {
@@ -251,6 +278,8 @@ const postLeadHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Publicar un nuevo lead para freelancers
 const postLeadFreelancerHandler = async (req, res) => {
   const data = req.body;
   try {
@@ -261,6 +290,7 @@ const postLeadFreelancerHandler = async (req, res) => {
   }
 };
 
+// Actualizar un lead existente
 const updateLeadHandler = async (req, res) => {
   try {
     const id = req.params.id;
@@ -272,6 +302,7 @@ const updateLeadHandler = async (req, res) => {
   }
 };
 
+// Actualizar un lead de vendedor existente
 const updateLeadVendedorHandler = async (req, res) => {
   try {
     const id = req.params.id;
@@ -283,6 +314,8 @@ const updateLeadVendedorHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Actualizar un lead de freelancer existente
 const updateLeadFreelanceHandler = async (req, res) => {
   try {
     const id = req.params.id;
@@ -295,6 +328,7 @@ const updateLeadFreelanceHandler = async (req, res) => {
   }
 };
 
+// Obtener lead por nombre
 const getLeadByNameHandler = async (req, res) => {
   const { Name } = req.query;
 
@@ -306,6 +340,7 @@ const getLeadByNameHandler = async (req, res) => {
   }
 };
 
+// Obtener lead por ID
 const getLeadByIdHandler = async (req, res) => {
   const id = req.params.id;
 
@@ -316,6 +351,8 @@ const getLeadByIdHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener lead de vendedor por ID
 const getLeadVendedorHandler = async (req, res) => {
   try {
     const id = req.params.id;
@@ -327,6 +364,7 @@ const getLeadVendedorHandler = async (req, res) => {
   }
 };
 
+// Obtener leads de corredor verificados filtrados por email
 const getLeadCorredorCheckedHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -337,6 +375,7 @@ const getLeadCorredorCheckedHandler = async (req, res) => {
   }
 };
 
+// Obtener leads de corredores verificados y descargados filtrados por email
 const getLeadCorredoresCheckedDescargadosHandler = async (req, res) => {
   const { email } = req.query;
   console.log("email");
@@ -347,6 +386,8 @@ const getLeadCorredoresCheckedDescargadosHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener lead por email de aplicación
 const getLeadByEmailAppHandler = async (req, res) => {
   const { emailApp } = req.query;
   try {
@@ -356,6 +397,8 @@ const getLeadByEmailAppHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Buscar lead de corredor por nombre
 const findLeadCorredorNameHandler = async (req, res) => {
   const { name, month, year, fromDay, toDay } = req.query;
   try {
@@ -371,6 +414,8 @@ const findLeadCorredorNameHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Buscar lead de freelancer por nombre
 const findLeadFreelancerNameHandler = async (req, res) => {
   const { name } = req.query;
   try {
@@ -380,6 +425,8 @@ const findLeadFreelancerNameHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Buscar lead de corredor por nombre con toda la información
 const findLeadCorredorNameAllInfoHandler = async (req, res) => {
   const {
     corredor,
@@ -411,6 +458,8 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Buscar lead de freelancer por nombre con toda la información
 const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
   const {
     freelancer,
@@ -441,6 +490,7 @@ const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
   }
 };
 
+// Buscar lead de vendedor por nombre con toda la información
 const findLeadVendedorNameAllInfoHandler = async (req, res) => {
   const { email, fromDay, toDay, profesion, country, category, level, status } =
     req.query;
@@ -461,6 +511,7 @@ const findLeadVendedorNameAllInfoHandler = async (req, res) => {
   }
 };
 
+// Buscar lead de vendedor por nombre
 const findLeadVendedorNameHandler = async (req, res) => {
   const { name } = req.query;
   try {
@@ -470,6 +521,8 @@ const findLeadVendedorNameHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Actualizar el email de un lead
 const updateChangeEmailHandler = async (req, res) => {
   const { id } = req.params;
 
@@ -484,6 +537,7 @@ const updateChangeEmailHandler = async (req, res) => {
   }
 };
 
+// Descargar archivo CSV
 const dowloadCSVHandler = async (req, res) => {
   const niveles = req.query.nivel || [];
   try {
@@ -494,6 +548,7 @@ const dowloadCSVHandler = async (req, res) => {
   }
 };
 
+// Limpiar el valor de C-level en un lead
 const cleanValueClevelHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -504,6 +559,7 @@ const cleanValueClevelHandler = async (req, res) => {
   }
 };
 
+// Realizar limpieza de la base de datos
 const limpiezaBaseHandler = async (req, res) => {
   try {
     const clean = await limpiezaBaseFunction();
@@ -513,6 +569,7 @@ const limpiezaBaseHandler = async (req, res) => {
   }
 };
 
+// Asignar un freelancer a un lead
 const asignacionFreelancerHandler = async (req, res) => {
   const data = req.body;
   try {
