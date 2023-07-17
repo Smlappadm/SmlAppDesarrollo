@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
-const UploadWidget = ({ onImageUpload, setEditSave }) => {
+const UploadWidget = ({ onImageUpload, setEditSave, setProfileImageUrl }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
   const [imageUrl, setImageUrl] = useState("");
