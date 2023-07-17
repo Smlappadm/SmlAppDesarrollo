@@ -73,7 +73,7 @@ const findLeadCorredorNameAllInfo = async (
   if (descargados === "false") {
     query.descargadosLeader = false;
   }
-
+  console.log(query);
   const leads = await Lead.find(query).exec();
   return leads;
 };
