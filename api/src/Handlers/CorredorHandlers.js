@@ -9,6 +9,7 @@ const getCorredorByEmail = require("../controllers/Corredor/getCorredorByEmail")
 const putCorredorLeadChecked = require("../controllers/Corredor/putCorredorLeadChecked");
 const updateCorredorByEmail = require("../controllers/Corredor/updateCorredorByEmail");
 
+// Obtener todos los corredores
 const getAllCorredoresHandler = async (req, res) => {
   try {
     const corredores = await getAllCorredores();
@@ -17,6 +18,8 @@ const getAllCorredoresHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener valor de leads
 const getValueLeadsHandler = async (req, res) => {
   try {
     const corredores = await getValueLead();
@@ -26,6 +29,7 @@ const getValueLeadsHandler = async (req, res) => {
   }
 };
 
+// Registrar nuevo corredor
 const postCorredorHandler = async (req, res) => {
   const data = req.body;
 
@@ -37,6 +41,7 @@ const postCorredorHandler = async (req, res) => {
   }
 };
 
+// Actualizar leads no revisados del corredor
 const putCorredorLeadHandler = async (req, res) => {
   const email = req.query.email;
   const leadUnchecked10 = req.body;
@@ -49,6 +54,7 @@ const putCorredorLeadHandler = async (req, res) => {
   }
 };
 
+// Actualizar leads revisados del corredor
 const putCorredorLeadCheckedHandler = async (req, res) => {
   const email = req.query.email;
   const leadChecked = req.body;
@@ -61,6 +67,7 @@ const putCorredorLeadCheckedHandler = async (req, res) => {
   }
 };
 
+// Actualizar información del corredor
 const updateCorredorHandler = async (req, res) => {
   const id = req.params.id;
   const updatedData = req.body;
@@ -73,6 +80,7 @@ const updateCorredorHandler = async (req, res) => {
   }
 };
 
+// Obtener corredor por correo electrónico
 const getCorredorByEmailHandler = async (req, res) => {
   const { email } = req.query;
 
@@ -85,6 +93,7 @@ const getCorredorByEmailHandler = async (req, res) => {
   }
 };
 
+// Obtener corredor por ID
 const getCorredorByIdHandler = async (req, res) => {
   const id = req.params.id;
 
@@ -96,6 +105,7 @@ const getCorredorByIdHandler = async (req, res) => {
   }
 };
 
+// Actualizar información del corredor por correo electrónico
 const updateCorredorByEmailHandler = async (req, res) => {
   const email = req.query.email;
   const updatedData = req.body;
