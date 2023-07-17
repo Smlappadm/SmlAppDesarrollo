@@ -1,35 +1,33 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-
-
-const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota, link, email }) => {
-
-  const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`
+const createPayment = async ({
+  id,
+  name,
+  monto,
+  cuotas,
+  cuotasRestantes,
+  valorCuota,
+  link,
+  email,
+}) => {
+  const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`;
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
         price_data: {
           product_data: {
-            images: ["https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"],
+            images: [
+              "https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp",
+            ],
             name: name,
-            description: description
+            description: description,
           },
           currency: "eur",
-          unit_amount: (valorCuota * 100),
+          unit_amount: valorCuota * 100,
         },
         quantity: 1,
       },
-      // {
-      //   price_data: {
-      //     product_data: {
-      //       name: "TV",
-      //     },
-      //     currency: "usd",
-      //     unit_amount: 1000,
-      //   },
-      //   quantity: 2,
-      // },
     ],
     mode: "payment",
     success_url: link,
@@ -43,7 +41,6 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
 };
 
 module.exports = createPayment;
-
 
 // const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -83,8 +80,3 @@ module.exports = createPayment;
 // };
 
 // module.exports = createPayment;
-
-
-
-
-
