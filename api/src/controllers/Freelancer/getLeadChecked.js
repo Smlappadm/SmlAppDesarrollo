@@ -129,7 +129,6 @@ const getLeadChecked = async (body) => {
       leadRestNivel1 = await Lead.find(leadQuery).limit(count2).exec();
     }
 
-
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -149,7 +148,7 @@ const getLeadChecked = async (body) => {
     }
 
     let count3 = 0;
-    count3 = 5 - (leadRestNivel2.length + leadRestNivel1.length)  ;
+    count3 = 5 - (leadRestNivel2.length + leadRestNivel1.length);
     if (count3 > 0 && count3 <= 5) {
       leadRestNivel3 = await Lead.find(leadQuery).limit(count3).exec();
     }
@@ -193,7 +192,6 @@ const getLeadChecked = async (body) => {
   });
 
   return [...leadRest, ...leadsNoRespondenSorted];
-  // return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
 };
 
 module.exports = getLeadChecked;
