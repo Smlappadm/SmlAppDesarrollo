@@ -188,7 +188,7 @@ export default function Settings() {
     dispatch(getAllLeader());
     dispatch(getAllClevel());
     dispatch(getAllFreelancer());
-  }, [dispatch]);
+  }, [dispatch, img]);
 
   useEffect(() => {
     if (selectedEmployee && selectedEmployee.birthdate !== null) {
