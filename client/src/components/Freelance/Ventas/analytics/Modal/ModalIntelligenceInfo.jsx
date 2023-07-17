@@ -77,20 +77,58 @@ export default function ModalIntelligentInfo({ item }) {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-               <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
+        <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
           <div className="flex flex-col items-center justify-center gap-y-7">
             <h1 className="text-24 text-[#e4e1e1]">Información Cliente</h1>
-            <div>
-
-{item.seguidores2000 ? <p>Seguidores +2000: ☑️✔️✅</p> : <p>Seguidores +2000: ❌</p>}
-{item.repercusion ? <p>Repercusion: ☑️✔️✅</p> : <p>Repercusion: ❌</p>}
-{item.contenidoPersonal ? <p>Contenido Personal: ☑️✔️✅</p> : <p>Contenido Personal: ❌</p>}
-{item.contenidoValor ? <p>Contenido de Valor: ☑️✔️✅</p> : <p>Contenido de Valor: ❌</p>}
-{item.calidadInstagram ? <p>Calidad Instagram: ☑️✔️✅</p> : <p>Calidad Instagram: ❌</p>}
-{item.frecuencia ? <p>Frecuencia: ☑️✔️✅</p> : <p>Frecuencia: ❌</p>}
-
-
-              
+            <div className="mb-10">
+              {item && item.seguidores2000 ? (
+                <div className="flex justify-start items-center">
+                  <p>Seguidores +2000: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Seguidores +2000: ❌</p>
+              )}
+              {item && item.repercusion ? (
+                <div className="flex justify-start items-center">
+                  <p>Repercusion: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Repercusion: ❌</p>
+              )}
+              {item && item.contenidoPersonal ? (
+                <div className="flex justify-start items-center">
+                  <p>Contenido Personal: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Contenido Personal: ❌</p>
+              )}
+              {item && item.contenidoValor ? (
+                <div className="flex justify-start items-center">
+                  <p>Contenido de Valor: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Contenido de Valor: ❌</p>
+              )}
+              {item && item.calidadInstagram ? (
+                <div className="flex justify-start items-center">
+                  <p>Calidad Instagram: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Calidad Instagram: ❌</p>
+              )}
+              {item && item.frecuencia ? (
+                <div className="flex justify-start items-center">
+                  <p>Frecuencia: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Frecuencia: ❌</p>
+              )}
             </div>
             <button
               type="button"
