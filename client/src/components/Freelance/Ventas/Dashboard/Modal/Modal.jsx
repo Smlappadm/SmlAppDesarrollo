@@ -1242,7 +1242,6 @@ export default function NestedModal({
                         defaultValue={updatedEmailApp}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar email App cliente"
-                        // value={inputEmail}
                         disabled={!editEmailApp}
                         required
                       />
@@ -1268,7 +1267,6 @@ export default function NestedModal({
                         defaultValue={updatedContacto}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar nombre de contacto"
-                        // value={inputEmail}
                         disabled={!editContacto}
                         required
                       />
@@ -1540,66 +1538,6 @@ export default function NestedModal({
               )}
             {statusObj.status === "Contratado" && (
               <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                {/* <div className="flex items-center justify-center gap-2 relative">
-                  <label
-                    htmlFor="last_name"
-                    className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                  >
-                    €
-                  </label>
-                  <input
-                    onChange={handleSelectChangeContratado}
-                    type="number"
-                    id="last_name"
-                    name="monto"
-                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
-                    placeholder="Monto"
-                    required
-                  />
-                  <label
-                    htmlFor="last_name"
-                    className="  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                  >
-                    /
-                  </label>
-                  <input
-                    onChange={handleSelectChangeContratado}
-                    type="number"
-                    id="last_name"
-                    name="cuotas"
-                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
-                    placeholder="Cuotas"
-                    required
-                  />
-                </div> */}
-
-                {/* <p
-                  type="text"
-                  id="last_name"
-                  name="total"
-                  disabled={true}
-                  className={
-                    statusObj.pagos.monto && statusObj.pagos.cuotas
-                      ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      : ""
-                  }
-                  // placeholder={item.email}
-                  placeholder=""
-                  // value="USD"
-                >
-                  {statusObj.pagos.monto &&
-                    statusObj.pagos.cuotas &&
-                    `${statusObj.pagos.cuotas} pagos de €${(
-                      statusObj.pagos.monto / statusObj.pagos.cuotas
-                    ).toFixed(2)}`}
-                </p> */}
-
-                {/* <MdPriceCheck
-                      onClick={handleOpenPagoSelect}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    /> */}
-                {/* </div> */}
-
                 <select
                   onChange={handleSelectPago}
                   name="status"
@@ -1720,16 +1658,6 @@ export default function NestedModal({
               </div>
             )}
           </div>
-          {/* <div className="flex justify-center items-center absolute -right-80 top-0">
-            {openTimeHour && (
-              <ResponsiveDateTimePickers
-                closeDateHour={closeDateHour}
-                changeTime={changeTime}
-                className={style.dateTime}
-                handleLlamadoVentaChange ={handleLlamadoVentaChange }
-              />
-            )}
-          </div> */}
 
           <div className="flex justify-center items-center absolute -right-80 top-0">
             {openTimeHour && (
