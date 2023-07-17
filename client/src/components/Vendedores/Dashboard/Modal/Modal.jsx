@@ -1520,50 +1520,6 @@ export default function NestedModal({
                       statusObj.pagos.monto / statusObj.pagos.cuotas
                     ).toFixed(2)}`}
                 </p>
-
-                {/* <MdPriceCheck
-                      onClick={handleOpenPagoSelect}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    /> */}
-                {/* </div> */}
-                {/* {openPagoSelect && (
-                    <select
-                      onChange={handleSelectpago}
-                      name="status"
-                      defaultValue="default"
-                      id="select1"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option disabled="disabled" value="default">
-                        Modo de pago
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="1"
-                        value="pago1"
-                      >{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1} - 35%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="6"
-                        value="pago6"
-                      >{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6} - 20%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="12"
-                        value="pago12"
-                      >{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12} - 10%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="16"
-                        value="pago16"
-                      >{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16} - 5%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="25"
-                        value="pago25"
-                      >{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
-                    </select>
-                  )} */}
               </div>
             )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
