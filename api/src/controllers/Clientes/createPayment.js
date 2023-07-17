@@ -1,26 +1,34 @@
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCuota }) => {
+const createPayment = async ({
+  id,
+  name,
+  monto,
+  cuotas,
+  cuotasRestantes,
+  valorCuota,
+}) => {
+  //     const infoLead = await find({emailApp:emailApp})
+  // console.log(infoLead.pagos)
 
-//     const infoLead = await find({emailApp:emailApp})
-// console.log(infoLead.pagos)
+  // return infoLead.pagos
 
-// return infoLead.pagos
-
-  const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`
+  const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`;
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
         price_data: {
           product_data: {
-            images: ["https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp"],
+            images: [
+              "https://images-ext-1.discordapp.net/external/VmotedpeNAAv9Sz0GZI5iLiobf_7NpJn24pyas4ed_Y/https/i.postimg.cc/4y1YcByV/1685492595204-removebg-preview.webp",
+            ],
             name: name,
-            description: description
+            description: description,
             // description: `cuotas ${cuotasRestantes}/${cuotas}`
           },
           currency: "eur",
-          unit_amount: (valorCuota * 100),
+          unit_amount: valorCuota * 100,
         },
         quantity: 1,
       },
@@ -40,19 +48,14 @@ const createPayment = async ({ id, name, monto, cuotas, cuotasRestantes, valorCu
     payment_intent_data: {
       payment_method_options: {
         card: {
-          installments: cuotas // Establece el número de cuotas del pago
-        }
+          installments: cuotas, // Establece el número de cuotas del pago
+        },
       },
-      description: description // Establece el detalle del pago
+      description: description, // Establece el detalle del pago
     },
-    // success_url: "www.google.com.ar",
-    // success_url: "http://localhost:5173/clientes-pagos",
     success_url: "https://sml-app.vercel.app/clientes-pagos",
-    // cancel_url: "http://localhost:3002/cancel",
     locale: "es",
   });
-
-
 
   return session;
 };
