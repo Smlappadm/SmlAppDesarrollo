@@ -167,7 +167,7 @@ const updateLeadFreelanceById = async (id, updatedData) => {
 };
 
 module.exports = updateLeadFreelanceById;
-F
+
 
 
 // const Lead = require("../../models/Lead");
