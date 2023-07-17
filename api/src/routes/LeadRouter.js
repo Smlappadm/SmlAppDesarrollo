@@ -39,6 +39,10 @@ const {
   postLeadFreelancerHandler,
   getLeadCorredoresCheckedDescargadosHandler,
   cambioNombreFreelancerHandler,
+  cambioNombreClevelHandler,
+  cambioNombreLeaderHandler,
+  cambioNombreVendedorHandler,
+  cambioNombreCorredorHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -78,7 +82,11 @@ LeadRouter.post("/new", postLeadFreelancerHandler);
 LeadRouter.put("/changeemail/:id", updateChangeEmailHandler);
 LeadRouter.put("/cleanclevel", cleanValueClevelHandler);
 LeadRouter.put("/limpieza", limpiezaBaseHandler);
-LeadRouter.put("/cambiarnombre", cambioNombreFreelancerHandler);
+LeadRouter.put("/cambiarnombreclevel", cambioNombreClevelHandler);
+LeadRouter.put("/cambiarnombreleader", cambioNombreLeaderHandler);
+LeadRouter.put("/cambiarnombrevendedor", cambioNombreVendedorHandler);
+LeadRouter.put("/cambiarnombrecorredor", cambioNombreCorredorHandler);
+LeadRouter.put("/cambiarnombrefreelancer", cambioNombreFreelancerHandler);
 LeadRouter.put("/asignacion", asignacionFreelancerHandler);
 LeadRouter.put("/:id", updateLeadHandler);
 LeadRouter.put("/vendedor/:id", updateLeadVendedorHandler);
