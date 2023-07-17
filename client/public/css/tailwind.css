@@ -954,10 +954,6 @@ video {
   margin-top: 2rem;
 }
 
-.mb-12 {
-  margin-bottom: 3rem;
-}
-
 .block {
   display: block;
 }
@@ -2545,6 +2541,11 @@ video {
 
 .text-\[\#dddb63b0\] {
   color: #dddb63b0;
+}
+
+.text-\[\#dddddd\] {
+  --tw-text-opacity: 1;
+  color: rgb(221 221 221 / var(--tw-text-opacity));
 }
 
 .text-\[\#e0dddd\] {
