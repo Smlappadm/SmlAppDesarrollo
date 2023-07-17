@@ -194,7 +194,10 @@ export default function Settings() {
     if (selectedEmployee && selectedEmployee.birthdate !== null) {
       setSaveDate(selectedEmployee.birthdate);
     }
-  }, [selectedEmployee, profileImageUrl]);
+    if (selectedEmployee && selectedEmployee.photo !== "") {
+      setProfileImageUrl(selectedEmployee.photo);
+    }
+  }, [selectedEmployee]);
 
   const CleanClevel = (fullName) => {
     toast.success(
