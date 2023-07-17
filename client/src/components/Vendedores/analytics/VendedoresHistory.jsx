@@ -49,7 +49,6 @@ const VendedoresHistory = () => {
       progress: undefined,
       theme: "dark",
     });
-    // dispatch(getVendedorAllLeads(email));
   };
 
   const SendErrorUpdateAlertBaja = () => {
@@ -326,9 +325,6 @@ const VendedoresHistory = () => {
               <Link className="text-5xl" to={"/vendedores-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link> */}
 
               {filters.level === true ? (
                 <div className=" flex justify-center items-center w-80">
@@ -389,9 +385,6 @@ const VendedoresHistory = () => {
                 ""
               )}
 
-              {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
-                  <option className="py-1">2023</option>
-                </select> */}
             </div>
           </div>
 
