@@ -20,7 +20,7 @@ const UploadWidget = ({ onImageUpload, setEditSave, setProfileImageUrl }) => {
       function (error, result) {
         if (!error && result && result.event === "success") {
           const img = result.info.secure_url;
-          setImageUrl(img);
+          setProfileImageUrl(img);
           // Utilizar la función de devolución de llamada con la URL de la imagen
           onImageUpload(img);
           setEditSave(true);
