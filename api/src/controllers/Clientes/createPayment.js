@@ -25,7 +25,6 @@ const createPayment = async ({
             ],
             name: name,
             description: description,
-            // description: `cuotas ${cuotasRestantes}/${cuotas}`
           },
           currency: "eur",
           unit_amount: valorCuota * 100,
