@@ -83,7 +83,7 @@ export default function ModalIntelligentInfo({ item }) {
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
           <div className="flex flex-col items-center justify-center gap-y-7">
             <h1 className="text-24 text-[#e4e1e1]">Información Cliente</h1>
-            <div className="mb-10">
+            <div className="mb-10 gap-y-3">
               {item && item.seguidores2000 ? (
                 <div className="flex justify-start items-center">
                   <p>Seguidores +2000: </p>{" "}
@@ -94,11 +94,11 @@ export default function ModalIntelligentInfo({ item }) {
               )}
               {item && item.repercusion ? (
                 <div className="flex justify-start items-center">
-                  <p>Repercusion: </p>{" "}
+                  <p>Repercusión: </p>{" "}
                   <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
                 </div>
               ) : (
-                <p>Repercusion: ❌</p>
+                <p>Repercusión: ❌</p>
               )}
               {item && item.contenidoPersonal ? (
                 <div className="flex justify-start items-center">
