@@ -100,43 +100,7 @@ function ChildModalHistory({
     //   };
     // }
 
-    // let dataVendedor = {};
-    // if (statusObj.status === "No responde") {
-    //   // statusObj.status_op = "";
-    //   dataVendedor = {
-    //     _id: item._id,
-    //     name: item.name,
-    //     email: item.email,
-    //     status: statusObj.status,
-    //     status_op: statusObj.status_op,
-    //     llamada_venta: statusObj.llamada_venta,
-    //     province: item.province,
-    //     category: item.category,
-    //     telephone: item.telephone,
-    //     emailApp: item.emailApp,
-    //     url: item.url,
-    //     instagram: item.instagram,
-    //     level: item.level,
-    //   };
-    // } else {
-    //   // statusObj.status_op = "";
-    //   dataVendedor = {
-    //     _id: item._id,
-    //     name: item.name,
-    //     email: item.email,
-    //     emailApp: item.emailApp,
-    //     status: statusObj.status,
-    //     status_op: statusObj.status_op,
-    //     pagos: statusObj.pagos,
-    //     llamada_venta: statusObj.llamada_venta,
-    //     province: item.province,
-    //     category: item.category,
-    //     telephone: item.telephone,
-    //     url: item.url,
-    //     instagram: item.instagram,
-    //     level: item.level,
-    //   };
-    // }
+
 
 
     try {
