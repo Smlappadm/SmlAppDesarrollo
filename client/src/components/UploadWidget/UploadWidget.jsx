@@ -10,8 +10,6 @@ const UploadWidget = ({ onImageUpload, setEditSave, setProfileImageUrl }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
-  const saveImageProfile = () => {};
-
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
