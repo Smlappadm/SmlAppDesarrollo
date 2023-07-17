@@ -187,6 +187,7 @@ export default function Settings() {
     dispatch(getAllLeader());
     dispatch(getAllClevel());
     dispatch(getAllFreelancer());
+    setProfileImageUrl(userImageUrl);
   }, [dispatch]);
 
   useEffect(() => {
@@ -294,6 +295,7 @@ export default function Settings() {
                 <UploadWidget
                   onImageUpload={handleImageUpload}
                   setEditSave={setEditSave}
+                  setProfileImageUrl={setProfileImageUrl}
                 />
                 {profileImageUrl && (
                   <Image
