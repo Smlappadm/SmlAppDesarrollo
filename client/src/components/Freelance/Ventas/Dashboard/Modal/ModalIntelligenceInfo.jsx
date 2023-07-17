@@ -13,7 +13,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  height: 850,
+  height: 500,
   bgcolor: "#39394B",
   border: "none",
   boxShadow: 24,
@@ -84,7 +84,7 @@ export default function ModalIntelligentInfo({ item }) {
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
           <div className="flex flex-col items-center justify-center gap-y-7">
             <h1 className="text-24 text-[#e4e1e1]">Información Cliente</h1>
-            <div>
+            <div className="mb-10">
               {item && item.seguidores2000 ? (
                 <div className="flex justify-start items-center">
                   <p>Seguidores +2000: </p>{" "}
