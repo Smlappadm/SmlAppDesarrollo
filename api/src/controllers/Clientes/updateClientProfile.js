@@ -1,31 +1,16 @@
+// Importamos el modelo de Clientes desde la ruta relativa "../../models/Clientes"
 const Clientes = require("../../models/Clientes");
 
+// Función asincrónica para actualizar el perfil de un cliente en la base de datos
 const updateClientProfile = async (email, body) => {
-  const client = await Clientes.findOneAndUpdate(
-    { email },
-    body,
-    {
-      new: true,
-    }
-    // {
-    //   username: body.username && body.username,
-    //   photo: body.photo && body.photo,
-    //   instagram: body.instagram && body.instagram,
-    //   tiktok: body.tiktok && body.tiktok,
-    //   drive: body.drive && body.drive,
-    //   phone: body.phone && body.phone,
-    //   country: body.country && body.country,
-    //   videosPublicados: body.videosPublicados && body.videosPublicados,
-    //   videosPublicadosAnterior: body.videosPublicadosAnteriores && body.videosPublicadosAnteriores,
-    //   seguidoresGanados: body.seguidoresGanados && body.seguidoresGanados,
-    //   seguidoresGanadosAnteriores: body.seguidoresGanadosAnteriores && body.seguidoresGanadosAnteriores,
-    //   videosAcumulados: body.videosAcumulados && body.videosAcumulados,
-    //   videosAcumuladosAnteriores: body.videosAcumuladosAnteriores && body.videosAcumuladosAnteriores,
-    //   meGustaAcumulados: body.meGustaAcumulados && body.meGustaAcumulados,
-    //   meGustaAcumuladosAnteriores: body.meGustaAcumuladosAnteriores && body.meGustaAcumuladosAnteriores,
-    // }
-  );
-  return client;
+  // Buscamos al cliente por su email y actualizamos sus campos con los valores proporcionados en el objeto "body"
+  // Utilizamos { new: true } para que se devuelva el cliente actualizado después de realizar la actualización
+  const client = await Clientes.findOneAndUpdate({ email }, body, {
+    new: true,
+  });
+
+  return client; // Devolvemos el cliente actualizado con los cambios realizados
 };
 
+// Exportamos la función para que pueda ser utilizada en otros archivos
 module.exports = updateClientProfile;
