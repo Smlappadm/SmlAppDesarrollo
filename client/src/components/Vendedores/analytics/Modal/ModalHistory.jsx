@@ -8,7 +8,6 @@ import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
-// import toast, { Toaster } from 'react-hot-toast';
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
 import {
@@ -139,39 +138,7 @@ function ChildModalHistory({
     //   };
     // }
 
-    // const dataLead = {
-    //   status: statusObj.status,
-    //   status_op: statusObj.status_op,
-    //   pagos: statusObj.pagos,
-    //   emailApp: item.emailApp,
-    //   // vendedor: emailAddress,
-    //   vendedor: emailAddress,
-    //   vendedor_name: fullName,
-    //   llamados: item.llamados,
-    //   llamada_venta: statusObj.llamada_venta,
-    // };
 
-    // const dataUpdate = {
-    //   dataLead,
-    //   dataVendedor,
-    // };
-
-    // axios
-    //   .put(`/lead/vendedor/${item._id}`, dataUpdate)
-    //   .then((response) => {
-    //     // Si la respuesta es exitosa, redirige a otra página
-
-    //     if (response.data.title) {
-    //       updateLeads();
-    //       setOpen(false);
-    //     }
-    //     SendLeadAlert();
-    //   })
-    //   .catch((error) => {
-    //     // Si hay un error, muestra un mensaje de error
-    //     SendErrorUpdateAlert();
-    //   });
-    // statusObj.status = "";
     try {
       const body = { deleted: true };
       const response = await axios.put(`/lead/changeemail/${item._id}`, body);
