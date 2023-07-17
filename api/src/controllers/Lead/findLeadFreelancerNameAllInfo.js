@@ -69,8 +69,6 @@ const findLeadFreelancerNameAllInfo = async (
 
   if (descargados === "false") {
     query.descargadosLeader = false;
-  } else {
-    query.descargadosLeader = true;
   }
   console.log(query);
   const leads = await Lead.find(query).exec();
