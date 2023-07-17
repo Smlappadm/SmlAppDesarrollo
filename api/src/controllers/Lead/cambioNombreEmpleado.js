@@ -1,15 +1,15 @@
 const Lead = require("../../models/Lead");
 
-const cambioNombreEmpleado = async (body) => {
+const cambioNombreFreelancer = async (body) => {
   const { email, name } = body;
   const leadResult = await Lead.updateMany(
-    { corredor: email },
+    { corredor: email, freelancer: true },
     {
       corredor_name: name,
-      freelancer: name,
+      vendedor_name: name,
     }
   );
   return leadResult;
 };
 
-module.exports = cambioNombreEmpleado;
+module.exports = cambioNombreFreelancer;

@@ -36,6 +36,7 @@ const asignacionFreelancer = require("../controllers/Lead/asignacionFreelancer")
 const findLeadFreelancerName = require("../controllers/Lead/findLeadFreelancerName");
 const postLeadFreelancer = require("../controllers/Lead/postLeadFreelancer");
 const getLeadCorredoresCheckedDescargados = require("../controllers/Lead/getLeadCorredoresCheckedDescargados");
+const cambioNombreFreelancer = require("../controllers/Lead/cambioNombreEmpleado");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -173,10 +174,21 @@ const getLeadDiscardHandler = async (req, res) => {
 
 const getLeadCheckedInactive5Handler = async (req, res) => {
   const body = req.body;
-  
+
   try {
     const leadCheckedInactive5 = await getLeadCheckedInactive5(body);
     res.status(200).json(leadCheckedInactive5);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const cambioNombreFreelancerHandler = async (req, res) => {
+  const body = req.body;
+
+  try {
+    const nombreFreelancer = await cambioNombreFreelancer(body);
+    res.status(200).json(nombreFreelancer);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -502,4 +514,5 @@ module.exports = {
   asignacionFreelancerHandler,
   findLeadFreelancerNameHandler,
   postLeadFreelancerHandler,
+  cambioNombreFreelancerHandler,
 };
