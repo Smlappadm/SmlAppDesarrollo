@@ -36,7 +36,11 @@ const asignacionFreelancer = require("../controllers/Lead/asignacionFreelancer")
 const findLeadFreelancerName = require("../controllers/Lead/findLeadFreelancerName");
 const postLeadFreelancer = require("../controllers/Lead/postLeadFreelancer");
 const getLeadCorredoresCheckedDescargados = require("../controllers/Lead/getLeadCorredoresCheckedDescargados");
-const cambioNombreFreelancer = require("../controllers/Lead/cambioNombreEmpleado");
+const cambioNombreFreelancer = require("../controllers/Lead/cambioNombreFreelancer");
+const cambioNombreCorredor = require("../controllers/Lead/cambioNombreCorredor");
+const cambioNombreVendedor = require("../controllers/Lead/cambioNombreVendedor");
+const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
+const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
 
 const getAllLeadHandler = async (req, res) => {
   try {
@@ -183,12 +187,56 @@ const getLeadCheckedInactive5Handler = async (req, res) => {
   }
 };
 
+const cambioNombreClevelHandler = async (req, res) => {
+  const body = req.body;
+
+  try {
+    const nombreClevel = await cambioNombreClevel(body);
+    res.status(200).json(nombreClevel);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const cambioNombreLeaderHandler = async (req, res) => {
+  const body = req.body;
+
+  try {
+    const nombreLeader = await cambioNombreLeader(body);
+    res.status(200).json(nombreLeader);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 const cambioNombreFreelancerHandler = async (req, res) => {
   const body = req.body;
 
   try {
     const nombreFreelancer = await cambioNombreFreelancer(body);
     res.status(200).json(nombreFreelancer);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const cambioNombreCorredorHandler = async (req, res) => {
+  const body = req.body;
+
+  try {
+    const nombreCorredor = await cambioNombreCorredor(body);
+    res.status(200).json(nombreCorredor);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const cambioNombreVendedorHandler = async (req, res) => {
+  const body = req.body;
+
+  try {
+    const nombreVendedor = await cambioNombreVendedor(body);
+    res.status(200).json(nombreVendedor);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -515,4 +563,8 @@ module.exports = {
   findLeadFreelancerNameHandler,
   postLeadFreelancerHandler,
   cambioNombreFreelancerHandler,
+  cambioNombreCorredorHandler,
+  cambioNombreVendedorHandler,
+  cambioNombreClevelHandler,
+  cambioNombreLeaderHandler,
 };
