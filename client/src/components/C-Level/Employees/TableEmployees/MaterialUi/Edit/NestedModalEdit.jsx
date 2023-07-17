@@ -53,7 +53,11 @@ function ChildModalDelete({
   };
   const handleCreate = async () => {
     try {
-      if (itemRol === "clevel" || itemRol === "leader" || itemRol === "freelancer") {
+      if (
+        itemRol === "clevel" ||
+        itemRol === "leader" ||
+        itemRol === "freelancer"
+      ) {
         await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
           deleted: true,
         });
@@ -154,7 +158,6 @@ function ChildModal({
       setOpen(false);
       return;
     }
-
     try {
       if (itemRol === "clevel") {
         await axios.put(`/clevel/email?email=${inputEmail}`, {
@@ -238,6 +241,10 @@ function ChildModal({
           birthdate: inputBirthdate,
           description: inputDescription,
           country: inputCountry,
+        });
+        await axios.put(`/lead/cambiarnombre`, {
+          name: inputName,
+          email: inputEmail,
         });
       }
 
