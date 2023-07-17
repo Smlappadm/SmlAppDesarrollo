@@ -370,6 +370,8 @@ const CorredoresDashboard = () => {
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
               view: true,
+              descargadosLeader: false,
+              descargadosCorredor: false,
             });
             console.log(response.data);
           } else if (
@@ -422,7 +424,9 @@ const CorredoresDashboard = () => {
         <form onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
             <div className="flex gap-10  mt-2 mx-5 ">
-              <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">Dashboard</h1>
+              <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+                Dashboard
+              </h1>
               <div className="flex gap-5">
                 <Link to={"/corredores"}>
                   <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
