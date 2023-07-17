@@ -50,7 +50,6 @@ const VentasHistory = () => {
       progress: undefined,
       theme: "dark",
     });
-    // dispatch(getVendedorAllLeads(email));
   };
 
   const SendErrorUpdateAlertBaja = () => {
@@ -109,31 +108,6 @@ const VentasHistory = () => {
     sellers: false,
     status: false,
   });
-
-  // const handlerFilter = (filter) => {
-  //   dispatch(getVendedorAllLeads(email));
-  //   setFilterSector("");
-  //   setFilterName("");
-  //   setFilterPais("");
-  //   setOpenFilterName(false);
-  //   setOpenFilterSector(false);
-  //   setOpenFilterPais(false);
-  //   setOpenFilterStatus(false);
-  //   if (filter === "level") {
-  //     setFilters({
-  //       level: !filters.level,
-  //       runner: false,
-  //       sellers: false,
-  //       status: false,
-  //     });
-  //   } else if (filter === "runner") {
-  //     setFilters({ level: false, runner: true, sellers: false, status: false });
-  //   } else if (filter === "sellers") {
-  //     setFilters({ level: false, runner: false, sellers: true, status: false });
-  //   } else {
-  //     setFilters({ level: false, runner: false, sellers: false, status: true });
-  //   }
-  // };
 
   const [levelValue, setLevelValue] = useState("");
   const [statusValue, setStatusValue] = useState("");
@@ -390,9 +364,6 @@ const VentasHistory = () => {
                 ""
               )}
 
-              {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
-                  <option className="py-1">2023</option>
-                </select> */}
             </div>
           </div>
 
@@ -424,13 +395,11 @@ const VentasHistory = () => {
                 </button>
                 <label
                   className="text-start w-[15%] px-3"
-                  // onClick={handlerOpenFilterSector}
                 >
                   Profesión
                 </label>
                 <label
                   className="text-start w-[10%] px-3"
-                  // onClick={handlerOpenFilterPais}
                 >
                   País
                 </label>
@@ -439,19 +408,16 @@ const VentasHistory = () => {
                 <label className="text-center w-[15%] ">Teléfono</label>
                 <label
                   className="  w-[10%] text-center"
-                  // onClick={() => handlerFilter("level")}
                 >
                   Nivel
                 </label>
                 <label
                   className="text-center w-[17%]"
-                  // onClick={handlerOpenStatus}
                 >
                   Estado
                 </label>
                 <label
                   className="text-center w-[3%]"
-                  // onClick={handlerOpenStatus}
                 ></label>
               </div>
 
