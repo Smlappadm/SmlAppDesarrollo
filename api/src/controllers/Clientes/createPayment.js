@@ -8,11 +8,6 @@ const createPayment = async ({
   cuotasRestantes,
   valorCuota,
 }) => {
-  //     const infoLead = await find({emailApp:emailApp})
-  // console.log(infoLead.pagos)
-
-  // return infoLead.pagos
-
   const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`;
 
   const session = await stripe.checkout.sessions.create({
