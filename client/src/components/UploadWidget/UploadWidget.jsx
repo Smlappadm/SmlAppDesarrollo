@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 const UploadWidget = ({ onImageUpload, setEditSave, setProfileImageUrl }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
-  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
