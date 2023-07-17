@@ -10,6 +10,8 @@ const UploadWidget = ({ onImageUpload, setEditSave, setProfileImageUrl }) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
+  const saveImageProfile = () => {};
+
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
     widgetRef.current = cloudinaryRef.current.createUploadWidget(
@@ -21,6 +23,7 @@ const UploadWidget = ({ onImageUpload, setEditSave, setProfileImageUrl }) => {
         if (!error && result && result.event === "success") {
           const img = result.info.secure_url;
           setProfileImageUrl(img);
+          localStorage.setItem("imagenProfile", img);
           // Utilizar la función de devolución de llamada con la URL de la imagen
           onImageUpload(img);
           setEditSave(true);
