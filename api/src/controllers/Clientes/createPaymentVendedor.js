@@ -32,7 +32,6 @@ const createPayment = async ({
     mode: "payment",
     success_url: link,
     customer_email: email,
-    // cancel_url: "http://localhost:3002/cancel",
 
     locale: "es",
   });
