@@ -80,7 +80,7 @@ export default function ModalIntelligentInfo({ item }) {
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
           <div className="flex flex-col items-center justify-center gap-y-7">
             <h1 className="text-24 text-[#e4e1e1]">Información Cliente</h1>
-            <div>
+            <div className="mb-10">
               {item && item.seguidores2000 ? (
                 <div className="flex justify-start items-center">
                   <p>Seguidores +2000: </p>{" "}
