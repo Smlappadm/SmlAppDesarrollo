@@ -1,18 +1,27 @@
+// Importando el modelo Lead
 const Lead = require("../../models/Lead");
 
+// Función para actualizar un lead por su ID en la base de datos
 const updateLeadById = async (id, updatedData) => {
+  // Obtenemos la fecha y hora actual en formato ISO
   const date = new Date();
   const formattedTime = date.toISOString();
 
+  // Agregamos la propiedad 'updateCorredor' al objeto 'updatedData' con el valor de la fecha y hora actual
   updatedData.updateCorredor = formattedTime;
 
   try {
+    // Utiliza el método 'findByIdAndUpdate' para buscar y actualizar un registro de lead en la colección 'Lead'
+    // donde el campo '_id' es igual al valor de 'id' proporcionado
+    // 'updatedData' contiene los campos y valores a actualizar en el lead
+    // 'new: true' indica que se debe devolver el lead actualizado después de la actualización
     const lead = await Lead.findByIdAndUpdate(id, updatedData, {
       new: true,
     });
 
-    return lead;
+    return lead; // Devuelve el lead actualizado
   } catch (error) {
+    // Si ocurre un error durante la actualización, se lanza una excepción con un mensaje de error
     throw new Error(`Error updating lead with id ${id}: ${error.message}`);
   }
 };
