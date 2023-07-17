@@ -42,6 +42,7 @@ export default function Settings() {
   const { clevel } = useSelector((state) => state);
 
   const role = localStorage.getItem("roleReady");
+  const img = localStorage.getItem("imagenProfile");
 
   const dispatch = useDispatch();
 
@@ -187,14 +188,13 @@ export default function Settings() {
     dispatch(getAllLeader());
     dispatch(getAllClevel());
     dispatch(getAllFreelancer());
-    setProfileImageUrl(userImageUrl);
   }, [dispatch]);
 
   useEffect(() => {
     if (selectedEmployee && selectedEmployee.birthdate !== null) {
       setSaveDate(selectedEmployee.birthdate);
     }
-  }, [selectedEmployee]);
+  }, [selectedEmployee, profileImageUrl]);
 
   const CleanClevel = (fullName) => {
     toast.success(
