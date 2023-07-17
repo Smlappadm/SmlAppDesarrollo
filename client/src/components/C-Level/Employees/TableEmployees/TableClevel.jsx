@@ -86,7 +86,6 @@ const ErrorCreateEmployees = (name) => {
   });
 };
 
-
 const okLeads = (message) => {
   toast.success(`${message}`, {
     position: "top-center",

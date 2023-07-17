@@ -242,10 +242,12 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
+
         await axios.put(`/lead/cambiarnombre`, {
           name: inputName,
           email: inputEmail,
         });
+        
       }
 
       if (itemRol === "vendedor") {
