@@ -62,6 +62,10 @@ function ChildModalDelete({
           await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
             deleted: true,
           });
+        } else {
+          await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
+            deleted: true,
+          });
         }
         await axios.put(`/corredor/email/email?email=${itemEmail}`, {
           deleted: true,
