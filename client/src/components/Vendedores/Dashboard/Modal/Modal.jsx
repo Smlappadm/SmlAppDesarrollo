@@ -580,7 +580,6 @@ export default function NestedModal({
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
-  const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
   const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
