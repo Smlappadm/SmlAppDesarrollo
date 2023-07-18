@@ -51,6 +51,15 @@ const getAllLeadHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+// Obtener todos los leads
+const getAllLeadsContratandoHandler = async (req, res) => {
+  try {
+    const leadContratando = await getAllLeadsContratando();
+    res.status(200).json(leadContratando);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 // Obtener todas las profesiones
 const getAllProfesionHandler = async (req, res) => {
@@ -624,4 +633,5 @@ module.exports = {
   cambioNombreVendedorHandler,
   cambioNombreClevelHandler,
   cambioNombreLeaderHandler,
+  getAllLeadsContratandoHandler,
 };

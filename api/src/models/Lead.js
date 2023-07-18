@@ -49,6 +49,7 @@ const LeadSchema = new mongoose.Schema(
         "Agendar 2do llamado",
         "incidencia",
         "discard",
+        "contratando",
       ],
       require: true,
     },
@@ -62,6 +63,18 @@ const LeadSchema = new mongoose.Schema(
       default: "",
     },
     pagos: {
+      type: Object,
+      require: true,
+    },
+    pagoRecibido: {
+      type: Boolean,
+      require: true,
+    },
+    primeraPromosion: {
+      type: Object,
+      require: true,
+    },
+    segundaPromosion: {
       type: Object,
       require: true,
     },
@@ -228,5 +241,3 @@ const LeadSchema = new mongoose.Schema(
 const Lead = new mongoose.model("lead", LeadSchema);
 
 module.exports = Lead;
-
-
