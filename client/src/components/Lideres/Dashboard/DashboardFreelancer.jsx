@@ -25,7 +25,7 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoLogoSnapchat, IoStatsChart } from "react-icons/io5";
+import { IoGrid, IoLogoSnapchat, IoStatsChart,IoRocketOutline } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -194,6 +194,13 @@ export const DashboardFreelancer = () => {
             >
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               <p className="text-white">Incidencias</p>
+            </Link>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/promociones"}
+            >
+              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Promociones</p>
             </Link>
           </div>
 
