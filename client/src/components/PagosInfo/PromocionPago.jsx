@@ -117,18 +117,31 @@ export default function PromocionPago({ tamañoPantalla }) {
       }
       style={styles()}
     >
-      <div className="flex flex-col justify-between items-center p-6 h-full">
+      <div
+        className={
+          tamañoPantalla === "Pequeña"
+            ? "flex flex-col justify-between items-center p-6 h-full"
+            : "flex flex-col justify-evenly items-center p-6 h-full w-full"
+        }
+      >
         <p className="text-white text-24 font-bold">{cliente.name}</p>
-
-        <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2">
-          <p className="text-white">PROMOCIÓN</p>
-          <p className="text-white text-3xl">
-            {formatTiempoRestante(tiempoRestante1)}
-          </p>
-          <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
-            <p className="text-white text-3xl ">OFFER</p>
+        {tiempoRestante1 !== 0 && (
+          <div
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                : "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+            }
+          >
+            <p className="text-white">PROMOCIÓN</p>
+            <p className="text-white text-3xl">
+              {formatTiempoRestante(tiempoRestante1)}
+            </p>
+            <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+              <p className="text-white text-3xl ">OFFER</p>
+            </div>
           </div>
-        </div>
+        )}
         {tiempoRestante1 === 0 && (
           <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2">
             <p className="text-white">PROMOCIÓN</p>
