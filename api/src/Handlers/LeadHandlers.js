@@ -42,6 +42,7 @@ const cambioNombreVendedor = require("../controllers/Lead/cambioNombreVendedor")
 const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
 const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
 const UpdatePromociones = require("../controllers/Lead/UpdatePromociones");
+const getAllLeadContratando = require("../controllers/Lead/getAllLeadsContratando");
 
 // Obtener todos los leads
 const getAllLeadHandler = async (req, res) => {
@@ -55,7 +56,7 @@ const getAllLeadHandler = async (req, res) => {
 // Obtener todos los leads
 const getAllLeadsContratandoHandler = async (req, res) => {
   try {
-    const leadContratando = await getAllLeadsContratando();
+    const leadContratando = await getAllLeadContratando();
     res.status(200).json(leadContratando);
   } catch (error) {
     res.status(404).json({ error: error.message });
