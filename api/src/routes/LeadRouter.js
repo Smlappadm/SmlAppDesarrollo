@@ -93,9 +93,9 @@ LeadRouter.put("/cambiarnombrecorredor", cambioNombreCorredorHandler);
 LeadRouter.put("/cambiarnombrefreelancer", cambioNombreFreelancerHandler);
 LeadRouter.put("/asignacion", asignacionFreelancerHandler);
 LeadRouter.put("/:id", updateLeadHandler);
+LeadRouter.put("/promociones", UpdatePromocionesHandler);
 LeadRouter.put("/vendedor/:id", updateLeadVendedorHandler);
 LeadRouter.put("/freelance/:id", updateLeadFreelanceHandler);
 LeadRouter.get("/download", dowloadCSVHandler);
-LeadRouter.put("/promociones", UpdatePromocionesHandler);
 
 module.exports = LeadRouter;
