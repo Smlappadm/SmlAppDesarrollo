@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
@@ -20,8 +21,24 @@ export default function PromocionPago() {
     const ActualMas2Horas = new Date(
       fechaActual.getTime() + 2 * 60 * 60 * 1000
     );
-    console.log(ActualMas2Horas);
+    const fechaCon24Horas = new Date(
+      ActualMas2Horas.getTime() + 24 * 60 * 60 * 1000
+    );
+
+    const body = {
+      promocion1: ActualMas2Horas,
+      promocion2: fechaCon24Horas,
+    };
+    seteoPromociones(body);
   }, [clienteEmpresa]);
+
+  const seteoPromociones = async (body) => {
+    try {
+      await axios.put(`/lead/promociones?emailApp=${emailApp}`, body);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     // Creamos el intervalo para actualizar el tiempo restante cada segundo
