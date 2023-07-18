@@ -2,8 +2,10 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
+import background from "../../Assets/borde1.png";
+import background2 from "../../Assets/borde2.png";
 
-export default function PromocionPago() {
+export default function PromocionPago({ tamañoPantalla }) {
   const url = new URL(window.location.href);
   const emailApp = url.searchParams.get("emailApp");
   const { clienteEmpresa } = useSelector((state) => state);
@@ -87,13 +89,38 @@ export default function PromocionPago() {
       .padStart(2, "0")}:${segundosRestantes.toString().padStart(2, "0")}`;
   };
 
-  return (
-    <div className="h-screen w-screen bg-pink-400">
-      <div className="flex flex-col justify-center items-center p-4">
-        <p className="text-white">PROMOCIÓN</p>
-        <p className="text-white">{cliente.name}</p>
+  const styles = () => {
+    if (tamañoPantalla === "Grande") {
+      return {
+        backgroundImage: `url(${background})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    } else {
+      return {
+        backgroundImage: `url(${background2})`,
+        backgroundSize: "auto 100%",
+        backgroundPosition: "left top",
+        backgroundRepeat: "no-repeat",
+      };
+    }
+  };
 
-        <div className="w-full flex flex-col justify-center items-center mt-5">
+  return (
+    <div
+      className={
+        tamañoPantalla === "Pequeña"
+          ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-start items-center"
+          : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center"
+      }
+      style={styles()}
+    >
+      <div className="flex flex-col justify-center items-center p-6">
+        <p className="text-white text-24 font-bold">{cliente.name}</p>
+
+        <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-50">
+          <p className="text-white">PROMOCIÓN</p>
           <p className="text-white text-3xl">
             {formatTiempoRestante(tiempoRestante1)}
           </p>
