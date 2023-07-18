@@ -62,7 +62,10 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
-    console.log("wwwwwwwwwwwwwwwwwwwwwwwww");
+    if (statusObj.status === "Contratando") {
+      setStatusObj({...statusObj,
+        pagoRecibido: false})
+  };
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
