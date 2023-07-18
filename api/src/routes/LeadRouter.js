@@ -44,6 +44,7 @@ const {
   cambioNombreVendedorHandler,
   cambioNombreCorredorHandler,
   getAllLeadsContratandoHandler,
+  UpdatePromocionesHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -77,6 +78,7 @@ LeadRouter.get(
   getLeadCorredoresCheckedDescargadosHandler
 );
 LeadRouter.get("/name", getLeadByNameHandler);
+LeadRouter.get("/emailApp", getLeadByNameHandler);
 LeadRouter.get("/:id", getLeadByIdHandler);
 LeadRouter.get("/leadvendedor/:id", getLeadVendedorHandler);
 LeadRouter.post("/", postLeadHandler);
@@ -94,5 +96,6 @@ LeadRouter.put("/:id", updateLeadHandler);
 LeadRouter.put("/vendedor/:id", updateLeadVendedorHandler);
 LeadRouter.put("/freelance/:id", updateLeadFreelanceHandler);
 LeadRouter.get("/download", dowloadCSVHandler);
+LeadRouter.put("/promociones", UpdatePromocionesHandler);
 
 module.exports = LeadRouter;
