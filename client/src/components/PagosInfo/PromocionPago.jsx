@@ -28,13 +28,17 @@ export default function PromocionPago() {
     const body = {
       promocion1: ActualMas2Horas,
       promocion2: fechaCon24Horas,
+      emailApp: emailApp,
     };
-    seteoPromociones(body);
+    if (clienteEmpresa?.promocion1 === "") {
+      console.log("si");
+      seteoPromociones(body);
+    }
   }, [clienteEmpresa]);
 
   const seteoPromociones = async (body) => {
     try {
-      await axios.put(`/lead/promociones?emailApp=${emailApp}`, body);
+      await axios.put(`/lead/promociones`, body);
     } catch (error) {
       console.log(error.message);
     }
