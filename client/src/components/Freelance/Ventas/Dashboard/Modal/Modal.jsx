@@ -62,7 +62,10 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
-    console.log("wwwwwwwwwwwwwwwwwwwwwwwww");
+    if (statusObj.status === "Contratando") {
+      setStatusObj({...statusObj,
+        pagoRecibido: false})
+  };
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -1320,6 +1323,7 @@ export default function NestedModal({
                 >
                   <option value="Sin contactar">Sin Contactar</option>
                   <option value="Agendar 2do llamado">En proceso</option>
+                  <option value="Contratando">Contratando</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
@@ -1336,6 +1340,7 @@ export default function NestedModal({
                     Elige uno...
                   </option>
                   <option value="Agendar otro llamado">En proceso</option>
+                  <option value="Contratando">Contratando</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
