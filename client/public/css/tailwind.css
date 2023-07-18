@@ -950,6 +950,10 @@ video {
   margin-top: 2rem;
 }
 
+.mr-6 {
+  margin-right: 1.5rem;
+}
+
 .block {
   display: block;
 }
@@ -2009,6 +2013,11 @@ video {
 .bg-pink-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 114 182 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#c1c41f\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(193 196 31 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-0 {
