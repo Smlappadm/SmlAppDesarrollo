@@ -221,6 +221,9 @@ function ChildModal({
     if (statusObj.status === "Contratado") {
       openModalPagoFunction();
     }
+    if (statusObj.status === "Contratando") {
+      openModalPagoFunction();
+    }
     statusObj.status = "";
   };
 

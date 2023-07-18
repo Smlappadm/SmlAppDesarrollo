@@ -140,7 +140,10 @@ function ClerkProviderWithRoutes() {
       <Routes>
         <Route path="/pago-ok" element={<PagoOk />} />
         <Route path="/pagos-sml" element={<PagosInfo />} />
-        <Route path="/promocion-pagos" element={<PromocionPago />} />
+        <Route
+          path="/promocion-pagos"
+          element={<PromocionPago tamañoPantalla={tamañoPantalla} />}
+        />
       </Routes>
       <ClerkProvider
         publishableKey={clerkPubKey}
