@@ -340,8 +340,7 @@ const VentasDashboard = () => {
               <p
                 onClick={() =>
                   handleCopyClick(
-                    // `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
-                    saveEmailApp
+                    `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
                   )
                 }
                 className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
