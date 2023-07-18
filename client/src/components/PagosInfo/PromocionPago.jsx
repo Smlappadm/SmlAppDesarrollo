@@ -159,7 +159,13 @@ export default function PromocionPago({ tamañoPantalla }) {
             </div>
           </div>
         )}
-        <button className="text-white bg-blue-500 w-full py-3 text-18 rounded-2xl">
+        <button
+          className={
+            tamañoPantalla === "Pequeña"
+              ? "text-white bg-black w-full py-3 text-18 rounded-2xl"
+              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl"
+          }
+        >
           Link de Pago
         </button>
       </div>
