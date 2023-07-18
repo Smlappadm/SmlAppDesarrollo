@@ -27,16 +27,28 @@ import { IoGrid, IoLogoSnapchat, IoStatsChart } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ContratandoLeader = () => {
   const [data, setData] = useState([]);
   const { leadContratando } = useSelector((state) => state);
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllLeadContratando());
-  }, [dispatch]);
 
-  const changeStatus = (id, contratado) => {
+  const statusOk = (name) => {
+    toast.success(`✔Cambio de estado a Contratado realizado ${name} ! `, {
+      position: "top-center",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const changeStatus = (id, contratado, name) => {
     const newStatus =
       contratado === "Contratado" ? "Contratando" : "Contratado";
 
@@ -45,13 +57,16 @@ export const ContratandoLeader = () => {
     });
 
     dispatch(getAllLeadContratando());
+    statusOk(name);
   };
 
   useEffect(() => {
-    setData(leadContratando);
-  }, [leadContratando, changeStatus]);
+    dispatch(getAllLeadContratando());
+  }, [dispatch]);
 
-  console.log();
+  useEffect(() => {
+    setData(leadContratando);
+  }, [leadContratando]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -180,20 +195,35 @@ export const ContratandoLeader = () => {
               Historial Empleados
             </Title>
 
-            <Link to={"/lideres/"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres/"}
+            >
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Empleados</p>
             </Link>
-            <Link to={"/lideres-freelancer/"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-freelancer/"}
+            >
               <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Freelancer</p>
             </Link>
-            <Link className="text-5xl" to={"/lideres-analytics"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-analytics"}
+            >
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Analiticas</p>
             </Link>
-            <Link className="text-5xl" to={"/lideres-incidences"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-incidences"}
+            >
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Incidencias</p>
             </Link>
           </div>
-
 
           <div className="flex gap-5">
             <Button variant="outlined" onClick={downloadCSV}>
@@ -400,18 +430,12 @@ export const ContratandoLeader = () => {
                       </div>
                     </button>
                     <div className="flex justify-center items-center p-0 mr-6">
-                      {item.status === "Contratado" && (
-                        <div
-                          onClick={() => changeStatus(item._id, item.status)}
-                        >
-                          <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                            Contratado
-                          </Text>
-                        </div>
-                      )}
                       {item.status === "Contratando" && (
                         <div
-                          onClick={() => changeStatus(item._id, item.status)}
+                          className="cursor-pointer"
+                          onClick={() =>
+                            changeStatus(item._id, item.status, item.name)
+                          }
                         >
                           <Text className="bg-[#c1c41f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
                             Contratando
