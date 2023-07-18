@@ -96,7 +96,7 @@ export const getAllLead = () => {
 
 export const getAllLeadContratando = () => {
   return async (dispatch) => {
-    const response = await axios.get("/lead");
+    const response = await axios.get("/lead/contratando");
     const leadContratando = response.data;
     dispatch({ type: GET_ALL_LEAD_CONTRATANDO, payload: leadContratando });
   };
