@@ -7,7 +7,8 @@ export default function PromocionPago() {
   const url = new URL(window.location.href);
   const emailApp = url.searchParams.get("emailApp");
   const { clienteEmpresa } = useSelector((state) => state);
-  const [tiempoRestante, setTiempoRestante] = useState(3600);
+  const [tiempoRestante1, setTiempoRestante1] = useState(0);
+  const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
 
@@ -34,6 +35,22 @@ export default function PromocionPago() {
       console.log("si");
       seteoPromociones(body);
     }
+    if (clienteEmpresa?.promocion1) {
+      const time1 = new Date(clienteEmpresa.promocion1);
+      const time2 = new Date(clienteEmpresa.promocion2 ?? 0);
+      const diferenciaEnMilisegundos1 = time1.getTime() - fechaActual.getTime();
+      const diferenciaEnSegundos1 = Math.floor(
+        diferenciaEnMilisegundos1 / 1000
+      );
+      const diferenciaEnMilisegundos2 = time2.getTime() - fechaActual.getTime();
+      const diferenciaEnSegundos2 = Math.floor(
+        diferenciaEnMilisegundos2 / 1000
+      );
+      console.log(diferenciaEnSegundos1);
+      console.log(diferenciaEnSegundos2);
+      setTiempoRestante1(diferenciaEnSegundos1);
+      setTiempoRestante2(diferenciaEnSegundos2);
+    }
   }, [clienteEmpresa]);
 
   const seteoPromociones = async (body) => {
@@ -46,9 +63,12 @@ export default function PromocionPago() {
 
   useEffect(() => {
     // Creamos el intervalo para actualizar el tiempo restante cada segundo
-    console.log(cliente);
+
     const interval = setInterval(() => {
-      setTiempoRestante((prevTiempoRestante) =>
+      setTiempoRestante1((prevTiempoRestante) =>
+        prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
+      );
+      setTiempoRestante2((prevTiempoRestante) =>
         prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
       );
     }, 1000);
@@ -75,12 +95,22 @@ export default function PromocionPago() {
 
         <div className="w-full flex flex-col justify-center items-center mt-5">
           <p className="text-white text-3xl">
-            {formatTiempoRestante(tiempoRestante)}
+            {formatTiempoRestante(tiempoRestante1)}
           </p>
           <div className="border border-white w-4/6 flex items-center justify-center p-3">
             <p className="text-white text-3xl ">OFFER</p>
           </div>
         </div>
+        {tiempoRestante1 === 0 && (
+          <div className="w-full flex flex-col justify-center items-center mt-5">
+            <p className="text-white text-3xl">
+              {formatTiempoRestante(tiempoRestante2)}
+            </p>
+            <div className="border border-white w-4/6 flex items-center justify-center p-3">
+              <p className="text-white text-3xl ">OFFER 2</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
