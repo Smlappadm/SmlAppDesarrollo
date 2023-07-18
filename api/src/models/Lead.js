@@ -66,6 +66,14 @@ const LeadSchema = new mongoose.Schema(
       type: Object,
       require: true,
     },
+    primeraPromosion: {
+      type: Object,
+      require: true,
+    },
+    segundaPromosion: {
+      type: Object,
+      require: true,
+    },
     contacto: {
       type: String,
       require: true,
