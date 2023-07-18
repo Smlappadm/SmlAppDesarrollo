@@ -234,6 +234,9 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: false,
     },
+    promocion: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
