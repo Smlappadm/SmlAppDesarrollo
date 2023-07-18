@@ -1,8 +1,8 @@
 const Lead = require("../../models/Lead");
 
-const getAllLeadsContratando = async () => {
-  const leads = await Lead.find({ status: "contratando" });
+const getAllLeadContratando = async () => {
+  const leads = await Lead.find({ status: "Contratando" });
   return leads;
 };
 
-module.exports = getAllLeadsContratando;
+module.exports = getAllLeadContratando;
