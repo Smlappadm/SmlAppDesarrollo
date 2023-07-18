@@ -11,6 +11,7 @@ export const FILTER_LEVEL = "FILTER_LEVEL";
 export const FILTER_STATUS = "FILTER_STATUS";
 export const GET_ALL_LEAD_INACTIVE = "GET_ALL_LEAD_INACTIVE";
 export const GET_ALL_CORREDORES = "GET_ALL_CORREDORES";
+export const GET_CORREDOR_EMAIL = "GET_CORREDOR_EMAIL";
 export const GET_ALL_VENDEDORES = "GET_ALL_VENDEDORES";
 export const GET_ALL_LEADER = "GET_ALL_LEADER";
 export const GET_ALL_CLEVEL = "GET_ALL_CLEVEL";
@@ -96,6 +97,14 @@ export const getAllCorredores = () => {
     const response = await axios.get("/corredor");
     const corredores = response.data;
     dispatch({ type: GET_ALL_CORREDORES, payload: corredores });
+  };
+};
+
+export const getAllCorredoresByEmail = (email) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/corredor/email?email=${email}`);
+    const corredor = response.data;
+    dispatch({ type: GET_CORREDOR_EMAIL, payload: corredor });
   };
 };
 export const getAllVendedores = () => {
@@ -356,7 +365,8 @@ export const getLeadCorredores = (
   marca_personal
 ) => {
   return async (dispatch) => {
-    if (email !== "undefined" && email !== "") {
+    if (email !== "undefined" && email !== "" && names !== "undefined" && names !== "") {
+      console.log(names);
       const response = await axios.get(
         `lead/unchecked10?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
       );
