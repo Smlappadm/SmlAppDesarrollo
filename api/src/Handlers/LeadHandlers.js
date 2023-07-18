@@ -41,6 +41,7 @@ const cambioNombreCorredor = require("../controllers/Lead/cambioNombreCorredor")
 const cambioNombreVendedor = require("../controllers/Lead/cambioNombreVendedor");
 const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
 const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
+const UpdatePromociones = require("../controllers/Lead/UpdatePromociones");
 const getAllLeadContratando = require("../controllers/Lead/getAllLeadsContratando");
 
 // Obtener todos los leads
@@ -408,6 +409,18 @@ const getLeadByEmailAppHandler = async (req, res) => {
   }
 };
 
+const UpdatePromocionesHandler = async (req, res) => {
+  const { emailApp } = req.query;
+  const body = req.body;
+  console.log(emailApp);
+  try {
+    const lead = await UpdatePromociones(emailApp, body);
+    res.status(200).json(lead);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 // Buscar lead de corredor por nombre
 const findLeadCorredorNameHandler = async (req, res) => {
   const { name, month, year, fromDay, toDay } = req.query;
@@ -635,4 +648,5 @@ module.exports = {
   cambioNombreClevelHandler,
   cambioNombreLeaderHandler,
   getAllLeadsContratandoHandler,
+  UpdatePromocionesHandler,
 };

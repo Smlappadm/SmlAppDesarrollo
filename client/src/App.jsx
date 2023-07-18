@@ -50,6 +50,7 @@ import VentasDashboard from "./components/Freelance/Ventas/Dashboard/VentasDashb
 import VentasAgenda from "./components/Freelance/Ventas/Dashboard/VentasAgenda";
 import PagosInfo from "./components/PagosInfo/PagosInfo";
 import PagoOk from "./components/PagosInfo/PagoOk";
+import PromocionPago from "./components/PagosInfo/PromocionPago";
 import { ContratandoLeader } from "./components/Lideres/Contratando/ContratandoLeader";
 const { CLERK_API_KEY } = import.meta.env;
 
@@ -138,6 +139,7 @@ function ClerkProviderWithRoutes() {
       <Routes>
         <Route path="/pago-ok" element={<PagoOk />} />
         <Route path="/pagos-sml" element={<PagosInfo />} />
+        <Route path="/promocion-pagos" element={<PromocionPago />} />
       </Routes>
       <ClerkProvider
         publishableKey={clerkPubKey}

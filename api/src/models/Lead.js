@@ -234,6 +234,12 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: false,
     },
+    promocion1: {
+      type: Date,
+    },
+    promocion2: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
