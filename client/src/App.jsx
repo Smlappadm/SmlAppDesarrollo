@@ -268,7 +268,7 @@ function ClerkProviderWithRoutes() {
             }
           />
           <Route
-            path="/promosiones"
+            path="/promociones"
             element={
               isRoleAllowed(roleReady) &&
               (roleReady === "clevel" || roleReady === "leader") &&
