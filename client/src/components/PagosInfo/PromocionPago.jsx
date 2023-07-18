@@ -119,7 +119,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       <div className="flex flex-col justify-center items-center p-6">
         <p className="text-white text-24 font-bold">{cliente.name}</p>
 
-        <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-70">
+        <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75">
           <p className="text-white">PROMOCIÓN</p>
           <p className="text-white text-3xl">
             {formatTiempoRestante(tiempoRestante1)}
