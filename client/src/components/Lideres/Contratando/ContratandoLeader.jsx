@@ -35,9 +35,21 @@ export const ContratandoLeader = () => {
   useEffect(() => {
     dispatch(getAllLeadContratando());
   }, [dispatch]);
+
+  const changeStatus = (id, contratado) => {
+    const newStatus =
+      contratado === "Contratado" ? "Contratando" : "Contratado";
+
+    axios.put(`/lead/${id}`, {
+      status: newStatus,
+    });
+
+    dispatch(getAllLeadContratando());
+  };
+
   useEffect(() => {
     setData(leadContratando);
-  }, [leadContratando]);
+  }, [leadContratando, changeStatus]);
 
   console.log();
 
@@ -158,11 +170,6 @@ export const ContratandoLeader = () => {
     updateleadContratando();
   };
 
-  const changeStatus = (id) => {
-    console.log(id);
-    // axios.put();
-  };
-
   return (
     <>
       <Nav />
@@ -187,7 +194,6 @@ export const ContratandoLeader = () => {
             </Link>
           </div>
 
-          <label>Leads chequeados: {showData && showData.length}</label>
 
           <div className="flex gap-5">
             <Button variant="outlined" onClick={downloadCSV}>
@@ -395,14 +401,18 @@ export const ContratandoLeader = () => {
                     </button>
                     <div className="flex justify-center items-center p-0 mr-6">
                       {item.status === "Contratado" && (
-                        <div onClick={() => changeStatus(item._id)}>
+                        <div
+                          onClick={() => changeStatus(item._id, item.status)}
+                        >
                           <Text className="bg-[#26af7f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
                             Contratado
                           </Text>
                         </div>
                       )}
                       {item.status === "Contratando" && (
-                        <div onClick={() => changeStatus(item._id)}>
+                        <div
+                          onClick={() => changeStatus(item._id, item.status)}
+                        >
                           <Text className="bg-[#c1c41f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
                             Contratando
                           </Text>
