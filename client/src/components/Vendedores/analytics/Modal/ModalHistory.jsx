@@ -1039,19 +1039,19 @@ const [emailValidator, setEmailValidator] = React.useState(false);
             <div className="gap-3 flex flex-col justify-center items-center w-56 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Valor servicio:</h3>
-                <h3>{`€${item.pagos.monto}`} </h3>
+                <h3>{`€${item.pagos && item.pagos.monto}`} </h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Cantidad cuotas:</h3>
-                <h3>{`${item.pagos.cuotas}`}</h3>
+                <h3>{`${item.pagos && item.pagos.cuotas}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Valor cuotas:</h3>
-                <h3>{`€${item.pagos.valorCuota}`}</h3>
+                <h3>{`€${item.pagos && item.pagos.valorCuota}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Pagos realizados:</h3>
-                <h3>{`${item.pagos.cuotasPagadas}/${item.pagos.cuotas}`}</h3>
+                <h3>{`${item.pagos && item.pagos.cuotasPagadas}/${item.pagos && item.pagos.cuotas}`}</h3>
               </div>
             </div>
           </div>
