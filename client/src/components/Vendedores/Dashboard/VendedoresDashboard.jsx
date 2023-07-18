@@ -43,9 +43,6 @@ const VendedoresDashboard = () => {
 
   const body = { name: fullName, email: emailAddress };
 
-  const { allCountries } = useSelector((state) => state);
-  const { allProfesion } = useSelector((state) => state);
-
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
@@ -205,9 +202,6 @@ const VendedoresDashboard = () => {
               <Link className="text-5xl" to={"/vendedores-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link> */}
             </div>
             {!openModalPago && (
               <motion.div
@@ -397,14 +391,3 @@ const VendedoresDashboard = () => {
 
 export default VendedoresDashboard;
 
-{
-  /* <div className="border-2 flex flex-col justify-center items-center w-full mt-24">
-<button
-  className="border-2 bg-[#3a5fc5] w-12 h-12 rounded-full text-24 my-5"
-  onClick={closeModalPago}
->
-  x
-</button>
-<Pagos />
-</div> */
-}

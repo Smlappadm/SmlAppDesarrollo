@@ -53,7 +53,6 @@
   
   .tableCards {
     display: grid;
-    /* grid-template-columns:  7% 15% 9% 6% 5% 7% 14% 17% 16% 6%; */
     grid-template-columns:  17% 9% 6% 5% 5% 12% 5% 15% 15% 5%;
     align-items: center;
     justify-content: space-between;
@@ -79,38 +78,6 @@
     font-size: 20px;
     margin-right: 5px;
   }
-  /* @media screen and (max-width: 1850px) {
-      .tableRow {
-          grid-template-columns: 13% 24.5% 19% 19% 17% auto;
-      }
-      .tableCards {
-          grid-template-columns: 1% 24% 17% 19% 18% 4%;
-      }
-  }
-  @media screen and (max-width: 1500px) {
-      .tableRow {
-          grid-template-columns: 13% 24.5% 19% 19% 15% auto;
-      }
-      .tableCards {
-          grid-template-columns: 13% 24% 17% 19% 18% 5%;
-      }
-  }
-  @media screen and (max-width: 1350px) {
-      .tableRow {
-          grid-template-columns: 13% 24.5% 19% 18% 15.5% auto;
-      }
-      .tableCards {
-          grid-template-columns: 13% 24% 17% 19% 18% 5%;
-      }
-  }
-  @media screen and (max-width: 1110px) {
-      .tableRow {
-          grid-template-columns: 12% 22% 19% 20% 16% auto;
-      }
-      .tableCards {
-          grid-template-columns: 10% 20% 15% 20% 16% auto;
-      }
-  } */
   
   .closeEdit {
   background-color: #e9424a;
@@ -120,7 +87,5 @@
     font-size: 30px;
     height: 35px;
     right: 70px;
-  
-    /* "absolute bg-[#e9424a] text-1 text-white w-10 h-8 rounded-md cursor-pointer left-80" */
   }
   

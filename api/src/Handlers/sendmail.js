@@ -2,6 +2,7 @@ const sendGrid = require("@sendgrid/mail");
 require("dotenv").config();
 const { APIKEY } = process.env;
 
+// Enviar correo electrónico genérico
 const sendmail = async (req, res) => {
   try {
     const { clientName, recipientEmail, message } = req.body;
@@ -26,10 +27,11 @@ const sendmail = async (req, res) => {
   }
 };
 
+// Enviar correo electrónico de contratación
 const sendHiringEmail = async (req, res) => {
   console.log("se manda el mail");
   try {
-    const {clientName, recipientEmail } = req.body;
+    const { clientName, recipientEmail } = req.body;
 
     sendGrid.setApiKey(APIKEY);
 

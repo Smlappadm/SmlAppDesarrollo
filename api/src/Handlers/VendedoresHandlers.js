@@ -7,6 +7,7 @@ const getVendedorByEmail = require("../controllers/Vendedor/getVendedorByEmail")
 const getVendedorVentasByEmail = require("../controllers/Vendedor/getVendedorVentasByEmail");
 const updateVendedorByEmail = require("../controllers/Vendedor/updateVendedorByEmail");
 
+// Obtener todos los vendedores
 const getAllVendedoresHandler = async (req, res) => {
   try {
     const vendedores = await getAllVendedores();
@@ -16,6 +17,7 @@ const getAllVendedoresHandler = async (req, res) => {
   }
 };
 
+// Crear nuevo vendedor
 const postVendedorHandler = async (req, res) => {
   const data = req.body;
 
@@ -27,6 +29,7 @@ const postVendedorHandler = async (req, res) => {
   }
 };
 
+// Actualizar vendedor por ID
 const updateVendedorHandler = async (req, res) => {
   const id = req.params.id;
   const updatedData = req.body;
@@ -39,6 +42,7 @@ const updateVendedorHandler = async (req, res) => {
   }
 };
 
+// Obtener vendedor por nombre
 const getVendedorByNameHandler = async (req, res) => {
   const { Name } = req.query;
 
@@ -50,6 +54,7 @@ const getVendedorByNameHandler = async (req, res) => {
   }
 };
 
+// Obtener vendedor por email
 const getVendedorByEmailHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -59,6 +64,8 @@ const getVendedorByEmailHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener ventas de un vendedor por email
 const getVendedorVentasByEmailHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -69,6 +76,7 @@ const getVendedorVentasByEmailHandler = async (req, res) => {
   }
 };
 
+// Obtener vendedor por ID
 const getVendedorByIdHandler = async (req, res) => {
   const id = req.params.id;
 
@@ -80,6 +88,7 @@ const getVendedorByIdHandler = async (req, res) => {
   }
 };
 
+// Actualizar vendedor por email
 const updateVendedorByEmailHandler = async (req, res) => {
   const email = req.query.email;
   const updatedData = req.body;

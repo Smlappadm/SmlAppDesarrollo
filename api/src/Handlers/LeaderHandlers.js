@@ -6,6 +6,7 @@ const postLeader = require("../controllers/Leader/postLeader");
 const updateLeaderById = require("../controllers/Leader/updateLeadById");
 const updateLeaderByEmail = require("../controllers/Leader/updateLeaderByEmail");
 
+// Obtener todos los líderes
 const getAllLeadersHandler = async (req, res) => {
   try {
     const leaders = await getAllLeaders();
@@ -15,6 +16,7 @@ const getAllLeadersHandler = async (req, res) => {
   }
 };
 
+// Registrar nuevo líder
 const postLeaderHandler = async (req, res) => {
   const data = req.body;
   try {
@@ -25,6 +27,7 @@ const postLeaderHandler = async (req, res) => {
   }
 };
 
+// Actualizar líder por ID
 const updateLeaderHandler = async (req, res) => {
   const id = req.params.id;
   const updatedData = req.body;
@@ -37,6 +40,7 @@ const updateLeaderHandler = async (req, res) => {
   }
 };
 
+// Obtener líder por correo electrónico
 const getLeaderByEmailHandler = async (req, res) => {
   const { email } = req.query;
 
@@ -47,6 +51,8 @@ const getLeaderByEmailHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener líder por nombre
 const getLeaderByNameHandler = async (req, res) => {
   const { Name } = req.query;
 
@@ -58,6 +64,7 @@ const getLeaderByNameHandler = async (req, res) => {
   }
 };
 
+// Obtener líder por ID
 const getLeaderByIdHandler = async (req, res) => {
   const id = req.params.id;
 
@@ -69,6 +76,7 @@ const getLeaderByIdHandler = async (req, res) => {
   }
 };
 
+// Actualizar líder por correo electrónico
 const updateLeaderByEmailHandler = async (req, res) => {
   const email = req.query.email;
   const updatedData = req.body;

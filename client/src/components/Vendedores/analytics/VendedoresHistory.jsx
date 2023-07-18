@@ -49,7 +49,6 @@ const VendedoresHistory = () => {
       progress: undefined,
       theme: "dark",
     });
-    // dispatch(getVendedorAllLeads(email));
   };
 
   const SendErrorUpdateAlertBaja = () => {
@@ -326,9 +325,6 @@ const VendedoresHistory = () => {
               <Link className="text-5xl" to={"/vendedores-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link> */}
 
               {filters.level === true ? (
                 <div className=" flex justify-center items-center w-80">
@@ -389,9 +385,6 @@ const VendedoresHistory = () => {
                 ""
               )}
 
-              {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
-                  <option className="py-1">2023</option>
-                </select> */}
             </div>
           </div>
 
@@ -423,13 +416,11 @@ const VendedoresHistory = () => {
                 </button>
                 <label
                   className="text-start w-[15%] px-3"
-                  // onClick={handlerOpenFilterSector}
                 >
                   Profesión
                 </label>
                 <label
                   className="text-start w-[10%] px-3"
-                  // onClick={handlerOpenFilterPais}
                 >
                   País
                 </label>
@@ -438,19 +429,16 @@ const VendedoresHistory = () => {
                 <label className="text-center w-[15%] ">Teléfono</label>
                 <label
                   className="  w-[10%] text-center"
-                  // onClick={() => handlerFilter("level")}
                 >
                   Nivel
                 </label>
                 <label
                   className="text-center w-[17%]"
-                  // onClick={handlerOpenStatus}
                 >
                   Estado
                 </label>
                 <label
                   className="text-center w-[3%]"
-                  // onClick={handlerOpenStatus}
                 ></label>
               </div>
 

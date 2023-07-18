@@ -8,7 +8,6 @@ import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
-// import toast, { Toaster } from 'react-hot-toast';
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
 import {
@@ -80,98 +79,6 @@ function ChildModalHistory({
   };
 
   const handleUpdate = async () => {
-    // if (
-    //   statusObj.status === "Agendar 2do llamado" ||
-    //   statusObj.status === "Agendar otro llamado"
-    // ) {
-    //   statusObj.status = "Agendar 2do llamado";
-    //   (statusObj.emailApp = item.emailApp),
-    //     (statusObj.status_op = llamadoVenta.diaHora);
-    //   statusObj.llamada_venta = {
-    //     dia_hora: llamadoVenta.diaHora,
-    //     contacto: llamadoVenta.contacto,
-    //     observaciones: llamadoVenta.observaciones,
-    //     dateObject: {
-    //       hora: llamadoVenta.hora,
-    //       minutos: llamadoVenta.minutos,
-    //       dia: llamadoVenta.dia,
-    //       mes: llamadoVenta.mes,
-    //       year: llamadoVenta.year,
-    //     },
-    //   };
-    // }
-
-    // let dataVendedor = {};
-    // if (statusObj.status === "No responde") {
-    //   // statusObj.status_op = "";
-    //   dataVendedor = {
-    //     _id: item._id,
-    //     name: item.name,
-    //     email: item.email,
-    //     status: statusObj.status,
-    //     status_op: statusObj.status_op,
-    //     llamada_venta: statusObj.llamada_venta,
-    //     province: item.province,
-    //     category: item.category,
-    //     telephone: item.telephone,
-    //     emailApp: item.emailApp,
-    //     url: item.url,
-    //     instagram: item.instagram,
-    //     level: item.level,
-    //   };
-    // } else {
-    //   // statusObj.status_op = "";
-    //   dataVendedor = {
-    //     _id: item._id,
-    //     name: item.name,
-    //     email: item.email,
-    //     emailApp: item.emailApp,
-    //     status: statusObj.status,
-    //     status_op: statusObj.status_op,
-    //     pagos: statusObj.pagos,
-    //     llamada_venta: statusObj.llamada_venta,
-    //     province: item.province,
-    //     category: item.category,
-    //     telephone: item.telephone,
-    //     url: item.url,
-    //     instagram: item.instagram,
-    //     level: item.level,
-    //   };
-    // }
-
-    // const dataLead = {
-    //   status: statusObj.status,
-    //   status_op: statusObj.status_op,
-    //   pagos: statusObj.pagos,
-    //   emailApp: item.emailApp,
-    //   // vendedor: emailAddress,
-    //   vendedor: emailAddress,
-    //   vendedor_name: fullName,
-    //   llamados: item.llamados,
-    //   llamada_venta: statusObj.llamada_venta,
-    // };
-
-    // const dataUpdate = {
-    //   dataLead,
-    //   dataVendedor,
-    // };
-
-    // axios
-    //   .put(`/lead/vendedor/${item._id}`, dataUpdate)
-    //   .then((response) => {
-    //     // Si la respuesta es exitosa, redirige a otra página
-
-    //     if (response.data.title) {
-    //       updateLeads();
-    //       setOpen(false);
-    //     }
-    //     SendLeadAlert();
-    //   })
-    //   .catch((error) => {
-    //     // Si hay un error, muestra un mensaje de error
-    //     SendErrorUpdateAlert();
-    //   });
-    // statusObj.status = "";
     try {
       const body = { deleted: true };
       const response = await axios.put(`/lead/changeemail/${item._id}`, body);
@@ -403,13 +310,6 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        {/* <button
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          onClick={handleCancel}
-        >
-          Close x
-        </button> */}
 
         {emailValidator ? (
           <BsCheck
@@ -424,13 +324,7 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
             </p>
           </>
         )}
-        {/* <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          onClick={handleOpen}
-        >
-          Save Changes
-        </button> */}
+
       </div>
       <Modal
         open={openConfirmacionEdicion}
@@ -1031,8 +925,6 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                         onChange={handleChangeInstagram}
                         defaultValue={updatedInstagram}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
-                        // value={inputEmail}
                         disabled={!editInstagram}
                         required
                       />
@@ -1042,13 +934,6 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditInstagram(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditInstagram}
                         id={item._id}
@@ -1065,8 +950,6 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                         onChange={handleChangeTelephone}
                         defaultValue={updatedTelephone}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
-                        // value={inputEmail}
                         disabled={!editTelephone}
                         required
                       />
@@ -1076,13 +959,6 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditTelephone(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditTelephone}
                         id={item._id}
@@ -1099,7 +975,6 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                         defaultValue={updatedEmailApp}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar email App cliente"
-                        // value={inputEmail}
                         disabled={!editEmailApp}
                         required
                       />
@@ -1109,13 +984,6 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditEmailApp(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
                         id={item._id}
@@ -1132,7 +1000,6 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                         defaultValue={updatedContacto}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar nombre de contacto"
-                        // value={inputEmail}
                         disabled={!editContacto}
                         required
                       />

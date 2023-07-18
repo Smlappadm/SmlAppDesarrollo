@@ -202,9 +202,6 @@ const VentasDashboard = () => {
               <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link> */}
             </div>
             {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
