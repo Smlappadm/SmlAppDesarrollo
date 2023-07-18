@@ -477,11 +477,15 @@ const ClasificacionDashboard = () => {
               checked: true,
               freelancer: true,
               view: true,
+              descargadosLeader: false,
+              descargadosCorredor: false,
             });
             console.log(response.data);
           } else if (
             currentClient.instagram.trim() !== "" &&
-            (currentClient.level === "1" || currentClient.level === "2")
+            (currentClient.level === "1" ||
+              currentClient.level === "2" ||
+              currentClient.level === "0")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
               _id: currentClient._id,
@@ -499,6 +503,8 @@ const ClasificacionDashboard = () => {
               checked: true,
               freelancer: true,
               view: true,
+              descargadosLeader: false,
+              descargadosCorredor: false,
             });
 
             console.log(response.data);

@@ -43,9 +43,6 @@ const VendedoresDashboard = () => {
 
   const body = { name: fullName, email: emailAddress };
 
-  const { allCountries } = useSelector((state) => state);
-  const { allProfesion } = useSelector((state) => state);
-
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
@@ -169,6 +166,8 @@ const VendedoresDashboard = () => {
     setSaveEmailApp(email);
   };
 
+
+
   return (
     <>
       <Nav />
@@ -203,9 +202,6 @@ const VendedoresDashboard = () => {
               <Link className="text-5xl" to={"/vendedores-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link> */}
             </div>
             {!openModalPago && (
               <motion.div
@@ -236,9 +232,9 @@ const VendedoresDashboard = () => {
                     <label className="text-start w-[10%] px-3">País</label>
                     <label className="text-center w-[5%] ">Email</label>
                     <label className="text-center w-[5%] ">Instagram</label>
-                    <label className="text-center w-[10%] ">Phone</label>
+                    <label className="text-center w-[10%] ">Teléfono</label>
                     <label className="text-center w-[10%]">Nivel</label>
-                    <label className="text-center w-[20%] ">Status</label>
+                    <label className="text-center w-[20%] ">Estado</label>
                     <label className="text-start w-[10%] "></label>
                   </div>
 
@@ -298,7 +294,7 @@ const VendedoresDashboard = () => {
                         <div className=" w-[10%] flex justify-center items-center p-0 ">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="text-center w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                           >
                             {item.telephone}
                           </p>
@@ -364,7 +360,7 @@ const VendedoresDashboard = () => {
               <p
                 onClick={() =>
                   handleCopyClick(
-                    `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
+                    `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
                   )
                 }
                 className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -395,14 +391,3 @@ const VendedoresDashboard = () => {
 
 export default VendedoresDashboard;
 
-{
-  /* <div className="border-2 flex flex-col justify-center items-center w-full mt-24">
-<button
-  className="border-2 bg-[#3a5fc5] w-12 h-12 rounded-full text-24 my-5"
-  onClick={closeModalPago}
->
-  x
-</button>
-<Pagos />
-</div> */
-}

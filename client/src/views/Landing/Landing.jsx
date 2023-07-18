@@ -12,6 +12,7 @@ import {
   getAllClevel,
   getAllLeader,
   getAllFreelancer,
+  getAllCorredoresByEmail,
 } from "../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 import axios from "axios";
@@ -45,6 +46,18 @@ function Landing() {
   const isEmployee = () => {
     return employees.some((employees) => employees.email === userEmail);
   };
+
+  let email = localStorage.getItem("email");
+
+  const { corredor } = useSelector((state) => state);
+
+  useEffect(() => {
+    if (email !== undefined) {
+      dispatch(getAllCorredoresByEmail(email));
+    }
+  }, [dispatch]);
+
+  localStorage.setItem("corredorName", corredor.name);
 
   useEffect(() => {
     dispatch(getAllCorredores());

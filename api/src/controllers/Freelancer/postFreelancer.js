@@ -1,5 +1,7 @@
+// Importamos el modelo de Freelancer desde la ruta relativa "../../models/Freelancer"
 const Freelancer = require("../../models/Freelancer");
 
+// Función asincrónica para crear un nuevo freelancer en la base de datos
 const postFreelancer = async ({
   name,
   email,
@@ -11,6 +13,7 @@ const postFreelancer = async ({
   rol,
   deleted,
 }) => {
+  // Creamos un nuevo freelancer en la base de datos utilizando el modelo "Freelancer"
   const freelancer = await Freelancer.create({
     name,
     email,
@@ -22,60 +25,9 @@ const postFreelancer = async ({
     rol,
     deleted,
   });
-  return freelancer;
+
+  return freelancer; // Devolvemos el freelancer recién creado
 };
 
+// Exportamos la función para que pueda ser utilizada en otros archivos
 module.exports = postFreelancer;
-
-
-// const Freelancer = require("../../models/Freelancer");
-
-// const postFreelancer = async ({
-//   name,
-//   email,
-//   birthdate,
-//   photo,
-//   country,
-//   contactNumber,
-//   description,
-//   rol,
-//   deleted,
-// }) => {
-
-//   let leadQuery = {};
-
-//   if (name) {
-//     leadQuery["name"] = body.email;
-//   }
-//   if (email) {
-//     leadQuery["email"] = body.email;
-//   }
-//   if (birthdate) {
-//     leadQuery["birthdate"] = body.email;
-//   }
-//   if (photo) {
-//     leadQuery["photo"] = body.email;
-//   }
-//   if (country) {
-//     leadQuery["country"] = body.email;
-//   }
-//   if (contactNumber) {
-//     leadQuery["contactNumber"] = body.email;
-//   }
-//   if (rol) {
-//     leadQuery["rol"] = body.email;
-//   }
-//   if (description) {
-//     leadQuery["description"] = body.email;
-//   }
-//   if (deleted) {
-//     leadQuery["deleted"] = body.email;
-//   }
-
-
-
-//   const freelancer = await Freelancer.create({leadQuery});
-//   return freelancer;
-// };
-
-// module.exports = postFreelancer;

@@ -90,13 +90,6 @@ const VentasDashboard = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-  // const openEditMenu = (index, id) => {
-  //   setEdit(true);
-  //   setEditIndex(index);
-  // };
-  // const sendEdit = () => {
-  //   setEdit(false);
-  // };
   const SendLeadAlert = () => {
     toast.success("✔ Lead Update!", {
       position: "top-center",
@@ -188,9 +181,6 @@ const VentasDashboard = () => {
               <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link> */}
             </div>
 
             <motion.div
@@ -221,9 +211,9 @@ const VentasDashboard = () => {
                     <label className="text-start w-[10%] px-3">País</label>
                     <label className="text-center w-[5%] ">Email</label>
                     <label className="text-center w-[5%] ">Instagram</label>
-                    <label className="text-center w-[10%] ">Phone</label>
+                    <label className="text-center w-[10%] ">Teléfono</label>
                     <label className="text-center w-[10%]">Nivel</label>
-                    <label className="text-center w-[20%] ">Status</label>
+                    <label className="text-center w-[20%] ">Estado</label>
                     <label className="text-start w-[10%] "></label>
                   </div>
 
@@ -283,7 +273,7 @@ const VentasDashboard = () => {
                         <div className=" w-[10%] flex justify-center items-center p-0 ">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="text-center w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                           >
                             {item.telephone}
                           </p>
@@ -315,7 +305,8 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
-                          <ModalIntelligentInfo />
+                          <ModalIntelligentInfo 
+                          item={item}/>
                           <Modal
                             item={item}
                             SendLeadAlert={SendLeadAlert}
@@ -349,8 +340,7 @@ const VentasDashboard = () => {
               <p
                 onClick={() =>
                   handleCopyClick(
-                    // `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
-                    saveEmailApp
+                    `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
                   )
                 }
                 className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"

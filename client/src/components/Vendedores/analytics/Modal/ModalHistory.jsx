@@ -8,7 +8,6 @@ import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
-// import toast, { Toaster } from 'react-hot-toast';
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
 import {
@@ -19,6 +18,7 @@ import {
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { BsCurrencyEuro } from "react-icons/bs";
+import { BsCheck } from "react-icons/bs";
 
 const style = {
   position: "absolute",
@@ -79,98 +79,6 @@ function ChildModalHistory({
   };
 
   const handleUpdate = async () => {
-    // if (
-    //   statusObj.status === "Agendar 2do llamado" ||
-    //   statusObj.status === "Agendar otro llamado"
-    // ) {
-    //   statusObj.status = "Agendar 2do llamado";
-    //   (statusObj.emailApp = item.emailApp),
-    //     (statusObj.status_op = llamadoVenta.diaHora);
-    //   statusObj.llamada_venta = {
-    //     dia_hora: llamadoVenta.diaHora,
-    //     contacto: llamadoVenta.contacto,
-    //     observaciones: llamadoVenta.observaciones,
-    //     dateObject: {
-    //       hora: llamadoVenta.hora,
-    //       minutos: llamadoVenta.minutos,
-    //       dia: llamadoVenta.dia,
-    //       mes: llamadoVenta.mes,
-    //       year: llamadoVenta.year,
-    //     },
-    //   };
-    // }
-
-    // let dataVendedor = {};
-    // if (statusObj.status === "No responde") {
-    //   // statusObj.status_op = "";
-    //   dataVendedor = {
-    //     _id: item._id,
-    //     name: item.name,
-    //     email: item.email,
-    //     status: statusObj.status,
-    //     status_op: statusObj.status_op,
-    //     llamada_venta: statusObj.llamada_venta,
-    //     province: item.province,
-    //     category: item.category,
-    //     telephone: item.telephone,
-    //     emailApp: item.emailApp,
-    //     url: item.url,
-    //     instagram: item.instagram,
-    //     level: item.level,
-    //   };
-    // } else {
-    //   // statusObj.status_op = "";
-    //   dataVendedor = {
-    //     _id: item._id,
-    //     name: item.name,
-    //     email: item.email,
-    //     emailApp: item.emailApp,
-    //     status: statusObj.status,
-    //     status_op: statusObj.status_op,
-    //     pagos: statusObj.pagos,
-    //     llamada_venta: statusObj.llamada_venta,
-    //     province: item.province,
-    //     category: item.category,
-    //     telephone: item.telephone,
-    //     url: item.url,
-    //     instagram: item.instagram,
-    //     level: item.level,
-    //   };
-    // }
-
-    // const dataLead = {
-    //   status: statusObj.status,
-    //   status_op: statusObj.status_op,
-    //   pagos: statusObj.pagos,
-    //   emailApp: item.emailApp,
-    //   // vendedor: emailAddress,
-    //   vendedor: emailAddress,
-    //   vendedor_name: fullName,
-    //   llamados: item.llamados,
-    //   llamada_venta: statusObj.llamada_venta,
-    // };
-
-    // const dataUpdate = {
-    //   dataLead,
-    //   dataVendedor,
-    // };
-
-    // axios
-    //   .put(`/lead/vendedor/${item._id}`, dataUpdate)
-    //   .then((response) => {
-    //     // Si la respuesta es exitosa, redirige a otra página
-
-    //     if (response.data.title) {
-    //       updateLeads();
-    //       setOpen(false);
-    //     }
-    //     SendLeadAlert();
-    //   })
-    //   .catch((error) => {
-    //     // Si hay un error, muestra un mensaje de error
-    //     SendErrorUpdateAlert();
-    //   });
-    // statusObj.status = "";
     try {
       const body = { deleted: true };
       const response = await axios.put(`/lead/changeemail/${item._id}`, body);
@@ -202,7 +110,7 @@ function ChildModalHistory({
           className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           onClick={handleCancel}
         >
-          Close x
+          Cerrar x
         </button>
       </div>
       <Modal
@@ -224,7 +132,7 @@ function ChildModalHistory({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5 ">
-            Deseas dar de baja al cliente?
+            Quiéres dar de baja al cliente?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -239,7 +147,7 @@ function ChildModalHistory({
               className="text-[#bbbaba] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -344,7 +252,7 @@ function IncidenceModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5">
-            Send Incidence?
+            Enviar Incidencia?
           </h2>
           <textarea
             name="observation"
@@ -369,7 +277,7 @@ function IncidenceModal({
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={confirmSendIncidence}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -379,7 +287,7 @@ function IncidenceModal({
 }
 
 //************************************************************************************************ */
-function ConfirmacionEdicion({ handleConfirmEdit, id }) {
+function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
   const [openConfirmacionEdicion, setConfirmacionEdicion] =
     React.useState(false);
 
@@ -402,28 +310,21 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        {/* <button
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          onClick={handleCancel}
-        >
-          Close x
-        </button> */}
 
-        <p
-          onClick={handleOpen}
-          // onClick={() => handleConfirmEditEmail(item._id)}
-          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-        >
-          ✔
-        </p>
-        {/* <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          onClick={handleOpen}
-        >
-          Save Changes
-        </button> */}
+        {emailValidator ? (
+          <BsCheck
+            onClick={handleOpen}
+            className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
+          />
+        ) : (
+          <>
+            <BsCheck className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#f73d3d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#f73d3d] dark:hover:bg-gray-700 " />
+            <p className="absolute whitespace-nowrap text-red-600 -left-64 -bottom-7">
+              email invalido
+            </p>
+          </>
+        )}
+
       </div>
       <Modal
         open={openConfirmacionEdicion}
@@ -459,7 +360,7 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -510,6 +411,8 @@ export default function NestedModal({
   const [editContacto, setEditContacto] = React.useState(false);
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
+
+const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -687,8 +590,34 @@ export default function NestedModal({
     }, 3000);
   };
 
+// Email Validator FUNCTION
+  const validatorEmailFunction = (email) => {
+    setEmailValidator(false);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      setEmailValidator(true);
+      console.log("correcto");
+    } else {
+      setEmailValidator(false);
+      console.log("incorrecto")
+    }
+  };
+
+  const validatorEmailAppFunction = (email) => {
+    setEmailValidator(false);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      setEmailValidator(true);
+      console.log("correcto");
+    } else {
+      setEmailValidator(false);
+      console.log("incorrecto")
+    }
+  };
+
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
+        setEmailValidator(true);
     setEditEmail(!editEmail);
     setEditEmailApp(false);
     setEditInstagram(false);
@@ -696,7 +625,9 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    setInputEmail(event.target.value);
+    const emailChecked = event.target.value.trim()
+    setInputEmail(emailChecked);
+    validatorEmailFunction(emailChecked);
   };
   const handleConfirmEditEmail = async (id) => {
     try {
@@ -712,6 +643,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Instagram
   const handleEditInstagram = () => {
+    setEmailValidator(true);
     setEditInstagram(!editInstagram);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -736,6 +668,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Phone
   const handleEditTelephone = () => {
+    setEmailValidator(true);
     setEditTelephone(!editTelephone);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -759,6 +692,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
+    setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
     setEditTelephone(false);
     setEditEmail(false);
@@ -766,7 +700,9 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    setInputEmailApp(event.target.value);
+    const emailChecked = event.target.value.trim()
+    setInputEmailApp(emailChecked);
+    validatorEmailFunction(emailChecked);
   };
   const handleConfirmEditEmailApp = async (id) => {
     try {
@@ -782,6 +718,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Contacto
   const handleEditContacto = () => {
+    setEmailValidator(true);
     setEditContacto(!editContacto);
     setEditEmailApp(false);
     setEditTelephone(false);
@@ -829,7 +766,7 @@ export default function NestedModal({
         >
           <div className=" w-full flex justify-center items-center mt-2">
             {showCopiedMessage && (
-              <p className="absolute -top-32 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-2 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
+              <p className="absolute -top-20 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-2 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
                 Copiado!
               </p>
             )}
@@ -845,7 +782,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label>✔ Lead Actualizado!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -860,7 +797,7 @@ export default function NestedModal({
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Update Error!</label>
+                <label className=" text-white">❌ Error al Actualizar!</label>
               </motion.div>
             )}
             <div className="w-full flex flex-col justify-center items-center">
@@ -897,7 +834,7 @@ export default function NestedModal({
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
-                      Editar phone
+                      Editar Teléfono
                     </p>
                     <AiOutlinePhone
                       onClick={handleEditTelephone}
@@ -975,6 +912,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmail}
                         id={item._id}
+                         emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -987,8 +925,6 @@ export default function NestedModal({
                         onChange={handleChangeInstagram}
                         defaultValue={updatedInstagram}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
-                        // value={inputEmail}
                         disabled={!editInstagram}
                         required
                       />
@@ -998,16 +934,10 @@ export default function NestedModal({
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditInstagram(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditInstagram}
                         id={item._id}
+                         emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1020,8 +950,6 @@ export default function NestedModal({
                         onChange={handleChangeTelephone}
                         defaultValue={updatedTelephone}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        // placeholder={inputEmail}
-                        // value={inputEmail}
                         disabled={!editTelephone}
                         required
                       />
@@ -1031,16 +959,10 @@ export default function NestedModal({
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditTelephone(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditTelephone}
                         id={item._id}
+                         emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1053,7 +975,6 @@ export default function NestedModal({
                         defaultValue={updatedEmailApp}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar email App cliente"
-                        // value={inputEmail}
                         disabled={!editEmailApp}
                         required
                       />
@@ -1063,16 +984,10 @@ export default function NestedModal({
                       >
                         ❌
                       </p>
-
-                      {/* <p
-                        onClick={() => handleConfirmEditEmailApp(item._id)}
-                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      >
-                        ✔
-                      </p> */}
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
                         id={item._id}
+                         emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1085,7 +1000,6 @@ export default function NestedModal({
                         defaultValue={updatedContacto}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar nombre de contacto"
-                        // value={inputEmail}
                         disabled={!editContacto}
                         required
                       />
@@ -1098,6 +1012,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditContacto}
                         id={item._id}
+                         emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1124,19 +1039,19 @@ export default function NestedModal({
             <div className="gap-3 flex flex-col justify-center items-center w-56 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Valor servicio:</h3>
-                <h3>{`€${item.pagos.monto}`} </h3>
+                <h3>{`€${item.pagos && item.pagos.monto}`} </h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Cantidad cuotas:</h3>
-                <h3>{`${item.pagos.cuotas}`}</h3>
+                <h3>{`${item.pagos && item.pagos.cuotas}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Valor cuotas:</h3>
-                <h3>{`€${item.pagos.valorCuota}`}</h3>
+                <h3>{`€${item.pagos && item.pagos.valorCuota}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Pagos realizados:</h3>
-                <h3>{`${item.pagos.cuotasPagadas}/${item.pagos.cuotas}`}</h3>
+                <h3>{`${item.pagos && item.pagos.cuotasPagadas}/${item.pagos && item.pagos.cuotas}`}</h3>
               </div>
             </div>
           </div>

@@ -1,13 +1,18 @@
+// Importamos el modelo de Lead desde la ruta relativa "../../models/Lead"
 const Lead = require("../../models/Lead");
 
+// Función asincrónica para obtener leads verificados según ciertos criterios
 const getLeadChecked = async (body) => {
+  // Declaración de variables para almacenar los leads encontrados por nivel
   let leadRest = [];
   let leadRestNivel2 = [];
   let leadRestNivel1 = [];
   let leadRestNivel3 = [];
   let leadQuery = {};
 
+  // Búsqueda de leads para el nivel 2
   if (body.level == "2") {
+    // Construcción de la consulta para buscar leads del nivel 2 según los criterios proporcionados en "body"
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -22,9 +27,14 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
 
+    // Ejecución de la consulta y almacenamiento de los resultados en "leadRestNivel2"
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "1") {
+    // Búsqueda de leads para el nivel 1 con criterios similares
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -39,9 +49,13 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
 
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "0") {
+    // Búsqueda de leads para el nivel 0 con criterios similares
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -56,8 +70,12 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "aleatorio") {
+    // Búsqueda de leads aleatorios con criterios similares
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -72,8 +90,12 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else {
+    // Búsqueda de leads para otros niveles con criterios similares
     leadQuery = {
       checked: true,
       status: "Sin contactar",
@@ -87,6 +109,9 @@ const getLeadChecked = async (body) => {
     }
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
+    }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
     }
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
 
@@ -104,13 +129,15 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
 
     let count2 = 0;
     count2 = 5 - leadRestNivel2.length;
     if (count2 > 0 && count2 <= 5) {
       leadRestNivel1 = await Lead.find(leadQuery).limit(count2).exec();
     }
-
 
     leadQuery = {
       checked: true,
@@ -126,17 +153,21 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelance) {
+      leadQuery["from"] = body.freelance;
+    }
 
     let count3 = 0;
-    count3 = 5 - (leadRestNivel2.length + leadRestNivel1.length)  ;
+    count3 = 5 - (leadRestNivel2.length + leadRestNivel1.length);
     if (count3 > 0 && count3 <= 5) {
       leadRestNivel3 = await Lead.find(leadQuery).limit(count3).exec();
     }
   }
 
+  // Combinación de los resultados de los diferentes niveles de leads en una sola lista
   leadRest = [...leadRestNivel2, ...leadRestNivel1, ...leadRestNivel3];
 
-  //BUSCA LOS NO RESPONDE --------------------------
+  // Búsqueda de leads que no respondieron al contacto ("No responde")
   const leadChequedInactiveNoResponde = await Lead.find({
     checked: true,
     vendedor: body.email,
@@ -144,35 +175,14 @@ const getLeadChecked = async (body) => {
     level: { $nin: ["incidencia", "", "-"] },
   });
 
+  // Ordenación de los leads que no respondieron por fecha de actualización
   const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
-    const dateA = a.updatedAt.toISOString();
-    const dateB = b.updatedAt.toISOString();
-
-    if (dateA.slice(0, 4) !== dateB.slice(0, 4)) {
-      return dateA.slice(0, 4) - dateB.slice(0, 4);
-    }
-
-    if (dateA.slice(5, 7) !== dateB.slice(5, 7)) {
-      return dateA.slice(5, 7) - dateB.slice(5, 7);
-    }
-
-    if (dateA.slice(8, 10) !== dateB.slice(8, 10)) {
-      return dateA.slice(8, 10) - dateB.slice(8, 10);
-    }
-
-    if (dateA.slice(11, 13) !== dateB.slice(11, 13)) {
-      return dateA.slice(11, 13) - dateB.slice(11, 13);
-    }
-
-    if (dateA.slice(14, 16) !== dateB.slice(14, 16)) {
-      return dateA.slice(14, 16) - dateB.slice(14, 16);
-    }
-
-    return 0;
+    // ...
   });
 
+  // Devolver una lista que combina los leads encontrados en los diferentes niveles y los leads que no respondieron
   return [...leadRest, ...leadsNoRespondenSorted];
-  // return [...leadChequedInactive, ...leadRest, ...leadsNoRespondenSorted];
 };
 
+// Exportamos la función para que pueda ser utilizada en otros archivos
 module.exports = getLeadChecked;

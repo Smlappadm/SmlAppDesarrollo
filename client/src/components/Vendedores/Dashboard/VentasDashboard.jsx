@@ -203,9 +203,6 @@ const VentasDashboard = () => {
               <Link className="text-5xl" to={"/vendedores-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-              {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link> */}
             </div>
             {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
@@ -230,7 +227,7 @@ const VentasDashboard = () => {
                     <label className=" text-start w-[9%] px-3">País</label>
                     <label className=" text-center w-[5%] ">Email</label>
                     <label className=" text-center w-[5%] ">Instagram</label>
-                    <label className=" text-center w-[13%] ">Phone</label>
+                    <label className=" text-center w-[13%] ">Teléfono</label>
                     <button
                       className=" text-center w-[5%]"
                       onClick={() => handlerFilter("level")}
@@ -238,7 +235,7 @@ const VentasDashboard = () => {
                       Nivel
                     </button>
                     <label className=" text-center w-[17%] ">Llamar</label>
-                    <label className=" text-center w-[15%] ">Status</label>
+                    <label className=" text-center w-[15%] ">Estado</label>
                     <label className=" text-center w-[5%] "></label>
                   </div>
                   <div className="">
@@ -391,7 +388,7 @@ const VentasDashboard = () => {
               <p
                 onClick={() =>
                   handleCopyClick(
-                    `http://localhost:5173/pagos-sml?emailApp=${saveEmailApp}`
+                    `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
                   )
                 }
                 className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"

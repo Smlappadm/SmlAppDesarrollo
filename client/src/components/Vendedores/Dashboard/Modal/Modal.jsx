@@ -62,6 +62,10 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
+    if (statusObj.status === "Contratando") {
+      setStatusObj({...statusObj,
+        pagoRecibido: false})
+  };
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -193,6 +197,9 @@ function ChildModal({
     if (statusObj.status === "Contratado") {
       openModalPagoFunction();
     }
+    if (statusObj.status === "Contratando") {
+      openModalPagoFunction();
+    }
     statusObj.status = "";
   };
 
@@ -204,6 +211,13 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
+      <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={handleCancel}
+            >
+              Cerrar x
+            </button>
         {editEmail ||
         editInstagram ||
         editTelephone ||
@@ -212,38 +226,21 @@ function ChildModal({
           <>
             <button
               type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
-              onClick={handleCancel}
-              disabled={true}
-            >
-              Close x
-            </button>
-
-            <button
-              type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#424141] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#202020] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
               onClick={handleOpen}
               disabled={true}
             >
-              Save Changes
+              Guardar Cambios
             </button>
           </>
         ) : (
           <>
             <button
               type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              onClick={handleCancel}
-            >
-              Close x
-            </button>
-
-            <button
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              className="text-white bg-blue-700 hover:bg-blue-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-400 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleOpen}
             >
-              Save Changes
+              Guardar Cambios
             </button>
           </>
         )}
@@ -267,7 +264,7 @@ function ChildModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center">
-            Update the lead?
+          Actualizar Lead?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -282,7 +279,7 @@ function ChildModal({
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -412,7 +409,7 @@ function IncidenceModal({
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={confirmSendIncidence}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -462,7 +459,7 @@ function intelligentInfo({ setOpen }) {
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5">
-            Send Incidence?
+            Enviar Incidencia?
           </h2>
           <textarea
             name=""
@@ -485,7 +482,7 @@ function intelligentInfo({ setOpen }) {
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={confirmSendIncidence}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -494,7 +491,7 @@ function intelligentInfo({ setOpen }) {
   );
 }
 //************************************************************************************************ */
-function ConfirmacionEdicion({ handleConfirmEdit, id }) {
+function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
   const [openConfirmacionEdicion, setConfirmacionEdicion] =
     React.useState(false);
 
@@ -517,24 +514,19 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        {/* <button
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          onClick={handleCancel}
-        >
-          Close x
-        </button> */}
-        <BsCheck
-          onClick={handleOpen}
-          className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
-        />
-        {/* <button
-          type="button"
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          onClick={handleOpen}
-        >
-          Save Changes
-        </button> */}
+        {emailValidator ? (
+          <BsCheck
+            onClick={handleOpen}
+            className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#5cf73d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#5cf73d] dark:hover:bg-gray-700 "
+          />
+        ) : (
+          <>
+            <BsCheck className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-[#f73d3d] focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-[#f73d3d] dark:hover:bg-gray-700 " />
+            <p className="absolute whitespace-nowrap text-red-600 -left-64 -bottom-7">
+              email invalido
+            </p>
+          </>
+        )}
       </div>
       <Modal
         open={openConfirmacionEdicion}
@@ -570,7 +562,7 @@ function ConfirmacionEdicion({ handleConfirmEdit, id }) {
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               onClick={handleUpdate}
             >
-              Yes
+              Si
             </button>
           </div>
         </Box>
@@ -595,7 +587,6 @@ export default function NestedModal({
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
-  const [openPagoSelect, setOpenPagoSelect] = React.useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
   const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
@@ -624,9 +615,7 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
-  const [pagoCalculo, setPagoCalculo] = React.useState({
-    precio: 0,
-  });
+ const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -805,8 +794,23 @@ export default function NestedModal({
     }, 3000);
   };
 
+  // Email Validator FUNCTION
+  const validatorEmailFunction = (email) => {
+    setEmailValidator(false);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+      setEmailValidator(true);
+      console.log("correcto");
+    } else {
+      setEmailValidator(false);
+      console.log("incorrecto")
+    }
+  };
+
+
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
+      setEmailValidator(true);
     setEditEmail(!editEmail);
     setEditEmailApp(false);
     setEditInstagram(false);
@@ -814,7 +818,9 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    setInputEmail(event.target.value);
+    const emailChecked = event.target.value.trim()
+    setInputEmail(emailChecked);
+    validatorEmailFunction(emailChecked);
   };
   const handleConfirmEditEmail = async (id) => {
     try {
@@ -830,6 +836,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Instagram
   const handleEditInstagram = () => {
+      setEmailValidator(true);
     setEditInstagram(!editInstagram);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -854,6 +861,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Phone
   const handleEditTelephone = () => {
+      setEmailValidator(true);
     setEditTelephone(!editTelephone);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -877,6 +885,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
+      setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
     setEditTelephone(false);
     setEditEmail(false);
@@ -884,7 +893,9 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    setInputEmailApp(event.target.value);
+    const emailChecked = event.target.value.trim()
+    setInputEmailApp(emailChecked);
+    validatorEmailFunction(emailChecked);
   };
   const handleConfirmEditEmailApp = async (id) => {
     try {
@@ -899,6 +910,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS Contacto
   const handleEditContacto = () => {
+      setEmailValidator(true);
     setEditContacto(!editContacto);
     setEditEmailApp(false);
     setEditTelephone(false);
@@ -957,7 +969,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label>✔ Cliente Actualizado!</label>
               </motion.div>
             )}
             {openAlert && (
@@ -972,7 +984,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className="text-white">✔ Lead Updated!</label>
+                <label className="text-white">✔ Lead Actualizado!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -987,7 +999,7 @@ export default function NestedModal({
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Update Error!</label>
+                <label className=" text-white">❌ Error al Actualizar!</label>
               </motion.div>
             )}
             {openAlertErrorCuotas && (
@@ -1018,53 +1030,53 @@ export default function NestedModal({
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar email lead
                     </p>
-                  <CiMail
-                    onClick={handleEditEmail}
-                    className={
-                      editEmail
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
+                    <CiMail
+                      onClick={handleEditEmail}
+                      className={
+                        editEmail
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar instagram
                     </p>
-                  <CiInstagram
-                    onClick={handleEditInstagram}
-                    className={
-                      editInstagram
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
+                    <CiInstagram
+                      onClick={handleEditInstagram}
+                      className={
+                        editInstagram
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
                   </div>
-                                    <div className="relative h-fit w-fit group flex justify-center items-center">
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
-                      Editar phone
+                      Editar Teléfono
                     </p>
-                  <AiOutlinePhone
-                    onClick={handleEditTelephone}
-                    className={
-                      editTelephone
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
+                    <AiOutlinePhone
+                      onClick={handleEditTelephone}
+                      className={
+                        editTelephone
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
                   </div>
-                                    <div className="relative h-fit w-fit group flex justify-center items-center">
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar contacto
                     </p>
-                  <AiOutlineUserAdd
-                    onClick={handleEditContacto}
-                    className={
-                      editContacto
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
+                    <AiOutlineUserAdd
+                      onClick={handleEditContacto}
+                      className={
+                        editContacto
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
@@ -1103,6 +1115,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmail}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1127,6 +1140,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditInstagram}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1151,6 +1165,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditTelephone}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1176,6 +1191,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1201,6 +1217,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditContacto}
                         id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1229,7 +1246,7 @@ export default function NestedModal({
                 htmlFor="countries"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Status
+                Estado
               </label>
               {item.status !== "Agendar 2do llamado" ? (
                 <select
@@ -1241,6 +1258,7 @@ export default function NestedModal({
                 >
                   <option value="Sin contactar">Sin Contactar</option>
                   <option value="Agendar 2do llamado">En proceso</option>
+                  <option value="Contratando">Contratando</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
@@ -1257,6 +1275,7 @@ export default function NestedModal({
                     Elige uno...
                   </option>
                   <option value="Agendar otro llamado">En proceso</option>
+                  <option value="Contratando">Contratando</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">No Responde</option>
@@ -1502,9 +1521,7 @@ export default function NestedModal({
                       ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       : ""
                   }
-                  // placeholder={item.email}
                   placeholder=""
-                  // value="USD"
                 >
                   {statusObj.pagos.monto &&
                     statusObj.pagos.cuotas &&
@@ -1512,50 +1529,6 @@ export default function NestedModal({
                       statusObj.pagos.monto / statusObj.pagos.cuotas
                     ).toFixed(2)}`}
                 </p>
-
-                {/* <MdPriceCheck
-                      onClick={handleOpenPagoSelect}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    /> */}
-                {/* </div> */}
-                {/* {openPagoSelect && (
-                    <select
-                      onChange={handleSelectpago}
-                      name="status"
-                      defaultValue="default"
-                      id="select1"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option disabled="disabled" value="default">
-                        Modo de pago
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="1"
-                        value="pago1"
-                      >{`1 pago de €${pagoCalculo.valorCuota1} - Total €${pagoCalculo.precio1} - 35%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="6"
-                        value="pago6"
-                      >{`6 pagos de €${pagoCalculo.valorCuota6} - Total €${pagoCalculo.precio6} - 20%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="12"
-                        value="pago12"
-                      >{`12 pagos de €${pagoCalculo.valorCuota12} - Total €${pagoCalculo.precio12} - 10%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="16"
-                        value="pago16"
-                      >{`16 pagos de €${pagoCalculo.valorCuota16} - Total €${pagoCalculo.precio16} - 5%OFF`}</option>
-                      <option
-                        className="text-justify"
-                        name="25"
-                        value="pago25"
-                      >{`25 pagos de €${pagoCalculo.valorCuota25} - Total €${pagoCalculo.precio25}`}</option>
-                    </select>
-                  )} */}
               </div>
             )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
@@ -1569,17 +1542,6 @@ export default function NestedModal({
               </div>
             )}
           </div>
-          {/* <div className="flex justify-center items-center absolute -right-80 top-0">
-            {openTimeHour && (
-              <ResponsiveDateTimePickers
-                closeDateHour={closeDateHour}
-                changeTime={changeTime}
-                className={style.dateTime}
-                handleLlamadoVentaChange ={handleLlamadoVentaChange }
-              />
-            )}
-          </div> */}
-
           <div className="flex justify-center items-center absolute -right-80 top-0">
             {openTimeHour && (
               <ResponsiveDateTimePickers

@@ -6,6 +6,7 @@ const postEmployees = require("../controllers/Employees/postEmployees");
 const updateBannedEmploy = require("../controllers/Employees/updateBannedEmploy");
 const updateEmployByEmail = require("../controllers/Employees/updateEmployByEmail");
 
+// Obtener todos los empleados
 const getAllEmployeesHandler = async (req, res) => {
   try {
     const employees = await getAllEmployees();
@@ -15,6 +16,7 @@ const getAllEmployeesHandler = async (req, res) => {
   }
 };
 
+// Registrar nuevo empleado
 const postEmployeesHandler = async (req, res) => {
   const data = req.body;
   try {
@@ -25,6 +27,7 @@ const postEmployeesHandler = async (req, res) => {
   }
 };
 
+// Obtener empleado por correo electrónico
 const getEmployeesByEmailHandler = async (req, res) => {
   const { email } = req.query;
 
@@ -36,6 +39,7 @@ const getEmployeesByEmailHandler = async (req, res) => {
   }
 };
 
+// Eliminar empleado por correo electrónico
 const deleteEmployeesByEmailHandler = async (req, res) => {
   const { email } = req.query;
 
@@ -47,6 +51,7 @@ const deleteEmployeesByEmailHandler = async (req, res) => {
   }
 };
 
+// Actualizar empleado por correo electrónico
 const updateEmployByEmailHandler = async (req, res) => {
   const email = req.query.email;
   const updatedData = req.body;
@@ -59,6 +64,7 @@ const updateEmployByEmailHandler = async (req, res) => {
   }
 };
 
+// Obtener empleados baneados
 const getEmployeesBannedHandler = async (req, res) => {
   try {
     const employees = await getEmployeesBanned();
@@ -68,6 +74,7 @@ const getEmployeesBannedHandler = async (req, res) => {
   }
 };
 
+// Actualizar estado de empleado baneado por correo electrónico
 const updateBannedEmployHandler = async (req, res) => {
   const email = req.query.email;
   const updatedData = req.body;

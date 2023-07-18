@@ -8,6 +8,7 @@ const createPaymentVendedor = require("../controllers/Clientes/createPaymentVend
 const setReferred = require("../controllers/Clientes/setReferred");
 const addVideos = require("../controllers/Clientes/addVideos");
 
+// Nuevo cliente
 const newClientHandler = async (req, res) => {
   const body = req.body;
   try {
@@ -17,6 +18,8 @@ const newClientHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Iniciar sesión del cliente
 const loginClientHandler = async (req, res) => {
   const { username } = req.query;
   try {
@@ -26,6 +29,8 @@ const loginClientHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener todos los clientes
 const getAllClientesHandler = async (req, res) => {
   try {
     const client = await getAllClientes();
@@ -34,6 +39,8 @@ const getAllClientesHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Actualizar perfil de cliente 
 const updateClientProfileHandler = async (req, res) => {
   const { email } = req.query;
   const body = req.body;
@@ -44,6 +51,8 @@ const updateClientProfileHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Obtener cliente por correo electrónico 
 const getClientByEmailHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -53,25 +62,47 @@ const getClientByEmailHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+
+// Realizar pago para cliente
 const paymentClienteHandler = async (req, res) => {
   const { id, name, monto, cuotas, cuotasRestantes, valorCuota } = req.body;
   try {
-    const pago = await createPayment({ id, name, monto, cuotas, cuotasRestantes, valorCuota});
-    res.status(200).json(pago);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-const paymentClienteVendedoresHandler = async (req, res) => {
-  const { id, name, monto, cuotas, cuotasRestantes, valorCuota, link, email} = req.body;
-  try {
-    const pago = await createPaymentVendedor({ id, name, monto, cuotas, cuotasRestantes, valorCuota, link, email});
+    const pago = await createPayment({
+      id,
+      name,
+      monto,
+      cuotas,
+      cuotasRestantes,
+      valorCuota,
+    });
     res.status(200).json(pago);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
 
+// Realizar pago para cliente vendedor
+const paymentClienteVendedoresHandler = async (req, res) => {
+  const { id, name, monto, cuotas, cuotasRestantes, valorCuota, link, email } =
+    req.body;
+  try {
+    const pago = await createPaymentVendedor({
+      id,
+      name,
+      monto,
+      cuotas,
+      cuotasRestantes,
+      valorCuota,
+      link,
+      email,
+    });
+    res.status(200).json(pago);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// Manejar pago completado para cliente (comentado por el momento)
 const paymentCompletedClienteHandler = async (req, res) => {
   // const event = req.body;
   // console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
@@ -86,6 +117,7 @@ const paymentCompletedClienteHandler = async (req, res) => {
   // }
 };
 
+// Establecer referido para cliente 
 const setReferredHandler = async (req, res) => {
   const body = req.body;
   try {
@@ -95,6 +127,8 @@ const setReferredHandler = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+// Agregar videos para cliente 
 const addVideosHandler = async (req, res) => {
   const { videosPublicados } = req.body;
   const { email } = req.query;

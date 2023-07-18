@@ -1,5 +1,5 @@
 import {
-  GET_ALL_LEAD,
+  GET_ALL_LEAD,GET_ALL_LEAD_CONTRATANDO,
   GET_LEAD_UNCHECKED,
   GET_LEAD_CHEQUED,
   GET_LEAD_UNCHECKED_10,
@@ -10,6 +10,7 @@ import {
   FILTER_LEVEL,
   FILTER_STATUS,
   GET_ALL_CORREDORES,
+  GET_CORREDOR_EMAIL,
   GET_ALL_VENDEDORES,
   GET_ALL_LEADER,
   GET_ALL_CLEVEL,
@@ -43,10 +44,12 @@ import {
   FIND_FREELANCER_NAME_ALL_INFO,
   GET_LEAD_CHEQUED_FREELANCER,
   GET_FREELANCER,
+  GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS,
 } from "./actions";
 
 const initialState = {
   lead: [],
+  leadContratando: [],
   leadChequed: [],
   leadCheckedInactive5: [],
   leadCheckedFreelance: [],
@@ -58,6 +61,7 @@ const initialState = {
   vendedoresDashboard: [],
   vendedoresVentasDashboard: [],
   corredores: [],
+  corredor: [],
   vendedores: [],
   leader: [],
   clevel: [],
@@ -88,6 +92,7 @@ const initialState = {
   clienteEmpresa: "",
   freelanceLead: [],
   allFreelancers: [],
+  corredorLeadCheckedDescagados: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -120,6 +125,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         lead: action.payload,
+      };
+    case GET_ALL_LEAD_CONTRATANDO:
+      return {
+        ...state,
+        leadContratando: action.payload,
       };
     case GET_LEAD_UNCHECKED:
       return {
@@ -387,6 +397,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         corredores: action.payload,
       };
+    case GET_CORREDOR_EMAIL:
+      return {
+        ...state,
+        corredor: action.payload,
+      };
     case GET_ALL_VENDEDORES:
       return {
         ...state,
@@ -450,21 +465,21 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allProfesionFreelance: action.payload,
       };
-      case GET_ALL_COUNTRY:
-        return {
-          ...state,
-          allCountries: action.payload,
-        };
-      case GET_ALL_COUNTRY_FREELANCE:
-        return {
-          ...state,
-          allCountriesFreelance: action.payload,
-        };
-        case GET_ALL_CATEGORY:
-          return {
-            ...state,
-            allCategory: action.payload,
-          };
+    case GET_ALL_COUNTRY:
+      return {
+        ...state,
+        allCountries: action.payload,
+      };
+    case GET_ALL_COUNTRY_FREELANCE:
+      return {
+        ...state,
+        allCountriesFreelance: action.payload,
+      };
+    case GET_ALL_CATEGORY:
+      return {
+        ...state,
+        allCategory: action.payload,
+      };
     case GET_CORREDORES:
       return {
         ...state,
@@ -484,6 +499,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         detailEmploy: action.payload,
+      };
+    case GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS:
+      return {
+        ...state,
+        corredorLeadCheckedDescagados: action.payload,
       };
 
     // *******************************Clientes *******************************

@@ -1,7 +1,8 @@
 const postInfoPago = require("../controllers/Pagos/postInfoPago");
 
+// Actualizar información de pagos
 const updatePagosInfoHandler = async (req, res) => {
-  const info = req.body
+  const info = req.body;
   // const objeto = {
   //   email: info.data.object.customer_details.email,
   //   monto: info.data.object.amount_total,

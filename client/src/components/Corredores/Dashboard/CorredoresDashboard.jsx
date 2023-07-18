@@ -11,6 +11,7 @@ import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
   getAllCategory,
+  getAllCorredoresByEmail,
   getAllCountries,
   getAllProfesion,
   getLeadCorredores,
@@ -21,8 +22,6 @@ import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
-import BasicModal from "./MaterialUi/BasicModal";
-import { Hidden } from "@mui/material";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -40,6 +39,7 @@ const CorredoresDashboard = () => {
   ]);
 
   const { corredorLead } = useSelector((state) => state);
+  const { corredor } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -53,11 +53,14 @@ const CorredoresDashboard = () => {
   localStorage.setItem("names", fullName);
   let names = localStorage.getItem("names");
 
+  
+  let corredorName = localStorage.getItem("corredorName");
+
   useEffect(() => {
-    if (mail !== undefined) {
-      dispatch(getLeadCorredores(email, names, "", "", "", ""));
+    if (mail !== undefined && corredor.name !== undefined) {
+      dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
     }
-  }, [dispatch, mail]);
+  }, [dispatch, mail, corredor]);
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
@@ -372,6 +375,8 @@ const CorredoresDashboard = () => {
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
               view: true,
+              descargadosLeader: false,
+              descargadosCorredor: false,
             });
             console.log(response.data);
           } else if (
@@ -393,6 +398,8 @@ const CorredoresDashboard = () => {
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
               view: true,
+              descargadosLeader: false,
+              descargadosCorredor: false,
             });
 
             console.log(response.data);
@@ -404,7 +411,9 @@ const CorredoresDashboard = () => {
         }
       }
 
-      dispatch(getLeadCorredores(email, names, "", "", "", ""));
+      console.log(corredor.name);
+      const names = corredor.name;
+      dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
 
       SendLeadsSuccess();
     } catch (error) {
@@ -424,7 +433,9 @@ const CorredoresDashboard = () => {
         <form onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
             <div className="flex gap-10  mt-2 mx-5 ">
-              <h1 className="font-bold text-[#e2e2e2] text-lg">Dashboard</h1>
+              <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+                Dashboard
+              </h1>
               <div className="flex gap-5">
                 <Link to={"/corredores"}>
                   <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -443,7 +454,7 @@ const CorredoresDashboard = () => {
                 <InputRunner
                   getLeadCorredores={getLeadCorredores}
                   email={email}
-                  names={names}
+                  corredorName={corredorName}
                 />
               </div>
             </div>

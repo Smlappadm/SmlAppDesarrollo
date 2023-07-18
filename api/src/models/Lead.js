@@ -47,6 +47,7 @@ const LeadSchema = new mongoose.Schema(
         "Contratado",
         "No responde",
         "Agendar 2do llamado",
+        "Contratando",
         "incidencia",
         "discard",
       ],
@@ -62,6 +63,18 @@ const LeadSchema = new mongoose.Schema(
       default: "",
     },
     pagos: {
+      type: Object,
+      require: true,
+    },
+    pagoRecibido: {
+      type: Boolean,
+      require: true,
+    },
+    primeraPromosion: {
+      type: Object,
+      require: true,
+    },
+    segundaPromosion: {
       type: Object,
       require: true,
     },
@@ -192,10 +205,40 @@ const LeadSchema = new mongoose.Schema(
       type: Date,
       require: true,
     },
+    updateSinContactar: {
+      type: Date,
+      require: true,
+    },
+    updateRechazado: {
+      type: Date,
+      require: true,
+    },
+    updateContratado: {
+      type: Date,
+      require: true,
+    },
+    updateNoResponde: {
+      type: Date,
+      require: true,
+    },
+    updateSegundoLlamado: {
+      type: Date,
+      require: true,
+    },
+    updateIncidencia: {
+      type: Date,
+      require: true,
+    },
     deleted: {
       type: Boolean,
       require: true,
       default: false,
+    },
+    promocion1: {
+      type: Date,
+    },
+    promocion2: {
+      type: Date,
     },
   },
   { timestamps: true }

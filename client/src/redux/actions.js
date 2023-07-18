@@ -1,5 +1,6 @@
 import axios from "axios";
 export const GET_ALL_LEAD = "GET_ALL_LEAD";
+export const GET_ALL_LEAD_CONTRATANDO = "GET_ALL_LEAD_CONTRATANDO";
 export const GET_LEAD_UNCHECKED_10 = "GET_LEAD_UNCHECKED_10";
 export const GET_LEAD_UNCHECKED = "GET_LEAD_UNCHECKED";
 export const GET_LEAD_CHEQUED = "GET_LEAD_CHEQUED";
@@ -11,6 +12,7 @@ export const FILTER_LEVEL = "FILTER_LEVEL";
 export const FILTER_STATUS = "FILTER_STATUS";
 export const GET_ALL_LEAD_INACTIVE = "GET_ALL_LEAD_INACTIVE";
 export const GET_ALL_CORREDORES = "GET_ALL_CORREDORES";
+export const GET_CORREDOR_EMAIL = "GET_CORREDOR_EMAIL";
 export const GET_ALL_VENDEDORES = "GET_ALL_VENDEDORES";
 export const GET_ALL_LEADER = "GET_ALL_LEADER";
 export const GET_ALL_CLEVEL = "GET_ALL_CLEVEL";
@@ -44,6 +46,8 @@ export const GET_ALL_FREELANCER = "GET_ALL_FREELANCER";
 export const FIND_FREELANCER_NAME_ALL_INFO = "FIND_FREELANCER_NAME_ALL_INFO";
 export const GET_LEAD_CHEQUED_FREELANCER = "GET_LEAD_CHEQUED_FREELANCER";
 export const GET_FREELANCER = "GET_FREELANCER";
+export const GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS =
+  "GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS";
 
 //
 export const setRol = (rol) => {
@@ -89,11 +93,28 @@ export const getAllLead = () => {
     dispatch({ type: GET_ALL_LEAD, payload: lead });
   };
 };
+
+export const getAllLeadContratando = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/contratando");
+    const leadContratando = response.data;
+    dispatch({ type: GET_ALL_LEAD_CONTRATANDO, payload: leadContratando });
+  };
+};
+
 export const getAllCorredores = () => {
   return async (dispatch) => {
     const response = await axios.get("/corredor");
     const corredores = response.data;
     dispatch({ type: GET_ALL_CORREDORES, payload: corredores });
+  };
+};
+
+export const getAllCorredoresByEmail = (email) => {
+  return async (dispatch) => {
+    const response = await axios.get(`/corredor/email?email=${email}`);
+    const corredor = response.data;
+    dispatch({ type: GET_CORREDOR_EMAIL, payload: corredor });
   };
 };
 export const getAllVendedores = () => {
@@ -182,8 +203,9 @@ export const getLeadCheckedInactive5 = (body, profesion, country, level) => {
     }
   };
 };
-export const getLeadCheckedFreelance = (body, profesion, country, level) => {
-  body = { ...body, profesion, country, level };
+export const getLeadCheckedFreelance = (body, profesion, country, level, freelance) => {
+  body = { ...body, profesion, country, level, freelance };
+  console.log(body)
 
   return async (dispatch) => {
     if (
@@ -353,7 +375,8 @@ export const getLeadCorredores = (
   marca_personal
 ) => {
   return async (dispatch) => {
-    if (email !== "undefined" && email !== "") {
+    if (email !== "undefined" && email !== "" && names !== "undefined" && names !== "") {
+      console.log(names);
       const response = await axios.get(
         `lead/unchecked10?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
       );
@@ -391,6 +414,18 @@ export const getLeadCorredoresChecked = (email) => {
   };
 };
 
+export const getLeadCorredoresCheckedDescargados = (email) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `lead/corredorcheckeddescargados?email=${email}`
+    );
+    const corredorLeadCheckedDescargados = response.data;
+    dispatch({
+      type: GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS,
+      payload: corredorLeadCheckedDescargados,
+    });
+  };
+};
 export const getAllEmployees = () => {
   return async (dispatch) => {
     const response = await axios.get("/employees");

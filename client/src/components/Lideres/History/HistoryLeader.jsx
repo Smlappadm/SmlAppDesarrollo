@@ -22,7 +22,7 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoLogoSnapchat, IoStatsChart } from "react-icons/io5";
+import { IoGrid, IoLogoSnapchat, IoStatsChart,IoRocketOutline } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -159,19 +159,44 @@ export const LideresHistory = () => {
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between mx-5 mb-10">
           <div className="flex gap-5">
-            <Title className={style.title}>History</Title>
+            <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
+              Historial Empleados
+            </Title>
 
-            <Link to={"/lideres/"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/contratando/"}
+            >
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Contratando</p>
             </Link>
-            <Link to={"/lideres-freelancer/"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-freelancer/"}
+            >
               <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Freelancer</p>
             </Link>
-            <Link className="text-5xl" to={"/lideres-analytics"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-analytics"}
+            >
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Analiticas</p>
             </Link>
-            <Link className="text-5xl" to={"/lideres-incidences"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-incidences"}
+            >
               <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Incidencias</p>
+            </Link>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/promociones"}
+            >
+              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Promociones</p>
             </Link>
           </div>
 

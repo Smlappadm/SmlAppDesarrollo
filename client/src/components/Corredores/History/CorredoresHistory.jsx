@@ -19,17 +19,25 @@ import {
 import { CiGlobe, CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
-import { getLeadCorredoresChecked } from "../../../redux/actions";
+import {
+  getLeadCorredoresChecked,
+  getLeadCorredoresCheckedDescargados,
+} from "../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
+import { Button } from "@mui/material";
+import Papa from "papaparse";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 const CorredoresHistory = () => {
   const { corredorLeadChecked } = useSelector((state) => state);
+  const { corredorLeadCheckedDescagados } = useSelector((state) => state);
   const dispatch = useDispatch();
-
+  let email = localStorage.getItem("email");
   const user = useUser().user;
-  const email = user?.emailAddresses[0]?.emailAddress;
 
   useEffect(() => {
+    dispatch(getLeadCorredoresCheckedDescargados(email && email));
     dispatch(getLeadCorredoresChecked(email));
   }, [dispatch]);
 
@@ -48,60 +56,118 @@ const CorredoresHistory = () => {
     return <p className={style.noResults}>No hay resultados...</p>;
   }
 
+  const descargaOk = () => {
+    toast.success(`✔ Leads descargados con exito! `, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const descargaW = (name) => {
+    toast.warning(`✔ Ya descargaste todos los Leads! `, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const downloadCSV = () => {
+    const csv = Papa.unparse(corredorLeadCheckedDescagados);
+
+    // Crea un enlace de descarga
+    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const csvURL = URL.createObjectURL(csvData);
+    const tempLink = document.createElement("a");
+    tempLink.href = csvURL;
+    tempLink.setAttribute("download", "CorredorHistory.csv");
+    tempLink.click();
+
+    const updateLeadCorredor = async () => {
+      const promises = corredorLeadCheckedDescagados.map((lead) =>
+        axios.put(`/lead/${lead._id}`, {
+          descargadosCorredor: true,
+        })
+      );
+
+      await Promise.all(promises);
+    };
+    descargaOk();
+    updateLeadCorredor();
+  };
+
   return (
     <>
+      <ToastContainer />
       <Nav />
       <div className=" flex flex-col justify-start items-center w-full h-screen mx-5 ">
         <Card className="w-full m-5 h-screen bg-[#222131]">
-          <div className="flex gap-10 items-center mt-2 mx-5 ">
-            <Title className="font-bold text-[#e2e2e2] text-lg">
-              History
-            </Title>
+          <div className="flex gap-10 items-center mt-2 mx-5 justify-between">
             <div className="flex gap-5">
-              <Link to={"/corredores"}>
-                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/corredores-history"}>
-                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/corredores-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+              <h2 className="font-bold text-[#e2e2e2] text-lg">
+                History
+              </h2>
+              <div className="flex gap-5">
+                <Link to={"/corredores"}>
+                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/corredores-history"}>
+                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/corredores-analytics"}>
+                  <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+              </div>
             </div>
+
+            <label>Leads chequeados: {corredorLeadChecked.length}</label>
+            <Button variant="outlined" onClick={downloadCSV}>
+              Descargar CSV
+            </Button>
           </div>
           <Table className="flex">
-            <TableHead className="text-gray-400 text-14 font-thin">
-              <TableRow className={style.tableRow}>
-                <TableHeaderCell className="text-start">
+            <div className="text-gray-400 text-14 font-thin">
+              <div className={style.tableRow}>
+                <div className="text-start">
                   Invoice Id
-                </TableHeaderCell>
-                <TableHeaderCell className="text-start">Name</TableHeaderCell>
-                <TableHeaderCell className="text-start">Web</TableHeaderCell>
-                <TableHeaderCell className="text-start">
+                </div>
+                <div className="text-start">Name</div>
+                <div className="text-start">Web</div>
+                <div className="text-start">
                   Instagram
-                </TableHeaderCell>
-                <TableHeaderCell className="text-start">Nivel</TableHeaderCell>
-                <TableHeaderCell className="text-start">
+                </div>
+                <div className="text-start">Nivel</div>
+                <div className="text-start">
                   Incidencia
-                </TableHeaderCell>
-              </TableRow>
-            </TableHead>
+                </div>
+              </div>
+            </div>
 
-            <TableBody className="h-3/4">
+            <div className="h-3/4">
               {currentCard?.map((item, index) => (
-                <TableRow key={index} className={style.tableCards}>
-                  <TableCell className="flex justify-start items-center p-0">
+                <div key={index} className={style.tableCards}>
+                  <div className="flex justify-start items-center p-0">
                     <div className="w-24 p-1 px-3 rounded-full text-ellipsis opacity-1 overflow-hidden hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
                       {item._id}
                     </div>
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
+                  </div>
+                  <div className="flex justify-start items-center p-0">
                     {/* sssss */}
                     <Text className="w-96 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                       {item.name}
                     </Text>
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
+                  </div>
+                  <div className="flex justify-start items-center p-0">
                     {item.url ? (
                       <Link to={item.url} target="_blank">
                         <div>
@@ -113,8 +179,8 @@ const CorredoresHistory = () => {
                         <CiGlobe className="text-[30px] mr-5 text-[#9eabbe]" />
                       </div>
                     )}
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0 mx-3">
+                  </div>
+                  <div className="flex justify-start items-center p-0 mx-3">
                     {item.instagram ? (
                       <Link to={item.instagram} target="_blank">
                         <div>
@@ -128,8 +194,8 @@ const CorredoresHistory = () => {
                         <Text className="text-start">{item.Instagram}</Text>
                       </div>
                     )}
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
+                  </div>
+                  <div className="flex justify-start items-center p-0">
                     {item.level == "0" ? (
                       <label className={style.buttonNivelActive}>0</label>
                     ) : (
@@ -145,8 +211,8 @@ const CorredoresHistory = () => {
                     ) : (
                       <label className={style.buttonNivel}>2</label>
                     )}
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
+                  </div>
+                  <div className="flex justify-start items-center p-0">
                     <div>
                       {item.level == "incidencia" ? (
                         <CiWarning className="text-[30px] mr-5 text-[#f0de41]" />
@@ -154,10 +220,10 @@ const CorredoresHistory = () => {
                         <CiWarning className="text-[30px] mr-5 text-[#418df0]" />
                       )}
                     </div>
-                  </TableCell>
-                </TableRow>
+                  </div>
+                </div>
               ))}
-            </TableBody>
+            </div>
           </Table>
         </Card>
         <div className=" mb-5">

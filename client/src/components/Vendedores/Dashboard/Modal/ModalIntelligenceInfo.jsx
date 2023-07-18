@@ -8,12 +8,13 @@ import { useUser } from "@clerk/clerk-react";
 import { orderCategory } from "../../../../redux/actions";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { CgFileAdd } from "react-icons/cg";
+import { BsCheck } from "react-icons/bs";
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  height: 850,
+  height: 500,
   bgcolor: "#39394B",
   border: "none",
   boxShadow: 24,
@@ -67,7 +68,7 @@ export default function ModalIntelligentInfo({ item }) {
     <div>
       <div className="flex gap-4">
       <div className="relative h-fit w-fit group flex justify-center items-center">
-                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-5 group-hover:block">
+                    <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
                       Lead Info AI
                     </p>
       <CgFileAdd className="text-[33px] text-[#b3bebd] cursor-pointer" onClick={handleOpen}/>
@@ -81,42 +82,63 @@ export default function ModalIntelligentInfo({ item }) {
       >
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
           <div className="flex flex-col items-center justify-center gap-y-7">
-            <h1 className="text-24 text-[#e4e1e1]">Información IA</h1>
-            <div>
-              <p className="text-[#dddddd] text-justify text-16 ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequatur eum tempora enim corrupti ipsam, a soluta itaque
-                maiores consequuntur ab perspiciatis amet neque recusandae,
-                totam placeat labore! Laborum beatae praesentium fugiat
-                reprehenderit, quidem eos rem iste. Animi eum aut minima, eos
-                consectetur officia corrupti porro magnam aliquid maxime placeat
-                consequatur blanditiis id atque quidem amet ex facilis, illo
-                veniam explicabo quas recusandae at. Officiis praesentium quos
-                velit dolor. Ad, culpa? Culpa esse molestias laboriosam modi
-                harum ipsum nam! Cumque perferendis id delectus corporis dolore,
-                dolores pariatur saepe sint neque aspernatur! Voluptas, error
-                temporibus architecto vel velit laudantium dicta. Eligendi odit
-                rerum, officia veniam mollitia dolor consequatur quidem deleniti
-                ea voluptatem! Autem fugit deserunt soluta libero, in quisquam
-                ullam alias eaque laboriosam excepturi. Aut sapiente quae enim
-                deserunt dolorum. Omnis, amet dicta! Eos nesciunt aliquid iste
-                cumque, distinctio pariatur. Sunt aspernatur amet dolor, eos
-                facere dignissimos quos maiores. Iusto, dignissimos. Veritatis
-                autem repellat optio debitis unde? Reprehenderit optio dolorum
-                alias atque ut repudiandae consequatur. Assumenda soluta cumque
-                perferendis commodi, consequuntur doloribus molestiae neque
-                ratione quae officia unde dicta quos ad itaque, modi
-                exercitationem atque architecto consectetur autem ab
-                necessitatibus ut, adipisci culpa. Consequuntur sequi incidunt
-                possimus quas commodi at earum cum!
-              </p>
+            <h1 className="text-24 text-[#e4e1e1]">Información Cliente</h1>
+            <div className="mb-10 gap-y-3">
+              {item && item.seguidores2000 ? (
+                <div className="flex justify-start items-center">
+                  <p>Seguidores +2000: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Seguidores +2000: ❌</p>
+              )}
+              {item && item.repercusion ? (
+                <div className="flex justify-start items-center">
+                  <p>Repercusión: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Repercusión: ❌</p>
+              )}
+              {item && item.contenidoPersonal ? (
+                <div className="flex justify-start items-center">
+                  <p>Contenido Personal: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Contenido Personal: ❌</p>
+              )}
+              {item && item.contenidoValor ? (
+                <div className="flex justify-start items-center">
+                  <p>Contenido de Valor: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Contenido de Valor: ❌</p>
+              )}
+              {item && item.calidadInstagram ? (
+                <div className="flex justify-start items-center">
+                  <p>Calidad Instagram: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Calidad Instagram: ❌</p>
+              )}
+              {item && item.frecuencia ? (
+                <div className="flex justify-start items-center">
+                  <p>Frecuencia: </p>{" "}
+                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                </div>
+              ) : (
+                <p>Frecuencia: ❌</p>
+              )}
             </div>
             <button
               type="button"
               className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={handleClose}
             >
-              Close x
+              Cerrar x
             </button>
           </div>
         </Box>

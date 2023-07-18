@@ -5,6 +5,7 @@ const getClevelByEmail = require("../controllers/CLevel/getClevelByEmail");
 const postCLevel = require("../controllers/CLevel/postCLevel");
 const updateCLevelByEmail = require("../controllers/CLevel/updateCLevelByEmail");
 
+// Obtener todos los niveles CLevel
 const getAllCLevelsHandler = async (req, res) => {
   try {
     const cLevels = await getAllCLevels();
@@ -14,6 +15,7 @@ const getAllCLevelsHandler = async (req, res) => {
   }
 };
 
+// Publicar un nivel CLevel
 const postCLevelHandler = async (req, res) => {
   const data = req.body;
   try {
@@ -24,6 +26,7 @@ const postCLevelHandler = async (req, res) => {
   }
 };
 
+// Actualizar nivel CLevel por correo electrónico
 const updateClevelByEmailHandler = async (req, res) => {
   const email = req.query.email;
   const updatedData = req.body;
@@ -36,6 +39,7 @@ const updateClevelByEmailHandler = async (req, res) => {
   }
 };
 
+// Obtener CLevel por correo electrónico
 const getCLevelByEmailHandler = async (req, res) => {
   const { email } = req.query;
 
@@ -47,6 +51,7 @@ const getCLevelByEmailHandler = async (req, res) => {
   }
 };
 
+// Obtener CLevel por nombre
 const getCLevelByNameHandler = async (req, res) => {
   const { Name } = req.query;
 
@@ -58,6 +63,7 @@ const getCLevelByNameHandler = async (req, res) => {
   }
 };
 
+// Obtener CLevel por ID
 const getCLevelByIdHandler = async (req, res) => {
   const id = req.params.id;
 

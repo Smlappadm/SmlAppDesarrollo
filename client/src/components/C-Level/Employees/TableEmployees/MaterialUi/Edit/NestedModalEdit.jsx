@@ -53,10 +53,20 @@ function ChildModalDelete({
   };
   const handleCreate = async () => {
     try {
-      if (itemRol === "clevel" || itemRol === "leader" || itemRol === "freelancer") {
-        await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
-          deleted: true,
-        });
+      if (
+        itemRol === "clevel" ||
+        itemRol === "leader" ||
+        itemRol === "freelancer"
+      ) {
+        if (itemRol === "clevel") {
+          await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
+            deleted: true,
+          });
+        } else {
+          await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
+            deleted: true,
+          });
+        }
         await axios.put(`/corredor/email/email?email=${itemEmail}`, {
           deleted: true,
         });
@@ -154,7 +164,6 @@ function ChildModal({
       setOpen(false);
       return;
     }
-
     try {
       if (itemRol === "clevel") {
         await axios.put(`/clevel/email?email=${inputEmail}`, {
@@ -182,6 +191,11 @@ function ChildModal({
           birthdate: inputBirthdate,
           description: inputDescription,
           country: inputCountry,
+        });
+        
+        await axios.put(`/lead/cambiarnombreclevel`, {
+          name: inputName,
+          email: inputEmail,
         });
       }
       if (itemRol === "leader") {
@@ -211,6 +225,12 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
+
+        
+        await axios.put(`/lead/cambiarnombreleader`, {
+          name: inputName,
+          email: inputEmail,
+        });
       }
       if (itemRol === "freelancer") {
         await axios.put(`/freelancer/email/email?email=${inputEmail}`, {
@@ -239,6 +259,11 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
+
+        await axios.put(`/lead/cambiarnombrefreelancer`, {
+          name: inputName,
+          email: inputEmail,
+        });
       }
 
       if (itemRol === "vendedor") {
@@ -250,6 +275,13 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
+
+        
+        await axios.put(`/lead/cambiarnombrevendedor`, {
+          name: inputName,
+          email: inputEmail,
+        });
+        
       }
 
       if (itemRol === "corredor") {
@@ -260,6 +292,11 @@ function ChildModal({
           birthdate: inputBirthdate,
           description: inputDescription,
           country: inputCountry,
+        });
+        
+        await axios.put(`/lead/cambiarnombrecorredor`, {
+          name: inputName,
+          email: inputEmail,
         });
       }
 

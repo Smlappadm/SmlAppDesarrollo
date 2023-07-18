@@ -10,6 +10,7 @@ import axios from "axios";
 
 const getServerUrl = () => {
   const { hostname } = window.location;
+
   if (hostname.includes("localhost")) {
     return "http://localhost:3001/api";
   } else if (hostname.includes("smlappadm.vercel.app")) {
@@ -17,7 +18,7 @@ const getServerUrl = () => {
   } else if (hostname.includes("sml-app.com")) {
     return "https://sml-app.com/api";
   }
-  
+
   return "http://localhost:3001/api";
 };
 
@@ -60,6 +61,10 @@ root.render(
 //     </Provider>
 //   </IntlProvider>
 // );
+
+
+
+
 
 // HOVER
 

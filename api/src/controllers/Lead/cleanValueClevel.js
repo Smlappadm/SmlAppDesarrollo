@@ -1,7 +1,12 @@
+// Importar el modelo Lead desde la ruta especificada
 const Lead = require("../../models/Lead");
 
+// Función para limpiar los valores relacionados con un usuario C-level (corredor o vendedor) en la colección Lead
 const cleanValueClevel = async (email) => {
+  // Actualizar múltiples campos para los registros donde el correo electrónico del corredor coincida con el proporcionado
+  // Se establecen varios campos en valores predeterminados para restablecerlos
   const leadResult = await Promise.all([
+    // Actualizar los registros donde el corredor coincide con el correo electrónico
     Lead.updateMany(
       { corredor: email },
       {
@@ -19,6 +24,8 @@ const cleanValueClevel = async (email) => {
         },
       }
     ),
+
+    // Actualizar los registros donde el vendedor coincide con el correo electrónico
     Lead.updateMany(
       { vendedor: email },
       {
@@ -36,7 +43,9 @@ const cleanValueClevel = async (email) => {
     ),
   ]);
 
+  // Devolver el resultado de las actualizaciones
   return leadResult;
 };
 
+// Exportar la función 'cleanValueClevel' para su uso externo
 module.exports = cleanValueClevel;

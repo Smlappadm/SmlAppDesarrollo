@@ -143,7 +143,7 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
         </div>
 
         <div className="flex flex-col w-36">
-          <label>Status:</label>
+          <label>Nivel:</label>
           <Select
             value={status}
             onChange={handleChangeStatus}

@@ -50,7 +50,6 @@ const VentasHistory = () => {
       progress: undefined,
       theme: "dark",
     });
-    // dispatch(getVendedorAllLeads(email));
   };
 
   const SendErrorUpdateAlertBaja = () => {
@@ -109,31 +108,6 @@ const VentasHistory = () => {
     sellers: false,
     status: false,
   });
-
-  // const handlerFilter = (filter) => {
-  //   dispatch(getVendedorAllLeads(email));
-  //   setFilterSector("");
-  //   setFilterName("");
-  //   setFilterPais("");
-  //   setOpenFilterName(false);
-  //   setOpenFilterSector(false);
-  //   setOpenFilterPais(false);
-  //   setOpenFilterStatus(false);
-  //   if (filter === "level") {
-  //     setFilters({
-  //       level: !filters.level,
-  //       runner: false,
-  //       sellers: false,
-  //       status: false,
-  //     });
-  //   } else if (filter === "runner") {
-  //     setFilters({ level: false, runner: true, sellers: false, status: false });
-  //   } else if (filter === "sellers") {
-  //     setFilters({ level: false, runner: false, sellers: true, status: false });
-  //   } else {
-  //     setFilters({ level: false, runner: false, sellers: false, status: true });
-  //   }
-  // };
 
   const [levelValue, setLevelValue] = useState("");
   const [statusValue, setStatusValue] = useState("");
@@ -315,7 +289,7 @@ const VentasHistory = () => {
               transition={{ duration: 1, delay: 0 }}
               className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
             >
-              History
+              Historial
             </motion.h1>
             <div className="flex gap-7 ">
             <Link to={"/ventas-dashboard"}>
@@ -390,9 +364,6 @@ const VentasHistory = () => {
                 ""
               )}
 
-              {/* <select className="w-32 h-10 rounded-lg bg-purple-500 text-white text-center">
-                  <option className="py-1">2023</option>
-                </select> */}
             </div>
           </div>
 
@@ -424,34 +395,29 @@ const VentasHistory = () => {
                 </button>
                 <label
                   className="text-start w-[15%] px-3"
-                  // onClick={handlerOpenFilterSector}
                 >
                   Profesión
                 </label>
                 <label
                   className="text-start w-[10%] px-3"
-                  // onClick={handlerOpenFilterPais}
                 >
                   País
                 </label>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
-                <label className="text-center w-[15%] ">Phone</label>
+                <label className="text-center w-[15%] ">Teléfono</label>
                 <label
                   className="  w-[10%] text-center"
-                  // onClick={() => handlerFilter("level")}
                 >
                   Nivel
                 </label>
                 <label
                   className="text-center w-[17%]"
-                  // onClick={handlerOpenStatus}
                 >
-                  Status
+                  Estado
                 </label>
                 <label
                   className="text-center w-[3%]"
-                  // onClick={handlerOpenStatus}
                 ></label>
               </div>
 
@@ -508,7 +474,7 @@ const VentasHistory = () => {
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
                         <p
                           onClick={() => handleCopyClick(item.telephone)}
-                          className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                          className="text-center w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
                         >
                           {item.telephone}
                         </p>
