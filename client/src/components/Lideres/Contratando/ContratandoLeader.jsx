@@ -192,7 +192,7 @@ export const ContratandoLeader = () => {
         <div className="flex justify-between mx-5 mb-10">
           <div className="flex gap-5">
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
-              Historial Empleados
+              Contratando
             </Title>
 
             <Link
