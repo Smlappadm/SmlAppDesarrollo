@@ -48,7 +48,8 @@ const LeadSchema = new mongoose.Schema(
         "No responde",
         "Agendar 2do llamado",
         "incidencia",
-        "discard","contratando"
+        "discard",
+        "contratando",
       ],
       require: true,
     },
@@ -228,5 +229,3 @@ const LeadSchema = new mongoose.Schema(
 const Lead = new mongoose.model("lead", LeadSchema);
 
 module.exports = Lead;
-
-
