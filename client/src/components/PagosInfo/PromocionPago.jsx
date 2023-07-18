@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function PromocionPago() {
-  const [tiempoRestante, setTiempoRestante] = useState(1 * 1 * 20);
+  const [tiempoRestante, setTiempoRestante] = useState(3600);
 
   useEffect(() => {
     // Creamos el intervalo para actualizar el tiempo restante cada segundo
