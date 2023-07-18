@@ -1,5 +1,5 @@
 import {
-  GET_ALL_LEAD,
+  GET_ALL_LEAD,GET_ALL_LEAD_CONTRATANDO,
   GET_LEAD_UNCHECKED,
   GET_LEAD_CHEQUED,
   GET_LEAD_UNCHECKED_10,
@@ -49,6 +49,7 @@ import {
 
 const initialState = {
   lead: [],
+  leadContratando: [],
   leadChequed: [],
   leadCheckedInactive5: [],
   leadCheckedFreelance: [],
@@ -124,6 +125,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         lead: action.payload,
+      };
+    case GET_ALL_LEAD_CONTRATANDO:
+      return {
+        ...state,
+        leadContratando: action.payload,
       };
     case GET_LEAD_UNCHECKED:
       return {

@@ -41,12 +41,22 @@ const cambioNombreCorredor = require("../controllers/Lead/cambioNombreCorredor")
 const cambioNombreVendedor = require("../controllers/Lead/cambioNombreVendedor");
 const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
 const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
+const getAllLeadContratando = require("../controllers/Lead/getAllLeadsContratando");
 
 // Obtener todos los leads
 const getAllLeadHandler = async (req, res) => {
   try {
     const lead = await getAllLeads();
     res.status(200).json(lead);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+// Obtener todos los leads
+const getAllLeadsContratandoHandler = async (req, res) => {
+  try {
+    const leadContratando = await getAllLeadContratando();
+    res.status(200).json(leadContratando);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -624,4 +634,5 @@ module.exports = {
   cambioNombreVendedorHandler,
   cambioNombreClevelHandler,
   cambioNombreLeaderHandler,
+  getAllLeadsContratandoHandler,
 };

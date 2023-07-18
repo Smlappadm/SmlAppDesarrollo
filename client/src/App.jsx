@@ -50,6 +50,7 @@ import VentasDashboard from "./components/Freelance/Ventas/Dashboard/VentasDashb
 import VentasAgenda from "./components/Freelance/Ventas/Dashboard/VentasAgenda";
 import PagosInfo from "./components/PagosInfo/PagosInfo";
 import PagoOk from "./components/PagosInfo/PagoOk";
+import { ContratandoLeader } from "./components/Lideres/Contratando/ContratandoLeader";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -243,6 +244,18 @@ function ClerkProviderWithRoutes() {
               (roleReady === "clevel" || roleReady === "leader") &&
               isEmployeeReady ? (
                 <LideresHistory />
+              ) : (
+                <ReturnToPage />
+              )
+            }
+          />
+          <Route
+            path="/contratando"
+            element={
+              isRoleAllowed(roleReady) &&
+              (roleReady === "clevel" || roleReady === "leader") &&
+              isEmployeeReady ? (
+                <ContratandoLeader />
               ) : (
                 <ReturnToPage />
               )

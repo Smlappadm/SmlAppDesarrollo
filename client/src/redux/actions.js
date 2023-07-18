@@ -1,5 +1,6 @@
 import axios from "axios";
 export const GET_ALL_LEAD = "GET_ALL_LEAD";
+export const GET_ALL_LEAD_CONTRATANDO = "GET_ALL_LEAD_CONTRATANDO";
 export const GET_LEAD_UNCHECKED_10 = "GET_LEAD_UNCHECKED_10";
 export const GET_LEAD_UNCHECKED = "GET_LEAD_UNCHECKED";
 export const GET_LEAD_CHEQUED = "GET_LEAD_CHEQUED";
@@ -92,6 +93,15 @@ export const getAllLead = () => {
     dispatch({ type: GET_ALL_LEAD, payload: lead });
   };
 };
+
+export const getAllLeadContratando = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/lead/contratando");
+    const leadContratando = response.data;
+    dispatch({ type: GET_ALL_LEAD_CONTRATANDO, payload: leadContratando });
+  };
+};
+
 export const getAllCorredores = () => {
   return async (dispatch) => {
     const response = await axios.get("/corredor");
