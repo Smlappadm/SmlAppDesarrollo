@@ -57,7 +57,9 @@ export default function AgregarPromosion() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>Añadir Promosiones</Button>
+      <Button variant="outlined" onClick={handleOpen}>
+        Añadir Promosiones
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -66,118 +68,117 @@ export default function AgregarPromosion() {
       >
         <Box sx={style}>
           <div className="flex flex-col gap-5">
-            
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Agregue una Promoción nueva
-          </Typography>
-          <TextField
-            fullWidth
-            label="Nombre de promoción"
-            type="text"
-            id="Nombre"
-            value={name}
-            onChange={handleChangeName}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-          <TextField
-            fullWidth
-            type="number"
-            label="Horas"
-            id="Horas"
-            value={hora}
-            onChange={handleChangeHora}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-          <TextField
-            fullWidth
-            type="number"
-            label="Cantidad de Cuotas"
-            id="Cuotas"
-            value={cuota}
-            onChange={handleChangeCuota}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-          <TextField
-            fullWidth
-            type="number"
-            label="Monto de Cuotas"
-            id="Monto"
-            value={valorCuota}
-            onChange={handleChangeValorCuota}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-          <TextField
-            fullWidth
-            type="number"
-            label="Monto Total"
-            id="Monto"
-            value={monto}
-            onChange={handleChangeMonto}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
-          <TextField
-            fullWidth
-            type="text"
-            label="Link de Stripe"
-            id="Link"
-            value={link}
-            onChange={handleChangeLink}
-            InputProps={{
-              style: {
-                color: "white",
-              },
-            }}
-            InputLabelProps={{
-              style: {
-                color: "white",
-              },
-            }}
-          />
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Agregue una Promoción nueva
+            </Typography>
+            <TextField
+              fullWidth
+              label="Nombre de promoción"
+              type="text"
+              id="Nombre"
+              value={name}
+              onChange={handleChangeName}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Horas"
+              id="Horas"
+              value={hora}
+              onChange={handleChangeHora}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
+            <TextField
+              fullWidth
+              type="text"
+              label="Link de Stripe"
+              id="Link"
+              value={link}
+              onChange={handleChangeLink}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Cantidad de Cuotas"
+              id="Cuotas"
+              value={cuota}
+              onChange={handleChangeCuota}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Monto de Cuotas"
+              id="Monto"
+              value={valorCuota}
+              onChange={handleChangeValorCuota}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Monto Total"
+              id="Monto"
+              value={monto}
+              onChange={handleChangeMonto}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
           </div>
         </Box>
       </Modal>
