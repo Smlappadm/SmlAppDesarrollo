@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
+import { Button } from "@mui/material";
 
 export default function PromocionPago({ tamañoPantalla }) {
   const url = new URL(window.location.href);
@@ -116,10 +117,10 @@ export default function PromocionPago({ tamañoPantalla }) {
       }
       style={styles()}
     >
-      <div className="flex flex-col justify-center items-center p-6">
+      <div className="flex flex-col justify-between items-center p-6 h-full">
         <p className="text-white text-24 font-bold">{cliente.name}</p>
 
-        <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75">
+        <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2">
           <p className="text-white">PROMOCIÓN</p>
           <p className="text-white text-3xl">
             {formatTiempoRestante(tiempoRestante1)}
@@ -129,7 +130,8 @@ export default function PromocionPago({ tamañoPantalla }) {
           </div>
         </div>
         {tiempoRestante1 === 0 && (
-          <div className="w-full flex flex-col justify-center items-center mt-5">
+          <div className="w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2">
+            <p className="text-white">PROMOCIÓN</p>
             <p className="text-white text-3xl">
               {formatTiempoRestante(tiempoRestante2)}
             </p>
@@ -138,6 +140,9 @@ export default function PromocionPago({ tamañoPantalla }) {
             </div>
           </div>
         )}
+        <button className="text-white bg-black w-full py-3 text-18 rounded-2xl">
+          Link de Pago
+        </button>
       </div>
     </div>
   );
