@@ -86,8 +86,7 @@ const getCorredorByEmailHandler = async (req, res) => {
 
   try {
     const leads = await getCorredorByEmail(email);
-    const first10Leads = leads ? leads.slice(0, 10) : null;
-    res.status(200).json(first10Leads);
+    res.status(200).json(leads);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
