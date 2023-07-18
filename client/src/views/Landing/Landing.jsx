@@ -57,7 +57,7 @@ function Landing() {
     }
   }, [dispatch]);
 
-  localStorage.setItem("corredorName", corredor.name);
+  localStorage.setItem("corredorName", corredor && corredor.name);
 
   useEffect(() => {
     dispatch(getAllCorredores());
