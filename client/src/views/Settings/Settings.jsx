@@ -67,7 +67,7 @@ export default function Settings() {
 
   const [formData, setFormData] = useState({
     birthdate: selectedEmployee?.birthdate,
-    photo: userImageUrl,
+    photo: selectedEmployee?.photo ?? userImageUrl,
     country: selectedEmployee?.country,
     contactNumber: selectedEmployee?.contactNumber,
     description: selectedEmployee?.description,
