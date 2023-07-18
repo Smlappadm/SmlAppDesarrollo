@@ -411,6 +411,7 @@ const getLeadByEmailAppHandler = async (req, res) => {
 const UpdatePromocionesHandler = async (req, res) => {
   const { emailApp } = req.query;
   const body = req.body;
+  console.log(emailApp);
   try {
     const lead = await UpdatePromociones(emailApp, body);
     res.status(200).json(lead);
