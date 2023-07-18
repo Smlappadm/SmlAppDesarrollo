@@ -125,7 +125,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           <p className="text-white text-3xl">
             {formatTiempoRestante(tiempoRestante1)}
           </p>
-          <div className="border border-white w-4/6 flex items-center justify-center p-3">
+          <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
             <p className="text-white text-3xl ">OFFER</p>
           </div>
         </div>
