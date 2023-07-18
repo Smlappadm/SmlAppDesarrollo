@@ -47,17 +47,22 @@ function Landing() {
     return employees.some((employees) => employees.email === userEmail);
   };
 
+  localStorage.setItem("email", userEmail);
   let email = localStorage.getItem("email");
 
   const { corredor } = useSelector((state) => state);
 
   useEffect(() => {
-    if (email !== undefined) {
-      dispatch(getAllCorredoresByEmail(email));
+    if (userEmail !== undefined) {
+      dispatch(getAllCorredoresByEmail(userEmail));
     }
-  }, [dispatch]);
+  }, [dispatch, userEmail]);
 
-  localStorage.setItem("corredorName", corredor.name);
+  useEffect(() => {
+    if (corredor.name !== "undefined") {
+      localStorage.setItem("corredorName", corredor.name);
+    }
+  }, [email]);
 
   useEffect(() => {
     dispatch(getAllCorredores());
@@ -85,11 +90,6 @@ function Landing() {
 
     fetchEmployees();
   }, [dispatch, isEmployee()]);
-
-  useEffect(() => {
-    console.log(access);
-    console.log(role);
-  }, [access, role]);
 
   return (
     <>
