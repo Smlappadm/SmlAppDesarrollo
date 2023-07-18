@@ -23,7 +23,7 @@ export default function Promosiones() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Añadir Promosiones</Button>
       <Modal
         open={open}
         onClose={handleClose}

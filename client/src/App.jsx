@@ -52,6 +52,7 @@ import PagosInfo from "./components/PagosInfo/PagosInfo";
 import PagoOk from "./components/PagosInfo/PagoOk";
 import PromocionPago from "./components/PagosInfo/PromocionPago";
 import { ContratandoLeader } from "./components/Lideres/Contratando/ContratandoLeader";
+import { Promosiones } from "./components/Lideres/Promosiones/Promosiones";
 const { CLERK_API_KEY } = import.meta.env;
 
 if (!"pk_test_Z3VpZGVkLWtvZGlhay0xMi5jbGVyay5hY2NvdW50cy5kZXYk") {
@@ -261,6 +262,18 @@ function ClerkProviderWithRoutes() {
               (roleReady === "clevel" || roleReady === "leader") &&
               isEmployeeReady ? (
                 <ContratandoLeader />
+              ) : (
+                <ReturnToPage />
+              )
+            }
+          />
+          <Route
+            path="/promociones"
+            element={
+              isRoleAllowed(roleReady) &&
+              (roleReady === "clevel" || roleReady === "leader") &&
+              isEmployeeReady ? (
+                <Promosiones />
               ) : (
                 <ReturnToPage />
               )
