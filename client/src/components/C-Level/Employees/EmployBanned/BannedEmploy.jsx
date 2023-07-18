@@ -95,6 +95,19 @@ export default function BannedEmploy() {
           deleted: false,
         });
       }
+      if (Rol === "freelancer") {
+        await axios.put(`/freelancer/email/email?email=${Email}`, {
+          deleted: false,
+        });
+
+        await axios.put(`/corredor/email/email?email=${Email}`, {
+          deleted: false,
+        });
+
+        await axios.put(`/vendedor/email/email?email=${Email}`, {
+          deleted: false,
+        });
+      }
 
       if (Rol === "vendedor") {
         await axios.put(`/vendedor/email/email?email=${Email}`, {
