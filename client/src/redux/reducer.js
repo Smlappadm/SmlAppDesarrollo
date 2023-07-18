@@ -10,6 +10,7 @@ import {
   FILTER_LEVEL,
   FILTER_STATUS,
   GET_ALL_CORREDORES,
+  GET_CORREDOR_EMAIL,
   GET_ALL_VENDEDORES,
   GET_ALL_LEADER,
   GET_ALL_CLEVEL,
@@ -59,6 +60,7 @@ const initialState = {
   vendedoresDashboard: [],
   vendedoresVentasDashboard: [],
   corredores: [],
+  corredor: [],
   vendedores: [],
   leader: [],
   clevel: [],
@@ -388,6 +390,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         corredores: action.payload,
+      };
+    case GET_CORREDOR_EMAIL:
+      return {
+        ...state,
+        corredor: action.payload,
       };
     case GET_ALL_VENDEDORES:
       return {
