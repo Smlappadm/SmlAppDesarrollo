@@ -11,6 +11,7 @@ import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
   getAllCategory,
+  getAllCorredoresByEmail,
   getAllCountries,
   getAllProfesion,
   getLeadCorredores,
@@ -38,6 +39,7 @@ const CorredoresDashboard = () => {
   ]);
 
   const { corredorLead } = useSelector((state) => state);
+  const { corredor } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -51,11 +53,14 @@ const CorredoresDashboard = () => {
   localStorage.setItem("names", fullName);
   let names = localStorage.getItem("names");
 
+  
+  let corredorName = localStorage.getItem("corredorName");
+
   useEffect(() => {
-    if (mail !== undefined) {
-      dispatch(getLeadCorredores(email, names, "", "", "", ""));
+    if (mail !== undefined && corredor.name !== undefined) {
+      dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
     }
-  }, [dispatch, mail]);
+  }, [dispatch, mail, corredor]);
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
@@ -406,7 +411,9 @@ const CorredoresDashboard = () => {
         }
       }
 
-      dispatch(getLeadCorredores(email, names, "", "", "", ""));
+      console.log(corredor.name);
+      const names = corredor.name;
+      dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
 
       SendLeadsSuccess();
     } catch (error) {
@@ -447,7 +454,7 @@ const CorredoresDashboard = () => {
                 <InputRunner
                   getLeadCorredores={getLeadCorredores}
                   email={email}
-                  names={names}
+                  corredorName={corredorName}
                 />
               </div>
             </div>
