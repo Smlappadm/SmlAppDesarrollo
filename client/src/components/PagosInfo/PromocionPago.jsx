@@ -53,8 +53,8 @@ export default function PromocionPago({ tamañoPantalla }) {
       12: "Cuotas de 500€/mes, Total: 6000€",
     },
     links: {
-      1: "https://buy.stripe.com/bIY5mN5yQ94N3VC4gH",
-      2: "https://buy.stripe.com/4gw6qR3qIa8RfEkeVu",
+      1: "https://buy.stripe.com/cN2cPf3qIbcVcs85kK",
+      2: "https://buy.stripe.com/14k16x5yQep7fEk3cE",
       4: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
       6: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
       12: "https://buy.stripe.com/28o6qRbXegxf63K14n",
