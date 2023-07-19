@@ -137,7 +137,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_ALL_PROMOCIONES:
       return {
         ...state,
-        leadContratando: action.payload,
+        promociones: action.payload,
       };
     case GET_LEAD_UNCHECKED:
       return {
