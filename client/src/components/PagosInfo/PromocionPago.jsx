@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getClienteEmpresa } from "../../redux/actions";
+import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
@@ -14,6 +14,9 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
+
+  const { promociones } = useSelector((state) => state);
+
   const [promo24horas, setPromo24horas] = useState({
     pagos: {
       1: "Pago único de 4500€",
@@ -66,11 +69,12 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
   useEffect(() => {
-    console.log(cuotas);
-  }, [cuotas]);
+    console.log(promociones);
+  }, [promociones]);
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
+    dispatch(getAllPromociones());
   }, [dispatch]);
 
   useEffect(() => {
@@ -103,8 +107,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       const diferenciaEnSegundos2 = Math.floor(
         diferenciaEnMilisegundos2 / 1000
       );
-      console.log(diferenciaEnSegundos1);
-      console.log(diferenciaEnSegundos2);
       setTiempoRestante1(diferenciaEnSegundos1);
       setTiempoRestante2(diferenciaEnSegundos2);
     }
