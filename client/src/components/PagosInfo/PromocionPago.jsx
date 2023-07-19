@@ -23,8 +23,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   });
   const [cuotas, setCuotas] = useState();
 
-  const cambiarCuota = () => {};
-
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
   }, [dispatch]);
@@ -64,7 +62,8 @@ export default function PromocionPago({ tamañoPantalla }) {
       setTiempoRestante1(diferenciaEnSegundos1);
       setTiempoRestante2(diferenciaEnSegundos2);
     }
-  }, [clienteEmpresa]);
+    console.log(cuotas);
+  }, [clienteEmpresa, cuotas]);
 
   const seteoPromociones = async (body) => {
     try {
