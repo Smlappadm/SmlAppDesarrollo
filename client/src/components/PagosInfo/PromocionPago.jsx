@@ -15,11 +15,14 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
   const [cuotas24, setCuotas24] = useState({
-    1: "Pago único de 4500€",
-    2: "Cuotas de 2250€/mes",
-    4: "Cuotas de 1125€/mes",
-    5: "Cuotas de 1000€/mes",
-    10: "Cuotas de 500€/mes",
+    pagos: {
+      1: "Pago único de 4500€",
+      2: "Cuotas de 2250€/mes, Total: 4500€",
+      4: "Cuotas de 1125€/mes, Total: 4500€",
+      5: "Cuotas de 1000€/mes, Total: 5000€",
+      10: "Cuotas de 500€/mes, Total: 5000€",
+    },
+    links: {},
   });
   const [cuotas, setCuotas] = useState("1");
 
@@ -135,7 +138,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "flex flex-col justify-between items-center p-6 h-full"
+            ? "flex flex-col justify-between items-center p-6 h-full w-full"
             : "flex flex-col justify-evenly items-center p-6 h-full w-1/5"
         }
       >
@@ -228,7 +231,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             </div>
             <p className="text-white">DETALLE</p>
-            <p className="text-white">{cuotas24[cuotas]}</p>
+            <p className="text-white text-center">{cuotas24[cuotas]}</p>
           </div>
         )}
         <button
