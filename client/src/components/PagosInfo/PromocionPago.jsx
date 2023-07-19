@@ -226,7 +226,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             </div>
             <p className="text-white">DETALLE</p>
             <p className="text-white text-center">
-              {promo24horas.pagos[cuotas]}
+              {promo2horas.pagos[cuotas]}
             </p>
           </div>
         )}
@@ -312,7 +312,13 @@ export default function PromocionPago({ tamañoPantalla }) {
               ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
               : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
           }
-          to={promo24horas.links[cuotas]}
+          to={
+            tiempoRestante1 !== 0
+              ? promo2horas.links[cuotas]
+              : tiempoRestante2 !== 0 && tiempoRestante1 === 0
+              ? promo24horas.links[cuotas]
+              : ""
+          }
         >
           Link de Pago
         </Link>
