@@ -182,7 +182,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             </div>
           </div>
         )}
-        {tiempoRestante1 === 0 && tiempoRestante2 !== 0 && (
+        {tiempoRestante1 === 0 && tiempoRestante2 === 0 && (
           <div
             className={
               tamañoPantalla === "Pequeña"
