@@ -472,12 +472,18 @@ const VentasHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                        <p
-                          onClick={() => handleCopyClick(item.telephone)}
-                          className="text-center w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
-                        >
-                          {item.telephone}
-                        </p>
+                      <div className="flex justify-center items-center gap-4">
+                          <p
+                            onClick={() => handleCopyClick(item.telephone)}
+                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            >
+                            {item.telephone}
+                          </p>
+                          <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
+                              <FaWhatsapp className="text-[35px] mr-5 text-[#9eabbe] cursor-pointer"/>
+                          </a>
+
+                            </div>
                       </div>
                       <div className=" w-[10%] flex justify-center items-center p-0">
                         {item.level !== "incidencia" ? (

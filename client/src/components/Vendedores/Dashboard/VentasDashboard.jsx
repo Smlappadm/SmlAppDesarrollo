@@ -9,7 +9,7 @@ import Modal from "./Modal/Modal";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaWhatsapp} from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
@@ -290,12 +290,18 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[13%] flex justify-center items-center p-0 ">
+                          <div className="flex justify-center items-center gap-4">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
                             className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
-                          >
+                            >
                             {item.telephone}
                           </p>
+                          <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
+                              <FaWhatsapp className="text-[35px] mr-5 text-[#9eabbe] cursor-pointer"/>
+                          </a>
+
+                            </div>
                         </div>
                         <div className=" w-[5%] flex justify-center items-start p-0">
                           {item.level !== "incidencia" ? (
