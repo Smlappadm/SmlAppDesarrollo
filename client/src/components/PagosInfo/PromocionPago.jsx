@@ -14,6 +14,12 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
+  const [coutas24, setCoutas24] = useState({
+    1: "Pago único de 4500€",
+    2: "Cuotas de 2250$/mes",
+    4: "Cuotas de 1125$/mes",
+    5: "Cuotas de 1000$/mes",
+  });
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
@@ -146,8 +152,8 @@ export default function PromocionPago({ tamañoPantalla }) {
           <div
             className={
               tamañoPantalla === "Pequeña"
-                ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+                ? "w-full flex flex-col justify-between items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                : "w-full flex flex-col justify-between items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
             }
           >
             <p className="text-white">PROMOCIÓN</p>
@@ -177,6 +183,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 <p className="py-3 px-4">10</p>
               </div>
             </div>
+            <p className="text-white">DETALLE</p>
             <p className="text-white">DETALLE</p>
           </div>
         )}
