@@ -14,7 +14,23 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
-  const [cuotas24, setCuotas24] = useState({
+  const [promo24horas, setPromo24horas] = useState({
+    pagos: {
+      1: "Pago único de 4500€",
+      2: "Cuotas de 2250€/mes, Total: 4500€",
+      4: "Cuotas de 1125€/mes, Total: 4500€",
+      5: "Cuotas de 1000€/mes, Total: 5000€",
+      10: "Cuotas de 500€/mes, Total: 5000€",
+    },
+    links: {
+      1: "",
+      2: "https://buy.stripe.com/00gdTje5mep777OfZw",
+      4: "https://buy.stripe.com/28odTjgdu6WFcs8dRp",
+      5: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
+      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
+    },
+  });
+  const [promo2horas, setPromo2horas] = useState({
     pagos: {
       1: "Pago único de 4500€",
       2: "Cuotas de 2250€/mes, Total: 4500€",
@@ -237,17 +253,18 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             </div>
             <p className="text-white">DETALLE</p>
-            <p className="text-white text-center">{cuotas24.pagos[cuotas]}</p>
+            <p className="text-white text-center">
+              {promo24horas.pagos[cuotas]}
+            </p>
           </div>
         )}
         <Link
           className={
             tamañoPantalla === "Pequeña"
-              ? "text-white bg-black w-full py-3 text-18 rounded-2xl"
-              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl"
+              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
           }
-          to={cuotas24.links[cuotas]}
-          target="_blank"
+          to={promo24horas.links[cuotas]}
         >
           Link de Pago
         </Link>
