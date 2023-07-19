@@ -135,7 +135,7 @@ const CorredoresHistory = () => {
               Descargar CSV
             </Button>
           </div>
-          <Table className="flex">
+          <div className="flex">
             <div className="text-gray-400 text-14 font-thin">
               <div className={style.tableRow}>
                 <div className="text-start">
