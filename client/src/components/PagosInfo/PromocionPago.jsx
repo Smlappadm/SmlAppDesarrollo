@@ -331,9 +331,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             }
           >
             <p className="text-white">SIN PROMOCIÓN</p>
-            <p className="text-white text-24 font-extrabold">
-              {formatTiempoRestante(tiempoRestante2)}
-            </p>
+
             <div className="border border-white w-4/6 flex items-center justify-center p-3">
               <p className="text-white text-3xl text-center ">
                 Desc. -500€ (24 horas)
