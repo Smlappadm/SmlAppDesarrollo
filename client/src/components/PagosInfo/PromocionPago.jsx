@@ -179,8 +179,8 @@ export default function PromocionPago({ tamañoPantalla }) {
               <div
                 className={
                   cuotas === "1"
-                    ? "rounded-md border border-black mr-2 bg-blue-500 "
-                    : "rounded-md border border-white mr-2"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
                 }
                 onClick={() => CambiarCuota("1")}
               >
