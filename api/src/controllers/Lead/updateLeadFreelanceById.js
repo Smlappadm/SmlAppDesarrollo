@@ -136,32 +136,35 @@ const updateLeadFreelanceById = async (id, updatedData) => {
     new: true,
   });
 
-  // Actualizamos el vendedor asociado al lead
-  let vendedor = [];
-  vendedor = await Vendedor.findOneAndUpdate(
-    {
-      email: updatedData.dataLead.vendedor,
-      "leads.name": updatedData.dataVendedor.name,
-    },
-    { $set: { "leads.$": updatedData.dataVendedor } },
-    { new: true }
-  );
+  leadUpdate.observaciones.push(updatedData.dataObservaciones)
 
-  if (!vendedor) {
-    // Si el vendedor no está asociado al lead, se agrega
-    vendedor = await Vendedor.findOneAndUpdate(
-      { email: updatedData.dataLead.vendedor },
-      { $addToSet: { leads: { $each: [updatedData.dataVendedor] } } },
-      { new: true }
-    );
-  } else {
-    await vendedor.save();
-  }
+  const leadUpdated = await leadUpdate.save();
+  // Actualizamos el vendedor asociado al lead
+  // let vendedor = [];
+  // vendedor = await Vendedor.findOneAndUpdate(
+  //   {
+  //     email: updatedData.dataLead.vendedor,
+  //     "leads.name": updatedData.dataVendedor.name,
+  //   },
+  //   { $set: { "leads.$": updatedData.dataVendedor } },
+  //   { new: true }
+  // );
+
+  // if (!vendedor) {
+  //   // Si el vendedor no está asociado al lead, se agrega
+  //   vendedor = await Vendedor.findOneAndUpdate(
+  //     { email: updatedData.dataLead.vendedor },
+  //     { $addToSet: { leads: { $each: [updatedData.dataVendedor] } } },
+  //     { new: true }
+  //   );
+  // } else {
+  //   await vendedor.save();
+  // }
 
   // Retornamos el lead actualizado y el vendedor asociado al mismo
   const data = {
-    leadUpdate,
-    vendedor,
+    leadUpdated,
+    // vendedor,
   };
   return data;
 };
