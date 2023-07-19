@@ -375,7 +375,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 }
                 onClick={() => CambiarCuota("6")}
               >
-                <p className="py-3 px-4">5</p>
+                <p className="py-3 px-4">6</p>
               </div>
               <div
                 className={
@@ -385,7 +385,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 }
                 onClick={() => CambiarCuota("12")}
               >
-                <p className="py-3 px-4">10</p>
+                <p className="py-3 px-4">12</p>
               </div>
             </div>
             <p className="text-white">DETALLE</p>
