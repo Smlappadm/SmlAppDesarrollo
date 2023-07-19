@@ -14,13 +14,16 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
-  const [coutas24, setCoutas24] = useState({
+  const [cuotas24, setCuotas24] = useState({
     1: "Pago único de 4500€",
     2: "Cuotas de 2250€/mes",
     4: "Cuotas de 1125€/mes",
     5: "Cuotas de 1000€/mes",
     10: "Cuotas de 500€/mes",
   });
+  const [cuotas, setCuotas] = useState();
+
+  const cambiarCuota = () => {};
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
@@ -168,10 +171,16 @@ export default function PromocionPago({ tamañoPantalla }) {
             </div>
             <p className="text-white">CUOTAS</p>
             <div className="flex justify-evenly items-center text-white ">
-              <div className="rounded-md border border-white mr-2">
+              <div
+                className="rounded-md border border-white mr-2"
+                onClick={setCuotas("1")}
+              >
                 <p className="py-3 px-5">1</p>
               </div>
-              <div className="rounded-md border border-white mr-2">
+              <div
+                className="rounded-md border border-white mr-2"
+                onClick={setCuotas("2")}
+              >
                 <p className="py-3 px-4">2</p>
               </div>
               <div className="rounded-md border border-white mr-2">
