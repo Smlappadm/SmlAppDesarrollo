@@ -207,7 +207,11 @@ export default function PromocionPago({ tamañoPantalla }) {
                 <p className="py-3 px-4">4</p>
               </div>
               <div
-                className="rounded-md border border-white mr-2"
+                className={
+                  cuotas === "5"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
                 onClick={() => CambiarCuota("5")}
               >
                 <p className="py-3 px-4">5</p>
