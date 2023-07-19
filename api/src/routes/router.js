@@ -20,7 +20,7 @@ router.use("/vendedor", VendedorRouter);
 router.use("/clientes", ClientesRouter);
 router.use("/pagos", PagosRouter);
 router.use("/freelancer", FreelancerRouter);
-router.use("/promocion", PromocionesRouter);
+router.use("/promociones", PromocionesRouter);
 
 // ****************** Clientes ********************
 

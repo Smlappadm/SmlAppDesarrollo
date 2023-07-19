@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getClienteEmpresa } from "../../redux/actions";
+import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
@@ -14,6 +14,11 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
+
+  const { promociones } = useSelector((state) => state);
+
+  const [promos, setPromos] = useState({});
+
   const [promo24horas, setPromo24horas] = useState({
     pagos: {
       1: "Pago único de 4500€",
@@ -53,10 +58,11 @@ export default function PromocionPago({ tamañoPantalla }) {
       12: "Cuotas de 500€/mes, Total: 6000€",
     },
     links: {
-      1: "https://buy.stripe.com/bIY5mN5yQ94N3VC4gH",
-      2: "https://buy.stripe.com/4gw6qR3qIa8RfEkeVu",
-      4: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
-      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
+      1: "https://buy.stripe.com/cN2cPf3qIbcVcs85kK",
+      2: "https://buy.stripe.com/14k16x5yQep7fEk3cE",
+      4: "https://buy.stripe.com/cN2dTj9P680J63KaF7",
+      6: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
+      12: "https://buy.stripe.com/28o6qRbXegxf63K14n",
     },
   });
   const [cuotas, setCuotas] = useState("1");
@@ -65,11 +71,42 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
   useEffect(() => {
-    console.log(cuotas);
-  }, [cuotas]);
+    const customPromos = promociones.reduce((result, promo) => {
+      if (promo.promocion && promo.promocion.hora) {
+        const hora = `promo${promo.promocion.hora}horas`;
+        const cuota = promo.promocion.cuota || "default";
+
+        if (!result[hora]) {
+          result[hora] = {
+            pagos: {},
+            links: {},
+          };
+        }
+
+        result[hora].pagos[cuota] =
+          cuota !== "1"
+            ? `${promo.promocion.name}, Total: ${promo.promocion.monto}€` || ""
+            : promo.promocion.name || "";
+        result[hora].links[cuota] = promo.promocion.link || "";
+      }
+
+      return result;
+    }, {});
+    const sortedHours = Object.keys(customPromos).sort();
+    const sortedCustomPromos = {};
+    sortedHours.forEach((hour) => {
+      sortedCustomPromos[hour] = customPromos[hour];
+    });
+    setPromos(sortedCustomPromos);
+  }, [promociones]);
+
+  useEffect(() => {
+    console.log(promos);
+  }, [promos]);
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
+    dispatch(getAllPromociones());
   }, [dispatch]);
 
   useEffect(() => {
@@ -102,8 +139,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       const diferenciaEnSegundos2 = Math.floor(
         diferenciaEnMilisegundos2 / 1000
       );
-      console.log(diferenciaEnSegundos1);
-      console.log(diferenciaEnSegundos2);
       setTiempoRestante1(diferenciaEnSegundos1);
       setTiempoRestante2(diferenciaEnSegundos2);
     }
@@ -321,6 +356,76 @@ export default function PromocionPago({ tamañoPantalla }) {
             </p>
           </div>
         )}
+        {tiempoRestante1 === 0 && tiempoRestante2 === 0 && (
+          <div
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "w-full flex flex-col justify-between items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                : "w-full flex flex-col justify-between items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+            }
+          >
+            <p className="text-white">SIN PROMOCIÓN</p>
+
+            <div className="border border-white w-4/6 flex items-center justify-center p-3">
+              <p className="text-white text-3xl text-center ">Sin Ofertas!</p>
+            </div>
+            <p className="text-white">CUOTAS</p>
+            <div className="flex justify-evenly items-center text-white ">
+              <div
+                className={
+                  cuotas === "1"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("1")}
+              >
+                <p className="py-3 px-5">1</p>
+              </div>
+              <div
+                className={
+                  cuotas === "2"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("2")}
+              >
+                <p className="py-3 px-4">2</p>
+              </div>
+              <div
+                className={
+                  cuotas === "4"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("4")}
+              >
+                <p className="py-3 px-4">4</p>
+              </div>
+              <div
+                className={
+                  cuotas === "6"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("6")}
+              >
+                <p className="py-3 px-4">6</p>
+              </div>
+              <div
+                className={
+                  cuotas === "12"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("12")}
+              >
+                <p className="py-3 px-4">12</p>
+              </div>
+            </div>
+            <p className="text-white">DETALLE</p>
+            <p className="text-white text-center">{sinPromo.pagos[cuotas]}</p>
+          </div>
+        )}
         <Link
           className={
             tamañoPantalla === "Pequeña"
@@ -332,6 +437,8 @@ export default function PromocionPago({ tamañoPantalla }) {
               ? promo2horas.links[cuotas]
               : tiempoRestante2 !== 0 && tiempoRestante1 === 0
               ? promo24horas.links[cuotas]
+              : tiempoRestante2 === 0 && tiempoRestante1 === 0
+              ? sinPromo.links[cuotas]
               : ""
           }
         >
