@@ -1,18 +1,17 @@
 const Lead = require("../../models/Lead");
 
-const cambioNombreEmpleado = async (body) => {
-  const { email, name } = body;
+const limpiezaBaseFunction = async () => {
   const leadResult = await Lead.updateMany(
-    { corredor: email },
+    { descargadosLeader: {$ne:true }},
     {
-      corredor_name: name,
-      freelancer: name,
+      descargadosLeader: false,
+      descargadosCorredor: false,
     }
   );
   return leadResult;
 };
 
-module.exports = cambioNombreEmpleado;
+module.exports = limpiezaBaseFunction;
 
 // const Lead = require("../../models/Lead");
 
