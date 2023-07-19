@@ -446,7 +446,7 @@ export const ContratandoLeader = () => {
                           }
                         >
                           <Text className="bg-[#c1c41f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                            Contratando
+                            Confirmar Pago
                           </Text>
                         </div>
                       )}
