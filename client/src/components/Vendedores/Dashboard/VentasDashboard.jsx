@@ -6,6 +6,7 @@ import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { filterLevel, getLeadsLLamadaVenta } from "../../../redux/actions";
 import Modal from "./Modal/Modal";
+import ModalObservaciones from "./Modal/ModalObservaciones";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,8 +16,8 @@ import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion } from "framer-motion";
-
 import Nav from "../../Nav/Nav";
+
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
@@ -227,7 +228,7 @@ const VentasDashboard = () => {
                     <label className=" text-start w-[9%] px-3">País</label>
                     <label className=" text-center w-[5%] ">Email</label>
                     <label className=" text-center w-[5%] ">Instagram</label>
-                    <label className=" text-center w-[13%] ">Teléfono</label>
+                    <label className=" text-center w-[15%] ">Teléfono</label>
                     <button
                       className=" text-center w-[5%]"
                       onClick={() => handlerFilter("level")}
@@ -293,7 +294,7 @@ const VentasDashboard = () => {
                         <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="border-2 text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                             {item.telephone}
                           </p>

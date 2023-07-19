@@ -132,13 +132,22 @@ const updateLeadFreelanceById = async (id, updatedData) => {
   }
 
   // Actualizamos el lead en la base de datos
+  
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
 
-  leadUpdate.observaciones_ventas.push(updatedData.dataObservaciones)
+  let leadUpdated = {}
 
-  const leadUpdated = await leadUpdate.save();
+  if (updatedData.dataObservaciones && 
+    (updatedData.dataObservaciones.observacion !== "" || 
+    updatedData.dataObservaciones.tipoContacto !== "")
+  ) {
+  const filter = { _id: id }; // Define la condición para encontrar el documento
+  const update = { $push: { observaciones_ventas: updatedData.dataObservaciones } };
+  const options = { new: true }; // Devuelve el documento actualizado
+  const leadUpdated = await Lead.findOneAndUpdate(filter, update, options);
+  }
   // Actualizamos el vendedor asociado al lead
   // let vendedor = [];
   // vendedor = await Vendedor.findOneAndUpdate(

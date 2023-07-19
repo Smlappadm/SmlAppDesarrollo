@@ -626,7 +626,10 @@ export default function NestedModal({
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
-    observaciones: ""
+    observaciones: {
+      tipoContacto: "",
+      observacion: "",
+    }
   });
 
   const [llamadoVenta, setLlamadoVenta] = React.useState({

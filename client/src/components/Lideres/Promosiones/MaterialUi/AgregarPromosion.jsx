@@ -25,14 +25,18 @@ export default function AgregarPromosion() {
   const [promocion, setPromocion] = React.useState({
     name: "",
     hora: 0,
+    link: "",
     cuota: 0,
     monto: 0,
     valorCuota: 0,
-    link: "",
   });
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const cargarPromocion = () => {
+    // axios.post()
+  };
 
   const handleChange = (event, property) => {
     setPromocion({
@@ -77,11 +81,11 @@ export default function AgregarPromosion() {
             />
             <TextField
               fullWidth
-              type="number"
-              label="Horas"
-              id="Horas"
-              value={promocion.hora}
-              onChange={(e) => handleChange(e, "hora")}
+              type="text"
+              label="Link de Stripe"
+              id="Link"
+              value={promocion.link}
+              onChange={(e) => handleChange(e, "link")}
               InputProps={{
                 style: {
                   color: "white",
@@ -95,11 +99,11 @@ export default function AgregarPromosion() {
             />
             <TextField
               fullWidth
-              type="text"
-              label="Link de Stripe"
-              id="Link"
-              value={promocion.link}
-              onChange={(e) => handleChange(e, "link")}
+              type="number"
+              label="Horas"
+              id="Horas"
+              value={promocion.hora}
+              onChange={(e) => handleChange(e, "hora")}
               InputProps={{
                 style: {
                   color: "white",
@@ -165,6 +169,9 @@ export default function AgregarPromosion() {
                 },
               }}
             />
+            <Button variant="outlined" onClick={cargarPromocion}>
+              Agregar Promoción
+            </Button>
           </div>
         </Box>
       </Modal>

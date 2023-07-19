@@ -20,26 +20,44 @@ const updateLeadVendedorById = async (id, updatedData) => {
     const dateContratado = new Date();
     const formattedTimeContratado = date.toISOString();
     updatedData.dataLead.updateContratado = formattedTimeContratado;
+    updatedData.dataObservaciones.status = "Contratado";
+    updatedData.dataObservaciones.fecha = formattedTimeContratado;
   } else if (updatedData.dataLead.status === "Rechazado") {
     // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
     const dateRechazado = new Date();
     const formattedTimeRechazado = date.toISOString();
     updatedData.dataLead.updateRechazado = formattedTimeRechazado;
+    updatedData.dataObservaciones.status = "Rechazado";
+    updatedData.dataObservaciones.fecha = formattedTimeContratado;
+  } else if (updatedData.dataLead.status === "Contratando") {
+    console.log("vaaaaaaaaaaaaaaa")
+    // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
+    const dateRechazado = new Date();
+    const formattedTimeRechazado = date.toISOString();
+    updatedData.dataLead.updateRechazado = formattedTimeRechazado;
+    updatedData.dataObservaciones.status = "Contratando";
+    updatedData.dataObservaciones.fecha = formattedTimeContratado;
   } else if (updatedData.dataLead.status === "No responde") {
     // Agregamos la propiedad 'updateNoResponde' con la fecha y hora actual en caso de "No responde"
     const dateNoResponde = new Date();
     const formattedTimeNoResponde = date.toISOString();
     updatedData.dataLead.updateNoResponde = formattedTimeNoResponde;
+    updatedData.dataObservaciones.status = "No responde";
+    updatedData.dataObservaciones.fecha = formattedTimeContratado;
   } else if (updatedData.dataLead.status === "Agendar 2do llamado") {
     // Agregamos la propiedad 'updateSegundoLlamado' con la fecha y hora actual en caso de "Agendar 2do llamado"
     const dateSdoLlamado = new Date();
     const formattedTimeSdoLlamado = date.toISOString();
     updatedData.dataLead.updateSegundoLlamado = formattedTimeSdoLlamado;
+    updatedData.dataObservaciones.status = "Agendar 2do llamado";
+    updatedData.dataObservaciones.fecha = formattedTimeContratado;
   } else if (updatedData.dataLead.status === "incidencia") {
     // Agregamos la propiedad 'updateIncidencia' con la fecha y hora actual en caso de "Incidencia"
     const dateIncidencia = new Date();
     const formattedTimeIncidencia = date.toISOString();
     updatedData.dataLead.updateIncidencia = formattedTimeIncidencia;
+    updatedData.dataObservaciones.status = "incidencia";
+    updatedData.dataObservaciones.fecha = formattedTimeContratado;
   }
 
   // Obtenemos el lead actual antes de la actualización
@@ -132,8 +150,17 @@ const updateLeadVendedorById = async (id, updatedData) => {
   });
   
 
-  leadUpdate.observaciones_ventas.push(updatedData.dataObservaciones); // Sin 'await' aquí
-  const leadUpdated = await leadUpdate.save();
+let leadUpdated = {}
+
+if (updatedData.dataObservaciones && 
+  (updatedData.dataObservaciones.observacion !== "" || 
+  updatedData.dataObservaciones.tipoContacto !== "")
+) {
+const filter = { _id: id }; // Define la condición para encontrar el documento
+const update = { $push: { observaciones_ventas: updatedData.dataObservaciones } };
+const options = { new: true }; // Devuelve el documento actualizado
+const leadUpdated = await Lead.findOneAndUpdate(filter, update, options);
+}
   // Actualizamos el vendedor asociado al lead
   // let vendedor = [];
   // vendedor = await Vendedor.findOneAndUpdate(
