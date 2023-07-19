@@ -53,8 +53,6 @@ const CorredoresDashboard = () => {
   let corredorName = localStorage.getItem("corredorName");
 
   useEffect(() => {
-    console.log(email);
-    console.log(corredorName);
     dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
   }, [dispatch, corredor]);
 
