@@ -63,9 +63,8 @@ function ChildModal({
 
   const handleOpen = () => {
     if (statusObj.status === "Contratando") {
-      setStatusObj({...statusObj,
-        pagoRecibido: false})
-  };
+      setStatusObj({ ...statusObj, pagoRecibido: false });
+    }
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -171,8 +170,11 @@ function ChildModal({
       llamados: item.llamados,
       llamada_venta: statusObj.llamada_venta,
     };
+    
+    const dataObservaciones = statusObj.observaciones
 
     const dataUpdate = {
+      dataObservaciones,
       dataLead,
       dataVendedor,
     };
@@ -211,13 +213,13 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-      <button
-              type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              onClick={handleCancel}
-            >
-              Cerrar x
-            </button>
+        <button
+          type="button"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          onClick={handleCancel}
+        >
+          Cerrar x
+        </button>
         {editEmail ||
         editInstagram ||
         editTelephone ||
@@ -264,7 +266,7 @@ function ChildModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center">
-          Actualizar Lead?
+            Actualizar Lead?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -615,7 +617,7 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
- const [emailValidator, setEmailValidator] = React.useState(false);
+  const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -624,6 +626,7 @@ export default function NestedModal({
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
+    observaciones: ""
   });
 
   const [llamadoVenta, setLlamadoVenta] = React.useState({
@@ -678,6 +681,16 @@ export default function NestedModal({
       setStatusObj({ ...statusObj, [property]: value });
     }
   };
+
+  const handleObservationChange = (event) => {
+    const value = event.target.value;
+    const property = event.target.name;
+    setStatusObj({
+      ...statusObj,
+      observaciones: { ...statusObj.observaciones, [property]: value },
+    });
+  };
+  console.log(statusObj);
 
   const handleSelectChangeContratado = (event) => {
     console.log(event.target.name);
@@ -803,14 +816,13 @@ export default function NestedModal({
       console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto")
+      console.log("incorrecto");
     }
   };
 
-
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditEmail(!editEmail);
     setEditEmailApp(false);
     setEditInstagram(false);
@@ -818,7 +830,7 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmail(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -836,7 +848,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Instagram
   const handleEditInstagram = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditInstagram(!editInstagram);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -861,7 +873,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Phone
   const handleEditTelephone = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditTelephone(!editTelephone);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -885,7 +897,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
     setEditTelephone(false);
     setEditEmail(false);
@@ -893,7 +905,7 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmailApp(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -910,7 +922,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS Contacto
   const handleEditContacto = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditContacto(!editContacto);
     setEditEmailApp(false);
     setEditTelephone(false);
@@ -1240,29 +1252,151 @@ export default function NestedModal({
             </div>
           </div>
 
-          <div className=" h-fit flex items-center justify-start flex-col mb-10">
-            <div className="">
+          <div className=" h-fit flex items-center justify-center flex-col mb-10">
+            <div className="h-fit flex items-center justify-center flex-col mb-10">
               <label
                 htmlFor="countries"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="mb-3 block text-sm font-medium text-gray-900 dark:text-white"
               >
                 Estado
               </label>
               {item.status !== "Agendar 2do llamado" ? (
-                <select
-                  onChange={handleSelectChange}
-                  name="status"
-                  defaultValue={statusObj.status}
-                  id="select1"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option value="Sin contactar">Sin Contactar</option>
-                  <option value="Agendar 2do llamado">En proceso</option>
-                  <option value="Contratando">Contratando</option>
-                  <option value="Contratado">Contratado</option>
-                  <option value="Rechazado">Rechazado</option>
-                  <option value="No responde">No Responde</option>
-                </select>
+                <>
+                  <select
+                    onChange={handleSelectChange}
+                    name="status"
+                    defaultValue={statusObj.status}
+                    id="select1"
+                    className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option value="Sin contactar">Sin Contactar</option>
+                    {/* <option value="Agendar 2do llamado">En proceso</option> */}
+                    <option value="Contratando">Contratando</option>
+                    {/* <option value="Contratado">Contratado</option> */}
+                    <option value="Rechazado">Rechazado</option>
+                    <option value="No responde">No Responde</option>
+                  </select>
+
+                  {statusObj.status === "Rechazado" && (
+                    <div className="flex flex-col justify-center items-center">
+                      <label
+                        htmlFor="Motivo"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Motivo
+                      </label>
+                      <select
+                        id="Motivo"
+                        onChange={handleSelectChange}
+                        name="status_op"
+                        defaultValue={
+                          statusObj.status_op ? statusObj.status_op : "default"
+                        }
+                        className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      >
+                        <option disabled="disabled" value="default">
+                          Elige uno...
+                        </option>
+                        <option value="Sin dinero">Sin Dinero</option>
+                        <option value="Sin interes">Sin Interes</option>
+                        <option value="Otro servicio">Otro Servicio</option>
+                      </select>
+                    </div>
+                  )}
+
+                  <div className="flex flex-col items-center justify-start mt-3">
+                    <label
+                      htmlFor="last_name"
+                      className="block text-sm text-center font-medium text-gray-900 dark:text-white "
+                    >
+                      Contacto
+                    </label>
+                    <select
+                      onChange={handleObservationChange}
+                      name="tipoContacto"
+                      defaultValue="default"
+                      id="select11"
+                      className="mt-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option disabled="disabled" value="default">
+                        Tipo de Contacto
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Instagram"
+                        value="Instagram"
+                      >
+                        Instagram
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Linkedin"
+                        value="Linkedin"
+                      >
+                        Linkedin
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Whatsapp"
+                        value="Whatsapp"
+                      >
+                        Whatsapp
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Llamada telefónica"
+                        value="Llamada telefónica"
+                      >
+                        Llamada telefónica
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Email"
+                        value="Email"
+                      >
+                        Email
+                      </option>
+                      <option className="text-justify" name="Otro" value="Otro">
+                        Otro
+                      </option>
+                    </select>
+                    {/* <label
+                    htmlFor="last_name"
+                    className="block mt-8 text-sm text-center font-medium text-gray-900 dark:text-white"
+                  >
+                    Nombre del Contacto
+                  </label>
+                  <div className="mt-3 flex justify-center items-center">
+                    <input
+                      onChange={handleLlamadoVentaChange}
+                      type="text"
+                      id="last_name"
+                      name="contacto"
+                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder=""
+                      required
+                    />
+                  </div> */}
+                    <label
+                      htmlFor="last_name"
+                      className="mt-7 block text-sm text-center font-medium text-gray-900 dark:text-white "
+                    >
+                      Observaciones
+                    </label>
+                    {/* <div className="flex justify-center items-center"> */}
+                    <textarea
+                      onChange={handleObservationChange}
+                      type="text"
+                      id="last_name"
+                      name="observacion"
+                      // value={llamadoVenta.observaciones}
+                      className="mt-3 bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder=""
+                      required
+                    />
+                    {/* </div> */}
+                  </div>
+                </>
               ) : (
                 <select
                   onChange={handleSelectChange}
@@ -1282,7 +1416,7 @@ export default function NestedModal({
                 </select>
               )}
             </div>
-            {statusObj.status === "Rechazado" && (
+            {/* {statusObj.status === "Rechazado" && (
               <div className="m-5">
                 <label
                   htmlFor="Motivo"
@@ -1307,10 +1441,11 @@ export default function NestedModal({
                   <option value="Otro servicio">Otro Servicio</option>
                 </select>
               </div>
-            )}
-            {(item.status === "Sin contactar" ||
+            )} */}
+            {/* {(item.status === "Sin contactar" ||
               item.status === "No responde") &&
-              statusObj.status === "Agendar 2do llamado" && (
+              // statusObj.status === "Agendar 2do llamado" && (
+              statusObj.status === "" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
                   <label
                     htmlFor="last_name"
@@ -1387,7 +1522,7 @@ export default function NestedModal({
                     />
                   </div>
                 </div>
-              )}
+              )} */}
             {item.status === "Agendar 2do llamado" &&
               statusObj.status === "Agendar otro llamado" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
