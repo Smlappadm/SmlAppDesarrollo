@@ -100,7 +100,10 @@ export default function PromocionPago({ tamañoPantalla }) {
         }
 
         result[hora].pagos[cuota] =
-          `${promo.promocion.name}, Total: ${promo.promocion.valorCuota}` || "";
+          cuota !== "1"
+            ? `${promo.promocion.name}, Total: ${promo.promocion.valorCuota}` ||
+              ""
+            : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
       }
 
