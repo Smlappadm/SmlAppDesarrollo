@@ -180,6 +180,63 @@ export default function PromocionPago({ tamañoPantalla }) {
                 Desc. -1000€ (2 horas)
               </p>
             </div>
+            <p className="text-white">CUOTAS</p>
+            <div className="flex justify-evenly items-center text-white ">
+              <div
+                className={
+                  cuotas === "1"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("1")}
+              >
+                <p className="py-3 px-5">1</p>
+              </div>
+              <div
+                className={
+                  cuotas === "2"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("2")}
+              >
+                <p className="py-3 px-4">2</p>
+              </div>
+              <div
+                className={
+                  cuotas === "4"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("4")}
+              >
+                <p className="py-3 px-4">4</p>
+              </div>
+              <div
+                className={
+                  cuotas === "5"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("5")}
+              >
+                <p className="py-3 px-4">5</p>
+              </div>
+              <div
+                className={
+                  cuotas === "10"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("10")}
+              >
+                <p className="py-3 px-4">10</p>
+              </div>
+            </div>
+            <p className="text-white">DETALLE</p>
+            <p className="text-white text-center">
+              {promo24horas.pagos[cuotas]}
+            </p>
           </div>
         )}
         {tiempoRestante1 === 0 && tiempoRestante2 === 0 && (
