@@ -17,6 +17,8 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const { promociones } = useSelector((state) => state);
 
+  const [promos, setPromos] = useState({});
+
   const [promo24horas, setPromo24horas] = useState({
     pagos: {
       1: "Pago único de 4500€",
@@ -69,6 +71,42 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
   useEffect(() => {
+    // const customPromos = promociones.map((promo) => ({
+    //   [promo.promocion.body && `promo${promo.promocion.body.hora}horas`]: {
+    //     pagos: {
+    //       [promo.promocion.body && promo.promocion.body.cuota]: promo.promocion
+    //         .body
+    //         ? promo.promocion.body.name
+    //         : "",
+    //     },
+    //     link: {
+    //       [promo.promocion.body && promo.promocion.body.cuota]: promo.promocion
+    //         .body
+    //         ? promo.promocion.body.link
+    //         : "",
+    //     },
+    //   },
+    // }));
+    const customPromos = promociones.reduce((result, promo) => {
+      if (promo.promocion && promo.promocion.hora) {
+        const hora = `promo${promo.promocion.hora}horas`;
+        const cuota = promo.promocion.cuota || "default";
+
+        if (!result[hora]) {
+          result[hora] = {
+            pagos: {},
+            links: {},
+          };
+        }
+
+        result[hora].pagos[cuota] =
+          `${promo.promocion.name}, Total: ${promo.promocion.valorCuota}` || "";
+        result[hora].links[cuota] = promo.promocion.link || "";
+      }
+
+      return result;
+    }, {});
+    console.log(customPromos);
     console.log(promociones);
   }, [promociones]);
 
