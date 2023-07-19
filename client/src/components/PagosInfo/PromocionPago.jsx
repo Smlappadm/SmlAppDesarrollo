@@ -24,7 +24,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     },
     links: {
       1: "",
-      2:
+      2: "https://buy.stripe.com/00gdTje5mep777OfZw",
       4: "https://buy.stripe.com/28odTjgdu6WFcs8dRp",
       5: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
       10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
