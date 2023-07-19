@@ -88,6 +88,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             ? `${promo.promocion.name}, Total: ${promo.promocion.monto}€` || ""
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
+        result[hora].hora = promo.promocion.hora || "";
       }
 
       return result;
@@ -102,6 +103,17 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     console.log(promos);
+    const horas = Object.keys(promos);
+
+    console.log(horas);
+    // Creamos un nuevo objeto body con las horas como claves
+    const body = {};
+    let i = 0;
+    horas.forEach((hora) => {
+      i === 0 ? (body[`promocion${i}`] = promos[hora].hora) : "";
+      i += 1;
+    });
+    console.log(body);
   }, [promos]);
 
   useEffect(() => {
