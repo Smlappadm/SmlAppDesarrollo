@@ -161,16 +161,16 @@ export default function PromocionPago({ tamañoPantalla }) {
             </div>
             <div className="flex justify-evenly items-center text-white ">
               <div className="rounded-md border border-white">
-                <p className="py-3 px-5">1</p>
+                <p className="py-3 px-5 mr-1">1</p>
               </div>
               <div className="rounded-md border border-white">
-                <p className="py-3 px-4">2</p>
+                <p className="py-3 px-4 mr-1">2</p>
               </div>
               <div className="rounded-md border border-white">
-                <p className="py-3 px-4">4</p>
+                <p className="py-3 px-4 mr-1">4</p>
               </div>
               <div className="rounded-md border border-white">
-                <p className="py-3 px-4">5</p>
+                <p className="py-3 px-4 mr-1">5</p>
               </div>
               <div className="rounded-md border border-white">
                 <p className="py-3 px-4">10</p>
