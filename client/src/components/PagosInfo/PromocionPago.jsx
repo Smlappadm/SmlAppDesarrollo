@@ -19,6 +19,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     2: "Cuotas de 2250$/mes",
     4: "Cuotas de 1125$/mes",
     5: "Cuotas de 1000$/mes",
+    10: "Cuotas de 500$/mes",
   });
 
   useEffect(() => {
