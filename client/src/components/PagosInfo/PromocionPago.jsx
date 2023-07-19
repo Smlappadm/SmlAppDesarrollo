@@ -177,6 +177,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 <p className="py-3 px-4">10</p>
               </div>
             </div>
+            <p className="text-white">DETALLE</p>
           </div>
         )}
         <button
