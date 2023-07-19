@@ -159,7 +159,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 Desc. -500€ (24 horas)
               </p>
             </div>
-            <div className="flex justify-evenly items-center">
+            <div className="flex justify-evenly items-center text-white">
               <div className="rounded-md border border-white">
                 <p className="py-3 px-5">1</p>
               </div>
