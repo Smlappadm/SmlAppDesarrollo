@@ -49,7 +49,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       1: "Pago único de 5000€",
       2: "Cuotas de 2500€/mes, Total: 5000€",
       4: "Cuotas de 1250€/mes, Total: 5000€",
-      6: "Cuotas de 1000€/mes, Total: 4000€",
+      6: "Cuotas de 1000€/mes, Total: 6000€",
       12: "Cuotas de 500€/mes, Total: 5000€",
     },
     links: {
