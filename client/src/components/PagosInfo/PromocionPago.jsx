@@ -22,7 +22,13 @@ export default function PromocionPago({ tamañoPantalla }) {
       5: "Cuotas de 1000€/mes, Total: 5000€",
       10: "Cuotas de 500€/mes, Total: 5000€",
     },
-    links: {},
+    links: {
+      1: "",
+      2:
+      4: "https://buy.stripe.com/28odTjgdu6WFcs8dRp",
+      5: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
+      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
+    },
   });
   const [cuotas, setCuotas] = useState("1");
 
