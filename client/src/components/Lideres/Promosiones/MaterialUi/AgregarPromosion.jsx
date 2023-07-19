@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Input, TextField } from "@mui/material";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -29,13 +30,16 @@ export default function AgregarPromosion() {
     cuota: 0,
     monto: 0,
     valorCuota: 0,
+    active: false
   });
+
+  console.log(promocion);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const cargarPromocion = () => {
-    // axios.post()
+  const cargarPromocion = async () => {
+    await axios.post(`/promociones`,promocion)
   };
 
   const handleChange = (event, property) => {
