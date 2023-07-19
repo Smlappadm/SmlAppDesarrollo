@@ -389,9 +389,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             </div>
             <p className="text-white">DETALLE</p>
-            <p className="text-white text-center">
-              {promo24horas.pagos[cuotas]}
-            </p>
+            <p className="text-white text-center">{sinPromo.pagos[cuotas]}</p>
           </div>
         )}
         <Link
