@@ -60,7 +60,7 @@ function Landing() {
 
   
   useEffect(() => {
-    if (corredor.name && corredor.name !== undefined) {
+    if (corredor.name !== undefined) {
       console.log("adentro", corredor.name);
       localStorage.setItem("corredorName", corredor.name);
     }
