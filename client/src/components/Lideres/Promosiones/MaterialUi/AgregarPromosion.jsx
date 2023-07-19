@@ -22,37 +22,23 @@ const style = {
 
 export default function AgregarPromosion() {
   const [open, setOpen] = React.useState(false);
-  const [name, setName] = React.useState("");
-  const [hora, setHora] = React.useState();
-  const [cuota, setCuota] = React.useState();
-  const [monto, setMonto] = React.useState();
-  const [valorCuota, setValorCuota] = React.useState();
-  const [link, setLink] = React.useState("");
+  const [promocion, setPromocion] = React.useState({
+    name: "",
+    hora: 0,
+    cuota: 0,
+    monto: 0,
+    valorCuota: 0,
+    link: "",
+  });
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleChangeName = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleChangeHora = (event) => {
-    setHora(event.target.value);
-  };
-
-  const handleChangeCuota = (event) => {
-    setCuota(event.target.value);
-  };
-
-  const handleChangeMonto = (event) => {
-    setMonto(event.target.value);
-  };
-
-  const handleChangeValorCuota = (event) => {
-    setValorCuota(event.target.value);
-  };
-
-  const handleChangeLink = (event) => {
-    setLink(event.target.value);
+  const handleChange = (event, property) => {
+    setPromocion({
+      ...promocion,
+      [property]: event.target.value,
+    });
   };
 
   return (
@@ -76,8 +62,8 @@ export default function AgregarPromosion() {
               label="Nombre de promoción"
               type="text"
               id="Nombre"
-              value={name}
-              onChange={handleChangeName}
+              value={promocion.name}
+              onChange={(e) => handleChange(e, "name")}
               InputProps={{
                 style: {
                   color: "white",
@@ -94,8 +80,8 @@ export default function AgregarPromosion() {
               type="number"
               label="Horas"
               id="Horas"
-              value={hora}
-              onChange={handleChangeHora}
+              value={promocion.hora}
+              onChange={(e) => handleChange(e, "hora")}
               InputProps={{
                 style: {
                   color: "white",
@@ -112,8 +98,8 @@ export default function AgregarPromosion() {
               type="text"
               label="Link de Stripe"
               id="Link"
-              value={link}
-              onChange={handleChangeLink}
+              value={promocion.link}
+              onChange={(e) => handleChange(e, "link")}
               InputProps={{
                 style: {
                   color: "white",
@@ -130,8 +116,8 @@ export default function AgregarPromosion() {
               type="number"
               label="Cantidad de Cuotas"
               id="Cuotas"
-              value={cuota}
-              onChange={handleChangeCuota}
+              value={promocion.cuota}
+              onChange={(e) => handleChange(e, "cuota")}
               InputProps={{
                 style: {
                   color: "white",
@@ -148,8 +134,8 @@ export default function AgregarPromosion() {
               type="number"
               label="Monto de Cuotas"
               id="Monto"
-              value={valorCuota}
-              onChange={handleChangeValorCuota}
+              value={promocion.valorCuota}
+              onChange={(e) => handleChange(e, "valorCuota")}
               InputProps={{
                 style: {
                   color: "white",
@@ -166,8 +152,8 @@ export default function AgregarPromosion() {
               type="number"
               label="Monto Total"
               id="Monto"
-              value={monto}
-              onChange={handleChangeMonto}
+              value={promocion.monto}
+              onChange={(e) => handleChange(e, "monto")}
               InputProps={{
                 style: {
                   color: "white",
