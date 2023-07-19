@@ -132,6 +132,7 @@ const updateLeadFreelanceById = async (id, updatedData) => {
   }
 
   // Actualizamos el lead en la base de datos
+  
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
