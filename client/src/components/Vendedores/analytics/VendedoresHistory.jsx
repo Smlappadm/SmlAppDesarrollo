@@ -493,15 +493,15 @@ const VendedoresHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <div className="flex justify-center items-center gap-4">
+                      <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="border-2 text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                             {item.telephone}
                           </p>
                           <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[35px] mr-5 text-[#9eabbe] cursor-pointer"/>
+                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
                           </a>
 
                             </div>

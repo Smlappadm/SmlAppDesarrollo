@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import styles from "./Modal.module.css";
 import { CiEdit } from "react-icons/ci";
 import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
@@ -10,7 +11,6 @@ import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
-import styles from "./Modal.module.css";
 import {
   AiOutlineConsoleSql,
   AiOutlinePhone,
@@ -39,6 +39,7 @@ function ChildModal({
   setOpen,
   statusObj,
   SendLeadAlert,
+  SendEmailLeadAlert,
   SendErrorUpdateAlert,
   updateLeads,
   llamadoVenta,
@@ -50,21 +51,21 @@ function ChildModal({
   updatedEmailApp,
   SendEmailLeadAlertError,
   SendEmailLeadAlertErrorCuotas,
+  openModalPagoFunction,
   editEmail,
   editInstagram,
   editTelephone,
   editEmailApp,
   editContacto,
   saveEmailAppFunction,
-  openModalPagoFunction,
-  flagPago,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
     if (statusObj.status === "Contratando") {
-      setStatusObj({ ...statusObj, pagoRecibido: false });
-    }
+      setStatusObj({...statusObj,
+        pagoRecibido: false})
+  };
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -80,39 +81,12 @@ function ChildModal({
           cuotas: Number(statusObj.pagos.cuotas),
           cuotasPagadas: 0,
         },
+        status_op: statusObj.pagos.monto,
       });
-
-      let updatedPagos = "";
-      if (statusObj.status_op === "1/4000/4000") {
-        updatedPagos = "www.1";
-      } else if (statusObj.status_op === "2/2500/5000") {
-        updatedPagos = "www.2";
-      } else if (statusObj.status_op === "4/1250/5000") {
-        updatedPagos = "www.3";
-      } else if (statusObj.status_op === "6/1000/6000") {
-        updatedPagos = "www.4";
-      } else if (statusObj.status_op === "1/3200/3200") {
-        updatedPagos = "www.5";
-      } else if (statusObj.status_op === "2/2000/4000") {
-        updatedPagos = "www.6";
-      } else if (statusObj.status_op === "4/1000/4000") {
-        updatedPagos = "www.7";
-      } else if (statusObj.status_op === "6/800/4800") {
-        updatedPagos = "www.8";
-      }
-
-      setStatusObj({
-        ...statusObj,
-        pagos: {
-          ...statusObj.pagos,
-          link: updatedPagos,
-        },
-      });
-
       if (updatedEmailApp === "-" || updatedEmailApp === "") {
-        saveEmailAppFunction(updatedPagos);
+        saveEmailAppFunction(item.email);
       } else {
-        saveEmailAppFunction(updatedPagos);
+        saveEmailAppFunction(updatedEmailApp);
       }
     } else {
       statusObj.pagos = {};
@@ -191,20 +165,20 @@ function ChildModal({
       status_op: statusObj.status_op,
       pagos: statusObj.pagos,
       emailApp: updatedEmailApp,
+      // vendedor: emailAddress,
+      vendedor: emailAddress,
+      vendedor_name: fullName,
       llamados: item.llamados,
       llamada_venta: statusObj.llamada_venta,
     };
 
-    const dataObservaciones = statusObj.observaciones
-
     const dataUpdate = {
-      dataObservaciones,
       dataLead,
       dataVendedor,
     };
 
     axios
-      .put(`/lead/freelance/${item._id}`, dataUpdate)
+      .put(`/lead/vendedor/${item._id}`, dataUpdate)
       .then((response) => {
         // Si la respuesta es exitosa, redirige a otra página
 
@@ -237,15 +211,14 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-        <button
-          type="button"
-          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          onClick={handleCancel}
-        >
-          Cerrar x
-        </button>
-        {!flagPago ||
-        editEmail ||
+      <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={handleCancel}
+            >
+              Cerrar x
+            </button>
+        {editEmail ||
         editInstagram ||
         editTelephone ||
         editEmailApp ||
@@ -291,7 +264,7 @@ function ChildModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center">
-            Actualizar Lead?
+          Actualizar Lead?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -411,7 +384,7 @@ function IncidenceModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5">
-            Enviar incidencia?
+            Send Incidence?
           </h2>
           <textarea
             name="observation"
@@ -608,17 +581,15 @@ export default function NestedModal({
   emailAddress,
   fullName,
   cancelModal,
-  saveEmailAppFunction,
   openModalPagoFunction,
+  saveEmailAppFunction,
 }) {
   const [open, setOpen] = React.useState(false);
   const [dateHour, setDateHour] = React.useState({});
   const [openTimeHour, setOpenTimeHour] = React.useState(false);
-  const [openPagoSelect, setOpenPagoSelect] = React.useState("");
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
   const [openAlertErrorCuotas, setOpenAlertErrorCuotas] = React.useState(false);
-  const [flagPago, setFlagPago] = React.useState(true);
 
   const [editEmail, setEditEmail] = React.useState(false);
   const [inputEmail, setInputEmail] = React.useState(item.email);
@@ -644,7 +615,7 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
-  const [emailValidator, setEmailValidator] = React.useState(false);
+ const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -653,7 +624,6 @@ export default function NestedModal({
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
-    observaciones: "",
   });
 
   const [llamadoVenta, setLlamadoVenta] = React.useState({
@@ -687,17 +657,11 @@ export default function NestedModal({
   };
 
   const handleSelectChange = (event) => {
-    const value = event.target.value;
-    const property = event.target.name;
-    setOpenPagoSelect("");
     setOpenTimeHour(false);
-    if (value === "Contratado") {
-      setFlagPago(false);
-    } else {
-      setFlagPago(true);
-    }
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     statusObj.pagos = {};
+    const value = event.target.value;
+    const property = event.target.name;
     if (value === "No responde" || value === "Sin contactar") {
       setStatusObj({
         ...statusObj,
@@ -705,8 +669,6 @@ export default function NestedModal({
         status_op: "",
       });
     } else if (value === "Agendar 2do llamado") {
-      llamadoVenta.observaciones = "";
-      dateHour.$D = "";
       setStatusObj({
         ...statusObj,
         [property]: value,
@@ -716,15 +678,6 @@ export default function NestedModal({
       setStatusObj({ ...statusObj, [property]: value });
     }
   };
-  const handleObservationChange = (event) => {
-    const value = event.target.value;
-    const property = event.target.name;
-    setStatusObj({
-      ...statusObj,
-      observaciones: { ...statusObj.observaciones, [property]: value },
-    });
-  };
-  console.log(statusObj);
 
   const handleSelectChangeContratado = (event) => {
     console.log(event.target.name);
@@ -763,7 +716,7 @@ export default function NestedModal({
 
     return (
       <p htmlFor="" className="text-white m-2">
-        {`Día: ${fechaDay}/${fechaMonth}/${fechaYear} - Hora: ${
+        {`Date: ${fechaDay}/${fechaMonth}/${fechaYear} - Hour: ${
           timeHour - 3
         }${timeMinute}`}
       </p>
@@ -841,42 +794,6 @@ export default function NestedModal({
     }, 3000);
   };
 
-  const handleSelectPago = (e) => {
-    setFlagPago(false);
-    setOpenPagoSelect(e.target.value);
-  };
-
-  const handleUpdatePago = (e) => {
-    if (
-      e.target.value === "1/4000/4000" ||
-      e.target.value === "2/2500/5000" ||
-      e.target.value === "4/1250/5000" ||
-      e.target.value === "6/1000/6000" ||
-      e.target.value === "1/3200/3200" ||
-      e.target.value === "2/2000/4000" ||
-      e.target.value === "4/1000/4000" ||
-      e.target.value === "6/800/4800"
-    ) {
-      setFlagPago(true);
-    } else {
-      setFlagPago(false);
-    }
-
-    const value = e.target.value.split("/");
-    // console.log(value)
-    setStatusObj({
-      ...statusObj,
-      status_op: e.target.value,
-      pagos: {
-        ...statusObj.pagos,
-        monto: Number(value[2]),
-        valorCuota: Number(value[1]),
-        cuotas: Number(value[0]),
-        cuotasPagadas: 0,
-      },
-    });
-  };
-
   // Email Validator FUNCTION
   const validatorEmailFunction = (email) => {
     setEmailValidator(false);
@@ -886,25 +803,14 @@ export default function NestedModal({
       console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto");
+      console.log("incorrecto")
     }
   };
 
-  const validatorEmailAppFunction = (email) => {
-    setEmailValidator(false);
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(email)) {
-      setEmailValidator(true);
-      console.log("correcto");
-    } else {
-      setEmailValidator(false);
-      console.log("incorrecto");
-    }
-  };
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
-    setEmailValidator(true);
+      setEmailValidator(true);
     setEditEmail(!editEmail);
     setEditEmailApp(false);
     setEditInstagram(false);
@@ -912,21 +818,25 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    const emailChecked = event.target.value.trim();
+    const emailChecked = event.target.value.trim()
     setInputEmail(emailChecked);
     validatorEmailFunction(emailChecked);
   };
   const handleConfirmEditEmail = async (id) => {
-    const body = { email: inputEmail };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedEmail(response.data.email);
+    try {
+      const body = { email: inputEmail };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedEmail(response.data.email);
+      SendEmailLeadAlert("Email");
+    } catch (error) {
+      SendEmailLeadAlertError("Email");
+    }
     setEditEmail(false);
-    SendEmailLeadAlert("Email");
   };
 
   //EDITAR DATOS Instagram
   const handleEditInstagram = () => {
-    setEmailValidator(true);
+      setEmailValidator(true);
     setEditInstagram(!editInstagram);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -937,16 +847,21 @@ export default function NestedModal({
     setInputInstagram(event.target.value);
   };
   const handleConfirmEditInstagram = async (id) => {
-    const body = { instagram: inputInstagram };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedInstagram(response.data.instagram);
+    try {
+      const body = { instagram: inputInstagram };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedInstagram(response.data.instagram);
+      SendEmailLeadAlert("Instagram");
+    } catch (error) {
+      SendEmailLeadAlertError("Instagram");
+    }
+
     setEditInstagram(false);
-    SendEmailLeadAlert("Instagram");
   };
 
   //EDITAR DATOS Phone
   const handleEditTelephone = () => {
-    setEmailValidator(true);
+      setEmailValidator(true);
     setEditTelephone(!editTelephone);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -957,15 +872,20 @@ export default function NestedModal({
     setInputTelephone(event.target.value);
   };
   const handleConfirmEditTelephone = async (id) => {
-    const body = { telephone: inputTelephone };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedTelephone(response.data.telephone);
+    try {
+      const body = { telephone: inputTelephone };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedTelephone(response.data.telephone);
+      SendEmailLeadAlert("Phone");
+    } catch (error) {
+      SendEmailLeadAlertError("Phone");
+    }
+
     setEditTelephone(false);
-    SendEmailLeadAlert("Phone");
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
-    setEmailValidator(true);
+      setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
     setEditTelephone(false);
     setEditEmail(false);
@@ -973,22 +893,24 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    const emailChecked = event.target.value.trim();
+    const emailChecked = event.target.value.trim()
     setInputEmailApp(emailChecked);
     validatorEmailFunction(emailChecked);
   };
-
   const handleConfirmEditEmailApp = async (id) => {
-    const body = { emailApp: inputEmailApp };
-    const response = await axios.put(`/lead/changeemail/${id}`, body);
-    setUpdatedEmailApp(response.data.emailApp);
+    try {
+      const body = { emailApp: inputEmailApp };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      setUpdatedEmailApp(response.data.emailApp);
+      SendEmailLeadAlert("Email App");
+    } catch (error) {
+      SendEmailLeadAlertError("Email App");
+    }
     setEditEmailApp(false);
-    SendEmailLeadAlert("Email App");
   };
-
   //EDITAR DATOS Contacto
   const handleEditContacto = () => {
-    setEmailValidator(true);
+      setEmailValidator(true);
     setEditContacto(!editContacto);
     setEditEmailApp(false);
     setEditTelephone(false);
@@ -1047,7 +969,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label>✔ Cliente Actualizado!</label>
               </motion.div>
             )}
             {openAlert && (
@@ -1062,7 +984,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className="text-white">✔ Lead Updated!</label>
+                <label className="text-white">✔ Lead Actualizado!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -1077,7 +999,7 @@ export default function NestedModal({
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Update Error!</label>
+                <label className=" text-white">❌ Error al Actualizar!</label>
               </motion.div>
             )}
             {openAlertErrorCuotas && (
@@ -1197,7 +1119,7 @@ export default function NestedModal({
                       />
                     </div>
                   )}
-                  {/* EDITAR DATOS Instagram-------------------------------------  */}
+                  {/* EDITAR DATOS Email-------------------------------------  */}
                   {editInstagram && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
                       <input
@@ -1247,7 +1169,6 @@ export default function NestedModal({
                       />
                     </div>
                   )}
-                  {/* EDITAR DATOS EmailApp-------------------------------------  */}
                   {editEmailApp && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
                       <input
@@ -1257,6 +1178,7 @@ export default function NestedModal({
                         defaultValue={updatedEmailApp}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar email App cliente"
+                        // value={inputEmail}
                         disabled={!editEmailApp}
                         required
                       />
@@ -1282,6 +1204,7 @@ export default function NestedModal({
                         defaultValue={updatedContacto}
                         className=" bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-64 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Agregar nombre de contacto"
+                        // value={inputEmail}
                         disabled={!editContacto}
                         required
                       />
@@ -1318,7 +1241,7 @@ export default function NestedModal({
           </div>
 
           <div className=" h-fit flex items-center justify-start flex-col mb-10">
-            <div className="flex flex-col items-center justify-center">
+            <div className="">
               <label
                 htmlFor="countries"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -1326,125 +1249,20 @@ export default function NestedModal({
                 Estado
               </label>
               {item.status !== "Agendar 2do llamado" ? (
-                <>
-                  <select
-                    onChange={handleSelectChange}
-                    name="status"
-                    defaultValue={statusObj.status}
-                    id="select1"
-                    className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option value="Sin contactar">Sin Contactar</option>
-                    {/* <option value="Agendar 2do llamado">En proceso</option> */}
-                    <option value="Contratando">Contratando</option>
-                    {/* <option value="Contratado">Contratado</option> */}
-                    <option value="Rechazado">Rechazado</option>
-                    <option value="No responde">No Responde</option>
-                  </select>
-
-                  {statusObj.status === "Rechazado" && (
-                    <div className="flex flex-col justify-center items-center">
-                      <label
-                        htmlFor="Motivo"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Motivo
-                      </label>
-                      <select
-                        id="Motivo"
-                        onChange={handleSelectChange}
-                        name="status_op"
-                        defaultValue={
-                          statusObj.status_op ? statusObj.status_op : "default"
-                        }
-                        className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >
-                        <option disabled="disabled" value="default">
-                          Elige uno...
-                        </option>
-                        <option value="Sin dinero">Sin Dinero</option>
-                        <option value="Sin interes">Sin Interes</option>
-                        <option value="Otro servicio">Otro Servicio</option>
-                      </select>
-                    </div>
-                  )}
-                  <div className="flex flex-col items-center justify-start mt-3">
-                    <label
-                      htmlFor="last_name"
-                      className="block text-sm text-center font-medium text-gray-900 dark:text-white "
-                    >
-                      Contacto
-                    </label>
-                    <select
-                      onChange={handleObservationChange}
-                      name="tipoContacto"
-                      defaultValue="default"
-                      id="select11"
-                      className="mt-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option disabled="disabled" value="default">
-                        Tipo de Contacto
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Instagram"
-                        value="Instagram"
-                      >
-                        Instagram
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Linkedin"
-                        value="Linkedin"
-                      >
-                        Linkedin
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Whatsapp"
-                        value="Whatsapp"
-                      >
-                        Whatsapp
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Llamada telefónica"
-                        value="Llamada telefónica"
-                      >
-                        Llamada telefónica
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Email"
-                        value="Email"
-                      >
-                        Email
-                      </option>
-                      <option className="text-justify" name="Otro" value="Otro">
-                        Otro
-                      </option>
-                    </select>
-
-                    <label
-                      htmlFor="last_name"
-                      className="mt-7 block text-sm text-center font-medium text-gray-900 dark:text-white "
-                    >
-                      Observaciones
-                    </label>
-                    {/* <div className="flex justify-center items-center"> */}
-                    <textarea
-                      onChange={handleObservationChange}
-                      type="text"
-                      id="last_name"
-                      name="observacion"
-                      // value={llamadoVenta.observaciones}
-                      className="mt-3 bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                    {/* </div> */}
-                  </div>
-                </>
+                <select
+                  onChange={handleSelectChange}
+                  name="status"
+                  defaultValue={statusObj.status}
+                  id="select1"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option value="Sin contactar">Sin Contactar</option>
+                  <option value="Agendar 2do llamado">En proceso</option>
+                  <option value="Contratando">Contratando</option>
+                  <option value="Contratado">Contratado</option>
+                  <option value="Rechazado">Rechazado</option>
+                  <option value="No responde">No Responde</option>
+                </select>
               ) : (
                 <select
                   onChange={handleSelectChange}
@@ -1464,7 +1282,7 @@ export default function NestedModal({
                 </select>
               )}
             </div>
-            {/* {statusObj.status === "Rechazado" && (
+            {statusObj.status === "Rechazado" && (
               <div className="m-5">
                 <label
                   htmlFor="Motivo"
@@ -1489,11 +1307,10 @@ export default function NestedModal({
                   <option value="Otro servicio">Otro Servicio</option>
                 </select>
               </div>
-            )} */}
-            {/* {(item.status === "Sin contactar" ||
+            )}
+            {(item.status === "Sin contactar" ||
               item.status === "No responde") &&
-              // statusObj.status === "Agendar 2do llamado" && (
-              statusObj.status === "" && (
+              statusObj.status === "Agendar 2do llamado" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
                   <label
                     htmlFor="last_name"
@@ -1536,7 +1353,7 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="status_op"
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={
                         dateHour.$D
                           ? `Dia: ${dateHour.$D}/${dateHour.$M}/${
@@ -1570,7 +1387,7 @@ export default function NestedModal({
                     />
                   </div>
                 </div>
-              )} */}
+              )}
             {item.status === "Agendar 2do llamado" &&
               statusObj.status === "Agendar otro llamado" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
@@ -1591,7 +1408,7 @@ export default function NestedModal({
                           ? llamadoVenta.contacto
                           : item.llamada_venta.contacto
                       }
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       required
                     />
@@ -1624,7 +1441,7 @@ export default function NestedModal({
                       type="text"
                       id="last_name"
                       name="status_op"
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       value={
                         dateHour.$D
                           ? `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${
@@ -1661,113 +1478,57 @@ export default function NestedModal({
               )}
             {statusObj.status === "Contratado" && (
               <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                <select
-                  onChange={handleSelectPago}
-                  name="status"
-                  defaultValue="default"
-                  id="select1"
-                  className="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                <div className="flex items-center justify-center gap-2 relative">
+                  <label
+                    htmlFor="last_name"
+                    className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
+                  >
+                    €
+                  </label>
+                  <input
+                    onChange={handleSelectChangeContratado}
+                    type="number"
+                    id="last_name"
+                    name="monto"
+                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
+                    placeholder="Monto"
+                    required
+                  />
+                  <label
+                    htmlFor="last_name"
+                    className="  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
+                  >
+                    /
+                  </label>
+                  <input
+                    onChange={handleSelectChangeContratado}
+                    type="number"
+                    id="last_name"
+                    name="cuotas"
+                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
+                    placeholder="Cuotas"
+                    required
+                  />
+                </div>
+
+                <p
+                  type="text"
+                  id="last_name"
+                  name="total"
+                  disabled={true}
+                  className={
+                    statusObj.pagos.monto && statusObj.pagos.cuotas
+                      ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      : ""
+                  }
+                  placeholder=""
                 >
-                  <option disabled="disabled" value="default">
-                    Seleccionar servicio
-                  </option>
-                  <option
-                    className="text-justify"
-                    name="sinEditores"
-                    value="sin"
-                  >
-                    Sin Editores
-                  </option>
-                  <option
-                    className="text-justify"
-                    name="conEditores"
-                    value="con"
-                  >
-                    Con Editores
-                  </option>
-                </select>
-                {openPagoSelect === "con" && (
-                  <select
-                    onChange={handleUpdatePago}
-                    name="status"
-                    defaultValue="default"
-                    id="select1"
-                    className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option disabled="disabled" value="default">
-                      Seleccionar tipo de Pago
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="1"
-                      value="1/4000/4000"
-                    >
-                      1 pago = -20% (€4000)
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="2"
-                      value="2/2500/5000"
-                    >
-                      2 pagos = (€5000) / cuotas de €2500
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="4"
-                      value="4/1250/5000"
-                    >
-                      4 pagos = (€5000) / cuotas de €1250
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="6"
-                      value="6/1000/6000"
-                    >
-                      6 pagos = +20% (€6000) / cuotas de €1000
-                    </option>
-                  </select>
-                )}
-                {openPagoSelect === "sin" && (
-                  <select
-                    onChange={handleUpdatePago}
-                    name="status"
-                    defaultValue="default"
-                    id="select1"
-                    className="mb-10 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  >
-                    <option disabled="disabled" value="default">
-                      Seleccionar tipo de Pago
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="1"
-                      value="1/3200/3200"
-                    >
-                      1 pago = -20% (€3200)
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="2"
-                      value="2/2000/4000"
-                    >
-                      2 pagos = (€4000) / cuotas de €2000
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="4"
-                      value="4/1000/4000"
-                    >
-                      4 pagos = (€4000) / cuotas de €1000
-                    </option>
-                    <option
-                      className="text-justify"
-                      name="6"
-                      value="6/800/4800"
-                    >
-                      6 pagos = +20% (€4800) / cuotas de €800
-                    </option>
-                  </select>
-                )}
+                  {statusObj.pagos.monto &&
+                    statusObj.pagos.cuotas &&
+                    `${statusObj.pagos.cuotas} pagos de €${(
+                      statusObj.pagos.monto / statusObj.pagos.cuotas
+                    ).toFixed(2)}`}
+                </p>
               </div>
             )}
             {item.llamados > 0 && statusObj.status === "No responde" && (
@@ -1781,7 +1542,6 @@ export default function NestedModal({
               </div>
             )}
           </div>
-
           <div className="flex justify-center items-center absolute -right-80 top-0">
             {openTimeHour && (
               <ResponsiveDateTimePickers
@@ -1799,10 +1559,11 @@ export default function NestedModal({
               statusObj={statusObj}
               llamadoVenta={llamadoVenta}
               setOpen={setOpen}
-              SendLeadAlert={SendLeadAlert}
-              SendErrorUpdateAlert={SendErrorUpdateAlert}
+              SendEmailLeadAlert={SendEmailLeadAlert}
               SendEmailLeadAlertError={SendEmailLeadAlertError}
               SendEmailLeadAlertErrorCuotas={SendEmailLeadAlertErrorCuotas}
+              SendLeadAlert={SendLeadAlert}
+              SendErrorUpdateAlert={SendErrorUpdateAlert}
               handleLlamadoVentaChange={handleLlamadoVentaChange}
               updateLeads={updateLeads}
               emailAddress={emailAddress}
@@ -1810,14 +1571,13 @@ export default function NestedModal({
               cancelModal={cancelModal}
               setStatusObj={setStatusObj}
               updatedEmailApp={updatedEmailApp}
+              openModalPagoFunction={openModalPagoFunction}
               editEmail={editEmail}
+              editContacto={editContacto}
               editInstagram={editInstagram}
               editTelephone={editTelephone}
               editEmailApp={editEmailApp}
-              editContacto={editContacto}
-              openModalPagoFunction={openModalPagoFunction}
               saveEmailAppFunction={saveEmailAppFunction}
-              flagPago={flagPago}
             />
           </div>
         </Box>
