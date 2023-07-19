@@ -44,6 +44,20 @@ export default function PromocionPago({ tamañoPantalla }) {
       10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
     },
   });
+  const [sinPromo, setSinPromo] = useState({
+    pagos: {
+      1: "Pago único de 4000€",
+      2: "Cuotas de 2000€/mes, Total: 4000€",
+      4: "Cuotas de 1000€/mes, Total: 4000€",
+      10: "Cuotas de 500€/mes, Total: 5000€",
+    },
+    links: {
+      1: "https://buy.stripe.com/bIY5mN5yQ94N3VC4gH",
+      2: "https://buy.stripe.com/4gw6qR3qIa8RfEkeVu",
+      4: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
+      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
+    },
+  });
   const [cuotas, setCuotas] = useState("1");
 
   const CambiarCuota = (cuota) => {
@@ -163,7 +177,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         }
       >
         <p className="text-white text-24 font-bold">{cliente.name}</p>
-        {tiempoRestante1 === 0 && (
+        {tiempoRestante1 !== 0 && (
           <div
             className={
               tamañoPantalla === "Pequeña"
@@ -230,7 +244,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             </p>
           </div>
         )}
-        {tiempoRestante1 === 0 && tiempoRestante2 === 0 && (
+        {tiempoRestante1 === 0 && tiempoRestante2 !== 0 && (
           <div
             className={
               tamañoPantalla === "Pequeña"
