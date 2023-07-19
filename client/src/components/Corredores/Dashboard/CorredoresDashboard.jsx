@@ -44,15 +44,14 @@ const CorredoresDashboard = () => {
   const dispatch = useDispatch();
 
   const user = useUser().user;
-  const mail = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
 
   let email = localStorage.getItem("email");
 
   localStorage.setItem("names", fullName);
-  let names = localStorage.getItem("names");
 
   let corredorName = localStorage.getItem("corredorName");
+
   useEffect(() => {
     console.log(email);
     console.log(corredorName);
