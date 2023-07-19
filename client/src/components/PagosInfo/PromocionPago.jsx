@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
-import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function PromocionPago({ tamañoPantalla }) {
   const url = new URL(window.location.href);
@@ -14,12 +14,50 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
-  const [cuotas24, setCuotas24] = useState({
-    1: "Pago único de 4500€",
-    2: "Cuotas de 2250€/mes",
-    4: "Cuotas de 1125€/mes",
-    5: "Cuotas de 1000€/mes",
-    10: "Cuotas de 500€/mes",
+  const [promo24horas, setPromo24horas] = useState({
+    pagos: {
+      1: "Pago único de 4500€",
+      2: "Cuotas de 2250€/mes, Total: 4500€",
+      4: "Cuotas de 1125€/mes, Total: 4500€",
+      5: "Cuotas de 1000€/mes, Total: 5000€",
+      10: "Cuotas de 500€/mes, Total: 5000€",
+    },
+    links: {
+      1: "",
+      2: "https://buy.stripe.com/00gdTje5mep777OfZw",
+      4: "https://buy.stripe.com/28odTjgdu6WFcs8dRp",
+      5: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
+      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
+    },
+  });
+  const [promo2horas, setPromo2horas] = useState({
+    pagos: {
+      1: "Pago único de 4000€",
+      2: "Cuotas de 2000€/mes, Total: 4000€",
+      4: "Cuotas de 1000€/mes, Total: 4000€",
+      10: "Cuotas de 500€/mes, Total: 5000€",
+    },
+    links: {
+      1: "https://buy.stripe.com/bIY5mN5yQ94N3VC4gH",
+      2: "https://buy.stripe.com/4gw6qR3qIa8RfEkeVu",
+      4: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
+      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
+    },
+  });
+  const [sinPromo, setSinPromo] = useState({
+    pagos: {
+      1: "Pago único de 5000€",
+      2: "Cuotas de 2500€/mes, Total: 5000€",
+      4: "Cuotas de 1250€/mes, Total: 5000€",
+      6: "Cuotas de 1000€/mes, Total: 6000€",
+      12: "Cuotas de 500€/mes, Total: 6000€",
+    },
+    links: {
+      1: "https://buy.stripe.com/bIY5mN5yQ94N3VC4gH",
+      2: "https://buy.stripe.com/4gw6qR3qIa8RfEkeVu",
+      4: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
+      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
+    },
   });
   const [cuotas, setCuotas] = useState("1");
 
@@ -135,7 +173,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "flex flex-col justify-between items-center p-6 h-full"
+            ? "flex flex-col justify-between items-center p-6 h-full w-full"
             : "flex flex-col justify-evenly items-center p-6 h-full w-1/5"
         }
       >
@@ -153,11 +191,61 @@ export default function PromocionPago({ tamañoPantalla }) {
               {formatTiempoRestante(tiempoRestante1)}
             </p>
             <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
-              <p className="text-white text-3xl ">OFFER</p>
+              <p className="text-white text-3xl text-center">
+                Desc. -1000€ (2 horas)
+              </p>
             </div>
+            <p className="text-white">CUOTAS</p>
+            <div className="flex justify-evenly items-center text-white ">
+              <div
+                className={
+                  cuotas === "1"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("1")}
+              >
+                <p className="py-3 px-5">1</p>
+              </div>
+              <div
+                className={
+                  cuotas === "2"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("2")}
+              >
+                <p className="py-3 px-4">2</p>
+              </div>
+              <div
+                className={
+                  cuotas === "4"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("4")}
+              >
+                <p className="py-3 px-4">4</p>
+              </div>
+
+              <div
+                className={
+                  cuotas === "10"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota("10")}
+              >
+                <p className="py-3 px-4">10</p>
+              </div>
+            </div>
+            <p className="text-white">DETALLE</p>
+            <p className="text-white text-center">
+              {promo2horas.pagos[cuotas]}
+            </p>
           </div>
         )}
-        {tiempoRestante1 === 0 && (
+        {tiempoRestante1 === 0 && tiempoRestante2 !== 0 && (
           <div
             className={
               tamañoPantalla === "Pequeña"
@@ -179,51 +267,76 @@ export default function PromocionPago({ tamañoPantalla }) {
               <div
                 className={
                   cuotas === "1"
-                    ? "rounded-md border border-black mr-2 bg-blue-500 "
-                    : "rounded-md border border-white mr-2"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
                 }
                 onClick={() => CambiarCuota("1")}
               >
                 <p className="py-3 px-5">1</p>
               </div>
               <div
-                className="rounded-md border border-white mr-2"
+                className={
+                  cuotas === "2"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
                 onClick={() => CambiarCuota("2")}
               >
                 <p className="py-3 px-4">2</p>
               </div>
               <div
-                className="rounded-md border border-white mr-2"
+                className={
+                  cuotas === "4"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
                 onClick={() => CambiarCuota("4")}
               >
                 <p className="py-3 px-4">4</p>
               </div>
               <div
-                className="rounded-md border border-white mr-2"
+                className={
+                  cuotas === "5"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
                 onClick={() => CambiarCuota("5")}
               >
                 <p className="py-3 px-4">5</p>
               </div>
               <div
-                className="rounded-md border border-white"
+                className={
+                  cuotas === "10"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
                 onClick={() => CambiarCuota("10")}
               >
                 <p className="py-3 px-4">10</p>
               </div>
             </div>
             <p className="text-white">DETALLE</p>
-            <p className="text-white">{cuotas24[cuotas]}</p>
+            <p className="text-white text-center">
+              {promo24horas.pagos[cuotas]}
+            </p>
           </div>
         )}
-        <button
+        <Link
           className={
             tamañoPantalla === "Pequeña"
-              ? "text-white bg-black w-full py-3 text-18 rounded-2xl"
-              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl"
+              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+          }
+          to={
+            tiempoRestante1 !== 0
+              ? promo2horas.links[cuotas]
+              : tiempoRestante2 !== 0 && tiempoRestante1 === 0
+              ? promo24horas.links[cuotas]
+              : ""
           }
         >
           Link de Pago
-        </button>
+        </Link>
       </div>
     </div>
   );
