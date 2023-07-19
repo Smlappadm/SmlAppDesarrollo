@@ -48,6 +48,8 @@ export const GET_LEAD_CHEQUED_FREELANCER = "GET_LEAD_CHEQUED_FREELANCER";
 export const GET_FREELANCER = "GET_FREELANCER";
 export const GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS =
   "GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS";
+export const GET_ALL_PROMOCIONES =
+  "GET_ALL_PROMOCIONES";
 
 //
 export const setRol = (rol) => {
@@ -99,6 +101,14 @@ export const getAllLeadContratando = () => {
     const response = await axios.get("/lead/contratando");
     const leadContratando = response.data;
     dispatch({ type: GET_ALL_LEAD_CONTRATANDO, payload: leadContratando });
+  };
+};
+
+export const getAllPromociones = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/promociones");
+    const promociones = response.data;
+    dispatch({ type: GET_ALL_PROMOCIONES, payload: promociones });
   };
 };
 
