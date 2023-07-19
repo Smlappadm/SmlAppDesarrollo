@@ -58,11 +58,13 @@ function Landing() {
     }
   }, [dispatch, userEmail]);
 
+  
   useEffect(() => {
-    if (corredor.name !== "undefined") {
+    if (corredor.name !== undefined) {
+      console.log("adentro", corredor.name);
       localStorage.setItem("corredorName", corredor.name);
     }
-  }, [email]);
+  }, [email, corredor]);
 
   useEffect(() => {
     dispatch(getAllCorredores());

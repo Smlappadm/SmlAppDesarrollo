@@ -9,6 +9,7 @@ const ClientesRouter = require("./ClientesRouter");
 const LeaderRouter = require("./LeaderRouter");
 const FreelancerRouter = require("./FreelancerRouter");
 const PagosRouter = require("./PagosRouter");
+const PromocionesRouter = require("./PromocionesRouter");
 
 router.use("/employees", EmployeesRouter);
 router.use("/clevel", CLevelRouter);
@@ -19,6 +20,7 @@ router.use("/vendedor", VendedorRouter);
 router.use("/clientes", ClientesRouter);
 router.use("/pagos", PagosRouter);
 router.use("/freelancer", FreelancerRouter);
+router.use("/promocion", PromocionesRouter);
 
 // ****************** Clientes ********************
 

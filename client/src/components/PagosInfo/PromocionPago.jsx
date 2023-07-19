@@ -14,6 +14,21 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante2, setTiempoRestante2] = useState(0);
   const [cliente, setCliente] = useState({});
   const dispatch = useDispatch();
+  const [cuotas24, setCuotas24] = useState({
+    1: "Pago único de 4500€",
+    2: "Cuotas de 2250€/mes",
+    4: "Cuotas de 1125€/mes",
+    5: "Cuotas de 1000€/mes",
+    10: "Cuotas de 500€/mes",
+  });
+  const [cuotas, setCuotas] = useState("1");
+
+  const CambiarCuota = (cuota) => {
+    setCuotas(cuota);
+  };
+  useEffect(() => {
+    console.log(cuotas);
+  }, [cuotas]);
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
@@ -146,17 +161,58 @@ export default function PromocionPago({ tamañoPantalla }) {
           <div
             className={
               tamañoPantalla === "Pequeña"
-                ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+                ? "w-full flex flex-col justify-between items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                : "w-full flex flex-col justify-between items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
             }
           >
             <p className="text-white">PROMOCIÓN</p>
-            <p className="text-white text-3xl">
+            <p className="text-white text-24 font-extrabold">
               {formatTiempoRestante(tiempoRestante2)}
             </p>
             <div className="border border-white w-4/6 flex items-center justify-center p-3">
-              <p className="text-white text-3xl ">OFFER 2</p>
+              <p className="text-white text-3xl text-center ">
+                Desc. -500€ (24 horas)
+              </p>
             </div>
+            <p className="text-white">CUOTAS</p>
+            <div className="flex justify-evenly items-center text-white ">
+              <div
+                className={
+                  cuotas === "1"
+                    ? "rounded-md border border-black mr-2 bg-blue-500 "
+                    : "rounded-md border border-white mr-2"
+                }
+                onClick={() => CambiarCuota("1")}
+              >
+                <p className="py-3 px-5">1</p>
+              </div>
+              <div
+                className="rounded-md border border-white mr-2"
+                onClick={() => CambiarCuota("2")}
+              >
+                <p className="py-3 px-4">2</p>
+              </div>
+              <div
+                className="rounded-md border border-white mr-2"
+                onClick={() => CambiarCuota("4")}
+              >
+                <p className="py-3 px-4">4</p>
+              </div>
+              <div
+                className="rounded-md border border-white mr-2"
+                onClick={() => CambiarCuota("5")}
+              >
+                <p className="py-3 px-4">5</p>
+              </div>
+              <div
+                className="rounded-md border border-white"
+                onClick={() => CambiarCuota("10")}
+              >
+                <p className="py-3 px-4">10</p>
+              </div>
+            </div>
+            <p className="text-white">DETALLE</p>
+            <p className="text-white">{cuotas24[cuotas]}</p>
           </div>
         )}
         <button

@@ -114,9 +114,7 @@ const CorredoresHistory = () => {
         <Card className="w-full m-5 h-screen bg-[#222131]">
           <div className="flex gap-10 items-center mt-2 mx-5 justify-between">
             <div className="flex gap-5">
-              <h2 className="font-bold text-[#e2e2e2] text-lg">
-                History
-              </h2>
+              <h2 className="font-bold text-[#e2e2e2] text-lg">History</h2>
               <div className="flex gap-5">
                 <Link to={"/corredores"}>
                   <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -135,21 +133,15 @@ const CorredoresHistory = () => {
               Descargar CSV
             </Button>
           </div>
-          <Table className="flex">
+          <div className="flex">
             <div className="text-gray-400 text-14 font-thin">
               <div className={style.tableRow}>
-                <div className="text-start">
-                  Invoice Id
-                </div>
+                <div className="text-start">Invoice Id</div>
                 <div className="text-start">Name</div>
                 <div className="text-start">Web</div>
-                <div className="text-start">
-                  Instagram
-                </div>
+                <div className="text-start">Instagram</div>
                 <div className="text-start">Nivel</div>
-                <div className="text-start">
-                  Incidencia
-                </div>
+                <div className="text-start">Incidencia</div>
               </div>
             </div>
 
@@ -224,7 +216,7 @@ const CorredoresHistory = () => {
                 </div>
               ))}
             </div>
-          </Table>
+          </div>
         </Card>
         <div className=" mb-5">
           <PaginationOutlined
