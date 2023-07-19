@@ -11,6 +11,7 @@ import {
 } from "../../../redux/actions";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
+import ModalObservaciones from "./Modal/ModalObservaciones";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -332,6 +333,7 @@ const VendedoresDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
+                        <ModalObservaciones item={item}/>
                           <ModalIntelligentInfo />
                           <Modal
                             item={item}
