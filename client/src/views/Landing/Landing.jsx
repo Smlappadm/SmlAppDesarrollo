@@ -62,7 +62,7 @@ function Landing() {
     if (corredor.name !== "undefined") {
       localStorage.setItem("corredorName", corredor.name);
     }
-  }, [email]);
+  }, [email, corredor]);
 
   useEffect(() => {
     dispatch(getAllCorredores());
