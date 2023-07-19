@@ -175,31 +175,31 @@ export default function PromocionPago({ tamañoPantalla }) {
             <div className="flex justify-evenly items-center text-white ">
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={() => setCuotas("1")}
+                onClick={CambiarCuota("1")}
               >
                 <p className="py-3 px-5">1</p>
               </div>
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={() => setCuotas("2")}
+                onClick={CambiarCuota("2")}
               >
                 <p className="py-3 px-4">2</p>
               </div>
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={() => setCuotas("4")}
+                onClick={CambiarCuota("4")}
               >
                 <p className="py-3 px-4">4</p>
               </div>
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={() => setCuotas("5")}
+                onClick={CambiarCuota("5")}
               >
                 <p className="py-3 px-4">5</p>
               </div>
               <div
                 className="rounded-md border border-white"
-                onClick={() => setCuotas("10")}
+                onClick={CambiarCuota("10")}
               >
                 <p className="py-3 px-4">10</p>
               </div>
