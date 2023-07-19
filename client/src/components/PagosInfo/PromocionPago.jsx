@@ -16,10 +16,10 @@ export default function PromocionPago({ tamañoPantalla }) {
   const dispatch = useDispatch();
   const [coutas24, setCoutas24] = useState({
     1: "Pago único de 4500€",
-    2: "Cuotas de 2250$/mes",
-    4: "Cuotas de 1125$/mes",
-    5: "Cuotas de 1000$/mes",
-    10: "Cuotas de 500$/mes",
+    2: "Cuotas de 2250€/mes",
+    4: "Cuotas de 1125€/mes",
+    5: "Cuotas de 1000€/mes",
+    10: "Cuotas de 500€/mes",
   });
 
   useEffect(() => {
