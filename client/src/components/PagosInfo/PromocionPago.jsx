@@ -62,8 +62,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       setTiempoRestante1(diferenciaEnSegundos1);
       setTiempoRestante2(diferenciaEnSegundos2);
     }
-    console.log(cuotas);
-  }, [clienteEmpresa, cuotas]);
+  }, [clienteEmpresa]);
 
   const seteoPromociones = async (body) => {
     try {
@@ -75,7 +74,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     // Creamos el intervalo para actualizar el tiempo restante cada segundo
-
+    console.log(cuotas);
     const interval = setInterval(() => {
       setTiempoRestante1((prevTiempoRestante) =>
         prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
@@ -86,7 +85,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [cliente]);
+  }, [cliente, cuotas]);
 
   // Función para convertir segundos a formato HH:mm:ss
   const formatTiempoRestante = (segundos) => {
