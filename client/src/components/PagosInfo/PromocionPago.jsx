@@ -246,6 +246,8 @@ export default function PromocionPago({ tamañoPantalla }) {
               ? "text-white bg-black w-full py-3 text-18 rounded-2xl"
               : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl"
           }
+          to={cuotas24.links[cuotas]}
+          target="_blank"
         >
           Link de Pago
         </Link>
