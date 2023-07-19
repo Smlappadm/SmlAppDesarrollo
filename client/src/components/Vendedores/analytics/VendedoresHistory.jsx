@@ -12,6 +12,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
 import ModalHistory from "./Modal/ModalHistory";
+import ModalObservaciones from "../Dashboard/Modal/ModalObservaciones";
 import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
 import Nav from "../../Nav/Nav";
@@ -433,12 +434,12 @@ const VendedoresHistory = () => {
                   Nivel
                 </label>
                 <label
-                  className="text-center w-[17%]"
+                  className="text-center w-[12%]"
                 >
                   Estado
                 </label>
                 <label
-                  className="text-center w-[3%]"
+                  className="text-center w-[8%]"
                 ></label>
               </div>
 
@@ -517,7 +518,7 @@ const VendedoresHistory = () => {
                           </div>
                         )}
                       </div>
-                      <div className=" w-[17%] flex justify-center items-start p-0">
+                      <div className=" w-[12%] flex justify-center items-start p-0">
                         {item.status === "Contratado" && (
                           <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                             Contratado
@@ -538,23 +539,29 @@ const VendedoresHistory = () => {
                             <p>En Proceso</p>
                           </div>
                         )}
+                        {item.status === "Contratando" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contratando</p>
+                          </div>
+                        )}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
                             Incidencia
                           </p>
                         )}
                       </div>
-                      <div className=" w-[3%] flex justify-start items-start p-0">
+                      <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
                         {item.status === "Contratado" && (
                           <ModalHistory
-                            item={item}
-                            SendLeadAlertBaja={SendLeadAlertBaja}
-                            SendIncidenceAlert={SendIncidenceAlert}
-                            SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
-                            emailAddress={emailAddress}
-                            cancelModal={cancelModal}
+                          item={item}
+                          SendLeadAlertBaja={SendLeadAlertBaja}
+                          SendIncidenceAlert={SendIncidenceAlert}
+                          SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
+                          emailAddress={emailAddress}
+                          cancelModal={cancelModal}
                           />
-                        )}
+                          )}
+                          <ModalObservaciones item={item}/>
                       </div>
                     </div>
                   ))}
