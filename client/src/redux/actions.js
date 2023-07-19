@@ -203,9 +203,15 @@ export const getLeadCheckedInactive5 = (body, profesion, country, level) => {
     }
   };
 };
-export const getLeadCheckedFreelance = (body, profesion, country, level, freelance) => {
+export const getLeadCheckedFreelance = (
+  body,
+  profesion,
+  country,
+  level,
+  freelance
+) => {
   body = { ...body, profesion, country, level, freelance };
-  console.log(body)
+  console.log(body);
 
   return async (dispatch) => {
     if (
@@ -375,8 +381,12 @@ export const getLeadCorredores = (
   marca_personal
 ) => {
   return async (dispatch) => {
-    if (email !== "undefined" && email !== "" && names !== "undefined" && names !== "") {
-      console.log("llamando");
+    if (
+      email !== "undefined" &&
+      email !== "" &&
+      names !== "undefined" &&
+      names !== ""
+    ) {
       const response = await axios.get(
         `lead/unchecked10?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
       );
