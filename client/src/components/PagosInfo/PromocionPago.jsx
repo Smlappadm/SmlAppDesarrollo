@@ -46,7 +46,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   });
   const [sinPromo, setSinPromo] = useState({
     pagos: {
-      1: "Pago único de 4000€",
+      1: "Pago único de 5000€",
       2: "Cuotas de 2000€/mes, Total: 4000€",
       4: "Cuotas de 1000€/mes, Total: 4000€",
       6: "Cuotas de 1000€/mes, Total: 4000€",
