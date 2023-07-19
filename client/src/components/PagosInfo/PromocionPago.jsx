@@ -155,7 +155,14 @@ export default function PromocionPago({ tamañoPantalla }) {
               {formatTiempoRestante(tiempoRestante2)}
             </p>
             <div className="border border-white w-4/6 flex items-center justify-center p-3">
-              <p className="text-white text-3xl ">OFFER 2</p>
+              <p className="text-white text-3xl text-center ">
+                Desc. -500€ (24 horas)
+              </p>
+            </div>
+            <div className="flex justify-evenly items-center">
+              <div className="rounded-md border border-white">
+                <p className="py-3 px-5">1</p>
+              </div>
             </div>
           </div>
         )}
