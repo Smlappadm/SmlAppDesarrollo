@@ -15,7 +15,6 @@ const updateLeadVendedorById = async (id, updatedData) => {
   // Comprobamos el estado del lead para realizar acciones específicas según el estado
   if (updatedData.dataLead.status === "Contratado") {
     // Si el estado es "Contratado", se procede con ciertas acciones y actualizaciones adicionales
-
     // Agregamos la propiedad 'updateContratado' con la fecha y hora actual en caso de "Contratado"
     const dateContratado = new Date();
     const formattedTimeContratado = date.toISOString();
@@ -28,36 +27,35 @@ const updateLeadVendedorById = async (id, updatedData) => {
     const formattedTimeRechazado = date.toISOString();
     updatedData.dataLead.updateRechazado = formattedTimeRechazado;
     updatedData.dataObservaciones.status = "Rechazado";
-    updatedData.dataObservaciones.fecha = formattedTimeContratado;
+    updatedData.dataObservaciones.fecha = formattedTimeRechazado;
   } else if (updatedData.dataLead.status === "Contratando") {
-    console.log("vaaaaaaaaaaaaaaa")
     // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
     const dateRechazado = new Date();
-    const formattedTimeRechazado = date.toISOString();
-    updatedData.dataLead.updateRechazado = formattedTimeRechazado;
+    const formattedTimeContratando = date.toISOString();
+    updatedData.dataLead.updateRechazado = formattedTimeContratando;
     updatedData.dataObservaciones.status = "Contratando";
-    updatedData.dataObservaciones.fecha = formattedTimeContratado;
+    updatedData.dataObservaciones.fecha = formattedTimeContratando;
   } else if (updatedData.dataLead.status === "No responde") {
     // Agregamos la propiedad 'updateNoResponde' con la fecha y hora actual en caso de "No responde"
     const dateNoResponde = new Date();
     const formattedTimeNoResponde = date.toISOString();
     updatedData.dataLead.updateNoResponde = formattedTimeNoResponde;
     updatedData.dataObservaciones.status = "No responde";
-    updatedData.dataObservaciones.fecha = formattedTimeContratado;
+    updatedData.dataObservaciones.fecha = formattedTimeNoResponde;
   } else if (updatedData.dataLead.status === "Agendar 2do llamado") {
     // Agregamos la propiedad 'updateSegundoLlamado' con la fecha y hora actual en caso de "Agendar 2do llamado"
     const dateSdoLlamado = new Date();
     const formattedTimeSdoLlamado = date.toISOString();
     updatedData.dataLead.updateSegundoLlamado = formattedTimeSdoLlamado;
     updatedData.dataObservaciones.status = "Agendar 2do llamado";
-    updatedData.dataObservaciones.fecha = formattedTimeContratado;
+    updatedData.dataObservaciones.fecha = formattedTimeSdoLlamado;
   } else if (updatedData.dataLead.status === "incidencia") {
     // Agregamos la propiedad 'updateIncidencia' con la fecha y hora actual en caso de "Incidencia"
     const dateIncidencia = new Date();
     const formattedTimeIncidencia = date.toISOString();
     updatedData.dataLead.updateIncidencia = formattedTimeIncidencia;
     updatedData.dataObservaciones.status = "incidencia";
-    updatedData.dataObservaciones.fecha = formattedTimeContratado;
+    updatedData.dataObservaciones.fecha = formattedTimeIncidencia;
   }
 
   // Obtenemos el lead actual antes de la actualización
