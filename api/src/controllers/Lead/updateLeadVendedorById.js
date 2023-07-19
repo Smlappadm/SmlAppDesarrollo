@@ -120,19 +120,19 @@ const updateLeadVendedorById = async (id, updatedData) => {
     }
     updatedData.dataLead.pagos.detallesRestantes.push("cierre");
   }
-
+  
   // Si el campo 'emailApp' es vacío, se setea con el email del vendedor
   if (updatedData.dataLead.emailApp === "") {
     updatedData.dataLead.emailApp = updatedData.dataVendedor.email;
   }
-
+  
   // Actualizamos el lead en la base de datos
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
+  
 
-  leadUpdate.observaciones.push(updatedData.dataObservaciones)
-
+  leadUpdate.observaciones_ventas.push(updatedData.dataObservaciones); // Sin 'await' aquí
   const leadUpdated = await leadUpdate.save();
   // Actualizamos el vendedor asociado al lead
   // let vendedor = [];
