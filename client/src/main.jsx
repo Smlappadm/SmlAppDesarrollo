@@ -13,7 +13,7 @@ const getServerUrl = () => {
 
   if (hostname.includes("localhost")) {
     return "http://localhost:3001/api";
-  } else if (hostname.includes("smlappadm.vercel.app")) {
+  } else if (hostname.includes("sml-app.vercel")) {
     return "https://smlapp.onrender.com/api";
   } else if (hostname.includes("sml-app.com")) {
     return "https://sml-app.com/api";

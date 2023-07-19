@@ -22,7 +22,7 @@ import {
   IoGrid,
   IoStatsChart,
   IoPeople,
-  IoLogoSnapchat,
+  IoLogoSnapchat,IoRocketOutline
 } from "react-icons/io5";
 import { CiGlobe } from "react-icons/ci";
 
@@ -149,20 +149,41 @@ const Incidences = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Incidences
             </Title>
-            <Link to={"/lideres/"}>
+            
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/contratando/"}
+            >
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Contratando</p>
             </Link>
-            <Link to={"/lideres-freelancer/"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres/"}
+            >
+              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Empleados</p>
+            </Link>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-freelancer/"}
+            >
               <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Freelancer</p>
             </Link>
-            <Link className="text-5xl" to={"/lideres-analytics"}>
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/lideres-analytics"}
+            >
               <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Analiticas</p>
             </Link>
-            <Link className="text-5xl" to={"/lideres-incidences"}>
-              <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-            </Link>
-            <Link className="text-5xl" to={"/lideres-i-history"}>
-              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/promociones"}
+            >
+              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Promociones</p>
             </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>

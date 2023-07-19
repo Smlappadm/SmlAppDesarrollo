@@ -11,7 +11,7 @@ import {
 } from "react-icons/ci";
 import Nav from "../../Nav/Nav";
 import { useState } from "react";
-import { IoGrid, IoLogoSnapchat, IoStatsChart } from "react-icons/io5";
+import { IoGrid, IoLogoSnapchat, IoStatsChart,IoRocketOutline } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import AgregarPromosion from "./MaterialUi/AgregarPromosion";
 
@@ -37,6 +37,14 @@ export const Promosiones = () => {
               Contratando
             </Title>
 
+            
+            <Link
+              className="flex items-center justify-center gap-2"
+              to={"/contratando/"}
+            >
+              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <p className="text-white">Contratando</p>
+            </Link>
             <Link
               className="flex items-center justify-center gap-2"
               to={"/lideres/"}
