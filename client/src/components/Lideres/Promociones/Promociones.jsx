@@ -10,10 +10,17 @@ import {
   CiGlobe,
 } from "react-icons/ci";
 import Nav from "../../Nav/Nav";
-import { useState } from "react";
-import { IoGrid, IoLogoSnapchat, IoStatsChart,IoRocketOutline } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import {
+  IoGrid,
+  IoLogoSnapchat,
+  IoStatsChart,
+  IoRocketOutline,
+} from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import AgregarPromosion from "./MaterialUi/AgregarPromosion";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPromociones } from "../../../redux/actions";
 
 export const Promociones = () => {
   const [data, setData] = useState([]);
@@ -27,6 +34,17 @@ export const Promociones = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPromociones());
+  }, []);
+
+  const {promociones} = useSelector((state => state))
+
+  console.log(promociones[0].promocion.body.active);
+
   return (
     <>
       <Nav />
@@ -37,7 +55,6 @@ export const Promociones = () => {
               Contratando
             </Title>
 
-            
             <Link
               className="flex items-center justify-center gap-2"
               to={"/contratando/"}
@@ -81,61 +98,43 @@ export const Promociones = () => {
         </div>
         <div className="w-full">
           <div className="text-white text-14 font-thin">
-            <div className="flex items-center justify-around p-3  ">
-              <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByClient()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Cliente
+            <div className="flex items-center justify-around px-10 py-3 ">
+              <div className="flex justify-center w-fit items-center p-0">
+                <button>
+                  <Text className="text-start w-10 p-0 text-white">
+                    Promoción
                   </Text>
                 </button>
               </div>
-              <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByCategory()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Categoria
+              <div className="flex justify-center w-fit items-center p-0">
+                <button>
+                  <Text className="text-start w-10 p-0 text-white">Tiempo</Text>
+                </button>
+              </div>
+              <div className="flex justify-center w-fit items-center p-0">
+                <button>
+                  <Text className="text-center w-24 p-0 text-white">
+                    Link de Stripe
                   </Text>
                 </button>
               </div>
-              <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">LVL</Text>
-                </button>
+              <div className="flex justify-center w-fit items-center p-0">
+                <Text className="text-center w-24 p-0 text-white">
+                  Monto Total
+                </Text>
               </div>
-              <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Web</Text>
+              <div className="flex justify-center w-fit items-center p-0">
+                <Text className="text-center w-6 p-0 text-white">Cuota</Text>
               </div>
-              <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Mail</Text>
-              </div>
-              <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">IG</Text>
-              </div>
-              <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Tel</Text>
-              </div>
-              <div className="flex justify-center items-center p-0">
-                <Text className="pr-3 text-center text-white">Chequeado</Text>
-              </div>
-              <div className="flex justify-center items-center p-0">
-                  <Text className="text-start w-28 p-0 text-white">
-                    Corredor
-                  </Text>
-              </div>
-              <div className="flex justify-center items-center p-0">
-                  <Text className="text-start w-28 p-0 text-white">
-                    Vendedor
-                  </Text>
-              </div>
-              <div className="flex justify-center items-center p-0">
-                  <Text className="text-center w-48 p-0 text-white">
-                    Estado
-                  </Text>
+              <div className="flex justify-center w-fit items-center p-0">
+                <Text className="text-center w-24 p-0 text-white">
+                  Valor Cuotas
+                </Text>
               </div>
             </div>
           </div>
 
           <div>
-            
             {currentCard && currentCard.length > 0 ? (
               currentCard.map((item, index) => (
                 <div
