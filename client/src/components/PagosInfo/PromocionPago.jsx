@@ -240,7 +240,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             <p className="text-white text-center">{cuotas24.pagos[cuotas]}</p>
           </div>
         )}
-        <button
+        <Link
           className={
             tamañoPantalla === "Pequeña"
               ? "text-white bg-black w-full py-3 text-18 rounded-2xl"
@@ -248,7 +248,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           }
         >
           Link de Pago
-        </button>
+        </Link>
       </div>
     </div>
   );
