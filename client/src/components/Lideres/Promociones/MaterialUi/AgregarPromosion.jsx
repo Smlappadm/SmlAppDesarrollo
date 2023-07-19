@@ -33,7 +33,6 @@ export default function AgregarPromosion() {
     active: false
   });
 
-  console.log(promocion);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
