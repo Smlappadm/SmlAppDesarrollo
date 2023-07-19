@@ -23,6 +23,10 @@ export default function PromocionPago({ tamañoPantalla }) {
   });
   const [cuotas, setCuotas] = useState();
 
+  const CambiarCuota = (cuota) => {
+    setCuotas(cuota);
+  };
+
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
   }, [dispatch]);
@@ -74,7 +78,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     // Creamos el intervalo para actualizar el tiempo restante cada segundo
-    console.log(cuotas);
+
     const interval = setInterval(() => {
       setTiempoRestante1((prevTiempoRestante) =>
         prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
@@ -85,7 +89,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [cliente, cuotas]);
+  }, [cliente]);
 
   // Función para convertir segundos a formato HH:mm:ss
   const formatTiempoRestante = (segundos) => {
@@ -171,31 +175,31 @@ export default function PromocionPago({ tamañoPantalla }) {
             <div className="flex justify-evenly items-center text-white ">
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={setCuotas("1")}
+                onClick={() => setCuotas("1")}
               >
                 <p className="py-3 px-5">1</p>
               </div>
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={setCuotas("2")}
+                onClick={() => setCuotas("2")}
               >
                 <p className="py-3 px-4">2</p>
               </div>
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={setCuotas("4")}
+                onClick={() => setCuotas("4")}
               >
                 <p className="py-3 px-4">4</p>
               </div>
               <div
                 className="rounded-md border border-white mr-2"
-                onClick={setCuotas("5")}
+                onClick={() => setCuotas("5")}
               >
                 <p className="py-3 px-4">5</p>
               </div>
               <div
                 className="rounded-md border border-white"
-                onClick={setCuotas("10")}
+                onClick={() => setCuotas("10")}
               >
                 <p className="py-3 px-4">10</p>
               </div>
