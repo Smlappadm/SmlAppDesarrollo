@@ -85,16 +85,25 @@ export default function PromocionPago({ tamañoPantalla }) {
 
         result[hora].pagos[cuota] =
           cuota !== "1"
-            ? `${promo.promocion.name}, Total: ${promo.promocion.valorCuota}` ||
-              ""
+            ? `${promo.promocion.name}, Total: ${promo.promocion.monto}€` || ""
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
       }
 
       return result;
     }, {});
-    console.log(customPromos);
+    const sortedHours = Object.keys(customPromos).sort();
+    const sortedCustomPromos = {};
+    sortedHours.forEach((hour) => {
+      sortedCustomPromos[hour] = customPromos[hour];
+    });
+    console.log(sortedCustomPromos);
+    setPromos(sortedCustomPromos);
   }, [promociones]);
+
+  useEffect(() => {
+    console.log(promos);
+  }, [promos]);
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
