@@ -176,7 +176,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               {formatTiempoRestante(tiempoRestante1)}
             </p>
             <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
-              <p className="text-white text-3xl ">OFFER</p>
+              <p className="text-white text-3xl ">Desc. -1000€ (2 horas)</p>
             </div>
           </div>
         )}
