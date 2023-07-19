@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import style from "./Promosiones.module.css";
+import style from "./Promociones.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
 import {
@@ -15,7 +15,7 @@ import { IoGrid, IoLogoSnapchat, IoStatsChart,IoRocketOutline } from "react-icon
 import "react-toastify/dist/ReactToastify.css";
 import AgregarPromosion from "./MaterialUi/AgregarPromosion";
 
-export const Promosiones = () => {
+export const Promociones = () => {
   const [data, setData] = useState([]);
 
   const [pageStyle, setPageStyle] = useState(1);

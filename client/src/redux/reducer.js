@@ -95,7 +95,7 @@ const initialState = {
   freelanceLead: [],
   allFreelancers: [],
   corredorLeadCheckedDescagados: [],
-  prmociones: [],
+  promociones: [],
 };
 
 const rootReducer = (state = initialState, action) => {
