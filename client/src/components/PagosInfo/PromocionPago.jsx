@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
-import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function PromocionPago({ tamañoPantalla }) {
   const url = new URL(window.location.href);
@@ -237,7 +237,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             </div>
             <p className="text-white">DETALLE</p>
-            <p className="text-white text-center">{cuotas24[cuotas]}</p>
+            <p className="text-white text-center">{cuotas24.pagos[cuotas]}</p>
           </div>
         )}
         <button
