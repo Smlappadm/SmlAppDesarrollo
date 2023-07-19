@@ -136,7 +136,7 @@ const updateLeadFreelanceById = async (id, updatedData) => {
     new: true,
   });
 
-  leadUpdate.observaciones.push(updatedData.dataObservaciones)
+  leadUpdate.observaciones_ventas.push(updatedData.dataObservaciones)
 
   const leadUpdated = await leadUpdate.save();
   // Actualizamos el vendedor asociado al lead
