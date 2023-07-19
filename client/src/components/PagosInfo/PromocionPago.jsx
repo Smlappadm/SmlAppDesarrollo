@@ -97,7 +97,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     sortedHours.forEach((hour) => {
       sortedCustomPromos[hour] = customPromos[hour];
     });
-    console.log(sortedCustomPromos);
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
