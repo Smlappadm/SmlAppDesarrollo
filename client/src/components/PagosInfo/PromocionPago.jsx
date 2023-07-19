@@ -32,7 +32,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   });
   const [promo2horas, setPromo2horas] = useState({
     pagos: {
-      1: "Pago único de 4500€",
+      1: "Pago único de 4000€",
       2: "Cuotas de 2250€/mes, Total: 4500€",
       4: "Cuotas de 1125€/mes, Total: 4500€",
       5: "Cuotas de 1000€/mes, Total: 5000€",
