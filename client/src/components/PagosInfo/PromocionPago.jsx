@@ -189,7 +189,10 @@ export default function PromocionPago({ tamañoPantalla }) {
               >
                 <p className="py-3 px-4">4</p>
               </div>
-              <div className="rounded-md border border-white mr-2">
+              <div
+                className="rounded-md border border-white mr-2"
+                onClick={setCuotas("5")}
+              >
                 <p className="py-3 px-4">5</p>
               </div>
               <div className="rounded-md border border-white">
