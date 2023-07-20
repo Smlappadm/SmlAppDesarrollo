@@ -6,13 +6,13 @@ const Lead = require("../../models/Lead");
 // Función asincrónica para obtener los leads de ventas de un vendedor por su dirección de correo electrónico
 const getVendedorVentasByEmail = async (email) => {
   // Buscar todos los leads en la base de datos donde el campo "vendedor" coincide con el correo electrónico proporcionado
-  // y el campo "status" es igual a "Agendar 2do llamado"
-  const leads = await Lead.find({ vendedor: email, pagoRecibido: { $ne: true }, status:{ $in: ["Contactado", "No responde", "Agendar 2do llamado"] } });
+  // y el campo "status" es igual a "Agenda llamada"
+  const leads = await Lead.find({ vendedor: email, pagoRecibido: { $ne: true }, status:{ $in: ["Contactado", "No responde", "Agenda llamada"] } });
   // "Sin contactar",
   // "Rechazado",
   // "Contratado",
   // "No responde",
-  // "Agendar 2do llamado",
+  // "Agenda llamada",
   // "Contactado",
   // "incidencia",
   // "discard",
