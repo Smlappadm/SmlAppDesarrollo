@@ -222,7 +222,7 @@ const VendedoresDashboard = () => {
             <>
               {vendedoresDashboard.length ? (
                 <motion.div
-                  initial={{ opacity: 0, y: "40px" }}
+                  initial={{ opacity: 0, y: "30px" }}
                   whileInView={{ y: "10px", opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0 }}
                   className={style.table}
