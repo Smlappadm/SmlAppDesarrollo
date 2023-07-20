@@ -520,16 +520,26 @@ const VendedoresHistory = () => {
                             Rechazado
                           </p>
                         )}
-                        {item.status === "Agendar 2do llamado" && (
+                        {item.status === "Agenda llamada" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
                             <p>En Proceso</p>
                           </div>
                         )}
                         {item.status === "Contactado" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                          <div className="bg-[#219bac] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
                             <p>Contactado</p>
                           </div>
                         )}
+                        {item.status === "A pagar" && (
+                          <div className="bg-[#972892] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>A pagar</p>
+                          </div>
+                        )}
+                        {/* {item.status === "Contratado" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contactado</p>
+                          </div>
+                        )} */}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
                             Incidencia
