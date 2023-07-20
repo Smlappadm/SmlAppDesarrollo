@@ -128,8 +128,12 @@ export default function PromocionPago({ tamañoPantalla }) {
       },
       emailApp: emailApp,
     };
-    console.log(clientesEmpresa?.promociones.length);
-    if (clienteEmpresa && !clienteEmpresa?.promociones) {
+    console.log(clienteEmpresa && clienteEmpresa?.promociones.length);
+    if (
+      clienteEmpresa &&
+      (!clienteEmpresa?.promociones ||
+        clienteEmpresa?.promociones.length < body.promociones.length)
+    ) {
       console.log("si");
       seteoPromociones(body);
     }
