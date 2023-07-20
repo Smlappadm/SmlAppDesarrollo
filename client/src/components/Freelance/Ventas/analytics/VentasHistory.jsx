@@ -501,7 +501,7 @@ const VentasHistory = () => {
                         )}
                         {item.status === "Agenda llamada" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>En Proceso</p>
+                            <p>Agenda llamada</p>
                           </div>
                         )}
                         {item.status === "Contactado" && (
