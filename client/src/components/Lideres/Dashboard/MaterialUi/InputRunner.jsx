@@ -378,7 +378,7 @@ export default function InputName({ name, setCurrentPage }) {
             <MenuItem value="Rechazado">Rechazado</MenuItem>
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="No responde">No responde</MenuItem>
-            <MenuItem value="Agendar 2do llamado">Agendar 2do llamado</MenuItem>
+            <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
             <MenuItem value="incidencia">incidencia</MenuItem>
             <MenuItem value="discard">discard</MenuItem>
           </Select>
