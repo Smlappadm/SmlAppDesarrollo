@@ -44,13 +44,13 @@ const updateLeadFreelanceById = async (id, updatedData) => {
     updatedData.dataLead.updateNoResponde = formattedTimeNoResponde;
     updatedData.dataObservaciones.status = "No responde";
     updatedData.dataObservaciones.fecha = formattedTimeNoResponde;
-  } else if (updatedData.dataLead.status === "Agendar 2do llamado") {
-    // Agregamos la propiedad 'updateSegundoLlamado' con la fecha y hora actual en caso de "Agendar 2do llamado"
-    const dateSdoLlamado = new Date();
-    const formattedTimeSdoLlamado = date.toISOString();
-    updatedData.dataLead.updateSegundoLlamado = formattedTimeSdoLlamado;
-    updatedData.dataObservaciones.status = "Agendar 2do llamado";
-    updatedData.dataObservaciones.fecha = formattedTimeSdoLlamado;
+  } else if (updatedData.dataLead.status === "Agenda llamada") {
+    // Agregamos la propiedad 'updateSegundoLlamado' con la fecha y hora actual en caso de "Agenda llamada"
+    const dateAgendaLlamada = new Date();
+    const formattedTimeAgendaLlamada = date.toISOString();
+    updatedData.dataLead.updateAgendaLlamada = formattedTimeAgendaLlamada;
+    updatedData.dataObservaciones.status = "Agenda llamada";
+    updatedData.dataObservaciones.fecha = formattedTimeAgendaLlamada;
   } else if (updatedData.dataLead.status === "incidencia") {
     // Agregamos la propiedad 'updateIncidencia' con la fecha y hora actual en caso de "Incidencia"
     const dateIncidencia = new Date();
@@ -223,8 +223,8 @@ module.exports = updateLeadFreelanceById;
 //     const formattedTimeNoResponde  = date.toISOString();
 //     updatedData.dataLead.updateNoResponde  = formattedTimeNoResponde ;
 //   }
-//   if(updatedData.dataLead.status === "Agendar 2do llamado"){
-//     console.log("Agendar 2do llamado")
+//   if(updatedData.dataLead.status === "Agenda llamada"){
+//     console.log("Agenda llamada")
 //     const dateSdoLlamado = new Date();
 //     const formattedTimeSdoLlamado  = date.toISOString();
 //     updatedData.dataLead.updateSegundoLlamado  = formattedTimeSdoLlamado;
