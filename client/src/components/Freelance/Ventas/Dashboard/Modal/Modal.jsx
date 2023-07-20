@@ -116,7 +116,7 @@ function ChildModal({
         },
       });
 
-      if (updatedEmailApp === "-" || updatedEmailApp === "") {
+      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
         saveEmailAppFunction(updatedPagos);
       } else {
         saveEmailAppFunction(updatedPagos);
