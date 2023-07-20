@@ -62,6 +62,14 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
+    if (
+      location.pathname === "/vendedores" ||
+      location.pathname === "/ventas-dashboard"
+    ) {
+      setStatusObj({ ...statusObj, status: "Contactado" });
+    }
+
+    
     if (statusObj.status === "Contratando") {
       setStatusObj({ ...statusObj, pagoRecibido: false });
     }
