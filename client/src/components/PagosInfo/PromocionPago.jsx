@@ -17,7 +17,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const { promociones } = useSelector((state) => state);
 
-  const [promos, setPromos] = useState({});
+  const [promos, setPromos] = useState([]);
 
   const [promo24horas, setPromo24horas] = useState({
     pagos: {
@@ -71,6 +71,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
   useEffect(() => {
+    let diferenciaHoras = 0;
     const customPromos = promociones.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
@@ -89,32 +90,46 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
+        result[hora].duracion = ObtenerFecha(
+          parseInt(promo.promocion.hora) + diferenciaHoras
+        );
       }
 
       return result;
     }, {});
-    const sortedHours = Object.keys(customPromos).sort();
-    const sortedCustomPromos = {};
+    const sortedHours = Object.keys(customPromos).sort((a, b) => {
+      return customPromos[a].hora - customPromos[b].hora;
+    });
+    const sortedCustomPromos = [];
     sortedHours.forEach((hour) => {
-      sortedCustomPromos[hour] = customPromos[hour];
+      sortedCustomPromos.push(customPromos[hour]);
     });
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
+  const ObtenerFecha = (horas) => {
+    const fechaActual = new Date();
+    const fechaLimitePromo = new Date(
+      fechaActual.getTime() + horas * 60 * 60 * 1000
+    );
+    return fechaLimitePromo;
+  };
+
   useEffect(() => {
     console.log(promos);
-    const horas = Object.keys(promos);
 
-    console.log(horas);
-    // Creamos un nuevo objeto body con las horas como claves
-    const body = {};
-    let i = 0;
-    horas.forEach((hora) => {
-      i === 0 ? (body[`promocion${i}`] = promos[hora].hora) : "";
-      i += 1;
+    if (promos.length !== 0) {
+      console.log("si");
+      armarPromociones(promos);
+    }
+  }, [promos]);
+
+  const armarPromociones = (promos) => {
+    const body = promos.map((promo, index) => {
+      return { [`promocion${index + 1}`]: promo.duracion };
     });
     console.log(body);
-  }, [promos]);
+  };
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
@@ -132,11 +147,13 @@ export default function PromocionPago({ tamañoPantalla }) {
     );
 
     const body = {
-      promocion1: ActualMas2Horas,
-      promocion2: fechaCon24Horas,
+      promociones: {
+        promocion1: ActualMas2Horas,
+        promocion2: fechaCon24Horas,
+      },
       emailApp: emailApp,
     };
-    if (clienteEmpresa && clienteEmpresa?.promocion1 === "") {
+    if (clienteEmpresa && !clienteEmpresa?.promociones) {
       console.log("si");
       seteoPromociones(body);
     }
@@ -159,6 +176,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const seteoPromociones = async (body) => {
     try {
       await axios.put(`/lead/promociones`, body);
+      dispatch(getClienteEmpresa(emailApp));
     } catch (error) {
       console.log(error.message);
     }
