@@ -248,7 +248,7 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: false,
     },
-    promocion: {
+    promociones: {
       type: Object,
       required: true,
     },
