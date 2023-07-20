@@ -9,7 +9,7 @@ import Modal from "./Modal/Modal";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
@@ -319,7 +319,18 @@ const VentasDashboard = () => {
                             </div>
                           )}
                         </div>
-                        <div className=" w-[13%] flex justify-center items-center p-0">
+                        <div className=" w-[13%] flex flex-col justify-center items-center p-0">
+                          {/* <h1>sss</h1>
+                          {item.llamada_venta.contacto ? (
+                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                              {item.llamada_venta.contacto}
+                            </p>
+                          ) : (
+                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                              Sin contacto
+                            </p>
+                          )} */}
+
                           {item.observaciones_ventas.contacto ? (
                             <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.observaciones_ventas.contacto}
@@ -329,6 +340,20 @@ const VentasDashboard = () => {
                               Sin contacto
                             </p>
                           )}
+
+                          {/* <div className=" flex justify-center items-center">
+                            {typeof item.llamada_venta.dia_hora !==
+                              "undefined" &&
+                            item.llamada_venta?.dia_hora[5] !== "u" ? (
+                              <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                {item.llamada_venta.dia_hora}
+                              </p>
+                            ) : (
+                              <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                Sin Día/Hora
+                              </p>
+                            )}
+                          </div> */}
                           <div className=" flex justify-center items-center">
                             {item.observaciones_ventas.fecha ? (
                               <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
@@ -341,37 +366,14 @@ const VentasDashboard = () => {
                             )}
                           </div>
 
-                          {/* 
-                          {item.llamada_venta.contacto ? (
-                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              {item.llamada_venta.contacto}
-                            </p>
-                          ) : (
-                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              Sin contacto
-                            </p>
-                          )}
-                          <div className=" flex justify-center items-center">
-                            {typeof item.llamada_venta.dia_hora !==
-                              "undefined" &&
-                            item.llamada_venta?.dia_hora[5] !== "u" ? (
-                              <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                {item.llamada_venta.dia_hora}
-                              </p>
-                            ) : (
-                              <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                Sin Día/Hora
-                              </p>
-                            )} 
-                          </div>*/}
-                          <AiOutlineInfoCircle
+                          {/* <AiOutlineInfoCircle
                             className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer "
                             onClick={() => {
                               showObservacionesHandler(
                                 item.llamada_venta.observaciones
                               );
                             }}
-                          />
+                          /> */}
                         </div>
                         <div className=" w-[15%] flex justify-center items-start p-0">
                         {item.status === "Contratado" && (
@@ -394,9 +396,9 @@ const VentasDashboard = () => {
                             <p>En Proceso</p>
                           </div>
                         )}
-                        {item.status === "Contratando" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contratando</p>
+                        {item.status === "Contactado" && (
+                          <div className="bg-[#42ac9a] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contactado</p>
                           </div>
                         )}
                         {item.level === "incidencia" && (
