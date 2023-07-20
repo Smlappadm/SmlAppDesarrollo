@@ -17,7 +17,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const { promociones } = useSelector((state) => state);
 
-  const [promos, setPromos] = useState({});
+  const [promos, setPromos] = useState([]);
 
   const [promo24horas, setPromo24horas] = useState({
     pagos: {
@@ -71,11 +71,11 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
   useEffect(() => {
+    let diferenciaHoras = 0;
     const customPromos = promociones.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
         const cuota = promo.promocion.cuota || "default";
-        const difereciaHoras = promo.promocion.hora || "0";
 
         if (!result[hora]) {
           result[hora] = {
@@ -90,17 +90,18 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
-        result[hora].segundos = ObtenerFecha(promo.promocion.hora);
+        result[hora].duracion = ObtenerFecha(
+          parseInt(promo.promocion.hora) + diferenciaHoras
+        );
       }
 
       return result;
     }, {});
     const sortedHours = Object.keys(customPromos).sort();
-    const sortedCustomPromos = {};
+    const sortedCustomPromos = [];
     sortedHours.forEach((hour) => {
-      sortedCustomPromos[hour] = customPromos[hour];
+      sortedCustomPromos.push(customPromos[hour]);
     });
-    console.log(sortedCustomPromos);
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
@@ -113,16 +114,20 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
 
   useEffect(() => {
-    const horas = Object.keys(promos);
-
-    // Creamos un nuevo objeto body con las horas como claves
-    const body = {};
-    let i = 0;
-    horas.forEach((hora) => {
-      i === 0 ? (body[`promocion${i}`] = promos[hora].hora) : "";
-      i += 1;
-    });
+    console.log(promos);
+    if (promos.length === 0) {
+      console.log("si");
+      armarPromociones(promos);
+    }
   }, [promos]);
+
+  const armarPromociones = (promos) => {
+    const body = promos.reduce((result, promo, index) => {
+      result[`promocion${index + 1}`] = promo.duracion;
+      return result;
+    }, {});
+    console.log(body);
+  };
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
