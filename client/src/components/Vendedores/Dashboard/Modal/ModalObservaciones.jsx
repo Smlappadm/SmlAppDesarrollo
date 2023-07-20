@@ -102,9 +102,8 @@ export default function ModalIntelligentInfo({ item }) {
 
               className="border-2 flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll"
             >
-              {console.log(item)}
-              {console.log(!!(item.observaciones_ventas.observacion !== ""))}
-              {item.observaciones_ventas && item.observaciones_ventas.length > 0 ? (
+              {console.log(item.observaciones_ventas.status)}
+              {item.observaciones_ventas && item.observaciones_ventas.length > 0 && item.observaciones_ventas.status ? (
                 item.observaciones_ventas.map((item, index) => (
                   <div
                     key={index}
