@@ -475,7 +475,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
         [property]: value,
         status_op: "",
       });
-    } else if (value === "Agendar 2do llamado") {
+    } else if (value === "Agenda llamada") {
       setStatusObj({
         ...statusObj,
         [property]: value,
