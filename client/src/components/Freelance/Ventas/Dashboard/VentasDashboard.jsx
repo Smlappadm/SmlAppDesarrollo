@@ -152,6 +152,7 @@ const VentasDashboard = () => {
   const saveEmailAppFunction = (email) => {
     setSaveEmailApp(email);
   };
+
   return (
     <>
       <Nav />
