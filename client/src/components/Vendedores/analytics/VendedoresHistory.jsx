@@ -404,7 +404,7 @@ const VendedoresHistory = () => {
           {currentCard && currentCard.length ? (
                                     <motion.div
                                     initial={{ opacity: 0, y: "40px" }}
-                                    whileInView={{ y: "20px", opacity: 1 }}
+                                    whileInView={{ y: "10px", opacity: 1 }}
                                     transition={{ duration: 0.6, delay: 0 }}
                                     className={style.table}
                                   >
@@ -448,7 +448,7 @@ const VendedoresHistory = () => {
                   currentCard.map((item, index) => (
                     <div
                       key={item._id}
-                      className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
+                      className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 h-11 rounded-lg"
                     >
                       <div className=" w-[20%] flex justify-start items-center  p-0 ">
                         <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
