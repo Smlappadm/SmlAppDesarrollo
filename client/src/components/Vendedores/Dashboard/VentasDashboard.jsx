@@ -290,7 +290,7 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
-                          <div className="flex w-full justify-center items-center gap-2 relative">
+                        <div className="flex w-full justify-center items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
                               className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
@@ -376,39 +376,39 @@ const VentasDashboard = () => {
                           /> */}
                         </div>
                         <div className=" w-[15%] flex justify-center items-start p-0">
-                        {item.status === "Contratado" && (
-                          <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Contratado
-                          </p>
-                        )}
-                        {item.status === "No responde" && (
-                          <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Sin contestar
-                          </p>
-                        )}
-                        {item.status === "Rechazado" && (
-                          <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Rechazado
-                          </p>
-                        )}
-                        {item.status === "Agendar 2do llamado" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>En Proceso</p>
-                          </div>
-                        )}
-                        {item.status === "Contactado" && (
-                          <div className="bg-[#42ac9a] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contactado</p>
-                          </div>
-                        )}
-                        {item.level === "incidencia" && (
-                          <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
-                            Incidencia
-                          </p>
-                        )}
+                          {item.status === "Contratado" && (
+                            <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                              Contratado
+                            </p>
+                          )}
+                          {item.status === "No responde" && (
+                            <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                              Sin contestar
+                            </p>
+                          )}
+                          {item.status === "Rechazado" && (
+                            <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                              Rechazado
+                            </p>
+                          )}
+                          {item.status === "Agendar 2do llamado" && (
+                            <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                              <p>En Proceso</p>
+                            </div>
+                          )}
+                          {item.status === "Contactado" && (
+                            <div className="bg-[#42ac9a] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                              <p>Contactado</p>
+                            </div>
+                          )}
+                          {item.level === "incidencia" && (
+                            <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
+                              Incidencia
+                            </p>
+                          )}
                         </div>
                         <div className=" w-[9%] flex justify-center items-start p-0 gap-3">
-                          <ModalObservaciones item={item}/>
+                          <ModalObservaciones item={item} />
                           <Modal
                             item={item}
                             SendLeadAlert={SendLeadAlert}
