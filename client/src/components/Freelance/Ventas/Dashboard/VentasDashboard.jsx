@@ -8,7 +8,7 @@ import ModalObservaciones from "./Modal/ModalObservaciones";
 import { IoGrid } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaHistory, FaWhatsapp} from "react-icons/fa";
+import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
@@ -23,7 +23,6 @@ import {
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
 import PagosInfo from "../../../PagosInfo/PagosInfo";
-
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
@@ -159,11 +158,11 @@ const VentasDashboard = () => {
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-      {showCopiedMessage && (
-          <p className="absolute top-2  w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
-            Copiado!
-          </p>
-        )}
+            {showCopiedMessage && (
+              <p className="absolute top-2  w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
+                Copiado!
+              </p>
+            )}
             <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -272,18 +271,23 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
-                        <div className="flex w-full justify-center items-center gap-2 relative">
-                          <p
-                            onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                          <div className="flex w-full justify-center items-center gap-2 relative">
+                            <p
+                              onClick={() => handleCopyClick(item.telephone)}
+                              className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
-                            {item.telephone}
-                          </p>
-                          <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
-                          </a>
-
-                            </div>
+                              {item.telephone}
+                            </p>
+                            <a
+                              href={`http://wa.me/${item.telephone.replace(
+                                /\s+/g,
+                                ""
+                              )}`}
+                              target="blanck"
+                            >
+                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                            </a>
+                          </div>
                         </div>
                         <div className=" w-[5%] flex justify-center items-center p-0">
                           {item.level !== "incidencia" ? (
@@ -312,10 +316,8 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
-                          <ModalObservaciones 
-                          item={item}/>
-                          <ModalIntelligentInfo 
-                          item={item}/>
+                          <ModalObservaciones item={item} />
+                          <ModalIntelligentInfo item={item} />
                           <Modal
                             item={item}
                             SendLeadAlert={SendLeadAlert}
@@ -359,7 +361,7 @@ const VentasDashboard = () => {
             </div>
           )}
         </div>
-        {data.length > 10 && !openModalPago &&(
+        {data.length > 10 && !openModalPago && (
           <div className="mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}
