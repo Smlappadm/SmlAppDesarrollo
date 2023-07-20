@@ -44,23 +44,17 @@ const CorredoresDashboard = () => {
   const dispatch = useDispatch();
 
   const user = useUser().user;
-  const mail = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
 
-  localStorage.setItem("email", mail);
   let email = localStorage.getItem("email");
 
   localStorage.setItem("names", fullName);
-  let names = localStorage.getItem("names");
 
-  
   let corredorName = localStorage.getItem("corredorName");
 
   useEffect(() => {
-    if (mail !== undefined && corredor.name !== undefined) {
-      dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
-    }
-  }, [dispatch, mail, corredor]);
+    dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
+  }, [dispatch, corredor]);
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {

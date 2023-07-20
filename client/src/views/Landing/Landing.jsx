@@ -47,10 +47,10 @@ function Landing() {
     return employees.some((employees) => employees.email === userEmail);
   };
 
+  const { corredor } = useSelector((state) => state);
+
   localStorage.setItem("email", userEmail);
   let email = localStorage.getItem("email");
-
-  const { corredor } = useSelector((state) => state);
 
   useEffect(() => {
     if (userEmail !== undefined) {
@@ -58,11 +58,13 @@ function Landing() {
     }
   }, [dispatch, userEmail]);
 
+  
   useEffect(() => {
-    if (corredor.name !== "undefined") {
+    if (corredor && corredor.name && corredor.name !== undefined) {
+      console.log("adentro", corredor.name);
       localStorage.setItem("corredorName", corredor.name);
     }
-  }, [email]);
+  }, [email, corredor]);
 
   useEffect(() => {
     dispatch(getAllCorredores());

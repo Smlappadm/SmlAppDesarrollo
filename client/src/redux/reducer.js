@@ -1,5 +1,6 @@
 import {
-  GET_ALL_LEAD,GET_ALL_LEAD_CONTRATANDO,
+  GET_ALL_LEAD,
+  GET_ALL_LEAD_CONTRATANDO,
   GET_LEAD_UNCHECKED,
   GET_LEAD_CHEQUED,
   GET_LEAD_UNCHECKED_10,
@@ -45,6 +46,7 @@ import {
   GET_LEAD_CHEQUED_FREELANCER,
   GET_FREELANCER,
   GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS,
+  GET_ALL_PROMOCIONES,
 } from "./actions";
 
 const initialState = {
@@ -93,6 +95,7 @@ const initialState = {
   freelanceLead: [],
   allFreelancers: [],
   corredorLeadCheckedDescagados: [],
+  promociones: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -130,6 +133,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         leadContratando: action.payload,
+      };
+    case GET_ALL_PROMOCIONES:
+      return {
+        ...state,
+        promociones: action.payload,
       };
     case GET_LEAD_UNCHECKED:
       return {

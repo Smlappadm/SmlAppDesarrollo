@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
+import ModalObservaciones from "./Modal/ModalObservaciones";
 import { IoGrid } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaWhatsapp} from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
@@ -211,8 +212,8 @@ const VentasDashboard = () => {
                     <label className="text-start w-[10%] px-3">País</label>
                     <label className="text-center w-[5%] ">Email</label>
                     <label className="text-center w-[5%] ">Instagram</label>
-                    <label className="text-center w-[10%] ">Teléfono</label>
-                    <label className="text-center w-[10%]">Nivel</label>
+                    <label className="text-center w-[15%] ">Teléfono</label>
+                    <label className="text-center w-[5%]">Nivel</label>
                     <label className="text-center w-[20%] ">Estado</label>
                     <label className="text-start w-[10%] "></label>
                   </div>
@@ -270,21 +271,21 @@ const VentasDashboard = () => {
                             </div>
                           )}
                         </div>
-                        <div className=" w-[10%] flex justify-center items-center p-0 ">
-                        <div className="flex justify-center items-center gap-4">
+                        <div className=" w-[15%] flex justify-center items-center p-0 ">
+                        <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                             {item.telephone}
                           </p>
                           <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[35px] mr-5 text-[#9eabbe] cursor-pointer"/>
+                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
                           </a>
 
                             </div>
                         </div>
-                        <div className=" w-[10%] flex justify-center items-center p-0">
+                        <div className=" w-[5%] flex justify-center items-center p-0">
                           {item.level !== "incidencia" ? (
                             <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
                               {item.level}
@@ -311,6 +312,8 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
+                          <ModalObservaciones 
+                          item={item}/>
                           <ModalIntelligentInfo 
                           item={item}/>
                           <Modal

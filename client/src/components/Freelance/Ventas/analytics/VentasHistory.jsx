@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
 import ModalHistory from "./Modal/ModalHistory";
+import ModalObservaciones from "../Dashboard/Modal/ModalObservaciones";
 import { ToastContainer, toast } from "react-toastify";
 
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
@@ -412,12 +413,12 @@ const VentasHistory = () => {
                   Nivel
                 </label>
                 <label
-                  className="text-center w-[17%]"
+                  className="text-center w-[12%]"
                 >
                   Estado
                 </label>
                 <label
-                  className="text-center w-[3%]"
+                  className="text-center w-[8%]"
                 ></label>
               </div>
 
@@ -472,15 +473,15 @@ const VentasHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <div className="flex justify-center items-center gap-4">
+                      <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="border-2 text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                             {item.telephone}
                           </p>
                           <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[35px] mr-5 text-[#9eabbe] cursor-pointer"/>
+                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
                           </a>
 
                             </div>
@@ -496,7 +497,7 @@ const VentasHistory = () => {
                           </div>
                         )}
                       </div>
-                      <div className=" w-[17%] flex justify-center items-start p-0">
+                      <div className=" w-[12%] flex justify-center items-start p-0">
                         {item.status === "Contratado" && (
                           <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                             Contratado
@@ -512,6 +513,11 @@ const VentasHistory = () => {
                             Rechazado
                           </p>
                         )}
+                                                {item.status === "Contratando" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contratando</p>
+                          </div>
+                        )}
                         {item.status === "Agendar 2do llamado" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
                             <p>En proceso</p>
@@ -523,7 +529,7 @@ const VentasHistory = () => {
                           </p>
                         )}
                       </div>
-                      <div className=" w-[3%] flex justify-start items-start p-0">
+                      <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
                         {item.status === "Contratado" && (
                           <ModalHistory
                             item={item}
@@ -534,6 +540,7 @@ const VentasHistory = () => {
                             cancelModal={cancelModal}
                           />
                         )}
+                        <ModalObservaciones item={item}/>
                       </div>
                     </div>
                   ))}

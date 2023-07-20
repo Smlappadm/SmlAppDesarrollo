@@ -12,6 +12,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
 import ModalHistory from "./Modal/ModalHistory";
+import ModalObservaciones from "../Dashboard/Modal/ModalObservaciones";
 import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
 import Nav from "../../Nav/Nav";
@@ -433,12 +434,12 @@ const VendedoresHistory = () => {
                   Nivel
                 </label>
                 <label
-                  className="text-center w-[17%]"
+                  className="text-center w-[12%]"
                 >
                   Estado
                 </label>
                 <label
-                  className="text-center w-[3%]"
+                  className="text-center w-[8%]"
                 ></label>
               </div>
 
@@ -493,19 +494,19 @@ const VendedoresHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <div className="flex justify-center items-center gap-4">
+                        <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute"
+                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                             {item.telephone}
                           </p>
                           <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[35px] mr-5 text-[#9eabbe] cursor-pointer"/>
+                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
                           </a>
 
                             </div>
-                      </div>
+                        </div>
                       <div className=" w-[10%] flex justify-center items-center p-0">
                         {item.level !== "incidencia" ? (
                           <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
@@ -517,7 +518,7 @@ const VendedoresHistory = () => {
                           </div>
                         )}
                       </div>
-                      <div className=" w-[17%] flex justify-center items-start p-0">
+                      <div className=" w-[12%] flex justify-center items-start p-0">
                         {item.status === "Contratado" && (
                           <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                             Contratado
@@ -538,23 +539,29 @@ const VendedoresHistory = () => {
                             <p>En Proceso</p>
                           </div>
                         )}
+                        {item.status === "Contratando" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contratando</p>
+                          </div>
+                        )}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
                             Incidencia
                           </p>
                         )}
                       </div>
-                      <div className=" w-[3%] flex justify-start items-start p-0">
+                      <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
                         {item.status === "Contratado" && (
                           <ModalHistory
-                            item={item}
-                            SendLeadAlertBaja={SendLeadAlertBaja}
-                            SendIncidenceAlert={SendIncidenceAlert}
-                            SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
-                            emailAddress={emailAddress}
-                            cancelModal={cancelModal}
+                          item={item}
+                          SendLeadAlertBaja={SendLeadAlertBaja}
+                          SendIncidenceAlert={SendIncidenceAlert}
+                          SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
+                          emailAddress={emailAddress}
+                          cancelModal={cancelModal}
                           />
-                        )}
+                          )}
+                          <ModalObservaciones item={item}/>
                       </div>
                     </div>
                   ))}

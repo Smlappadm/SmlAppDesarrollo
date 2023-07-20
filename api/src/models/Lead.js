@@ -62,6 +62,11 @@ const LeadSchema = new mongoose.Schema(
       require: true,
       default: "",
     },
+    observaciones_ventas: {
+      type: Array,
+      require: true,
+      default: "",
+    },
     pagos: {
       type: Object,
       require: true,

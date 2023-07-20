@@ -48,6 +48,8 @@ export const GET_LEAD_CHEQUED_FREELANCER = "GET_LEAD_CHEQUED_FREELANCER";
 export const GET_FREELANCER = "GET_FREELANCER";
 export const GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS =
   "GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS";
+export const GET_ALL_PROMOCIONES =
+  "GET_ALL_PROMOCIONES";
 
 //
 export const setRol = (rol) => {
@@ -99,6 +101,14 @@ export const getAllLeadContratando = () => {
     const response = await axios.get("/lead/contratando");
     const leadContratando = response.data;
     dispatch({ type: GET_ALL_LEAD_CONTRATANDO, payload: leadContratando });
+  };
+};
+
+export const getAllPromociones = () => {
+  return async (dispatch) => {
+    const response = await axios.get("/promociones");
+    const promociones = response.data;
+    dispatch({ type: GET_ALL_PROMOCIONES, payload: promociones });
   };
 };
 
@@ -203,9 +213,15 @@ export const getLeadCheckedInactive5 = (body, profesion, country, level) => {
     }
   };
 };
-export const getLeadCheckedFreelance = (body, profesion, country, level, freelance) => {
+export const getLeadCheckedFreelance = (
+  body,
+  profesion,
+  country,
+  level,
+  freelance
+) => {
   body = { ...body, profesion, country, level, freelance };
-  console.log(body)
+  console.log(body);
 
   return async (dispatch) => {
     if (
@@ -375,8 +391,12 @@ export const getLeadCorredores = (
   marca_personal
 ) => {
   return async (dispatch) => {
-    if (email !== "undefined" && email !== "" && names !== "undefined" && names !== "") {
-      console.log(names);
+    if (
+      email !== "undefined" &&
+      email !== "" &&
+      names !== "undefined" &&
+      names !== ""
+    ) {
       const response = await axios.get(
         `lead/unchecked10?email=${email}&names=${names}&profesion=${profesion}&category=${category}&country=${country}&marca_personal=${marca_personal}`
       );

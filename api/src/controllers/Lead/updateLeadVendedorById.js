@@ -15,31 +15,47 @@ const updateLeadVendedorById = async (id, updatedData) => {
   // Comprobamos el estado del lead para realizar acciones específicas según el estado
   if (updatedData.dataLead.status === "Contratado") {
     // Si el estado es "Contratado", se procede con ciertas acciones y actualizaciones adicionales
-
     // Agregamos la propiedad 'updateContratado' con la fecha y hora actual en caso de "Contratado"
     const dateContratado = new Date();
     const formattedTimeContratado = date.toISOString();
     updatedData.dataLead.updateContratado = formattedTimeContratado;
+    updatedData.dataObservaciones.status = "Contratado";
+    updatedData.dataObservaciones.fecha = formattedTimeContratado;
   } else if (updatedData.dataLead.status === "Rechazado") {
     // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
     const dateRechazado = new Date();
     const formattedTimeRechazado = date.toISOString();
     updatedData.dataLead.updateRechazado = formattedTimeRechazado;
+    updatedData.dataObservaciones.status = "Rechazado";
+    updatedData.dataObservaciones.fecha = formattedTimeRechazado;
+  } else if (updatedData.dataLead.status === "Contratando") {
+    // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
+    const dateRechazado = new Date();
+    const formattedTimeContratando = date.toISOString();
+    updatedData.dataLead.updateRechazado = formattedTimeContratando;
+    updatedData.dataObservaciones.status = "Contratando";
+    updatedData.dataObservaciones.fecha = formattedTimeContratando;
   } else if (updatedData.dataLead.status === "No responde") {
     // Agregamos la propiedad 'updateNoResponde' con la fecha y hora actual en caso de "No responde"
     const dateNoResponde = new Date();
     const formattedTimeNoResponde = date.toISOString();
     updatedData.dataLead.updateNoResponde = formattedTimeNoResponde;
+    updatedData.dataObservaciones.status = "No responde";
+    updatedData.dataObservaciones.fecha = formattedTimeNoResponde;
   } else if (updatedData.dataLead.status === "Agendar 2do llamado") {
     // Agregamos la propiedad 'updateSegundoLlamado' con la fecha y hora actual en caso de "Agendar 2do llamado"
     const dateSdoLlamado = new Date();
     const formattedTimeSdoLlamado = date.toISOString();
     updatedData.dataLead.updateSegundoLlamado = formattedTimeSdoLlamado;
+    updatedData.dataObservaciones.status = "Agendar 2do llamado";
+    updatedData.dataObservaciones.fecha = formattedTimeSdoLlamado;
   } else if (updatedData.dataLead.status === "incidencia") {
     // Agregamos la propiedad 'updateIncidencia' con la fecha y hora actual en caso de "Incidencia"
     const dateIncidencia = new Date();
     const formattedTimeIncidencia = date.toISOString();
     updatedData.dataLead.updateIncidencia = formattedTimeIncidencia;
+    updatedData.dataObservaciones.status = "incidencia";
+    updatedData.dataObservaciones.fecha = formattedTimeIncidencia;
   }
 
   // Obtenemos el lead actual antes de la actualización
@@ -120,43 +136,55 @@ const updateLeadVendedorById = async (id, updatedData) => {
     }
     updatedData.dataLead.pagos.detallesRestantes.push("cierre");
   }
-
+  
   // Si el campo 'emailApp' es vacío, se setea con el email del vendedor
   if (updatedData.dataLead.emailApp === "") {
     updatedData.dataLead.emailApp = updatedData.dataVendedor.email;
   }
-
+  
   // Actualizamos el lead en la base de datos
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
+  
 
+let leadUpdated = {}
+
+if (updatedData.dataObservaciones && 
+  (updatedData.dataObservaciones.observacion !== "" || 
+  updatedData.dataObservaciones.tipoContacto !== "")
+) {
+const filter = { _id: id }; // Define la condición para encontrar el documento
+const update = { $push: { observaciones_ventas: updatedData.dataObservaciones } };
+const options = { new: true }; // Devuelve el documento actualizado
+const leadUpdated = await Lead.findOneAndUpdate(filter, update, options);
+}
   // Actualizamos el vendedor asociado al lead
-  let vendedor = [];
-  vendedor = await Vendedor.findOneAndUpdate(
-    {
-      email: updatedData.dataLead.vendedor,
-      "leads.name": updatedData.dataVendedor.name,
-    },
-    { $set: { "leads.$": updatedData.dataVendedor } },
-    { new: true }
-  );
+  // let vendedor = [];
+  // vendedor = await Vendedor.findOneAndUpdate(
+  //   {
+  //     email: updatedData.dataLead.vendedor,
+  //     "leads.name": updatedData.dataVendedor.name,
+  //   },
+  //   { $set: { "leads.$": updatedData.dataVendedor } },
+  //   { new: true }
+  // );
 
-  if (!vendedor) {
-    // Si el vendedor no está asociado al lead, se agrega
-    vendedor = await Vendedor.findOneAndUpdate(
-      { email: updatedData.dataLead.vendedor },
-      { $addToSet: { leads: { $each: [updatedData.dataVendedor] } } },
-      { new: true }
-    );
-  } else {
-    await vendedor.save();
-  }
+  // if (!vendedor) {
+  //   // Si el vendedor no está asociado al lead, se agrega
+  //   vendedor = await Vendedor.findOneAndUpdate(
+  //     { email: updatedData.dataLead.vendedor },
+  //     { $addToSet: { leads: { $each: [updatedData.dataVendedor] } } },
+  //     { new: true }
+  //   );
+  // } else {
+  //   await vendedor.save();
+  // }
 
   // Retornamos el lead actualizado y el vendedor asociado al mismo
   const data = {
-    leadUpdate,
-    vendedor,
+    leadUpdated,
+    // vendedor,
   };
   return data;
 };
