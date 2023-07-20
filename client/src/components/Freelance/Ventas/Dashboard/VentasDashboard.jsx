@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Modal from "./Modal/Modal";
 import ModalIntelligentInfo from "./Modal/ModalIntelligenceInfo";
+import ModalObservaciones from "./Modal/ModalObservaciones";
 import { IoGrid } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -274,7 +275,7 @@ const VentasDashboard = () => {
                         <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="border-2 text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                             {item.telephone}
                           </p>
@@ -311,6 +312,8 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
+                          <ModalObservaciones 
+                          item={item}/>
                           <ModalIntelligentInfo 
                           item={item}/>
                           <Modal
