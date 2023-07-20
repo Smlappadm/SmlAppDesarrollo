@@ -7,8 +7,15 @@ const Lead = require("../../models/Lead");
 const getVendedorVentasByEmail = async (email) => {
   // Buscar todos los leads en la base de datos donde el campo "vendedor" coincide con el correo electrónico proporcionado
   // y el campo "status" es igual a "Agendar 2do llamado"
-  const leads = await Lead.find({ vendedor: email, status: "Contactado" });
-
+  const leads = await Lead.find({ vendedor: email, pagoRecibido: { $ne: true }, status:{ $in: ["Contactado", "No responde", "Agendar 2do llamado"] } });
+  // "Sin contactar",
+  // "Rechazado",
+  // "Contratado",
+  // "No responde",
+  // "Agendar 2do llamado",
+  // "Contactado",
+  // "incidencia",
+  // "discard",
 
   // Ordenar los leads encontrados por fecha de llamada de venta
   // const sortClients = leads.sort((a, b) => {
