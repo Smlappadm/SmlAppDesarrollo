@@ -125,10 +125,10 @@ export default function PromocionPago({ tamañoPantalla }) {
   }, [promos]);
 
   const armarPromociones = (promos) => {
-    const body = promos.map((promo, index) => {
+    const armado = promos.map((promo, index) => {
       return { [`promocion${index + 1}`]: promo.duracion };
     });
-    console.log(body);
+    console.log(armado);
   };
 
   useEffect(() => {
