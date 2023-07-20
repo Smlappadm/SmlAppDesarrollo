@@ -157,6 +157,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const seteoPromociones = async (body) => {
     try {
       await axios.put(`/lead/promociones`, body);
+      dispatch(getClienteEmpresa(emailApp));
     } catch (error) {
       console.log(error.message);
     }
