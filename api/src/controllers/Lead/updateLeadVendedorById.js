@@ -35,6 +35,13 @@ const updateLeadVendedorById = async (id, updatedData) => {
     updatedData.dataLead.updateContactado = formattedTimeContactado;
     updatedData.dataObservaciones.status = "Contactado";
     updatedData.dataObservaciones.fecha = formattedTimeContactado;
+  } else if (updatedData.dataLead.status === "A pagar") {
+    // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
+    const dateAPagar = new Date();
+    const formattedTimeAPagar = date.toISOString();
+    updatedData.dataLead.updateAPagar = formattedTimeAPagar;
+    updatedData.dataObservaciones.status = "A pagar";
+    updatedData.dataObservaciones.fecha = formattedTimeAPagar;
   } else if (updatedData.dataLead.status === "No responde") {
     // Agregamos la propiedad 'updateNoResponde' con la fecha y hora actual en caso de "No responde"
     const dateNoResponde = new Date();
