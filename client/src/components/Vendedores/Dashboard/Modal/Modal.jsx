@@ -1274,7 +1274,8 @@ export default function NestedModal({
               >
                 Estado
               </label>
-              {item.status !== "Contactado" ? (
+              {location.pathname === "/vendedores" ||
+      location.pathname === "/ventas-dashboard" ? (
                 <>
                   {/* {statusObj.status = "Contactado"} */}
                   <select
@@ -1427,7 +1428,7 @@ export default function NestedModal({
                   <option value="Contratando">Contratando</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
-                  <option value="No responde">No Responde</option>
+                  <option value="No responde">Sin contestar</option>
                 </select>
               )}
             </div>
