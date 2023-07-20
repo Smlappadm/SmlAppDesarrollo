@@ -102,6 +102,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     sortedHours.forEach((hour) => {
       sortedCustomPromos.push(customPromos[hour]);
     });
+    console.log(sortedCustomPromos);
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
@@ -333,6 +334,8 @@ export default function PromocionPago({ tamañoPantalla }) {
             return (
               <div key={index}>
                 {tiempoRestante[`promocion${index}`] !== 0 &&
+                  tiempoRestante[`promocion${index}`] > 0 &&
+                  tiempoRestante[`promocion${index + 1}`] !== 0 &&
                   tiempoRestante[`promocion${index}`] && (
                     <div
                       className={
