@@ -116,9 +116,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
 
   useEffect(() => {
-    console.log(promos);
     const promocionesArmadas = armarPromociones(promos);
-
     const body = {
       promociones: {
         ...promocionesArmadas.reduce(
