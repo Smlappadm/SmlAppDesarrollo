@@ -43,13 +43,13 @@ const {
   cambioNombreLeaderHandler,
   cambioNombreVendedorHandler,
   cambioNombreCorredorHandler,
-  getAllLeadsContratandoHandler,
+  getAllLeadsContactadoHandler,
   UpdatePromocionesHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
 LeadRouter.get("/", getAllLeadHandler);
-LeadRouter.get("/contratando", getAllLeadsContratandoHandler);
+LeadRouter.get("/contactado", getAllLeadsContactadoHandler);
 LeadRouter.get("/profesion", getAllProfesionHandler);
 LeadRouter.get("/profesionFreelance", getAllProfesionFreelanceHandler);
 LeadRouter.get("/allcorredor", getCorredoresHandler);
