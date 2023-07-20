@@ -1680,7 +1680,7 @@ export default function NestedModal({
               )} */}
               {statusObj.status === "Agendar otro llamado" && (
               <div className="flex flex-col justify-center items-center">
-                <label
+                {/* <label
                   htmlFor="last_name"
                   className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
                 >
@@ -1703,7 +1703,7 @@ export default function NestedModal({
                     placeholder=""
                     required
                   />
-                </div>
+                </div> */}
                 {/* <label
                   htmlFor="last_name"
                   className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
@@ -1881,7 +1881,7 @@ export default function NestedModal({
               </div>
             )} */}
             {item.llamados > 0 && statusObj.status === "No responde" && (
-              <div className="flex flex-col justify-center items-center mt-5">
+              <div className="flex flex-col justify-center items-center">
                 <div className="flex justify-center items-center flex-col">
                   <p htmlFor="" className="text-white m-2">
                     {`Llamados: ${item.llamados}`}
