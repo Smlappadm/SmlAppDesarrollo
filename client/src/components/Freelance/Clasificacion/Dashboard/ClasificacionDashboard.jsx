@@ -47,13 +47,12 @@ const ClasificacionDashboard = () => {
 
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
-  const fullName = user?.fullName;
 
   localStorage.setItem("email", mail);
   let email = localStorage.getItem("email");
 
-  localStorage.setItem("names", fullName);
-  let names = localStorage.getItem("names");
+  let names = localStorage.getItem("corredorName");
+  
 
   useEffect(() => {
     if (mail !== undefined) {
@@ -516,6 +515,8 @@ const ClasificacionDashboard = () => {
         }
       }
 
+      console.log(email);
+      console.log( names);
       dispatch(
         getLeadClasificacion(
           email,

@@ -52,19 +52,18 @@ function Landing() {
   localStorage.setItem("email", userEmail);
   let email = localStorage.getItem("email");
 
+  const fullName = user?.fullName;
+
   useEffect(() => {
     if (userEmail !== undefined) {
       dispatch(getAllCorredoresByEmail(userEmail));
     }
   }, [dispatch, userEmail]);
 
-  
   useEffect(() => {
-    if (corredor && corredor.name && corredor.name !== undefined) {
-      console.log("adentro", corredor.name);
-      localStorage.setItem("corredorName", corredor.name);
-    }
-  }, [email, corredor]);
+    console.log("adentro", fullName);
+    localStorage.setItem("corredorName", fullName);
+  }, [fullName]);
 
   useEffect(() => {
     dispatch(getAllCorredores());
