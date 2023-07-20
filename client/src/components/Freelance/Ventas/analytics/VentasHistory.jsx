@@ -382,7 +382,7 @@ const VentasHistory = () => {
 
           {currentCard && currentCard.length ? (
                         <motion.div
-                        initial={{ opacity: 0, y: "40px" }}
+                        initial={{ opacity: 0, y: "30px" }}
                         whileInView={{ y: "10px", opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0 }}
                         className={style.table}
@@ -505,7 +505,7 @@ const VentasHistory = () => {
                         )}
                         {item.status === "No responde" && (
                           <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Sin responder
+                            Sin contestar
                           </p>
                         )}
                         {item.status === "Rechazado" && (
@@ -513,14 +513,14 @@ const VentasHistory = () => {
                             Rechazado
                           </p>
                         )}
-                                                {item.status === "Contratando" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contratando</p>
-                          </div>
-                        )}
                         {item.status === "Agendar 2do llamado" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>En proceso</p>
+                            <p>En Proceso</p>
+                          </div>
+                        )}
+                        {item.status === "Contactado" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contactado</p>
                           </div>
                         )}
                         {item.level === "incidencia" && (
