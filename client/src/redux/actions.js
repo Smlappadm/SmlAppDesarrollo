@@ -106,6 +106,7 @@ export const getAllLeadContratando = () => {
 
 export const getAllPromociones = () => {
   return async (dispatch) => {
+    console.log("llamando");
     const response = await axios.get("/promociones");
     const promociones = response.data;
     dispatch({ type: GET_ALL_PROMOCIONES, payload: promociones });
