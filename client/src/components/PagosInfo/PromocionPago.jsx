@@ -134,7 +134,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       promocion2: fechaCon24Horas,
       emailApp: emailApp,
     };
-    if (clienteEmpresa && clienteEmpresa?.promocion1 === "") {
+    if (clienteEmpresa && !clienteEmpresa?.promocion1) {
       console.log("si");
       seteoPromociones(body);
     }
