@@ -132,6 +132,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       console.log("si");
       seteoPromociones(body);
     }
+    console.log(promos);
   }, [promos]);
 
   const armarPromociones = (promos) => {
@@ -181,51 +182,88 @@ export default function PromocionPago({ tamañoPantalla }) {
     //   setTiempoRestante1(diferenciaEnSegundos1);
     //   setTiempoRestante2(diferenciaEnSegundos2);
     // }
-    if (clienteEmpresa && clienteEmpresa?.promociones.length > 0) {
+    if (
+      clienteEmpresa &&
+      clienteEmpresa?.promociones &&
+      clienteEmpresa?.promociones.length > 0
+    ) {
       const nuevosTiemposRestantes = {}; // Objeto para almacenar los nuevos tiempos restantes
       const fechaActual = new Date();
+      let fechaAnterior = 0;
       clienteEmpresa.promociones.forEach((promocion, index) => {
         const time = new Date(index !== 0 && promocion);
-        const diferenciaEnMilisegundos = time.getTime() - fechaActual.getTime();
+        const diferenciaEnMilisegundos =
+          time.getTime() + fechaAnterior - fechaActual.getTime();
         const diferenciaEnSegundos = Math.floor(
           diferenciaEnMilisegundos / 1000
         );
         if (index !== 0) {
           nuevosTiemposRestantes[`promocion${index}`] = diferenciaEnSegundos;
         }
+        fechaAnterior = time;
+        console.log(fechaAnterior);
+        console.log(fechaActual);
+        console.log(time);
       });
-
       // Actualizar el estado tiempoRestante con los nuevos tiempos restantes
       setTiempoRestante(nuevosTiemposRestantes);
     }
   }, [clienteEmpresa]);
 
   useEffect(() => {
-    console.log(tiempoRestante);
+    // console.log(tiempoRestante);
   }, [tiempoRestante]);
 
-  // const seteoPromociones = async (body) => {
-  //   try {
-  //     await axios.put(`/lead/promociones`, body);
-  //     dispatch(getClienteEmpresa(emailApp));
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+  const seteoPromociones = async (body) => {
+    try {
+      await axios.put(`/lead/promociones/promos`, body);
+      dispatch(getClienteEmpresa(emailApp));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     // Creamos el intervalo para actualizar el tiempo restante cada segundo
 
-    const interval = setInterval(() => {
-      setTiempoRestante1((prevTiempoRestante) =>
-        prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
-      );
-      setTiempoRestante2((prevTiempoRestante) =>
-        prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
-      );
-    }, 1000);
+    // const interval = setInterval(() => {
+    //   setTiempoRestante1((prevTiempoRestante) =>
+    //     prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
+    //   );
+    //   setTiempoRestante2((prevTiempoRestante) =>
+    //     prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
+    //   );
+    // }, 1000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
+    // Función para actualizar los tiempos restantes de las promociones
+    // Función para actualizar el tiempo restante de una promoción específica
+    const actualizarTiempoRestante = (promocionKey) => {
+      setTiempoRestante((prevTiempos) => {
+        const nuevosTiempos = { ...prevTiempos }; // Crear una copia del estado actual
+
+        // Restar 1 segundo a la promoción específica, si es mayor que cero
+        if (nuevosTiempos[promocionKey] > 0) {
+          nuevosTiempos[promocionKey] = nuevosTiempos[promocionKey] - 1;
+        }
+
+        return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
+      });
+    };
+
+    // Iniciar un bucle setInterval para cada promoción
+    for (let i = 1; i <= 3; i++) {
+      const promocionKey = `promocion${i}`;
+      if (tiempoRestante[promocionKey] > 0) {
+        const interval = setInterval(() => {
+          actualizarTiempoRestante(promocionKey);
+        }, 1000);
+        // Limpia el intervalo cuando el componente se desmonte o cuando la promoción llegue a cero
+        return () => {
+          clearInterval(interval);
+        };
+      }
+    }
   }, [cliente]);
 
   // Función para convertir segundos a formato HH:mm:ss
@@ -274,7 +312,40 @@ export default function PromocionPago({ tamañoPantalla }) {
         }
       >
         <p className="text-white text-24 font-bold">{cliente.name}</p>
-        {tiempoRestante1 !== 0 && (
+        {promos &&
+          promos.map((promo, index) => {
+            return (
+              <>
+                {tiempoRestante[`promocion${index}`] !== 0 && (
+                  <div
+                    className={
+                      tamañoPantalla === "Pequeña"
+                        ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                        : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+                    }
+                  >
+                    <p className="text-white">PROMOCIÓN</p>
+                    <p className="text-white text-3xl">
+                      {formatTiempoRestante(
+                        tiempoRestante[`promocion${index}`]
+                      )}
+                    </p>
+                    <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+                      <p className="text-white text-3xl text-center">
+                        Desc. -1000€ (2 horas)
+                      </p>
+                    </div>
+                    <p className="text-white">CUOTAS</p>
+                    <p className="text-white">DETALLE</p>
+                    <p className="text-white text-center">
+                      {promo2horas.pagos[cuotas]}
+                    </p>
+                  </div>
+                )}
+              </>
+            );
+          })}
+        {/* {tiempoRestante1 !== 0 && (
           <div
             className={
               tamañoPantalla === "Pequeña"
@@ -486,7 +557,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             <p className="text-white">DETALLE</p>
             <p className="text-white text-center">{sinPromo.pagos[cuotas]}</p>
           </div>
-        )}
+        )} */}
         <Link
           className={
             tamañoPantalla === "Pequeña"
