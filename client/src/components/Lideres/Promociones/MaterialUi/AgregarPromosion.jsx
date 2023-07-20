@@ -5,6 +5,8 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { Input, TextField } from "@mui/material";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { getAllPromociones } from "../../../../redux/actions";
 
 const style = {
   position: "absolute",
@@ -22,6 +24,7 @@ const style = {
 };
 
 export default function AgregarPromosion() {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [promocion, setPromocion] = React.useState({
     name: "",
@@ -30,17 +33,16 @@ export default function AgregarPromosion() {
     cuota: 0,
     monto: 0,
     valorCuota: 0,
-    active: false
+    active: false,
   });
-
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const cargarPromocion = async () => {
-    const response = await axios.post(`/promociones`,promocion)
-
-    console.log(response.data);
+    await axios.post(`/promociones`, promocion);
+    dispatch(getAllPromociones());
+    handleClose();
   };
 
   const handleChange = (event, property) => {
