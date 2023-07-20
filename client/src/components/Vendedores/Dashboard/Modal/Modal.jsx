@@ -90,7 +90,7 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
-      if (updatedEmailApp === "-" || updatedEmailApp === "") {
+      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
         saveEmailAppFunction(item.email);
       } else {
         saveEmailAppFunction(updatedEmailApp);
