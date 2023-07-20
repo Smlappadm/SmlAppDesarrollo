@@ -1524,6 +1524,31 @@ export default function NestedModal({
                       required
                     />
                     {/* </div> */}
+
+                    {/* <label
+                      htmlFor="last_name"
+                      className="mt-7 block text-sm text-center font-medium text-gray-900 dark:text-white "
+                    >
+                      Hable con
+                    </label>
+                <div className="flex justify-center items-center">
+                  <input
+                    onChange={handleObservationChange}
+                    type="text"
+                    id="last_name"
+                    name="hableCon"
+                    value={
+                      statusObj.observaciones.hableCon
+                        ? statusObj.observaciones.hableCon
+                        : item &&
+                          item.observaciones_ventas &&
+                          item.observaciones_ventas.hableCon
+                    }
+                    className="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder=""
+                    required
+                  />
+                </div> */}
                   </div>
                 </>
               )}
@@ -1637,7 +1662,7 @@ export default function NestedModal({
               )} */}
             {statusObj.status === "Agendar otro llamado" && (
               <div className="flex flex-col justify-center items-center">
-                <label
+                {/* <label
                   htmlFor="last_name"
                   className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
                 >
@@ -1660,7 +1685,7 @@ export default function NestedModal({
                     placeholder=""
                     required
                   />
-                </div>
+                </div> */}
                 {/* <label
                   htmlFor="last_name"
                   className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
@@ -1782,7 +1807,7 @@ export default function NestedModal({
               </div>
             )} */}
             {item.llamados > 0 && statusObj.status === "No responde" && (
-              <div className="flex flex-col justify-center items-center mt-5">
+              <div className="flex flex-col justify-center items-center">
                 <div className="flex justify-center items-center flex-col">
                   <p htmlFor="" className="text-white m-2">
                     {`Llamados: ${item.llamados}`}
