@@ -90,7 +90,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
-        result[hora].segundos = 
+        result[hora].segundos = ObtenerFecha(promo.promocion.hora);
       }
 
       return result;
@@ -100,18 +100,17 @@ export default function PromocionPago({ tamañoPantalla }) {
     sortedHours.forEach((hour) => {
       sortedCustomPromos[hour] = customPromos[hour];
     });
+    console.log(sortedCustomPromos);
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
-
-const ObtenerFecha = (horas) => {
-  const fechaActual = new Date();
-  const ActualMas2Horas = new Date(
-    fechaActual.getTime() + horas * 60 * 60 * 1000
-  );
-}
-
-
+  const ObtenerFecha = (horas) => {
+    const fechaActual = new Date();
+    const fechaLimitePromo = new Date(
+      fechaActual.getTime() + horas * 60 * 60 * 1000
+    );
+    return fechaLimitePromo;
+  };
 
   useEffect(() => {
     const horas = Object.keys(promos);
