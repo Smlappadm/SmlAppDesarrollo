@@ -80,7 +80,7 @@ LeadRouter.get("/name", getLeadByNameHandler);
 LeadRouter.get("/emailApp", getLeadByNameHandler);
 LeadRouter.get("/:id", getLeadByIdHandler);
 LeadRouter.get("/leadvendedor/:id", getLeadVendedorHandler);
-LeadRouter.put("/promociones", UpdatePromocionesHandler);
+LeadRouter.put("/promociones/promos", UpdatePromocionesHandler);
 LeadRouter.put("/checkedinactive5", getLeadCheckedInactive5Handler);
 LeadRouter.put("/:id", updateLeadHandler);
 LeadRouter.put("/changeemail/:id", updateChangeEmailHandler);
