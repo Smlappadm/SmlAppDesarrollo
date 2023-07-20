@@ -102,10 +102,8 @@ export default function PromocionPago({ tamañoPantalla }) {
   }, [promociones]);
 
   useEffect(() => {
-    console.log(promos);
     const horas = Object.keys(promos);
 
-    console.log(horas);
     // Creamos un nuevo objeto body con las horas como claves
     const body = {};
     let i = 0;
@@ -113,7 +111,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       i === 0 ? (body[`promocion${i}`] = promos[hora].hora) : "";
       i += 1;
     });
-    console.log(body);
   }, [promos]);
 
   useEffect(() => {
@@ -123,6 +120,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     setCliente(clienteEmpresa);
+    console.log(clienteEmpresa);
     const fechaActual = new Date();
     const ActualMas2Horas = new Date(
       fechaActual.getTime() + 2 * 60 * 60 * 1000
