@@ -18,6 +18,7 @@ import {
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { BsCheck } from "react-icons/bs";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -62,6 +63,14 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
+    if (
+      location.pathname === "/vendedores" ||
+      location.pathname === "/ventas-dashboard"
+    ) {
+      setStatusObj({ ...statusObj, status: "Contactado" });
+    }
+
+    
     if (statusObj.status === "Contratando") {
       setStatusObj({ ...statusObj, pagoRecibido: false });
     }
@@ -98,14 +107,14 @@ function ChildModal({
   const handleClose = () => {
     setOpenChild(false);
   };
-
+  
   const handleUpdate = () => {
     if (
       statusObj.status === "Agendar 2do llamado" ||
       statusObj.status === "Agendar otro llamado"
-    ) {
-      statusObj.status = "Agendar 2do llamado";
-      (statusObj.emailApp = item.emailApp),
+      ) {
+        statusObj.status = "Agendar 2do llamado";
+        (statusObj.emailApp = item.emailApp),
         (statusObj.status_op = llamadoVenta.diaHora);
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
@@ -170,8 +179,8 @@ function ChildModal({
       llamados: item.llamados,
       llamada_venta: statusObj.llamada_venta,
     };
-    
-    const dataObservaciones = statusObj.observaciones
+
+    const dataObservaciones = statusObj.observaciones;
 
     const dataUpdate = {
       dataObservaciones,
@@ -618,6 +627,8 @@ export default function NestedModal({
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
   const [emailValidator, setEmailValidator] = React.useState(false);
+  const location = useLocation();
+  console.log(location.pathname);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -629,9 +640,9 @@ export default function NestedModal({
     observaciones: {
       tipoContacto: "",
       observacion: "",
-    }
+    },
   });
-
+  
   const [llamadoVenta, setLlamadoVenta] = React.useState({
     contacto: "",
     observaciones: "",
@@ -642,7 +653,7 @@ export default function NestedModal({
     minutos: dateHour.$m,
     diaHora: "",
   });
-
+  
   useEffect(() => {
     setStatusObj({
       ...statusObj,
@@ -693,7 +704,6 @@ export default function NestedModal({
       observaciones: { ...statusObj.observaciones, [property]: value },
     });
   };
-  console.log(statusObj);
 
   const handleSelectChangeContratado = (event) => {
     console.log(event.target.name);
@@ -947,6 +957,7 @@ export default function NestedModal({
     setEditContacto(false);
   };
 
+  console.log(statusObj);
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1265,7 +1276,7 @@ export default function NestedModal({
               </label>
               {item.status !== "Contactado" ? (
                 <>
-                {statusObj.status = "Contactado"}
+                  {/* {statusObj.status = "Contactado"} */}
                   <select
                     onChange={handleSelectChange}
                     name="status"
