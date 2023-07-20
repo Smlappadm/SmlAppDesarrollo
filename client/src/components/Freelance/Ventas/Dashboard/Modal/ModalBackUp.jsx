@@ -129,10 +129,10 @@ function ChildModal({
 
   const handleUpdate = () => {
     if (
-      statusObj.status === "Agendar 2do llamado" ||
+      statusObj.status === "Agenda llamada" ||
       statusObj.status === "Agendar otro llamado"
     ) {
-      statusObj.status = "Agendar 2do llamado";
+      statusObj.status = "Agenda llamada";
       (statusObj.emailApp = item.emailApp),
         (statusObj.status_op = llamadoVenta.diaHora);
       statusObj.llamada_venta = {
@@ -703,7 +703,7 @@ export default function NestedModal({
         [property]: value,
         status_op: "",
       });
-    } else if (value === "Agendar 2do llamado") {
+    } else if (value === "Agenda llamada") {
       llamadoVenta.observaciones = "";
       dateHour.$D = "";
       setStatusObj({
@@ -1316,7 +1316,7 @@ export default function NestedModal({
               >
                 Estado
               </label>
-              {item.status !== "Agendar 2do llamado" ? (
+              {item.status !== "Agenda llamada" ? (
                 <select
                   onChange={handleSelectChange}
                   name="status"
@@ -1325,7 +1325,7 @@ export default function NestedModal({
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option value="Sin contactar">Sin Contactar</option>
-                  <option value="Agendar 2do llamado">En proceso</option>
+                  <option value="Agenda llamada">En proceso</option>
                   <option value="Contratando">Contratando</option>
                   <option value="Contratado">Contratado</option>
                   <option value="Rechazado">Rechazado</option>
@@ -1378,7 +1378,7 @@ export default function NestedModal({
             )}
             {(item.status === "Sin contactar" ||
               item.status === "No responde") &&
-              statusObj.status === "Agendar 2do llamado" && (
+              statusObj.status === "Agenda llamada" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
                   <label
                     htmlFor="last_name"
@@ -1456,7 +1456,7 @@ export default function NestedModal({
                   </div>
                 </div>
               )}
-            {item.status === "Agendar 2do llamado" &&
+            {item.status === "Agenda llamada" &&
               statusObj.status === "Agendar otro llamado" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
                   <label

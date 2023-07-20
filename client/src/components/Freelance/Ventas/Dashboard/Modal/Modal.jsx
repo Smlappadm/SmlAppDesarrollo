@@ -62,7 +62,14 @@ function ChildModal({
   const [openChild, setOpenChild] = React.useState(false);
 
   const handleOpen = () => {
-    if (statusObj.status === "Contratando") {
+    if (
+      location.pathname === "/vendedores" ||
+      location.pathname === "/ventas-dashboard"
+    ) {
+      setStatusObj({ ...statusObj, status: "Contactado" });
+    }
+
+    if (statusObj.status === "Contactado") {
       setStatusObj({ ...statusObj, pagoRecibido: false });
     }
     if (statusObj.status === "Contratado") {
@@ -128,15 +135,15 @@ function ChildModal({
 
   const handleUpdate = () => {
     if (
-      statusObj.status === "Agendar 2do llamado" ||
+      statusObj.status === "Agenda llamada" ||
       statusObj.status === "Agendar otro llamado"
     ) {
-      statusObj.status = "Agendar 2do llamado";
+      statusObj.status = "Agenda llamada";
       (statusObj.emailApp = item.emailApp),
         (statusObj.status_op = llamadoVenta.diaHora);
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
-        contacto: llamadoVenta.contacto,
+        // contacto: statusObj.observaciones.hableCon,
         observaciones: llamadoVenta.observaciones,
         dateObject: {
           hora: llamadoVenta.hora,
@@ -146,6 +153,20 @@ function ChildModal({
           year: llamadoVenta.year,
         },
       };
+
+      statusObj.observaciones = {
+        ...statusObj.observaciones,
+        dia_hora: llamadoVenta.diaHora,
+        dateObject: {
+          hora: llamadoVenta.hora,
+          minutos: llamadoVenta.minutos,
+          dia: llamadoVenta.dia,
+          mes: llamadoVenta.mes,
+          year: llamadoVenta.year,
+        },
+      };
+    } else {
+      statusObj.llamada_venta = {}
     }
 
     let dataVendedor = {};
@@ -195,7 +216,7 @@ function ChildModal({
       llamada_venta: statusObj.llamada_venta,
     };
 
-    const dataObservaciones = statusObj.observaciones
+    const dataObservaciones = statusObj.observaciones;
 
     const dataUpdate = {
       dataObservaciones,
@@ -223,7 +244,7 @@ function ChildModal({
     if (statusObj.status === "Contratado") {
       openModalPagoFunction();
     }
-    if (statusObj.status === "Contratando") {
+    if (statusObj.status === "A pagar") {
       openModalPagoFunction();
     }
     statusObj.status = "";
@@ -653,12 +674,15 @@ export default function NestedModal({
     status_op: item.status_op,
     llamados: item.llamados,
     llamada_venta: {},
-    observaciones: "",
+    observaciones: {
+      tipoContacto: "",
+      observacion: "",
+      hableCon: "",
+      agenda: "",
+    },
   });
 
   const [llamadoVenta, setLlamadoVenta] = React.useState({
-    contacto: "",
-    observaciones: "",
     dia: dateHour.$D,
     mes: dateHour.$M + 1,
     year: dateHour.$y,
@@ -678,6 +702,8 @@ export default function NestedModal({
   }, [updatedEmail]);
 
   const handleOpen = () => {
+    statusObj.observaciones.tipoContacto = ""
+    statusObj.observaciones.observacion = ""
     setOpen(true);
   };
   const handleClose = () => {
@@ -704,7 +730,7 @@ export default function NestedModal({
         [property]: value,
         status_op: "",
       });
-    } else if (value === "Agendar 2do llamado") {
+    } else if (value === "Agenda llamada") {
       llamadoVenta.observaciones = "";
       dateHour.$D = "";
       setStatusObj({
@@ -786,7 +812,7 @@ export default function NestedModal({
       setLlamadoVenta({
         ...llamadoVenta,
         [property]: value,
-        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
+        diaHora: `${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} - ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
@@ -804,7 +830,7 @@ export default function NestedModal({
     } else {
       setLlamadoVenta({
         ...llamadoVenta,
-        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
+        diaHora: `${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} - ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
@@ -1325,7 +1351,8 @@ export default function NestedModal({
               >
                 Estado
               </label>
-              {item.status !== "Agendar 2do llamado" ? (
+              {location.pathname === "/vendedores" ||
+              location.pathname === "/ventas-dashboard" ? (
                 <>
                   <select
                     onChange={handleSelectChange}
@@ -1334,12 +1361,12 @@ export default function NestedModal({
                     id="select1"
                     className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    <option value="Sin contactar">Sin Contactar</option>
-                    {/* <option value="Agendar 2do llamado">En proceso</option> */}
-                    <option value="Contratando">Contratando</option>
+                    {/* <option value="Sin contactar">Sin Contactar</option> */}
+                    {/* <option value="Agenda llamada">En proceso</option> */}
+                    <option value="Contactado">Contactado</option>
                     {/* <option value="Contratado">Contratado</option> */}
-                    <option value="Rechazado">Rechazado</option>
-                    <option value="No responde">No Responde</option>
+                    {/* <option value="Rechazado">Rechazado</option> */}
+                    {/* <option value="No responde">No Responde</option> */}
                   </select>
 
                   {statusObj.status === "Rechazado" && (
@@ -1446,22 +1473,116 @@ export default function NestedModal({
                   </div>
                 </>
               ) : (
-                <select
-                  onChange={handleSelectChange}
-                  name="status"
-                  defaultValue="default"
-                  id="select1"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled="disabled" value="default">
-                    Elige uno...
-                  </option>
-                  <option value="Agendar otro llamado">En proceso</option>
-                  <option value="Contratando">Contratando</option>
-                  <option value="Contratado">Contratado</option>
-                  <option value="Rechazado">Rechazado</option>
-                  <option value="No responde">No Responde</option>
-                </select>
+                <>
+                  <select
+                    onChange={handleSelectChange}
+                    name="status"
+                    defaultValue="default"
+                    id="select1"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  >
+                    <option disabled="disabled" value="default">
+                      Elige uno...
+                    </option>
+                    <option value="Agendar otro llamado">Agenda llamada</option>
+                    {/* <option value="Contratando">Contratando</option> */}
+                    <option value="A pagar">A pagar</option>
+                    <option value="Rechazado">Rechazado</option>
+                    <option value="No responde">Sin contestar</option>
+                  </select>
+                  <div className="flex flex-col items-center justify-start mt-3">
+                    <label
+                      htmlFor="last_name"
+                      className="block text-sm text-center font-medium text-gray-900 dark:text-white "
+                    >
+                      Contacto
+                    </label>
+                    <select
+                      onChange={handleObservationChange}
+                      name="tipoContacto"
+                      defaultValue="default"
+                      id="select11"
+                      className="mt-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option disabled="disabled" value="default">
+                        Tipo de Contacto
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Instagram"
+                        value="Instagram"
+                      >
+                        Instagram
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Linkedin"
+                        value="Linkedin"
+                      >
+                        Linkedin
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Whatsapp"
+                        value="Whatsapp"
+                      >
+                        Whatsapp
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Llamada telefónica"
+                        value="Llamada telefónica"
+                      >
+                        Llamada telefónica
+                      </option>
+                      <option
+                        className="text-justify"
+                        name="Email"
+                        value="Email"
+                      >
+                        Email
+                      </option>
+                      <option className="text-justify" name="Otro" value="Otro">
+                        Otro
+                      </option>
+                    </select>
+                    {/* <label
+              htmlFor="last_name"
+              className="block mt-8 text-sm text-center font-medium text-gray-900 dark:text-white"
+              >
+              Nombre del Contacto
+              </label>
+            <div className="mt-3 flex justify-center items-center">
+              <input
+                onChange={handleLlamadoVentaChange}
+                type="text"
+                id="last_name"
+                name="contacto"
+                className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder=""
+                required
+                />
+              </div> */}
+                    <label
+                      htmlFor="last_name"
+                      className="mt-7 block text-sm text-center font-medium text-gray-900 dark:text-white "
+                    >
+                      Observaciones
+                    </label>
+                    {/* <div className="flex justify-center items-center"> */}
+                    <textarea
+                      onChange={handleObservationChange}
+                      type="text"
+                      id="last_name"
+                      name="observacion"
+                      // value={llamadoVenta.observaciones}
+                      className="mt-3 bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder=""
+                      required
+                    />
+                    {/* </div> */}
+                  </div>
+                </>
               )}
             </div>
             {/* {statusObj.status === "Rechazado" && (
@@ -1492,7 +1613,7 @@ export default function NestedModal({
             )} */}
             {/* {(item.status === "Sin contactar" ||
               item.status === "No responde") &&
-              // statusObj.status === "Agendar 2do llamado" && (
+              // statusObj.status === "Agenda llamada" && (
               statusObj.status === "" && (
                 <div className="flex flex-col justify-center items-center mt-5 ">
                   <label
@@ -1571,95 +1692,98 @@ export default function NestedModal({
                   </div>
                 </div>
               )} */}
-            {item.status === "Agendar 2do llamado" &&
-              statusObj.status === "Agendar otro llamado" && (
-                <div className="flex flex-col justify-center items-center mt-5 ">
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    Contacto
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="contacto"
-                      value={
-                        llamadoVenta.contacto
-                          ? llamadoVenta.contacto
-                          : item.llamada_venta.contacto
-                      }
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                  </div>
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
-                  >
-                    Observaciones
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <textarea
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="observaciones"
-                      value={
-                        llamadoVenta.observaciones
-                          ? llamadoVenta.observaciones
-                          : item.llamada_venta.observaciones
-                      }
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                  </div>
-                  <div className="flex items-center justify-center gap-2 mt-8">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="status_op"
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      value={
-                        dateHour.$D
-                          ? `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${
-                              dateHour.$y
-                            } Hora: ${
-                              dateHour.$H && String(dateHour.$H).length === 1
-                                ? `0${dateHour.$H}`
-                                : dateHour.$H
-                            }:${
-                              dateHour.$m && String(dateHour.$m).length === 1
-                                ? `0${dateHour.$m}`
-                                : dateHour.$m
-                            }`
-                          : "Fecha y Hora"
-                      }
-                      disabled
-                      required
-                    />
+            {statusObj.status === "Agendar otro llamado" && (
+              <div className="flex flex-col justify-center items-center">
+                {/* <label
+                  htmlFor="last_name"
+                  className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
+                >
+                  Hable con
+                </label>
+                <div className="flex justify-center items-center">
+                  <input
+                    onChange={handleObservationChange}
+                    type="text"
+                    id="last_name"
+                    name="hableCon"
+                    value={
+                      statusObj.observaciones.hableCon
+                        ? statusObj.observaciones.hableCon
+                        : item &&
+                          item.observaciones_ventas &&
+                          item.observaciones_ventas.hableCon
+                    }
+                    className="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder=""
+                    required
+                  />
+                </div> */}
+                {/* <label
+                  htmlFor="last_name"
+                  className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
+                >
+                  Observaciones
+                </label>
+                <div className="flex justify-center items-center">
+                  <textarea
+                    onChange={handleLlamadoVentaChange}
+                    type="text"
+                    id="last_name"
+                    name="observaciones"
+                    value={
+                      llamadoVenta && llamadoVenta.observaciones
+                        ? llamadoVenta.observaciones
+                        : item &&
+                          item.llamada_venta &&
+                          item.llamada_venta.observaciones
+                    }
+                    className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder=""
+                    required
+                  />
+                </div> */}
+                <div className="flex items-center justify-center gap-2 mt-8">
+                  <input
+                    onChange={handleLlamadoVentaChange}
+                    type="text"
+                    id="last_name"
+                    name="status_op"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    value={
+                      dateHour.$D
+                        ? `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${
+                            dateHour.$y
+                          } Hora: ${
+                            dateHour.$H && String(dateHour.$H).length === 1
+                              ? `0${dateHour.$H}`
+                              : dateHour.$H
+                          }:${
+                            dateHour.$m && String(dateHour.$m).length === 1
+                              ? `0${dateHour.$m}`
+                              : dateHour.$m
+                          }`
+                        : "Fecha y Hora"
+                    }
+                    disabled
+                    required
+                  />
 
-                    <a
-                      type="button"
-                      className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                      href="https://calendly.com/event_types/user/me"
-                      target="_blank"
-                    >
-                      Calendly
-                    </a>
-                    <CiEdit
-                      onClick={setDateTime}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    />
-                  </div>
+                  <a
+                    type="button"
+                    className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    href="https://calendly.com/event_types/user/me"
+                    target="_blank"
+                  >
+                    Calendly
+                  </a>
+                  <CiEdit
+                    onClick={setDateTime}
+                    className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                  />
                 </div>
-              )}
-            {statusObj.status === "Contratado" && (
+              </div>
+            )}
+            {/* {statusObj.status === "A pagar" && (
               <div className="flex flex-col items-center justify-center gap-7 mt-8">
                 <select
                   onChange={handleSelectPago}
@@ -1769,9 +1893,9 @@ export default function NestedModal({
                   </select>
                 )}
               </div>
-            )}
+            )} */}
             {item.llamados > 0 && statusObj.status === "No responde" && (
-              <div className="flex flex-col justify-center items-center mt-5">
+              <div className="flex flex-col justify-center items-center">
                 <div className="flex justify-center items-center flex-col">
                   <p htmlFor="" className="text-white m-2">
                     {`Llamados: ${item.llamados}`}

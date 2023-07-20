@@ -81,10 +81,10 @@ function ChildModalHistory({
 
   const handleUpdate = async () => {
     // if (
-    //   statusObj.status === "Agendar 2do llamado" ||
+    //   statusObj.status === "Agenda llamada" ||
     //   statusObj.status === "Agendar otro llamado"
     // ) {
-    //   statusObj.status = "Agendar 2do llamado";
+    //   statusObj.status = "Agenda llamada";
     //   (statusObj.emailApp = item.emailApp),
     //     (statusObj.status_op = llamadoVenta.diaHora);
     //   statusObj.llamada_venta = {
@@ -581,7 +581,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
         [property]: value,
         status_op: "",
       });
-    } else if (value === "Agendar 2do llamado") {
+    } else if (value === "Agenda llamada") {
       setStatusObj({
         ...statusObj,
         [property]: value,
