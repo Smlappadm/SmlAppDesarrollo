@@ -98,6 +98,15 @@ function ChildModal({
     } else {
       statusObj.pagos = {};
     }
+    
+    if (statusObj.status === "A pagar") {
+
+      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
+        saveEmailAppFunction(item.email);
+      } else {
+        saveEmailAppFunction(updatedEmailApp);
+      }
+    } 
 
     setOpenChild(true);
     handleLlamadoVentaChange();
@@ -641,7 +650,6 @@ export default function NestedModal({
 
   const [emailValidator, setEmailValidator] = React.useState(false);
   const location = useLocation();
-  console.log(location.pathname);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -721,7 +729,6 @@ export default function NestedModal({
   };
 
   const handleSelectChangeContratado = (event) => {
-    console.log(event.target.name);
     setOpenTimeHour(false);
     const value = event.target.value;
     const property = event.target.name;
@@ -972,7 +979,7 @@ export default function NestedModal({
     setEditContacto(false);
   };
 
-  console.log(statusObj);
+
   return (
     <div className="">
       <div className="flex gap-4">

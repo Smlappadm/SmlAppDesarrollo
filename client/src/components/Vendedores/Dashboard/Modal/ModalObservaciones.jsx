@@ -102,7 +102,6 @@ export default function ModalIntelligentInfo({ item }) {
 
               className="flex flex-col  justify-start items-center h-[400px] w-[500px] my-3 overflow-scroll"
             >
-              {console.log(item.observaciones_ventas)}
               {item.observaciones_ventas && item.observaciones_ventas.length > 0 && item.observaciones_ventas[0].status ? (
                 item.observaciones_ventas.map((item, index) => (
                   <div

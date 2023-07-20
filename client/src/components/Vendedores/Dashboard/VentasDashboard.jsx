@@ -173,6 +173,9 @@ const VentasDashboard = () => {
     return fechaHoraLocal;
   };
 
+
+  console.log(saveEmailApp)
+
   return (
     <>
       <Nav />
