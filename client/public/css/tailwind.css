@@ -1160,6 +1160,14 @@ video {
   height: 100vh;
 }
 
+.h-1 {
+  height: 0.25rem;
+}
+
+.h-2 {
+  height: 0.5rem;
+}
+
 .\!w-px {
   width: 1px !important;
 }
