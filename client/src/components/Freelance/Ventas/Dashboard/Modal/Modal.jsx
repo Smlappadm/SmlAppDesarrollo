@@ -702,6 +702,8 @@ export default function NestedModal({
   }, [updatedEmail]);
 
   const handleOpen = () => {
+    statusObj.observaciones.tipoContacto = ""
+    statusObj.observaciones.observacion = ""
     setOpen(true);
   };
   const handleClose = () => {
