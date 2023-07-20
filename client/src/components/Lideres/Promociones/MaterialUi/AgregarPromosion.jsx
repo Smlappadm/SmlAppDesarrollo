@@ -38,7 +38,9 @@ export default function AgregarPromosion() {
   const handleClose = () => setOpen(false);
 
   const cargarPromocion = async () => {
-    await axios.post(`/promociones`,promocion)
+    const response = await axios.post(`/promociones`,promocion)
+
+    console.log(response.data);
   };
 
   const handleChange = (event, property) => {
