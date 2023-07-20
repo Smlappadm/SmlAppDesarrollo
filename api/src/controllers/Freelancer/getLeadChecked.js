@@ -168,20 +168,21 @@ const getLeadChecked = async (body) => {
   leadRest = [...leadRestNivel2, ...leadRestNivel1, ...leadRestNivel3];
 
   // Búsqueda de leads que no respondieron al contacto ("No responde")
-  const leadChequedInactiveNoResponde = await Lead.find({
-    checked: true,
-    vendedor: body.email,
-    status: "No responde",
-    level: { $nin: ["incidencia", "", "-"] },
-  });
+  // const leadChequedInactiveNoResponde = await Lead.find({
+  //   checked: true,
+  //   vendedor: body.email,
+  //   status: "No responde",
+  //   level: { $nin: ["incidencia", "", "-"] },
+  // });
 
   // Ordenación de los leads que no respondieron por fecha de actualización
-  const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
-    // ...
-  });
+  // const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
+  //   // ...
+  // });
 
   // Devolver una lista que combina los leads encontrados en los diferentes niveles y los leads que no respondieron
-  return [...leadRest, ...leadsNoRespondenSorted];
+  return [...leadRest];
+  // return [...leadRest, ...leadsNoRespondenSorted];
 };
 
 // Exportamos la función para que pueda ser utilizada en otros archivos
