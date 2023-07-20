@@ -71,8 +71,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
   useEffect(() => {
-    let diferenciaHoras = 0;
-    let horaAnterior = null; // Variable para almacenar la hora anterior
     const customPromos = promociones.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
