@@ -81,7 +81,6 @@ LeadRouter.get("/emailApp", getLeadByNameHandler);
 LeadRouter.get("/:id", getLeadByIdHandler);
 LeadRouter.get("/leadvendedor/:id", getLeadVendedorHandler);
 LeadRouter.put("/checkedinactive5", getLeadCheckedInactive5Handler);
-LeadRouter.put("/promociones/promos", UpdatePromocionesHandler);
 LeadRouter.put("/:id", updateLeadHandler);
 LeadRouter.put("/asignacion", asignacionFreelancerHandler);
 LeadRouter.put("/cleanclevel", cleanValueClevelHandler);
@@ -96,5 +95,6 @@ LeadRouter.put("/freelance/:id", updateLeadFreelanceHandler);
 LeadRouter.get("/download", dowloadCSVHandler);
 LeadRouter.post("/", postLeadHandler);
 LeadRouter.post("/new", postLeadFreelancerHandler);
+LeadRouter.put("/promociones/promos", UpdatePromocionesHandler);
 
 module.exports = LeadRouter;
