@@ -226,6 +226,10 @@ const LeadSchema = new mongoose.Schema(
       type: Date,
       require: true,
     },
+    updateContactado: {
+      type: Date,
+      require: true,
+    },
     updateSegundoLlamado: {
       type: Date,
       require: true,
