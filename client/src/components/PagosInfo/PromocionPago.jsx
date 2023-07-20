@@ -72,6 +72,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
   useEffect(() => {
     let diferenciaHoras = 0;
+    let horaAnterior = null; // Variable para almacenar la hora anterior
     const customPromos = promociones.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
@@ -90,9 +91,18 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
-        result[hora].duracion = ObtenerFecha(
-          parseInt(promo.promocion.hora) + diferenciaHoras
-        );
+
+        if (horaAnterior !== null) {
+          // Si no es la primera promoción, calcular la diferencia entre horas
+          const duracion = ObtenerFecha(
+            parseInt(promo.promocion.hora) + diferenciaHoras
+          );
+          result[hora].duracion = duracion;
+        } else {
+          result[hora].duracion = ObtenerFecha(parseInt(promo.promocion.hora));
+        }
+
+        horaAnterior = promo.promocion.hora; // Actualizar el valor de la hora anterior
       }
 
       return result;
