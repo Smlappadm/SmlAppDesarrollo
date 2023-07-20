@@ -9,7 +9,7 @@ const getLeadChecked = async () => {
     freelancer: { $ne: true }, // Campo "freelancer" no debe ser igual a true (no freelancers)
     status: {
       // Campo "status" no debe ser ninguno de los siguientes valores:
-      $nin: ["No responde", "Agendar 2do llamado", "incidencia", "discard", "discard_bot"],
+      $nin: ["No responde", "Agenda llamada", "incidencia", "discard", "discard_bot"],
     },
   });
 

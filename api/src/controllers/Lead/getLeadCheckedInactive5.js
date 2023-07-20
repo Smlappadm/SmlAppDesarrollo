@@ -20,28 +20,28 @@ const getLeadCheckedInactive5 = async (body) => {
   );
 
   // BUSCA LOS LEADS QUE ESTÁN EN EL ESTADO "NO RESPONDE"
-  const leadChequedInactiveNoResponde = await Lead.find({
-    checked: true,
-    vendedor: body.email,
-    status: "No responde",
-    level: { $nin: ["incidencia", "0", "", "-"] },
-  });
+  // const leadChequedInactiveNoResponde = await Lead.find({
+  //   checked: true,
+  //   vendedor: body.email,
+  //   status: "No responde",
+  //   level: { $nin: ["incidencia", "0", "", "-"] },
+  // });
 
   // Ordena los leads por la fecha de actualización (updatedAt) en orden ascendente (los más antiguos primero)
-  const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
-    const dateA = a.updatedAt.toISOString();
-    const dateB = b.updatedAt.toISOString();
+  // const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
+  //   const dateA = a.updatedAt.toISOString();
+  //   const dateB = b.updatedAt.toISOString();
 
     // Compara las fechas de actualización para determinar el orden de clasificación
     // Se ordenan primero los registros más antiguos
-    if (dateA < dateB) {
-      return -1;
-    } else if (dateA > dateB) {
-      return 1;
-    } else {
-      return 0;
-    }
-  });
+  //   if (dateA < dateB) {
+  //     return -1;
+  //   } else if (dateA > dateB) {
+  //     return 1;
+  //   } else {
+  //     return 0;
+  //   }
+  // });
 
   let leadRest = [];
   let leadRestNivel2 = [];
@@ -142,7 +142,8 @@ const getLeadCheckedInactive5 = async (body) => {
   }
 
   // Retorna un array con los leads que cumplen las condiciones
-  return [...leadRest, ...leadsNoRespondenSorted];
+  return [...leadRest];
+  // return [...leadRest, ...leadsNoRespondenSorted];
 };
 
 module.exports = getLeadCheckedInactive5;

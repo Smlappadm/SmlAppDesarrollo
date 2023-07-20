@@ -21,32 +21,33 @@ import "react-toastify/dist/ReactToastify.css";
 import AgregarPromosion from "./MaterialUi/AgregarPromosion";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPromociones } from "../../../redux/actions";
+import ActualizarPromocion from "./MaterialUi/ActualizarPromocion";
 
 export const Promociones = () => {
   const dispatch = useDispatch();
-
   const { promociones } = useSelector((state) => state);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    dispatch(getAllPromociones());
-  }, [dispatch]);
-
-  useEffect(() => {
-    setData(promociones);
-  }, [dispatch, data]);
-
-  console.log(promociones);
-
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardXPage, setCardXpage] = useState(12);
+  const [cardXPage, setCardXpage] = useState(10);
+
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const currentCard = data && data.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    dispatch(getAllPromociones());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (promociones.length > 0) {
+      setData(promociones);
+    }
+  }, [promociones]);
 
   return (
     <>
@@ -136,11 +137,11 @@ export const Promociones = () => {
 
         {currentCard && currentCard.length > 0 ? (
           currentCard.map((item, index) => (
-            <div className="w-full mt-4 ">
-              <div
-                key={item.promocion._id}
-                className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around px-10 py-3"
-              >
+            <div key={index} className="w-full mt-4">
+              <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around px-10 py-3">
+                <div className="absolute w-full z-50">
+                  <ActualizarPromocion item={item} />
+                </div>
                 <div className="flex  justify-center items-center p-0 ">
                   <div className="w-64 flex justify-center items-center ">
                     <Text className=" text-white rounded-full">
@@ -191,7 +192,7 @@ export const Promociones = () => {
             <h1>No se encuentran promociones Cargadas</h1>
           </div>
         )}
-        {data && data.length > 8 ? (
+        {data && data.length > 0 && data.length > 10 ? (
           <PaginationOutlined
             pageStyle={pageStyle}
             setPageStyle={setPageStyle}

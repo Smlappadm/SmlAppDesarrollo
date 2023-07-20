@@ -26,7 +26,6 @@ const getLead10Unchecked = async (query) => {
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
-        corredor_name: names,
         checked: false,
         freelancer: false,
         view: true,
@@ -44,7 +43,6 @@ const getLead10Unchecked = async (query) => {
           view: false,
           corredor: "",
           freelancer: false,
-          corredor_name: "",
         },
         count // Limita los resultados para completar los 10
       );
@@ -99,7 +97,6 @@ const getLead10Unchecked = async (query) => {
     leadUnchecked = await findLeadUnchecked(
       {
         corredor: email,
-        corredor_name: names,
         checked: false,
         view: true,
         freelancer: false,
@@ -120,7 +117,6 @@ const getLead10Unchecked = async (query) => {
           checked: false,
           view: false,
           corredor: "",
-          corredor_name: "",
           freelancer: false,
           country: countryRegex,
           profesion: profesionRegex,

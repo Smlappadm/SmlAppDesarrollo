@@ -94,31 +94,30 @@ export default function ModalIntelligentInfo({ item }) {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
+<Box sx={{ ...style, width: 580, borderRadius: 5 }}>
           <div className="flex flex-col items-center justify-center gap-y-7">
             <h1 className="text-24 text-[#e4e1e1]">Historial Obvservaciones</h1>
 
             <div
 
-              className="border-2 flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll"
+              className="flex flex-col  justify-start items-center h-[400px] w-[500px] my-3 overflow-scroll"
             >
-              {console.log(item)}
-              {console.log(!!(item.observaciones_ventas.observacion !== ""))}
-              {item.observaciones_ventas && item.observaciones_ventas.length > 0 ? (
+              {item.observaciones_ventas && item.observaciones_ventas.length > 0 && item.observaciones_ventas[0].status ? (
                 item.observaciones_ventas.map((item, index) => (
                   <div
-                    key={index}
-                    className="border-2 flex flex-col  justify-center items-center w-[500px] mt-8"
+                  key={index}
+                  className=" flex flex-col  justify-center items-center w-[500px] mt-8 text-white p-2"
                   >
-                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-3">
-                      <div className="border-2 flex justify-start items-start h-fit w-56 gap-x-2">
+                  <div className="border-2 w-full mb-2"></div>
+                    <div className="flex justify-start items-start h-fit w-full gap-x-3">
+                      <div className=" flex justify-start items-start h-fit w-56 gap-x-2">
                         <h1>Status: </h1>
                         <h1>
                           {item.status &&
                             item.status}
                         </h1>
                       </div>
-                      <div className="border-2 flex justify-end items-start h-fit w-full gap-x-2">
+                      <div className=" flex justify-end items-start h-fit w-full gap-x-2">
                         <h1>Fechas: </h1>
                         <h1>
                           {item.fecha &&
@@ -127,8 +126,8 @@ export default function ModalIntelligentInfo({ item }) {
                       </div>
                     </div>
 
-                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-3">
-                      <div className="border-2 flex justify-start items-start h-fit w-56 gap-x-2">
+                    <div className=" flex justify-start items-start h-fit w-full gap-x-3">
+                      <div className="flex justify-start items-start h-fit w-56 gap-x-2">
                         <h1>Contacto: </h1>
                         <h1>
                           {item.tipoContacto &&
@@ -136,7 +135,7 @@ export default function ModalIntelligentInfo({ item }) {
                         </h1>
                       </div>
                     </div>
-                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-2">
+                    <div className="flex justify-start items-start h-fit w-full gap-x-2">
                       <h1>Observación: </h1>
                       <h1>
                         {item.observacion &&
@@ -146,7 +145,7 @@ export default function ModalIntelligentInfo({ item }) {
                   </div>
                 ))
               ) : (
-                <div className="border-2 flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll">
+                <div className=" flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll text-white">
                   <h1>No hay observaciones disponibles</h1>
                 </div>
               )}

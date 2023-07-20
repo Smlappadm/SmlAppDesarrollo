@@ -385,7 +385,6 @@ const VendedoresHistory = () => {
               ) : (
                 ""
               )}
-
             </div>
           </div>
 
@@ -402,12 +401,12 @@ const VendedoresHistory = () => {
           </motion.div>
 
           {currentCard && currentCard.length ? (
-                                    <motion.div
-                                    initial={{ opacity: 0, y: "40px" }}
-                                    whileInView={{ y: "20px", opacity: 1 }}
-                                    transition={{ duration: 0.6, delay: 0 }}
-                                    className={style.table}
-                                  >
+            <motion.div
+              initial={{ opacity: 0, y: "30px" }}
+              whileInView={{ y: "10px", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className={style.table}
+            >
               <div className="flex justify-start items-center  mx-6">
                 <button
                   className="text-start w-[20%] px-3"
@@ -415,32 +414,14 @@ const VendedoresHistory = () => {
                 >
                   Nombre
                 </button>
-                <label
-                  className="text-start w-[15%] px-3"
-                >
-                  Profesión
-                </label>
-                <label
-                  className="text-start w-[10%] px-3"
-                >
-                  País
-                </label>
+                <label className="text-start w-[15%] px-3">Profesión</label>
+                <label className="text-start w-[10%] px-3">País</label>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
                 <label className="text-center w-[15%] ">Teléfono</label>
-                <label
-                  className="  w-[10%] text-center"
-                >
-                  Nivel
-                </label>
-                <label
-                  className="text-center w-[12%]"
-                >
-                  Estado
-                </label>
-                <label
-                  className="text-center w-[8%]"
-                ></label>
+                <label className="  w-[10%] text-center">Nivel</label>
+                <label className="text-center w-[12%]">Estado</label>
+                <label className="text-center w-[8%]"></label>
               </div>
 
               <div className="">
@@ -448,7 +429,7 @@ const VendedoresHistory = () => {
                   currentCard.map((item, index) => (
                     <div
                       key={item._id}
-                      className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
+                      className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 h-11 rounded-lg"
                     >
                       <div className=" w-[20%] flex justify-start items-center  p-0 ">
                         <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
@@ -498,15 +479,20 @@ const VendedoresHistory = () => {
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
                             className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
-                            >
+                          >
                             {item.telephone}
                           </p>
-                          <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
+                          <a
+                            href={`http://wa.me/${item.telephone.replace(
+                              /\s+/g,
+                              ""
+                            )}`}
+                            target="blanck"
+                          >
+                            <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
                           </a>
-
-                            </div>
                         </div>
+                      </div>
                       <div className=" w-[10%] flex justify-center items-center p-0">
                         {item.level !== "incidencia" ? (
                           <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
@@ -526,7 +512,7 @@ const VendedoresHistory = () => {
                         )}
                         {item.status === "No responde" && (
                           <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Sin responder
+                            Sin contestar
                           </p>
                         )}
                         {item.status === "Rechazado" && (
@@ -534,16 +520,26 @@ const VendedoresHistory = () => {
                             Rechazado
                           </p>
                         )}
-                        {item.status === "Agendar 2do llamado" && (
+                        {item.status === "Agenda llamada" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>En Proceso</p>
+                            <p>Agenda llamada</p>
                           </div>
                         )}
-                        {item.status === "Contratando" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contratando</p>
+                        {item.status === "Contactado" && (
+                          <div className="bg-[#219bac] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contactado</p>
                           </div>
                         )}
+                        {item.status === "A pagar" && (
+                          <div className="bg-[#972892] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>A pagar</p>
+                          </div>
+                        )}
+                        {/* {item.status === "Contratado" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contactado</p>
+                          </div>
+                        )} */}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
                             Incidencia
@@ -553,15 +549,15 @@ const VendedoresHistory = () => {
                       <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
                         {item.status === "Contratado" && (
                           <ModalHistory
-                          item={item}
-                          SendLeadAlertBaja={SendLeadAlertBaja}
-                          SendIncidenceAlert={SendIncidenceAlert}
-                          SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
-                          emailAddress={emailAddress}
-                          cancelModal={cancelModal}
+                            item={item}
+                            SendLeadAlertBaja={SendLeadAlertBaja}
+                            SendIncidenceAlert={SendIncidenceAlert}
+                            SendErrorUpdateAlertBaja={SendErrorUpdateAlertBaja}
+                            emailAddress={emailAddress}
+                            cancelModal={cancelModal}
                           />
-                          )}
-                          <ModalObservaciones item={item}/>
+                        )}
+                        <ModalObservaciones item={item} />
                       </div>
                     </div>
                   ))}

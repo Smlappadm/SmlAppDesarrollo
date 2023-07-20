@@ -29,7 +29,6 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Promosiones from "./MaterialUi/Promosiones";
 
 export const ContratandoLeader = () => {
   const [data, setData] = useState([]);
@@ -233,7 +232,6 @@ export const ContratandoLeader = () => {
           </div>
 
           <div className="flex gap-5">
-            <Promosiones />
             <Button variant="outlined" onClick={downloadCSV}>
               Descargar CSV
             </Button>

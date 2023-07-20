@@ -3,14 +3,21 @@ const Lead = require("../../models/Lead");
 
 // Función para obtener un lead por su dirección de correo electrónico de la aplicación (emailApp)
 const UpdatePromociones = async (body) => {
-  const { promocion1, promocion2, emailApp } = body;
-  const promocion1Date = new Date(promocion1);
-  const promocion2Date = new Date(promocion2);
+  const { promociones, emailApp } = body;
+  // const promocion1Date = new Date(promocion1);
+  // const promocion2Date = new Date(promocion2);
+
+  const promocionesObj = [];
+
+  for (const key in promociones) {
+    promocionesObj.push(new Date(promociones[key]));
+  }
+  console.log(promocionesObj);
 
   // Busca un único registro de lead en la colección 'Lead' que coincida con la dirección de correo electrónico de la aplicación proporcionada (emailApp)
   const client = await Lead.findOneAndUpdate(
     { emailApp },
-    { promocion1: promocion1Date, promocion2: promocion2Date },
+    { promociones: promocionesObj },
     { new: true }
   );
 

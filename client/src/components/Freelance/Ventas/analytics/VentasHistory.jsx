@@ -276,7 +276,7 @@ const VentasHistory = () => {
       <Nav />
 
       <div className="flex flex-col justify-between items-center w-screen  z-0">
-      {showCopiedMessage && (
+        {showCopiedMessage && (
           <p className="absolute w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-32 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
             Copiado!
           </p>
@@ -284,7 +284,7 @@ const VentasHistory = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-          <motion.h1
+            <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0 }}
@@ -293,7 +293,7 @@ const VentasHistory = () => {
               Historial
             </motion.h1>
             <div className="flex gap-7 ">
-            <Link to={"/ventas-dashboard"}>
+              <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
               <Link to={"/ventas-agenda"}>
@@ -364,16 +364,15 @@ const VentasHistory = () => {
               ) : (
                 ""
               )}
-
             </div>
           </div>
 
           <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
-            >
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
+          >
             <InputRunner
               getVendedorAllLeads={getVendedorAllLeads}
               emailUser={email}
@@ -381,12 +380,12 @@ const VentasHistory = () => {
           </motion.div>
 
           {currentCard && currentCard.length ? (
-                        <motion.div
-                        initial={{ opacity: 0, y: "40px" }}
-                        whileInView={{ y: "20px", opacity: 1 }}
-                        transition={{ duration: 0.6, delay: 0 }}
-                        className={style.table}
-                      >
+            <motion.div
+              initial={{ opacity: 0, y: "30px" }}
+              whileInView={{ y: "10px", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className={style.table}
+            >
               <div className="flex justify-start items-center  mx-6">
                 <button
                   className="text-start w-[20%] px-3"
@@ -394,32 +393,14 @@ const VentasHistory = () => {
                 >
                   Nombre
                 </button>
-                <label
-                  className="text-start w-[15%] px-3"
-                >
-                  Profesión
-                </label>
-                <label
-                  className="text-start w-[10%] px-3"
-                >
-                  País
-                </label>
+                <label className="text-start w-[15%] px-3">Profesión</label>
+                <label className="text-start w-[10%] px-3">País</label>
                 <label className="text-center w-[5%] ">Email</label>
                 <label className="text-center w-[5%] ">Instagram</label>
                 <label className="text-center w-[15%] ">Teléfono</label>
-                <label
-                  className="  w-[10%] text-center"
-                >
-                  Nivel
-                </label>
-                <label
-                  className="text-center w-[12%]"
-                >
-                  Estado
-                </label>
-                <label
-                  className="text-center w-[8%]"
-                ></label>
+                <label className="  w-[10%] text-center">Nivel</label>
+                <label className="text-center w-[12%]">Estado</label>
+                <label className="text-center w-[8%]"></label>
               </div>
 
               <div className="">
@@ -427,7 +408,7 @@ const VentasHistory = () => {
                   currentCard.map((item, index) => (
                     <div
                       key={item._id}
-                      className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 min-h-14 rounded-lg"
+                      className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 h-11 rounded-lg"
                     >
                       <div className=" w-[20%] flex justify-start items-center  p-0 ">
                         <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
@@ -473,18 +454,23 @@ const VentasHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <div className="flex w-full justify-center items-center gap-2 relative">
+                        <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
-                            className="border-2 text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
-                            >
+                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                          >
                             {item.telephone}
                           </p>
-                          <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
+                          <a
+                            href={`http://wa.me/${item.telephone.replace(
+                              /\s+/g,
+                              ""
+                            )}`}
+                            target="blanck"
+                          >
+                            <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
                           </a>
-
-                            </div>
+                        </div>
                       </div>
                       <div className=" w-[10%] flex justify-center items-center p-0">
                         {item.level !== "incidencia" ? (
@@ -505,7 +491,7 @@ const VentasHistory = () => {
                         )}
                         {item.status === "No responde" && (
                           <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Sin responder
+                            Sin contestar
                           </p>
                         )}
                         {item.status === "Rechazado" && (
@@ -513,14 +499,19 @@ const VentasHistory = () => {
                             Rechazado
                           </p>
                         )}
-                                                {item.status === "Contratando" && (
+                        {item.status === "Agenda llamada" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contratando</p>
+                            <p>Agenda llamada</p>
                           </div>
                         )}
-                        {item.status === "Agendar 2do llamado" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>En proceso</p>
+                        {item.status === "Contactado" && (
+                          <div className="bg-[#219bac] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contactado</p>
+                          </div>
+                        )}
+                        {item.status === "A pagar" && (
+                          <div className="bg-[#972892] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>A pagar</p>
                           </div>
                         )}
                         {item.level === "incidencia" && (
@@ -540,7 +531,7 @@ const VentasHistory = () => {
                             cancelModal={cancelModal}
                           />
                         )}
-                        <ModalObservaciones item={item}/>
+                        <ModalObservaciones item={item} />
                       </div>
                     </div>
                   ))}

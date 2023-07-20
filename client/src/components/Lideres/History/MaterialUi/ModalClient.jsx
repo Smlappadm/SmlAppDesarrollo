@@ -254,16 +254,16 @@ export default function BasicModal({ modalItems, open, handleClose }) {
               >
                 <div className="font-semibold flex gap-3">
                   <p>Vendedor:</p>
-                  <p className="font-normal">{modalItems.corredor_name}</p>
+                  <p className="font-normal">{modalItems.vendedor_name}</p>
                 </div>
                 <div className="font-semibold flex gap-3">
                   <p>Vendedor Email:</p>
-                  <p className="font-normal">{modalItems.corredor}</p>
+                  <p className="font-normal">{modalItems.vendedor}</p>
                 </div>
                 <div className="font-semibold flex gap-3">
                   <p>Clasificado:</p>
                   <p className="font-normal">
-                    {funcionHorario(modalItems.updateCorredor)}
+                    {funcionHorario(modalItems.updateVendedor)}
                   </p>
                 </div>
                 {modalItems.updateNoResponde && (

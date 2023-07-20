@@ -420,9 +420,9 @@ export const LideresHistory = () => {
                         ) : (
                           ""
                         )}
-                        {item.status === "Agendar 2do llamado" ? (
+                        {item.status === "Agenda llamada" ? (
                           <Text className="bg-[#483dda]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
-                            Agendar 2do llamado
+                            Agenda llamada
                           </Text>
                         ) : (
                           ""
@@ -431,6 +431,20 @@ export const LideresHistory = () => {
                         {item.status === "Rechazado" ? (
                           <Text className="bg-[#ac4242] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
                             Rechazado
+                          </Text>
+                        ) : (
+                          ""
+                        )}
+                        {item.status === "Contratando" ? (
+                          <Text className="bg-[#e5fc18] text-[#000000] px-2 py-1.5 rounded-xl text-center w-48">
+                            Contactado
+                          </Text>
+                        ) : (
+                          ""
+                        )}
+                        {item.status === "No responde" ? (
+                          <Text className="bg-[#2148b4] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                            No responde
                           </Text>
                         ) : (
                           ""
