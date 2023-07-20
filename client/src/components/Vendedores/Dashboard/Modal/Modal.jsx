@@ -117,7 +117,7 @@ function ChildModal({
         (statusObj.status_op = llamadoVenta.diaHora);
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
-        contacto: llamadoVenta.contacto,
+        // contacto: statusObj.observaciones.hableCon,
         observaciones: llamadoVenta.observaciones,
         dateObject: {
           hora: llamadoVenta.hora,
@@ -127,6 +127,20 @@ function ChildModal({
           year: llamadoVenta.year,
         },
       };
+
+      statusObj.observaciones = {
+        ...statusObj.observaciones,
+        dia_hora: llamadoVenta.diaHora,
+        dateObject: {
+          hora: llamadoVenta.hora,
+          minutos: llamadoVenta.minutos,
+          dia: llamadoVenta.dia,
+          mes: llamadoVenta.mes,
+          year: llamadoVenta.year,
+        },
+      };
+    } else {
+      statusObj.llamada_venta = {}
     }
 
     let dataVendedor = {};
@@ -645,8 +659,6 @@ export default function NestedModal({
   });
 
   const [llamadoVenta, setLlamadoVenta] = React.useState({
-    contacto: "",
-    observaciones: "",
     dia: dateHour.$D,
     mes: dateHour.$M + 1,
     year: dateHour.$y,
@@ -760,14 +772,13 @@ export default function NestedModal({
     await setDateHour({ ...date });
   };
   const handleLlamadoVentaChange = (event) => {
-    console.log
     if (event) {
       const value = event.target.value;
       const property = event.target.name;
       setLlamadoVenta({
         ...llamadoVenta,
         [property]: value,
-        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
+        diaHora: `${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} - ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
@@ -785,7 +796,7 @@ export default function NestedModal({
     } else {
       setLlamadoVenta({
         ...llamadoVenta,
-        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
+        diaHora: `${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} - ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
