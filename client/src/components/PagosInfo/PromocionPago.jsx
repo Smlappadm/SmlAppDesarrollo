@@ -182,6 +182,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     //   setTiempoRestante1(diferenciaEnSegundos1);
     //   setTiempoRestante2(diferenciaEnSegundos2);
     // }
+
     if (
       clienteEmpresa &&
       clienteEmpresa?.promociones &&
@@ -189,21 +190,21 @@ export default function PromocionPago({ tamañoPantalla }) {
     ) {
       const nuevosTiemposRestantes = {}; // Objeto para almacenar los nuevos tiempos restantes
       const fechaActual = new Date();
-      let fechaAnterior = 0;
+      let fechaAnterior = null;
+      let fechaAnteriorSegundos = 0; // Inicializamos en 0
       clienteEmpresa.promociones.forEach((promocion, index) => {
-        const time = new Date(index !== 0 && promocion);
-        const diferenciaEnMilisegundos =
-          time.getTime() + fechaAnterior - fechaActual.getTime();
+        const time = new Date(promocion);
+        const diferenciaEnMilisegundos = time.getTime() - fechaActual.getTime();
         const diferenciaEnSegundos = Math.floor(
           diferenciaEnMilisegundos / 1000
         );
+        const tiempoAcumulado = diferenciaEnSegundos + fechaAnteriorSegundos;
         if (index !== 0) {
           nuevosTiemposRestantes[`promocion${index}`] = diferenciaEnSegundos;
         }
-        fechaAnterior = time;
-        console.log(fechaAnterior);
-        console.log(fechaActual);
+        fechaAnteriorSegundos = tiempoAcumulado; // Actualizamos el valor de fechaAnteriorSegundos para la próxima iteración
         console.log(time);
+        console.log(fechaAnterior);
       });
       // Actualizar el estado tiempoRestante con los nuevos tiempos restantes
       setTiempoRestante(nuevosTiemposRestantes);
@@ -238,32 +239,47 @@ export default function PromocionPago({ tamañoPantalla }) {
     // return () => clearInterval(interval);
     // Función para actualizar los tiempos restantes de las promociones
     // Función para actualizar el tiempo restante de una promoción específica
-    const actualizarTiempoRestante = (promocionKey) => {
+    const actualizarTiemposRestantes = () => {
       setTiempoRestante((prevTiempos) => {
         const nuevosTiempos = { ...prevTiempos }; // Crear una copia del estado actual
 
-        // Restar 1 segundo a la promoción específica, si es mayor que cero
-        if (nuevosTiempos[promocionKey] > 0) {
-          nuevosTiempos[promocionKey] = nuevosTiempos[promocionKey] - 1;
+        // Variable para rastrear si todas las promociones han llegado a cero
+        let todasPromocionesCero = true;
+
+        // Iterar sobre todas las promociones
+        for (let i = 1; i <= 10; i++) {
+          const promocionKey = `promocion${i}`;
+          const siguientePromocionKey = `promocion${i + 1}`;
+
+          if (nuevosTiempos[promocionKey] > 0) {
+            // Restar 1 segundo a la promoción actual
+            nuevosTiempos[promocionKey] = nuevosTiempos[promocionKey] - 1;
+            todasPromocionesCero = false; // Al menos una promoción no ha llegado a cero
+          } else if (
+            siguientePromocionKey &&
+            nuevosTiempos[siguientePromocionKey] > 0
+          ) {
+            // Si la promoción actual llegó a cero y la siguiente promoción existe y es mayor que cero, restar 1 segundo a la siguiente promoción
+            nuevosTiempos[siguientePromocionKey] =
+              nuevosTiempos[siguientePromocionKey] - 1;
+            todasPromocionesCero = false; // Al menos una promoción no ha llegado a cero
+          }
+        }
+
+        // Detener el intervalo si todas las promociones han llegado a cero
+        if (todasPromocionesCero) {
+          clearInterval(interval);
         }
 
         return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
       });
     };
 
-    // Iniciar un bucle setInterval para cada promoción
-    for (let i = 1; i <= 3; i++) {
-      const promocionKey = `promocion${i}`;
-      if (tiempoRestante[promocionKey] > 0) {
-        const interval = setInterval(() => {
-          actualizarTiempoRestante(promocionKey);
-        }, 1000);
-        // Limpia el intervalo cuando el componente se desmonte o cuando la promoción llegue a cero
-        return () => {
-          clearInterval(interval);
-        };
-      }
-    }
+    // Actualizar los tiempos restantes cada 1000 ms (1 segundo)
+    const interval = setInterval(actualizarTiemposRestantes, 1000);
+
+    // Limpiar el intervalo cuando el componente se desmonte
+    return () => clearInterval(interval);
   }, [cliente]);
 
   // Función para convertir segundos a formato HH:mm:ss
