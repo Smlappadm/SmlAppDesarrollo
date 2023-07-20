@@ -11,7 +11,7 @@ import {
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
 
-export default function InputRunner({getLeadClasificacion, getLeadCorredores, email, corredorName }) {
+export default function InputRunner({getLeadClasificacion, getLeadCorredores, email, names }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [category, setCategory] = useState("");
@@ -51,7 +51,7 @@ export default function InputRunner({getLeadClasificacion, getLeadCorredores, em
     dispatch(
       getLeadCorredores(
         email,
-        corredorName,
+        names,
         profesion,
         category,
         country,

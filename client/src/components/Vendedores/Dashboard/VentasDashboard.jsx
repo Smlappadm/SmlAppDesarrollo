@@ -161,6 +161,18 @@ const VentasDashboard = () => {
     setSaveEmailApp(email);
   };
 
+  const funcionHorario = (horario) => {
+    const fechaHoraISO = horario;
+
+    const fechaHora = new Date(fechaHoraISO);
+
+    const opciones = { hour12: false };
+
+    const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
+
+    return fechaHoraLocal;
+  };
+
   return (
     <>
       <Nav />
@@ -234,7 +246,7 @@ const VentasDashboard = () => {
                     >
                       Nivel
                     </button>
-                    <label className=" text-center w-[13%] ">Última Info</label>
+                    <label className=" text-center w-[13%] ">Agenda</label>
                     <label className=" text-center w-[15%] ">Estado</label>
                     <label className=" text-center w-[9%] "></label>
                   </div>
@@ -290,7 +302,7 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
-                        <div className="flex w-full justify-center items-center gap-2 relative">
+                          <div className="flex w-full justify-center items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
                               className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
@@ -331,7 +343,7 @@ const VentasDashboard = () => {
                             </p>
                           )} */}
 
-                          {item.observaciones_ventas.contacto ? (
+                          {/* {item.observaciones_ventas.contacto ? (
                             <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               {item.observaciones_ventas.contacto}
                             </p>
@@ -339,7 +351,7 @@ const VentasDashboard = () => {
                             <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
                               Sin contacto
                             </p>
-                          )}
+                          )} */}
 
                           {/* <div className=" flex justify-center items-center">
                             {typeof item.llamada_venta.dia_hora !==
@@ -355,17 +367,27 @@ const VentasDashboard = () => {
                             )}
                           </div> */}
                           <div className=" flex justify-center items-center">
-                            {item.observaciones_ventas.fecha ? (
-                              <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                {item.observaciones_ventas.fecha}
-                              </p>
-                            ) : (
-                              <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                Sin Día/Hora
-                              </p>
-                            )}
+                            {item.status === "Agenda llamada" &&
+                              item.llamada_venta?.dia_hora[0] !== "u" && (
+                                <p className=" w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  {item.llamada_venta.dia_hora}
+                                </p>
+                              )}
+                            {item.status === "Agenda llamada" &&
+                              item.llamada_venta?.dia_hora[0] === "u" && (
+                                <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  Sin Día/Hora
+                                </p>
+                              )}
                           </div>
 
+                          {item.status === "No responde" && (
+                            // <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
+                            <label className="text-[14px]">
+                              {funcionHorario(item.updatedAt)}
+                            </label>
+                            // </div>
+                          )}
                           {/* <AiOutlineInfoCircle
                             className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer "
                             onClick={() => {

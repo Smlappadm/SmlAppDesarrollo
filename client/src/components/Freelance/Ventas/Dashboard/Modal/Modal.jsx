@@ -116,7 +116,7 @@ function ChildModal({
         },
       });
 
-      if (updatedEmailApp === "-" || updatedEmailApp === "") {
+      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
         saveEmailAppFunction(updatedPagos);
       } else {
         saveEmailAppFunction(updatedPagos);
@@ -143,7 +143,7 @@ function ChildModal({
         (statusObj.status_op = llamadoVenta.diaHora);
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
-        contacto: llamadoVenta.contacto,
+        // contacto: statusObj.observaciones.hableCon,
         observaciones: llamadoVenta.observaciones,
         dateObject: {
           hora: llamadoVenta.hora,
@@ -153,6 +153,20 @@ function ChildModal({
           year: llamadoVenta.year,
         },
       };
+
+      statusObj.observaciones = {
+        ...statusObj.observaciones,
+        dia_hora: llamadoVenta.diaHora,
+        dateObject: {
+          hora: llamadoVenta.hora,
+          minutos: llamadoVenta.minutos,
+          dia: llamadoVenta.dia,
+          mes: llamadoVenta.mes,
+          year: llamadoVenta.year,
+        },
+      };
+    } else {
+      statusObj.llamada_venta = {}
     }
 
     let dataVendedor = {};
@@ -669,8 +683,6 @@ export default function NestedModal({
   });
 
   const [llamadoVenta, setLlamadoVenta] = React.useState({
-    contacto: "",
-    observaciones: "",
     dia: dateHour.$D,
     mes: dateHour.$M + 1,
     year: dateHour.$y,
@@ -690,6 +702,8 @@ export default function NestedModal({
   }, [updatedEmail]);
 
   const handleOpen = () => {
+    statusObj.observaciones.tipoContacto = ""
+    statusObj.observaciones.observacion = ""
     setOpen(true);
   };
   const handleClose = () => {
@@ -798,7 +812,7 @@ export default function NestedModal({
       setLlamadoVenta({
         ...llamadoVenta,
         [property]: value,
-        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
+        diaHora: `${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} - ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
@@ -816,7 +830,7 @@ export default function NestedModal({
     } else {
       setLlamadoVenta({
         ...llamadoVenta,
-        diaHora: `Dia: ${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} Hora: ${
+        diaHora: `${dateHour.$D}/${dateHour.$M + 1}/${dateHour.$y} - ${
           dateHour.$H && String(dateHour.$H).length === 1
             ? `0${dateHour.$H}`
             : dateHour.$H
@@ -1678,7 +1692,7 @@ export default function NestedModal({
                   </div>
                 </div>
               )} */}
-              {statusObj.status === "Agendar otro llamado" && (
+            {statusObj.status === "Agendar otro llamado" && (
               <div className="flex flex-col justify-center items-center">
                 {/* <label
                   htmlFor="last_name"
