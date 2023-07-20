@@ -120,7 +120,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     setCliente(clienteEmpresa);
-    console.log(clienteEmpresa);
     const fechaActual = new Date();
     const ActualMas2Horas = new Date(
       fechaActual.getTime() + 2 * 60 * 60 * 1000
