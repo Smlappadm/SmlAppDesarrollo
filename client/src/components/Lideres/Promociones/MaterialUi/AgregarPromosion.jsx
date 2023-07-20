@@ -53,7 +53,7 @@ export default function AgregarPromosion() {
   return (
     <div>
       <Button variant="outlined" onClick={handleOpen}>
-        Añadir Promosiones
+        Añadir Promociones
       </Button>
       <Modal
         open={open}
