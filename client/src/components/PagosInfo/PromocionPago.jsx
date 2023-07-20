@@ -155,8 +155,8 @@ export default function PromocionPago({ tamañoPantalla }) {
     };
     if (clienteEmpresa && !clienteEmpresa?.promocion1) {
       console.log("si");
+      seteoPromociones(body);
     }
-    seteoPromociones(body);
     if (clienteEmpresa?.promocion1) {
       const time1 = new Date(clienteEmpresa.promocion1);
       const time2 = new Date(clienteEmpresa.promocion2 ?? 0);
