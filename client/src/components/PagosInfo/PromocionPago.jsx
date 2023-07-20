@@ -75,6 +75,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
         const cuota = promo.promocion.cuota || "default";
+        const difereciaHoras = promo.promocion.hora || "0";
 
         if (!result[hora]) {
           result[hora] = {
@@ -89,6 +90,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
+        result[hora].segundos = 
       }
 
       return result;
@@ -100,6 +102,16 @@ export default function PromocionPago({ tamañoPantalla }) {
     });
     setPromos(sortedCustomPromos);
   }, [promociones]);
+
+
+const ObtenerFecha = (horas) => {
+  const fechaActual = new Date();
+  const ActualMas2Horas = new Date(
+    fechaActual.getTime() + horas * 60 * 60 * 1000
+  );
+}
+
+
 
   useEffect(() => {
     const horas = Object.keys(promos);
