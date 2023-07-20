@@ -14,9 +14,9 @@ const findLeadCorredorName = async (name) => {
     // El campo "view" debe ser igual a true
     view: true,
 
-    // El campo "status" no debe estar en el conjunto ["No responde", "Agendar 2do llamado", "incidencia"]
+    // El campo "status" no debe estar en el conjunto ["No responde", "Agenda llamada", "incidencia"]
     status: {
-      $nin: ["No responde", "Agendar 2do llamado", "incidencia"],
+      $nin: ["No responde", "Agenda llamada", "incidencia"],
     },
   }).exec();
 
