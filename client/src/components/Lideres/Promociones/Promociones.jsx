@@ -23,11 +23,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPromociones } from "../../../redux/actions";
 
 export const Promociones = () => {
+  const dispatch = useDispatch();
+
+  const { promociones } = useSelector((state) => state);
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    dispatch(getAllPromociones());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setData(promociones);
+  }, [dispatch, data]);
+
+  console.log(promociones);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardXPage, setCardXpage] = useState(8);
+  const [cardXPage, setCardXpage] = useState(12);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
   const currentCard = data && data.slice(indexFirstCard, indexLastCard);
@@ -35,22 +48,12 @@ export const Promociones = () => {
     setCurrentPage(pageNumber);
   };
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllPromociones());
-  }, []);
-
-  const {promociones} = useSelector((state => state))
-
-  console.log(promociones[0].promocion.body.active);
-
   return (
     <>
       <Nav />
-      <Card className="w-full h-full bg-[#222131] rounded-none p-5">
-        <div className="flex justify-between mx-5 mb-10">
-          <div className="flex gap-5">
+      <Card className="w-full h-full  bg-[#222131] rounded-none p-5">
+        <div className="flex  justify-between mx-5 mb-10">
+          <div className="flex gap-5 ">
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Contratando
             </Title>
@@ -96,194 +99,98 @@ export const Promociones = () => {
             <AgregarPromosion />
           </div>
         </div>
-        <div className="w-full">
-          <div className="text-white text-14 font-thin">
-            <div className="flex items-center justify-around px-10 py-3 ">
-              <div className="flex justify-center w-fit items-center p-0">
-                <button>
-                  <Text className="text-start w-10 p-0 text-white">
-                    Promoción
-                  </Text>
-                </button>
-              </div>
-              <div className="flex justify-center w-fit items-center p-0">
-                <button>
-                  <Text className="text-start w-10 p-0 text-white">Tiempo</Text>
-                </button>
-              </div>
-              <div className="flex justify-center w-fit items-center p-0">
-                <button>
-                  <Text className="text-center w-24 p-0 text-white">
-                    Link de Stripe
-                  </Text>
-                </button>
-              </div>
-              <div className="flex justify-center w-fit items-center p-0">
-                <Text className="text-center w-24 p-0 text-white">
-                  Monto Total
-                </Text>
-              </div>
-              <div className="flex justify-center w-fit items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Cuota</Text>
-              </div>
-              <div className="flex justify-center w-fit items-center p-0">
-                <Text className="text-center w-24 p-0 text-white">
-                  Valor Cuotas
-                </Text>
-              </div>
+        <div className="text-white  text-14 font-thin">
+          <div className="flex rounded-lg items-center px-10 py-3 ">
+            <div className="flex  justify-center w-fit items-center p-0 ml-28">
+              <Text className="text-start w-fit p-0 text-white">Promoción</Text>
+            </div>
+
+            <div className="flex  justify-center w-fit items-center p-0 ml-96">
+              <Text className="text-center w-fit p-0 text-white">
+                Link de Stripe
+              </Text>
+            </div>
+            <div className="flex  justify-center w-fit items-center p-0 ml-[13.5rem]">
+              <Text className="text-start w-fit p-0 text-white">
+                Horas de Promoción
+              </Text>
+            </div>
+            <div className="flex  justify-center w-fit items-center p-0 ml-10">
+              <Text className="text-center w-fit p-0 text-white">
+                Monto Total
+              </Text>
+            </div>
+            <div className="flex  justify-center w-fit items-center p-0 ml-[4.5rem]">
+              <Text className="text-center w-fit p-0 text-white">Cuota</Text>
+            </div>
+            <div className="flex  justify-center w-fit items-center p-0  ml-[4.5rem]">
+              <Text className="text-center w-fit p-0 text-white">
+                Valor Cuotas
+              </Text>
+            </div>
+            <div className="flex  justify-center w-fit items-center p-0 ml-20">
+              <Text className="text-center w-fit p-0 text-white">Estado</Text>
             </div>
           </div>
+        </div>
 
-          <div>
-            {currentCard && currentCard.length > 0 ? (
-              currentCard.map((item, index) => (
-                <div
-                  key={item._id}
-                  className="flex bg-[#39394b] text-gray-400 text-sm p-3 rounded-lg h-14 my-5"
-                >
-                  <div className="w-full flex justify-around items-center">
-                    <button
-                      className="w-full flex justify-around items-center"
-                      onClick={(index) => handleOpen(item, index)}
-                    >
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
-                          <Text className=" text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.name}
-                          </Text>
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center p-0">
-                        <div className="w-28 text-ellipsis  flex justify-start items-center p-0 ">
-                          <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.profesion}
-                          </Text>
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center p-0 ">
-                        {item.level !== "incidencia" ? (
-                          <div className="flex w-6 text-ellipsis justify-start items-center p-0">
-                            <p className="bg-[#6254ff] text-[#ffffff] w-6 rounded flex items-center justify-center  ">
-                              {item.level}
-                            </p>
-                          </div>
-                        ) : (
-                          <div className="bg-[#6254ff] text-[#e8e8e9] w-6 rounded  flex items-center justify-center text-24  ">
-                            <CiWarning className="text-[#fdfa3a] p-0  font-bold" />
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="flex w-6 text-ellipsis justify-start items-center p-0 ">
-                          {item.url !== "-" ? (
-                            <div className=" flex opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
-                              <div>
-                                <CiGlobe className={style.mail} />
-                              </div>
-                              <Text>{item.url}</Text>
-                            </div>
-                          ) : (
-                            <div>
-                              <CiGlobe className={style.notMail} />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="flex w-6 text-ellipsis justify-start items-center p-0 ">
-                          {item.email !== "-" ? (
-                            <div className=" flex opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
-                              <div>
-                                <CiMail className={style.mail} />
-                              </div>
-                              <Text>{item.email}</Text>
-                            </div>
-                          ) : (
-                            <div>
-                              <CiMail className={style.notMail} />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="flex w-6 text-ellipsis justify-start items-center p-0 ">
-                          {item.instagram !== "" ? (
-                            <div className=" flex opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
-                              <div>
-                                <CiInstagram className={style.ig} />
-                              </div>
-                              <Text>{item.instagram}</Text>
-                            </div>
-                          ) : (
-                            <div>
-                              <CiInstagram className={style.notIg} />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="flex w-6 text-ellipsis justify-start items-center p-0 ">
-                          {item.telephone !== "" ? (
-                            <div className=" flex opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
-                              <div>
-                                <CiPhone className={style.mail} />
-                              </div>
-                              <p className="">{item.telephone}</p>
-                            </div>
-                          ) : (
-                            <div>
-                              <CiPhone className={style.notMail} />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center p-0">
-                        <div className="w-24 text-ellipsis flex justify-start items-center p-0">
-                          <Text className="text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.updatedAt ? item.updatedAt.slice(0, 10) : "-"}
-                          </Text>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
-                          <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.corredor_name ? item.corredor_name : "-"}
-                          </Text>
-                        </div>
-                      </div>
-                      <div className="flex justify-center items-center p-0 ">
-                        <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
-                          <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.vendedor_name ? item.vendedor_name : "-"}
-                          </Text>
-                        </div>
-                      </div>
-                    </button>
-                    <div className="flex justify-center items-center p-0 mr-6">
-                      {item.status === "Contratando" && (
-                        <div
-                          className="cursor-pointer"
-                          onClick={() =>
-                            changeStatus(item._id, item.status, item.name)
-                          }
-                        >
-                          <Text className="bg-[#c1c41f]  text-[#1f1e1e]   px-2 py-1.5 rounded-xl text-center w-48">
-                            Contratando
-                          </Text>
-                        </div>
-                      )}
-                    </div>
+        {currentCard && currentCard.length > 0 ? (
+          currentCard.map((item, index) => (
+            <div className="w-full mt-4 ">
+              <div
+                key={item.promocion._id}
+                className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around px-10 py-3"
+              >
+                <div className="flex  justify-center items-center p-0 ">
+                  <div className="w-64 flex justify-center items-center ">
+                    <Text className=" text-white rounded-full">
+                      {item.promocion.name}
+                    </Text>
                   </div>
                 </div>
-              ))
-            ) : (
-              <div className="flex text- justify-center items-center h-screen">
-                <h1>No se encuentran Leads con este filtro...</h1>
+
+                <div className="flex  justify-center items-center p-0">
+                  <div className="w-[32rem] text-ellipsis  flex justify-center items-center p-0 ">
+                    <Text className="text-white">{item.promocion.link}</Text>
+                  </div>
+                </div>
+                <div className="flex  justify-center items-center p-0">
+                  <div className="w-20 text-ellipsis  flex justify-center items-center p-0 ">
+                    <Text className="text-white">{item.promocion.hora}</Text>
+                  </div>
+                </div>
+                <div className="flex  justify-center items-center p-0">
+                  <div className="w-20 text-ellipsis  flex justify-center items-center p-0 ">
+                    <Text className="text-white">{item.promocion.monto}</Text>
+                  </div>
+                </div>
+                <div className="flex  justify-center items-center p-0">
+                  <div className="w-20 flex justify-center items-center p-0 ">
+                    <Text className="text-white ">{item.promocion.cuota}</Text>
+                  </div>
+                </div>
+                <div className="flex  justify-center items-center p-0">
+                  <div className="w-20 flex justify-center items-center p-0 ">
+                    <Text className="text-white">
+                      {item.promocion.valorCuota}
+                    </Text>
+                  </div>
+                </div>
+                <div className="flex  justify-center items-center p-0">
+                  <div className="w-28 flex justify-center items-center p-0 ">
+                    <Text className="text-white">
+                      {item.promocion.active ? "Activo" : "Inactivo"}
+                    </Text>
+                  </div>
+                </div>
               </div>
-            )}
+            </div>
+          ))
+        ) : (
+          <div className="flex text- justify-center items-center h-screen">
+            <h1>No se encuentran promociones Cargadas</h1>
           </div>
-        </div>
+        )}
         {data && data.length > 8 ? (
           <PaginationOutlined
             pageStyle={pageStyle}
