@@ -334,57 +334,56 @@ export default function PromocionPago({ tamañoPantalla }) {
             return (
               <div key={index}>
                 {tiempoRestante[`promocion${index}`] &&
-                  tiempoRestante[`promocion${index}`] !== 0 &&
-                  tiempoRestante[`promocion${index}`] > 0 &&
-                  tiempoRestante[`promocion${index + 1}`] !== 0 && (
-                    <div
-                      className={
-                        tamañoPantalla === "Pequeña"
-                          ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                          : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
-                      }
-                    >
-                      <p className="text-white">PROMOCIÓN</p>
-                      <p className="text-white text-3xl">
-                        {formatTiempoRestante(
-                          tiempoRestante[`promocion${index}`]
-                        )}
-                      </p>
-                      <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
-                        {promo.hora === "1" ? (
-                          <p className="text-white text-3xl text-center">
-                            Desc. -1000€ ({promo.hora} hora)
-                          </p>
-                        ) : (
-                          <p className="text-white text-3xl text-center">
-                            Desc. -1000€ ({promo.hora} horas)
-                          </p>
-                        )}
-                      </div>
-                      <p className="text-white">CUOTAS</p>
-                      <div className="flex justify-evenly items-center text-white ">
-                        {Object.keys(promo.pagos).map((cuota, index) => (
-                          <div
-                            key={cuota}
-                            className={
-                              cuotas === cuota
-                                ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
-                                : "rounded-md border border-white mr-2 font-bold"
-                            }
-                            onClick={() => CambiarCuota(cuota)}
-                          >
-                            <p className="py-3 px-5">
-                              {Object.keys(promo.pagos)[index]}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                      <p className="text-white">DETALLE</p>
-                      <p className="text-white text-center">
-                        {promo.pagos[cuotas]}
-                      </p>
+                tiempoRestante[`promocion${index}`] !== 0 &&
+                tiempoRestante[`promocion${index}`] > 0 ? (
+                  <div
+                    className={
+                      tamañoPantalla === "Pequeña"
+                        ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                        : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+                    }
+                  >
+                    <p className="text-white">PROMOCIÓN</p>
+                    <p className="text-white text-3xl">
+                      {formatTiempoRestante(
+                        tiempoRestante[`promocion${index}`]
+                      )}
+                    </p>
+                    <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+                      {promo.hora === "1" ? (
+                        <p className="text-white text-3xl text-center">
+                          Desc. -1000€ ({promo.hora} hora)
+                        </p>
+                      ) : (
+                        <p className="text-white text-3xl text-center">
+                          Desc. -1000€ ({promo.hora} horas)
+                        </p>
+                      )}
                     </div>
-                  )}
+                    <p className="text-white">CUOTAS</p>
+                    <div className="flex justify-evenly items-center text-white ">
+                      {Object.keys(promo.pagos).map((cuota, index) => (
+                        <div
+                          key={cuota}
+                          className={
+                            cuotas === cuota
+                              ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                              : "rounded-md border border-white mr-2 font-bold"
+                          }
+                          onClick={() => CambiarCuota(cuota)}
+                        >
+                          <p className="py-3 px-5">
+                            {Object.keys(promo.pagos)[index]}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-white">DETALLE</p>
+                    <p className="text-white text-center">
+                      {promo.pagos[cuotas]}
+                    </p>
+                  </div>
+                ) : null}
               </div>
             );
           })}
