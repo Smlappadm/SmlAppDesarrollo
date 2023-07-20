@@ -45,6 +45,7 @@ const LeadSchema = new mongoose.Schema(
         "Sin contactar",
         "Rechazado",
         "Contratado",
+        "A pagar",
         "No responde",
         "Agendar 2do llamado",
         "Contactado",
@@ -227,6 +228,10 @@ const LeadSchema = new mongoose.Schema(
       require: true,
     },
     updateContactado: {
+      type: Date,
+      require: true,
+    },
+    updateAPagar: {
       type: Date,
       require: true,
     },
