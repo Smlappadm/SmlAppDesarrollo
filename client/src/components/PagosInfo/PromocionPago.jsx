@@ -17,6 +17,8 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const { promociones } = useSelector((state) => state);
 
+  const [promos, setPromos] = useState({});
+
   const [promo24horas, setPromo24horas] = useState({
     pagos: {
       1: "Pago único de 4500€",
@@ -69,8 +71,50 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
   useEffect(() => {
-    console.log(promociones);
+    const customPromos = promociones.reduce((result, promo) => {
+      if (promo.promocion && promo.promocion.hora) {
+        const hora = `promo${promo.promocion.hora}horas`;
+        const cuota = promo.promocion.cuota || "default";
+
+        if (!result[hora]) {
+          result[hora] = {
+            pagos: {},
+            links: {},
+          };
+        }
+
+        result[hora].pagos[cuota] =
+          cuota !== "1"
+            ? `${promo.promocion.name}, Total: ${promo.promocion.monto}€` || ""
+            : promo.promocion.name || "";
+        result[hora].links[cuota] = promo.promocion.link || "";
+        result[hora].hora = promo.promocion.hora || "";
+      }
+
+      return result;
+    }, {});
+    const sortedHours = Object.keys(customPromos).sort();
+    const sortedCustomPromos = {};
+    sortedHours.forEach((hour) => {
+      sortedCustomPromos[hour] = customPromos[hour];
+    });
+    setPromos(sortedCustomPromos);
   }, [promociones]);
+
+  useEffect(() => {
+    console.log(promos);
+    const horas = Object.keys(promos);
+
+    console.log(horas);
+    // Creamos un nuevo objeto body con las horas como claves
+    const body = {};
+    let i = 0;
+    horas.forEach((hora) => {
+      i === 0 ? (body[`promocion${i}`] = promos[hora].hora) : "";
+      i += 1;
+    });
+    console.log(body);
+  }, [promos]);
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
@@ -92,7 +136,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       promocion2: fechaCon24Horas,
       emailApp: emailApp,
     };
-    if (clienteEmpresa?.promocion1 === "") {
+    if (clienteEmpresa && clienteEmpresa?.promocion1 === "") {
       console.log("si");
       seteoPromociones(body);
     }

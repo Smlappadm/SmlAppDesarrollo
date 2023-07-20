@@ -14,7 +14,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  height: 500,
+  height: 650,
   bgcolor: "#39394B",
   border: "none",
   boxShadow: 24,
@@ -32,7 +32,6 @@ export default function ModalIntelligentInfo({ item }) {
   const handleClose = () => {
     setOpen(false);
   };
-
 
   const formattedUpdate = () => {
     let fechaYear = "";
@@ -64,15 +63,30 @@ export default function ModalIntelligentInfo({ item }) {
     );
   };
 
+  const funcionHorario = (horario) => {
+    const fechaHoraISO = horario;
+
+    const fechaHora = new Date(fechaHoraISO);
+
+    const opciones = { hour12: false };
+
+    const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
+
+    return fechaHoraLocal;
+  };
+
   return (
     <div>
       <div className="flex gap-4">
-      <div className="relative h-fit w-fit group flex justify-center items-center">
-                    <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
-                      Lead Info AI
-                    </p>
-      <CgFileAdd className="text-[33px] text-[#b3bebd] cursor-pointer" onClick={handleOpen}/>
-      </div>
+        <div className="relative h-fit w-fit group flex justify-center items-center">
+          <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
+            Observaciones
+          </p>
+          <AiOutlineInfoCircle
+            className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer"
+            onClick={handleOpen}
+          />
+        </div>
       </div>
       <Modal
         open={open}
@@ -82,57 +96,62 @@ export default function ModalIntelligentInfo({ item }) {
       >
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
           <div className="flex flex-col items-center justify-center gap-y-7">
-            <h1 className="text-24 text-[#e4e1e1]">Información Cliente</h1>
-            <div className="mb-10 gap-y-3">
-              {item && item.seguidores2000 ? (
-                <div className="flex justify-start items-center">
-                  <p>Seguidores +2000: </p>{" "}
-                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
-                </div>
+            <h1 className="text-24 text-[#e4e1e1]">Historial Obvservaciones</h1>
+
+            <div
+
+              className="border-2 flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll"
+            >
+              {console.log(item)}
+              {console.log(!!(item.observaciones_ventas.observacion !== ""))}
+              {item.observaciones_ventas && item.observaciones_ventas.length > 0 ? (
+                item.observaciones_ventas.map((item, index) => (
+                  <div
+                    key={index}
+                    className="border-2 flex flex-col  justify-center items-center w-[500px] mt-8"
+                  >
+                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-3">
+                      <div className="border-2 flex justify-start items-start h-fit w-56 gap-x-2">
+                        <h1>Status: </h1>
+                        <h1>
+                          {item.status &&
+                            item.status}
+                        </h1>
+                      </div>
+                      <div className="border-2 flex justify-end items-start h-fit w-full gap-x-2">
+                        <h1>Fechas: </h1>
+                        <h1>
+                          {item.fecha &&
+                            funcionHorario(item.fecha)}
+                        </h1>
+                      </div>
+                    </div>
+
+                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-3">
+                      <div className="border-2 flex justify-start items-start h-fit w-56 gap-x-2">
+                        <h1>Contacto: </h1>
+                        <h1>
+                          {item.tipoContacto &&
+                            item.tipoContacto}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-2">
+                      <h1>Observación: </h1>
+                      <h1>
+                        {item.observacion &&
+                          item.observacion}
+                      </h1>
+                    </div>
+                  </div>
+                ))
               ) : (
-                <p>Seguidores +2000: ❌</p>
-              )}
-              {item && item.repercusion ? (
-                <div className="flex justify-start items-center">
-                  <p>Repercusión: </p>{" "}
-                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
+                <div className="border-2 flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll">
+                  <h1>No hay observaciones disponibles</h1>
                 </div>
-              ) : (
-                <p>Repercusión: ❌</p>
-              )}
-              {item && item.contenidoPersonal ? (
-                <div className="flex justify-start items-center">
-                  <p>Contenido Personal: </p>{" "}
-                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
-                </div>
-              ) : (
-                <p>Contenido Personal: ❌</p>
-              )}
-              {item && item.contenidoValor ? (
-                <div className="flex justify-start items-center">
-                  <p>Contenido de Valor: </p>{" "}
-                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
-                </div>
-              ) : (
-                <p>Contenido de Valor: ❌</p>
-              )}
-              {item && item.calidadInstagram ? (
-                <div className="flex justify-start items-center">
-                  <p>Calidad Instagram: </p>{" "}
-                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
-                </div>
-              ) : (
-                <p>Calidad Instagram: ❌</p>
-              )}
-              {item && item.frecuencia ? (
-                <div className="flex justify-start items-center">
-                  <p>Frecuencia: </p>{" "}
-                  <BsCheck className="flex justify-center items-center text-green-500 text-[35px] font-extrabold" />
-                </div>
-              ) : (
-                <p>Frecuencia: ❌</p>
               )}
             </div>
+
             <button
               type="button"
               className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"

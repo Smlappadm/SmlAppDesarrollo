@@ -14,7 +14,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  height: 500,
+  height: 650,
   bgcolor: "#39394B",
   border: "none",
   boxShadow: 24,
@@ -63,6 +63,18 @@ export default function ModalIntelligentInfo({ item }) {
     );
   };
 
+  const funcionHorario = (horario) => {
+    const fechaHoraISO = horario;
+
+    const fechaHora = new Date(fechaHoraISO);
+
+    const opciones = { hour12: false };
+
+    const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
+
+    return fechaHoraLocal;
+  };
+
   return (
     <div>
       <div className="flex gap-4">
@@ -86,22 +98,59 @@ export default function ModalIntelligentInfo({ item }) {
           <div className="flex flex-col items-center justify-center gap-y-7">
             <h1 className="text-24 text-[#e4e1e1]">Historial Obvservaciones</h1>
 
-            {item.observaciones_ventas &&
-              (item.observaciones_ventas.observacion !== "" ||
-                item.observaciones_ventas.tipoContacto !== "") &&
-              item.observaciones_ventas.map((item, index) => (
-                <div
-                  key={index}
-                  className="border-2 flex justify-center items-center h-12 w-fit gap-3"
-                >
+            <div
 
-                  <h1>Contacto: </h1>
-                  <h1>Hola: </h1>
-                  <h1>Observación: </h1>
-                  <h1>Hola: </h1>
+              className="border-2 flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll"
+            >
+              {console.log(item)}
+              {console.log(!!(item.observaciones_ventas.observacion !== ""))}
+              {item.observaciones_ventas && item.observaciones_ventas.length > 0 ? (
+                item.observaciones_ventas.map((item, index) => (
+                  <div
+                    key={index}
+                    className="border-2 flex flex-col  justify-center items-center w-[500px] mt-8"
+                  >
+                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-3">
+                      <div className="border-2 flex justify-start items-start h-fit w-56 gap-x-2">
+                        <h1>Status: </h1>
+                        <h1>
+                          {item.status &&
+                            item.status}
+                        </h1>
+                      </div>
+                      <div className="border-2 flex justify-end items-start h-fit w-full gap-x-2">
+                        <h1>Fechas: </h1>
+                        <h1>
+                          {item.fecha &&
+                            funcionHorario(item.fecha)}
+                        </h1>
+                      </div>
+                    </div>
 
+                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-3">
+                      <div className="border-2 flex justify-start items-start h-fit w-56 gap-x-2">
+                        <h1>Contacto: </h1>
+                        <h1>
+                          {item.tipoContacto &&
+                            item.tipoContacto}
+                        </h1>
+                      </div>
+                    </div>
+                    <div className="border-2 flex justify-start items-start h-fit w-full gap-x-2">
+                      <h1>Observación: </h1>
+                      <h1>
+                        {item.observacion &&
+                          item.observacion}
+                      </h1>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="border-2 flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll">
+                  <h1>No hay observaciones disponibles</h1>
                 </div>
-              ))}
+              )}
+            </div>
 
             <button
               type="button"

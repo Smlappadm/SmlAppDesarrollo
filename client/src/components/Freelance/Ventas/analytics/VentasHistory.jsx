@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { FaHistory } from "react-icons/fa";
+import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "../Dashboard/Select/SelectLevel";
 import SelectStatus from "../Dashboard/Select/SelectStatus";
 import ModalHistory from "./Modal/ModalHistory";
+import ModalObservaciones from "../Dashboard/Modal/ModalObservaciones";
 import { ToastContainer, toast } from "react-toastify";
 
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
@@ -412,12 +413,12 @@ const VentasHistory = () => {
                   Nivel
                 </label>
                 <label
-                  className="text-center w-[17%]"
+                  className="text-center w-[12%]"
                 >
                   Estado
                 </label>
                 <label
-                  className="text-center w-[3%]"
+                  className="text-center w-[8%]"
                 ></label>
               </div>
 
@@ -496,7 +497,7 @@ const VentasHistory = () => {
                           </div>
                         )}
                       </div>
-                      <div className=" w-[17%] flex justify-center items-start p-0">
+                      <div className=" w-[12%] flex justify-center items-start p-0">
                         {item.status === "Contratado" && (
                           <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
                             Contratado
@@ -512,6 +513,11 @@ const VentasHistory = () => {
                             Rechazado
                           </p>
                         )}
+                                                {item.status === "Contratando" && (
+                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>Contratando</p>
+                          </div>
+                        )}
                         {item.status === "Agendar 2do llamado" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
                             <p>En proceso</p>
@@ -523,7 +529,7 @@ const VentasHistory = () => {
                           </p>
                         )}
                       </div>
-                      <div className=" w-[3%] flex justify-start items-start p-0">
+                      <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
                         {item.status === "Contratado" && (
                           <ModalHistory
                             item={item}
@@ -534,6 +540,7 @@ const VentasHistory = () => {
                             cancelModal={cancelModal}
                           />
                         )}
+                        <ModalObservaciones item={item}/>
                       </div>
                     </div>
                   ))}
