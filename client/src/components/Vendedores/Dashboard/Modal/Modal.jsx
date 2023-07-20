@@ -71,7 +71,7 @@ function ChildModal({
     }
 
     
-    if (statusObj.status === "Contratando") {
+    if (statusObj.status === "Contactado") {
       setStatusObj({ ...statusObj, pagoRecibido: false });
     }
     if (statusObj.status === "Contratado") {
@@ -208,7 +208,7 @@ function ChildModal({
     if (statusObj.status === "Contratado") {
       openModalPagoFunction();
     }
-    if (statusObj.status === "Contratando") {
+    if (statusObj.status === "A pagar") {
       openModalPagoFunction();
     }
     statusObj.status = "";
@@ -1424,9 +1424,9 @@ export default function NestedModal({
                   <option disabled="disabled" value="default">
                     Elige uno...
                   </option>
-                  <option value="Agendar otro llamado">En proceso</option>
-                  <option value="Contratando">Contratando</option>
-                  <option value="Contratado">Contratado</option>
+                  <option value="Agendar otro llamado">Agenda llamada</option>
+                  {/* <option value="Contratando">Contratando</option> */}
+                  <option value="A pagar">A pagar</option>
                   <option value="Rechazado">Rechazado</option>
                   <option value="No responde">Sin contestar</option>
                 </select>
@@ -1627,7 +1627,7 @@ export default function NestedModal({
                   </div>
                 </div>
               )}
-            {statusObj.status === "Contratado" && (
+            {statusObj.status === "A pagar" && (
               <div className="flex flex-col items-center justify-center gap-7 mt-8">
                 <div className="flex items-center justify-center gap-2 relative">
                   <label
