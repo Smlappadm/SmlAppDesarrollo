@@ -38,22 +38,23 @@ const CorredoresDashboard = () => {
     false,
   ]);
 
+
   const { corredorLead } = useSelector((state) => state);
-  const { corredor } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
   const user = useUser().user;
+  const mail = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
 
+  localStorage.setItem("email", mail);
   let email = localStorage.getItem("email");
 
   localStorage.setItem("names", fullName);
-
-  let corredorName = localStorage.getItem("corredorName");
+  let names = localStorage.getItem("names");
 
   useEffect(() => {
-    dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
+    dispatch(getLeadCorredores(email, names, "", "", "", ""));
   }, [dispatch, corredor]);
 
   const handleCheckList = (index) => {
@@ -407,7 +408,7 @@ const CorredoresDashboard = () => {
 
       console.log(corredor.name);
       const names = corredor.name;
-      dispatch(getLeadCorredores(email, corredorName, "", "", "", ""));
+      dispatch(getLeadCorredores(email, names, "", "", "", ""));
 
       SendLeadsSuccess();
     } catch (error) {
@@ -448,7 +449,7 @@ const CorredoresDashboard = () => {
                 <InputRunner
                   getLeadCorredores={getLeadCorredores}
                   email={email}
-                  corredorName={corredorName}
+                  names={names}
                 />
               </div>
             </div>
