@@ -214,7 +214,7 @@ const VentasDashboard = () => {
             <>
               {vendedoresVentasDashboard.length > 0 ? (
                 <motion.div
-                  initial={{ opacity: 0, y: "40px" }}
+                  initial={{ opacity: 0, y: "30px" }}
                   whileInView={{ y: "10px", opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0 }}
                   className={style.table}
@@ -383,7 +383,7 @@ const VentasDashboard = () => {
                         )}
                         {item.status === "No responde" && (
                           <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Sin responder
+                            Sin contestar
                           </p>
                         )}
                         {item.status === "Rechazado" && (
