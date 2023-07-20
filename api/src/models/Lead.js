@@ -47,7 +47,7 @@ const LeadSchema = new mongoose.Schema(
         "Contratado",
         "No responde",
         "Agendar 2do llamado",
-        "Contratando",
+        "Contactado",
         "incidencia",
         "discard",
       ],
