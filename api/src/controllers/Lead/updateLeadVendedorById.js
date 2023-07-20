@@ -28,13 +28,13 @@ const updateLeadVendedorById = async (id, updatedData) => {
     updatedData.dataLead.updateRechazado = formattedTimeRechazado;
     updatedData.dataObservaciones.status = "Rechazado";
     updatedData.dataObservaciones.fecha = formattedTimeRechazado;
-  } else if (updatedData.dataLead.status === "Contratando") {
+  } else if (updatedData.dataLead.status === "Contactado") {
     // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
     const dateRechazado = new Date();
-    const formattedTimeContratando = date.toISOString();
-    updatedData.dataLead.updateRechazado = formattedTimeContratando;
-    updatedData.dataObservaciones.status = "Contratando";
-    updatedData.dataObservaciones.fecha = formattedTimeContratando;
+    const formattedTimeContactado = date.toISOString();
+    updatedData.dataLead.updateContactado = formattedTimeContactado;
+    updatedData.dataObservaciones.status = "Contactado";
+    updatedData.dataObservaciones.fecha = formattedTimeContactado;
   } else if (updatedData.dataLead.status === "No responde") {
     // Agregamos la propiedad 'updateNoResponde' con la fecha y hora actual en caso de "No responde"
     const dateNoResponde = new Date();
