@@ -333,10 +333,10 @@ export default function PromocionPago({ tamañoPantalla }) {
           promos.map((promo, index) => {
             return (
               <div key={index}>
-                {tiempoRestante[`promocion${index}`] !== 0 &&
+                {tiempoRestante[`promocion${index}`] &&
+                  tiempoRestante[`promocion${index}`] !== 0 &&
                   tiempoRestante[`promocion${index}`] > 0 &&
-                  tiempoRestante[`promocion${index + 1}`] !== 0 &&
-                  tiempoRestante[`promocion${index}`] && (
+                  tiempoRestante[`promocion${index + 1}`] !== 0 && (
                     <div
                       className={
                         tamañoPantalla === "Pequeña"
