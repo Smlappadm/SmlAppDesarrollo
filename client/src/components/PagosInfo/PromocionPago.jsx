@@ -97,7 +97,9 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       return result;
     }, {});
-    const sortedHours = Object.keys(customPromos).sort();
+    const sortedHours = Object.keys(customPromos).sort((a, b) => {
+      return customPromos[a].hora - customPromos[b].hora;
+    });
     const sortedCustomPromos = [];
     sortedHours.forEach((hour) => {
       sortedCustomPromos.push(customPromos[hour]);
@@ -115,15 +117,16 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     console.log(promos);
-    if (promos.length === 0) {
+
+    if (promos.length !== 0) {
       console.log("si");
       armarPromociones(promos);
     }
   }, [promos]);
 
   const armarPromociones = (promos) => {
-    const body = promos.map(promo, (index) => {
-      return index;
+    const body = promos.map((promo, index) => {
+      return { [`promocion${index + 1}`]: promo.duracion };
     });
     console.log(body);
   };
