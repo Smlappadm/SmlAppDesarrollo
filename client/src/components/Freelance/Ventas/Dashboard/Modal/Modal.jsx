@@ -125,6 +125,16 @@ function ChildModal({
       statusObj.pagos = {};
     }
 
+
+    if (statusObj.status === "A pagar") {
+
+      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
+        saveEmailAppFunction(item.email);
+      } else {
+        saveEmailAppFunction(updatedEmailApp);
+      }
+    } 
+
     setOpenChild(true);
     handleLlamadoVentaChange();
   };
@@ -750,10 +760,10 @@ export default function NestedModal({
       observaciones: { ...statusObj.observaciones, [property]: value },
     });
   };
-  console.log(statusObj);
+
 
   const handleSelectChangeContratado = (event) => {
-    console.log(event.target.name);
+
     setOpenTimeHour(false);
     const value = event.target.value;
     const property = event.target.name;
