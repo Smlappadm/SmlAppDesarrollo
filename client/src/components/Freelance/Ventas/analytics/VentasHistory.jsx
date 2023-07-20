@@ -454,7 +454,7 @@ const VentasHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <div className="flex w-full justify-center items-center gap-2 relative">
+                        <div className="flex w-full justify-center items-center gap-2 relative">
                           <p
                             onClick={() => handleCopyClick(item.telephone)}
                             className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
@@ -499,14 +499,19 @@ const VentasHistory = () => {
                             Rechazado
                           </p>
                         )}
-                        {item.status === "Agendar 2do llamado" && (
+                        {item.status === "Agenda llamada" && (
                           <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
                             <p>En Proceso</p>
                           </div>
                         )}
                         {item.status === "Contactado" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                          <div className="bg-[#219bac] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
                             <p>Contactado</p>
+                          </div>
+                        )}
+                        {item.status === "A pagar" && (
+                          <div className="bg-[#972892] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>A pagar</p>
                           </div>
                         )}
                         {item.level === "incidencia" && (
