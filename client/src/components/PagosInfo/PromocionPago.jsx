@@ -91,18 +91,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
-
-        if (horaAnterior !== null) {
-          // Si no es la primera promoción, calcular la diferencia entre horas
-          const duracion = ObtenerFecha(
-            parseInt(promo.promocion.hora) + diferenciaHoras
-          );
-          result[hora].duracion = duracion;
-        } else {
-          result[hora].duracion = ObtenerFecha(parseInt(promo.promocion.hora));
-        }
-
-        horaAnterior = promo.promocion.hora; // Actualizar el valor de la hora anterior
+        result[hora].duracion = ObtenerFecha(parseInt(promo.promocion.hora));
       }
 
       return result;
@@ -136,10 +125,9 @@ export default function PromocionPago({ tamañoPantalla }) {
       },
       emailApp: emailApp,
     };
-    console.log(clienteEmpresa && clienteEmpresa?.promociones.length);
     if (
-      clienteEmpresa &&
-      (!clienteEmpresa?.promociones ||
+      (clienteEmpresa && !clienteEmpresa?.promociones) ||
+      (clienteEmpresa &&
         clienteEmpresa?.promociones.length < body.promociones.length)
     ) {
       console.log("si");
