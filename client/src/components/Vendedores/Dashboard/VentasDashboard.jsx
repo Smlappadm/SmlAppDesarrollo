@@ -302,7 +302,7 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
-                        <div className="flex w-full justify-center items-center gap-2 relative">
+                          <div className="flex w-full justify-center items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
                               className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
@@ -367,26 +367,25 @@ const VentasDashboard = () => {
                             )}
                           </div> */}
                           <div className=" flex justify-center items-center">
-                            {item.status === "Agenda llamada"  && item.llamada_venta?.dia_hora[0] !== "u" && (
-                              <p className=" w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                {item.llamada_venta.dia_hora}
-                              </p>
-                            )} 
-                             {item.status === "Agenda llamada"  && item.llamada_venta?.dia_hora[0] === "u" && (
-                              <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                Sin Día/Hora
-                              </p>
-                            )}
+                            {item.status === "Agenda llamada" &&
+                              item.llamada_venta?.dia_hora[0] !== "u" && (
+                                <p className=" w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  {item.llamada_venta.dia_hora}
+                                </p>
+                              )}
+                            {item.status === "Agenda llamada" &&
+                              item.llamada_venta?.dia_hora[0] === "u" && (
+                                <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  Sin Día/Hora
+                                </p>
+                              )}
                           </div>
 
                           {item.status === "No responde" && (
                             // <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
-                            <>
-
-                              <label className="text-[14px]">
-                                {funcionHorario(item.updatedAt)}
-                              </label>
-                            </>
+                            <label className="text-[14px]">
+                              {funcionHorario(item.updatedAt)}
+                            </label>
                             // </div>
                           )}
                           {/* <AiOutlineInfoCircle
