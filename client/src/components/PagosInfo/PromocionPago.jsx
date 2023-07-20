@@ -117,10 +117,21 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     console.log(promos);
+    const promocionesArmadas = armarPromociones(promos);
 
-    if (promos.length !== 0) {
+    const body = {
+      promociones: {
+        ...promocionesArmadas.reduce(
+          (result, promo) => ({ ...result, ...promo }),
+          {}
+        ),
+      },
+      emailApp: emailApp,
+    };
+    console.log(body);
+    if (clienteEmpresa && !clienteEmpresa?.promociones) {
       console.log("si");
-      armarPromociones(promos);
+      seteoPromociones(body);
     }
   }, [promos]);
 
@@ -128,7 +139,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     const armado = promos.map((promo, index) => {
       return { [`promocion${index + 1}`]: promo.duracion };
     });
-    console.log(armado);
+    return armado;
   };
 
   useEffect(() => {
@@ -153,10 +164,10 @@ export default function PromocionPago({ tamañoPantalla }) {
       },
       emailApp: emailApp,
     };
-    if (clienteEmpresa && !clienteEmpresa?.promociones) {
-      console.log("si");
-      seteoPromociones(body);
-    }
+    // if (clienteEmpresa && !clienteEmpresa?.promociones) {
+    //   console.log("si");
+    //   seteoPromociones(body);
+    // }
     if (clienteEmpresa?.promocion1) {
       const time1 = new Date(clienteEmpresa.promocion1);
       const time2 = new Date(clienteEmpresa.promocion2 ?? 0);
