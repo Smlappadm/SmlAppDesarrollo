@@ -11,7 +11,7 @@ const findLeadVendedorName = async (name) => {
     checked: true,
     view: true,
     status: {
-      $nin: ["No responde", "Agendar 2do llamado", "incidencia"],
+      $nin: ["No responde", "Agenda llamada", "incidencia"],
     },
   }).exec();
 
