@@ -293,7 +293,7 @@ const VentasDashboard = () => {
                           <div className="flex w-full justify-center items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
-                              className="border-2 text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                              className="text-center w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                               {item.telephone}
                             </p>
@@ -407,7 +407,7 @@ const VentasDashboard = () => {
                           </p>
                         )}
                         </div>
-                        <div className=" w-[9%] flex justify-center items-start p-0">
+                        <div className=" w-[9%] flex justify-center items-start p-0 gap-3">
                           <ModalObservaciones item={item} />
                           <Modal
                             item={item}
