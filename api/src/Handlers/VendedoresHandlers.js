@@ -67,15 +67,13 @@ const getVendedorByEmailHandler = async (req, res) => {
 
 // Obtener ventas de un vendedor por email
 const getVendedorVentasByEmailHandler = async (req, res) => {
-  console.log("bbbbbbbbbbbbbbbblllllllllllllllaaaaaaaaaaaa")
-  const { body } = req.body;
-  console.log(body)
-  // try {
-  //   const vendedor = await getVendedorVentasByEmail(email);
-  //   res.status(200).json(vendedor);
-  // } catch (error) {
-  //   res.status(404).json({ error: error.message });
-  // }
+  const body = req.body;
+  try {
+    const vendedor = await getVendedorVentasByEmail(body);
+    res.status(200).json(vendedor);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
 };
 
 // Obtener vendedor por ID
