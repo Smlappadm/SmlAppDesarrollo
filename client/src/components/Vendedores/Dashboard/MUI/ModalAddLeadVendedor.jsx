@@ -183,7 +183,7 @@ export default function ModalAddLeadVendedor({
         errors.telefono !== "" ||
         errors.profesion !== "" ||
         errors.level !== "" ||
-        errors.profesion !== "" ||
+        errors.instagram !== "" ||
         errors.categoria !== ""
       ) {
         AddLeadError();
