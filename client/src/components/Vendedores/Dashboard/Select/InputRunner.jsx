@@ -106,8 +106,8 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
             }}
           >
             <MenuItem value="">Profesión</MenuItem>
-            {allProfesion.map((profesion) => (
-              <MenuItem key={profesion} value={profesion}>
+            {allProfesion.map((profesion, index) => (
+              <MenuItem key={index} value={profesion}>
                 {profesion}
               </MenuItem>
             ))}
@@ -140,8 +140,8 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
             }}
           >
             <MenuItem value=""></MenuItem>
-            {allCountries.map((country) => (
-              <MenuItem key={country} value={country}>
+            {allCountries.map((country, index) => (
+              <MenuItem key={index} value={country}>
                 {country}
               </MenuItem>
             ))}

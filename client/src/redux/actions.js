@@ -372,8 +372,8 @@ export const getVendedorAllLeads = (email) => {
 };
 
 export const getLeadsLLamadaVenta = (body, profesion, country, level) => {
-  const bodys = { email: body.email, name: body.name, profesion, country, level };
-  console.log(bodys)
+  body = { email: body.email, name: body.name , profesion, country, level };
+  console.log(body)
   return async (dispatch) => {
     if (
       body.email &&
@@ -381,7 +381,8 @@ export const getLeadsLLamadaVenta = (body, profesion, country, level) => {
       body.email !== null &&
       body.email !== ""
       ) {
-      const response = await axios.get("/vendedor/ventas/email", body);
+
+      const response = await axios.put("/vendedor/ventas/email", body);
 
       const allLeads = response.data;
       dispatch({
