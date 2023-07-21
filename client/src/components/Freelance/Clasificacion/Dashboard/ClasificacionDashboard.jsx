@@ -52,7 +52,6 @@ const ClasificacionDashboard = () => {
   let email = localStorage.getItem("email");
 
   let names = localStorage.getItem("corredorName");
-  
 
   useEffect(() => {
     if (mail !== undefined) {
@@ -332,8 +331,8 @@ const ClasificacionDashboard = () => {
     updateClients();
   }, [client]);
 
-  const SendLeads = (name) => {
-    toast.info(`✔ ${name} Enviando formulario! `, {
+  const SendLeads = () => {
+    toast.info(`✔ Enviando formulario! `, {
       position: "top-center",
       autoClose: 500,
       hideProgressBar: false,
@@ -443,7 +442,7 @@ const ClasificacionDashboard = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    SendLeads(names);
+    SendLeads();
     try {
       for (let i = 0; i < freelanceLead.length; i++) {
         const currentClient = client[i];
@@ -461,9 +460,6 @@ const ClasificacionDashboard = () => {
               currentClient.level === "0")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
-              _id: currentClient._id,
-              name: currentClient.name,
-              url: currentClient.url,
               instagram: currentClient.instagram,
               email: currentClient.email,
               level: currentClient.level,
@@ -474,10 +470,8 @@ const ClasificacionDashboard = () => {
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
-              freelancer: true,
               view: true,
-              descargadosLeader: false,
-              descargadosCorredor: false,
+              freelancer: true,
             });
             console.log(response.data);
           } else if (
@@ -487,9 +481,6 @@ const ClasificacionDashboard = () => {
               currentClient.level === "0")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
-              _id: currentClient._id,
-              name: currentClient.name,
-              url: currentClient.url,
               instagram: currentClient.instagram,
               email: currentClient.email,
               level: currentClient.level,
@@ -500,10 +491,8 @@ const ClasificacionDashboard = () => {
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
-              freelancer: true,
               view: true,
-              descargadosLeader: false,
-              descargadosCorredor: false,
+              freelancer: true,
             });
 
             console.log(response.data);
@@ -515,8 +504,6 @@ const ClasificacionDashboard = () => {
         }
       }
 
-      console.log(email);
-      console.log( names);
       dispatch(
         getLeadClasificacion(
           email,
@@ -533,7 +520,7 @@ const ClasificacionDashboard = () => {
 
       SendLeadsSuccess();
     } catch (error) {
-      SendLeadsError();
+      SendLeadsError(names);
       console.log({ error: error.message });
     }
   };
