@@ -338,7 +338,7 @@ const CorredoresDashboard = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    SendLeads(user.fullName);
+    SendLeads(names);
     try {
       for (let i = 0; i < corredorLead.length; i++) {
         const currentClient = client[i];

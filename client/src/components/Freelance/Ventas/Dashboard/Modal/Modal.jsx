@@ -116,7 +116,7 @@ function ChildModal({
         },
       });
 
-      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
+      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
         saveEmailAppFunction(updatedPagos);
       } else {
         saveEmailAppFunction(updatedPagos);
@@ -128,7 +128,7 @@ function ChildModal({
 
     if (statusObj.status === "A pagar") {
 
-      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
+      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
         saveEmailAppFunction(item.email);
       } else {
         saveEmailAppFunction(updatedEmailApp);
