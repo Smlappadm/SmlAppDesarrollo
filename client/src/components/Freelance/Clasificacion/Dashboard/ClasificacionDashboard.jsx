@@ -71,40 +71,12 @@ const ClasificacionDashboard = () => {
     }
   }, [dispatch, mail]);
 
-  const filtrar = () => {
-    dispatch(
-      getLeadClasificacion(
-        email,
-        names,
-        profesion,
-        category,
-        country,
-        marca_personal
-      )
-    );
-  };
-
-  const filterProfesion = (event) => {
-    const { value } = event.target;
-    setProfesion(value);
-  };
-
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
       const updatedDetailsLead = [...prevDetailsLead];
       updatedDetailsLead[index] = !updatedDetailsLead[index];
       return updatedDetailsLead;
     });
-  };
-
-  const filterCountry = (event) => {
-    const { value } = event.target;
-    setCountry(value);
-  };
-
-  const filterCategory = (event) => {
-    const { value } = event.target;
-    setCategory(value);
   };
 
   const checkMarcaPersonal = () => {
@@ -128,20 +100,6 @@ const ClasificacionDashboard = () => {
         ...updatedClient[index],
         [name]: value,
         instagram: value,
-      };
-      return updatedClient;
-    });
-  };
-
-  const handleChangeIncidencia = (event, index) => {
-    const { name, value } = event.target;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        status_op: value,
       };
       return updatedClient;
     });
@@ -289,8 +247,6 @@ const ClasificacionDashboard = () => {
       for (let i = 0; i < freelanceLead.length; i++) {
         if (freelanceLead[i] && freelanceLead[i]._id) {
           clientes.push({
-            _id: freelanceLead[i]._id,
-            name: freelanceLead[i].name,
             url: freelanceLead[i].url,
             email: freelanceLead[i].email,
             instagram: freelanceLead[i].instagram,
@@ -343,6 +299,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsErrorInsta = (name) => {
     toast.error(`❌ Error Instagram incompleto ${name}!`, {
       position: "top-center",
@@ -355,6 +312,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsErrorLevel = (name) => {
     toast.error(`❌ Error nivel incompleto ${name}!`, {
       position: "top-center",
@@ -367,6 +325,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsErrorInsta0 = (name) => {
     toast.error(`❌ Error instagram con nivel 0 ${name}!`, {
       position: "top-center",
@@ -379,6 +338,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsSuccess = () => {
     toast.success(`✔ Envío de leads exitoso!`, {
       position: "top-center",
@@ -391,6 +351,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsError = (name) => {
     toast.error(`✔ Error al enviar los leads! ${name}`, {
       position: "top-center",
@@ -403,6 +364,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const AddLeadError = () => {
     toast.error(` Error al crear Lead`, {
       position: "top-center",
@@ -415,6 +377,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const AddLeads = () => {
     toast.success(`✔ Se creo Lead exitosamente!`, {
       position: "top-center",
@@ -427,6 +390,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const AddLeadsIncomplete = () => {
     toast.error(`Completa los datos requeridos`, {
       position: "top-center",
@@ -440,11 +404,96 @@ const ClasificacionDashboard = () => {
     });
   };
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+  //   SendLeads();
+  //   try {
+  //     for (let i = 0; i < freelanceLead.length; i++) {
+  //       const currentClient = client[i];
+
+  //       if (currentClient.level !== "-") {
+  //         if (
+  //           currentClient.instagram.trim() !== "" &&
+  //           (currentClient.level === "0" ||
+  //             currentClient.level === "incidencia")
+  //         ) {
+  //           SendLeadsErrorInsta0(currentClient.name);
+  //         } else if (
+  //           currentClient.instagram.trim() === "" &&
+  //           (currentClient.level === "incidencia" ||
+  //             currentClient.level === "0")
+  //         ) {
+  //           const response = await axios.put(`/lead/${currentClient._id}`, {
+  //             instagram: currentClient.instagram,
+  //             email: currentClient.email,
+  //             level: currentClient.level,
+  //             seguidores2000: currentClient.seguidores2000,
+  //             repercusion: currentClient.repercusion,
+  //             frecuencia: currentClient.frecuencia,
+  //             contenidoPersonal: currentClient.contenidoPersonal,
+  //             contenidoValor: currentClient.contenidoValor,
+  //             calidadInstagram: currentClient.calidadInstagram,
+  //             checked: true,
+  //             view: true,
+  //             freelancer: true,
+  //           });
+  //           console.log(response.data);
+  //         } else if (
+  //           currentClient.instagram.trim() !== "" &&
+  //           (currentClient.level === "1" ||
+  //             currentClient.level === "2" ||
+  //             currentClient.level === "0")
+  //         ) {
+  //           const response = await axios.put(`/lead/${currentClient._id}`, {
+  //             instagram: currentClient.instagram,
+  //             email: currentClient.email,
+  //             level: currentClient.level,
+  //             seguidores2000: currentClient.seguidores2000,
+  //             repercusion: currentClient.repercusion,
+  //             frecuencia: currentClient.frecuencia,
+  //             contenidoPersonal: currentClient.contenidoPersonal,
+  //             contenidoValor: currentClient.contenidoValor,
+  //             calidadInstagram: currentClient.calidadInstagram,
+  //             checked: true,
+  //             view: true,
+  //             freelancer: true,
+  //           });
+
+  //           console.log(response.data);
+  //         } else {
+  //           SendLeadsErrorInsta(currentClient.name);
+  //         }
+  //       } else {
+  //         SendLeadsErrorLevel(currentClient.name);
+  //       }
+  //     }
+
+  //     dispatch(
+  //       getLeadClasificacion(
+  //         email,
+  //         names,
+  //         profesion,
+  //         category,
+  //         country,
+  //         marca_personal
+  //       )
+  //     );
+  //     dispatch(getAllProfesion());
+  //     dispatch(getAllCountries());
+  //     dispatch(getAllCategory());
+
+  //     SendLeadsSuccess();
+  //   } catch (error) {
+  //     SendLeadsError(names);
+  //     console.log({ error: error.message });
+  //   }
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     SendLeads();
     try {
-      for (let i = 0; i < freelanceLead.length; i++) {
+      for (let i = 0; i < corredorLead.length; i++) {
         const currentClient = client[i];
 
         if (currentClient.level !== "-") {
@@ -476,9 +525,7 @@ const ClasificacionDashboard = () => {
             console.log(response.data);
           } else if (
             currentClient.instagram.trim() !== "" &&
-            (currentClient.level === "1" ||
-              currentClient.level === "2" ||
-              currentClient.level === "0")
+            (currentClient.level === "1" || currentClient.level === "2")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
               instagram: currentClient.instagram,
@@ -503,20 +550,7 @@ const ClasificacionDashboard = () => {
           SendLeadsErrorLevel(currentClient.name);
         }
       }
-
-      dispatch(
-        getLeadClasificacion(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
-      dispatch(getAllProfesion());
-      dispatch(getAllCountries());
-      dispatch(getAllCategory());
+      dispatch(getLeadCorredores(email, names, "", "", "", ""));
 
       SendLeadsSuccess();
     } catch (error) {
