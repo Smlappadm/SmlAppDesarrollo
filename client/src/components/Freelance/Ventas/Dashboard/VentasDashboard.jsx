@@ -12,7 +12,7 @@ import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import InputRunner from "./Select/InputRunner";
+import InputRunner from "./Select/InputRunnerVentas";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import {
   filterLevel,
@@ -46,7 +46,7 @@ const VentasDashboard = () => {
   useEffect(() => {
     dispatch(getAllProfesionFreelance(emailAddress));
     dispatch(getAllCountriesFreelance(emailAddress));
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body));
   };
 
   const [levelValue, setLevelValue] = useState("");
@@ -102,7 +102,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -128,7 +128,7 @@ const VentasDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body));
   };
 
   const funcionHorario = (horario) => {
@@ -192,7 +192,7 @@ const VentasDashboard = () => {
               className="flex gap-5 justify-center items-center ml-16"
             >
               <InputRunner
-                getLeadCheckedFreelance={getLeadCheckedFreelance}
+                getLeadCheckedInactive5={getLeadCheckedFreelance}
                 body={body}
                 emailAddress={emailAddress}
               />
