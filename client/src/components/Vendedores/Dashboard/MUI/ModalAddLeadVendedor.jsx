@@ -141,6 +141,7 @@ export default function ModalAddLeadVendedor({
 
   useEffect(() => {
     validaciones();
+    console.log(values);
   }, [values]);
 
   const handleChange = (event) => {
