@@ -9,6 +9,7 @@ import {
   getAllCategory,
   getAllFreelancer,
   getAllProfesion,
+  getAllVendedores,
 } from "../../../../redux/actions";
 const style = {
   position: "absolute",
@@ -61,7 +62,7 @@ export default function ModalAddLeadVendedor({
   });
 
   useEffect(() => {
-    dispatch(getAllFreelancer());
+    dispatch(getAllVendedores());
     dispatch(getAllCategory());
     dispatch(getAllProfesion());
     fetch("https://restcountries.com/v3.1/all")
@@ -151,7 +152,7 @@ export default function ModalAddLeadVendedor({
       corredor_name: OneFreelancer && OneFreelancer[0].name,
       instagra: "",
       level: "",
-      freelancer: true,
+      freelancer: false,
       vendedor: OneFreelancer && OneFreelancer[0].email,
       vendedor_name: OneFreelancer && OneFreelancer[0].name,
       from: OneFreelancer && OneFreelancer[0].email,
