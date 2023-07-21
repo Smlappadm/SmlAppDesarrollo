@@ -18,12 +18,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
   filterStatus,
-  getAllLeadContratando,
-  getLeadChecked,
+  getAllLeadAPagar,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoLogoSnapchat, IoStatsChart, IoRocketOutline} from "react-icons/io5";
+import {
+  IoGrid,
+  IoLogoSnapchat,
+  IoStatsChart,
+  IoRocketOutline,
+} from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -32,7 +36,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const ContratandoLeader = () => {
   const [data, setData] = useState([]);
-  const { leadContratando } = useSelector((state) => state);
+  const { leadAPagar } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const statusOk = (name) => {
@@ -49,24 +53,23 @@ export const ContratandoLeader = () => {
   };
 
   const changeStatus = (id, contratado, name) => {
-    const newStatus =
-      contratado === "Contratado" ? "Contratando" : "Contratado";
-
+    const newStatus = contratado === "A pagar" ? "Contratado" : "A pagar";
     axios.put(`/lead/${id}`, {
       status: newStatus,
+      pagoRecibido: true,
     });
 
-    dispatch(getAllLeadContratando());
+    dispatch(getAllLeadAPagar());
     statusOk(name);
   };
 
   useEffect(() => {
-    dispatch(getAllLeadContratando());
+    dispatch(getAllLeadAPagar());
   }, [dispatch]);
 
   useEffect(() => {
-    setData(leadContratando);
-  }, [leadContratando]);
+    setData(leadAPagar);
+  }, [leadAPagar, changeStatus]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -106,11 +109,11 @@ export const ContratandoLeader = () => {
       setClientOrder("DES");
       setCategoryOrder("");
       dispatch(orderClients(clientOrder));
-      setData(leadContratando);
+      setData(leadAPagar);
     } else {
       setClientOrder("ASC");
       dispatch(orderClients(clientOrder));
-      setData(leadContratando);
+      setData(leadAPagar);
     }
     setCurrentPage(1);
   };
@@ -128,11 +131,11 @@ export const ContratandoLeader = () => {
       setCategoryOrder("DES");
       setClientOrder("");
       dispatch(orderCategory(categoryOrder));
-      setData(leadContratando);
+      setData(leadAPagar);
     } else {
       setCategoryOrder("ASC");
       dispatch(orderCategory(categoryOrder));
-      setData(leadContratando);
+      setData(leadAPagar);
     }
     setCurrentPage(1);
   };
@@ -143,14 +146,14 @@ export const ContratandoLeader = () => {
   const onChangeLevel = (value) => {
     setLevelValue(value);
     dispatch(filterLevel(value));
-    setData(leadContratando);
+    setData(leadAPagar);
     setCurrentPage(1);
   };
   const [statusValue, setStatusValue] = useState("");
   const onChangeStatus = (value) => {
     setStatusValue(value);
     dispatch(filterStatus(value));
-    setData(leadContratando);
+    setData(leadAPagar);
     setCurrentPage(1);
   };
 
@@ -163,17 +166,17 @@ export const ContratandoLeader = () => {
   const handleClose = () => setOpen(false);
 
   const downloadCSV = () => {
-    const csv = Papa.unparse(leadContratando);
+    const csv = Papa.unparse(leadAPagar);
 
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const csvURL = URL.createObjectURL(csvData);
     const tempLink = document.createElement("a");
     tempLink.href = csvURL;
-    tempLink.setAttribute("download", "leadContratando.csv");
+    tempLink.setAttribute("download", "leadAPagar.csv");
     tempLink.click();
 
-    const updateleadContratando = async () => {
-      const promises = leadContratando.map((lead) =>
+    const updateleadAPagar = async () => {
+      const promises = leadAPagar.map((lead) =>
         axios.put(`/lead/${lead._id}`, {
           descargadosLeader: true,
         })
@@ -182,7 +185,7 @@ export const ContratandoLeader = () => {
       await Promise.all(promises);
     };
 
-    updateleadContratando();
+    updateleadAPagar();
   };
 
   return (
@@ -192,7 +195,7 @@ export const ContratandoLeader = () => {
         <div className="flex justify-between mx-5 mb-10">
           <div className="flex gap-5">
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
-              Contratando
+              Seguimiento
             </Title>
             <Link
               className="flex items-center justify-center gap-2"
@@ -436,7 +439,7 @@ export const ContratandoLeader = () => {
                       </div>
                     </button>
                     <div className="flex justify-center items-center p-0 mr-6">
-                      {item.status === "Contratando" && (
+                      {item.status === "A pagar" && (
                         <div
                           className="cursor-pointer"
                           onClick={() =>
