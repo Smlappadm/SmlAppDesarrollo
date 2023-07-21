@@ -183,7 +183,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     return () => clearInterval(interval);
   }, [cliente]);
 
-  // Función para convertir segundos a formato HH:mm:ss
   const formatTiempoRestante = (segundos) => {
     const horas = Math.floor(segundos / 3600);
     const minutos = Math.floor((segundos % 3600) / 60);
