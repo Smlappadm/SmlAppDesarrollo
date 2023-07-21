@@ -124,8 +124,6 @@ export default function PromocionPago({ tamañoPantalla }) {
           nuevosTiemposRestantes[`promocion${index}`] = diferenciaEnSegundos;
         }
         fechaAnteriorSegundos = tiempoAcumulado;
-        console.log(time);
-        console.log(fechaAnterior);
       });
       // Actualizar el estado tiempoRestante con los nuevos tiempos restantes
       setTiempoRestante(nuevosTiemposRestantes);
