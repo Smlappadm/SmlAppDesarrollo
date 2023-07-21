@@ -46,6 +46,7 @@ export default function ModalAddLeadVendedor({
     telefono: "",
     categoria: "",
     profesion: "",
+    level: "",
   });
   const [values, setValues] = useState({
     nombre: "",
