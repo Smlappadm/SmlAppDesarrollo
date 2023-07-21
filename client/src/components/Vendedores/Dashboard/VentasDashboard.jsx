@@ -15,6 +15,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
+import InputRunner from "./Select/InputRunner";
 import { motion } from "framer-motion";
 import Nav from "../../Nav/Nav";
 
@@ -27,11 +28,13 @@ const VentasDashboard = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-
+  const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(emailAddress));
@@ -173,8 +176,7 @@ const VentasDashboard = () => {
     return fechaHoraLocal;
   };
 
-
-  console.log(saveEmailApp)
+  console.log(saveEmailApp);
 
   return (
     <>
@@ -223,6 +225,20 @@ const VentasDashboard = () => {
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
               ""
+            )}
+            {!openModalPago && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="flex gap-5 justify-center items-center ml-16"
+              >
+                <InputRunner
+                  getLeadCheckedInactive5={getLeadsLLamadaVenta}
+                  body={body}
+                  emailAddress={emailAddress}
+                />
+              </motion.div>
             )}
           </div>
           {!openModalPago ? (
@@ -463,7 +479,9 @@ const VentasDashboard = () => {
               >
                 x
               </button>
-              <p className="border-2 p-3">`http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`</p>
+              <p className="border-2 p-3">
+                `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
+              </p>
               <p
                 onClick={() =>
                   handleCopyClick(
