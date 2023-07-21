@@ -24,6 +24,15 @@ export default function PromocionPago({ tamañoPantalla }) {
   const CambiarCuota = (cuota) => {
     setCuotas(cuota);
   };
+
+  const ObtenerFecha = (horas) => {
+    const fechaActual = new Date();
+    const fechaLimitePromo = new Date(
+      fechaActual.getTime() + horas * 60 * 60 * 1000
+    );
+    return fechaLimitePromo;
+  };
+
   useEffect(() => {
     const customPromos = promociones.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
@@ -58,14 +67,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     console.log(sortedCustomPromos);
     setPromos(sortedCustomPromos);
   }, [promociones]);
-
-  const ObtenerFecha = (horas) => {
-    const fechaActual = new Date();
-    const fechaLimitePromo = new Date(
-      fechaActual.getTime() + horas * 60 * 60 * 1000
-    );
-    return fechaLimitePromo;
-  };
 
   useEffect(() => {
     const promocionesArmadas = armarPromociones(promos);
