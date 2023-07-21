@@ -371,8 +371,8 @@ export const getVendedorAllLeads = (email) => {
   };
 };
 
-export const getLeadsLLamadaVenta = (body, profesion, country, level) => {
-  body = { email: body.email, name: body.name , profesion, country, level };
+export const getLeadsLLamadaVenta = (body, profesion, country, status, level, freelancer) => {
+  body = { email: body.email, name: body.name , profesion, country, level, status, freelancer };
   console.log(body)
   return async (dispatch) => {
     if (
