@@ -68,6 +68,13 @@ export default function PromocionPago({ tamañoPantalla }) {
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
+  const armarPromociones = (promos) => {
+    const armado = promos.map((promo, index) => {
+      return { [`promocion${index + 1}`]: promo.duracion };
+    });
+    return armado;
+  };
+
   useEffect(() => {
     const promocionesArmadas = armarPromociones(promos);
     const body = {
@@ -88,13 +95,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       seteoPromociones(body);
     }
   }, [promos]);
-
-  const armarPromociones = (promos) => {
-    const armado = promos.map((promo, index) => {
-      return { [`promocion${index + 1}`]: promo.duracion };
-    });
-    return armado;
-  };
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
