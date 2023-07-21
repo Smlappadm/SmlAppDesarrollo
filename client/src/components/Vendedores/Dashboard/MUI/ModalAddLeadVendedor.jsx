@@ -360,7 +360,7 @@ export default function ModalAddLeadVendedor({
                     type="text"
                     placeholder="Ingrese la instagram del cliente"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
-                    value={values.ciudad}
+                    value={values.instagram}
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
