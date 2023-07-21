@@ -403,6 +403,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                               : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
                           }
                           to={promo.links[cuotas]}
+                          target="_blank"
                         >
                           Link de Pago
                         </Link>
