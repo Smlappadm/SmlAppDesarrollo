@@ -37,7 +37,7 @@ const VentasDashboard = () => {
   const body = { name: fullName, email: emailAddress };
 console.log(body)
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ console.log(body)
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   //FILTER**********************
@@ -116,7 +116,7 @@ console.log(body)
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -142,7 +142,7 @@ console.log(body)
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   const showObservacionesHandler = (observacion) => {
