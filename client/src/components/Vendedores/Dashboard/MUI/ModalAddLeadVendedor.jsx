@@ -125,6 +125,17 @@ export default function ModalAddLeadVendedor({
         return updatedErrors;
       });
     }
+    if (values.instagram !== "") {
+      setErrors((prevErrors) => {
+        const updatedErrors = { ...prevErrors };
+        if (!validateURL(values.web)) {
+          updatedErrors.web = "Ingrese una URL válida";
+        } else {
+          updatedErrors.web = "";
+        }
+        return updatedErrors;
+      });
+    }
   };
 
   useEffect(() => {
