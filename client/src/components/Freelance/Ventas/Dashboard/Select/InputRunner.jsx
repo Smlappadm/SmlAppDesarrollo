@@ -61,6 +61,7 @@ console.log(freelancer)
     setCountry("");
     setProfesion("");
     setStatus("");
+    setFreelancer(false);
   };
 
   return (
