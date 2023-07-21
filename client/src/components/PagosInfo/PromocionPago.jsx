@@ -348,7 +348,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             const promocionKey = `promocion${index}`;
 
             return (
-              <div key={index}>
+              <div key={index} className="w-full">
                 {tiempoRestante[promocionKey] &&
                 tiempoRestante[promocionKey] > 0
                   ? promocionActual === index && (
@@ -396,27 +396,19 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-center">
                           {promo.pagos[cuotas]}
                         </p>
+                        <Link
+                          className={
+                            tamañoPantalla === "Pequeña"
+                              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+                          }
+                          to={promo.links[cuotas]}
+                        >
+                          Link de Pago
+                        </Link>
                       </div>
                     )
                   : null}
-                <Link
-                  className={
-                    tamañoPantalla === "Pequeña"
-                      ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                      : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
-                  }
-                  to={
-                    tiempoRestante1 !== 0
-                      ? promo2horas.links[cuotas]
-                      : tiempoRestante2 !== 0 && tiempoRestante1 === 0
-                      ? promo24horas.links[cuotas]
-                      : tiempoRestante2 === 0 && tiempoRestante1 === 0
-                      ? sinPromo.links[cuotas]
-                      : ""
-                  }
-                >
-                  Link de Pago
-                </Link>
               </div>
             );
           })}
