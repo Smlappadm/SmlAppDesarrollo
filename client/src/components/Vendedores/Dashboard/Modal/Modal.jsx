@@ -90,7 +90,7 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
-      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
+      if (!updatedEmailApp || updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
         saveEmailAppFunction(item.email);
       } else {
         saveEmailAppFunction(updatedEmailApp);
@@ -101,7 +101,7 @@ function ChildModal({
     
     if (statusObj.status === "A pagar") {
 
-      if (updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === NaN || updatedEmailApp === "NaN") {
+      if (!updatedEmailApp || updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
         saveEmailAppFunction(item.email);
       } else {
         saveEmailAppFunction(updatedEmailApp);
@@ -202,7 +202,10 @@ function ChildModal({
       llamada_venta: statusObj.llamada_venta,
     };
 
+    //La fecha y el status de observaciones se cargan en el back
     const dataObservaciones = statusObj.observaciones;
+
+    console.log(dataObservaciones)
 
     const dataUpdate = {
       dataObservaciones,

@@ -429,6 +429,7 @@ export const getLeadClasificacion = (
 
 export const getLeadCorredoresChecked = (email) => {
   return async (dispatch) => {
+    console.log(email);
     const response = await axios.get(`lead/corredorchecked?email=${email}`);
     const corredorLeadChecked = response.data;
     dispatch({ type: GET_CORREDOR_LEAD_CHECKED, payload: corredorLeadChecked });

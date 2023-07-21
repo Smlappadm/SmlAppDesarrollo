@@ -3,6 +3,7 @@ const Lead = require("../../models/Lead");
 
 // Función para obtener leads verificados que están inactivos por 5 días o menos
 const getLeadCheckedInactive5 = async (body) => {
+
   // Actualiza todos los leads que pertenecen al vendedor (email) y tienen el estado "Sin contactar"
   await Lead.updateMany(
     { vendedor: body.email, status: "Sin contactar" },
