@@ -311,11 +311,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             );
           })}
-        {/* 
-             
-        
-        
-        )} */}
+
         {/* <Link
           className={
             tamañoPantalla === "Pequeña"
