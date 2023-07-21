@@ -26,7 +26,6 @@ export default function InputName({
 
   useEffect(() => {
     dispatch(getAllCountriesFreelance(emailAddress));
-
     dispatch(getAllProfesionFreelance(emailAddress));
   }, [dispatch]);
 
