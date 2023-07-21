@@ -42,7 +42,7 @@ const cambioNombreVendedor = require("../controllers/Lead/cambioNombreVendedor")
 const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
 const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
 const UpdatePromociones = require("../controllers/Lead/UpdatePromociones");
-const getAllLeadContactado = require("../controllers/Lead/getAllLeadContactado");
+const getAllLeadAPagar = require("../controllers/Lead/getAllLeadAPagar");
 
 // Obtener todos los leads
 const getAllLeadHandler = async (req, res) => {
@@ -54,10 +54,10 @@ const getAllLeadHandler = async (req, res) => {
   }
 };
 // Obtener todos los leads
-const getAllLeadsContactadoHandler = async (req, res) => {
+const getAllLeadAPagarHandler = async (req, res) => {
   try {
-    const leadContactado = await getAllLeadContactado();
-    res.status(200).json(leadContactado);
+    const lead = await getAllLeadAPagar();
+    res.status(200).json(lead);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -603,6 +603,7 @@ const asignacionFreelancerHandler = async (req, res) => {
 
 module.exports = {
   getAllLeadHandler,
+  getAllLeadAPagarHandler,
   getLeadUncheckedHandler,
   getLeadCheckedHandler,
   getLeadCheckedInactive5Handler,
@@ -645,6 +646,5 @@ module.exports = {
   cambioNombreVendedorHandler,
   cambioNombreClevelHandler,
   cambioNombreLeaderHandler,
-  getAllLeadsContactadoHandler,
   UpdatePromocionesHandler,
 };
