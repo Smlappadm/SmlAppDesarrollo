@@ -48,7 +48,7 @@ export default function InputName({
 
   //AGREGADO
   const handleChangeFreelancer = (event) => {
-    setFreelancer(event.target.checked ? emailAddress : "undefined");
+    setFreelancer(event.target.checked ? emailAddress : "");
     setCheckFreelancer(!checkFreelancer)
   };
   console.log(freelancer);

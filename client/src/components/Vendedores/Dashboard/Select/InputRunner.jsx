@@ -13,6 +13,7 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
   const [freelancer, setFreelancer] = useState("");
+  const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesion } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
@@ -38,15 +39,16 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
 
   //AGREGADO
   const handleChangeFreelancer = (event) => {
-    setFreelancer(event.target.checked ? emailAddress : "undefined");
+    setFreelancer(event.target.checked ? emailAddress : "");
+    setCheckFreelancer(!checkFreelancer)
   };
-  console.log(freelancer);
+
 
   const handleFilterClick = () => {
     console.log(profesion);
     console.log(country);
     console.log(status);
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(getLeadCheckedInactive5(body, profesion, country, status, freelancer));
   };
 
   const handleFilterReset = () => {
@@ -54,6 +56,8 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
     setCountry("");
     setProfesion("");
     setStatus("");
+    setFreelancer("");
+    setCheckFreelancer(false)
   };
 
   return (
@@ -186,8 +190,9 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
             <label>Freelancer:</label>
           </div>
           <div>
-            <Checkbox
+          <Checkbox
               id="freelancer"
+              checked={checkFreelancer}
               onClick={handleChangeFreelancer}
               size="medium"
             />

@@ -27,8 +27,8 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
-    if (body.freelance) {
-      leadQuery["from"] = body.freelance;
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
 
     // Ejecución de la consulta y almacenamiento de los resultados en "leadRestNivel2"
@@ -49,8 +49,8 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
-    if (body.freelance) {
-      leadQuery["from"] = body.freelance;
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
 
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
@@ -70,8 +70,8 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
-    if (body.freelance) {
-      leadQuery["from"] = body.freelance;
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "aleatorio") {
@@ -90,8 +90,8 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
-    if (body.freelance) {
-      leadQuery["from"] = body.freelance;
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else {
@@ -110,8 +110,8 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
-    if (body.freelance) {
-      leadQuery["from"] = body.freelance;
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
 
@@ -129,8 +129,8 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
-    if (body.freelance) {
-      leadQuery["from"] = body.freelance;
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
 
     let count2 = 0;
@@ -153,8 +153,8 @@ const getLeadChecked = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
-    if (body.freelance) {
-      leadQuery["from"] = body.freelance;
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
 
     let count3 = 0;
