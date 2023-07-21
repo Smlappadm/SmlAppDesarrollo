@@ -312,9 +312,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             );
           })}
 
-        {/* ite bg-black w-full py-3 text-18 rounded-2xl text-center"
-              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
-          }
+        {/* i
           to={
             tiempoRestante1 !== 0
               ? promo2horas.links[cuotas]
