@@ -36,12 +36,12 @@ const VendedoresDashboard = () => {
   const [showEmail, setShowEmail] = useState(false);
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
-
   const body = { name: fullName, email: emailAddress };
 
   const [profesion, setProfesion] = useState("");
@@ -214,6 +214,7 @@ const VendedoresDashboard = () => {
                 <InputRunner
                   getLeadCheckedInactive5={getLeadCheckedInactive5}
                   body={body}
+                  emailAddress={emailAddress}
                 />
               </motion.div>
             )}
