@@ -312,11 +312,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             );
           })}
 
-        {/* 4horas.links[cuotas]
-              : tiempoRestante2 === 0 && tiempoRestante1 === 0
-              ? sinPromo.links[cuotas]
-              : ""
-          }
+        {/* 
         >
           Link de Pago
         </Link> */}
