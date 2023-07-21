@@ -19,7 +19,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const [promos, setPromos] = useState([]);
 
-  const [promo2horas, setPromo2horas] = useState({});
   const [sinPromo, setSinPromo] = useState({
     pagos: {
       1: "Pago único de 5000€",
