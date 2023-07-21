@@ -312,12 +312,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             );
           })}
 
-        {/* i
-          to={
-            tiempoRestante1 !== 0
-              ? promo2horas.links[cuotas]
-              : tiempoRestante2 !== 0 && tiempoRestante1 === 0
-              ? promo24horas.links[cuotas]
+        {/* 4horas.links[cuotas]
               : tiempoRestante2 === 0 && tiempoRestante1 === 0
               ? sinPromo.links[cuotas]
               : ""
