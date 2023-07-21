@@ -312,10 +312,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             );
           })}
 
-        {/* <Link
-          className={
-            tamañoPantalla === "Pequeña"
-              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+        {/* ite bg-black w-full py-3 text-18 rounded-2xl text-center"
               : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
           }
           to={
