@@ -59,6 +59,7 @@ export default function ModalAddLeadVendedor({
     categoria: "",
     profesion: "",
     level: "",
+    instagram: "",
   });
 
   useEffect(() => {
