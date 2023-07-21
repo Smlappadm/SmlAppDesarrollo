@@ -387,7 +387,7 @@ export default function ModalAddLeadVendedor({
                     type="text"
                     id="level"
                     className={
-                      values.profesion !== ""
+                      values.level !== ""
                         ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                         : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
                     }
