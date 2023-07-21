@@ -200,7 +200,7 @@ export default function ModalAddLeadVendedor({
             categoria: "",
             profesion: "",
             level: "",
-            profesion: "",
+            instagram: "",
           });
           setOpen(false);
           AddLeads();
