@@ -364,6 +364,7 @@ export default function ModalAddLeadVendedor({
                     onChange={(event) => handleChange(event)}
                   />
                 </div>
+                {errors.web !== "" && <span>{errors.web}</span>}
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24 text-left">Ciudad: </label>
                   <input
