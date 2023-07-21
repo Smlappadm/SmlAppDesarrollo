@@ -899,6 +899,10 @@ video {
   margin-right: 0.25rem;
 }
 
+.mr-10 {
+  margin-right: 2.5rem;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -977,10 +981,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mr-10 {
-  margin-right: 2.5rem;
 }
 
 .block {

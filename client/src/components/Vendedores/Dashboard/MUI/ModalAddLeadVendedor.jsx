@@ -7,8 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import {
   getAllCategory,
-  getAllFreelancer,
   getAllProfesion,
+  getAllVendedores,
 } from "../../../../redux/actions";
 const style = {
   position: "absolute",
@@ -30,10 +30,10 @@ export default function ModalAddLeadVendedor({
   AddLeads,
   AddLeadsIncomplete,
 }) {
-  const { freelancer, allCategory, allProfesion } = useSelector(
+  const { vendedores, allCategory, allProfesion } = useSelector(
     (state) => state
   );
-  const [OneFreelancer, setOneFreelancer] = useState("");
+  const [OneVendedor, setOneVendedor] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const [countries, setCountries] = useState([]);
@@ -46,6 +46,8 @@ export default function ModalAddLeadVendedor({
     telefono: "",
     categoria: "",
     profesion: "",
+    level: "",
+    instagram: "",
   });
   const [values, setValues] = useState({
     nombre: "",
@@ -56,10 +58,12 @@ export default function ModalAddLeadVendedor({
     telefono: "",
     categoria: "",
     profesion: "",
+    level: "",
+    instagram: "",
   });
 
   useEffect(() => {
-    dispatch(getAllFreelancer());
+    dispatch(getAllVendedores());
     dispatch(getAllCategory());
     dispatch(getAllProfesion());
     fetch("https://restcountries.com/v3.1/all")
@@ -73,10 +77,10 @@ export default function ModalAddLeadVendedor({
   }, [dispatch]);
 
   useEffect(() => {
-    const free =
-      freelancer && freelancer.filter((free) => free.email === email);
-    setOneFreelancer(free);
-  }, [freelancer, email]);
+    const vendedor =
+      vendedores && vendedores.filter((vendedor) => vendedor.email === email);
+    setOneVendedor(vendedor);
+  }, [vendedores, email]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -92,6 +96,11 @@ export default function ModalAddLeadVendedor({
   const validateURL = (url) => {
     const regex = /^(ftp|http|https):\/\/[^ "]+$/;
     return regex.test(url);
+  };
+  const validateIG = (ig) => {
+    const regex =
+      /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)\/?$/;
+    return regex.test(ig);
   };
 
   const validaciones = () => {
@@ -113,6 +122,17 @@ export default function ModalAddLeadVendedor({
           updatedErrors.web = "Ingrese una URL válida";
         } else {
           updatedErrors.web = "";
+        }
+        return updatedErrors;
+      });
+    }
+    if (values.instagram !== "") {
+      setErrors((prevErrors) => {
+        const updatedErrors = { ...prevErrors };
+        if (!validateIG(values.instagram)) {
+          updatedErrors.instagram = "Ingrese un instagram válido";
+        } else {
+          updatedErrors.instagram = "";
         }
         return updatedErrors;
       });
@@ -142,19 +162,20 @@ export default function ModalAddLeadVendedor({
       email: values.email,
       url: values.web,
       telephone: values.telefono,
-      checked: false,
-      view: false,
+      checked: true,
+      view: true,
       profesion: values.profesion,
-      corredor: OneFreelancer && OneFreelancer[0].email,
-      corredor_name: OneFreelancer && OneFreelancer[0].name,
-      instagra: "",
-      level: "",
-      freelancer: true,
-      vendedor: OneFreelancer && OneFreelancer[0].email,
-      vendedor_name: OneFreelancer && OneFreelancer[0].name,
-      from: OneFreelancer && OneFreelancer[0].email,
+      corredor: OneVendedor && OneVendedor[0].email,
+      corredor_name: OneVendedor && OneVendedor[0].name,
+      instagram: values.instagram,
+      level: values.level,
+      freelancer: false,
+      vendedor: OneVendedor && OneVendedor[0].email,
+      vendedor_name: OneVendedor && OneVendedor[0].name,
+      from: OneVendedor && OneVendedor[0].email,
       status: "Sin contactar",
       marca_personal: "No",
+      promociones: {},
     };
 
     if (
@@ -164,6 +185,8 @@ export default function ModalAddLeadVendedor({
       values.email === "" ||
       values.telefono === "" ||
       values.profesion === "" ||
+      values.level === "" ||
+      values.instagram === "" ||
       values.categoria === ""
     ) {
       AddLeadsIncomplete();
@@ -176,6 +199,8 @@ export default function ModalAddLeadVendedor({
         errors.email !== "" ||
         errors.telefono !== "" ||
         errors.profesion !== "" ||
+        errors.level !== "" ||
+        errors.instagram !== "" ||
         errors.categoria !== ""
       ) {
         AddLeadError();
@@ -191,6 +216,8 @@ export default function ModalAddLeadVendedor({
             telefono: "",
             categoria: "",
             profesion: "",
+            level: "",
+            instagram: "",
           });
           setOpen(false);
           AddLeads();
@@ -212,6 +239,8 @@ export default function ModalAddLeadVendedor({
       telefono: "",
       categoria: "",
       profesion: "",
+      level: "",
+      instagram: "",
     });
   };
 
@@ -276,10 +305,10 @@ export default function ModalAddLeadVendedor({
                       Seleccione una Profesion del cliente
                     </option>
                     {allProfesion &&
-                      allProfesion.map((profesion) => (
+                      allProfesion.map((profesion, index) => (
                         <option
                           value={profesion}
-                          key={profesion}
+                          key={index}
                           className="text-black"
                         >
                           {profesion}
@@ -304,10 +333,10 @@ export default function ModalAddLeadVendedor({
                       Seleccione una categoría del cliente
                     </option>
                     {allCategory &&
-                      allCategory.map((category) => (
+                      allCategory.map((category, index) => (
                         <option
                           value={category}
-                          key={category}
+                          key={index}
                           className="text-black"
                         >
                           {category}
@@ -318,6 +347,7 @@ export default function ModalAddLeadVendedor({
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24 text-left">*Pais: </label>
                   <select
+                    type="text"
                     id="pais"
                     className={
                       values.pais !== ""
@@ -330,15 +360,51 @@ export default function ModalAddLeadVendedor({
                     <option value="" disabled>
                       Seleccione el país del cliente
                     </option>
-                    {countries.map((country) => (
+                    {countries.map((country, index) => (
                       <option
                         value={country}
-                        key={country}
+                        key={index}
                         className="text-black"
                       >
                         {country}
                       </option>
                     ))}
+                  </select>
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24 text-left">*Instagram: </label>
+                  <input
+                    id="instagram"
+                    type="text"
+                    placeholder="Ingrese la instagram del cliente"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.instagram}
+                    onChange={(event) => handleChange(event)}
+                  />
+                </div>
+                {errors.instagram !== "" && <span>{errors.instagram}</span>}
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24 text-left">*Nivel: </label>
+                  <select
+                    type="text"
+                    id="level"
+                    className={
+                      values.level !== ""
+                        ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                        : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
+                    }
+                    value={values.level}
+                    onChange={(event) => handleChange(event)}
+                  >
+                    <option value="" disabled>
+                      Seleccione un nivel para el cliente
+                    </option>
+                    <option value="1" className="text-black">
+                      1
+                    </option>
+                    <option value="2" className="text-black">
+                      2
+                    </option>
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">

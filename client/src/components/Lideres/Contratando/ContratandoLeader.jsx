@@ -430,10 +430,10 @@ export const ContratandoLeader = () => {
                           </Text>
                         </div>
                       </div>
-                      <div className="flex justify-center items-center p-0 ">
+                      <div className="flex justify-center items-center p-0 mr-2">
                         <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                           <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.vendedor_name ? item.vendedor_name : "-"}
+                            {item.vendedor_name ? item.vendedor_name : "Sin vendedor asignado"}
                           </Text>
                         </div>
                       </div>

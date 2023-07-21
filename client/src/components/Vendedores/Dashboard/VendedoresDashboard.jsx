@@ -168,6 +168,45 @@ const VendedoresDashboard = () => {
     setSaveEmailApp(email);
   };
 
+  const AddLeadError = () => {
+    toast.error(` Error al crear Lead`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const AddLeads = () => {
+    toast.success(`✔ Se creo Lead exitosamente!`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const AddLeadsIncomplete = () => {
+    toast.error(`Completa los datos requeridos`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   return (
     <>
       <Nav />
@@ -228,7 +267,12 @@ const VendedoresDashboard = () => {
                   transition={{ duration: 1, delay: 0.5 }}
                   className="mr-10"
                 >
-                  <ModalAddLeadVendedor />
+                  <ModalAddLeadVendedor
+                    email={emailAddress}
+                    AddLeadError={AddLeadError}
+                    AddLeads={AddLeads}
+                    AddLeadsIncomplete={AddLeadsIncomplete}
+                  />
                 </motion.div>
               </div>
             )}
