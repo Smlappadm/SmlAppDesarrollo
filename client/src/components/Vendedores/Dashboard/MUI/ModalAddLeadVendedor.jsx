@@ -168,6 +168,8 @@ export default function ModalAddLeadVendedor({
       values.email === "" ||
       values.telefono === "" ||
       values.profesion === "" ||
+      values.level === "" ||
+      values.instagram === "" ||
       values.categoria === ""
     ) {
       AddLeadsIncomplete();
