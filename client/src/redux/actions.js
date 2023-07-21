@@ -48,8 +48,7 @@ export const GET_LEAD_CHEQUED_FREELANCER = "GET_LEAD_CHEQUED_FREELANCER";
 export const GET_FREELANCER = "GET_FREELANCER";
 export const GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS =
   "GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS";
-export const GET_ALL_PROMOCIONES =
-  "GET_ALL_PROMOCIONES";
+export const GET_ALL_PROMOCIONES = "GET_ALL_PROMOCIONES";
 
 //
 export const setRol = (rol) => {
@@ -371,15 +370,25 @@ export const getVendedorAllLeads = (email) => {
     });
   };
 };
-export const getLeadsLLamadaVenta = (email) => {
-  return async (dispatch) => {
-    const response = await axios.get(`/vendedor/ventas/email?email=${email}`);
 
-    const allLeads = response.data;
-    dispatch({
-      type: GET_LEADS_LLAMADA_VENTA,
-      payload: allLeads,
-    });
+export const getLeadsLLamadaVenta = (body, profesion, country, level) => {
+  const bodys = { email: body.email, name: body.name, profesion, country, level };
+  console.log(bodys)
+  return async (dispatch) => {
+    if (
+      body.email &&
+      body.email !== "undefined" &&
+      body.email !== null &&
+      body.email !== ""
+      ) {
+      const response = await axios.get("/vendedor/ventas/email", body);
+
+      const allLeads = response.data;
+      dispatch({
+        type: GET_LEADS_LLAMADA_VENTA,
+        payload: allLeads,
+      });
+    }
   };
 };
 
