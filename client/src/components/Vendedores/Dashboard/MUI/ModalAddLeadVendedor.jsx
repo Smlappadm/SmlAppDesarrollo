@@ -129,7 +129,7 @@ export default function ModalAddLeadVendedor({
       setErrors((prevErrors) => {
         const updatedErrors = { ...prevErrors };
         if (!validateIG(values.instagram)) {
-          updatedErrors.web = "Ingrese una URL válida";
+          updatedErrors.instagram = "Ingrese un instagram válido";
         } else {
           updatedErrors.web = "";
         }
