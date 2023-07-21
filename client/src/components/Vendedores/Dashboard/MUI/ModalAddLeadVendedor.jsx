@@ -382,6 +382,34 @@ export default function ModalAddLeadVendedor({
                 </div>
                 {errors.instagram !== "" && <span>{errors.instagram}</span>}
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24 text-left">*Nivel: </label>
+                  <select
+                    type="text"
+                    id="profesion"
+                    className={
+                      values.profesion !== ""
+                        ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                        : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
+                    }
+                    value={values.profesion}
+                    onChange={(event) => handleChange(event)}
+                  >
+                    <option value="" disabled>
+                      Seleccione una Profesion del cliente
+                    </option>
+                    {allProfesion &&
+                      allProfesion.map((profesion) => (
+                        <option
+                          value={profesion}
+                          key={profesion}
+                          className="text-black"
+                        >
+                          {profesion}
+                        </option>
+                      ))}
+                  </select>
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24 text-left">Ciudad: </label>
                   <input
                     id="ciudad"
