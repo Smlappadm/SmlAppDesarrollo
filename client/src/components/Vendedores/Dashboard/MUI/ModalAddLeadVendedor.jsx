@@ -354,6 +354,17 @@ export default function ModalAddLeadVendedor({
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
+                  <label className="w-24 text-left">*Instagram: </label>
+                  <input
+                    id="ciudad"
+                    type="text"
+                    placeholder="Ingrese la ciudad de el cliente"
+                    className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
+                    value={values.ciudad}
+                    onChange={(event) => handleChange(event)}
+                  />
+                </div>
+                <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24 text-left">Ciudad: </label>
                   <input
                     id="ciudad"
