@@ -218,7 +218,7 @@ export default function ModalAddLeadVendedor({
 
   return (
     <React.Fragment>
-      <Button variant="contained" size="large" onClick={handleOpen}>
+      <Button variant="outlined" size="large" onClick={handleOpen}>
         NUEVO CLIENTE
       </Button>
       <ToastContainer />
