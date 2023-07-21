@@ -109,7 +109,7 @@ export default function ModalIntelligentInfo({ item }) {
                   >
                     <div className="border-2 w-full mb-2"></div>
                     <div className="flex justify-start items-start h-fit w-full gap-x-3">
-                      <div className=" flex justify-start items-start h-fit w-56 gap-x-2">
+                      <div className="whitespace-nowrap flex justify-start items-start h-fit w-56 gap-x-2">
                         <h1>Status: </h1>
                         <h1>{item.status && item.status}</h1>
                       </div>
