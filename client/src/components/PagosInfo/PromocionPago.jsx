@@ -103,39 +103,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   useEffect(() => {
     setCliente(clienteEmpresa);
-    // const fechaActual = new Date();
-    // const ActualMas2Horas = new Date(
-    //   fechaActual.getTime() + 2 * 60 * 60 * 1000
-    // );
-    // const fechaCon24Horas = new Date(
-    //   ActualMas2Horas.getTime() + 24 * 60 * 60 * 1000
-    // );
-
-    // const body = {
-    //   promociones: {
-    //     promocion1: ActualMas2Horas,
-    //     promocion2: fechaCon24Horas,
-    //   },
-    //   emailApp: emailApp,
-    // };
-    // if (clienteEmpresa && !clienteEmpresa?.promociones) {
-    //   console.log("si");
-    //   seteoPromociones(body);
-    // }
-    // if (clienteEmpresa?.promocion1) {
-    //   const time1 = new Date(clienteEmpresa.promocion1);
-    //   const time2 = new Date(clienteEmpresa.promocion2 ?? 0);
-    //   const diferenciaEnMilisegundos1 = time1.getTime() - fechaActual.getTime();
-    //   const diferenciaEnSegundos1 = Math.floor(
-    //     diferenciaEnMilisegundos1 / 1000
-    //   );
-    //   const diferenciaEnMilisegundos2 = time2.getTime() - fechaActual.getTime();
-    //   const diferenciaEnSegundos2 = Math.floor(
-    //     diferenciaEnMilisegundos2 / 1000
-    //   );
-    //   setTiempoRestante1(diferenciaEnSegundos1);
-    //   setTiempoRestante2(diferenciaEnSegundos2);
-    // }
 
     if (
       clienteEmpresa &&
