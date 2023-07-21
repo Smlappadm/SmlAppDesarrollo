@@ -143,7 +143,7 @@ export default function ModalIntelligentInfo({ item }) {
                       </h1>
                     </div>
                   </div>
-                ))
+                )).reverse()
               ) : (
                 <div className=" flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll text-white">
                   <h1>No hay observaciones disponibles</h1>
