@@ -152,7 +152,7 @@ export default function ModalAddLeadVendedor({
       corredor: OneVendedor && OneVendedor[0].email,
       corredor_name: OneVendedor && OneVendedor[0].name,
       instagram: "",
-      level: "",
+      level: values.level,
       freelancer: false,
       vendedor: OneVendedor && OneVendedor[0].email,
       vendedor_name: OneVendedor && OneVendedor[0].name,
