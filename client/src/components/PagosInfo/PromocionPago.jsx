@@ -312,6 +312,19 @@ export default function PromocionPago({ tamañoPantalla }) {
       };
     }
   };
+  const actualizarPromocionActual = () => {
+    for (let i = 0; i < promos.length; i++) {
+      const promocionKey = `promocion${i}`;
+      if (tiempoRestante[promocionKey] > 0) {
+        setPromocionActual(i);
+        return;
+      }
+    }
+    setPromocionActual(0);
+  };
+  useEffect(() => {
+    actualizarPromocionActual();
+  }, [tiempoRestante]);
 
   return (
     <div
@@ -602,7 +615,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             <p className="text-white text-center">{sinPromo.pagos[cuotas]}</p>
           </div>
         )} */}
-        <Link
+        {/* <Link
           className={
             tamañoPantalla === "Pequeña"
               ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
@@ -619,7 +632,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           }
         >
           Link de Pago
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
