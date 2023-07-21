@@ -400,7 +400,9 @@ export default function ModalAddLeadVendedor({
                     <option value="1" className="text-black">
                       1
                     </option>
-                    <option value="2">2</option>
+                    <option value="2" className="text-black">
+                      2
+                    </option>
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
