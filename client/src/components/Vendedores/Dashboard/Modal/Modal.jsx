@@ -202,7 +202,10 @@ function ChildModal({
       llamada_venta: statusObj.llamada_venta,
     };
 
+    //La fecha y el status de observaciones se cargan en el back
     const dataObservaciones = statusObj.observaciones;
+
+    console.log(dataObservaciones)
 
     const dataUpdate = {
       dataObservaciones,
