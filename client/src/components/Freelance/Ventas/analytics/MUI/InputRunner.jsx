@@ -332,8 +332,10 @@ console.log(level)
             <MenuItem value="">Estado</MenuItem>
             <MenuItem value="Rechazado">Rechazado</MenuItem>
             <MenuItem value="Contratado">Contratado</MenuItem>
-            <MenuItem value="No responde">No responde</MenuItem>
+            <MenuItem value="Contactado">Contactado</MenuItem>
+            <MenuItem value="No responde">Sin responder</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
+            <MenuItem value="A pagar">A pagar</MenuItem>
           </Select>
         </div>
 

@@ -15,7 +15,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import InputRunner from "./Select/InputRunner";
+import InputRunner from "./Select/InputRunnerVentas";
 import { motion } from "framer-motion";
 import Nav from "../../Nav/Nav";
 
@@ -35,7 +35,7 @@ const VentasDashboard = () => {
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
   const body = { name: fullName, email: emailAddress };
-console.log(body)
+
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(body));
   }, [dispatch, emailAddress]);
@@ -176,7 +176,6 @@ console.log(body)
     return fechaHoraLocal;
   };
 
-  console.log(saveEmailApp);
 
   return (
     <>

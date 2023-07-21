@@ -5,28 +5,27 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { Checkbox } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllCountriesFreelance,
-  getAllProfesionFreelance,
-} from "../../../../../redux/actions";
+import { getAllCountries, getAllProfesion } from "../../../../redux/actions";
 
 export default function InputName({
   body,
-  getLeadCheckedFreelance,
+  getLeadCheckedInactive5,
   emailAddress,
 }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
   const [freelancer, setFreelancer] = useState("");
+  const [checkFreelancer, setCheckFreelancer] = useState(false);
 
-  const { allProfesionFreelance } = useSelector((state) => state);
-  const { allCountriesFreelance } = useSelector((state) => state);
+  const { allProfesion } = useSelector((state) => state);
+  const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(getAllCountriesFreelance(emailAddress));
-    dispatch(getAllProfesionFreelance(emailAddress));
+    dispatch(getAllProfesion());
+    dispatch(getAllCountries());
   }, [dispatch]);
 
   const handleChangeProfesion = (event) => {
@@ -38,6 +37,10 @@ export default function InputName({
     let value = event.target.value;
     setCountry(value);
   };
+  const handleChangeLevel = (event) => {
+    let value = event.target.value;
+    setLevel(value);
+  };
   const handleChangeStatus = (event) => {
     let value = event.target.value;
     setStatus(value);
@@ -46,22 +49,35 @@ export default function InputName({
   //AGREGADO
   const handleChangeFreelancer = (event) => {
     setFreelancer(event.target.checked ? emailAddress : "undefined");
+    setCheckFreelancer(!checkFreelancer)
   };
-console.log(freelancer)
+  console.log(freelancer);
 
   const handleFilterClick = () => {
     console.log(profesion);
     console.log(country);
+    console.log(level);
     console.log(status);
-    dispatch(getLeadCheckedFreelance(body, profesion, country, status, freelancer));
+    dispatch(
+      getLeadCheckedInactive5(
+        body,
+        profesion,
+        country,
+        status,
+        level,
+        freelancer
+      )
+    );
   };
 
   const handleFilterReset = () => {
-    dispatch(getLeadCheckedFreelance(body, "", ""));
+    dispatch(getLeadCheckedInactive5(body, "", "", "", "", ""));
     setCountry("");
     setProfesion("");
+    setLevel("");
     setStatus("");
-    setFreelancer(false);
+    setFreelancer("");
+    setCheckFreelancer(false)
   };
 
   return (
@@ -88,7 +104,7 @@ console.log(freelancer)
       }}
     >
       <div className="flex gap-5">
-        <div className="flex flex-col w-56">
+        <div className="flex flex-col w-28">
           <label>Profesión:</label>
           <Select
             value={profesion}
@@ -114,7 +130,7 @@ console.log(freelancer)
             }}
           >
             <MenuItem value="">Profesión</MenuItem>
-            {allProfesionFreelance.map((profesion, index) => (
+            {allProfesion.map((profesion, index) => (
               <MenuItem key={index} value={profesion}>
                 {profesion}
               </MenuItem>
@@ -122,7 +138,7 @@ console.log(freelancer)
           </Select>
         </div>
 
-        <div className="flex flex-col w-36">
+        <div className="flex flex-col w-28">
           <label>Países:</label>
           <Select
             value={country}
@@ -148,7 +164,7 @@ console.log(freelancer)
             }}
           >
             <MenuItem value=""></MenuItem>
-            {allCountriesFreelance.map((country, index) => (
+            {allCountries.map((country, index) => (
               <MenuItem key={index} value={country}>
                 {country}
               </MenuItem>
@@ -156,8 +172,42 @@ console.log(freelancer)
           </Select>
         </div>
 
-        <div className="flex flex-col w-36">
+        <div className="flex flex-col w-28">
           <label>Nivel:</label>
+          <Select
+            value={level}
+            onChange={handleChangeLevel}
+            label=""
+            id="runner"
+            size="small"
+            variant="outlined"
+            displayEmpty
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
+            sx={{
+              color: "white",
+              "& .MuiOutlinedInput-input": {
+                padding: "9.5px 14px",
+              },
+              "& .MuiSelect-outlined": {
+                paddingRight: "28px",
+              },
+            }}
+          >
+            <MenuItem value="s">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="1">1</MenuItem>
+            <MenuItem value="2">2</MenuItem>
+            <MenuItem value="aleatorio">Aleatorio</MenuItem>
+          </Select>
+        </div>
+
+        <div className="flex flex-col w-28">
+          <label>Estado:</label>
           <Select
             value={status}
             onChange={handleChangeStatus}
@@ -181,15 +231,16 @@ console.log(freelancer)
               },
             }}
           >
-            <MenuItem value="s">
-              <em></em>
-            </MenuItem>
-            <MenuItem value="0">0</MenuItem>
-            <MenuItem value="1">1</MenuItem>
-            <MenuItem value="2">2</MenuItem>
-            <MenuItem value="aleatorio">Aleatorio</MenuItem>
+            {/* <MenuItem value="">Estado</MenuItem> */}
+            {/* <MenuItem value="Rechazado">Rechazado</MenuItem> */}
+            {/* <MenuItem value="Contratado">Contratado</MenuItem> */}
+            <MenuItem value="Contactado">Contactado</MenuItem>
+            <MenuItem value="No responde">Sin contestar</MenuItem>
+            <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
+            {/* <MenuItem value="A pagar">A pagar</MenuItem> */}
           </Select>
         </div>
+
         <div className="flex w-18 items-center justify-center flex-col">
           <div>
             <label>Freelancer:</label>
@@ -197,6 +248,7 @@ console.log(freelancer)
           <div>
             <Checkbox
               id="freelancer"
+              checked={checkFreelancer}
               onClick={handleChangeFreelancer}
               size="medium"
             />
