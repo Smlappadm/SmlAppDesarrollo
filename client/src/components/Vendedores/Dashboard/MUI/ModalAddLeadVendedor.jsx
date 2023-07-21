@@ -33,7 +33,7 @@ export default function ModalAddLeadVendedor({
   const { vendedores, allCategory, allProfesion } = useSelector(
     (state) => state
   );
-  const [OneFreelancer, setOneVendedor] = useState("");
+  const [OneVendedor, setOneVendedor] = useState("");
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const [countries, setCountries] = useState([]);
