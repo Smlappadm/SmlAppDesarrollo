@@ -141,7 +141,6 @@ export default function ModalAddLeadVendedor({
 
   useEffect(() => {
     validaciones();
-    console.log(values);
   }, [values]);
 
   const handleChange = (event) => {
@@ -176,6 +175,7 @@ export default function ModalAddLeadVendedor({
       from: OneVendedor && OneVendedor[0].email,
       status: "Sin contactar",
       marca_personal: "No",
+      promociones: {},
     };
 
     if (
@@ -305,10 +305,10 @@ export default function ModalAddLeadVendedor({
                       Seleccione una Profesion del cliente
                     </option>
                     {allProfesion &&
-                      allProfesion.map((profesion) => (
+                      allProfesion.map((profesion, index) => (
                         <option
                           value={profesion}
-                          key={profesion}
+                          key={index}
                           className="text-black"
                         >
                           {profesion}
@@ -333,10 +333,10 @@ export default function ModalAddLeadVendedor({
                       Seleccione una categoría del cliente
                     </option>
                     {allCategory &&
-                      allCategory.map((category) => (
+                      allCategory.map((category, index) => (
                         <option
                           value={category}
-                          key={category}
+                          key={index}
                           className="text-black"
                         >
                           {category}
@@ -347,6 +347,7 @@ export default function ModalAddLeadVendedor({
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24 text-left">*Pais: </label>
                   <select
+                    type="text"
                     id="pais"
                     className={
                       values.pais !== ""
@@ -359,10 +360,10 @@ export default function ModalAddLeadVendedor({
                     <option value="" disabled>
                       Seleccione el país del cliente
                     </option>
-                    {countries.map((country) => (
+                    {countries.map((country, index) => (
                       <option
                         value={country}
-                        key={country}
+                        key={index}
                         className="text-black"
                       >
                         {country}
