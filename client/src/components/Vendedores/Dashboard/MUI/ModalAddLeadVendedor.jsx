@@ -76,7 +76,7 @@ export default function ModalAddLeadVendedor({
 
   useEffect(() => {
     const free =
-      vendedores && freelancer.filter((free) => free.email === email);
+      vendedores && vendedores.filter((free) => free.email === email);
     setOneFreelancer(free);
   }, [freelancer, email]);
 
