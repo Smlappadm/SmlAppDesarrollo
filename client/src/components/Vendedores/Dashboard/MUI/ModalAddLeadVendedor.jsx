@@ -222,7 +222,7 @@ export default function ModalAddLeadVendedor({
       telefono: "",
       categoria: "",
       profesion: "",
-      profesion: "",
+      level: "",
       profesion: "",
     });
   };
