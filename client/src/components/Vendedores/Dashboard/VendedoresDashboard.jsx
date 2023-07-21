@@ -268,7 +268,7 @@ const VendedoresDashboard = () => {
                   className="mr-10"
                 >
                   <ModalAddLeadVendedor
-                    email={email}
+                    email={emailAddress}
                     AddLeadError={AddLeadError}
                     AddLeads={AddLeads}
                     AddLeadsIncomplete={AddLeadsIncomplete}
