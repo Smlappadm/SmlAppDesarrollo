@@ -250,7 +250,6 @@ const ClasificacionDashboard = () => {
             _id: freelanceLead[i]._id,
             name: freelanceLead[i].name,
             url: freelanceLead[i].url,
-            url: freelanceLead[i].url,
             email: freelanceLead[i].email,
             instagram: freelanceLead[i].instagram,
             level: freelanceLead[i].level,
