@@ -109,7 +109,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       clienteEmpresa?.promociones &&
       clienteEmpresa?.promociones.length > 0
     ) {
-      const nuevosTiemposRestantes = {}; // Objeto para almacenar los nuevos tiempos restantes
+      const nuevosTiemposRestantes = {};
       const fechaActual = new Date();
       let fechaAnterior = null;
       let fechaAnteriorSegundos = 0; // Inicializamos en 0
