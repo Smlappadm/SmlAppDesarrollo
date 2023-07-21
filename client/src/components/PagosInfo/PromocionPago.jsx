@@ -20,13 +20,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [promos, setPromos] = useState([]);
 
   const [promo24horas, setPromo24horas] = useState({
-    pagos: {
-      1: "Pago único de 4500€",
-      2: "Cuotas de 2250€/mes, Total: 4500€",
-      4: "Cuotas de 1125€/mes, Total: 4500€",
-      5: "Cuotas de 1000€/mes, Total: 5000€",
-      10: "Cuotas de 500€/mes, Total: 5000€",
-    },
     links: {
       1: "",
       2: "https://buy.stripe.com/00gdTje5mep777OfZw",
