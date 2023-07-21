@@ -57,6 +57,7 @@ export default function ModalAddLeadVendedor({
     telefono: "",
     categoria: "",
     profesion: "",
+    level: "",
   });
 
   useEffect(() => {
