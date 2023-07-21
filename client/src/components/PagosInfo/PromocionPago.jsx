@@ -80,6 +80,15 @@ export default function PromocionPago({ tamañoPantalla }) {
     return armado;
   };
 
+  const seteoPromociones = async (body) => {
+    try {
+      await axios.put(`/lead/promociones/promos`, body);
+      dispatch(getClienteEmpresa(emailApp));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   useEffect(() => {
     const promocionesArmadas = armarPromociones(promos);
     const body = {
@@ -129,15 +138,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       setTiempoRestante(nuevosTiemposRestantes);
     }
   }, [clienteEmpresa]);
-
-  const seteoPromociones = async (body) => {
-    try {
-      await axios.put(`/lead/promociones/promos`, body);
-      dispatch(getClienteEmpresa(emailApp));
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   useEffect(() => {
     // Creamos el intervalo para actualizar el tiempo restante cada segundo
