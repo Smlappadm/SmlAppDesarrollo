@@ -47,6 +47,7 @@ export default function ModalAddLeadVendedor({
     categoria: "",
     profesion: "",
     level: "",
+    instagram: "",
   });
   const [values, setValues] = useState({
     nombre: "",
