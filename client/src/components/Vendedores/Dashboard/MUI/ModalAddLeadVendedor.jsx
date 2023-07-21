@@ -97,6 +97,10 @@ export default function ModalAddLeadVendedor({
     const regex = /^(ftp|http|https):\/\/[^ "]+$/;
     return regex.test(url);
   };
+  const validateIG = (ig) => {
+    const regex = /^https?:\/\/(?:www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
+    return regex.test(ig);
+  };
 
   const validaciones = () => {
     if (values.email !== "") {
