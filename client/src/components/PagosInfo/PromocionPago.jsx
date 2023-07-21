@@ -313,16 +313,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           })}
         {/* 
              
-           unded-md border border-white mr-2 font-bold"
-                }
-                onClick={() => CambiarCuota("10")}
-              >
-                <p className="py-3 px-4">10</p>
-              </div>
-            </div>
-            <p className="text-white">DETALLE</p>
-            <p className="text-white text-center">
-              {promo24horas.pagos[cuotas]}
+         tas]}
             </p>
           </div>
         )}
