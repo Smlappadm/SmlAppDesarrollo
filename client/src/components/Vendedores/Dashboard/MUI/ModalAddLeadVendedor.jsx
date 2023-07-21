@@ -391,7 +391,7 @@ export default function ModalAddLeadVendedor({
                         ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
                         : "bg-transparent w-full rounded-lg pl-3 h-full border border-white text-gray-400"
                     }
-                    value={values.profesion}
+                    value={values.level}
                     onChange={(event) => handleChange(event)}
                   >
                     <option value="" disabled>
