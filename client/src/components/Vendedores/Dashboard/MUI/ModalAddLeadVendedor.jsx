@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import {
   getAllCategory,
-  getAllFreelancer,
   getAllProfesion,
   getAllVendedores,
 } from "../../../../redux/actions";
