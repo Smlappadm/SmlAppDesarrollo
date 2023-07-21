@@ -7,7 +7,6 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import {
   getAllCategory,
-  getAllFreelancer,
   getAllProfesion,
   getAllVendedores,
 } from "../../../../redux/actions";
@@ -31,7 +30,7 @@ export default function ModalAddLeadVendedor({
   AddLeads,
   AddLeadsIncomplete,
 }) {
-  const { freelancer, allCategory, allProfesion } = useSelector(
+  const { vendedores, allCategory, allProfesion } = useSelector(
     (state) => state
   );
   const [OneFreelancer, setOneFreelancer] = useState("");
