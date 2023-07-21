@@ -395,7 +395,7 @@ export default function ModalAddLeadVendedor({
                     onChange={(event) => handleChange(event)}
                   >
                     <option value="" disabled>
-                      Seleccione una Profesion del cliente
+                      Seleccione un nivel para el cliente
                     </option>
                     <option value="1">1</option>
                     <option value="2">2</option>
