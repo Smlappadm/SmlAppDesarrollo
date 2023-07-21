@@ -19,14 +19,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const [promos, setPromos] = useState([]);
 
-  const [promo2horas, setPromo2horas] = useState({
-    links: {
-      1: "https://buy.stripe.com/bIY5mN5yQ94N3VC4gH",
-      2: "https://buy.stripe.com/4gw6qR3qIa8RfEkeVu",
-      4: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
-      10: "https://buy.stripe.com/28o6qRbXegxf63K14n",
-    },
-  });
+  const [promo2horas, setPromo2horas] = useState({});
   const [sinPromo, setSinPromo] = useState({
     pagos: {
       1: "Pago único de 5000€",
