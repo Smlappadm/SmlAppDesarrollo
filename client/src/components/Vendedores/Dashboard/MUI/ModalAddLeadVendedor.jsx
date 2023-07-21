@@ -398,7 +398,7 @@ export default function ModalAddLeadVendedor({
                       Seleccione una Profesion del cliente
                     </option>
                     <option value="1">1</option>
-                    <option value="2">1</option>
+                    <option value="2">2</option>
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
