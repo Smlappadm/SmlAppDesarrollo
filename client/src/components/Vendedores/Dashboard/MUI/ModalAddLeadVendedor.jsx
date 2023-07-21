@@ -397,16 +397,8 @@ export default function ModalAddLeadVendedor({
                     <option value="" disabled>
                       Seleccione una Profesion del cliente
                     </option>
-                    {allProfesion &&
-                      allProfesion.map((profesion) => (
-                        <option
-                          value={profesion}
-                          key={profesion}
-                          className="text-black"
-                        >
-                          {profesion}
-                        </option>
-                      ))}
+                    <option value="1">1</option>
+                    <option value="2">2</option>
                   </select>
                 </div>
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
