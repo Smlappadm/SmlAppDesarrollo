@@ -397,7 +397,9 @@ export default function ModalAddLeadVendedor({
                     <option value="" disabled>
                       Seleccione un nivel para el cliente
                     </option>
-                    <option value="1">1</option>
+                    <option value="1" className="text-black">
+                      1
+                    </option>
                     <option value="2">2</option>
                   </select>
                 </div>
