@@ -263,8 +263,8 @@ const CorredoresDashboard = () => {
     updateClients();
   }, [client]);
 
-  const SendLeads = (name) => {
-    toast.info(`✔ ${name} Enviando formulario! `, {
+  const SendLeads = () => {
+    toast.info(`✔ Enviando formulario! `, {
       position: "top-center",
       autoClose: 500,
       hideProgressBar: false,
@@ -338,7 +338,7 @@ const CorredoresDashboard = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    SendLeads(names);
+    SendLeads();
     try {
       for (let i = 0; i < corredorLead.length; i++) {
         const currentClient = client[i];
@@ -395,14 +395,11 @@ const CorredoresDashboard = () => {
           SendLeadsErrorLevel(currentClient.name);
         }
       }
-
-      console.log(names);
-      console.log(email);
       dispatch(getLeadCorredores(email, names, "", "", "", ""));
 
       SendLeadsSuccess();
     } catch (error) {
-      SendLeadsError();
+      SendLeadsError(names);
       console.log({ error: error.message });
     }
   };
