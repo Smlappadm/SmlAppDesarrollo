@@ -25,6 +25,11 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
 
+  useEffect(() => {
+    dispatch(getClienteEmpresa(emailApp));
+    dispatch(getAllPromociones());
+  }, [dispatch]);
+
   const ObtenerFecha = (horas) => {
     const fechaActual = new Date();
     const fechaLimitePromo = new Date(
@@ -95,11 +100,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       seteoPromociones(body);
     }
   }, [promos]);
-
-  useEffect(() => {
-    dispatch(getClienteEmpresa(emailApp));
-    dispatch(getAllPromociones());
-  }, [dispatch]);
 
   useEffect(() => {
     setCliente(clienteEmpresa);
