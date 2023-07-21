@@ -456,20 +456,21 @@ const VentasDashboard = () => {
               )}
             </>
           ) : (
-            <div className=" flex flex-col justify-center items-center w-44 mt-56 gap-7">
+            <div className=" flex flex-col justify-center items-center w-44 mt-40 gap-7">
               <button
-                className=" -top-3 -right-14 bg-[#485d94] text-white hover:bg-[#294ba7] w-10 h-10 rounded-full text-24 my-5 "
+                className="border-2 bg-[#485d94] text-white hover:bg-[#294ba7] w-10 h-10 rounded-full text-23 my-2 "
                 onClick={closeModalPago}
               >
                 x
               </button>
+              <p className="border-2 p-3">`http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`</p>
               <p
                 onClick={() =>
                   handleCopyClick(
                     `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
                   )
                 }
-                className=" w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
               >
                 Link de Pago
               </p>
