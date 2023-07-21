@@ -20,6 +20,7 @@ export default function InputName({
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
   const [freelancer, setFreelancer] = useState("");
+  const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesionFreelance } = useSelector((state) => state);
   const { allCountriesFreelance } = useSelector((state) => state);
@@ -45,7 +46,8 @@ export default function InputName({
 
   //AGREGADO
   const handleChangeFreelancer = (event) => {
-    setFreelancer(event.target.checked ? emailAddress : "undefined");
+    setFreelancer(event.target.checked ? emailAddress : "");
+    setCheckFreelancer(!checkFreelancer)
   };
 console.log(freelancer)
 
@@ -61,7 +63,8 @@ console.log(freelancer)
     setCountry("");
     setProfesion("");
     setStatus("");
-    setFreelancer(false);
+    setFreelancer("");
+    setCheckFreelancer(false)
   };
 
   return (
@@ -195,8 +198,9 @@ console.log(freelancer)
             <label>Freelancer:</label>
           </div>
           <div>
-            <Checkbox
+          <Checkbox
               id="freelancer"
+              checked={checkFreelancer}
               onClick={handleChangeFreelancer}
               size="medium"
             />

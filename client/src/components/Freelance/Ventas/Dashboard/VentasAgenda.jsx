@@ -17,6 +17,7 @@ import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import Nav from "../../../Nav/Nav";
 import ModalObservaciones from "./Modal/ModalObservaciones";
 import { motion } from "framer-motion";
+import InputRunner from "./Select/InputRunnerVentas";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
@@ -27,14 +28,16 @@ const VentasDashboard = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-
+  const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -52,7 +55,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   //FILTER**********************
@@ -113,7 +116,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -139,7 +142,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   const showObservacionesHandler = (observacion) => {
@@ -221,6 +224,20 @@ const VentasDashboard = () => {
             ) : (
               ""
             )}
+                        {!openModalPago && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="flex gap-5 justify-center items-center ml-16"
+              >
+                <InputRunner
+                  getLeadCheckedInactive5={getLeadsLLamadaVenta}
+                  body={body}
+                  emailAddress={emailAddress}
+                />
+              </motion.div>
+            )}
           </div>
           {!openModalPago ? (
             <>
@@ -269,7 +286,7 @@ const VentasDashboard = () => {
 
                         <div className=" w-[9%] flex justify-start items-center p-0">
                           <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.province}
+                            {item.country}
                           </p>
                         </div>
 

@@ -12,7 +12,7 @@ import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import InputRunner from "./Select/InputRunnerVentas";
+import InputRunner from "./Select/InputRunner";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import {
   filterLevel,
@@ -32,12 +32,13 @@ const VentasDashboard = () => {
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
 
-
+  
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+
   const body = { name: fullName, email: emailAddress };
 
   const [profesion, setProfesion] = useState("");
@@ -46,7 +47,7 @@ const VentasDashboard = () => {
   useEffect(() => {
     dispatch(getAllProfesionFreelance(emailAddress));
     dispatch(getAllCountriesFreelance(emailAddress));
-    dispatch(getLeadCheckedFreelance(body));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -65,7 +66,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedFreelance(body));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
 
   const [levelValue, setLevelValue] = useState("");
@@ -102,7 +103,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedFreelance(body));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -128,7 +129,7 @@ const VentasDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedFreelance(body));
+    dispatch(getLeadCheckedFreelance(body, profesion, country));
   };
 
   const funcionHorario = (horario) => {
@@ -192,7 +193,7 @@ const VentasDashboard = () => {
               className="flex gap-5 justify-center items-center ml-16"
             >
               <InputRunner
-                getLeadCheckedInactive5={getLeadCheckedFreelance}
+                getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
                 emailAddress={emailAddress}
               />

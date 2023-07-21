@@ -194,8 +194,8 @@ export const getLeadDiscard = () => {
   };
 };
 
-export const getLeadCheckedInactive5 = (body, profesion, country, level) => {
-  body = { ...body, profesion, country, level };
+export const getLeadCheckedInactive5 = (body, profesion, country, level, freelancer) => {
+  body = { ...body, profesion, country, level, freelancer};
 
   return async (dispatch) => {
     if (
@@ -218,9 +218,9 @@ export const getLeadCheckedFreelance = (
   profesion,
   country,
   level,
-  freelance
+  freelancer
 ) => {
-  body = { ...body, profesion, country, level, freelance };
+  body = { ...body, profesion, country, level, freelancer };
   console.log(body);
 
   return async (dispatch) => {
