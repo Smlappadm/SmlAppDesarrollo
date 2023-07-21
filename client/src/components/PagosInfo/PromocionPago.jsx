@@ -313,8 +313,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           })}
 
         {/* 
-        >
-          Link de Pago
+       
         </Link> */}
       </div>
     </div>
