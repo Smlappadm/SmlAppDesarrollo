@@ -20,14 +20,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [promos, setPromos] = useState([]);
 
   const [sinPromo, setSinPromo] = useState({
-    links: {
-      1: "https://buy.stripe.com/cN2cPf3qIbcVcs85kK",
-      2: "https://buy.stripe.com/14k16x5yQep7fEk3cE",
-      4: "https://buy.stripe.com/cN2dTj9P680J63KaF7",
-      6: "https://buy.stripe.com/fZe5mN9P62Gp8bSfZs",
-      12: "https://buy.stripe.com/28o6qRbXegxf63K14n",
-    },
-  });
+    
   const [cuotas, setCuotas] = useState("1");
 
   const CambiarCuota = (cuota) => {
