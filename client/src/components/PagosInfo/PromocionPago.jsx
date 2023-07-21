@@ -314,9 +314,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         {/* 
              
         
-          white">DETALLE</p>
-            <p className="text-white text-center">{sinPromo.pagos[cuotas]}</p>
-          </div>
+        
         )} */}
         {/* <Link
           className={
