@@ -5,14 +5,20 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { Checkbox } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCountries, getAllProfesion } from "../../../../redux/actions";
+import { getAllCountries, getAllProfesion } from "../../../../../redux/actions";
 
-export default function InputName({ body, getLeadCheckedInactive5, emailAddress }) {
+export default function InputName({
+  body,
+  getLeadCheckedInactive5,
+  emailAddress,
+}) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
   const [freelancer, setFreelancer] = useState("");
+  const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesion } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
@@ -31,6 +37,10 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
     let value = event.target.value;
     setCountry(value);
   };
+  const handleChangeLevel = (event) => {
+    let value = event.target.value;
+    setLevel(value);
+  };
   const handleChangeStatus = (event) => {
     let value = event.target.value;
     setStatus(value);
@@ -39,21 +49,35 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
   //AGREGADO
   const handleChangeFreelancer = (event) => {
     setFreelancer(event.target.checked ? emailAddress : "undefined");
+    setCheckFreelancer(!checkFreelancer)
   };
   console.log(freelancer);
 
   const handleFilterClick = () => {
     console.log(profesion);
     console.log(country);
+    console.log(level);
     console.log(status);
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(
+      getLeadCheckedInactive5(
+        body,
+        profesion,
+        country,
+        status,
+        level,
+        freelancer
+      )
+    );
   };
 
   const handleFilterReset = () => {
-    dispatch(getLeadCheckedInactive5(body, "", ""));
+    dispatch(getLeadCheckedInactive5(body, "", "", "", "", ""));
     setCountry("");
     setProfesion("");
+    setLevel("");
     setStatus("");
+    setFreelancer("");
+    setCheckFreelancer(false)
   };
 
   return (
@@ -80,7 +104,7 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
       }}
     >
       <div className="flex gap-5">
-        <div className="flex flex-col w-56">
+        <div className="flex flex-col w-28">
           <label>Profesión:</label>
           <Select
             value={profesion}
@@ -114,7 +138,7 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
           </Select>
         </div>
 
-        <div className="flex flex-col w-36">
+        <div className="flex flex-col w-28">
           <label>Países:</label>
           <Select
             value={country}
@@ -148,11 +172,11 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
           </Select>
         </div>
 
-        <div className="flex flex-col w-36">
+        <div className="flex flex-col w-28">
           <label>Nivel:</label>
           <Select
-            value={status}
-            onChange={handleChangeStatus}
+            value={level}
+            onChange={handleChangeLevel}
             label=""
             id="runner"
             size="small"
@@ -181,6 +205,42 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
             <MenuItem value="aleatorio">Aleatorio</MenuItem>
           </Select>
         </div>
+
+        <div className="flex flex-col w-28">
+          <label>Estado:</label>
+          <Select
+            value={status}
+            onChange={handleChangeStatus}
+            label=""
+            id="runner"
+            size="small"
+            variant="outlined"
+            displayEmpty
+            inputProps={{
+              style: {
+                color: "white",
+              },
+            }}
+            sx={{
+              color: "white",
+              "& .MuiOutlinedInput-input": {
+                padding: "9.5px 14px",
+              },
+              "& .MuiSelect-outlined": {
+                paddingRight: "28px",
+              },
+            }}
+          >
+            {/* <MenuItem value="">Estado</MenuItem> */}
+            {/* <MenuItem value="Rechazado">Rechazado</MenuItem> */}
+            {/* <MenuItem value="Contratado">Contratado</MenuItem> */}
+            <MenuItem value="Contactado">Contactado</MenuItem>
+            <MenuItem value="No responde">Sin contestar</MenuItem>
+            <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
+            {/* <MenuItem value="A pagar">A pagar</MenuItem> */}
+          </Select>
+        </div>
+
         <div className="flex w-18 items-center justify-center flex-col">
           <div>
             <label>Freelancer:</label>
@@ -188,6 +248,7 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
           <div>
             <Checkbox
               id="freelancer"
+              checked={checkFreelancer}
               onClick={handleChangeFreelancer}
               size="medium"
             />

@@ -1,6 +1,6 @@
 import axios from "axios";
 export const GET_ALL_LEAD = "GET_ALL_LEAD";
-export const GET_ALL_LEAD_CONTRATANDO = "GET_ALL_LEAD_CONTRATANDO";
+export const GET_ALL_LEAD_A_PAGAR = "GET_ALL_LEAD_A_PAGAR";
 export const GET_LEAD_UNCHECKED_10 = "GET_LEAD_UNCHECKED_10";
 export const GET_LEAD_UNCHECKED = "GET_LEAD_UNCHECKED";
 export const GET_LEAD_CHEQUED = "GET_LEAD_CHEQUED";
@@ -95,11 +95,11 @@ export const getAllLead = () => {
   };
 };
 
-export const getAllLeadContratando = () => {
+export const getAllLeadAPagar = () => {
   return async (dispatch) => {
-    const response = await axios.get("/lead/contratando");
-    const leadContratando = response.data;
-    dispatch({ type: GET_ALL_LEAD_CONTRATANDO, payload: leadContratando });
+    const response = await axios.get("/lead/apagar");
+    const leadAPagar = response.data;
+    dispatch({ type: GET_ALL_LEAD_A_PAGAR, payload: leadAPagar });
   };
 };
 
@@ -371,9 +371,9 @@ export const getVendedorAllLeads = (email) => {
   };
 };
 
-export const getLeadsLLamadaVenta = (body, profesion, country, level) => {
-  const bodys = { email: body.email, name: body.name, profesion, country, level };
-  console.log(bodys)
+export const getLeadsLLamadaVenta = (body, profesion, country, status, level, freelancer) => {
+  body = { email: body.email, name: body.name , profesion, country, level, status, freelancer };
+  console.log(body)
   return async (dispatch) => {
     if (
       body.email &&
@@ -381,7 +381,8 @@ export const getLeadsLLamadaVenta = (body, profesion, country, level) => {
       body.email !== null &&
       body.email !== ""
       ) {
-      const response = await axios.get("/vendedor/ventas/email", body);
+
+      const response = await axios.put("/vendedor/ventas/email", body);
 
       const allLeads = response.data;
       dispatch({

@@ -15,7 +15,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import InputRunner from "./Select/InputRunner";
+import InputRunner from "./Select/InputRunnerVentas";
 import { motion } from "framer-motion";
 import Nav from "../../Nav/Nav";
 
@@ -35,9 +35,9 @@ const VentasDashboard = () => {
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
   const body = { name: fullName, email: emailAddress };
-console.log(body)
+
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -55,7 +55,7 @@ console.log(body)
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   //FILTER**********************
@@ -116,7 +116,7 @@ console.log(body)
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -142,7 +142,7 @@ console.log(body)
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   const showObservacionesHandler = (observacion) => {
@@ -176,7 +176,6 @@ console.log(body)
     return fechaHoraLocal;
   };
 
-  console.log(saveEmailApp);
 
   return (
     <>

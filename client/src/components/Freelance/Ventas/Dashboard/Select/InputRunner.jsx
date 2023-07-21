@@ -61,6 +61,7 @@ console.log(freelancer)
     setCountry("");
     setProfesion("");
     setStatus("");
+    setFreelancer(false);
   };
 
   return (
@@ -113,8 +114,8 @@ console.log(freelancer)
             }}
           >
             <MenuItem value="">Profesión</MenuItem>
-            {allProfesionFreelance.map((profesion) => (
-              <MenuItem key={profesion} value={profesion}>
+            {allProfesionFreelance.map((profesion, index) => (
+              <MenuItem key={index} value={profesion}>
                 {profesion}
               </MenuItem>
             ))}
@@ -147,8 +148,8 @@ console.log(freelancer)
             }}
           >
             <MenuItem value=""></MenuItem>
-            {allCountriesFreelance.map((country) => (
-              <MenuItem key={country} value={country}>
+            {allCountriesFreelance.map((country, index) => (
+              <MenuItem key={index} value={country}>
                 {country}
               </MenuItem>
             ))}
