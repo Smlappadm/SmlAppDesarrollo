@@ -123,7 +123,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         if (index !== 0) {
           nuevosTiemposRestantes[`promocion${index}`] = diferenciaEnSegundos;
         }
-        fechaAnteriorSegundos = tiempoAcumulado; // Actualizamos el valor de fechaAnteriorSegundos para la próxima iteración
+        fechaAnteriorSegundos = tiempoAcumulado;
         console.log(time);
         console.log(fechaAnterior);
       });
