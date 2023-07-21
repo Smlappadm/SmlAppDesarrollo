@@ -5,7 +5,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { red } from "@mui/material/colors";
 import {
   getAllCategory,
   getAllFreelancer,
