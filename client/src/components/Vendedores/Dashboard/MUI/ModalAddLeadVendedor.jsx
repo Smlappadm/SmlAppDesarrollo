@@ -154,7 +154,7 @@ export default function ModalAddLeadVendedor({
       freelancer: false,
       vendedor: OneVendedor && OneVendedor[0].email,
       vendedor_name: OneVendedor && OneVendedor[0].name,
-      from: OneFreelancer && OneFreelancer[0].email,
+      from: OneVendedor && OneVendedor[0].email,
       status: "Sin contactar",
       marca_personal: "No",
     };
