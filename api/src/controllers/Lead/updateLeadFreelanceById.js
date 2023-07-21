@@ -140,7 +140,7 @@ const updateLeadFreelanceById = async (id, updatedData) => {
   }
 
   // Si el campo 'emailApp' es vacío, se setea con el email del vendedor
-  if (updatedData.dataLead.emailApp === "") {
+  if (updatedData.dataLead.emailApp === "" || updatedData.dataLead.emailApp === "NaN") {
     updatedData.dataLead.emailApp = updatedData.dataVendedor.email;
   }
 
@@ -150,17 +150,13 @@ const updateLeadFreelanceById = async (id, updatedData) => {
     new: true,
   });
 
-  let leadUpdated = {}
 
-  if (updatedData.dataObservaciones && 
-    (updatedData.dataObservaciones.observacion !== "" || 
-    updatedData.dataObservaciones.tipoContacto !== "")
-  ) {
-  const filter = { _id: id }; // Define la condición para encontrar el documento
-  const update = { $push: { observaciones_ventas: updatedData.dataObservaciones } };
-  const options = { new: true }; // Devuelve el documento actualizado
-  const leadUpdated = await Lead.findOneAndUpdate(filter, update, options);
-  }
+
+//Se adhiere la observación correspondiente a la operación
+const filter = { _id: id }; // Define la condición para encontrar el documento
+const update = { $push: { observaciones_ventas: updatedData.dataObservaciones } };
+const options = { new: true }; // Devuelve el documento actualizado
+const leadUpdated = await Lead.findOneAndUpdate(filter, update, options);
   // Actualizamos el vendedor asociado al lead
   // let vendedor = [];
   // vendedor = await Vendedor.findOneAndUpdate(
