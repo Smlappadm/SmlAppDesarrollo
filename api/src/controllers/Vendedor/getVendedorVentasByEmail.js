@@ -7,17 +7,50 @@ const Lead = require("../../models/Lead");
 const getVendedorVentasByEmail = async (body) => {
   // Buscar todos los leads en la base de datos donde el campo "vendedor" coincide con el correo electrónico proporcionado
   // y el campo "status" es igual a "Agenda llamada"
-  const leadsAgenda = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Agenda llamada"});
-  const leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
-  const leadsNoResponde = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"No responde"});
-  // "Sin contactar",
-  // "Rechazado",
-  // "Contratado",
-  // "No responde",
-  // "Agenda llamada",
-  // "Contactado",
-  // "incidencia",
-  // "discard",
+console.log(body)
+  let leadsAgenda = [];
+  let leads = [];
+  let leadsNoResponde = [];
+  
+  let leadQuery = {
+    vendedor: body.email,
+    pagoRecibido: { $ne: true },
+  };
+  if (body.country) {
+    leadQuery["country"] = body.country;
+  }
+  if (body.profesion) {
+    leadQuery["profesion"] = body.profesion;
+  }
+  if (body.level) {
+    leadQuery["level"] = body.level;
+  }
+  if (body.status) {
+    leadQuery["status"] = body.status;
+  }
+  if (body.freelancer) {
+    leadQuery["from"] = body.freelancer;
+  }
+
+if(body.status === "Agenda llamada"){
+  // leadsAgenda = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Agenda llamada"});
+  leadsAgenda = await Lead.find(leadQuery);
+} else if((body.status === "Contactado")){
+  // leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
+  leads = await Lead.find(leadQuery);
+}else if((body.status === "No responde")){
+  // leadsNoResponde = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"No responde"});
+  leadsNoResponde = await Lead.find(leadQuery);
+} else {
+  leadQuery["status"] = "Agenda llamada";
+  leadsAgenda = await Lead.find(leadQuery);
+  leadQuery["status"] = "Contactado";
+  leads = await Lead.find(leadQuery);
+  leadQuery["status"] = "No responde";
+  leadsNoResponde = await Lead.find(leadQuery);
+
+}
+
   //-------------------------------------------------------------------------------------------------------------------------
   // Ordenar los leads encontrados por fecha de llamada de venta
   const leadsAgendaSorted = leadsAgenda.sort((a, b) => {
