@@ -152,7 +152,7 @@ export default function ModalAddLeadVendedor({
       instagra: "",
       level: "",
       freelancer: false,
-      vendedor: OneFreelancer && OneFreelancer[0].email,
+      vendedor: OneVendedor && OneFreelancer[0].email,
       vendedor_name: OneFreelancer && OneFreelancer[0].name,
       from: OneFreelancer && OneFreelancer[0].email,
       status: "Sin contactar",
