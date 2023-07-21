@@ -399,6 +399,24 @@ export default function PromocionPago({ tamañoPantalla }) {
                       </div>
                     )
                   : null}
+                <Link
+                  className={
+                    tamañoPantalla === "Pequeña"
+                      ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+                      : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+                  }
+                  to={
+                    tiempoRestante1 !== 0
+                      ? promo2horas.links[cuotas]
+                      : tiempoRestante2 !== 0 && tiempoRestante1 === 0
+                      ? promo24horas.links[cuotas]
+                      : tiempoRestante2 === 0 && tiempoRestante1 === 0
+                      ? sinPromo.links[cuotas]
+                      : ""
+                  }
+                >
+                  Link de Pago
+                </Link>
               </div>
             );
           })}
