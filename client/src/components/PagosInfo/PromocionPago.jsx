@@ -87,7 +87,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       console.log("si");
       seteoPromociones(body);
     }
-    console.log(promos);
   }, [promos]);
 
   const armarPromociones = (promos) => {
