@@ -195,8 +195,8 @@ console.log(level)
             }}
           >
             <MenuItem value="">Profesion</MenuItem>
-            {allProfesion.map((profesion) => (
-              <MenuItem key={profesion} value={profesion}>
+            {allProfesion.map((profesion, index) => (
+              <MenuItem key={index} value={profesion}>
                 {profesion}
               </MenuItem>
             ))}
@@ -229,8 +229,8 @@ console.log(level)
             }}
           >
             <MenuItem value="">Categoria</MenuItem>
-            {allCategory.map((category) => (
-              <MenuItem key={category} value={category}>
+            {allCategory.map((category, index) => (
+              <MenuItem key={index} value={category}>
                 {category}
               </MenuItem>
             ))}
@@ -263,8 +263,8 @@ console.log(level)
             }}
           >
             <MenuItem value="">Pais</MenuItem>
-            {allCountries.map((country) => (
-              <MenuItem key={country} value={country}>
+            {allCountries.map((country, index) => (
+              <MenuItem key={index} value={country}>
                 {country}
               </MenuItem>
             ))}
