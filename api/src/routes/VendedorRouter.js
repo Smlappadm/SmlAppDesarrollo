@@ -15,7 +15,7 @@ VendedorRouter.post("/", postVendedorHandler);
 VendedorRouter.get("/", getAllVendedoresHandler);
 VendedorRouter.get("/name", getVendedorByNameHandler);
 VendedorRouter.get("/email", getVendedorByEmailHandler);
-VendedorRouter.get("/ventas/email", getVendedorVentasByEmailHandler);
+VendedorRouter.put("/ventas/email", getVendedorVentasByEmailHandler);
 VendedorRouter.get("/:id", getVendedorByIdHandler);
 VendedorRouter.put("/:id", updateVendedorHandler);
 VendedorRouter.put("/email/email", updateVendedorByEmailHandler);
