@@ -313,16 +313,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           })}
         {/* 
              
-         tas]}
-            </p>
-          </div>
-        )}
-        {tiempoRestante1 === 0 && tiempoRestante2 === 0 && (
-          <div
-            className={
-              tamañoPantalla === "Pequeña"
-                ? "w-full flex flex-col justify-between items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                : "w-full flex flex-col justify-between items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+        lex flex-col justify-between items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
             }
           >
             <p className="text-white">SIN PROMOCIÓN</p>
