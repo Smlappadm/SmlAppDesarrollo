@@ -385,7 +385,7 @@ export default function ModalAddLeadVendedor({
                   <label className="w-24 text-left">*Nivel: </label>
                   <select
                     type="text"
-                    id="profesion"
+                    id="level"
                     className={
                       values.profesion !== ""
                         ? "bg-transparent w-full rounded-lg pl-3 h-full border border-white "
