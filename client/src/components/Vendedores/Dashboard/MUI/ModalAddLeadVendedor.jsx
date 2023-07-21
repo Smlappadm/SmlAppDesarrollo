@@ -182,6 +182,8 @@ export default function ModalAddLeadVendedor({
         errors.email !== "" ||
         errors.telefono !== "" ||
         errors.profesion !== "" ||
+        errors.level !== "" ||
+        errors.profesion !== "" ||
         errors.categoria !== ""
       ) {
         AddLeadError();
