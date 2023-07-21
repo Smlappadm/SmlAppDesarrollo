@@ -98,7 +98,8 @@ export default function ModalAddLeadVendedor({
     return regex.test(url);
   };
   const validateIG = (ig) => {
-    const regex = /^https?:\/\/(?:www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
+    const regex =
+      /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9_]+)\/?$/;
     return regex.test(ig);
   };
 
