@@ -140,20 +140,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   }, [clienteEmpresa]);
 
   useEffect(() => {
-    // Creamos el intervalo para actualizar el tiempo restante cada segundo
-
-    // const interval = setInterval(() => {
-    //   setTiempoRestante1((prevTiempoRestante) =>
-    //     prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
-    //   );
-    //   setTiempoRestante2((prevTiempoRestante) =>
-    //     prevTiempoRestante > 0 ? prevTiempoRestante - 1 : 0
-    //   );
-    // }, 1000);
-
-    // return () => clearInterval(interval);
-    // Función para actualizar los tiempos restantes de las promociones
-    // Función para actualizar el tiempo restante de una promoción específica
     const actualizarTiemposRestantes = () => {
       setTiempoRestante((prevTiempos) => {
         const nuevosTiempos = { ...prevTiempos }; // Crear una copia del estado actual
