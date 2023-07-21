@@ -313,17 +313,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           })}
         {/* 
              
-        lex flex-col justify-between items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
-            }
-          >
-            <p className="text-white">SIN PROMOCIÓN</p>
-
-            <div className="border border-white w-4/6 flex items-center justify-center p-3">
-              <p className="text-white text-3xl text-center ">Sin Ofertas!</p>
-            </div>
-            <p className="text-white">CUOTAS</p>
-            <div className="flex justify-evenly items-center text-white ">
-              <div
+        
                 className={
                   cuotas === "1"
                     ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
