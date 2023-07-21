@@ -356,7 +356,7 @@ export default function ModalAddLeadVendedor({
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24 text-left">*Instagram: </label>
                   <input
-                    id="ciudad"
+                    id="instagram"
                     type="text"
                     placeholder="Ingrese la instagram del cliente"
                     className=" bg-transparent w-full rounded-lg pl-3 h-full border border-white "
