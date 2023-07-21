@@ -220,8 +220,18 @@ const VendedoresDashboard = () => {
                 </motion.div>
               </div>
             )}
-
-            <ModalAddLeadVendedor />
+            {!openModalPago && (
+              <div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="mr-10"
+                >
+                  <ModalAddLeadVendedor />
+                </motion.div>
+              </div>
+            )}
           </div>
 
           {!openModalPago ? (
