@@ -27,6 +27,7 @@ import Nav from "../../Nav/Nav";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import PagosInfo from "../../PagosInfo/PagosInfo";
+import ModalAddLeadVendedor from "./MUI/ModalAddLeadVendedor";
 
 const VendedoresDashboard = () => {
   const [data, setData] = useState([]);
@@ -167,8 +168,6 @@ const VendedoresDashboard = () => {
     setSaveEmailApp(email);
   };
 
-
-
   return (
     <>
       <Nav />
@@ -180,45 +179,51 @@ const VendedoresDashboard = () => {
                 Copiado!
               </p>
             )}
-
-            <motion.h1
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0 }}
-              className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
-            >
-              Dashboard
-            </motion.h1>
-
-            <div className="flex gap-7">
-              <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
-                Ingresa al Dashboard
-              </p>
-              <Link to={"/vendedores"}>
-                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link to={"/vendedores-ventas"}>
-                <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/vendedores-history"}>
-                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-            </div>
-            {!openModalPago && (
-              <motion.div
+            <div className="flex">
+              <motion.h1
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="flex gap-5 justify-center items-center ml-16"
+                transition={{ duration: 1, delay: 0 }}
+                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
               >
-                <InputRunner
-                  getLeadCheckedInactive5={getLeadCheckedInactive5}
-                  body={body}
-                  emailAddress={emailAddress}
-                />
-              </motion.div>
+                Dashboard
+              </motion.h1>
+
+              <div className="flex gap-7">
+                <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
+                  Ingresa al Dashboard
+                </p>
+                <Link to={"/vendedores"}>
+                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link to={"/vendedores-ventas"}>
+                  <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+                <Link className="text-5xl" to={"/vendedores-history"}>
+                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                </Link>
+              </div>
+            </div>
+            {!openModalPago && (
+              <div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="flex gap-5 justify-center items-center"
+                >
+                  <InputRunner
+                    getLeadCheckedInactive5={getLeadCheckedInactive5}
+                    body={body}
+                    emailAddress={emailAddress}
+                  />
+                </motion.div>
+              </div>
             )}
+
+            <ModalAddLeadVendedor />
           </div>
+
           {!openModalPago ? (
             <>
               {vendedoresDashboard.length ? (
@@ -294,18 +299,23 @@ const VendedoresDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
-                        <div className="flex w-full justify-center items-center gap-2 relative">
-                          <p
-                            onClick={() => handleCopyClick(item.telephone)}
-                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                          <div className="flex w-full justify-center items-center gap-2 relative">
+                            <p
+                              onClick={() => handleCopyClick(item.telephone)}
+                              className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
-                            {item.telephone}
-                          </p>
-                          <a href={`http://wa.me/${item.telephone.replace(/\s+/g, '')}`} target="blanck">
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]"/>
-                          </a>
-
-                            </div>
+                              {item.telephone}
+                            </p>
+                            <a
+                              href={`http://wa.me/${item.telephone.replace(
+                                /\s+/g,
+                                ""
+                              )}`}
+                              target="blanck"
+                            >
+                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                            </a>
+                          </div>
                         </div>
                         <div className=" w-[5%] flex justify-center items-center p-0">
                           {item.level !== "incidencia" ? (
@@ -334,7 +344,7 @@ const VendedoresDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[10%] flex justify-center items-start p-0  gap-3">
-                        <ModalObservaciones item={item}/>
+                          <ModalObservaciones item={item} />
                           <ModalIntelligentInfo />
                           <Modal
                             item={item}
@@ -400,21 +410,8 @@ const VendedoresDashboard = () => {
 
 export default VendedoresDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <>
+{
+  /* <>
 <Nav />
 <div className="relative flex flex-col justify-between items-center w-screen  z-0">
   <div className="w-full flex flex-col justify-center items-center">
@@ -636,4 +633,5 @@ export default VendedoresDashboard;
 
   <ToastContainer />
 </div>
-</> */}
+</> */
+}
