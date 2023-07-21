@@ -313,19 +313,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           })}
         {/* 
              
-            <p className="text-white">PROMOCIÓN</p>
-            <p className="text-white text-24 font-extrabold">
-              {formatTiempoRestante(tiempoRestante2)}
-            </p>
-            <div className="border border-white w-4/6 flex items-center justify-center p-3">
-              <p className="text-white text-3xl text-center ">
-                Desc. -500€ (24 horas)
-              </p>
-            </div>
-            <p className="text-white">CUOTAS</p>
-            <div className="flex justify-evenly items-center text-white ">
-              <div
-                className={
+            
                   cuotas === "1"
                     ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
                     : "rounded-md border border-white mr-2 font-bold"
