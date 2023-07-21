@@ -356,9 +356,6 @@ const CorredoresDashboard = () => {
               currentClient.level === "0")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
-              _id: currentClient._id,
-              name: currentClient.name,
-              url: currentClient.url,
               instagram: currentClient.instagram,
               email: currentClient.email,
               level: currentClient.level,
@@ -370,8 +367,6 @@ const CorredoresDashboard = () => {
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
               view: true,
-              descargadosLeader: false,
-              descargadosCorredor: false,
             });
             console.log(response.data);
           } else if (
@@ -379,9 +374,6 @@ const CorredoresDashboard = () => {
             (currentClient.level === "1" || currentClient.level === "2")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
-              _id: currentClient._id,
-              name: currentClient.name,
-              url: currentClient.url,
               instagram: currentClient.instagram,
               email: currentClient.email,
               level: currentClient.level,
@@ -393,8 +385,6 @@ const CorredoresDashboard = () => {
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
               view: true,
-              descargadosLeader: false,
-              descargadosCorredor: false,
             });
 
             console.log(response.data);
