@@ -125,14 +125,10 @@ export default function PromocionPago({ tamañoPantalla }) {
         }
         fechaAnteriorSegundos = tiempoAcumulado;
       });
-      // Actualizar el estado tiempoRestante con los nuevos tiempos restantes
+
       setTiempoRestante(nuevosTiemposRestantes);
     }
   }, [clienteEmpresa]);
-
-  useEffect(() => {
-    // console.log(tiempoRestante);
-  }, [tiempoRestante]);
 
   const seteoPromociones = async (body) => {
     try {
