@@ -2,7 +2,7 @@ const Lead = require("../../models/Lead");
 
 const limpiezaBaseFunction = async () => {
   const leadResult = await Lead.updateMany(
-    { corredor: "jonavoebr@gmail.com" },
+    {corredor: "akosjev@gmail.com"},
     {
       $set: {
         status: "Sin contactar",
