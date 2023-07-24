@@ -61,13 +61,18 @@ const CorredoresDashboard = () => {
     if (mail !== undefined) {
       dispatch(getAllCorredoresByEmail(mail));
     }
-  }, [dispatch, mail, names]);
+  }, [dispatch, mail, username]);
 
   useEffect(() => {
     if (mail !== undefined) {
-      dispatch(getLeadCorredores(email, names, "", "", "", ""));
+      dispatch(getLeadCorredores(email, username, "", "", "", ""));
     }
-  }, [dispatch, mail, names]);
+    dispatch(getAllProfesion());
+    dispatch(getAllCountries());
+    dispatch(getAllCategory());
+  }, [dispatch, mail, username]);
+
+  console.log(corredor.name);
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
@@ -407,7 +412,10 @@ const CorredoresDashboard = () => {
           SendLeadsErrorLevel(currentClient.name);
         }
       }
-      dispatch(getLeadCorredores(email, names, "", "", "", ""));
+      dispatch(getLeadCorredores(email, username, "", "", "", ""));
+      dispatch(getAllProfesion());
+      dispatch(getAllCountries());
+      dispatch(getAllCategory());
 
       SendLeadsSuccess();
     } catch (error) {
