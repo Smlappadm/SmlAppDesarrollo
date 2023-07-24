@@ -136,7 +136,7 @@ export default function ActualizarPromocion({ item }) {
             fullWidth
             label="Link"
             id="Link"
-            value={item.promocion.link}
+            value={promocion.link}
             onChange={(e) => handleChange(e, "link")}
             InputProps={{
               style: {
