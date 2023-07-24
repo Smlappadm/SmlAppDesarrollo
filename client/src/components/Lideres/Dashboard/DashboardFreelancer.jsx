@@ -440,7 +440,7 @@ export const DashboardFreelancer = () => {
                           ""
                         )}
                         {item.status === "Contactado" ? (
-                          <Text className="bg-purple-700 text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                          <Text className="bg-violet-950 text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
                             Contactado
                           </Text>
                         ) : (
