@@ -220,7 +220,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
   useEffect(() => {
     actualizarPromocionActual();
-    console.log(tiempoRestante);
   }, [tiempoRestante]);
 
   return (
