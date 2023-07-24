@@ -392,7 +392,7 @@ const VendedoresDashboard = () => {
                             <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
                               <p className="text-16">{item.status}</p>
                               <label className="text-[14px]">
-                                {funcionHorario(item.updatedAt)}
+                                {funcionHorario(item.updatedAt).slice(0, -3)}
                               </label>
                             </div>
                           )}
