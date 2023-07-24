@@ -165,9 +165,8 @@ export default function ChildModal() {
                       </div>
                       <div className="w-3/12">
                         <p>Ventas</p>
-                        <p>
-                          {LeadsVendidos}/A pagar {LeadsAPagar}
-                        </p>
+                        <p>{LeadsVendidos}/</p>
+                        <p></p>
                       </div>
                       <div className="w-1/12">
                         <p>Rank</p>
