@@ -266,7 +266,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-3xl">
                           {formatTiempoRestante(tiempoRestante[promocionKey])}
                         </p>
-                        <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+                        <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
                           {promo.hora === "1" ? (
                             <>
                               <p className="text-white text-3xl text-center">
