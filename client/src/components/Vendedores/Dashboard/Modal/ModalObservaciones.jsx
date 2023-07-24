@@ -95,42 +95,44 @@ export default function ModalIntelligentInfo({ item }) {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
-          <div className="flex flex-col items-center justify-center gap-y-7">
+          <div className="flex flex-col items-center justify-center gap-y-3">
             <h1 className="text-24 text-[#e4e1e1]">Historial Obvservaciones</h1>
-
+            <p>{item.name}</p>
             <div className="flex flex-col  justify-start items-center h-[400px] w-[500px] my-3 overflow-scroll">
               {item.observaciones_ventas &&
               item.observaciones_ventas.length > 0 &&
               item.observaciones_ventas[0].status ? (
-                item.observaciones_ventas.map((item, index) => (
-                  <div
-                    key={index}
-                    className=" flex flex-col  justify-center items-center w-[500px] mt-8 text-white p-2"
-                  >
-                    <div className="border-2 w-full mb-2"></div>
-                    <div className="flex justify-start items-start h-fit w-full gap-x-3">
-                      <div className="whitespace-nowrap flex justify-start items-start h-fit w-56 gap-x-2">
-                        <h1>Status: </h1>
-                        <h1>{item.status && item.status}</h1>
+                item.observaciones_ventas
+                  .map((item, index) => (
+                    <div
+                      key={index}
+                      className=" flex flex-col  justify-center items-center w-[500px] text-white p-2"
+                    >
+                      <div className="border-2 w-full mb-2"></div>
+                      <div className="flex justify-start items-start h-fit w-full gap-x-3">
+                        <div className="whitespace-nowrap flex justify-start items-start h-fit w-56 gap-x-2">
+                          <h1>Status: </h1>
+                          <h1>{item.status && item.status}</h1>
+                        </div>
+                        <div className=" flex justify-end items-start h-fit w-full gap-x-2">
+                          <h1>Fechas: </h1>
+                          <h1>{item.fecha && funcionHorario(item.fecha)}</h1>
+                        </div>
                       </div>
-                      <div className=" flex justify-end items-start h-fit w-full gap-x-2">
-                        <h1>Fechas: </h1>
-                        <h1>{item.fecha && funcionHorario(item.fecha)}</h1>
-                      </div>
-                    </div>
 
-                    <div className=" flex justify-start items-start h-fit w-full gap-x-3">
-                      <div className="flex justify-start items-start h-fit w-56 gap-x-2">
-                        <h1>Contacto: </h1>
-                        <h1>{item.tipoContacto && item.tipoContacto}</h1>
+                      <div className=" flex justify-start items-start h-fit w-full gap-x-3">
+                        <div className="flex justify-start items-start h-fit w-56 gap-x-2">
+                          <h1>Contacto: </h1>
+                          <h1>{item.tipoContacto && item.tipoContacto}</h1>
+                        </div>
+                      </div>
+                      <div className="flex justify-start items-start h-fit w-full gap-x-2">
+                        <h1>Observación: </h1>
+                        <h1>{item.observacion && item.observacion}</h1>
                       </div>
                     </div>
-                    <div className="flex justify-start items-start h-fit w-full gap-x-2">
-                      <h1>Observación: </h1>
-                      <h1>{item.observacion && item.observacion}</h1>
-                    </div>
-                  </div>
-                )).reverse()
+                  ))
+                  .reverse()
               ) : (
                 <div className=" flex flex-col  justify-center items-center h-[400px] w-[500px] my-3 overflow-scroll text-white">
                   <h1>No hay observaciones disponibles</h1>

@@ -17,6 +17,7 @@ import InputRunner from "./MaterialUi/inputRunner";
 import Nav from "../../../Nav/Nav";
 import {
   getAllCategory,
+  getAllCorredoresByEmail,
   getAllCountries,
   getAllProfesion,
   getLeadClasificacion,
@@ -42,24 +43,37 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
-  const { freelanceLead } = useSelector((state) => state);
+  const { freelanceLead, corredor } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
+  const fullName = user?.fullName;
 
   localStorage.setItem("email", mail);
   let email = localStorage.getItem("email");
 
   let names = localStorage.getItem("corredorName");
-  
+
+  const username = corredor.name;
+  useEffect(() => {
+    console.log("adentro", username);
+    localStorage.setItem("corredorName", username);
+  }, [corredor]);
+
+  useEffect(() => {
+    if (mail !== undefined) {
+      dispatch(getAllCorredoresByEmail(mail));
+    }
+  }, [dispatch, mail, username]);
 
   useEffect(() => {
     if (mail !== undefined) {
       dispatch(
         getLeadClasificacion(
           email,
-          names,
+          username,
           profesion,
           category,
           country,
@@ -72,40 +86,12 @@ const ClasificacionDashboard = () => {
     }
   }, [dispatch, mail]);
 
-  const filtrar = () => {
-    dispatch(
-      getLeadClasificacion(
-        email,
-        names,
-        profesion,
-        category,
-        country,
-        marca_personal
-      )
-    );
-  };
-
-  const filterProfesion = (event) => {
-    const { value } = event.target;
-    setProfesion(value);
-  };
-
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
       const updatedDetailsLead = [...prevDetailsLead];
       updatedDetailsLead[index] = !updatedDetailsLead[index];
       return updatedDetailsLead;
     });
-  };
-
-  const filterCountry = (event) => {
-    const { value } = event.target;
-    setCountry(value);
-  };
-
-  const filterCategory = (event) => {
-    const { value } = event.target;
-    setCategory(value);
   };
 
   const checkMarcaPersonal = () => {
@@ -129,20 +115,6 @@ const ClasificacionDashboard = () => {
         ...updatedClient[index],
         [name]: value,
         instagram: value,
-      };
-      return updatedClient;
-    });
-  };
-
-  const handleChangeIncidencia = (event, index) => {
-    const { name, value } = event.target;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        status_op: value,
       };
       return updatedClient;
     });
@@ -305,6 +277,7 @@ const ClasificacionDashboard = () => {
             calidadInstagram: freelanceLead[i].calidadInstagram,
             checked: false,
             view: true,
+            freelancer: true,
           });
         }
       }
@@ -332,8 +305,8 @@ const ClasificacionDashboard = () => {
     updateClients();
   }, [client]);
 
-  const SendLeads = (name) => {
-    toast.info(`✔ ${name} Enviando formulario! `, {
+  const SendLeads = () => {
+    toast.info(`✔ Enviando formulario! `, {
       position: "top-center",
       autoClose: 500,
       hideProgressBar: false,
@@ -344,6 +317,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsErrorInsta = (name) => {
     toast.error(`❌ Error Instagram incompleto ${name}!`, {
       position: "top-center",
@@ -356,6 +330,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsErrorLevel = (name) => {
     toast.error(`❌ Error nivel incompleto ${name}!`, {
       position: "top-center",
@@ -368,6 +343,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsErrorInsta0 = (name) => {
     toast.error(`❌ Error instagram con nivel 0 ${name}!`, {
       position: "top-center",
@@ -380,6 +356,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsSuccess = () => {
     toast.success(`✔ Envío de leads exitoso!`, {
       position: "top-center",
@@ -392,6 +369,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const SendLeadsError = (name) => {
     toast.error(`✔ Error al enviar los leads! ${name}`, {
       position: "top-center",
@@ -404,6 +382,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const AddLeadError = () => {
     toast.error(` Error al crear Lead`, {
       position: "top-center",
@@ -416,6 +395,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const AddLeads = () => {
     toast.success(`✔ Se creo Lead exitosamente!`, {
       position: "top-center",
@@ -428,6 +408,7 @@ const ClasificacionDashboard = () => {
       theme: "dark",
     });
   };
+
   const AddLeadsIncomplete = () => {
     toast.error(`Completa los datos requeridos`, {
       position: "top-center",
@@ -441,29 +422,103 @@ const ClasificacionDashboard = () => {
     });
   };
 
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     for (let i = 0; i < freelanceLead.length; i++) {
+  //       const currentClient = client[i];
+
+  //       if (currentClient.level === "-") {
+  //         SendLeadsErrorLevel(currentClient.name);
+  //         continue;
+  //       }
+
+  //       if (
+  //         currentClient.instagram.trim() !== "" &&
+  //         currentClient.level === "incidencia"
+  //       ) {
+  //         SendLeadsErrorInsta0(currentClient.name);
+  //       } else if (
+  //         currentClient.instagram.trim() === "" &&
+  //         (currentClient.level === "incidencia" || currentClient.level === "0")
+  //       ) {
+  //         await updateLead(currentClient);
+  //       } else if (
+  //         currentClient.instagram.trim() !== "" &&
+  //         (currentClient.level === "1" ||
+  //           currentClient.level === "2" ||
+  //           currentClient.level === "0")
+  //       ) {
+  //         await updateLead(currentClient);
+  //       } else {
+  //         SendLeadsErrorInsta(currentClient.name);
+  //       }
+  //     }
+
+  //     dispatch(getLeadClasificacion(email, username, "", "", "", ""));
+  //     dispatch(getAllProfesion());
+  //     dispatch(getAllCountries());
+  //     dispatch(getAllCategory());
+
+  //     SendLeadsSuccess();
+  //   } catch (error) {
+  //     SendLeadsError(names);
+  //     console.log({ error: error.message });
+  //   }
+  // };
+
+  // const updateLead = async (currentClient) => {
+  //   const response = await axios.put(`/lead/${currentClient._id}`, {
+  //     instagram: currentClient.instagram,
+  //     email: currentClient.email,
+  //     level: currentClient.level,
+  //     seguidores2000: currentClient.seguidores2000,
+  //     repercusion: currentClient.repercusion,
+  //     frecuencia: currentClient.frecuencia,
+  //     contenidoPersonal: currentClient.contenidoPersonal,
+  //     contenidoValor: currentClient.contenidoValor,
+  //     calidadInstagram: currentClient.calidadInstagram,
+  //     checked: true,
+  //     view: true,
+  //     freelancer: true,
+  //   });
+
+  //   console.log(response.data);
+  // };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    SendLeads(names);
+    SendLeads();
     try {
       for (let i = 0; i < freelanceLead.length; i++) {
         const currentClient = client[i];
 
+        console.log(currentClient.level, "level");
+        console.log(currentClient.instagram, "instagram");
+        console.log(currentClient.name, "name");
+        console.log(currentClient._id, "_id");
+        console.log(currentClient.email, "email");
+        console.log(currentClient.seguidores2000, "seguidores2000");
+        console.log(currentClient.repercusion, "repercusion");
+        console.log(currentClient.frecuencia, "frecuencia");
+        console.log(currentClient.contenidoPersonal, "contenidoPersonal");
+        console.log(currentClient.contenidoValor, "contenidoValor");
+        console.log(currentClient.calidadInstagram), "calidadInstagram";
+
         if (currentClient.level !== "-") {
           if (
-            currentClient.instagram.trim() !== "" &&
+            currentClient.instagram !== "" &&
             (currentClient.level === "0" ||
               currentClient.level === "incidencia")
           ) {
             SendLeadsErrorInsta0(currentClient.name);
           } else if (
-            currentClient.instagram.trim() === "" &&
+            currentClient.instagram === "" &&
             (currentClient.level === "incidencia" ||
               currentClient.level === "0")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
-              _id: currentClient._id,
-              name: currentClient.name,
-              url: currentClient.url,
               instagram: currentClient.instagram,
               email: currentClient.email,
               level: currentClient.level,
@@ -474,22 +529,17 @@ const ClasificacionDashboard = () => {
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
-              freelancer: true,
               view: true,
-              descargadosLeader: false,
-              descargadosCorredor: false,
+              freelancer: true,
             });
             console.log(response.data);
           } else if (
-            currentClient.instagram.trim() !== "" &&
+            currentClient.instagram !== "" &&
             (currentClient.level === "1" ||
               currentClient.level === "2" ||
               currentClient.level === "0")
           ) {
             const response = await axios.put(`/lead/${currentClient._id}`, {
-              _id: currentClient._id,
-              name: currentClient.name,
-              url: currentClient.url,
               instagram: currentClient.instagram,
               email: currentClient.email,
               level: currentClient.level,
@@ -500,10 +550,8 @@ const ClasificacionDashboard = () => {
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
               checked: true,
-              freelancer: true,
               view: true,
-              descargadosLeader: false,
-              descargadosCorredor: false,
+              freelancer: true,
             });
 
             console.log(response.data);
@@ -515,25 +563,15 @@ const ClasificacionDashboard = () => {
         }
       }
 
-      console.log(email);
-      console.log( names);
-      dispatch(
-        getLeadClasificacion(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
+      dispatch(getLeadClasificacion(email, username, "", "", "", ""));
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
 
       SendLeadsSuccess();
     } catch (error) {
-      SendLeadsError();
+      console.log("aca esta el erorrrrrrrrrrrrrrrrr");
+      SendLeadsError(username);
       console.log({ error: error.message });
     }
   };
@@ -579,7 +617,7 @@ const ClasificacionDashboard = () => {
               AddLeadsIncomplete={AddLeadsIncomplete}
             />
           </div>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
               <IconLabelButtons />
             </div>

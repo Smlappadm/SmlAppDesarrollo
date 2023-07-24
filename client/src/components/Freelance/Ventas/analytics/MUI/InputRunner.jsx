@@ -195,8 +195,8 @@ console.log(level)
             }}
           >
             <MenuItem value="">Profesion</MenuItem>
-            {allProfesion.map((profesion) => (
-              <MenuItem key={profesion} value={profesion}>
+            {allProfesion.map((profesion, index) => (
+              <MenuItem key={index} value={profesion}>
                 {profesion}
               </MenuItem>
             ))}
@@ -229,8 +229,8 @@ console.log(level)
             }}
           >
             <MenuItem value="">Categoria</MenuItem>
-            {allCategory.map((category) => (
-              <MenuItem key={category} value={category}>
+            {allCategory.map((category, index) => (
+              <MenuItem key={index} value={category}>
                 {category}
               </MenuItem>
             ))}
@@ -263,8 +263,8 @@ console.log(level)
             }}
           >
             <MenuItem value="">Pais</MenuItem>
-            {allCountries.map((country) => (
-              <MenuItem key={country} value={country}>
+            {allCountries.map((country, index) => (
+              <MenuItem key={index} value={country}>
                 {country}
               </MenuItem>
             ))}
@@ -332,8 +332,10 @@ console.log(level)
             <MenuItem value="">Estado</MenuItem>
             <MenuItem value="Rechazado">Rechazado</MenuItem>
             <MenuItem value="Contratado">Contratado</MenuItem>
-            <MenuItem value="No responde">No responde</MenuItem>
+            <MenuItem value="Contactado">Contactado</MenuItem>
+            <MenuItem value="No responde">Sin responder</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
+            <MenuItem value="A pagar">A pagar</MenuItem>
           </Select>
         </div>
 

@@ -157,7 +157,7 @@ export const AnalyticLeader = () => {
               to={"/contratando/"}
             >
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Contratando</p>
+              <p className="text-white">Seguimiento</p>
             </Link>
             <Link
               className="flex items-center justify-center gap-2"
@@ -391,10 +391,12 @@ export const AnalyticLeader = () => {
                         </Text>
                       </div>
                     </div>
-                    <div className="flex justify-center items-center p-0 ">
+                    <div className="flex justify-center items-center p-0 mr-2">
                       <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                         <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                          {item.vendedor_name ? item.vendedor_name : "-"}
+                          {item.vendedor_name
+                            ? item.vendedor_name
+                            : "Sin vendedor asignado"}
                         </Text>
                       </div>
                     </div>

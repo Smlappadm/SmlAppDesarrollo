@@ -380,7 +380,7 @@ function IncidenceModal({
 }
 
 //************************************************************************************************ */
-function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator}) {
+function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
   const [openConfirmacionEdicion, setConfirmacionEdicion] =
     React.useState(false);
 
@@ -518,7 +518,7 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
-const [emailValidator, setEmailValidator] = React.useState(false);
+  const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -705,7 +705,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
       console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto")
+      console.log("incorrecto");
     }
   };
 
@@ -717,10 +717,9 @@ const [emailValidator, setEmailValidator] = React.useState(false);
       console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto")
+      console.log("incorrecto");
     }
   };
-
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
@@ -732,7 +731,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmail(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -807,7 +806,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmailApp(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -913,89 +912,89 @@ const [emailValidator, setEmailValidator] = React.useState(false);
               </h2>
               <div className="flex flex-col justify-center items-center mt-3">
                 <div className="mt-3  flex  justify-between items-center">
-                                    <div className="relative h-fit w-fit group flex justify-center items-center">
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar email lead
                     </p>
-                  <CiMail
-                    onClick={handleEditEmail}
-                    className={
-                      editEmail
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-                                    </div>
+                    <CiMail
+                      onClick={handleEditEmail}
+                      className={
+                        editEmail
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar instagram
                     </p>
-                  <CiInstagram
-                    onClick={handleEditInstagram}
-                    className={
-                      editInstagram
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-                                    </div>
+                    <CiInstagram
+                      onClick={handleEditInstagram}
+                      className={
+                        editInstagram
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar Teléfono
                     </p>
-                  <AiOutlinePhone
-                    onClick={handleEditTelephone}
-                    className={
-                      editTelephone
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-                                    </div>
+                    <AiOutlinePhone
+                      onClick={handleEditTelephone}
+                      className={
+                        editTelephone
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar contacto
                     </p>
-                  <AiOutlineUserAdd
-                    onClick={handleEditContacto}
-                    className={
-                      editContacto
-                        ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  />
-                                    </div>
+                    <AiOutlineUserAdd
+                      onClick={handleEditContacto}
+                      className={
+                        editContacto
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                  </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar email app
                     </p>
-                  <p
-                    onClick={handleEditEmailApp}
-                    className={
-                      editEmailApp
-                        ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                        : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    }
-                  >
-                    APP
-                  </p>
-                                    </div>
+                    <p
+                      onClick={handleEditEmailApp}
+                      className={
+                        editEmailApp
+                          ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    >
+                      APP
+                    </p>
+                  </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Copiar Link Pago
                     </p>
-                  <p
-                    onClick={() =>
-                      handleCopyClick(
-                        // `http://localhost:5173/pagos-sml?emailApp=${inputEmailApp}`
-                        item.pagos.link
-                      )
-                    }
-                    className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                  >
-                    Link
-                  </p>
-                </div>
+                    <p
+                      onClick={() =>
+                        handleCopyClick(
+                          // `http://localhost:5173/pagos-sml?emailApp=${inputEmailApp}`
+                          item.pagos.link
+                        )
+                      }
+                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                    >
+                      Link
+                    </p>
+                  </div>
                 </div>
                 <div className="">
                   {editEmail && (
@@ -1170,7 +1169,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full my-10 gap-1 ">
-            <h1 className="text-14 text-white mb-3">- ESTADO DE CUENTA -</h1>
+            {/* <h1 className="text-14 text-white mb-3">- ESTADO DE CUENTA -</h1>
             <div className="gap-3 flex flex-col justify-center items-center w-56 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Valor servicio:</h3>
@@ -1178,7 +1177,8 @@ const [emailValidator, setEmailValidator] = React.useState(false);
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Cantidad cuotas:</h3>
-                <h3>{`${item.pagos && item.pagos.cuotas}`}</h3>
+                {console.log(item.pagos && item.pagos.cuotas === "undefined" && "sdddddd")}
+                <h3>{`${item.pagos && item.pagos.cuotas !== "undefined" && item.pagos.cuotas}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Valor cuotas:</h3>
@@ -1188,7 +1188,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                 <h3 className="w-36">Pagos realizados:</h3>
                 <h3>{`${item.pagos && item.pagos.cuotasPagadas}/${item.pagos && item.pagos.cuotas}`}</h3>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className=" h-fit flex items-center justify-start flex-col mb-10">

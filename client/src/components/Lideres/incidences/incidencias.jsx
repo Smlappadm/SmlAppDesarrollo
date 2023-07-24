@@ -155,7 +155,7 @@ const Incidences = () => {
               to={"/contratando/"}
             >
               <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Contratando</p>
+              <p className="text-white">Seguimiento</p>
             </Link>
             <Link
               className="flex items-center justify-center gap-2"

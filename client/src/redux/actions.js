@@ -1,6 +1,6 @@
 import axios from "axios";
 export const GET_ALL_LEAD = "GET_ALL_LEAD";
-export const GET_ALL_LEAD_CONTRATANDO = "GET_ALL_LEAD_CONTRATANDO";
+export const GET_ALL_LEAD_A_PAGAR = "GET_ALL_LEAD_A_PAGAR";
 export const GET_LEAD_UNCHECKED_10 = "GET_LEAD_UNCHECKED_10";
 export const GET_LEAD_UNCHECKED = "GET_LEAD_UNCHECKED";
 export const GET_LEAD_CHEQUED = "GET_LEAD_CHEQUED";
@@ -48,8 +48,7 @@ export const GET_LEAD_CHEQUED_FREELANCER = "GET_LEAD_CHEQUED_FREELANCER";
 export const GET_FREELANCER = "GET_FREELANCER";
 export const GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS =
   "GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS";
-export const GET_ALL_PROMOCIONES =
-  "GET_ALL_PROMOCIONES";
+export const GET_ALL_PROMOCIONES = "GET_ALL_PROMOCIONES";
 
 //
 export const setRol = (rol) => {
@@ -96,11 +95,11 @@ export const getAllLead = () => {
   };
 };
 
-export const getAllLeadContratando = () => {
+export const getAllLeadAPagar = () => {
   return async (dispatch) => {
-    const response = await axios.get("/lead/contratando");
-    const leadContratando = response.data;
-    dispatch({ type: GET_ALL_LEAD_CONTRATANDO, payload: leadContratando });
+    const response = await axios.get("/lead/apagar");
+    const leadAPagar = response.data;
+    dispatch({ type: GET_ALL_LEAD_A_PAGAR, payload: leadAPagar });
   };
 };
 
@@ -195,8 +194,8 @@ export const getLeadDiscard = () => {
   };
 };
 
-export const getLeadCheckedInactive5 = (body, profesion, country, level) => {
-  body = { ...body, profesion, country, level };
+export const getLeadCheckedInactive5 = (body, profesion, country, level, freelancer) => {
+  body = { ...body, profesion, country, level, freelancer};
 
   return async (dispatch) => {
     if (
@@ -219,9 +218,9 @@ export const getLeadCheckedFreelance = (
   profesion,
   country,
   level,
-  freelance
+  freelancer
 ) => {
-  body = { ...body, profesion, country, level, freelance };
+  body = { ...body, profesion, country, level, freelancer };
   console.log(body);
 
   return async (dispatch) => {
@@ -371,15 +370,26 @@ export const getVendedorAllLeads = (email) => {
     });
   };
 };
-export const getLeadsLLamadaVenta = (email) => {
-  return async (dispatch) => {
-    const response = await axios.get(`/vendedor/ventas/email?email=${email}`);
 
-    const allLeads = response.data;
-    dispatch({
-      type: GET_LEADS_LLAMADA_VENTA,
-      payload: allLeads,
-    });
+export const getLeadsLLamadaVenta = (body, profesion, country, status, level, freelancer) => {
+  body = { email: body.email, name: body.name , profesion, country, level, status, freelancer };
+  console.log(body)
+  return async (dispatch) => {
+    if (
+      body.email &&
+      body.email !== "undefined" &&
+      body.email !== null &&
+      body.email !== ""
+      ) {
+
+      const response = await axios.put("/vendedor/ventas/email", body);
+
+      const allLeads = response.data;
+      dispatch({
+        type: GET_LEADS_LLAMADA_VENTA,
+        payload: allLeads,
+      });
+    }
   };
 };
 

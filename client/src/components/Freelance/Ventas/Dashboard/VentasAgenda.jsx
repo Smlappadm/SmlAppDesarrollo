@@ -17,6 +17,7 @@ import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import Nav from "../../../Nav/Nav";
 import ModalObservaciones from "./Modal/ModalObservaciones";
 import { motion } from "framer-motion";
+import InputRunner from "./Select/InputRunnerVentas";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
@@ -27,14 +28,16 @@ const VentasDashboard = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-
+  const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -52,7 +55,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   //FILTER**********************
@@ -113,7 +116,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -139,7 +142,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(emailAddress));
+    dispatch(getLeadsLLamadaVenta(body));
   };
 
   const showObservacionesHandler = (observacion) => {
@@ -221,6 +224,20 @@ const VentasDashboard = () => {
             ) : (
               ""
             )}
+                        {!openModalPago && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="flex gap-5 justify-center items-center ml-16"
+              >
+                <InputRunner
+                  getLeadCheckedInactive5={getLeadsLLamadaVenta}
+                  body={body}
+                  emailAddress={emailAddress}
+                />
+              </motion.div>
+            )}
           </div>
           {!openModalPago ? (
             <>
@@ -269,7 +286,7 @@ const VentasDashboard = () => {
 
                         <div className=" w-[9%] flex justify-start items-center p-0">
                           <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.province}
+                            {item.country}
                           </p>
                         </div>
 
@@ -302,13 +319,14 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[13%] flex justify-center items-center p-0 ">
-                          <div className="flex w-full justify-center items-center gap-2 relative">
+                        <div className="flex w-44 justify-start items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
-                              className="text-center w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                              className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                               {item.telephone}
                             </p>
+                            </div>
                             <a
                               href={`http://wa.me/${item.telephone.replace(
                                 /\s+/g,
@@ -318,7 +336,6 @@ const VentasDashboard = () => {
                             >
                               <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
                             </a>
-                          </div>
                         </div>
                         <div className=" w-[5%] flex justify-center items-start p-0">
                           {item.level !== "incidencia" ? (
@@ -382,7 +399,7 @@ const VentasDashboard = () => {
                           {item.status === "No responde" && (
                             // <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
                             <label className="text-[14px]">
-                              {funcionHorario(item.updatedAt)}
+                              {funcionHorario(item.updatedAt).slice(0, -3)}
                             </label>
                             // </div>
                           )}

@@ -62,6 +62,9 @@ const getLeadCheckedInactive5 = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
+    }
 
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
   } else if (body.level === "1") {
@@ -75,6 +78,9 @@ const getLeadCheckedInactive5 = async (body) => {
     }
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
+    }
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
 
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
@@ -90,6 +96,9 @@ const getLeadCheckedInactive5 = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
+    }
     leadRestNivel1 = await Lead.find(leadQuery).limit(5).exec();
   } else {
     leadQuery = {
@@ -103,6 +112,9 @@ const getLeadCheckedInactive5 = async (body) => {
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
     }
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
+    }
     leadRestNivel2 = await Lead.find(leadQuery).limit(5).exec();
 
     leadQuery = {
@@ -115,6 +127,9 @@ const getLeadCheckedInactive5 = async (body) => {
     }
     if (body.profesion) {
       leadQuery["profesion"] = body.profesion;
+    }
+    if (body.freelancer) {
+      leadQuery["from"] = body.freelancer;
     }
 
     // Calcula la cantidad de leads que aún se pueden agregar a 'leadRestNivel1'

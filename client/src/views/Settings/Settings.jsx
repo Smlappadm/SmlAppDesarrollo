@@ -18,6 +18,7 @@ import axios from "axios";
 import styles from "./Settings.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
 
 const { VITE_CLOUND_NAME } = import.meta.env;
 
@@ -228,7 +229,12 @@ export default function Settings() {
         <div className="h-screen w-4/5 flex flex-col justify-start items-center p-8">
           <div>
             <h2 className={styles.title}>Settings</h2>
-            <form onSubmit={handleSubmit} className={styles.form}>
+            <motion.form onSubmit={handleSubmit} className={styles.form}
+            initial={{ opacity: 0, y: "30px" }}
+            whileInView={{ y: "10px", opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0 }}
+            >
+              
               <div className="flex flex-col justify-end items-start gap-1 w-full ">
                 <span className="text-[#dad8d8]">Fecha de nacimiento</span>
                 <DatePicker
@@ -333,7 +339,7 @@ export default function Settings() {
                   </button>
                 )}
               </div>
-            </form>
+            </motion.form>
           </div>
         </div>
         <Detail

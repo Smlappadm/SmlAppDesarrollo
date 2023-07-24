@@ -3,22 +3,23 @@ import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
+import { Checkbox } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCountries, getAllProfesion } from "../../../../redux/actions";
 
-
-export default function InputName({ body, getLeadCheckedInactive5 }) {
+export default function InputName({ body, getLeadCheckedInactive5, emailAddress }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
+  const [freelancer, setFreelancer] = useState("");
+  const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesion } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getAllProfesion());
-
     dispatch(getAllCountries());
   }, [dispatch]);
 
@@ -36,18 +37,27 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
     setStatus(value);
   };
 
+  //AGREGADO
+  const handleChangeFreelancer = (event) => {
+    setFreelancer(event.target.checked ? emailAddress : "");
+    setCheckFreelancer(!checkFreelancer)
+  };
+
+
   const handleFilterClick = () => {
     console.log(profesion);
     console.log(country);
     console.log(status);
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status));
+    dispatch(getLeadCheckedInactive5(body, profesion, country, status, freelancer));
   };
 
   const handleFilterReset = () => {
     dispatch(getLeadCheckedInactive5(body, "", ""));
-    setCountry("")
-    setProfesion("")
-    setStatus("")
+    setCountry("");
+    setProfesion("");
+    setStatus("");
+    setFreelancer("");
+    setCheckFreelancer(false)
   };
 
   return (
@@ -100,8 +110,8 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
             }}
           >
             <MenuItem value="">Profesión</MenuItem>
-            {allProfesion.map((profesion) => (
-              <MenuItem key={profesion} value={profesion}>
+            {allProfesion.map((profesion, index) => (
+              <MenuItem key={index} value={profesion}>
                 {profesion}
               </MenuItem>
             ))}
@@ -134,8 +144,8 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
             }}
           >
             <MenuItem value=""></MenuItem>
-            {allCountries.map((country) => (
-              <MenuItem key={country} value={country}>
+            {allCountries.map((country, index) => (
+              <MenuItem key={index} value={country}>
                 {country}
               </MenuItem>
             ))}
@@ -167,15 +177,27 @@ export default function InputName({ body, getLeadCheckedInactive5 }) {
               },
             }}
           >
-        <MenuItem value="s">
-          <em>None</em>
-        </MenuItem>
-        <MenuItem value="1">1</MenuItem>
-        <MenuItem value="2">2</MenuItem>
-        <MenuItem value="aleatorio">Aleatorio</MenuItem>
+            <MenuItem value="s">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="1">1</MenuItem>
+            <MenuItem value="2">2</MenuItem>
+            <MenuItem value="aleatorio">Aleatorio</MenuItem>
           </Select>
         </div>
-
+        <div className="flex w-18 items-center justify-center flex-col">
+          <div>
+            <label>Freelancer:</label>
+          </div>
+          <div>
+          <Checkbox
+              id="freelancer"
+              checked={checkFreelancer}
+              onClick={handleChangeFreelancer}
+              size="medium"
+            />
+          </div>
+        </div>
         <div className="flex gap-5 items-end justify-center">
           <Button onClick={handleFilterClick} variant="contained" size="large">
             Filtrar

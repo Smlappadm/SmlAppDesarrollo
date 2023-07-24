@@ -20,13 +20,13 @@ export default function InputName({
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
   const [freelancer, setFreelancer] = useState("");
+  const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesionFreelance } = useSelector((state) => state);
   const { allCountriesFreelance } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getAllCountriesFreelance(emailAddress));
-
     dispatch(getAllProfesionFreelance(emailAddress));
   }, [dispatch]);
 
@@ -46,7 +46,8 @@ export default function InputName({
 
   //AGREGADO
   const handleChangeFreelancer = (event) => {
-    setFreelancer(event.target.checked ? emailAddress : "undefined");
+    setFreelancer(event.target.checked ? emailAddress : "");
+    setCheckFreelancer(!checkFreelancer)
   };
 console.log(freelancer)
 
@@ -62,6 +63,8 @@ console.log(freelancer)
     setCountry("");
     setProfesion("");
     setStatus("");
+    setFreelancer("");
+    setCheckFreelancer(false)
   };
 
   return (
@@ -114,8 +117,8 @@ console.log(freelancer)
             }}
           >
             <MenuItem value="">Profesión</MenuItem>
-            {allProfesionFreelance.map((profesion) => (
-              <MenuItem key={profesion} value={profesion}>
+            {allProfesionFreelance.map((profesion, index) => (
+              <MenuItem key={index} value={profesion}>
                 {profesion}
               </MenuItem>
             ))}
@@ -148,8 +151,8 @@ console.log(freelancer)
             }}
           >
             <MenuItem value=""></MenuItem>
-            {allCountriesFreelance.map((country) => (
-              <MenuItem key={country} value={country}>
+            {allCountriesFreelance.map((country, index) => (
+              <MenuItem key={index} value={country}>
                 {country}
               </MenuItem>
             ))}
@@ -195,8 +198,9 @@ console.log(freelancer)
             <label>Freelancer:</label>
           </div>
           <div>
-            <Checkbox
+          <Checkbox
               id="freelancer"
+              checked={checkFreelancer}
               onClick={handleChangeFreelancer}
               size="medium"
             />

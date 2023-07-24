@@ -16,7 +16,7 @@ import {
 import { Checkbox } from "@mui/material";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 
-export default function InputName({ name }) {
+export default function InputName() {
   const dispatch = useDispatch();
   const [corredor, setCorredor] = useState("");
   const [vendedor, setVendedor] = useState("");
