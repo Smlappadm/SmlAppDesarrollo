@@ -224,6 +224,11 @@ export default function PromocionPago({ tamañoPantalla }) {
     actualizarPromocionActual();
   }, [tiempoRestante]);
 
+  const todasPromocionesCero = promos.every((promo, index) => {
+    const promocionKey = `promocion${index}`;
+    return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
+  });
+
   return (
     <div
       className={
@@ -311,6 +316,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             );
           })}
+
         <div
           className={
             tamañoPantalla === "Pequeña"
@@ -318,6 +324,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
           }
         >
+          {}
           <p className="text-white">SIN PROMOCIÓN</p>
 
           <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
