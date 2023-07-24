@@ -131,6 +131,12 @@ export default function ChildModal() {
                     }
                     return total;
                   }, 0);
+                  const LeadsAPagar = Leads.reduce((total, lead) => {
+                    if (lead.status === "A pagar") {
+                      return total + 1;
+                    }
+                    return total;
+                  }, 0);
 
                   return (
                     <div
@@ -158,7 +164,7 @@ export default function ChildModal() {
                         </p>
                       </div>
                       <div className="w-3/12">
-                        <p>Ventas</p>
+                        <p>Ventas / A pagar</p>
                         <p>{LeadsVendidos}</p>
                       </div>
                       <div className="w-1/12">
