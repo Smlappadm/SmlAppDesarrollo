@@ -70,7 +70,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       sortedCustomPromos.push(customPromos[hour]);
     });
     setPromos(sortedCustomPromos);
-  }, [promociones]);
+  }, [promociones, clienteEmpresa]);
 
   const armarPromociones = (promos) => {
     const armado = promos.map((promo, index) => {
@@ -108,7 +108,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log(promos[0]);
+    console.log(promos);
   }, [promos]);
 
   useEffect(() => {
