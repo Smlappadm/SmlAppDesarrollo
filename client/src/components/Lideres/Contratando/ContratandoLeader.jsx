@@ -65,7 +65,7 @@ export const ContratandoLeader = () => {
 
   useEffect(() => {
     dispatch(getAllLeadAPagar());
-  }, [dispatch]);
+  }, [dispatch, changeStatus]);
 
   useEffect(() => {
     setData(leadAPagar);
@@ -320,7 +320,7 @@ export const ContratandoLeader = () => {
                   className="flex bg-[#39394b] text-gray-400 text-sm p-3 rounded-lg h-14 my-5"
                 >
                   <div className="w-full flex justify-around items-center">
-                    <button
+                    <div
                       className="w-full flex justify-around items-center"
                       onClick={(index) => handleOpen(item, index)}
                     >
@@ -433,11 +433,13 @@ export const ContratandoLeader = () => {
                       <div className="flex justify-center items-center p-0 mr-2">
                         <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                           <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.vendedor_name ? item.vendedor_name : "Sin vendedor asignado"}
+                            {item.vendedor_name
+                              ? item.vendedor_name
+                              : "Sin vendedor asignado"}
                           </Text>
                         </div>
                       </div>
-                    </button>
+                    </div>
                     <div className="flex justify-center items-center p-0 mr-6">
                       {item.status === "A pagar" && (
                         <div
