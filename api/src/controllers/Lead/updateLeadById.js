@@ -6,6 +6,8 @@ const updateLeadById = async (id, updatedData) => {
   // Obtenemos la fecha y hora actual en formato ISO
   const date = new Date();
   const formattedTime = date.toISOString();
+  console.log(updatedData);
+  console.log(id);
 
   // Agregamos la propiedad 'updateCorredor' al objeto 'updatedData' con el valor de la fecha y hora actual
   updatedData.updateCorredor = formattedTime;
