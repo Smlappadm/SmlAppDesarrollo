@@ -249,7 +249,6 @@ export default function ModalAddLeadVendedor({
       <Button variant="outlined" size="large" onClick={handleOpen}>
         NUEVO CLIENTE
       </Button>
-      <ToastContainer />
       <Modal
         open={open}
         onClose={handleClose}
@@ -270,6 +269,7 @@ export default function ModalAddLeadVendedor({
           }}
         >
           <div className="flex flex-col gap-5 px-1 py-8 h-full w-full justify-center items-center">
+            <ToastContainer />
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>
