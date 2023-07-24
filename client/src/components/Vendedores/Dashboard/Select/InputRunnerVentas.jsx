@@ -241,9 +241,9 @@ export default function InputName({
           </Select>
         </div>
 
-        <div className="flex w-18 items-center justify-center flex-col">
-          <div>
-            <label>Freelancer:</label>
+        <div className="flex w-24 items-center justify-center flex-col">
+        <div>
+            <label>Mis clientes</label>
           </div>
           <div>
             <Checkbox
