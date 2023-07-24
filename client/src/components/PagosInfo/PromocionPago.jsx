@@ -268,9 +268,14 @@ export default function PromocionPago({ tamañoPantalla }) {
                         </p>
                         <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
                           {promo.hora === "1" ? (
-                            <p className="text-white text-3xl text-center">
-                              Desc. -1000€ ({promo.hora} hora)
-                            </p>
+                            <>
+                              <p className="text-white text-3xl text-center">
+                                Desc. -1000€
+                              </p>
+                              <p className="text-white text-3xl text-center">
+                                ({promo.hora} hora)
+                              </p>
+                            </>
                           ) : (
                             <p className="text-white text-3xl text-center">
                               Desc. -1000€ ({promo.hora} horas)
