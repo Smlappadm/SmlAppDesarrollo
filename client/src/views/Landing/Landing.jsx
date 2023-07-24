@@ -108,7 +108,7 @@ function Landing() {
               ) : (
                 <img className={style.imagen} src={userImageUrl} alt="" />
               )}
-              <h1 className={style.wellcome}>Bienvenido {user.fullName} </h1>
+              <h1 className={style.wellcome}>Bienvenido {username} </h1>
               <h3 className={style.role}>Rol: {roleReady} </h3>
             </div>
           ) : (
