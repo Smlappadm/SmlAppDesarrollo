@@ -142,37 +142,30 @@ export default function PromocionPago({ tamañoPantalla }) {
   useEffect(() => {
     const actualizarTiemposRestantes = () => {
       setTiempoRestante((prevTiempos) => {
-        const nuevosTiempos = { ...prevTiempos }; // Crear una copia del estado actual
+        // Comprobar si todos los tiempos han llegado a cero
+        const todasPromocionesCero = Object.values(prevTiempos).every(
+          (tiempo) => tiempo <= 0
+        );
 
-        // Variable para rastrear si todas las promociones han llegado a cero
-        let todasPromocionesCero = true;
+        if (todasPromocionesCero) {
+          // Detener el intervalo si todas las promociones han llegado a cero
+          clearInterval(interval);
+          return prevTiempos; // Devolver el estado actual sin hacer modificaciones
+        }
 
-        // Iterar sobre todas las promociones
+        // Si no todas las promociones han llegado a cero, crear una copia del estado actual
+        const nuevosTiempos = { ...prevTiempos };
+
+        // Iterar sobre todas las promociones y restar 1 segundo si el tiempo es mayor a cero
         for (let i = 1; i <= 10; i++) {
           const promocionKey = `promocion${i}`;
-          const siguientePromocionKey = `promocion${i + 1}`;
-
           if (nuevosTiempos[promocionKey] > 0) {
-            // Restar 1 segundo a la promoción actual
             nuevosTiempos[promocionKey] = nuevosTiempos[promocionKey] - 1;
-            todasPromocionesCero = false; // Al menos una promoción no ha llegado a cero
-          } else if (
-            siguientePromocionKey &&
-            nuevosTiempos[siguientePromocionKey] > 0
-          ) {
-            // Si la promoción actual llegó a cero y la siguiente promoción existe y es mayor que cero, restar 1 segundo a la siguiente promoción
-            nuevosTiempos[siguientePromocionKey] =
-              nuevosTiempos[siguientePromocionKey] - 1;
-            todasPromocionesCero = false; // Al menos una promoción no ha llegado a cero
           }
         }
 
-        // Detener el intervalo si todas las promociones han llegado a cero
-        if (todasPromocionesCero) {
-          clearInterval(interval);
-        }
         console.log(nuevosTiempos);
-        return todasPromocionesCero ? prevTiempos : nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
+        return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
       });
     };
 
