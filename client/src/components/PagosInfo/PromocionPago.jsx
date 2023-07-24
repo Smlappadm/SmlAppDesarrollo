@@ -278,7 +278,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                             </>
                           ) : (
                             <p className="text-white text-3xl text-center">
-                              Desc. -1000€ ({promo.hora} horas)
+                              Desc. -1000€ 
                             </p>
                             <p className="text-white text-3xl text-center">
                             ({promo.hora} horas)
