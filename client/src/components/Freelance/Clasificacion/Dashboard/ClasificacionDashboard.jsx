@@ -494,15 +494,27 @@ const ClasificacionDashboard = () => {
       for (let i = 0; i < freelanceLead.length; i++) {
         const currentClient = client[i];
 
+        console.log(currentClient.level, "level");
+        console.log(currentClient.instagram, "instagram");
+        console.log(currentClient.name, "name");
+        console.log(currentClient._id, "_id");
+        console.log(currentClient.email, "email");
+        console.log(currentClient.seguidores2000, "seguidores2000");
+        console.log(currentClient.repercusion, "repercusion");
+        console.log(currentClient.frecuencia, "frecuencia");
+        console.log(currentClient.contenidoPersonal, "contenidoPersonal");
+        console.log(currentClient.contenidoValor, "contenidoValor");
+        console.log(currentClient.calidadInstagram), "calidadInstagram";
+
         if (currentClient.level !== "-") {
           if (
-            currentClient.instagram.trim() !== "" &&
+            currentClient.instagram !== "" &&
             (currentClient.level === "0" ||
               currentClient.level === "incidencia")
           ) {
             SendLeadsErrorInsta0(currentClient.name);
           } else if (
-            currentClient.instagram.trim() === "" &&
+            currentClient.instagram === "" &&
             (currentClient.level === "incidencia" ||
               currentClient.level === "0")
           ) {
@@ -522,7 +534,7 @@ const ClasificacionDashboard = () => {
             });
             console.log(response.data);
           } else if (
-            currentClient.instagram.trim() !== "" &&
+            currentClient.instagram !== "" &&
             (currentClient.level === "1" ||
               currentClient.level === "2" ||
               currentClient.level === "0")
@@ -558,7 +570,8 @@ const ClasificacionDashboard = () => {
 
       SendLeadsSuccess();
     } catch (error) {
-      SendLeadsError(names);
+      console.log("aca esta el erorrrrrrrrrrrrrrrrr");
+      SendLeadsError(username);
       console.log({ error: error.message });
     }
   };
