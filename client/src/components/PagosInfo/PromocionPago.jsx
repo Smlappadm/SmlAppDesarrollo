@@ -69,7 +69,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     sortedHours.forEach((hour) => {
       sortedCustomPromos.push(customPromos[hour]);
     });
-    console.log(sortedCustomPromos);
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
@@ -106,8 +105,10 @@ export default function PromocionPago({ tamañoPantalla }) {
         clienteEmpresa?.promociones.length < body.promociones.length)
     ) {
       console.log("si");
+
       seteoPromociones(body);
     }
+    console.log(promos[0]);
   }, [promos]);
 
   useEffect(() => {
@@ -142,37 +143,36 @@ export default function PromocionPago({ tamañoPantalla }) {
   useEffect(() => {
     const actualizarTiemposRestantes = () => {
       setTiempoRestante((prevTiempos) => {
-        const nuevosTiempos = { ...prevTiempos }; // Crear una copia del estado actual
+        // Comprobar si todos los tiempos han llegado a cero
+        const todasPromocionesCero = Object.values(prevTiempos).every(
+          (tiempo) => tiempo <= 0
+        );
 
-        // Variable para rastrear si todas las promociones han llegado a cero
-        let todasPromocionesCero = true;
-
-        // Iterar sobre todas las promociones
-        for (let i = 1; i <= 10; i++) {
-          const promocionKey = `promocion${i}`;
-          const siguientePromocionKey = `promocion${i + 1}`;
-
-          if (nuevosTiempos[promocionKey] > 0) {
-            // Restar 1 segundo a la promoción actual
-            nuevosTiempos[promocionKey] = nuevosTiempos[promocionKey] - 1;
-            todasPromocionesCero = false; // Al menos una promoción no ha llegado a cero
-          } else if (
-            siguientePromocionKey &&
-            nuevosTiempos[siguientePromocionKey] > 0
-          ) {
-            // Si la promoción actual llegó a cero y la siguiente promoción existe y es mayor que cero, restar 1 segundo a la siguiente promoción
-            nuevosTiempos[siguientePromocionKey] =
-              nuevosTiempos[siguientePromocionKey] - 1;
-            todasPromocionesCero = false; // Al menos una promoción no ha llegado a cero
-          }
-        }
-
-        // Detener el intervalo si todas las promociones han llegado a cero
         if (todasPromocionesCero) {
+          // Detener el intervalo si todas las promociones han llegado a cero
           clearInterval(interval);
-        }
+          return prevTiempos; // Devolver el estado actual sin hacer modificaciones
+        } else {
+          // Si no todas las promociones han llegado a cero, crear una copia del estado actual
+          const nuevosTiempos = { ...prevTiempos };
 
-        return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
+          // Iterar sobre todas las promociones y restar 1 segundo si el tiempo es mayor a cero
+          for (let i = 1; i <= 10; i++) {
+            const promocionKey = `promocion${i}`;
+            if (
+              prevTiempos[promocionKey] ||
+              prevTiempos[promocionKey] === "0"
+            ) {
+              nuevosTiempos[promocionKey] = Math.max(
+                0,
+                prevTiempos[promocionKey] - 1
+              );
+            }
+          }
+
+          console.log(nuevosTiempos);
+          return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
+        }
       });
     };
 
@@ -220,8 +220,13 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
     setPromocionActual(0);
   };
+  let todasPromocionesCero;
   useEffect(() => {
     actualizarPromocionActual();
+    todasPromocionesCero = promos.every((promo, index) => {
+      const promocionKey = `promocion${index}`;
+      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
+    });
   }, [tiempoRestante]);
 
   return (
@@ -311,6 +316,57 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             );
           })}
+
+        {todasPromocionesCero && (
+          <div
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+            }
+          >
+            <p className="text-white">SIN PROMOCIÓN</p>
+
+            <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+              <p className="text-white text-3xl text-center">Sin Descuento</p>
+            </div>
+            <p className="text-white">CUOTAS</p>
+            <div className="flex justify-evenly items-center text-white ">
+              {Object.keys(
+                promos[0] && promos[0].pagos ? promos[0].pagos : ""
+              ).map((cuota, cuotaIndex) => (
+                <div
+                  key={cuota}
+                  className={
+                    cuotas === cuota
+                      ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                      : "rounded-md border border-white mr-2 font-bold"
+                  }
+                  onClick={() => CambiarCuota(cuota)}
+                >
+                  <p className="py-3 px-5">
+                    {Object.keys(promos[0].pagos)[cuotaIndex]}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="text-white">DETALLE</p>
+            <p className="text-white text-center">
+              {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
+            </p>
+            <Link
+              className={
+                tamañoPantalla === "Pequeña"
+                  ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+              }
+              to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
+              target="_blank"
+            >
+              Link de Pago
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
