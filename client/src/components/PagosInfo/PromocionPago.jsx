@@ -337,7 +337,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           >
             <p className="text-white">SIN PROMOCIÓN</p>
 
-            <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+            <div className="border border-white w-5/6 flex items-center justify-center p-3 rounded-md">
               <p className="text-white text-3xl text-center">Sin Descuento</p>
             </div>
             <p className="text-white">CUOTAS</p>
