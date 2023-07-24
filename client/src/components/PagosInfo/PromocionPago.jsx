@@ -171,8 +171,8 @@ export default function PromocionPago({ tamañoPantalla }) {
         if (todasPromocionesCero) {
           clearInterval(interval);
         }
-
-        return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
+        console.log(nuevosTiempos);
+        return todasPromocionesCero ? prevTiempos : nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
       });
     };
 
@@ -222,6 +222,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
   useEffect(() => {
     actualizarPromocionActual();
+    console.log(tiempoRestante);
   }, [tiempoRestante]);
 
   return (
