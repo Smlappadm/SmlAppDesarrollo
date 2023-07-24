@@ -105,10 +105,10 @@ export default function PromocionPago({ tamañoPantalla }) {
         clienteEmpresa?.promociones.length < body.promociones.length)
     ) {
       console.log("si");
-      console.log(promos);
 
       seteoPromociones(body);
     }
+    console.log(promos[0]);
   }, [promos]);
 
   useEffect(() => {
