@@ -59,6 +59,7 @@ function ChildModal({
   editEmailApp,
   editContacto,
   saveEmailAppFunction,
+  openTimeHour
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -258,6 +259,7 @@ function ChildModal({
         editInstagram ||
         editTelephone ||
         editEmailApp ||
+        openTimeHour ||
         editContacto ? (
           <>
             <button
@@ -1876,6 +1878,7 @@ export default function NestedModal({
               editTelephone={editTelephone}
               editEmailApp={editEmailApp}
               saveEmailAppFunction={saveEmailAppFunction}
+              openTimeHour={openTimeHour}
             />
           </div>
         </Box>
