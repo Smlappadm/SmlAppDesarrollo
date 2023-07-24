@@ -95,7 +95,7 @@ export default function ModalIntelligentInfo({ item }) {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
-          <div className="flex flex-col items-center justify-center gap-y-7">
+          <div className="flex flex-col items-center justify-center gap-y-3">
             <h1 className="text-24 text-[#e4e1e1]">Historial Obvservaciones</h1>
             <p>{item.name}</p>
             <div className="flex flex-col  justify-start items-center h-[400px] w-[500px] my-3 overflow-scroll">
