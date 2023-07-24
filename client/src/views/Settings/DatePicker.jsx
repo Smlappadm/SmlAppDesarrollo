@@ -40,31 +40,34 @@ export default function BasicDatePicker({ handleDateFromPicker, saveDate }) {
             color: "white",
             "& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input": {
               color: "white",
+
             },
             "& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root": {
               color: "white",
+
             },
             "& .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root": {
               backgroundColor: "#222131",
               color: "white",
               border: "1px solid white",
+
               borderRadius: "15px",
             },
-            "& .css-1cb9e0w-MuiFormControl-root-MuiTextField-root ":
-              {
-                backgroundColor: "#222131",
-                color: "white",
-                border: "1px solid white",
-                borderRadius: "15px",
-              },
-            "& .css-i4bv87-MuiSvgIcon-root": {
-              color: "white",
-              
-            },
-            "& .css-1xhypcz-MuiStack-root": {
-              border: "1px solid white",
-              color: "white",
-            }
+            // "& .css-1cb9e0w-MuiFormControl-root-MuiTextField-root ":
+            //   {
+            //     backgroundColor: "#222131",
+            //     color: "white",
+            //     // border: "1px solid white",
+            //     borderRadius: "15px",
+            //   },
+            // "& .css-i4bv87-MuiSvgIcon-root": {
+            //   color: "white",
+
+            // },
+            // "& .css-1xhypcz-MuiStack-root": {
+
+            //   color: "white",
+            // },
           }}
           //   value={selectedDate}
           //   onChange={handleDateChange}
@@ -75,6 +78,7 @@ export default function BasicDatePicker({ handleDateFromPicker, saveDate }) {
               value={selectedDate ? selectedDate.format("DD/MM/YYYY") : ""}
               readOnly
               placeholder="Fecha de nacimiento"
+              className="border-2 border-gray-950"
             />
           )}
           format="DD/MM/YYYY"
