@@ -53,6 +53,18 @@ const ClasificacionDashboard = () => {
 
   let names = localStorage.getItem("corredorName");
 
+  const username = corredor.name;
+  useEffect(() => {
+    console.log("adentro", username);
+    localStorage.setItem("corredorName", username);
+  }, [corredor]);
+
+  useEffect(() => {
+    if (mail !== undefined) {
+      dispatch(getAllCorredoresByEmail(mail));
+    }
+  }, [dispatch, mail, names]);
+
   useEffect(() => {
     if (mail !== undefined) {
       dispatch(

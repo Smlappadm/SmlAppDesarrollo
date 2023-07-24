@@ -164,7 +164,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <p>Estado:</p>
                   <p className="font-normal">{modalItems.status}</p>
                 </div>
-                {modalItems.status === "Contratado" && (
+                {modalItems.status === "Contratado" && modalItems.pagos.length > 0 (
                   <div>
                     <div className="font-semibold flex gap-3">
                       <p>Monto:</p>

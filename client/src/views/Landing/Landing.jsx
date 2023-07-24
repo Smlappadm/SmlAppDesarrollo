@@ -52,7 +52,7 @@ function Landing() {
   localStorage.setItem("email", userEmail);
   let email = localStorage.getItem("email");
 
-  const fullName = user?.fullName;
+  const username = corredor.name;
 
   useEffect(() => {
     if (userEmail !== undefined) {
@@ -61,9 +61,9 @@ function Landing() {
   }, [dispatch, userEmail]);
 
   useEffect(() => {
-    console.log("adentro", fullName);
-    localStorage.setItem("corredorName", fullName);
-  }, [fullName]);
+    console.log("adentro", username);
+    localStorage.setItem("corredorName", username);
+  }, [corredor]);
 
   useEffect(() => {
     dispatch(getAllCorredores());
@@ -108,7 +108,7 @@ function Landing() {
               ) : (
                 <img className={style.imagen} src={userImageUrl} alt="" />
               )}
-              <h1 className={style.wellcome}>Bienvenido {user.fullName} </h1>
+              <h1 className={style.wellcome}>Bienvenido {username} </h1>
               <h3 className={style.role}>Rol: {roleReady} </h3>
             </div>
           ) : (
