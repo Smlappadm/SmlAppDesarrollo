@@ -220,14 +220,14 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
     setPromocionActual(0);
   };
+  let todasPromocionesCero;
   useEffect(() => {
     actualizarPromocionActual();
+    todasPromocionesCero = promos.every((promo, index) => {
+      const promocionKey = `promocion${index}`;
+      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
+    });
   }, [tiempoRestante]);
-
-  const todasPromocionesCero = promos.every((promo, index) => {
-    const promocionKey = `promocion${index}`;
-    return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
-  });
 
   return (
     <div
