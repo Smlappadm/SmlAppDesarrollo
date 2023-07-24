@@ -353,7 +353,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
                 : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
             }
-            to={promos[0].links[cuotas]}
+            to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
             target="_blank"
           >
             Link de Pago
