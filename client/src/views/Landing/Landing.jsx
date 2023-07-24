@@ -53,6 +53,7 @@ function Landing() {
   let email = localStorage.getItem("email");
 
   const fullName = user?.fullName;
+  const username = corredor.name;
 
   useEffect(() => {
     if (userEmail !== undefined) {
@@ -61,9 +62,9 @@ function Landing() {
   }, [dispatch, userEmail]);
 
   useEffect(() => {
-    console.log("adentro", fullName);
-    localStorage.setItem("corredorName", fullName);
-  }, [fullName]);
+    console.log("adentro", username);
+    localStorage.setItem("corredorName", username);
+  }, [corredor]);
 
   useEffect(() => {
     dispatch(getAllCorredores());
