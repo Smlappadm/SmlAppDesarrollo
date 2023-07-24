@@ -325,7 +325,9 @@ export default function PromocionPago({ tamañoPantalla }) {
           </div>
           <p className="text-white">CUOTAS</p>
           <div className="flex justify-evenly items-center text-white ">
-            {Object.keys(promos[0].pagos).map((cuota, cuotaIndex) => (
+            {Object.keys(
+              promos[0] && promos[0].pagos ? promos[0].pagos : ""
+            ).map((cuota, cuotaIndex) => (
               <div
                 key={cuota}
                 className={
@@ -342,7 +344,9 @@ export default function PromocionPago({ tamañoPantalla }) {
             ))}
           </div>
           <p className="text-white">DETALLE</p>
-          <p className="text-white text-center">{promos[0].pagos[cuotas]}</p>
+          <p className="text-white text-center">
+            {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
+          </p>
           <Link
             className={
               tamañoPantalla === "Pequeña"
