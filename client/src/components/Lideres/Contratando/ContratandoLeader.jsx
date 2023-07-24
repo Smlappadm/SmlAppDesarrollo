@@ -64,12 +64,12 @@ export const ContratandoLeader = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllLeadAPagar());
-  }, [dispatch, changeStatus]);
-
-  useEffect(() => {
     setData(leadAPagar);
   }, [leadAPagar, changeStatus]);
+
+  useEffect(() => {
+    dispatch(getAllLeadAPagar());
+  }, [dispatch]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
