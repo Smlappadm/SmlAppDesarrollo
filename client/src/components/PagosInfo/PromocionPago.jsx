@@ -105,6 +105,8 @@ export default function PromocionPago({ tamañoPantalla }) {
         clienteEmpresa?.promociones.length < body.promociones.length)
     ) {
       console.log("si");
+      console.log(promos);
+
       seteoPromociones(body);
     }
   }, [promos]);
@@ -309,6 +311,50 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             );
           })}
+        <div
+          className={
+            tamañoPantalla === "Pequeña"
+              ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+              : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+          }
+        >
+          <p className="text-white">SIN PROMOCIÓN</p>
+
+          <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+            <p className="text-white text-3xl text-center">Sin Descuento</p>
+          </div>
+          <p className="text-white">CUOTAS</p>
+          <div className="flex justify-evenly items-center text-white ">
+            {Object.keys(promos[0].pagos).map((cuota, cuotaIndex) => (
+              <div
+                key={cuota}
+                className={
+                  cuotas === cuota
+                    ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
+                    : "rounded-md border border-white mr-2 font-bold"
+                }
+                onClick={() => CambiarCuota(cuota)}
+              >
+                <p className="py-3 px-5">
+                  {Object.keys(promos[0].pagos)[cuotaIndex]}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-white">DETALLE</p>
+          <p className="text-white text-center">{promos[0].pagos[cuotas]}</p>
+          <Link
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+            }
+            to={promos[0].links[cuotas]}
+            target="_blank"
+          >
+            Link de Pago
+          </Link>
+        </div>
       </div>
     </div>
   );
