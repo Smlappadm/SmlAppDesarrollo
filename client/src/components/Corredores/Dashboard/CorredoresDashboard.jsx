@@ -38,7 +38,7 @@ const CorredoresDashboard = () => {
     false,
   ]);
 
-  const { corredorLead } = useSelector((state) => state);
+  const { corredorLead, corredor } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -51,11 +51,23 @@ const CorredoresDashboard = () => {
 
   let names = localStorage.getItem("corredorName");
 
+  const username = corredor.name;
+  useEffect(() => {
+    console.log("adentro", username);
+    localStorage.setItem("corredorName", username);
+  }, [corredor]);
+
+  useEffect(() => {
+    if (mail !== undefined) {
+      dispatch(getAllCorredoresByEmail(mail));
+    }
+  }, [dispatch, mail, names]);
+
   useEffect(() => {
     if (mail !== undefined) {
       dispatch(getLeadCorredores(email, names, "", "", "", ""));
     }
-  }, [dispatch, mail]);
+  }, [dispatch, mail, names]);
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
