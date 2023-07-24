@@ -17,6 +17,7 @@ import InputRunner from "./MaterialUi/inputRunner";
 import Nav from "../../../Nav/Nav";
 import {
   getAllCategory,
+  getAllCorredoresByEmail,
   getAllCountries,
   getAllProfesion,
   getLeadClasificacion,
@@ -42,11 +43,13 @@ const ClasificacionDashboard = () => {
     false,
   ]);
 
-  const { freelanceLead } = useSelector((state) => state);
+  const { freelanceLead, corredor } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
+  const fullName = user?.fullName;
 
   localStorage.setItem("email", mail);
   let email = localStorage.getItem("email");
@@ -63,14 +66,14 @@ const ClasificacionDashboard = () => {
     if (mail !== undefined) {
       dispatch(getAllCorredoresByEmail(mail));
     }
-  }, [dispatch, mail, names]);
+  }, [dispatch, mail, username]);
 
   useEffect(() => {
     if (mail !== undefined) {
       dispatch(
         getLeadClasificacion(
           email,
-          names,
+          username,
           profesion,
           category,
           country,
@@ -483,16 +486,7 @@ const ClasificacionDashboard = () => {
         }
       }
 
-      dispatch(
-        getLeadClasificacion(
-          email,
-          names,
-          profesion,
-          category,
-          country,
-          marca_personal
-        )
-      );
+      dispatch(getLeadClasificacion(email, username, "", "", "", ""));
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
@@ -545,7 +539,7 @@ const ClasificacionDashboard = () => {
               AddLeadsIncomplete={AddLeadsIncomplete}
             />
           </div>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div className="flex gap-12" type="submit" onClick={handleSubmit}>
               <IconLabelButtons />
             </div>
