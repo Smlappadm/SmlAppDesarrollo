@@ -163,9 +163,14 @@ export default function ChildModal() {
                           {LeadsChecked}/{totalLeadsAsignados}
                         </p>
                       </div>
-                      <div className="w-3/12">
+                      <div className="w-1/12">
                         <p>Ventas</p>
-                        <p>{LeadsVendidos}/</p>
+                        <p>{LeadsVendidos}</p>
+                        <p>A pagar {LeadsAPagar}</p>
+                      </div>
+                      <div className="w-2/12">
+                        <p>Ventas</p>
+                        <p>{LeadsVendidos}</p>
                         <p>A pagar {LeadsAPagar}</p>
                       </div>
                       <div className="w-1/12">
