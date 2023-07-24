@@ -52,7 +52,6 @@ function Landing() {
   localStorage.setItem("email", userEmail);
   let email = localStorage.getItem("email");
 
-  const fullName = user?.fullName;
   const username = corredor.name;
 
   useEffect(() => {
