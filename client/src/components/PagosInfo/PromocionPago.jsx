@@ -69,7 +69,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     sortedHours.forEach((hour) => {
       sortedCustomPromos.push(customPromos[hour]);
     });
-    console.log(sortedCustomPromos);
     setPromos(sortedCustomPromos);
   }, [promociones]);
 
@@ -151,21 +150,27 @@ export default function PromocionPago({ tamañoPantalla }) {
           // Detener el intervalo si todas las promociones han llegado a cero
           clearInterval(interval);
           return prevTiempos; // Devolver el estado actual sin hacer modificaciones
-        }
+        } else {
+          // Si no todas las promociones han llegado a cero, crear una copia del estado actual
+          const nuevosTiempos = { ...prevTiempos };
 
-        // Si no todas las promociones han llegado a cero, crear una copia del estado actual
-        const nuevosTiempos = { ...prevTiempos };
-
-        // Iterar sobre todas las promociones y restar 1 segundo si el tiempo es mayor a cero
-        for (let i = 1; i <= 10; i++) {
-          const promocionKey = `promocion${i}`;
-          if (nuevosTiempos[promocionKey] > 0) {
-            nuevosTiempos[promocionKey] = nuevosTiempos[promocionKey] - 1;
+          // Iterar sobre todas las promociones y restar 1 segundo si el tiempo es mayor a cero
+          for (let i = 1; i <= 10; i++) {
+            const promocionKey = `promocion${i}`;
+            if (
+              prevTiempos[promocionKey] ||
+              prevTiempos[promocionKey] === "0"
+            ) {
+              nuevosTiempos[promocionKey] = Math.max(
+                0,
+                prevTiempos[promocionKey] - 1
+              );
+            }
           }
-        }
 
-        console.log(nuevosTiempos);
-        return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
+          console.log(nuevosTiempos);
+          return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
+        }
       });
     };
 
