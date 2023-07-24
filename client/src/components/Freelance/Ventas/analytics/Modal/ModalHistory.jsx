@@ -1178,7 +1178,8 @@ const [emailValidator, setEmailValidator] = React.useState(false);
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Cantidad cuotas:</h3>
-                <h3>{`${item.pagos && item.pagos.cuotas}`}</h3>
+                {console.log(item.pagos && item.pagos.cuotas === "undefined")}
+                <h3>{`${item.pagos && item.pagos.cuotas !== "undefined" && item.pagos.cuotas}`}</h3>
               </div>
               <div className="w-48 flex justify-start items-center">
                 <h3 className="w-36">Valor cuotas:</h3>
