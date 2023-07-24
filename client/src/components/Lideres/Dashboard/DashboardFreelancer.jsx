@@ -25,7 +25,12 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoLogoSnapchat, IoStatsChart,IoRocketOutline } from "react-icons/io5";
+import {
+  IoGrid,
+  IoLogoSnapchat,
+  IoStatsChart,
+  IoRocketOutline,
+} from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -430,6 +435,13 @@ export const DashboardFreelancer = () => {
                         {item.status === "incidencia" ? (
                           <Text className="bg-[#e5fc18] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
                             Incidencia
+                          </Text>
+                        ) : (
+                          ""
+                        )}
+                        {item.status === "A pagar" ? (
+                          <Text className="bg-pink-500 text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                            Pendiente de pago
                           </Text>
                         ) : (
                           ""
