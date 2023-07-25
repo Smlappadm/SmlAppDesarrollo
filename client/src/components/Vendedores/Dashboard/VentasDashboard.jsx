@@ -106,7 +106,7 @@ const VentasDashboard = () => {
   };
 
   const SendLeadAlert = () => {
-    toast.success("✔ Lead Update!", {
+    toast.success("✔ Cliente Actualizado!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
