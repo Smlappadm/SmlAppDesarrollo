@@ -67,7 +67,7 @@ export default function ActualizarPromocion({ item }) {
       property === "descuento" ||
       property === "valorCuota"
     ) {
-      newValue = parseInt(event.target.value);
+      newValue = event.target.value;
     } else if (property === "active") {
       newValue = !promocion.active;
     } else {
@@ -279,14 +279,14 @@ export default function ActualizarPromocion({ item }) {
               variant="outlined"
               onClick={actualizarPromocion}
             >
-            Actualizar Promoción
+              Actualizar Promoción
             </Button>
             <Button
               sx={buttonsend}
               variant="outlined"
               onClick={eliminarromocion}
             >
-            Eliminar Promoción
+              Eliminar Promoción
             </Button>
           </div>
         </Box>
