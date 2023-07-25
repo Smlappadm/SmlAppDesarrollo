@@ -47,6 +47,7 @@ export default function ActualizarPromocion({ item }) {
     cuota: item.promocion.cuota,
     monto: item.promocion.monto,
     valorCuota: item.promocion.valorCuota,
+    descuento: item.promocion.descuento,
     active: item.promocion.active,
   });
 
@@ -60,6 +61,7 @@ export default function ActualizarPromocion({ item }) {
       property === "hora" ||
       property === "cuota" ||
       property === "monto" ||
+      property === "descuento" ||
       property === "valorCuota"
     ) {
       newValue = parseInt(event.target.value);
@@ -80,13 +82,16 @@ export default function ActualizarPromocion({ item }) {
     console.log(promocion);
     await axios.put(`/promociones/${item._id}`, promocion);
     dispatch(getAllPromociones());
-    handleClose()
+    handleClose();
   };
   console.log(promocion);
 
   return (
     <div className="flex items-center justify-center">
-      <Button sx={styleButton} onClick={handleOpen}></Button>
+      <Button sx={styleButton} onClick={handleOpen}>
+        {" "}
+        Modificar
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -192,6 +197,24 @@ export default function ActualizarPromocion({ item }) {
             type="number"
             value={promocion.valorCuota}
             onChange={(e) => handleChange(e, "valorCuota")}
+            InputProps={{
+              style: {
+                color: "white",
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: "white",
+              },
+            }}
+          />
+          <TextField
+            fullWidth
+            label="Descuento"
+            id="Descuento"
+            type="number"
+            value={promocion.descuento}
+            onChange={(e) => handleChange(e, "descuento")}
             InputProps={{
               style: {
                 color: "white",

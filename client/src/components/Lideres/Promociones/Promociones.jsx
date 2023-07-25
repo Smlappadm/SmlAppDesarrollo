@@ -139,9 +139,6 @@ export const Promociones = () => {
           currentCard.map((item, index) => (
             <div key={index} className="w-full mt-4">
               <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around px-10 py-3">
-                <div className="absolute w-full z-50">
-                  <ActualizarPromocion item={item} />
-                </div>
                 <div className="flex  justify-center items-center p-0 ">
                   <div className="w-64 flex justify-center items-center ">
                     <Text className=" text-white rounded-full">
@@ -184,6 +181,8 @@ export const Promociones = () => {
                     </Text>
                   </div>
                 </div>
+
+                <ActualizarPromocion item={item} />
               </div>
             </div>
           ))

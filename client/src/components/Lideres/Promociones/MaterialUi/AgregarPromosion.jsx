@@ -33,6 +33,7 @@ export default function AgregarPromosion() {
     cuota: 0,
     monto: 0,
     valorCuota: 0,
+    descuento: 0,
     active: false,
   });
 
@@ -165,6 +166,24 @@ export default function AgregarPromosion() {
               id="Monto"
               value={promocion.monto}
               onChange={(e) => handleChange(e, "monto")}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
+            <TextField
+              fullWidth
+              type="number"
+              label="Descuento"
+              id="Descuento"
+              value={promocion.descuento}
+              onChange={(e) => handleChange(e, "descuento")}
               InputProps={{
                 style: {
                   color: "white",

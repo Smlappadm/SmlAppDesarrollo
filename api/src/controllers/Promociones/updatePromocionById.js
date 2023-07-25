@@ -15,6 +15,7 @@ const updatePromocionById = async (id, body) => {
         "promocion.cuota": body.cuota,
         "promocion.monto": body.monto,
         "promocion.valorCuota": body.valorCuota,
+        "promocion.descuento": body.descuento,
         "promocion.active": body.active,
       },
     },
