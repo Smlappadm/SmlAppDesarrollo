@@ -83,7 +83,7 @@ LeadRouter.get("/pagar");
 LeadRouter.get("/:id", getLeadByIdHandler);
 LeadRouter.get("/leadvendedor/:id", getLeadVendedorHandler);
 LeadRouter.put("/changeemail/:id", updateChangeEmailHandler);
-LeadRouter.put("/setpago/:id", setPagoHandler);
+LeadRouter.put("/setpago", setPagoHandler);
 LeadRouter.put("/cleanclevel", cleanValueClevelHandler);
 LeadRouter.put("/limpieza", limpiezaBaseHandler);
 LeadRouter.put("/checkedinactive5", getLeadCheckedInactive5Handler);

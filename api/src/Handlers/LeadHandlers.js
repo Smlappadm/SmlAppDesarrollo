@@ -44,6 +44,7 @@ const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
 const UpdatePromociones = require("../controllers/Lead/UpdatePromociones");
 const getAllLeadAPagar = require("../controllers/Lead/getAllLeadAPagar");
 const setPagoLink = require("../controllers/Lead/setPagoLink")
+const findLeadSeguimientoAllInfo = require("../controllers/Lead/findLeadSeguimientoAllInfo");
 
 // Obtener todos los leads
 const getAllLeadHandler = async (req, res) => {
@@ -480,6 +481,40 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+// Buscar lead por nombre con toda la información
+const findLeadSeguimientoAllInfoHandler = async (req, res) => {
+  const {
+    corredor,
+    vendedor,
+    freelancer,
+    fromDay,
+    toDay,
+    profesion,
+    country,
+    category,
+    level,
+    status,
+    descargados,
+  } = req.query;
+  try {
+    const foundCorredor = await findLeadSeguimientoAllInfo(
+      corredor,
+      vendedor,
+      freelancer,
+      fromDay,
+      toDay,
+      profesion,
+      country,
+      category,
+      level,
+      status,
+      descargados
+    );
+    res.status(200).json(foundCorredor);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 // Buscar lead de freelancer por nombre con toda la información
 const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
@@ -660,4 +695,5 @@ module.exports = {
   cambioNombreLeaderHandler,
   UpdatePromocionesHandler,
   setPagoHandler,
+  findLeadSeguimientoAllInfoHandler,
 };
