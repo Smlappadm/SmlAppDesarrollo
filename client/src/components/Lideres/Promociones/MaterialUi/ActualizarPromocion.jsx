@@ -88,7 +88,10 @@ export default function ActualizarPromocion({ item }) {
 
   return (
     <div className="flex items-center justify-center">
-      <Button sx={styleButton} onClick={handleOpen}></Button>
+      <Button sx={styleButton} onClick={handleOpen}>
+        {" "}
+        Modificar
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
