@@ -230,8 +230,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] > 0;
     });
-
-    // Now, check if todasPromocionesCero is false, and update it to true if needed
     if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
     }
