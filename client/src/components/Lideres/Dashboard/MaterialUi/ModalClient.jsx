@@ -183,7 +183,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                       <p className="font-normal">
                         {" "}
                         A discutir
-                        {modalItems.pagos.valorCuota}
+                        {/* {modalItems.pagos.valorCuota} */}
                       </p>
                     </div>
                   </div>
