@@ -164,7 +164,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <p>Estado:</p>
                   <p className="font-normal">{modalItems.status}</p>
                 </div>
-                {modalItems.status === "Contratado" && modalItems.pagos.length > 0 (
+                {modalItems.pagos?.monto && (
                   <div>
                     <div className="font-semibold flex gap-3">
                       <p>Monto:</p>
@@ -174,7 +174,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                       <p>Cuotas:</p>
                       <p className="font-normal">
                         {modalItems.pagos.cuotasPagadas} /{" "}
-                        {modalItems.pagos.cuotas}{" "}
+                        {modalItems.pagos.cuotas}
                       </p>
                     </div>
                     <div className="font-semibold flex gap-3">
