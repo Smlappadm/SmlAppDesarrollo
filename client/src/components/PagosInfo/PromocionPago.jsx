@@ -110,7 +110,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log(promos);
+    console.log(promos[0]);
   }, [promos]);
 
   useEffect(() => {
@@ -172,7 +172,6 @@ export default function PromocionPago({ tamañoPantalla }) {
             }
           }
 
-          console.log(nuevosTiempos);
           return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
         }
       });
@@ -237,7 +236,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
     }
-    console.log(todasPromocionesCero);
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
@@ -434,9 +432,9 @@ export default function PromocionPago({ tamañoPantalla }) {
               ))}
             </div>
             <p className="text-white">DETALLE</p>
-            {/* <p className="text-white text-center">
+            <p className="text-white text-center">
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
-            </p> */}
+            </p>
             {console.log("sssssssssss")}
             <Link
               className={
