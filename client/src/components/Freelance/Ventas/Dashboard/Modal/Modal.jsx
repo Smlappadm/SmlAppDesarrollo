@@ -134,7 +134,7 @@ function ChildModal({
       } else {
         saveEmailAppFunction(updatedEmailApp);
       }
-    } 
+    }
 
     setOpenChild(true);
     handleLlamadoVentaChange();
@@ -221,6 +221,7 @@ function ChildModal({
     const dataLead = {
       status: statusObj.status,
       status_op: statusObj.status_op,
+      linkActivado: false,
       pagos: statusObj.pagos,
       emailApp: updatedEmailApp,
       llamados: item.llamados,
