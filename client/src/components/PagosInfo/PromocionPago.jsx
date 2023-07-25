@@ -12,6 +12,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const { clienteEmpresa } = useSelector((state) => state);
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [cliente, setCliente] = useState({});
+  const [linkActivo, setLinkActivo] = useState(false);
   const [promocionActual, setPromocionActual] = useState(0);
   const dispatch = useDispatch();
 
@@ -229,6 +230,23 @@ export default function PromocionPago({ tamañoPantalla }) {
     });
   }, [tiempoRestante]);
 
+  const pressLinkButtonHandler = async (linkDePago) => {
+    console.log(linkDePago)
+    if(!linkDePago){
+      return;
+    }
+    const body = {
+      id: clienteEmpresa._id,
+      linkPago: linkDePago,
+    };
+    try {
+      const response = await axios.put(`/lead/setpago`, body);
+
+    } catch (error) {
+      console.log("Error al seleccionar el pago")
+    }
+  };
+
   return (
     <div
       className={
@@ -245,8 +263,11 @@ export default function PromocionPago({ tamañoPantalla }) {
             : "flex flex-col justify-evenly items-center p-6 h-full w-1/5"
         }
       >
-        <p className="text-white text-24 font-bold">{cliente.name}</p>
-        {promos &&
+        <p className="text-white text-24 font-bold">
+          {cliente && cliente.name}
+        </p>
+        {!linkActivo &&
+          promos &&
           promos.map((promo, index) => {
             const promocionKey = `promocion${index}`;
 
@@ -309,17 +330,20 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-center">
                           {promo.pagos[cuotas]}
                         </p>
-                        <Link
+                        <button
                           className={
                             tamañoPantalla === "Pequeña"
                               ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
                               : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
                           }
-                          to={promo.links[cuotas]}
-                          target="_blank"
+                          // to={promo.links[cuotas]}
+                          // target="_blank"
+                          onClick={() =>
+                            pressLinkButtonHandler(promo.links[cuotas])
+                          }
                         >
                           Link de Pago
-                        </Link>
+                        </button>
                       </div>
                     )
                   : null}
@@ -361,20 +385,22 @@ export default function PromocionPago({ tamañoPantalla }) {
               ))}
             </div>
             <p className="text-white">DETALLE</p>
-            <p className="text-white text-center">
+            {/* <p className="text-white text-center">
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
-            </p>
-            <Link
+            </p> */}
+            {console.log("sssssssssss")}
+            <p
               className={
                 tamañoPantalla === "Pequeña"
                   ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
                   : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
               }
-              to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
-              target="_blank"
+              // to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
+              // target="_blank"
+              onClick={pressLinkButtonHandler}
             >
               Link de Pago
-            </Link>
+            </p>
           </div>
         )}
       </div>
