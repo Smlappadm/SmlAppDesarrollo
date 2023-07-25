@@ -208,7 +208,7 @@ export default function ActualizarPromocion({ item }) {
             label="Valor de Cuota"
             id="Descuento"
             type="number"
-            value={promocion.valorCuota}
+            value={promocion.descuento}
             onChange={(e) => handleChange(e, "descuento")}
             InputProps={{
               style: {
