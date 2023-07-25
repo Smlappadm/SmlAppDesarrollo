@@ -175,7 +175,6 @@ export default function ModalAddLeadVendedor({
       from: OneVendedor && OneVendedor[0].email,
       status: "Sin contactar",
       marca_personal: "No",
-      promociones: [],
     };
 
     if (
