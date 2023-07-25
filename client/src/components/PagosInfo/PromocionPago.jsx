@@ -266,16 +266,16 @@ export default function PromocionPago({ tamañoPantalla }) {
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-center items-center gap-4"
-            : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center gap-4"
+            ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-center items-center gap-8"
+            : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center gap-8"
         }
         style={styles()}
       >
         <div
           className={
             tamañoPantalla === "Pequeña"
-              ? "flex flex-col justify-center items-center p-6 h-full w-full gap-4"
-              : "flex flex-col justify-center items-center p-6 h-full w-1/5 gap-4"
+              ? "flex flex-col justify-center items-center p-6 h-full w-full gap-8"
+              : "flex flex-col justify-center items-center p-6 h-full w-1/5 gap-8"
           }
         >
           <p className="text-white text-24 font-bold whitespace-nowrap">
@@ -285,7 +285,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             className={
               tamañoPantalla === "Pequeña"
                 ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
             }
             to={clienteEmpresa.linkPago}
             target="_blank"
@@ -385,13 +385,13 @@ export default function PromocionPago({ tamañoPantalla }) {
                           className={
                             tamañoPantalla === "Pequeña"
                               ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
                           }
                           onClick={() =>
                             pressLinkButtonHandler(promo.links[cuotas])
                           }
                         >
-                          Link de Pago
+                          Confirmar selección
                         </button>
                       </div>
                     )
@@ -442,13 +442,13 @@ export default function PromocionPago({ tamañoPantalla }) {
               className={
                 tamañoPantalla === "Pequeña"
                   ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
               }
               // to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
               // target="_blank"
               onClick={pressLinkButtonHandler}
             >
-              Link de Pago
+              Confirmar selección
             </Link>
           </div>
         )}
