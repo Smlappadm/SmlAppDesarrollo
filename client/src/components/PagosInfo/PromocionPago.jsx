@@ -385,8 +385,6 @@ export default function PromocionPago({ tamañoPantalla }) {
                               ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
                               : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
                           }
-                          // to={promo.links[cuotas]}
-                          // target="_blank"
                           onClick={() =>
                             pressLinkButtonHandler(promo.links[cuotas])
                           }
