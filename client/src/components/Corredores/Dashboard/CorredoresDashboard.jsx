@@ -353,70 +353,11 @@ const CorredoresDashboard = () => {
     });
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
+  const date = new Date();
+  date.setHours(date.getHours() - 3);
+  const formattedTime = date.toISOString();
 
-  //   try {
-  //     for (let i = 0; i < corredorLead.length; i++) {
-  //       const currentClient = client[i];
-
-  //       if (currentClient.level === "-") {
-  //         SendLeadsErrorLevel(currentClient.name);
-  //         continue;
-  //       }
-
-  //       if (
-  //         currentClient.instagram.trim() !== "" &&
-  //         (currentClient.level === "0" || currentClient.level === "incidencia")
-  //       ) {
-  //         SendLeadsErrorInsta0(currentClient.name);
-  //       } else if (
-  //         currentClient.instagram.trim() === "" &&
-  //         (currentClient.level === "incidencia" || currentClient.level === "0")
-  //       ) {
-  //         console.log("insta vacio level 0");
-  //         await updateLead(currentClient);
-  //       } else if (
-  //         currentClient.instagram.trim() !== "" &&
-  //         (currentClient.level === "1" || currentClient.level === "2")
-  //       ) {
-  //         console.log("insta con algo level 0");
-  //         await updateLead(currentClient);
-  //       } else {
-  //         SendLeadsErrorInsta(currentClient.name);
-  //       }
-  //     }
-
-  //     dispatch(getLeadCorredores(email, username, "", "", "", ""));
-  //     dispatch(getAllProfesion());
-  //     dispatch(getAllCountries());
-  //     dispatch(getAllCategory());
-
-  //     SendLeadsSuccess();
-  //   } catch (error) {
-  //     SendLeadsError(names);
-  //     console.log({ error: error.message });
-  //   }
-  // };
-
-  // const updateLead = async (currentClient) => {
-  //   const response = await axios.put(`/lead/${currentClient._id}`, {
-  //     instagram: currentClient.instagram,
-  //     email: currentClient.email,
-  //     level: currentClient.level,
-  //     seguidores2000: currentClient.seguidores2000,
-  //     repercusion: currentClient.repercusion,
-  //     frecuencia: currentClient.frecuencia,
-  //     contenidoPersonal: currentClient.contenidoPersonal,
-  //     contenidoValor: currentClient.contenidoValor,
-  //     calidadInstagram: currentClient.calidadInstagram,
-  //     checked: true,
-  //     view: true,
-  //     freelancer: true,
-  //   });
-
-  //   console.log(response.data);
-  // };
+  console.log(formattedTime);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -447,6 +388,7 @@ const CorredoresDashboard = () => {
               contenidoPersonal: currentClient.contenidoPersonal,
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
+              updateCorredor: formattedTime,
               checked: true,
               view: true,
             });
@@ -465,6 +407,7 @@ const CorredoresDashboard = () => {
               contenidoPersonal: currentClient.contenidoPersonal,
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
+              updateCorredor: formattedTime,
               checked: true,
               view: true,
             });
