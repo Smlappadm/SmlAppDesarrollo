@@ -521,7 +521,7 @@ const VentasHistory = () => {
                         )}
                       </div>
                       <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
-                        {item.status === "Contratado" || item.status === "A pagar" (
+                        {(item.status === "Contratado" || item.status === "A pagar") && (
                           <ModalHistory
                             item={item}
                             SendLeadAlertBaja={SendLeadAlertBaja}
