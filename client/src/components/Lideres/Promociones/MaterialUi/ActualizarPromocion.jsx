@@ -207,7 +207,7 @@ export default function ActualizarPromocion({ item }) {
           />
           <TextField
             fullWidth
-            label="Valor de Cuota"
+            label="Descuento"
             id="Descuento"
             type="number"
             value={promocion.descuento}
