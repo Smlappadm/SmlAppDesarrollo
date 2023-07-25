@@ -49,6 +49,10 @@ export const GET_FREELANCER = "GET_FREELANCER";
 export const GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS =
   "GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS";
 export const GET_ALL_PROMOCIONES = "GET_ALL_PROMOCIONES";
+export const FIND_CORREDORES_NAME_ALL_INFO_SEGUIMIENTO =
+  "FIND_CORREDORES_NAME_ALL_INFO_SEGUIMIENTO";
+export const FIND_VENDEDORES_NAME_ALL_INFO_SEGUIMIENTO =
+  "FIND_VENDEDORES_NAME_ALL_INFO_SEGUIMIENTO";
 
 //
 export const setRol = (rol) => {
@@ -194,8 +198,14 @@ export const getLeadDiscard = () => {
   };
 };
 
-export const getLeadCheckedInactive5 = (body, profesion, country, level, freelancer) => {
-  body = { ...body, profesion, country, level, freelancer};
+export const getLeadCheckedInactive5 = (
+  body,
+  profesion,
+  country,
+  level,
+  freelancer
+) => {
+  body = { ...body, profesion, country, level, freelancer };
 
   return async (dispatch) => {
     if (
@@ -292,6 +302,32 @@ export const findCorredoresByNameAllInfo = (
     });
   };
 };
+
+export const findCorredoresByNameAllInfoSeguimiento = (
+  corredor,
+  vendedor,
+  freelancer,
+  fromDay,
+  toDay,
+  profesion,
+  country,
+  category,
+  level,
+  status,
+  descargados
+) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `/lead/seguimientofiltro?corredor=${corredor}&vendedor=${vendedor}&freelancer=${freelancer}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}&descargados=${descargados}`
+    );
+    const corredoresByNameAllInfoSeguimiento = response.data;
+    dispatch({
+      type: FIND_CORREDORES_NAME_ALL_INFO_SEGUIMIENTO,
+      payload: corredoresByNameAllInfoSeguimiento,
+    });
+  };
+};
+
 export const findFreelancerByNameAllInfo = (
   freelancer,
   fromDay,
@@ -337,6 +373,28 @@ export const findVendedoresByNameAllInfo = (
   };
 };
 
+export const findVendedoresByNameAllInfoSeguimiento = (
+  email,
+  fromDay,
+  toDay,
+  profesion,
+  country,
+  category,
+  level,
+  status
+) => {
+  return async (dispatch) => {
+    const response = await axios.get(
+      `/lead/seguimientofiltro?email=${email}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}`
+    );
+    const vendedoresByNameAllInfoSeguimiento = response.data;
+    dispatch({
+      type: FIND_VENDEDORES_NAME_ALL_INFO_SEGUIMIENTO,
+      payload: vendedoresByNameAllInfoSeguimiento,
+    });
+  };
+};
+
 export const findVendedorByName = (vendedorName) => {
   return async (dispatch) => {
     const response = await axios.get(`/lead/vendedor?name=${vendedorName}`);
@@ -371,17 +429,31 @@ export const getVendedorAllLeads = (email) => {
   };
 };
 
-export const getLeadsLLamadaVenta = (body, profesion, country, status, level, freelancer) => {
-  body = { email: body.email, name: body.name , profesion, country, level, status, freelancer };
-  console.log(body)
+export const getLeadsLLamadaVenta = (
+  body,
+  profesion,
+  country,
+  status,
+  level,
+  freelancer
+) => {
+  body = {
+    email: body.email,
+    name: body.name,
+    profesion,
+    country,
+    level,
+    status,
+    freelancer,
+  };
+  console.log(body);
   return async (dispatch) => {
     if (
       body.email &&
       body.email !== "undefined" &&
       body.email !== null &&
       body.email !== ""
-      ) {
-
+    ) {
       const response = await axios.put("/vendedor/ventas/email", body);
 
       const allLeads = response.data;
