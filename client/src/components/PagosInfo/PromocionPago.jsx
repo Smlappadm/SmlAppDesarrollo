@@ -58,6 +58,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
+        result[hora].descuento = promo.promocion.descuento || "";
         result[hora].duracion = ObtenerFecha(parseInt(promo.promocion.hora));
       }
 
@@ -332,7 +333,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           {promo.hora === "1" ? (
                             <>
                               <p className="text-white text-3xl text-center">
-                                Desc. -1000€
+                                Desc. -{promo.descuento}€
                               </p>
                               <p className="text-white text-3xl text-center">
                                 ({promo.hora} hora)
@@ -341,7 +342,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           ) : (
                             <>
                               <p className="text-white text-3xl text-center">
-                                Desc. -1000€
+                                Desc. -{promo.descuento}€
                               </p>
                               <p className="text-white text-3xl text-center">
                                 ({promo.hora} horas)

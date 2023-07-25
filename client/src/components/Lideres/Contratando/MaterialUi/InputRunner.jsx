@@ -14,8 +14,6 @@ import {
   getFreelancers,
   getVendedor,
 } from "../../../../redux/actions";
-import { Checkbox } from "@mui/material";
-import { AiOutlineQuestionCircle } from "react-icons/ai";
 
 export default function InputName({ name, setName }) {
   const dispatch = useDispatch();
