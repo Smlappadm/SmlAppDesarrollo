@@ -53,7 +53,6 @@ const CorredoresDashboard = () => {
 
   const username = corredor.name;
   useEffect(() => {
-    console.log("adentro", username);
     localStorage.setItem("corredorName", username);
   }, [corredor]);
 
@@ -71,8 +70,6 @@ const CorredoresDashboard = () => {
     dispatch(getAllCountries());
     dispatch(getAllCategory());
   }, [dispatch, mail, username]);
-
-  console.log(corredor.name);
 
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
@@ -137,7 +134,6 @@ const CorredoresDashboard = () => {
   const handleseguidores2000 = (event, index) => {
     const { name, checked } = event.target;
     const value = checked ? true : false;
-    console.log(value);
 
     setClient((prevState) => {
       const updatedClient = [...prevState];
@@ -357,8 +353,6 @@ const CorredoresDashboard = () => {
   date.setHours(date.getHours() - 3);
   const formattedTime = date.toISOString();
 
-  console.log(formattedTime);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     SendLeads();
@@ -392,7 +386,6 @@ const CorredoresDashboard = () => {
               checked: true,
               view: true,
             });
-            console.log(response.data);
           } else if (
             currentClient.instagram !== "" &&
             (currentClient.level === "1" || currentClient.level === "2")
@@ -411,8 +404,6 @@ const CorredoresDashboard = () => {
               checked: true,
               view: true,
             });
-
-            console.log(response.data);
           } else {
             SendLeadsErrorInsta(currentClient.name);
           }
