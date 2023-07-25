@@ -80,6 +80,10 @@ const LeadSchema = new mongoose.Schema(
       type: Boolean,
       require: true,
     },
+    linkPago: {
+      type: Boolean,
+      require: true,
+    },
     primeraPromosion: {
       type: Object,
       require: true,
