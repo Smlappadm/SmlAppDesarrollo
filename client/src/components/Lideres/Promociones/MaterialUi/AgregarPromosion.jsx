@@ -181,7 +181,7 @@ export default function AgregarPromosion() {
               fullWidth
               type="number"
               label="Descuento"
-              id="Monto"
+              id="Descuento"
               value={promocion.monto}
               onChange={(e) => handleChange(e, "monto")}
               InputProps={{
