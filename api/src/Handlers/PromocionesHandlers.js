@@ -1,3 +1,4 @@
+const deletePromocionById = require("../controllers/Promociones/deletePromocionById");
 const getAllPromociones = require("../controllers/Promociones/getAllPromociones");
 const postPromociones = require("../controllers/Promociones/postPromociones");
 const updatePromocionById = require("../controllers/Promociones/updatePromocionById");
@@ -36,8 +37,20 @@ const updatePromocionByIdHandler = async (req, res) => {
   }
 };
 
+// Actualizar promoción
+const deletePromocionByIdHandler = async (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  try {
+    const promocion = await deletePromocionById(id, body);
+    res.status(200).json(promocion);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getAllPromocionesHandler,
   postPromocionesHandler,
-  updatePromocionByIdHandler,
+  updatePromocionByIdHandler,deletePromocionByIdHandler
 };
