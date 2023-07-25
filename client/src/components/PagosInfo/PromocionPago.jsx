@@ -222,13 +222,18 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
     setPromocionActual(0);
   };
-  let todasPromocionesCero;
+  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
   useEffect(() => {
     actualizarPromocionActual();
-    todasPromocionesCero = promos.every((promo, index) => {
+    const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
-      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
+
+      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] > 0;
     });
+    if (!todasPromocionesCeroFilter) {
+      setTodasPromocionesCero(true);
+    }
+    console.log(todasPromocionesCero);
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
@@ -383,8 +388,6 @@ export default function PromocionPago({ tamañoPantalla }) {
                               ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
                               : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
                           }
-                          // to={promo.links[cuotas]}
-                          // target="_blank"
                           onClick={() =>
                             pressLinkButtonHandler(promo.links[cuotas])
                           }
