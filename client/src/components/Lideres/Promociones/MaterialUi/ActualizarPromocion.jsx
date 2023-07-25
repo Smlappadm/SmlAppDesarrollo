@@ -61,7 +61,8 @@ export default function ActualizarPromocion({ item }) {
       property === "hora" ||
       property === "cuota" ||
       property === "monto" ||
-      property === "valorCuota" ||
+      property === "descuento" ||
+      property === "valorCuota"
     ) {
       newValue = parseInt(event.target.value);
     } else if (property === "active") {
