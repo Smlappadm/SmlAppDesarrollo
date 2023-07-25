@@ -261,7 +261,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
   };
 
-  if (clienteEmpresa.linkActivado) {
+  if (clienteEmpresa && clienteEmpresa.linkActivado) {
     return (
       <div
         className={
