@@ -43,6 +43,7 @@ const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
 const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
 const UpdatePromociones = require("../controllers/Lead/UpdatePromociones");
 const getAllLeadAPagar = require("../controllers/Lead/getAllLeadAPagar");
+const setPagoLink = require("../controllers/Lead/setPagoLink")
 
 // Obtener todos los leads
 const getAllLeadHandler = async (req, res) => {
@@ -557,6 +558,17 @@ const updateChangeEmailHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+// Actualizar el pago seleccionado
+const setPagoHandler = async (req, res) => {
+  const body = req.body
+
+  try {
+    const leadUpdated = await setPagoLink(body);
+    res.status(200).json(leadUpdated);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 // Descargar archivo CSV
 const dowloadCSVHandler = async (req, res) => {
@@ -647,4 +659,5 @@ module.exports = {
   cambioNombreClevelHandler,
   cambioNombreLeaderHandler,
   UpdatePromocionesHandler,
+  setPagoHandler,
 };
