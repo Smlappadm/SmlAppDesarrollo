@@ -870,8 +870,10 @@ export default function NestedModal({
   };
   const handleConfirmEditPago = async (id) => {
     try {
-      const body = { linkActivado: false, linkPago: false};
+      const body = { linkActivado: false };
+      const body2 = { linkPago: "" };
       const response = await axios.put(`/lead/changeemail/${id}`, body);
+      const response2 = await axios.put(`/lead/changeemail/${id}`, body2);
       setUpdatedPago(response.data.linkActivado);
       SendEmailLeadAlert("Link Pago");
     } catch (error) {
@@ -1032,17 +1034,26 @@ export default function NestedModal({
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Copiar Link Pago
                     </p>
-                    <p
-                      onClick={() =>
-                        handleCopyClick(
-                          // `http://localhost:5173/pagos-sml?emailApp=${inputEmailApp}`
-                          item.pagos.link
-                        )
-                      }
-                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                    >
-                      Link
-                    </p>
+                    {item.linkPago && (
+                      <p
+                        onClick={() =>
+                          handleCopyClick(
+                            `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
+                          )
+                        }
+                        className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                      >
+                        Link
+                      </p>
+                    )}
+                    {!item.linkPago && (
+                      <p
+                        onClick={() => handleCopyClick(item.linkPago)}
+                        className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                      >
+                        Link
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="">
@@ -1201,9 +1212,7 @@ export default function NestedModal({
                   )}
                   {editPago && (
                     <div className="w-full flex justify-center items-center mt-5 gap-3">
-                      <p>
-                        Deseas reiniciar el link de pago
-                      </p>
+                      <p>Deseas reiniciar el link de pago</p>
                       <p
                         onClick={handleEditPago}
                         className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
