@@ -76,6 +76,10 @@ const LeadSchema = new mongoose.Schema(
       type: Boolean,
       require: true,
     },
+    linkActivado: {
+      type: Boolean,
+      require: true,
+    },
     primeraPromosion: {
       type: Object,
       require: true,
