@@ -252,6 +252,8 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
   };
 
+
+
   if (clienteEmpresa.linkActivado) {
     return (
       <div
@@ -280,7 +282,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               }
               to={clienteEmpresa.linkPago}
               target="_blank"
-              onClick={pressLinkButtonHandler}
+              // onClick={pressLinkButtonHandler}
             >
              Realizar Pago
             </Link>
@@ -288,6 +290,9 @@ export default function PromocionPago({ tamañoPantalla }) {
       </div>
     );
   }
+
+
+
 
   return (
     <div
