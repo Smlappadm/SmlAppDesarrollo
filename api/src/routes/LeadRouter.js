@@ -45,6 +45,7 @@ const {
   cambioNombreCorredorHandler,
   UpdatePromocionesHandler,
   getAllLeadAPagarHandler,
+  findLeadSeguimientoAllInfoHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
@@ -61,6 +62,7 @@ LeadRouter.get("/countryFreelance", getAllCountriesFreelanceHandler);
 LeadRouter.get("/corredor", findLeadCorredorNameHandler);
 LeadRouter.get("/freelancer", findLeadFreelancerNameHandler);
 LeadRouter.get("/allinfo", findLeadCorredorNameAllInfoHandler);
+LeadRouter.get("/seguimientofiltro", findLeadSeguimientoAllInfoHandler);
 LeadRouter.get("/allinfofreelancer", findLeadFreelancerNameAllInfoHandler);
 LeadRouter.get("/allinfovendedor", findLeadVendedorNameAllInfoHandler);
 LeadRouter.get("/vendedor", findLeadVendedorNameHandler);

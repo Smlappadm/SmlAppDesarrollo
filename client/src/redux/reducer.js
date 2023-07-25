@@ -47,6 +47,8 @@ import {
   GET_FREELANCER,
   GET_CORREDOR_LEAD_CHECKED_DESCARGARDOS,
   GET_ALL_PROMOCIONES,
+  FIND_CORREDORES_NAME_ALL_INFO_SEGUIMIENTO,
+  FIND_VENDEDORES_NAME_ALL_INFO_SEGUIMIENTO,
 } from "./actions";
 
 const initialState = {
@@ -93,9 +95,11 @@ const initialState = {
   allVendedores: [],
   clienteEmpresa: "",
   freelanceLead: [],
-  allFreelancers: [],
+  allFreelancer: [],
   corredorLeadCheckedDescagados: [],
   promociones: [],
+  corredoresByNameAllInfoSeguimiento: [],
+  vendedoresByNameAllInfoSeguimiento: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -133,6 +137,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         leadAPagar: action.payload,
+      };
+    case FIND_CORREDORES_NAME_ALL_INFO_SEGUIMIENTO:
+      const corredoresByNameAllInfoSeguimiento = action.payload;
+      return {
+        ...state,
+        leadAPagar: corredoresByNameAllInfoSeguimiento,
+      };
+    case FIND_VENDEDORES_NAME_ALL_INFO_SEGUIMIENTO:
+      const vendedoresByNameAllInfoSeguimiento = action.payload;
+      return {
+        ...state,
+        leadAPagar: vendedoresByNameAllInfoSeguimiento,
       };
     case GET_ALL_PROMOCIONES:
       return {
@@ -496,7 +512,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_FREELANCER:
       return {
         ...state,
-        allFreelancers: action.payload,
+        allFreelancer: action.payload,
       };
     case GET_VENDEDORES:
       return {

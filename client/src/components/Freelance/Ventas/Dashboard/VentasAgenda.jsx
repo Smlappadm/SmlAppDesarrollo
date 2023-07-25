@@ -106,7 +106,7 @@ const VentasDashboard = () => {
   };
 
   const SendLeadAlert = () => {
-    toast.success("✔ Lead Update!", {
+    toast.success("✔ Cliente Actualizado!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -120,7 +120,7 @@ const VentasDashboard = () => {
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
-    toast.error("The lead could not be updated!", {
+    toast.error("El cliente no pudo actualizarse correctamente!", {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
