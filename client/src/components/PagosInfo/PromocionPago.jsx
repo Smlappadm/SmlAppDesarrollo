@@ -110,7 +110,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log(promos[0]);
+    console.log(promos);
   }, [promos]);
 
   useEffect(() => {
@@ -235,6 +235,8 @@ export default function PromocionPago({ tamañoPantalla }) {
     });
     if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
+    } else {
+      setTodasPromocionesCero(false);
     }
   }, [tiempoRestante]);
 
