@@ -182,7 +182,7 @@ export default function AgregarPromosion() {
               type="number"
               label="Descuento"
               id="Descuento"
-              value={promocion.monto}
+              value={promocion.descuento}
               onChange={(e) => handleChange(e, "monto")}
               InputProps={{
                 style: {
