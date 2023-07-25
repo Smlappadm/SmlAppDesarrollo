@@ -435,7 +435,6 @@ export default function PromocionPago({ tamañoPantalla }) {
             <p className="text-white text-center">
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
             </p>
-            {console.log("sssssssssss")}
             <Link
               className={
                 tamañoPantalla === "Pequeña"
