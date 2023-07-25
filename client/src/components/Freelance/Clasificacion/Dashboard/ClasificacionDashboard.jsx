@@ -58,7 +58,6 @@ const ClasificacionDashboard = () => {
 
   const username = corredor.name;
   useEffect(() => {
-    console.log("adentro", username);
     localStorage.setItem("corredorName", username);
   }, [corredor]);
 
@@ -161,7 +160,6 @@ const ClasificacionDashboard = () => {
   const handleseguidores2000 = (event, index) => {
     const { name, checked } = event.target;
     const value = checked ? true : false;
-    console.log(value);
 
     setClient((prevState) => {
       const updatedClient = [...prevState];
@@ -422,70 +420,9 @@ const ClasificacionDashboard = () => {
     });
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     for (let i = 0; i < freelanceLead.length; i++) {
-  //       const currentClient = client[i];
-
-  //       if (currentClient.level === "-") {
-  //         SendLeadsErrorLevel(currentClient.name);
-  //         continue;
-  //       }
-
-  //       if (
-  //         currentClient.instagram.trim() !== "" &&
-  //         currentClient.level === "incidencia"
-  //       ) {
-  //         SendLeadsErrorInsta0(currentClient.name);
-  //       } else if (
-  //         currentClient.instagram.trim() === "" &&
-  //         (currentClient.level === "incidencia" || currentClient.level === "0")
-  //       ) {
-  //         await updateLead(currentClient);
-  //       } else if (
-  //         currentClient.instagram.trim() !== "" &&
-  //         (currentClient.level === "1" ||
-  //           currentClient.level === "2" ||
-  //           currentClient.level === "0")
-  //       ) {
-  //         await updateLead(currentClient);
-  //       } else {
-  //         SendLeadsErrorInsta(currentClient.name);
-  //       }
-  //     }
-
-  //     dispatch(getLeadClasificacion(email, username, "", "", "", ""));
-  //     dispatch(getAllProfesion());
-  //     dispatch(getAllCountries());
-  //     dispatch(getAllCategory());
-
-  //     SendLeadsSuccess();
-  //   } catch (error) {
-  //     SendLeadsError(names);
-  //     console.log({ error: error.message });
-  //   }
-  // };
-
-  // const updateLead = async (currentClient) => {
-  //   const response = await axios.put(`/lead/${currentClient._id}`, {
-  //     instagram: currentClient.instagram,
-  //     email: currentClient.email,
-  //     level: currentClient.level,
-  //     seguidores2000: currentClient.seguidores2000,
-  //     repercusion: currentClient.repercusion,
-  //     frecuencia: currentClient.frecuencia,
-  //     contenidoPersonal: currentClient.contenidoPersonal,
-  //     contenidoValor: currentClient.contenidoValor,
-  //     calidadInstagram: currentClient.calidadInstagram,
-  //     checked: true,
-  //     view: true,
-  //     freelancer: true,
-  //   });
-
-  //   console.log(response.data);
-  // };
+  const date = new Date();
+  date.setHours(date.getHours() - 3);
+  const formattedTime = date.toISOString();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -516,11 +453,11 @@ const ClasificacionDashboard = () => {
               contenidoPersonal: currentClient.contenidoPersonal,
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
+              updateCorredor: formattedTime,
               checked: true,
               view: true,
               freelancer: true,
             });
-            console.log(response.data);
           } else if (
             currentClient.instagram !== "" &&
             (currentClient.level === "1" ||
@@ -537,12 +474,11 @@ const ClasificacionDashboard = () => {
               contenidoPersonal: currentClient.contenidoPersonal,
               contenidoValor: currentClient.contenidoValor,
               calidadInstagram: currentClient.calidadInstagram,
+              updateCorredor: formattedTime,
               checked: true,
               view: true,
               freelancer: true,
             });
-
-            console.log(response.data);
           } else {
             SendLeadsErrorInsta(currentClient.name);
           }
@@ -558,7 +494,6 @@ const ClasificacionDashboard = () => {
 
       SendLeadsSuccess();
     } catch (error) {
-      console.log("aca esta el erorrrrrrrrrrrrrrrrr");
       SendLeadsError(username);
       console.log({ error: error.message });
     }
