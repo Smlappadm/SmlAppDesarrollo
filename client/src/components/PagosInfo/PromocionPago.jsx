@@ -234,10 +234,10 @@ export default function PromocionPago({ tamañoPantalla }) {
         );
       }
     });
-    console.log(todasPromocionesCeroFilter);
     if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
     }
+    console.log(todasPromocionesCero);
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
