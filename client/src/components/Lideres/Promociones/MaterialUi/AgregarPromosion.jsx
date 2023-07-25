@@ -183,7 +183,7 @@ export default function AgregarPromosion() {
               label="Descuento"
               id="Descuento"
               value={promocion.descuento}
-              onChange={(e) => handleChange(e, "monto")}
+              onChange={(e) => handleChange(e, "descuento")}
               InputProps={{
                 style: {
                   color: "white",
