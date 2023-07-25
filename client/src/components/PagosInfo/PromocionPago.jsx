@@ -228,7 +228,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
 
-      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] > 0;
+      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
     });
     if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
@@ -257,8 +257,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
   };
 
-
-
   if (clienteEmpresa.linkActivado) {
     return (
       <div
@@ -280,24 +278,21 @@ export default function PromocionPago({ tamañoPantalla }) {
             {cliente && cliente.name}
           </p>
           <Link
-              className={
-                tamañoPantalla === "Pequeña"
-                  ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
-              }
-              to={clienteEmpresa.linkPago}
-              target="_blank"
-              // onClick={pressLinkButtonHandler}
-            >
-             Realizar Pago
-            </Link>
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+            }
+            to={clienteEmpresa.linkPago}
+            target="_blank"
+            // onClick={pressLinkButtonHandler}
+          >
+            Realizar Pago
+          </Link>
         </div>
       </div>
     );
   }
-
-
-
 
   return (
     <div
