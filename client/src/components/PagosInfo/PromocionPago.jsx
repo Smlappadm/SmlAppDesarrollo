@@ -227,13 +227,17 @@ export default function PromocionPago({ tamañoPantalla }) {
     actualizarPromocionActual();
     const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
-
-      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
+      if (index !== 0) {
+        console.log(tiempoRestante[promocionKey]);
+        return (
+          tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0
+        );
+      }
     });
-    if (!todasPromocionesCeroFilter) {
+    console.log(todasPromocionesCeroFilter);
+    if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
     }
-    console.log(todasPromocionesCero);
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
