@@ -81,7 +81,7 @@ const LeadSchema = new mongoose.Schema(
       require: true,
     },
     linkPago: {
-      type: Boolean,
+      type: String,
       require: true,
     },
     primeraPromosion: {
