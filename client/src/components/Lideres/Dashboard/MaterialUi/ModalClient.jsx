@@ -164,19 +164,26 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <div>
                     <div className="font-semibold flex gap-3">
                       <p>Monto:</p>
-                      <p className="font-normal">{modalItems.pagos.monto}</p>
+                      <p className="font-normal">
+                        A discutir
+                        {/* {modalItems.pagos.monto} */}
+                      </p>
                     </div>
                     <div className="font-semibold flex gap-3">
                       <p>Cuotas:</p>
                       <p className="font-normal">
-                        {modalItems.pagos.cuotasPagadas} /{" "}
-                        {modalItems.pagos.cuotas}{" "}
+                        {" "}
+                        A discutir
+                        {/* {modalItems.pagos.cuotasPagadas} /{" "}
+                        {modalItems.pagos.cuotas}{" "} */}
                       </p>
                     </div>
                     <div className="font-semibold flex gap-3">
                       <p>Valor cuota:</p>
                       <p className="font-normal">
-                        {modalItems.pagos.valorCuota}
+                        {" "}
+                        A discutir
+                        {/* {modalItems.pagos.valorCuota} */}
                       </p>
                     </div>
                   </div>

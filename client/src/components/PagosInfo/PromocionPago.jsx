@@ -12,6 +12,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const { clienteEmpresa } = useSelector((state) => state);
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [cliente, setCliente] = useState({});
+  const [linkActivo, setLinkActivo] = useState(false);
   const [promocionActual, setPromocionActual] = useState(0);
   const dispatch = useDispatch();
 
@@ -57,6 +58,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
+        result[hora].descuento = promo.promocion.descuento || "";
         result[hora].duracion = ObtenerFecha(parseInt(promo.promocion.hora));
       }
 
@@ -220,14 +222,81 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
     setPromocionActual(0);
   };
-  let todasPromocionesCero;
+  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
   useEffect(() => {
     actualizarPromocionActual();
-    todasPromocionesCero = promos.every((promo, index) => {
+    const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
-      return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0;
+      if (index !== 0) {
+        console.log(tiempoRestante[promocionKey]);
+        return (
+          tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0
+        );
+      }
     });
+    if (todasPromocionesCeroFilter) {
+      setTodasPromocionesCero(true);
+    }
+    console.log(todasPromocionesCero);
   }, [tiempoRestante]);
+
+  const pressLinkButtonHandler = async (linkDePago) => {
+    console.log(linkDePago);
+
+    if (!linkDePago) {
+      return;
+    }
+
+    const body = {
+      id: clienteEmpresa._id,
+      linkPago: linkDePago,
+    };
+    try {
+      const response = await axios.put(`/lead/setpago`, body);
+      console.log(response.data);
+
+      dispatch(getClienteEmpresa(emailApp));
+    } catch (error) {
+      console.log("Error al seleccionar el pago");
+    }
+  };
+
+  if (clienteEmpresa && clienteEmpresa.linkActivado) {
+    return (
+      <div
+        className={
+          tamañoPantalla === "Pequeña"
+            ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-center items-center gap-8"
+            : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center gap-8"
+        }
+        style={styles()}
+      >
+        <div
+          className={
+            tamañoPantalla === "Pequeña"
+              ? "flex flex-col justify-center items-center p-6 h-full w-full gap-8"
+              : "flex flex-col justify-center items-center p-6 h-full w-1/5 gap-8"
+          }
+        >
+          <p className="text-white text-24 font-bold whitespace-nowrap">
+            {cliente && cliente.name}
+          </p>
+          <Link
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
+                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
+            }
+            to={clienteEmpresa.linkPago}
+            target="_blank"
+            // onClick={pressLinkButtonHandler}
+          >
+            Realizar Pago
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -245,8 +314,11 @@ export default function PromocionPago({ tamañoPantalla }) {
             : "flex flex-col justify-evenly items-center p-6 h-full w-1/5"
         }
       >
-        <p className="text-white text-24 font-bold">{cliente.name}</p>
-        {promos &&
+        <p className="text-white text-24 font-bold">
+          {cliente && cliente.name}
+        </p>
+        {!clienteEmpresa.linkActivado &&
+          promos &&
           promos.map((promo, index) => {
             const promocionKey = `promocion${index}`;
 
@@ -270,7 +342,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           {promo.hora === "1" ? (
                             <>
                               <p className="text-white text-3xl text-center">
-                                Desc. -1000€
+                                Desc. -{promo.descuento}€
                               </p>
                               <p className="text-white text-3xl text-center">
                                 ({promo.hora} hora)
@@ -279,7 +351,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           ) : (
                             <>
                               <p className="text-white text-3xl text-center">
-                                Desc. -1000€
+                                Desc. -{promo.descuento}€
                               </p>
                               <p className="text-white text-3xl text-center">
                                 ({promo.hora} horas)
@@ -309,17 +381,18 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-center">
                           {promo.pagos[cuotas]}
                         </p>
-                        <Link
+                        <button
                           className={
                             tamañoPantalla === "Pequeña"
                               ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
                           }
-                          to={promo.links[cuotas]}
-                          target="_blank"
+                          onClick={() =>
+                            pressLinkButtonHandler(promo.links[cuotas])
+                          }
                         >
-                          Link de Pago
-                        </Link>
+                          Confirmar selección
+                        </button>
                       </div>
                     )
                   : null}
@@ -361,19 +434,21 @@ export default function PromocionPago({ tamañoPantalla }) {
               ))}
             </div>
             <p className="text-white">DETALLE</p>
-            <p className="text-white text-center">
+            {/* <p className="text-white text-center">
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
-            </p>
+            </p> */}
+            {console.log("sssssssssss")}
             <Link
               className={
                 tamañoPantalla === "Pequeña"
                   ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center"
+                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
               }
-              to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
-              target="_blank"
+              // to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
+              // target="_blank"
+              onClick={pressLinkButtonHandler}
             >
-              Link de Pago
+              Confirmar selección
             </Link>
           </div>
         )}

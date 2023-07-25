@@ -7,6 +7,9 @@ import { TextField, Checkbox, FormControlLabel } from "@mui/material";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getAllPromociones } from "../../../../redux/actions";
+import { VscSettings } from "react-icons/vsc";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -33,7 +36,7 @@ const styleButton = {
 
 const buttonsend = {
   bgcolor: "transparent",
-  width: "50%",
+  width: "30%",
 };
 
 export default function ActualizarPromocion({ item }) {
@@ -47,6 +50,7 @@ export default function ActualizarPromocion({ item }) {
     cuota: item.promocion.cuota,
     monto: item.promocion.monto,
     valorCuota: item.promocion.valorCuota,
+    descuento: item.promocion.descuento,
     active: item.promocion.active,
   });
 
@@ -60,11 +64,11 @@ export default function ActualizarPromocion({ item }) {
       property === "hora" ||
       property === "cuota" ||
       property === "monto" ||
+      property === "descuento" ||
       property === "valorCuota"
     ) {
       newValue = parseInt(event.target.value);
     } else if (property === "active") {
-      // Toggle the boolean value of active
       newValue = !promocion.active;
     } else {
       newValue = event.target.value;
@@ -76,17 +80,52 @@ export default function ActualizarPromocion({ item }) {
     });
   };
 
+  const updatePromocion = () => {
+    toast.success(`✔ Promoción actualizada! `, {
+      position: "top-center",
+      autoClose: 500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  const deletePromocion = () => {
+    toast.success(`✔  Promoción eliminada! `, {
+      position: "top-center",
+      autoClose: 500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   const actualizarPromocion = async () => {
-    console.log(promocion);
     await axios.put(`/promociones/${item._id}`, promocion);
     dispatch(getAllPromociones());
-    handleClose()
+    updatePromocion();
+    handleClose();
   };
-  console.log(promocion);
+
+  const eliminarromocion = async () => {
+    await axios.delete(`/promociones/${item._id}`, promocion);
+    dispatch(getAllPromociones());
+    deletePromocion();
+    handleClose();
+  };
 
   return (
     <div className="flex items-center justify-center">
-      <Button sx={styleButton} onClick={handleOpen}></Button>
+      <ToastContainer />
+      <Button sx={styleButton} onClick={handleOpen}>
+        <VscSettings />
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -203,6 +242,24 @@ export default function ActualizarPromocion({ item }) {
               },
             }}
           />
+          <TextField
+            fullWidth
+            label="Descuento"
+            id="Descuento"
+            type="number"
+            value={promocion.descuento}
+            onChange={(e) => handleChange(e, "descuento")}
+            InputProps={{
+              style: {
+                color: "white",
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: "white",
+              },
+            }}
+          />
           <FormControlLabel
             control={
               <Checkbox
@@ -216,14 +273,22 @@ export default function ActualizarPromocion({ item }) {
               item.promocion.active === true ? " Activa " : " Inactiva "
             }`}
           />
-
-          <Button
-            sx={buttonsend}
-            variant="outlined"
-            onClick={actualizarPromocion}
-          >
+          <div className="flex gap-5 justify-center items-center">
+            <Button
+              sx={buttonsend}
+              variant="outlined"
+              onClick={actualizarPromocion}
+            >
             Actualizar Promoción
-          </Button>
+            </Button>
+            <Button
+              sx={buttonsend}
+              variant="outlined"
+              onClick={eliminarromocion}
+            >
+            Eliminar Promoción
+            </Button>
+          </div>
         </Box>
       </Modal>
     </div>

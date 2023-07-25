@@ -518,6 +518,10 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
+  const [editPago, setEditPago] = React.useState(false);
+  const [inputPago, setInputPago] = React.useState(item.linkPago);
+  const [updatedPago, setUpdatedPago] = React.useState(item.linkPago);
+
   const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
@@ -725,6 +729,7 @@ export default function NestedModal({
   const handleEditEmail = () => {
     setEmailValidator(true);
     setEditEmail(!editEmail);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditInstagram(false);
     setEditTelephone(false);
@@ -751,6 +756,7 @@ export default function NestedModal({
   const handleEditInstagram = () => {
     setEmailValidator(true);
     setEditInstagram(!editInstagram);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditEmail(false);
     setEditTelephone(false);
@@ -776,6 +782,7 @@ export default function NestedModal({
   const handleEditTelephone = () => {
     setEmailValidator(true);
     setEditTelephone(!editTelephone);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditEmail(false);
     setEditInstagram(false);
@@ -800,6 +807,7 @@ export default function NestedModal({
   const handleEditEmailApp = () => {
     setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
+    setEditPago(false);
     setEditTelephone(false);
     setEditEmail(false);
     setEditInstagram(false);
@@ -826,6 +834,7 @@ export default function NestedModal({
   const handleEditContacto = () => {
     setEmailValidator(true);
     setEditContacto(!editContacto);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditTelephone(false);
     setEditEmail(false);
@@ -844,6 +853,33 @@ export default function NestedModal({
       SendEmailLeadAlertError("Contacto");
     }
     setEditContacto(false);
+  };
+
+  //EDITAR Link Pago
+  const handleEditPago = () => {
+    setEmailValidator(true);
+    setEditPago(!editPago);
+    setEditContacto(false);
+    setEditEmailApp(false);
+    setEditTelephone(false);
+    setEditEmail(false);
+    setEditInstagram(false);
+  };
+  const handleChangePago = (event) => {
+    setInputPago(event.target.value);
+  };
+  const handleConfirmEditPago = async (id) => {
+    try {
+      const body = { linkActivado: false };
+      const body2 = { linkPago: "" };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      const response2 = await axios.put(`/lead/changeemail/${id}`, body2);
+      setUpdatedPago(response.data.linkActivado);
+      SendEmailLeadAlert("Link Pago");
+    } catch (error) {
+      SendEmailLeadAlertError("Link Pago");
+    }
+    setEditPago(false);
   };
 
   return (
@@ -888,7 +924,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label>✔ Cliente Actualizado!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -903,7 +939,7 @@ export default function NestedModal({
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Update Error!</label>
+                <label className=" text-white">❌ Error al actualizar!</label>
               </motion.div>
             )}
             <div className="w-full flex flex-col justify-center items-center">
@@ -981,13 +1017,27 @@ export default function NestedModal({
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Reinciar Link de Pago
+                    </p>
+                    <p
+                      onClick={handleEditPago}
+                      className={
+                        editPago
+                          ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    >
+                      PAGO
+                    </p>
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Copiar Link Pago
                     </p>
                     <p
                       onClick={() =>
                         handleCopyClick(
-                          // `http://localhost:5173/pagos-sml?emailApp=${inputEmailApp}`
-                          item.pagos.link
+                          `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
                         )
                       }
                       className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -1145,6 +1195,22 @@ export default function NestedModal({
                       </p>
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditContacto}
+                        id={item._id}
+                        emailValidator={emailValidator}
+                      />
+                    </div>
+                  )}
+                  {editPago && (
+                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                      <p>¿Deseas reiniciar el link de pago?</p>
+                      <p
+                        onClick={handleEditPago}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ❌
+                      </p>
+                      <ConfirmacionEdicion
+                        handleConfirmEdit={handleConfirmEditPago}
                         id={item._id}
                         emailValidator={emailValidator}
                       />

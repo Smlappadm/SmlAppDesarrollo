@@ -456,13 +456,6 @@ export const LideresHistory = () => {
                         ) : (
                           ""
                         )}
-                        {item.status === "No responde" ? (
-                          <Text className="bg-[#2148b4] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
-                            No responde
-                          </Text>
-                        ) : (
-                          ""
-                        )}
                       </div>
                     </button>
                   </div>

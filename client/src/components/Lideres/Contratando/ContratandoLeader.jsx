@@ -33,9 +33,12 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TextField } from "@mui/material";
 
 export const ContratandoLeader = () => {
   const [data, setData] = useState([]);
+  const [name, setName] = useState("");
+
   const { leadAPagar } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -50,7 +53,17 @@ export const ContratandoLeader = () => {
       progress: undefined,
       theme: "dark",
     });
+
+    dispatch(getAllLeadAPagar());
   };
+
+  useEffect(() => {
+    setData(leadAPagar);
+  }, [leadAPagar]);
+
+  useEffect(() => {
+    dispatch(getAllLeadAPagar());
+  }, [dispatch]);
 
   const changeStatus = (id, contratado, name) => {
     const newStatus = contratado === "A pagar" ? "Contratado" : "A pagar";
@@ -59,17 +72,15 @@ export const ContratandoLeader = () => {
       pagoRecibido: true,
     });
 
-    dispatch(getAllLeadAPagar());
     statusOk(name);
   };
 
-  useEffect(() => {
-    setData(leadAPagar);
-  }, [leadAPagar, changeStatus]);
-
-  useEffect(() => {
-    dispatch(getAllLeadAPagar());
-  }, [dispatch]);
+  const normalizeString = (str) => {
+    return str
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  };
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,9 +95,11 @@ export const ContratandoLeader = () => {
         item.status !== "" &&
         item.corredor !== "" &&
         item.corredor !== "-" &&
-        item.status !== "discard"
+        item.status === "A pagar" &&
+        normalizeString(item.name).includes(normalizeString(name))
       );
     });
+
   const currentCard = showData && showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -242,8 +255,8 @@ export const ContratandoLeader = () => {
           </div>
         </div>
         <div>
-          <div className="flex gap-5 mt-5 mb-5 justify-around items-center">
-            <InputRunner />
+          <div className="flex gap-5 mt-5 mb-5 justify-center items-center">
+            <InputRunner name={name} setName={setName} />
           </div>
         </div>
         <div className="w-full">

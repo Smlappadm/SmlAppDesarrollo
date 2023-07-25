@@ -310,7 +310,6 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-
         {emailValidator ? (
           <BsCheck
             onClick={handleOpen}
@@ -324,7 +323,6 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
             </p>
           </>
         )}
-
       </div>
       <Modal
         open={openConfirmacionEdicion}
@@ -412,7 +410,11 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
-const [emailValidator, setEmailValidator] = React.useState(false);
+  const [editPago, setEditPago] = React.useState(false);
+  const [inputPago, setInputPago] = React.useState(item.linkPago);
+  const [updatedPago, setUpdatedPago] = React.useState(item.linkPago);
+
+  const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -590,7 +592,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
     }, 3000);
   };
 
-// Email Validator FUNCTION
+  // Email Validator FUNCTION
   const validatorEmailFunction = (email) => {
     setEmailValidator(false);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -599,7 +601,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
       console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto")
+      console.log("incorrecto");
     }
   };
 
@@ -611,21 +613,22 @@ const [emailValidator, setEmailValidator] = React.useState(false);
       console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto")
+      console.log("incorrecto");
     }
   };
 
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
-        setEmailValidator(true);
+    setEmailValidator(true);
     setEditEmail(!editEmail);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditInstagram(false);
     setEditTelephone(false);
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmail(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -645,6 +648,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
   const handleEditInstagram = () => {
     setEmailValidator(true);
     setEditInstagram(!editInstagram);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditEmail(false);
     setEditTelephone(false);
@@ -670,6 +674,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
   const handleEditTelephone = () => {
     setEmailValidator(true);
     setEditTelephone(!editTelephone);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditEmail(false);
     setEditInstagram(false);
@@ -694,13 +699,14 @@ const [emailValidator, setEmailValidator] = React.useState(false);
   const handleEditEmailApp = () => {
     setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
+    setEditPago(false);
     setEditTelephone(false);
     setEditEmail(false);
     setEditInstagram(false);
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmailApp(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -720,6 +726,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
   const handleEditContacto = () => {
     setEmailValidator(true);
     setEditContacto(!editContacto);
+    setEditPago(false);
     setEditEmailApp(false);
     setEditTelephone(false);
     setEditEmail(false);
@@ -738,6 +745,33 @@ const [emailValidator, setEmailValidator] = React.useState(false);
       SendEmailLeadAlertError("Contacto");
     }
     setEditContacto(false);
+  };
+
+  //EDITAR Link Pago
+  const handleEditPago = () => {
+    setEmailValidator(true);
+    setEditPago(!editPago);
+    setEditContacto(false);
+    setEditEmailApp(false);
+    setEditTelephone(false);
+    setEditEmail(false);
+    setEditInstagram(false);
+  };
+  const handleChangePago = (event) => {
+    setInputPago(event.target.value);
+  };
+  const handleConfirmEditPago = async (id) => {
+    try {
+      const body = { linkActivado: false };
+      const body2 = { linkPago: "" };
+      const response = await axios.put(`/lead/changeemail/${id}`, body);
+      const response2 = await axios.put(`/lead/changeemail/${id}`, body2);
+      setUpdatedPago(response.data.linkActivado);
+      SendEmailLeadAlert("Link Pago");
+    } catch (error) {
+      SendEmailLeadAlertError("Link Pago");
+    }
+    setEditPago(false);
   };
 
   return (
@@ -875,12 +909,27 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Reinciar Link de Pago
+                    </p>
+                    <p
+                      onClick={handleEditPago}
+                      className={
+                        editPago
+                          ? "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "flex items-center justify-center mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    >
+                      PAGO
+                    </p>
+                  </div>
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Copiar Link Pago
                     </p>
                     <p
                       onClick={() =>
                         handleCopyClick(
-                          `http://localhost:5173/pagos-sml?emailApp=${inputEmailApp}`
+                          `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
                         )
                       }
                       className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -912,7 +961,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmail}
                         id={item._id}
-                         emailValidator={emailValidator}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -937,7 +986,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditInstagram}
                         id={item._id}
-                         emailValidator={emailValidator}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -962,7 +1011,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditTelephone}
                         id={item._id}
-                         emailValidator={emailValidator}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -987,7 +1036,7 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
                         id={item._id}
-                         emailValidator={emailValidator}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}
@@ -1012,7 +1061,23 @@ const [emailValidator, setEmailValidator] = React.useState(false);
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditContacto}
                         id={item._id}
-                         emailValidator={emailValidator}
+                        emailValidator={emailValidator}
+                      />
+                    </div>
+                  )}
+                  {editPago && (
+                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                      <p>¿Deseas reiniciar el link de pago?</p>
+                      <p
+                        onClick={handleEditPago}
+                        className="flex justify-center items-center border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      >
+                        ❌
+                      </p>
+                      <ConfirmacionEdicion
+                        handleConfirmEdit={handleConfirmEditPago}
+                        id={item._id}
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}

@@ -134,7 +134,7 @@ function ChildModal({
       } else {
         saveEmailAppFunction(updatedEmailApp);
       }
-    } 
+    }
 
     setOpenChild(true);
     handleLlamadoVentaChange();
@@ -221,6 +221,7 @@ function ChildModal({
     const dataLead = {
       status: statusObj.status,
       status_op: statusObj.status_op,
+      linkActivado: false,
       pagos: statusObj.pagos,
       emailApp: updatedEmailApp,
       llamados: item.llamados,
@@ -1085,7 +1086,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label>✔ Lead Updated!</label>
+                <label>✔ Cliente Actualizado!</label>
               </motion.div>
             )}
             {openAlert && (
@@ -1100,7 +1101,7 @@ export default function NestedModal({
                 }}
                 className="-top-20 absolute bg-[#44a044] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className="text-white">✔ Lead Updated!</label>
+                <label className="text-white">✔ Cliente Actualizado!</label>
               </motion.div>
             )}
             {openAlertError && (
@@ -1115,7 +1116,7 @@ export default function NestedModal({
                 }}
                 className="border-2 -top-20 absolute bg-[#000000] pr-5 pl-3 py-5 rounded-md"
               >
-                <label className=" text-white">❌ Update Error!</label>
+                <label className=" text-white">❌ Error al actualizar!</label>
               </motion.div>
             )}
             {openAlertErrorCuotas && (
