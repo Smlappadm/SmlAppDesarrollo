@@ -180,7 +180,7 @@ export default function AgregarPromosion() {
             <TextField
               fullWidth
               type="number"
-              label="Monto Total"
+              label="Descuento"
               id="Monto"
               value={promocion.monto}
               onChange={(e) => handleChange(e, "monto")}
