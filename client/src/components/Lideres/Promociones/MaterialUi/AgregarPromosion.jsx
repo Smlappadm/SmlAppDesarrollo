@@ -33,6 +33,7 @@ export default function AgregarPromosion() {
     cuota: 0,
     monto: 0,
     valorCuota: 0,
+    descuento: 0,
     active: false,
   });
 
