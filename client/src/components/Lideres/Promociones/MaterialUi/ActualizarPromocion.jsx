@@ -209,7 +209,7 @@ export default function ActualizarPromocion({ item }) {
             id="Descuento"
             type="number"
             value={promocion.valorCuota}
-            onChange={(e) => handleChange(e, "valorCuota")}
+            onChange={(e) => handleChange(e, "descuento")}
             InputProps={{
               style: {
                 color: "white",
