@@ -80,7 +80,7 @@ export default function ActualizarPromocion({ item }) {
     console.log(promocion);
     await axios.put(`/promociones/${item._id}`, promocion);
     dispatch(getAllPromociones());
-    handleClose()
+    handleClose();
   };
   console.log(promocion);
 
@@ -189,6 +189,24 @@ export default function ActualizarPromocion({ item }) {
             fullWidth
             label="Valor de Cuota"
             id="ValorCuota"
+            type="number"
+            value={promocion.valorCuota}
+            onChange={(e) => handleChange(e, "valorCuota")}
+            InputProps={{
+              style: {
+                color: "white",
+              },
+            }}
+            InputLabelProps={{
+              style: {
+                color: "white",
+              },
+            }}
+          />
+          <TextField
+            fullWidth
+            label="Valor de Cuota"
+            id="Descuento"
             type="number"
             value={promocion.valorCuota}
             onChange={(e) => handleChange(e, "valorCuota")}
