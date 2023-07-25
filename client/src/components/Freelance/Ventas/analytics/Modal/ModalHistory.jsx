@@ -1034,26 +1034,16 @@ export default function NestedModal({
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Copiar Link Pago
                     </p>
-                    {item.linkPago && (
-                      <p
-                        onClick={() =>
-                          handleCopyClick(
-                            `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
-                          )
-                        }
-                        className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                      >
-                        Link
-                      </p>
-                    )}
-                    {!item.linkPago && (
-                      <p
-                        onClick={() => handleCopyClick(item.linkPago)}
-                        className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                      >
-                        Link
-                      </p>
-                    )}
+                    <p
+                      onClick={() =>
+                        handleCopyClick(
+                          `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
+                        )
+                      }
+                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                    >
+                      Link
+                    </p>
                   </div>
                 </div>
                 <div className="">
