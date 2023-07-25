@@ -57,7 +57,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             : promo.promocion.name || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
-        result[hora].hora = promo.promocion.descuento || "";
+        result[hora].descuento = promo.promocion.descuento || "";
         result[hora].duracion = ObtenerFecha(parseInt(promo.promocion.hora));
       }
 
