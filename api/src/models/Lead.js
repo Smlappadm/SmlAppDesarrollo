@@ -250,13 +250,6 @@ const LeadSchema = new mongoose.Schema(
     },
     promociones: {
       type: Object,
-      required: true,
-    },
-    promocion1: {
-      type: Date,
-    },
-    promocion2: {
-      type: Date,
     },
   },
   { timestamps: true }

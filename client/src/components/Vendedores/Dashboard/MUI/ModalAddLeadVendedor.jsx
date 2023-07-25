@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -175,7 +175,6 @@ export default function ModalAddLeadVendedor({
       from: OneVendedor && OneVendedor[0].email,
       status: "Sin contactar",
       marca_personal: "No",
-      promociones: [],
     };
 
     if (
@@ -249,7 +248,6 @@ export default function ModalAddLeadVendedor({
       <Button variant="outlined" size="large" onClick={handleOpen}>
         NUEVO CLIENTE
       </Button>
-      <ToastContainer />
       <Modal
         open={open}
         onClose={handleClose}
@@ -270,6 +268,7 @@ export default function ModalAddLeadVendedor({
           }}
         >
           <div className="flex flex-col gap-5 px-1 py-8 h-full w-full justify-center items-center">
+            <ToastContainer />
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>

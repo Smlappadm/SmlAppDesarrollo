@@ -70,7 +70,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       sortedCustomPromos.push(customPromos[hour]);
     });
     setPromos(sortedCustomPromos);
-  }, [promociones]);
+  }, [promociones, clienteEmpresa]);
 
   const armarPromociones = (promos) => {
     const armado = promos.map((promo, index) => {
@@ -108,7 +108,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log(promos[0]);
+    console.log(promos);
   }, [promos]);
 
   useEffect(() => {
@@ -266,15 +266,25 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-3xl">
                           {formatTiempoRestante(tiempoRestante[promocionKey])}
                         </p>
-                        <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+                        <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
                           {promo.hora === "1" ? (
-                            <p className="text-white text-3xl text-center">
-                              Desc. -1000€ ({promo.hora} hora)
-                            </p>
+                            <>
+                              <p className="text-white text-3xl text-center">
+                                Desc. -1000€
+                              </p>
+                              <p className="text-white text-3xl text-center">
+                                ({promo.hora} hora)
+                              </p>
+                            </>
                           ) : (
-                            <p className="text-white text-3xl text-center">
-                              Desc. -1000€ ({promo.hora} horas)
-                            </p>
+                            <>
+                              <p className="text-white text-3xl text-center">
+                                Desc. -1000€
+                              </p>
+                              <p className="text-white text-3xl text-center">
+                                ({promo.hora} horas)
+                              </p>
+                            </>
                           )}
                         </div>
                         <p className="text-white">CUOTAS</p>
@@ -327,7 +337,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           >
             <p className="text-white">SIN PROMOCIÓN</p>
 
-            <div className="border border-white w-4/6 flex items-center justify-center p-3 rounded-md">
+            <div className="border border-white w-5/6 flex items-center justify-center p-3 rounded-md">
               <p className="text-white text-3xl text-center">Sin Descuento</p>
             </div>
             <p className="text-white">CUOTAS</p>
