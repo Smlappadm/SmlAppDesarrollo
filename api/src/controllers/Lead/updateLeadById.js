@@ -3,7 +3,6 @@ const Lead = require("../../models/Lead");
 
 // Función para actualizar un lead por su ID en la base de datos
 const updateLeadById = async (id, updatedData) => {
-  // Obtenemos la fecha y hora actual en formato ISO
 
   try {
     // Utiliza el método 'findByIdAndUpdate' para buscar y actualizar un registro de lead en la colección 'Lead'
