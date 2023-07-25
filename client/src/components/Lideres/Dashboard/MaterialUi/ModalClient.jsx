@@ -164,7 +164,10 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <div>
                     <div className="font-semibold flex gap-3">
                       <p>Monto:</p>
-                      <p className="font-normal">{modalItems.pagos.monto}</p>
+                      <p className="font-normal">
+                        A discutir
+                        {/* {modalItems.pagos.monto} */}
+                      </p>
                     </div>
                     <div className="font-semibold flex gap-3">
                       <p>Cuotas:</p>
