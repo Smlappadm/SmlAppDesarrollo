@@ -177,6 +177,24 @@ export default function AgregarPromosion() {
                 },
               }}
             />
+            <TextField
+              fullWidth
+              type="number"
+              label="Monto Total"
+              id="Monto"
+              value={promocion.monto}
+              onChange={(e) => handleChange(e, "monto")}
+              InputProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+              InputLabelProps={{
+                style: {
+                  color: "white",
+                },
+              }}
+            />
             <Button variant="outlined" onClick={cargarPromocion}>
               Agregar Promoción
             </Button>
