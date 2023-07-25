@@ -164,27 +164,28 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <p>Estado:</p>
                   <p className="font-normal">{modalItems.status}</p>
                 </div>
-                {modalItems.pagos?.monto && (
+                {/* {modalItems.status === "Contratado" ||
+                modalItems.status === "A pagar" ? (
                   <div>
                     <div className="font-semibold flex gap-3">
                       <p>Monto:</p>
-                      <p className="font-normal">{modalItems.pagos.monto}</p>
+                      <p className="font-normal">{modalItems.pagos?.monto}</p>
                     </div>
                     <div className="font-semibold flex gap-3">
                       <p>Cuotas:</p>
                       <p className="font-normal">
-                        {modalItems.pagos.cuotasPagadas} /{" "}
-                        {modalItems.pagos.cuotas}
+                        {modalItems.pagos?.cuotasPagadas} /{" "}
+                        {modalItems.pagos?.cuotas}
                       </p>
                     </div>
                     <div className="font-semibold flex gap-3">
                       <p>Valor cuota:</p>
                       <p className="font-normal">
-                        {modalItems.pagos.valorCuota}
+                        {modalItems.pagos?.valorCuota}
                       </p>
                     </div>
                   </div>
-                )}
+                ) : null} */}
               </motion.div>
             </div>
 
