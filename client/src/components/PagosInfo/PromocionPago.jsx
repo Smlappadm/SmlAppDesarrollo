@@ -322,6 +322,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             Realizar Pago
           </Link>
         </div>
+        <ToastContainer />
       </div>
     );
   }
