@@ -232,10 +232,10 @@ export default function PromocionPago({ tamañoPantalla }) {
         );
       }
     });
-    if (todasPromocionesCeroFilter) {
-      setTodasPromocionesCero(true);
-    } else {
+    if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(false);
+    } else {
+      setTodasPromocionesCero(true);
     }
   }, [tiempoRestante]);
 
