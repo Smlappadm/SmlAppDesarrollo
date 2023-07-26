@@ -7,6 +7,7 @@ import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
 
 export default function PromocionPago({ tamañoPantalla }) {
+  const dispatch = useDispatch();
   const url = new URL(window.location.href);
   const emailApp = url.searchParams.get("emailApp");
   const { clienteEmpresa, promociones } = useSelector((state) => state);
@@ -16,7 +17,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [promocionActual, setPromocionActual] = useState(0);
   const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
-  const dispatch = useDispatch();
 
   const CambiarCuota = (cuota) => {
     setCuotas(cuota);
