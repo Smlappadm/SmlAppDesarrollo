@@ -30,7 +30,7 @@ export const Promociones = () => {
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cardXPage, setCardXpage] = useState(10);
+  const [cardXPage, setCardXpage] = useState(8);
 
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
@@ -190,7 +190,7 @@ export const Promociones = () => {
             <h1>No se encuentran promociones Cargadas</h1>
           </div>
         )}
-        {data && data.length > 0 && data.length > 10 ? (
+        {data && data.length > 0 && data.length > 8 ? (
           <PaginationOutlined
             pageStyle={pageStyle}
             setPageStyle={setPageStyle}
