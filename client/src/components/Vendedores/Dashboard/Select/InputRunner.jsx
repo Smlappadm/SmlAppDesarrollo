@@ -45,9 +45,6 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
 
 
   const handleFilterClick = () => {
-    console.log(profesion);
-    console.log(country);
-    console.log(status);
     dispatch(getLeadCheckedInactive5(body, profesion, country, status, freelancer));
   };
 
