@@ -257,11 +257,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         );
       }
     });
-    if (
-      promos &&
-      todasPromocionesCeroFilter &&
-      todasPromocionesCeroFilter.length > 0
-    ) {
+    if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
     } else {
       setTodasPromocionesCero(false);
