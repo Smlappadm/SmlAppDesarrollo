@@ -9,19 +9,16 @@ import ModalConfirmacion from "./ModalConfirmacion";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
+  const dispatch = useDispatch();
   const url = new URL(window.location.href);
   const emailApp = url.searchParams.get("emailApp");
-  const { clienteEmpresa } = useSelector((state) => state);
-  const [tiempoRestante, setTiempoRestante] = useState({});
-  const [cliente, setCliente] = useState({});
-  const [promocionActual, setPromocionActual] = useState(0);
-  const dispatch = useDispatch();
-
-  const { promociones } = useSelector((state) => state);
-
   const [promos, setPromos] = useState([]);
-
   const [cuotas, setCuotas] = useState("1");
+  const [cliente, setCliente] = useState({});
+  const [tiempoRestante, setTiempoRestante] = useState({});
+  const [promocionActual, setPromocionActual] = useState(0);
+  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
+  const { clienteEmpresa, promociones } = useSelector((state) => state);
 
   const SendLeadAlert = () => {
     toast.success("✔ Pago seleccionado correctamente!", {
@@ -139,7 +136,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log(promos);
   }, [promos]);
 
   useEffect(() => {
@@ -250,21 +246,18 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
     setPromocionActual(0);
   };
-  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
+
   useEffect(() => {
     actualizarPromocionActual();
     const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
       if (index !== 0) {
-        console.log(tiempoRestante[promocionKey]);
-        return (
-          tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0
-        );
+        return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] > 0;
       }
     });
-    if (todasPromocionesCeroFilter) {
+    if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
-    } else {
+    } else if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(false);
     }
   }, [tiempoRestante]);
@@ -316,7 +309,6 @@ export default function PromocionPago({ tamañoPantalla }) {
             }
             to={clienteEmpresa.linkPago}
             target="_blank"
-            // onClick={pressLinkButtonHandler}
           >
             Realizar Pago
           </Link>
@@ -338,11 +330,11 @@ export default function PromocionPago({ tamañoPantalla }) {
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "flex flex-col justify-between items-center p-6 h-full w-full"
-            : "flex flex-col justify-evenly items-center p-6 h-full w-1/5"
+            ? "flex flex-col justify-start items-center p-6 h-full w-full"
+            : "flex flex-col justify-start items-center p-6 h-full w-1/5 "
         }
       >
-        <p className="text-white text-24 font-bold">
+        <p className="text-white text-24 font-bold mb-40">
           {cliente && cliente.name}
         </p>
         {!clienteEmpresa.linkActivado &&
@@ -462,8 +454,8 @@ export default function PromocionPago({ tamañoPantalla }) {
             <ModalConfirmacion
               tamañoPantalla={tamañoPantalla}
               pressLinkButtonHandler={pressLinkButtonHandler}
-              promo={promos[0].pagos[cuotas]}
-              promoParametro={promos[0].links[cuotas]}
+              promo={promos[0] && promos[0].pagos[cuotas]}
+              promoParametro={promos[0] && promos[0].links[cuotas]}
             />
           </div>
         )}
