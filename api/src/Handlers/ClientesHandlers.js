@@ -105,10 +105,7 @@ const paymentClienteVendedoresHandler = async (req, res) => {
 // Manejar pago completado para cliente (comentado por el momento)
 const paymentCompletedClienteHandler = async (req, res) => {
   // const event = req.body;
-  // console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
-  // // console.log(event)
   // const paymentSessionId = req.body.data.object.id;
-  // console.log(paymentSessionId)
   // try {
   //   const pago = await createPaymentCompleted({ id, name, monto, cuotas, cuotasRestantes, valorCuota });
   //   res.status(200).json(pago);
@@ -132,8 +129,6 @@ const setReferredHandler = async (req, res) => {
 const addVideosHandler = async (req, res) => {
   const { videosPublicados } = req.body;
   const { email } = req.query;
-  console.log(videosPublicados);
-  console.log(email);
   try {
     const newVideo = await addVideos(email, videosPublicados);
     res.status(200).json(newVideo);
