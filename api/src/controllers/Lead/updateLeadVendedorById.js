@@ -211,7 +211,6 @@ module.exports = updateLeadVendedorById;
 //     updatedData.dataLead.updateContratado = formattedTimeContratado;
 //   }
 //   if(updatedData.dataLead.status === "Rechazado"){
-//     console.log("Rechazado")
 //     const dateRechazado = new Date();
 //     const formattedTimeRechazado  = date.toISOString();
 //     updatedData.dataLead.updateRechazado  = formattedTimeRechazado ;
