@@ -46,6 +46,7 @@ const {
   UpdatePromocionesHandler,
   getAllLeadAPagarHandler,
   setPagoHandler,
+  findLeadSeguimientoAllInfoHandler,
 } = require("../Handlers/LeadHandlers");
 const LeadRouter = Router();
 
