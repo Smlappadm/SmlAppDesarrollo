@@ -477,7 +477,7 @@ const VentasDashboard = () => {
               >
                 x
               </button>
-              {hostname.includes("localhost") && (
+              {window.location.hostname.includes("localhost") && (
                 <>
                   <p className="border-2 p-3">
                     `http://localhost:5173/promocion-pagos?emailApp=$
@@ -495,7 +495,7 @@ const VentasDashboard = () => {
                   </p>
                 </>
               )}
-              {hostname.includes("sml-app.vercel") && (
+              {window.location.hostname.includes("sml-app.vercel") && (
                 <>
                   <p className="border-2 p-3">
                     `https://smlapp.onrender.com/api/promocion-pagos?emailApp=$
@@ -513,7 +513,7 @@ const VentasDashboard = () => {
                   </p>
                 </>
               )}
-              {hostname.includes("sml-app.com") && (
+              {window.location.hostname.includes("sml-app.com") && (
                 <>
                   <p className="border-2 p-3">
                     `https://sml-app.com/api/promocion-pagos?emailApp=$

@@ -1034,7 +1034,7 @@ export default function NestedModal({
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Copiar Link Pago
                     </p>
-                    {hostname.includes("localhost") && (
+                    {window.location.hostname.includes("localhost") && (
                     <p
                       onClick={() =>
                         handleCopyClick(
@@ -1046,7 +1046,7 @@ export default function NestedModal({
                       Link
                     </p>
                     )}
-                    {hostname.includes("sml-app.vercel") && (
+                    {window.location.hostname.includes("sml-app.vercel") && (
                     <p
                       onClick={() =>
                         handleCopyClick(
@@ -1058,7 +1058,7 @@ export default function NestedModal({
                       Link
                     </p>
                     )}
-                    {hostname.includes("sml-app.com") && (
+                    {window.location.hostname.includes("sml-app.com") && (
                     <p
                       onClick={() =>
                         handleCopyClick(
