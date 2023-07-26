@@ -172,7 +172,6 @@ export default function PromocionPago({ tamañoPantalla }) {
             }
           }
 
-          console.log(nuevosTiempos);
           return nuevosTiempos; // Devolver el nuevo objeto de tiempos restantes
         }
       });
@@ -236,8 +235,9 @@ export default function PromocionPago({ tamañoPantalla }) {
     });
     if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
+    } else {
+      setTodasPromocionesCero(false);
     }
-    console.log(todasPromocionesCero);
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
@@ -434,10 +434,9 @@ export default function PromocionPago({ tamañoPantalla }) {
               ))}
             </div>
             <p className="text-white">DETALLE</p>
-            {/* <p className="text-white text-center">
+            <p className="text-white text-center">
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
-            </p> */}
-            {console.log("sssssssssss")}
+            </p>
             <Link
               className={
                 tamañoPantalla === "Pequeña"
