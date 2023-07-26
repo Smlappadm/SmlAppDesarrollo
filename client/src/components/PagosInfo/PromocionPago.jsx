@@ -5,7 +5,7 @@ import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
-import ModalConfirmacion from "./ModalConfirmacion"
+import ModalConfirmacion from "./ModalConfirmacion";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
@@ -37,16 +37,19 @@ export default function PromocionPago({ tamañoPantalla }) {
     dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
   const SendErrorUpdateAlert = () => {
-    toast.error("Error al seleccionar el pago! Intente nuevamente o comuniquese con el comercial", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    toast.error(
+      "Error al seleccionar el pago! Intente nuevamente o comuniquese con el comercial",
+      {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
   };
 
   const CambiarCuota = (cuota) => {
@@ -279,9 +282,9 @@ export default function PromocionPago({ tamañoPantalla }) {
     try {
       const response = await axios.put(`/lead/setpago`, body);
       dispatch(getClienteEmpresa(emailApp));
-      SendLeadAlert()
+      SendLeadAlert();
     } catch (error) {
-      SendErrorUpdateAlert()
+      SendErrorUpdateAlert();
       console.log("Error al seleccionar el pago");
     }
   };
@@ -407,10 +410,11 @@ export default function PromocionPago({ tamañoPantalla }) {
                           {promo.pagos[cuotas]}
                         </p>
                         <ModalConfirmacion
-                        tamañoPantalla={tamañoPantalla}
-                        pressLinkButtonHandler={pressLinkButtonHandler}
-                        promo={promo.pagos[cuotas]}
-                        promoParametro={promo.links[cuotas]}/>
+                          tamañoPantalla={tamañoPantalla}
+                          pressLinkButtonHandler={pressLinkButtonHandler}
+                          promo={promo.pagos[cuotas]}
+                          promoParametro={promo.links[cuotas]}
+                        />
                       </div>
                     )
                   : null}
@@ -456,10 +460,11 @@ export default function PromocionPago({ tamañoPantalla }) {
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
             </p>
             <ModalConfirmacion
-                        tamañoPantalla={tamañoPantalla}
-                        pressLinkButtonHandler={pressLinkButtonHandler}
-                        promo={promo.pagos[cuotas]}
-                        promoParametro={promo.links[cuotas]}/>
+              tamañoPantalla={tamañoPantalla}
+              pressLinkButtonHandler={pressLinkButtonHandler}
+              promo={promos[0].pagos[cuotas]}
+              promoParametro={promos[0].links[cuotas]}
+            />
           </div>
         )}
       </div>
