@@ -227,7 +227,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
       if (index !== 0) {
-        console.log(tiempoRestante[promocionKey]);
         return (
           tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0
         );
