@@ -259,7 +259,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
     } else if (todasPromocionesCeroFilter) {
-      setTodasPromocionesCero(true);
+      setTodasPromocionesCero(false);
     }
   }, [tiempoRestante]);
 
