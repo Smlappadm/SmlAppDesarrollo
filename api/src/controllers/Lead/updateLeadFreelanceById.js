@@ -202,31 +202,26 @@ module.exports = updateLeadFreelanceById;
 //   updatedData.dataLead.updateVendedor = formattedTime;
 
 //   if(updatedData.dataLead.status === "Contratado"){
-//     console.log("Contratado")
 //     const dateContratado = new Date();
 //     const formattedTimeContratado = date.toISOString();
 //     updatedData.dataLead.updateContratado = formattedTimeContratado;
 //   }
 //   if(updatedData.dataLead.status === "Rechazado"){
-//     console.log("Rechazado")
 //     const dateRechazado = new Date();
 //     const formattedTimeRechazado  = date.toISOString();
 //     updatedData.dataLead.updateRechazado  = formattedTimeRechazado ;
 //   }
 //   if(updatedData.dataLead.status === "No responde"){
-//     console.log("No responde")
 //     const dateNoResponde = new Date();
 //     const formattedTimeNoResponde  = date.toISOString();
 //     updatedData.dataLead.updateNoResponde  = formattedTimeNoResponde ;
 //   }
 //   if(updatedData.dataLead.status === "Agenda llamada"){
-//     console.log("Agenda llamada")
 //     const dateSdoLlamado = new Date();
 //     const formattedTimeSdoLlamado  = date.toISOString();
 //     updatedData.dataLead.updateSegundoLlamado  = formattedTimeSdoLlamado;
 //   }
 //   if(updatedData.dataLead.status === "incidencia"){
-//     console.log("Incidencia")
 //     const dateIncidencia = new Date();
 //     const formattedTimeIncidencia  = date.toISOString();
 //     updatedData.dataLead.updateIncidencia  = formattedTimeIncidencia;
@@ -274,7 +269,6 @@ module.exports = updateLeadFreelanceById;
 //     );
 
     
-//     // console.log("2222222222222")
 //     //Setea el Cliente con el email filtado del modelo Cliente
 //     const filtro = { email: emailFilter };
 //     const nuevosValores = {
