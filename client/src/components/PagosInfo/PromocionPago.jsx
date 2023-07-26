@@ -455,8 +455,8 @@ export default function PromocionPago({ tamañoPantalla }) {
             <ModalConfirmacion
               tamañoPantalla={tamañoPantalla}
               pressLinkButtonHandler={pressLinkButtonHandler}
-              promo={promos[0].pagos[cuotas]}
-              promoParametro={promos[0].links[cuotas]}
+              promo={promos[0] && promos[0].pagos[cuotas]}
+              promoParametro={promos[0] && promos[0].links[cuotas]}
             />
           </div>
         )}
