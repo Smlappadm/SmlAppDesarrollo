@@ -641,7 +641,7 @@ const CorredoresDashboard = () => {
                           className="flex items-center justify-center w-fit gap-3 p-0 mx-3"
                           initial={
                             detailsLead[index] === true ? { x: 200 } : { x: 0 }
-                          } // Ancho inicial en 0
+                          }
                           animate={
                             detailsLead[index] === true ? { x: 0 } : { x: 200 }
                           }
