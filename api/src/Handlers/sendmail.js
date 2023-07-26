@@ -29,7 +29,6 @@ const sendmail = async (req, res) => {
 
 // Enviar correo electrónico de contratación
 const sendHiringEmail = async (req, res) => {
-  console.log("se manda el mail");
   try {
     const { clientName, recipientEmail } = req.body;
 
