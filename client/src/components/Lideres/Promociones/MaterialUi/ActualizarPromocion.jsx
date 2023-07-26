@@ -124,7 +124,7 @@ export default function ActualizarPromocion({ item }) {
     <div className="flex items-center justify-center">
       <ToastContainer />
       <Button sx={styleButton} onClick={handleOpen}>
-        <VscSettings />
+        <VscSettings /> {item.promocion.name}
       </Button>
       <Modal
         open={open}
