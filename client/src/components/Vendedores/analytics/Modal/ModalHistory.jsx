@@ -922,10 +922,13 @@ export default function NestedModal({
                       PAGO
                     </p>
                   </div>
+                  
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Copiar Link Pago
                     </p>
+
+                    {hostname.includes("localhost") && (
                     <p
                       onClick={() =>
                         handleCopyClick(
@@ -936,6 +939,32 @@ export default function NestedModal({
                     >
                       Link
                     </p>
+                    )}
+                    {hostname.includes("sml-app.vercel") && (
+                    <p
+                      onClick={() =>
+                        handleCopyClick(
+                          `https://smlapp.onrender.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                        )
+                      }
+                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                    >
+                      Link
+                    </p>
+                    )}
+                    {hostname.includes("sml-app.com") && (
+                    <p
+                      onClick={() =>
+                        handleCopyClick(
+                          `https://sml-app.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                        )
+                      }
+                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                    >
+                      Link
+                    </p>
+                    )}
+
                   </div>
                 </div>
                 <div className="">
