@@ -5,6 +5,7 @@ import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
+import ModalConfirmacion from "./ModalConfirmacion"
 
 export default function PromocionPago({ tamañoPantalla }) {
   const url = new URL(window.location.href);
@@ -381,18 +382,11 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-center">
                           {promo.pagos[cuotas]}
                         </p>
-                        <button
-                          className={
-                            tamañoPantalla === "Pequeña"
-                              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
-                          }
-                          onClick={() =>
-                            pressLinkButtonHandler(promo.links[cuotas])
-                          }
-                        >
-                          Confirmar selección
-                        </button>
+                        <ModalConfirmacion
+                        tamañoPantalla={tamañoPantalla}
+                        pressLinkButtonHandler={pressLinkButtonHandler}
+                        promo={promo.pagos[cuotas]}
+                        promoParametro={promo.links[cuotas]}/>
                       </div>
                     )
                   : null}
