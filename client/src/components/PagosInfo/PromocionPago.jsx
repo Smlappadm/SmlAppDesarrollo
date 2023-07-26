@@ -26,6 +26,8 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
 
+  console.log(todasPromocionesCero);
+
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
     dispatch(getAllPromociones());
