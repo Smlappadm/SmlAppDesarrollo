@@ -18,8 +18,6 @@ export default function InputRunner({getVendedorAllLeads, emailUser}) {
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
 
-console.log(level)
-
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
 
