@@ -6,6 +6,7 @@ import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion"
+import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
   const url = new URL(window.location.href);
@@ -13,7 +14,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   const { clienteEmpresa } = useSelector((state) => state);
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [cliente, setCliente] = useState({});
-  const [linkActivo, setLinkActivo] = useState(false);
   const [promocionActual, setPromocionActual] = useState(0);
   const dispatch = useDispatch();
 
@@ -22,6 +22,32 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [promos, setPromos] = useState([]);
 
   const [cuotas, setCuotas] = useState("1");
+
+  const SendLeadAlert = () => {
+    toast.success("✔ Pago seleccionado correctamente!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+  };
+  const SendErrorUpdateAlert = () => {
+    toast.error("Error al seleccionar el pago! Intente nuevamente o comuniquese con el comercial", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
 
   const CambiarCuota = (cuota) => {
     setCuotas(cuota);
@@ -242,8 +268,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
-    console.log(linkDePago);
-
     if (!linkDePago) {
       return;
     }
@@ -254,10 +278,10 @@ export default function PromocionPago({ tamañoPantalla }) {
     };
     try {
       const response = await axios.put(`/lead/setpago`, body);
-      console.log(response.data);
-
       dispatch(getClienteEmpresa(emailApp));
+      SendLeadAlert()
     } catch (error) {
+      SendErrorUpdateAlert()
       console.log("Error al seleccionar el pago");
     }
   };
@@ -446,6 +470,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }
