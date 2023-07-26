@@ -257,7 +257,7 @@ const CorredoresDashboard = () => {
   const formattedTime = date.toISOString();
 
   const instagramRegex =
-    /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
+    /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
