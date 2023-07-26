@@ -487,28 +487,12 @@ const findLeadSeguimientoAllInfoHandler = async (req, res) => {
     corredor,
     vendedor,
     freelancer,
-    fromDay,
-    toDay,
-    profesion,
-    country,
-    category,
-    level,
-    status,
-    descargados,
   } = req.query;
   try {
     const foundCorredor = await findLeadSeguimientoAllInfo(
       corredor,
       vendedor,
       freelancer,
-      fromDay,
-      toDay,
-      profesion,
-      country,
-      category,
-      level,
-      status,
-      descargados
     );
     res.status(200).json(foundCorredor);
   } catch (error) {
