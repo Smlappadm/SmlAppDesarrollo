@@ -334,7 +334,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             : "flex flex-col justify-start items-center p-6 h-full w-1/5 "
         }
       >
-        <p className="text-white text-24 font-bold mb-10">
+        <p className="text-white text-24 font-bold mb-40">
           {cliente && cliente.name}
         </p>
         {!clienteEmpresa.linkActivado &&
