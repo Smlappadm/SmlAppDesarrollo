@@ -5,22 +5,48 @@ import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
+import ModalConfirmacion from "./ModalConfirmacion";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
+  const dispatch = useDispatch();
   const url = new URL(window.location.href);
   const emailApp = url.searchParams.get("emailApp");
-  const { clienteEmpresa } = useSelector((state) => state);
-  const [tiempoRestante, setTiempoRestante] = useState({});
-  const [cliente, setCliente] = useState({});
-  const [linkActivo, setLinkActivo] = useState(false);
-  const [promocionActual, setPromocionActual] = useState(0);
-  const dispatch = useDispatch();
-
-  const { promociones } = useSelector((state) => state);
-
   const [promos, setPromos] = useState([]);
-
   const [cuotas, setCuotas] = useState("1");
+  const [cliente, setCliente] = useState({});
+  const [tiempoRestante, setTiempoRestante] = useState({});
+  const [promocionActual, setPromocionActual] = useState(0);
+  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
+  const { clienteEmpresa, promociones } = useSelector((state) => state);
+
+  const SendLeadAlert = () => {
+    toast.success("✔ Pago seleccionado correctamente!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const SendErrorUpdateAlert = () => {
+    toast.error(
+      "Error al seleccionar el pago! Intente nuevamente o comuniquese con el comercial",
+      {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
+  };
 
   const CambiarCuota = (cuota) => {
     setCuotas(cuota);
@@ -110,7 +136,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log(promos);
   }, [promos]);
 
   useEffect(() => {
@@ -221,28 +246,23 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
     setPromocionActual(0);
   };
-  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
+
   useEffect(() => {
     actualizarPromocionActual();
     const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
       if (index !== 0) {
-        console.log(tiempoRestante[promocionKey]);
-        return (
-          tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0
-        );
+        return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] > 0;
       }
     });
-    if (todasPromocionesCeroFilter) {
+    if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
-    } else {
+    } else if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(false);
     }
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
-    console.log(linkDePago);
-
     if (!linkDePago) {
       return;
     }
@@ -253,10 +273,10 @@ export default function PromocionPago({ tamañoPantalla }) {
     };
     try {
       const response = await axios.put(`/lead/setpago`, body);
-      console.log(response.data);
-
       dispatch(getClienteEmpresa(emailApp));
+      SendLeadAlert();
     } catch (error) {
+      SendErrorUpdateAlert();
       console.log("Error al seleccionar el pago");
     }
   };
@@ -289,11 +309,11 @@ export default function PromocionPago({ tamañoPantalla }) {
             }
             to={clienteEmpresa.linkPago}
             target="_blank"
-            // onClick={pressLinkButtonHandler}
           >
             Realizar Pago
           </Link>
         </div>
+        <ToastContainer />
       </div>
     );
   }
@@ -310,11 +330,11 @@ export default function PromocionPago({ tamañoPantalla }) {
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "flex flex-col justify-between items-center p-6 h-full w-full"
-            : "flex flex-col justify-evenly items-center p-6 h-full w-1/5"
+            ? "flex flex-col justify-start items-center p-6 h-full w-full"
+            : "flex flex-col justify-start items-center p-6 h-full w-1/5 "
         }
       >
-        <p className="text-white text-24 font-bold">
+        <p className="text-white text-24 font-bold mb-40">
           {cliente && cliente.name}
         </p>
         {!clienteEmpresa.linkActivado &&
@@ -381,18 +401,12 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-center">
                           {promo.pagos[cuotas]}
                         </p>
-                        <button
-                          className={
-                            tamañoPantalla === "Pequeña"
-                              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
-                          }
-                          onClick={() =>
-                            pressLinkButtonHandler(promo.links[cuotas])
-                          }
-                        >
-                          Confirmar selección
-                        </button>
+                        <ModalConfirmacion
+                          tamañoPantalla={tamañoPantalla}
+                          pressLinkButtonHandler={pressLinkButtonHandler}
+                          promo={promo.pagos[cuotas]}
+                          promoParametro={promo.links[cuotas]}
+                        />
                       </div>
                     )
                   : null}
@@ -437,21 +451,16 @@ export default function PromocionPago({ tamañoPantalla }) {
             <p className="text-white text-center">
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
             </p>
-            <Link
-              className={
-                tamañoPantalla === "Pequeña"
-                  ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
-              }
-              // to={promos[0] && promos[0].links ? promos[0].links[cuotas] : ""}
-              // target="_blank"
-              onClick={pressLinkButtonHandler}
-            >
-              Confirmar selección
-            </Link>
+            <ModalConfirmacion
+              tamañoPantalla={tamañoPantalla}
+              pressLinkButtonHandler={pressLinkButtonHandler}
+              promo={promos[0] && promos[0].pagos[cuotas]}
+              promoParametro={promos[0] && promos[0].links[cuotas]}
+            />
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

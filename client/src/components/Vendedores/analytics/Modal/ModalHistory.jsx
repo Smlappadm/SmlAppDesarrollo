@@ -1095,7 +1095,7 @@ export default function NestedModal({
                     </div>
                   )}
                   {editPago && (
-                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                    <div className="w-full flex justify-center items-center mt-5 gap-3 text-white">
                       <p>¿Deseas reiniciar el link de pago?</p>
                       <p
                         onClick={handleEditPago}
