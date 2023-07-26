@@ -255,7 +255,6 @@ export default function PromocionPago({ tamañoPantalla }) {
         return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] > 0;
       }
     });
-    console.log(todasPromocionesCeroFilter);
     if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
     } else if (todasPromocionesCeroFilter) {
