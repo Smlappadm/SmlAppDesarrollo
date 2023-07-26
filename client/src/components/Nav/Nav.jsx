@@ -18,10 +18,11 @@ function Nav() {
   const isEmployee = localStorage.getItem("isEmployeeReady");
   const email = localStorage.getItem("email");
   const photo = localStorage.getItem("photo");
+  const nameEmploy = localStorage.getItem("nameEmploy");
 
   const user = useUser().user;
-  const userEmail = email || user.emailAddresses[0].emailAddress;
-  const fullName = user.fullName;
+  const userEmail = email;
+  const fullName = nameEmploy;
   const imageUrl = photo || user.imageUrl;
 
   const handleLogout = async () => {
