@@ -252,15 +252,14 @@ export default function PromocionPago({ tamañoPantalla }) {
     const todasPromocionesCeroFilter = promos.some((promo, index) => {
       const promocionKey = `promocion${index}`;
       if (index !== 0) {
-        return (
-          tiempoRestante[promocionKey] && tiempoRestante[promocionKey] <= 0
-        );
+        return tiempoRestante[promocionKey] && tiempoRestante[promocionKey] > 0;
       }
     });
-    if (todasPromocionesCeroFilter) {
+    console.log(todasPromocionesCeroFilter);
+    if (!todasPromocionesCeroFilter) {
       setTodasPromocionesCero(true);
-    } else {
-      setTodasPromocionesCero(false);
+    } else if (todasPromocionesCeroFilter) {
+      setTodasPromocionesCero(true);
     }
   }, [tiempoRestante]);
 
