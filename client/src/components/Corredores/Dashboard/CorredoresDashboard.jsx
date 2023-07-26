@@ -641,11 +641,11 @@ const CorredoresDashboard = () => {
                           className="flex items-center justify-center w-fit gap-3 p-0 mx-3"
                           initial={
                             detailsLead[index] === true ? { x: 200 } : { x: 0 }
-                          } // Ancho inicial en 0
+                          }
                           animate={
                             detailsLead[index] === true ? { x: 0 } : { x: 200 }
-                          } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
-                          transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
+                          }
+                          transition={{ duration: 0.5 }}
                           style={
                             detailsLead[index] === false && {
                               display: "none",

@@ -20,17 +20,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
   filterStatus,
-  getLeadChecked,
   getLeadCheckedFreelancer,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoStatsChart,
-  IoRocketOutline,
-} from "react-icons/io5";
+import { IoGrid, IoStatsChart, IoRocketOutline } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -141,7 +135,6 @@ export const DashboardFreelancer = () => {
   const downloadCSV = () => {
     const csv = Papa.unparse(leaderFreelancer);
 
-    // Crea un enlace de descarga
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const csvURL = URL.createObjectURL(csvData);
     const tempLink = document.createElement("a");
