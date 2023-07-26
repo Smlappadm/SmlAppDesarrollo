@@ -256,6 +256,9 @@ const CorredoresDashboard = () => {
   date.setHours(date.getHours() - 3);
   const formattedTime = date.toISOString();
 
+  const instagramRegex =
+    /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     SendLeads();
@@ -290,7 +293,7 @@ const CorredoresDashboard = () => {
             await updateLead(lead);
           }
         } else if (level === "1" || level === "2") {
-          if (instagram !== "") {
+          if (instagram !== "" && instagramRegex.test(instagram)) {
             await updateLead(lead);
           } else {
             SendLeadsErrorInsta(name);
@@ -308,9 +311,6 @@ const CorredoresDashboard = () => {
       console.log({ error: error.message });
     }
   };
-
-  const instagramRegex =
-    /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
 
   return (
     <>
