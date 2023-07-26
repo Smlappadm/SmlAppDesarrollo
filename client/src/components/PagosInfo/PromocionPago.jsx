@@ -34,7 +34,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
   };
   const SendErrorUpdateAlert = () => {
     toast.error(
