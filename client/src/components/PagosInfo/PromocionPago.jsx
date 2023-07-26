@@ -330,7 +330,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "flex flex-col justify-between items-center p-6 h-full w-full"
+            ? "flex flex-col justify-start items-center p-6 h-full w-full"
             : "flex flex-col justify-start items-center p-6 h-full w-1/5 "
         }
       >
