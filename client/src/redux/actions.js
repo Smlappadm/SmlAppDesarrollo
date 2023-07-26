@@ -309,6 +309,9 @@ export const findCorredoresByNameAllInfoSeguimiento = (
   freelancer
 ) => {
   return async (dispatch) => {
+    console.log(corredor);
+    console.log(vendedor);
+    console.log(freelancer);
     const response = await axios.get(
       `/lead/seguimientofiltro?corredor=${corredor}&vendedor=${vendedor}&freelancer=${freelancer}`
     );
