@@ -81,6 +81,8 @@ const CorredoresDashboard = () => {
 
   const handleChangeInstagram = (event, index) => {
     const { name, value } = event.target;
+    console.log(name);
+    console.log(name);
 
     setClient((prevState) => {
       const updatedClient = [...prevState];
@@ -88,6 +90,7 @@ const CorredoresDashboard = () => {
         ...updatedClient[index],
         [name]: value,
         instagram: value,
+        
       };
       return updatedClient;
     });
