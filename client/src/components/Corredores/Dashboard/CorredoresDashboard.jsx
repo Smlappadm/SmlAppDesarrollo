@@ -644,7 +644,7 @@ const CorredoresDashboard = () => {
                           } // Ancho inicial en 0
                           animate={
                             detailsLead[index] === true ? { x: 0 } : { x: 200 }
-                          } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
+                          }
                           transition={{ duration: 0.5 }}
                           style={
                             detailsLead[index] === false && {
