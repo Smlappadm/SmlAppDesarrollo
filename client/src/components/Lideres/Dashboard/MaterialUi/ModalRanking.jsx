@@ -80,7 +80,6 @@ export default function ChildModal() {
       return sortedB - sortedA;
     });
     //console.log(allFreelancer);
-    //console.log(info[0][Object.keys(info[0])[0]][0].status);
     setInfoFreelancer(sortedInfo);
   };
 
