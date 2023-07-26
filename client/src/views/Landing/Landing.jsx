@@ -49,7 +49,12 @@ function Landing() {
 
   const { corredor } = useSelector((state) => state);
 
+  const photo = selectedEmployee && selectedEmployee.photo
+
+  localStorage.setItem("photo", photo);
+
   localStorage.setItem("email", userEmail);
+  
   let email = localStorage.getItem("email");
 
   const username = corredor.name;
@@ -61,7 +66,6 @@ function Landing() {
   }, [dispatch, userEmail]);
 
   useEffect(() => {
-    console.log("adentro", username);
     localStorage.setItem("corredorName", username);
   }, [corredor]);
 
