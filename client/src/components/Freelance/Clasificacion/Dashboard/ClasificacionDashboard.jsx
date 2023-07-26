@@ -356,6 +356,8 @@ const ClasificacionDashboard = () => {
       for (const lead of client) {
         const { level, instagram, name } = lead;
 
+        console.log(level);
+
         if (level === "-" || level === "") {
           SendLeadsErrorLevel(name);
         } else if (level === "incidencia") {
@@ -364,8 +366,8 @@ const ClasificacionDashboard = () => {
           } else {
             await updateLead(lead);
           }
-        } else if (level === "0") {
-          await updateLead(lead);
+        // } else if (level === "0") {
+        //   await updateLead(lead);
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
             await updateLead(lead);
@@ -375,7 +377,7 @@ const ClasificacionDashboard = () => {
         }
       }
 
-      dispatch(getLeadCorredores(email, username, "", "", "", ""));
+      dispatch(getLeadClasificacion(email, username, "", "", "", ""));
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
