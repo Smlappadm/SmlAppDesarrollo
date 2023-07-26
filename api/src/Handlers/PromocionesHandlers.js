@@ -37,7 +37,7 @@ const updatePromocionByIdHandler = async (req, res) => {
   }
 };
 
-// Actualizar promoción
+// Eliminar promoción
 const deletePromocionByIdHandler = async (req, res) => {
   const id = req.params.id;
   const body = req.body;

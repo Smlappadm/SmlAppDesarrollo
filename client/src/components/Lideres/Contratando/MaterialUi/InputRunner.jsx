@@ -101,22 +101,18 @@ export default function InputName({ name, setName }) {
     setName(value);
   };
 
-  console.log(name);
 
   const handleFilterClick = () => {
+    
+    console.log(corredor);
+    console.log(vendedor);
+    console.log(freelancer);
+
     dispatch(
       findCorredoresByNameAllInfoSeguimiento(
         corredor,
         vendedor,
         freelancer,
-        fromDay,
-        toDay,
-        profesion,
-        country,
-        category,
-        level,
-        status,
-        descargados
       )
     );
   };

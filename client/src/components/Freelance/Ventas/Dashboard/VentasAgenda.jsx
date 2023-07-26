@@ -477,17 +477,60 @@ const VentasDashboard = () => {
               >
                 x
               </button>
-              <p className="border-2 p-3">`http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`</p>
-              <p
-                onClick={() =>
-                  handleCopyClick(
-                    `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
-                  )
-                }
-                className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-              >
-                Link de Pago
-              </p>
+              {window.location.hostname.includes("localhost") && (
+                <>
+                  <p className="border-2 p-3">
+                    `http://localhost:5173/promocion-pagos?emailApp=$
+                    {saveEmailApp}`
+                  </p>
+                  <p
+                    onClick={() =>
+                      handleCopyClick(
+                        `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
+                      )
+                    }
+                    className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                  >
+                    Link de Pago
+                  </p>
+                </>
+              )}
+              {window.location.hostname.includes("sml-app.vercel") && (
+                <>
+                  <p className="border-2 p-3">
+                    `https://smlapp.onrender.com/api/promocion-pagos?emailApp=$
+                    {saveEmailApp}`
+                  </p>
+                  <p
+                    onClick={() =>
+                      handleCopyClick(
+                        `https://smlapp.onrender.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                      )
+                    }
+                    className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                  >
+                    Link de Pago
+                  </p>
+                </>
+              )}
+              {window.location.hostname.includes("sml-app.com") && (
+                <>
+                  <p className="border-2 p-3">
+                    `https://sml-app.com/api/promocion-pagos?emailApp=$
+                    {saveEmailApp}`
+                  </p>
+                  <p
+                    onClick={() =>
+                      handleCopyClick(
+                        `https://sml-app.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                      )
+                    }
+                    className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                  >
+                    Link de Pago
+                  </p>
+                </>
+              )}
             </div>
           )}
         </div>

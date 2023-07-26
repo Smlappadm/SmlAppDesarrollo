@@ -306,19 +306,14 @@ export const findCorredoresByNameAllInfo = (
 export const findCorredoresByNameAllInfoSeguimiento = (
   corredor,
   vendedor,
-  freelancer,
-  fromDay,
-  toDay,
-  profesion,
-  country,
-  category,
-  level,
-  status,
-  descargados
+  freelancer
 ) => {
   return async (dispatch) => {
+    console.log(corredor);
+    console.log(vendedor);
+    console.log(freelancer);
     const response = await axios.get(
-      `/lead/seguimientofiltro?corredor=${corredor}&vendedor=${vendedor}&freelancer=${freelancer}&fromDay=${fromDay}&toDay=${toDay}&profesion=${profesion}&country=${country}&category=${category}&level=${level}&status=${status}&descargados=${descargados}`
+      `/lead/seguimientofiltro?corredor=${corredor}&vendedor=${vendedor}&freelancer=${freelancer}`
     );
     const corredoresByNameAllInfoSeguimiento = response.data;
     dispatch({

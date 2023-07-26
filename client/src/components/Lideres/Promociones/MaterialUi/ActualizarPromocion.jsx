@@ -41,21 +41,42 @@ const buttonsend = {
 
 export default function ActualizarPromocion({ item }) {
   const dispatch = useDispatch();
-  // <-- Use destructuring here
   const [open, setOpen] = React.useState(false);
+
   const [promocion, setPromocion] = React.useState({
-    name: item.promocion.name,
-    hora: item.promocion.hora,
-    link: item.promocion.link,
-    cuota: item.promocion.cuota,
-    monto: item.promocion.monto,
-    valorCuota: item.promocion.valorCuota,
-    descuento: item.promocion.descuento,
-    active: item.promocion.active,
+    name: "",
+    hora: "",
+    link: "",
+    cuota: "",
+    monto: "",
+    valorCuota: "",
+    descuento: "",
+    active: "",
   });
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  React.useEffect(() => {
+    setPromocion({
+      ...promocion,
+      name: item.promocion.name,
+      hora: item.promocion.hora,
+      link: item.promocion.link,
+      cuota: item.promocion.cuota,
+      monto: item.promocion.monto,
+      valorCuota: item.promocion.valorCuota,
+      descuento: item.promocion.descuento,
+      active: item.promocion.active,
+    });
+  }, [item]);
+
+  const handleOpen = () => {
+    dispatch(getAllPromociones());
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    dispatch(getAllPromociones());
+    setOpen(false);
+  };
 
   const handleChange = (event, property) => {
     let newValue;
