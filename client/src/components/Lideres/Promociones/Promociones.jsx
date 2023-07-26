@@ -181,7 +181,6 @@ export const Promociones = () => {
                     </Text>
                   </div>
                 </div>
-
                 <ActualizarPromocion item={item} />
               </div>
             </div>
