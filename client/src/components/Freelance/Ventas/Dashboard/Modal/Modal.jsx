@@ -902,7 +902,6 @@ export default function NestedModal({
     }
 
     const value = e.target.value.split("/");
-    // console.log(value)
     setStatusObj({
       ...statusObj,
       status_op: e.target.value,
@@ -922,10 +921,8 @@ export default function NestedModal({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email)) {
       setEmailValidator(true);
-      console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto");
     }
   };
 
@@ -934,10 +931,8 @@ export default function NestedModal({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email)) {
       setEmailValidator(true);
-      console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto");
     }
   };
 
