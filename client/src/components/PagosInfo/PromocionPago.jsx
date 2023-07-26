@@ -286,7 +286,6 @@ export default function PromocionPago({ tamañoPantalla }) {
             }
             to={clienteEmpresa.linkPago}
             target="_blank"
-            // onClick={pressLinkButtonHandler}
           >
             Realizar Pago
           </Link>
