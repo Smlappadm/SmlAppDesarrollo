@@ -3,8 +3,6 @@ const Lead = require("../../models/Lead");
 
 // Función para obtener leads verificados que pertenecen a un corredor específico y aún no han sido descargados
 const getLeadCorredoresCheckedDescargados = async (email) => {
-  console.log(email); // Muestra el email en la consola (esto puede ser útil para propósitos de depuración)
-
   // Utiliza el método 'find' para buscar todos los registros de lead en la colección 'Lead'
   // donde el campo 'corredor' es igual al valor de 'email' proporcionado,
   // el campo 'checked' es igual a true (verificados),
