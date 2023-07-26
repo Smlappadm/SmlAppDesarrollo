@@ -26,8 +26,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     setCuotas(cuota);
   };
 
-  console.log(todasPromocionesCero);
-
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
     dispatch(getAllPromociones());
@@ -233,7 +231,11 @@ export default function PromocionPago({ tamañoPantalla }) {
         );
       }
     });
-    if (promos && todasPromocionesCeroFilter) {
+    if (
+      promos &&
+      todasPromocionesCeroFilter &&
+      todasPromocionesCeroFilter.length > 0
+    ) {
       setTodasPromocionesCero(true);
     } else {
       setTodasPromocionesCero(false);
