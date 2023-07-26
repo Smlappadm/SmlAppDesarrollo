@@ -928,7 +928,7 @@ export default function NestedModal({
                       Copiar Link Pago
                     </p>
 
-                    {hostname.includes("localhost") && (
+                    {window.location.hostname.includes("localhost") && (
                     <p
                       onClick={() =>
                         handleCopyClick(
@@ -940,7 +940,7 @@ export default function NestedModal({
                       Link
                     </p>
                     )}
-                    {hostname.includes("sml-app.vercel") && (
+                    {window.location.hostname.includes("sml-app.vercel") && (
                     <p
                       onClick={() =>
                         handleCopyClick(
@@ -952,7 +952,7 @@ export default function NestedModal({
                       Link
                     </p>
                     )}
-                    {hostname.includes("sml-app.com") && (
+                    {window.location.hostname.includes("sml-app.com") && (
                     <p
                       onClick={() =>
                         handleCopyClick(
