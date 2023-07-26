@@ -1050,7 +1050,7 @@ export default function NestedModal({
                     <p
                       onClick={() =>
                         handleCopyClick(
-                          `https://smlapp.onrender.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                          `https://sml-app.vercel.app/promocion-pagos?emailApp=${saveEmailApp}`
                         )
                       }
                       className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -1062,7 +1062,7 @@ export default function NestedModal({
                     <p
                       onClick={() =>
                         handleCopyClick(
-                          `https://sml-app.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                          `https://sml-app.com/promocion-pagos?emailApp=${saveEmailApp}`
                         )
                       }
                       className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -1227,7 +1227,7 @@ export default function NestedModal({
                     </div>
                   )}
                   {editPago && (
-                    <div className="w-full flex justify-center items-center mt-5 gap-3">
+                    <div className="w-full flex justify-center items-center mt-5 gap-3 text-white">
                       <p>¿Deseas reiniciar el link de pago?</p>
                       <p
                         onClick={handleEditPago}

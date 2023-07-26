@@ -498,13 +498,13 @@ const VentasDashboard = () => {
               {window.location.hostname.includes("sml-app.vercel") && (
                 <>
                   <p className="border-2 p-3">
-                    `https://smlapp.onrender.com/api/promocion-pagos?emailApp=$
+                    `https://sml-app.vercel.app/promocion-pagos?emailApp=$
                     {saveEmailApp}`
                   </p>
                   <p
                     onClick={() =>
                       handleCopyClick(
-                        `https://smlapp.onrender.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                        `https://sml-app.vercel.app/promocion-pagos?emailApp=${saveEmailApp}`
                       )
                     }
                     className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -516,13 +516,13 @@ const VentasDashboard = () => {
               {window.location.hostname.includes("sml-app.com") && (
                 <>
                   <p className="border-2 p-3">
-                    `https://sml-app.com/api/promocion-pagos?emailApp=$
+                    `https://sml-app.com/promocion-pagos?emailApp=$
                     {saveEmailApp}`
                   </p>
                   <p
                     onClick={() =>
                       handleCopyClick(
-                        `https://sml-app.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                        `https://sml-app.com/promocion-pagos?emailApp=${saveEmailApp}`
                       )
                     }
                     className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
