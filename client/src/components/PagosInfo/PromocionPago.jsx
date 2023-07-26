@@ -13,6 +13,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [cliente, setCliente] = useState({});
   const [linkActivo, setLinkActivo] = useState(false);
+  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
   const [promocionActual, setPromocionActual] = useState(0);
   const dispatch = useDispatch();
 
@@ -221,7 +222,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     }
     setPromocionActual(0);
   };
-  const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
+
   useEffect(() => {
     actualizarPromocionActual();
     const todasPromocionesCeroFilter = promos.some((promo, index) => {
