@@ -176,7 +176,6 @@ const VentasDashboard = () => {
     return fechaHoraLocal;
   };
 
-
   return (
     <>
       <Nav />
@@ -320,23 +319,23 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
-                        <div className="flex w-44 justify-start items-center gap-2 relative">
+                          <div className="flex w-44 justify-start items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
                               className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                               {item.telephone}
                             </p>
-                            </div>
-                            <a
-                              href={`http://wa.me/${item.telephone.replace(
-                                /\s+/g,
-                                ""
-                              )}`}
-                              target="blanck"
-                            >
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
-                            </a>
+                          </div>
+                          <a
+                            href={`http://wa.me/${item.telephone.replace(
+                              /\s+/g,
+                              ""
+                            )}`}
+                            target="blanck"
+                          >
+                            <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                          </a>
                         </div>
                         <div className=" w-[5%] flex justify-center items-start p-0">
                           {item.level !== "incidencia" ? (
@@ -478,19 +477,60 @@ const VentasDashboard = () => {
               >
                 x
               </button>
-              <p className="border-2 p-3">
-                `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
-              </p>
-              <p
-                onClick={() =>
-                  handleCopyClick(
-                    `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
-                  )
-                }
-                className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-              >
-                Link de Pago
-              </p>
+              {hostname.includes("localhost") && (
+                <>
+                  <p className="border-2 p-3">
+                    `http://localhost:5173/promocion-pagos?emailApp=$
+                    {saveEmailApp}`
+                  </p>
+                  <p
+                    onClick={() =>
+                      handleCopyClick(
+                        `http://localhost:5173/promocion-pagos?emailApp=${saveEmailApp}`
+                      )
+                    }
+                    className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                  >
+                    Link de Pago
+                  </p>
+                </>
+              )}
+              {hostname.includes("sml-app.vercel") && (
+                <>
+                  <p className="border-2 p-3">
+                    `https://smlapp.onrender.com/api/promocion-pagos?emailApp=$
+                    {saveEmailApp}`
+                  </p>
+                  <p
+                    onClick={() =>
+                      handleCopyClick(
+                        `https://smlapp.onrender.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                      )
+                    }
+                    className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                  >
+                    Link de Pago
+                  </p>
+                </>
+              )}
+              {hostname.includes("sml-app.com") && (
+                <>
+                  <p className="border-2 p-3">
+                    `https://sml-app.com/api/promocion-pagos?emailApp=$
+                    {saveEmailApp}`
+                  </p>
+                  <p
+                    onClick={() =>
+                      handleCopyClick(
+                        `https://sml-app.com/api/promocion-pagos?emailApp=${saveEmailApp}`
+                      )
+                    }
+                    className=" w-48 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                  >
+                    Link de Pago
+                  </p>
+                </>
+              )}
             </div>
           )}
         </div>
