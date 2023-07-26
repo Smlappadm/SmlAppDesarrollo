@@ -12,7 +12,6 @@ const UpdatePromociones = async (body) => {
   for (const key in promociones) {
     promocionesObj.push(new Date(promociones[key]));
   }
-  console.log(promocionesObj);
 
   // Busca un único registro de lead en la colección 'Lead' que coincida con la dirección de correo electrónico de la aplicación proporcionada (emailApp)
   const client = await Lead.findOneAndUpdate(
