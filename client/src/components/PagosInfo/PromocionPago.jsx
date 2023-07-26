@@ -240,8 +240,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
-    console.log(linkDePago);
-
     if (!linkDePago) {
       return;
     }
