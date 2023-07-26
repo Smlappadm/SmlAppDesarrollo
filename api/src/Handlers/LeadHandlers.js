@@ -391,7 +391,6 @@ const getLeadCorredorCheckedHandler = async (req, res) => {
 // Obtener leads de corredores verificados y descargados filtrados por email
 const getLeadCorredoresCheckedDescargadosHandler = async (req, res) => {
   const { email } = req.query;
-  console.log("email");
   try {
     const leadChecked = await getLeadCorredoresCheckedDescargados(email);
     res.status(200).json(leadChecked);
