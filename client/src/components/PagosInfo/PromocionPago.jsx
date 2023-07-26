@@ -110,7 +110,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log(promos);
   }, [promos]);
 
   useEffect(() => {
