@@ -11,11 +11,11 @@ export default function PromocionPago({ tamañoPantalla }) {
   const emailApp = url.searchParams.get("emailApp");
   const { clienteEmpresa, promociones } = useSelector((state) => state);
   const [promos, setPromos] = useState([]);
+  const [cuotas, setCuotas] = useState("1");
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [cliente, setCliente] = useState({});
   const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
   const [promocionActual, setPromocionActual] = useState(0);
-  const [cuotas, setCuotas] = useState("1");
   const dispatch = useDispatch();
 
   const CambiarCuota = (cuota) => {
