@@ -1,9 +1,6 @@
 const Promociones = require("../../models/Promociones");
 
 const updatePromocionById = async (id, body) => {
-  console.log("ACA HAGO EL PUT");
-  console.log(id);
-  console.log(body);
 
   const promociones = await Promociones.findByIdAndUpdate(
     id,
