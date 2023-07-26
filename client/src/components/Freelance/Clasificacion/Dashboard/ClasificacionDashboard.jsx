@@ -366,14 +366,14 @@ const ClasificacionDashboard = () => {
           } else {
             await updateLead(lead);
           }
-        // } else if (level === "0") {
-        //   await updateLead(lead);
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
             await updateLead(lead);
           } else {
             SendLeadsErrorInsta(name);
           }
+        } else if (level === "0") {
+          await updateLead(lead);
         }
       }
 
