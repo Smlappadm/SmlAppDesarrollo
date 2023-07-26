@@ -30,7 +30,7 @@ export default function InputName({ name, setCurrentPage }) {
   const [status, setStatus] = useState("");
   const [descargados, setDescargados] = useState(true);
 
-  const { allFreelancers } = useSelector((state) => state);
+  const { allFreelancer } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
@@ -161,7 +161,7 @@ export default function InputName({ name, setCurrentPage }) {
             }}
           >
             <MenuItem value="">Freelancer</MenuItem>
-            {allFreelancers.map((corredor) => (
+            {allFreelancer.map((corredor) => (
               <MenuItem key={corredor} value={corredor}>
                 {corredor}
               </MenuItem>
