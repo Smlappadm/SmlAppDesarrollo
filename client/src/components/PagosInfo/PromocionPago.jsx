@@ -5,6 +5,8 @@ import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
 import { Link } from "react-router-dom";
+import ModalConfirmacion from "./ModalConfirmacion";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
   const dispatch = useDispatch();
@@ -17,6 +19,34 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [promocionActual, setPromocionActual] = useState(0);
   const [todasPromocionesCero, setTodasPromocionesCero] = useState(false);
   const { clienteEmpresa, promociones } = useSelector((state) => state);
+
+  const SendLeadAlert = () => {
+    toast.success("✔ Pago seleccionado correctamente!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const SendErrorUpdateAlert = () => {
+    toast.error(
+      "Error al seleccionar el pago! Intente nuevamente o comuniquese con el comercial",
+      {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      }
+    );
+  };
 
   const CambiarCuota = (cuota) => {
     setCuotas(cuota);
@@ -249,10 +279,10 @@ export default function PromocionPago({ tamañoPantalla }) {
     };
     try {
       const response = await axios.put(`/lead/setpago`, body);
-      console.log(response.data);
-
       dispatch(getClienteEmpresa(emailApp));
+      SendLeadAlert();
     } catch (error) {
+      SendErrorUpdateAlert();
       console.log("Error al seleccionar el pago");
     }
   };
@@ -289,6 +319,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             Realizar Pago
           </Link>
         </div>
+        <ToastContainer />
       </div>
     );
   }
@@ -376,18 +407,12 @@ export default function PromocionPago({ tamañoPantalla }) {
                         <p className="text-white text-center">
                           {promo.pagos[cuotas]}
                         </p>
-                        <button
-                          className={
-                            tamañoPantalla === "Pequeña"
-                              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
-                          }
-                          onClick={() =>
-                            pressLinkButtonHandler(promo.links[cuotas])
-                          }
-                        >
-                          Confirmar selección
-                        </button>
+                        <ModalConfirmacion
+                          tamañoPantalla={tamañoPantalla}
+                          pressLinkButtonHandler={pressLinkButtonHandler}
+                          promo={promo.pagos[cuotas]}
+                          promoParametro={promo.links[cuotas]}
+                        />
                       </div>
                     )
                   : null}
@@ -432,19 +457,16 @@ export default function PromocionPago({ tamañoPantalla }) {
             <p className="text-white text-center">
               {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
             </p>
-            <Link
-              className={
-                tamañoPantalla === "Pequeña"
-                  ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
-                  : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600"
-              }
-              onClick={pressLinkButtonHandler}
-            >
-              Confirmar selección
-            </Link>
+            <ModalConfirmacion
+              tamañoPantalla={tamañoPantalla}
+              pressLinkButtonHandler={pressLinkButtonHandler}
+              promo={promos[0].pagos[cuotas]}
+              promoParametro={promos[0].links[cuotas]}
+            />
           </div>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }
