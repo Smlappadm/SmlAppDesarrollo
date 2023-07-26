@@ -141,7 +141,6 @@ export const DashboardFreelancer = () => {
   const downloadCSV = () => {
     const csv = Papa.unparse(leaderFreelancer);
 
-    // Crea un enlace de descarga
     const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
     const csvURL = URL.createObjectURL(csvData);
     const tempLink = document.createElement("a");
