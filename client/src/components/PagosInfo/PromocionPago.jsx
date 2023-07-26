@@ -16,7 +16,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [promocionActual, setPromocionActual] = useState(0);
   const dispatch = useDispatch();
   const { promociones } = useSelector((state) => state);
-
   const [promos, setPromos] = useState([]);
 
   const [cuotas, setCuotas] = useState("1");
