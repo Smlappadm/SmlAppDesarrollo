@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
-import { useClerk } from "@clerk/clerk-react";
+import { useClerk, useUser } from "@clerk/clerk-react";
 import logo from "../../Assets/smllogo.png";
 import {
   IoStatsChart,
@@ -16,6 +16,13 @@ function Nav() {
   const { signOut } = useClerk();
   const roleReady = localStorage.getItem("roleReady");
   const isEmployee = localStorage.getItem("isEmployeeReady");
+  const email = localStorage.getItem("email");
+  const photo = localStorage.getItem("photo");
+
+  const user = useUser().user;
+  const userEmail = email || user.emailAddresses[0].emailAddress;
+  const fullName = user.fullName;
+  const imageUrl = photo || user.imageUrl;
 
   const handleLogout = async () => {
     await signOut();
@@ -124,63 +131,6 @@ function Nav() {
                       </span>
                     </li>
                   </div>
-
-                  {/* <div>
-                    <h2>Freelance</h2>
-                    <li className="flex gap-2 items-center text-[18px]">
-                      <span className=" text-lg">
-                        <IoGrid className="text-[#e0dddd]" />
-                      </span>
-                      <span>
-                        <Link
-                          to="/clasificacion"
-                          className=" text-[#e0dddd] hover:text-white"
-                        >
-                          Clasificación
-                        </Link>
-                      </span>
-                    </li>
-                    <li className="flex gap-2 items-center text-[18px]">
-                      <span className=" text-lg">
-                        <IoGrid className="text-[#e0dddd]" />
-                      </span>
-                      <span>
-                        <Link
-                          to="/ventas-dashboard"
-                          className=" text-[#e0dddd] hover:text-white"
-                        >
-                          Ventas
-                        </Link>
-                      </span>
-                    </li>
-                    <li className="flex gap-2 items-center text-[18px]">
-                      <span className=" text-lg">
-                        <IoLogoSnapchat className="text-[#e0dddd]" />
-                      </span>
-                      <span>
-                        <Link
-                          to="/lideres-freelancer"
-                          className=" text-[#e0dddd] hover:text-white"
-                        >
-                          Historial
-                        </Link>
-                      </span>
-                    </li>
-
-                    <li className="flex gap-2 items-center text-[18px]">
-                      <span className=" text-lg">
-                        <IoSettingsSharp className="text-[#e0dddd]" />
-                      </span>
-                      <span>
-                        <Link
-                          to="/settings"
-                          className=" text-[#e0dddd] hover:text-white"
-                        >
-                          Settings
-                        </Link>
-                      </span>
-                    </li>
-                  </div> */}
                 </div>
               </ul>
             ) : roleReady === "vendedor" ? (
@@ -314,10 +264,22 @@ function Nav() {
         )}
       </div>
 
-      <div className="flex flex-col justify-center w-full items-center mb-5">
+      <div className="flex flex-col justify-center w-full items-start ml-5 mb-5">
+        <p className="text-[.7rem] text-white mb-2">{userEmail}</p>
+        <div className="flex gap-5 items-center justify-center">
+          <div className="flex flex-col gap-1">
+            <p className="text-[.7rem] text-white">{fullName}</p>
+          </div>
+          <div className="w-[40px] h-[40px]">
+            <img className="rounded-full" src={imageUrl} alt="avatar" />
+          </div>
+        </div>
         <Link to="/">
-          <button onClick={handleLogout} className={styles.boton}>
-            <IoExitOutline className={styles.icono} />
+          <button
+            onClick={handleLogout}
+            className={`flex items-center justify-center gap-2 ${styles.boton}`}
+          >
+            <IoExitOutline className={styles.icono} /> <p>Salir</p>
           </button>
         </Link>
       </div>
