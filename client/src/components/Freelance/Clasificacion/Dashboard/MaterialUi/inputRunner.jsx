@@ -11,7 +11,12 @@ import {
   getAllProfesion,
 } from "../../../../../redux/actions";
 
-export default function InputRunner({ getLeadClasificacion, email, names }) {
+export default function InputRunner({
+  getLeadClasificacion,
+  email,
+  names,
+  profesion,
+}) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [category, setCategory] = useState("");
