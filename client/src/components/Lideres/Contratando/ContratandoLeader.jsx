@@ -47,7 +47,7 @@ export const ContratandoLeader = () => {
 
   const dispatch = useDispatch();
 
-  const statusOk = (name) => {
+  const statusOk = (name, corredor, vendedor, freelancer) => {
     toast.success(`✔Cambio de estado a Contratado realizado ${name} ! `, {
       position: "top-center",
       autoClose: 2500,
@@ -59,9 +59,17 @@ export const ContratandoLeader = () => {
       theme: "dark",
     });
 
-    dispatch(
-      findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
-    );
+    console.log(corredor);
+    console.log(vendedor);
+    console.log(freelancer);
+
+    if (corredor === "" && vendedor === "" && freelancer === "") {
+      dispatch(getAllLeadAPagar());
+    } else {
+      dispatch(
+        findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
+      );
+    }
   };
 
   useEffect(() => {
@@ -79,7 +87,7 @@ export const ContratandoLeader = () => {
       pagoRecibido: true,
     });
 
-    statusOk(name);
+    statusOk(name, corredor, vendedor, freelancer);
   };
 
   const normalizeString = (str) => {
@@ -272,6 +280,7 @@ export const ContratandoLeader = () => {
               setVendedor={setVendedor}
               freelancer={freelancer}
               setFreelancer={setFreelancer}
+              getAllLeadAPagar={getAllLeadAPagar}
             />
           </div>
         </div>
