@@ -23,11 +23,7 @@ export default function InputName({
   setFreelancer,
 }) {
   const dispatch = useDispatch();
-  const [profesion, setProfesion] = useState("");
-  const [country, setCountry] = useState("");
-  const [level, setLevel] = useState("");
-  const [status, setStatus] = useState("");
-  const [freelancer, setFreelancer] = useState("");
+
   const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesion } = useSelector((state) => state);
