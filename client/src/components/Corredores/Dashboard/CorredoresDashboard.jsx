@@ -73,9 +73,9 @@ const CorredoresDashboard = () => {
           email,
           username,
           profesion,
-          category,
           country,
-          marca_personal
+          marca_personal,
+          category
         )
       );
     }
