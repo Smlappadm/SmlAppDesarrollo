@@ -34,7 +34,7 @@ const VentasDashboard = () => {
   const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
-  const body = { name: fullName, email: emailAddress };
+  const body = { email: emailAddress };
 
   useEffect(() => {
     dispatch(getLeadsLLamadaVenta(body));
