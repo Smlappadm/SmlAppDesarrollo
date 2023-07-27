@@ -49,6 +49,8 @@ export const Promociones = () => {
     }
   }, [promociones]);
 
+  console.log(promociones);
+
   return (
     <>
       <Nav />
@@ -102,35 +104,39 @@ export const Promociones = () => {
         </div>
         <div className="text-white  text-14 font-thin">
           <div className="flex rounded-lg items-center px-10 py-3 ">
-            <div className="flex  justify-center w-fit items-center p-0 ml-28">
+            <div className="flex  justify-center w-fit items-center p-0 ml-20">
               <Text className="text-start w-fit p-0 text-white">Promoción</Text>
             </div>
 
-            <div className="flex  justify-center w-fit items-center p-0 ml-96">
-              <Text className="text-center w-fit p-0 text-white">
+            <div className="flex  justify-center w-fit items-center p-0 ml-52">
+              <Text className="text-center w-[18rem] p-0 text-white">
                 Link de Stripe
               </Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-[13.5rem]">
-              <Text className="text-start w-fit p-0 text-white">
-                Horas de Promoción
-              </Text>
+            <div className="flex  justify-center w-fit items-center p-0 ml-[5.5rem]">
+              <Text className="text-start w-fit p-0 text-white">Horas</Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-10">
-              <Text className="text-center w-fit p-0 text-white">
+            <div className="flex  justify-center w-fit items-center p-0 ml-16">
+              <Text className="text-center w-24 p-0 text-white">
                 Monto Total
               </Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-[4.5rem]">
+            <div className="flex  justify-center w-fit items-center p-0 ml-16">
               <Text className="text-center w-fit p-0 text-white">Cuota</Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0  ml-[4.5rem]">
-              <Text className="text-center w-fit p-0 text-white">
+            <div className="flex  justify-center w-fit items-center p-0  ml-16">
+              <Text className="text-center w-24 p-0 text-white">
                 Valor Cuotas
               </Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-20">
+            <div className="flex  justify-center w-fit items-center p-0 ml-16">
+              <Text className="text-center w-fit p-0 text-white">Editores</Text>
+            </div>
+            <div className="flex  justify-center w-fit items-center p-0 ml-24">
               <Text className="text-center w-fit p-0 text-white">Estado</Text>
+            </div>
+            <div className="flex  justify-center w-fit items-center p-0 ml-20">
+              <Text className="text-center w-fit p-0 text-white">Editar</Text>
             </div>
           </div>
         </div>
@@ -138,7 +144,7 @@ export const Promociones = () => {
         {currentCard && currentCard.length > 0 ? (
           currentCard.map((item, index) => (
             <div key={index} className="w-full mt-4">
-              <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around px-10 py-3">
+              <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around px-5 py-1">
                 <div className="flex  justify-center items-center p-0 ">
                   <div className="w-64 flex justify-center items-center ">
                     <Text className=" text-white rounded-full">
@@ -148,7 +154,7 @@ export const Promociones = () => {
                 </div>
 
                 <div className="flex  justify-center items-center p-0">
-                  <div className="w-[32rem] text-ellipsis  flex justify-center items-center p-0 ">
+                  <div className="w-[22rem] text-ellipsis  flex justify-center items-center p-0 ">
                     <Text className="text-white">{item.promocion.link}</Text>
                   </div>
                 </div>
@@ -175,7 +181,14 @@ export const Promociones = () => {
                   </div>
                 </div>
                 <div className="flex  justify-center items-center p-0">
-                  <div className="w-28 flex justify-center items-center p-0 ">
+                  <div className="w-26 flex justify-center items-center p-0 ">
+                    <Text className="text-white">
+                      {item.promocion.edicion ? "Con Editores" : "Sin Editores"}
+                    </Text>
+                  </div>
+                </div>
+                <div className="flex  justify-center items-center p-0">
+                  <div className="w-20 flex justify-center items-center p-0 ">
                     <Text className="text-white">
                       {item.promocion.active ? "Activo" : "Inactivo"}
                     </Text>
