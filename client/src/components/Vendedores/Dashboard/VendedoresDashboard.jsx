@@ -262,6 +262,7 @@ const VendedoresDashboard = () => {
                     level={level}
                     setLevel={setLevel}
                     freelancer={freelancer}
+                    setFreelancer={setFreelancer}
                   />
                   const [profesion, setProfesion] = useState(""); const
                   [country, setCountry] = useState(""); const [level, setLevel]
