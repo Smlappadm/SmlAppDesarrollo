@@ -70,6 +70,10 @@ export default function PromocionPago({ tamañoPantalla }) {
     const promoSinEdicion = promociones.filter(
       (promo) => promo.edicion === false
     );
+    const promocionesEdit =
+      clienteEmpresa && clienteEmpresa.edicion === true
+        ? promoEdicion
+        : promoSinEdicion;
     const customPromos = promociones.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
