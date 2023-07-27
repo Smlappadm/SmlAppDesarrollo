@@ -24,6 +24,7 @@ export default function InputName({
   setVendedor,
   freelancer,
   setFreelancer,
+  getAllLeadAPagar,
 }) {
   const dispatch = useDispatch();
 
@@ -71,29 +72,8 @@ export default function InputName({
     setCorredor("");
     setVendedor("");
     setFreelancer("");
-    setFromDay("");
-    setToDay("");
-    setProfesion("");
-    setCategory("");
-    setCountry("");
-    setLevel("");
-    setStatus("");
 
-    dispatch(
-      findCorredoresByNameAllInfoSeguimiento(
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-      )
-    );
+    dispatch(getAllLeadAPagar("", "", ""));
   };
 
   return (
