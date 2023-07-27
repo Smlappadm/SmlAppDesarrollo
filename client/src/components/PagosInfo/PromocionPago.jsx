@@ -74,7 +74,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       clienteEmpresa && clienteEmpresa.edicion === true
         ? promoEdicion
         : promoSinEdicion;
-    const customPromos = promocionesEdit.reduce((result, promo) => {
+    const customPromos = promociones.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
         const cuota = promo.promocion.cuota || "default";
@@ -268,6 +268,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     } else if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(false);
     }
+    console.log(tiempoRestante);
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
