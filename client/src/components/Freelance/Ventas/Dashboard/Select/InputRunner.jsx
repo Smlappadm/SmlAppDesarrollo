@@ -14,12 +14,17 @@ export default function InputName({
   body,
   getLeadCheckedFreelance,
   emailAddress,
+  profesion,
+  setProfesion,
+  country,
+  setCountry,
+  level,
+  setLevel,
+  freelancer,
+  setFreelancer,
 }) {
   const dispatch = useDispatch();
-  const [profesion, setProfesion] = useState("");
-  const [country, setCountry] = useState("");
-  const [status, setStatus] = useState("");
-  const [freelancer, setFreelancer] = useState("");
+
   const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesionFreelance } = useSelector((state) => state);
@@ -39,29 +44,28 @@ export default function InputName({
     let value = event.target.value;
     setCountry(value);
   };
-  const handleChangeStatus = (event) => {
+  const handleChangeLevel = (event) => {
     let value = event.target.value;
-    setStatus(value);
+    setLevel(value);
   };
 
   //AGREGADO
   const handleChangeFreelancer = (event) => {
     setFreelancer(event.target.checked ? emailAddress : "");
-    setCheckFreelancer(!checkFreelancer)
+    setCheckFreelancer(!checkFreelancer);
   };
 
-
   const handleFilterClick = () => {
-    dispatch(getLeadCheckedFreelance(body, profesion, country, status, freelancer));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
   };
 
   const handleFilterReset = () => {
     dispatch(getLeadCheckedFreelance(body, "", ""));
     setCountry("");
     setProfesion("");
-    setStatus("");
+    setLevel("");
     setFreelancer("");
-    setCheckFreelancer(false)
+    setCheckFreelancer(false);
   };
 
   return (
@@ -159,8 +163,8 @@ export default function InputName({
         <div className="flex flex-col w-36">
           <label>Nivel:</label>
           <Select
-            value={status}
-            onChange={handleChangeStatus}
+            value={level}
+            onChange={handleChangeLevel}
             label=""
             id="runner"
             size="small"
@@ -195,7 +199,7 @@ export default function InputName({
             <label>Freelancer:</label>
           </div>
           <div>
-          <Checkbox
+            <Checkbox
               id="freelancer"
               checked={checkFreelancer}
               onClick={handleChangeFreelancer}

@@ -28,7 +28,11 @@ const VendedoresAgenda = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
-
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [status, setStatus] = useState("");
+  const [freelancer, setFreelancer] = useState("");
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
@@ -38,7 +42,9 @@ const VendedoresAgenda = () => {
   const body = { email: emailAddress };
 
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -56,7 +62,9 @@ const VendedoresAgenda = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   };
 
   //FILTER**********************
@@ -117,7 +125,9 @@ const VendedoresAgenda = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -143,7 +153,9 @@ const VendedoresAgenda = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   };
 
   const showObservacionesHandler = (observacion) => {
@@ -236,6 +248,16 @@ const VendedoresAgenda = () => {
                   getLeadCheckedInactive5={getLeadsLLamadaVenta}
                   body={body}
                   emailAddress={emailAddress}
+                  profesion={profesion}
+                  setProfesion={setProfesion}
+                  country={country}
+                  setCountry={setCountry}
+                  level={level}
+                  setLevel={setLevel}
+                  status={status}
+                  setStatus={setStatus}
+                  freelancer={freelancer}
+                  setFreelancer={setFreelancer}
                 />
               </motion.div>
             )}

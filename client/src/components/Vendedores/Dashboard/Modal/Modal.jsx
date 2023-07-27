@@ -217,6 +217,7 @@ function ChildModal({
       status_op: statusObj.status_op,
       linkActivado: false,
       pagos: statusObj.pagos,
+      edicion: statusObj.edicion,
       emailApp: updatedEmailApp,
       // vendedor: emailAddress,
       vendedor: emailAddress,
@@ -726,6 +727,7 @@ export default function NestedModal({
     setOpenTimeHour(false);
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     statusObj.pagos = {};
+    statusObj.edicion = false;
     const value = event.target.value;
     const property = event.target.name;
     if (value === "No responde" || value === "Sin contactar") {
@@ -1009,12 +1011,11 @@ export default function NestedModal({
     const property = event.target.name;
     setStatusObj({
       ...statusObj,
-      edicion: value
+      edicion: !statusObj.edicion,
     });
-    // setEditContacto(false);
   };
+  console.log(statusObj.edicion)
 
-  console.log(statusObj)
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1471,7 +1472,7 @@ export default function NestedModal({
                           name="edicion"
                           onChange={handleEdicionChange}
                           className="form-checkbox h-5 w-5 text-blue-500 rounded"
-                          value={true}
+                          value={statusObj.edicion}
                         />
                       </div>
                     )}

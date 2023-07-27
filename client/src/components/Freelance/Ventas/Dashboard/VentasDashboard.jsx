@@ -31,6 +31,10 @@ const VentasDashboard = () => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [freelancer, setFreelancer] = useState("");
 
   
   const user = useUser().user;
@@ -41,13 +45,12 @@ const VentasDashboard = () => {
 
   const body = { name: fullName, email: emailAddress };
 
-  const [profesion, setProfesion] = useState("");
-  const [country, setCountry] = useState("");
+
 
   useEffect(() => {
     dispatch(getAllProfesionFreelance(emailAddress));
     dispatch(getAllCountriesFreelance(emailAddress));
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -66,7 +69,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
   };
 
   const [levelValue, setLevelValue] = useState("");
@@ -103,7 +106,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -129,7 +132,7 @@ const VentasDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedFreelance(body, profesion, country));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
   };
 
   const funcionHorario = (horario) => {
@@ -196,6 +199,14 @@ const VentasDashboard = () => {
                 getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
                 emailAddress={emailAddress}
+                profesion={profesion}
+                setProfesion={setProfesion}
+                country={country}
+                setCountry={setCountry}
+                level={level}
+                setLevel={setLevel}
+                freelancer={freelancer}
+                setFreelancer={setFreelancer}
               />
             </motion.div>
           </div>
