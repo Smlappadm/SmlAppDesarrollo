@@ -48,6 +48,7 @@ const LeadSchema = new mongoose.Schema(
         "A pagar",
         "No responde",
         "Agenda llamada",
+        "En proceso",
         "Contactado",
         "incidencia",
         "discard",
@@ -73,6 +74,10 @@ const LeadSchema = new mongoose.Schema(
       require: true,
     },
     pagoRecibido: {
+      type: Boolean,
+      require: true,
+    },
+    edicion: {
       type: Boolean,
       require: true,
     },
