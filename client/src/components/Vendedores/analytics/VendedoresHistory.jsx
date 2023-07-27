@@ -416,6 +416,7 @@ const VendedoresHistory = () => {
               level={level}
               setLevel={setLevel}
               status={status}
+              setStatus={setStatus}
             />{" "}
             const [fromDay, setFromDay] = useState(""); const [toDay, setToDay]
             = useState(""); const [profesion, setProfesion] = useState("");
