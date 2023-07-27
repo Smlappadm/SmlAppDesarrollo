@@ -22,6 +22,7 @@ export default function InputRunner({
   setProfesion,
   setCategory,
   setCountry,
+  setMarca_personal,
 }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
