@@ -256,6 +256,10 @@ const LeadSchema = new mongoose.Schema(
       type: Date,
       require: true,
     },
+    updateEnProceso: {
+      type: Date,
+      require: true,
+    },
     deleted: {
       type: Boolean,
       require: true,
