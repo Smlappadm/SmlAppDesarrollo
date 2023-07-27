@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { filterLevel, getVendedorAllLeads } from "../../../redux/actions";
+import {
+  filterLevel,
+  findVendedoresByNameAllInfo,
+  getVendedorAllLeads,
+} from "../../../redux/actions";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
@@ -85,7 +89,18 @@ const VendedoresHistory = () => {
     });
   };
   const cancelModal = () => {
-    dispatch(getVendedorAllLeads(email));
+    dispatch(
+      findVendedoresByNameAllInfo(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   };
   //----------------------------------
 
