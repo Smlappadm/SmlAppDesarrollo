@@ -28,6 +28,11 @@ const VentasDashboard = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [status, setStatus] = useState("");
+  const [freelancer, setFreelancer] = useState("");
 
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
@@ -176,7 +181,7 @@ const VentasDashboard = () => {
 
     return fechaHoraLocal;
   };
-  
+
   return (
     <>
       <Nav />
@@ -225,7 +230,7 @@ const VentasDashboard = () => {
             ) : (
               ""
             )}
-                        {!openModalPago && (
+            {!openModalPago && (
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -236,6 +241,16 @@ const VentasDashboard = () => {
                   getLeadCheckedInactive5={getLeadsLLamadaVenta}
                   body={body}
                   emailAddress={emailAddress}
+                  profesion={profesion}
+                  setProfesion={setProfesion}
+                  country={country}
+                  setCountry={setCountry}
+                  level={level}
+                  setLevel={setLevel}
+                  status={status}
+                  setStatus={setStatus}
+                  freelancer={freelancer}
+                  setFreelancer={setFreelancer}
                 />
               </motion.div>
             )}
@@ -320,23 +335,23 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[13%] flex justify-center items-center p-0 ">
-                        <div className="flex w-44 justify-start items-center gap-2 relative">
+                          <div className="flex w-44 justify-start items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
                               className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                               {item.telephone}
                             </p>
-                            </div>
-                            <a
-                              href={`http://wa.me/${item.telephone.replace(
-                                /\s+/g,
-                                ""
-                              )}`}
-                              target="blanck"
-                            >
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
-                            </a>
+                          </div>
+                          <a
+                            href={`http://wa.me/${item.telephone.replace(
+                              /\s+/g,
+                              ""
+                            )}`}
+                            target="blanck"
+                          >
+                            <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                          </a>
                         </div>
                         <div className=" w-[5%] flex justify-center items-start p-0">
                           {item.level !== "incidencia" ? (
@@ -385,18 +400,20 @@ const VentasDashboard = () => {
                             )}
                           </div> */}
                           <div className=" flex justify-center items-center">
-                            {item.status === "Agenda llamada"  && item.llamada_venta?.dia_hora[0] !== "u" && (
-                              <p className=" w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                {item.llamada_venta.dia_hora}
-                              </p>
-                            )} 
-                             {item.status === "Agenda llamada"  && item.llamada_venta?.dia_hora[0] === "u" && (
-                              <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                Sin Día/Hora
-                              </p>
-                            )}
+                            {item.status === "Agenda llamada" &&
+                              item.llamada_venta?.dia_hora[0] !== "u" && (
+                                <p className=" w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  {item.llamada_venta.dia_hora}
+                                </p>
+                              )}
+                            {item.status === "Agenda llamada" &&
+                              item.llamada_venta?.dia_hora[0] === "u" && (
+                                <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  Sin Día/Hora
+                                </p>
+                              )}
                           </div>
-                   
+
                           {item.status === "No responde" && (
                             // <div className="bg-[#2148b4] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl">
                             <label className="text-[14px]">
@@ -404,7 +421,6 @@ const VentasDashboard = () => {
                             </label>
                             // </div>
                           )}
-                 
 
                           {/* <AiOutlineInfoCircle
                             className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer "
@@ -416,41 +432,41 @@ const VentasDashboard = () => {
                           /> */}
                         </div>
                         <div className=" w-[15%] flex justify-center items-start p-0">
-                        {item.status === "Contratado" && (
-                          <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Contratado
-                          </p>
-                        )}
-                        {item.status === "No responde" && (
-                          <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Sin contestar
-                          </p>
-                        )}
-                        {item.status === "Rechazado" && (
-                          <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
-                            Rechazado
-                          </p>
-                        )}
-                        {item.status === "Agenda llamada" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Agenda llamada</p>
-                          </div>
-                        )}
-                        {item.status === "En proceso" && (
-                          <div className="bg-[#d87e17] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>En proceso</p>
-                          </div>
-                        )}
-                        {item.status === "Contactado" && (
-                          <div className="bg-[#42ac9a] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contactado</p>
-                          </div>
-                        )}
-                        {item.level === "incidencia" && (
-                          <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
-                            Incidencia
-                          </p>
-                        )}
+                          {item.status === "Contratado" && (
+                            <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                              Contratado
+                            </p>
+                          )}
+                          {item.status === "No responde" && (
+                            <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                              Sin contestar
+                            </p>
+                          )}
+                          {item.status === "Rechazado" && (
+                            <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                              Rechazado
+                            </p>
+                          )}
+                          {item.status === "Agenda llamada" && (
+                            <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                              <p>Agenda llamada</p>
+                            </div>
+                          )}
+                          {item.status === "En proceso" && (
+                            <div className="bg-[#d87e17] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                              <p>En proceso</p>
+                            </div>
+                          )}
+                          {item.status === "Contactado" && (
+                            <div className="bg-[#42ac9a] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                              <p>Contactado</p>
+                            </div>
+                          )}
+                          {item.level === "incidencia" && (
+                            <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
+                              Incidencia
+                            </p>
+                          )}
                         </div>
                         <div className=" w-[9%] flex justify-center items-start p-0 gap-3">
                           <ModalObservaciones item={item} />
