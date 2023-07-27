@@ -1493,6 +1493,7 @@ export default function NestedModal({
                       Elige uno...
                     </option>
                     <option value="Agendar otro llamado">Agenda llamada</option>
+                    <option value="En proceso">En proceso</option>
                     {/* <option value="Contratando">Contratando</option> */}
                     <option value="A pagar">A pagar</option>
                     <option value="Rechazado">Rechazado</option>
