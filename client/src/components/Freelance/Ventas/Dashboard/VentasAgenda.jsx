@@ -43,7 +43,7 @@ const VentasDashboard = () => {
   const body = { email: emailAddress };
 
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
   };
 
   //FILTER**********************
@@ -122,7 +122,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -148,7 +148,7 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
   };
 
   const showObservacionesHandler = (observacion) => {
