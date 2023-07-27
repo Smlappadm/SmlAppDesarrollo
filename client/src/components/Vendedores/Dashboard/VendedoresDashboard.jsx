@@ -54,7 +54,9 @@ const VendedoresDashboard = () => {
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -73,7 +75,9 @@ const VendedoresDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   };
 
   const [levelValue, setLevelValue] = useState("");
@@ -116,7 +120,9 @@ const VendedoresDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -142,7 +148,9 @@ const VendedoresDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   };
 
   const funcionHorario = (horario) => {
