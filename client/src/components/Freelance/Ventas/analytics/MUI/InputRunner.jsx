@@ -6,17 +6,32 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "@clerk/clerk-react";
-import { getAllProfesion, getAllCountries, getAllCategory, findVendedoresByNameAllInfo} from "../../../../../redux/actions";
+import {
+  getAllProfesion,
+  getAllCountries,
+  getAllCategory,
+  findVendedoresByNameAllInfo,
+} from "../../../../../redux/actions";
 
-export default function InputRunner({getVendedorAllLeads, emailUser}) {
+export default function InputRunner({
+  getVendedorAllLeads,
+  emailUser,
+  fromDay,
+  setFromDay,
+  toDay,
+  setToDay,
+  profesion,
+  setProfesion,
+  category,
+  setCategory,
+  country,
+  setCountry,
+  level,
+  setLevel,
+  status,
+  setStatus,
+}) {
   const dispatch = useDispatch();
-  const [fromDay, setFromDay] = useState("");
-  const [toDay, setToDay] = useState("");
-  const [profesion, setProfesion] = useState("");
-  const [category, setCategory] = useState("");
-  const [country, setCountry] = useState("");
-  const [level, setLevel] = useState("");
-  const [status, setStatus] = useState("");
 
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
@@ -89,9 +104,7 @@ export default function InputRunner({getVendedorAllLeads, emailUser}) {
     setCountry("");
     setLevel("");
     setStatus("");
-    dispatch(
-    getVendedorAllLeads(emailUser,"", "", "", "", "", "", "")
-    )
+    dispatch(getVendedorAllLeads(emailUser, "", "", "", "", "", "", ""));
   };
 
   return (
