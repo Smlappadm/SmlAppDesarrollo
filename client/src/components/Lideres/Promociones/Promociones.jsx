@@ -49,6 +49,8 @@ export const Promociones = () => {
     }
   }, [promociones]);
 
+  console.log(promociones);
+
   return (
     <>
       <Nav />
@@ -181,7 +183,7 @@ export const Promociones = () => {
                 <div className="flex  justify-center items-center p-0">
                   <div className="w-26 flex justify-center items-center p-0 ">
                     <Text className="text-white">
-                      {item.promocion.edicion ? "Con Editores" : "Con Editores"}
+                      {item.promocion.edicion ? "Con Editores" : "Sin Editores"}
                     </Text>
                   </div>
                 </div>
