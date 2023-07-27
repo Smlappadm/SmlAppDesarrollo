@@ -44,9 +44,9 @@ export default function InputName({
     let value = event.target.value;
     setCountry(value);
   };
-  const handleChangeStatus = (event) => {
+  const handleChangeLevel = (event) => {
     let value = event.target.value;
-    setStatus(value);
+    setLevel(value);
   };
 
   //AGREGADO
@@ -57,14 +57,14 @@ export default function InputName({
 
 
   const handleFilterClick = () => {
-    dispatch(getLeadCheckedFreelance(body, profesion, country, status, freelancer));
+    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
   };
 
   const handleFilterReset = () => {
     dispatch(getLeadCheckedFreelance(body, "", ""));
     setCountry("");
     setProfesion("");
-    setStatus("");
+    setLevel("");
     setFreelancer("");
     setCheckFreelancer(false)
   };
@@ -164,8 +164,8 @@ export default function InputName({
         <div className="flex flex-col w-36">
           <label>Nivel:</label>
           <Select
-            value={status}
-            onChange={handleChangeStatus}
+            value={level}
+            onChange={handleChangeLevel}
             label=""
             id="runner"
             size="small"
