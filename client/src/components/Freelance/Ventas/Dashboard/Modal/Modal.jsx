@@ -1515,14 +1515,15 @@ export default function NestedModal({
                           defaultValue={
                             statusObj.status_op ? statusObj.status_op : "default"
                           }
-                          className="mt-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          className="w-60 mt-3 mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >
                           <option disabled="disabled" value="default">
                             Elige uno...
                           </option>
-                          <option value="Sin dinero">Sin Dinero</option>
-                          <option value="Sin interes">Sin Interes</option>
-                          <option value="Otro servicio">Otro Servicio</option>
+                          <option value="Falta de presupuesto">Falta de presupuesto</option>
+                          <option value="Sin interes">Sin interes</option>
+                          <option value="Otro servicio similar">Otro servicio similar</option>
+                          <option value="Otros motivos">Otros motivos</option>
                         </select>
                       </div>
                     )}
