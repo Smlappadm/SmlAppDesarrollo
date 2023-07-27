@@ -266,13 +266,13 @@ function Nav() {
       </div>
 
       <div className="flex flex-col justify-center w-full items-start ml-5 mb-5">
-        <p className="text-[.7rem] text-white mb-2">{userEmail}</p>
-        <div className="flex gap-5 items-center justify-center">
-          <div className="flex flex-col gap-1">
-            <p className="text-[.7rem] text-white">{fullName}</p>
-          </div>
-          <div className="w-[40px] h-[40px]">
+        <div className="flex flex-col gap-2 items-center justify-center">
+          <div className="w-16 h-16">
             <img className="rounded-full" src={imageUrl} alt="avatar" />
+          </div>
+          <div className="flex flex-col gap-1 mb-2">
+            <p className="text-[.7rem] text-white">{userEmail}</p>
+            <p className="text-[.7rem] text-white">{fullName}</p>
           </div>
         </div>
         <Link to="/">
