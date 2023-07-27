@@ -45,13 +45,14 @@ export default function ActualizarPromocion({ item }) {
 
   const [promocion, setPromocion] = React.useState({
     name: "",
-    hora: "",
+    hora: 0,
     link: "",
-    cuota: "",
-    monto: "",
-    valorCuota: "",
-    descuento: "",
-    active: "",
+    cuota: 0,
+    monto: 0,
+    valorCuota: 0,
+    descuento: 0,
+    active: false,
+    edicion: false,
   });
 
   React.useEffect(() => {
@@ -65,6 +66,7 @@ export default function ActualizarPromocion({ item }) {
       valorCuota: item.promocion.valorCuota,
       descuento: item.promocion.descuento,
       active: item.promocion.active,
+      edicion: item.promocion.edicion,
     });
   }, [item]);
 
@@ -91,6 +93,9 @@ export default function ActualizarPromocion({ item }) {
       newValue = event.target.value;
     } else if (property === "active") {
       newValue = !promocion.active;
+    } else if (property === "edicion") {
+      newValue = !promocion.edicion;
+      console.log(!promocion.edicion, newValue, "dentro de edicion");
     } else {
       newValue = event.target.value;
     }
@@ -126,8 +131,9 @@ export default function ActualizarPromocion({ item }) {
       theme: "dark",
     });
   };
-
+console.log(promocion);
   const actualizarPromocion = async () => {
+    console.log("PUT",promocion);
     await axios.put(`/promociones/${item._id}`, promocion);
     dispatch(getAllPromociones());
     updatePromocion();
@@ -293,6 +299,17 @@ export default function ActualizarPromocion({ item }) {
             label={`Estado de la Promoción: ${
               item.promocion.active === true ? " Activa " : " Inactiva "
             }`}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={promocion.edicion}
+                onChange={(e) => handleChange(e, "edicion")}
+                color="primary"
+                size="large"
+              />
+            }
+            label={`Promocion con Editores`}
           />
           <div className="flex gap-5 justify-center items-center">
             <Button
