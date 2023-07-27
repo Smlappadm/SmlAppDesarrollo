@@ -16,6 +16,7 @@ export default function InputRunner({
   email,
   names,
   profesion,
+  category,
 }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
