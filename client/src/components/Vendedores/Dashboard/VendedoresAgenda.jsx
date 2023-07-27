@@ -249,6 +249,7 @@ const VendedoresAgenda = () => {
                   status={status}
                   setStatus={setStatus}
                   freelancer={freelancer}
+                  setFreelancer={setFreelancer}
                 />
                 const [profesion, setProfesion] = useState(""); const [country,
                 setCountry] = useState(""); const [level, setLevel] =
