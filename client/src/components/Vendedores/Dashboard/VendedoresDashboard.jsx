@@ -49,8 +49,6 @@ const VendedoresDashboard = () => {
   let emailAddress = localStorage.getItem("email");
   const body = { name: fullName, email: emailAddress };
 
-  const notify = () => toast("Here is your toast.");
-
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
