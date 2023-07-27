@@ -52,9 +52,8 @@ export default function InputName({
   //AGREGADO
   const handleChangeFreelancer = (event) => {
     setFreelancer(event.target.checked ? emailAddress : "");
-    setCheckFreelancer(!checkFreelancer)
+    setCheckFreelancer(!checkFreelancer);
   };
-
 
   const handleFilterClick = () => {
     dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
@@ -66,7 +65,7 @@ export default function InputName({
     setProfesion("");
     setLevel("");
     setFreelancer("");
-    setCheckFreelancer(false)
+    setCheckFreelancer(false);
   };
 
   return (
@@ -200,7 +199,7 @@ export default function InputName({
             <label>Freelancer:</label>
           </div>
           <div>
-          <Checkbox
+            <Checkbox
               id="freelancer"
               checked={checkFreelancer}
               onClick={handleChangeFreelancer}
