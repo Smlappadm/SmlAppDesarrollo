@@ -377,7 +377,16 @@ const ClasificacionDashboard = () => {
         }
       }
 
-      dispatch(getLeadClasificacion(email, username, "", "", "", ""));
+      dispatch(
+        getLeadClasificacion(
+          email,
+          username,
+          profesion,
+          country,
+          marca_personal,
+          category
+        )
+      );
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
