@@ -56,16 +56,14 @@ export default function InputName({
   };
 
   const handleFilterClick = () => {
-    dispatch(
-      getLeadCheckedFreelance(body, profesion, country, level, freelancer)
-    );
+    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
   };
 
   const handleFilterReset = () => {
     dispatch(getLeadCheckedFreelance(body, "", ""));
     setCountry("");
     setProfesion("");
-    setStatus("");
+    setLevel("");
     setFreelancer("");
     setCheckFreelancer(false);
   };
