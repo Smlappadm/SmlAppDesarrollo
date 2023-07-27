@@ -243,6 +243,7 @@ function ChildModal({
       status_op: statusObj.status_op,
       linkActivado: false,
       pagos: statusObj.pagos,
+      edicion: statusObj.edicion,
       emailApp: updatedEmailApp,
       llamados: item.llamados,
       llamada_venta: statusObj.llamada_venta,
@@ -757,6 +758,7 @@ export default function NestedModal({
       setFlagPago(true);
     }
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+    statusObj.edicion = false;
     statusObj.pagos = {};
     if (value === "No responde" || value === "Sin contactar") {
       setStatusObj({
@@ -1068,12 +1070,10 @@ export default function NestedModal({
     const property = event.target.name;
     setStatusObj({
       ...statusObj,
-      edicion: value
+      edicion: !statusObj.edicion,
     });
-    // setEditContacto(false);
   };
 
-  console.log(statusObj)
 
   return (
     <div className="">
