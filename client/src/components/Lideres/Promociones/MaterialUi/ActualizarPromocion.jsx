@@ -95,7 +95,6 @@ export default function ActualizarPromocion({ item }) {
       newValue = !promocion.active;
     } else if (property === "edicion") {
       newValue = !promocion.edicion;
-      console.log(!promocion.edicion, newValue, "dentro de edicion");
     } else {
       newValue = event.target.value;
     }
