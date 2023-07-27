@@ -13,6 +13,7 @@ export default function InputName({
   emailAddress,
   profesion,
   setProfesion,
+  country,
 }) {
   const dispatch = useDispatch();
   profesion = { profesion };
