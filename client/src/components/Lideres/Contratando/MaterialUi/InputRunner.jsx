@@ -15,24 +15,19 @@ import {
   getVendedor,
 } from "../../../../redux/actions";
 
-export default function InputName({ name, setName }) {
+export default function InputName({
+  name,
+  setName,
+  corredor,
+  setCorredor,
+  vendedor,
+  setVendedor,
+  freelancer,
+  setFreelancer,
+}) {
   const dispatch = useDispatch();
-  const [corredor, setCorredor] = useState("");
-  const [vendedor, setVendedor] = useState("");
-  const [freelancer, setFreelancer] = useState("");
-  const [fromDay, setFromDay] = useState("");
-  const [toDay, setToDay] = useState("");
-  const [profesion, setProfesion] = useState("");
-  const [category, setCategory] = useState("");
-  const [country, setCountry] = useState("");
-  const [level, setLevel] = useState("");
-  const [status, setStatus] = useState("");
-  const [descargados, setDescargados] = useState(true);
 
   const { allCorredores } = useSelector((state) => state);
-  const { allProfesion } = useSelector((state) => state);
-  const { allCategory } = useSelector((state) => state);
-  const { allCountries } = useSelector((state) => state);
   const { allVendedores } = useSelector((state) => state);
   const { allFreelancer } = useSelector((state) => state);
 
@@ -60,60 +55,14 @@ export default function InputName({ name, setName }) {
     setFreelancer(value);
   };
 
-  const handleFromDay = (event) => {
-    setFromDay(event.target.value);
-  };
-  const handleToDay = (event) => {
-    setToDay(event.target.value);
-  };
-
-  const handleChangeProfesion = (event) => {
-    let value = event.target.value;
-    setProfesion(value);
-  };
-
-  const handleChangeCategory = (event) => {
-    let value = event.target.value;
-    setCategory(value);
-  };
-
-  const handleChangeCountries = (event) => {
-    let value = event.target.value;
-    setCountry(value);
-  };
-
-  const handleChangeLevel = (event) => {
-    let value = event.target.value;
-    setLevel(value);
-  };
-
-  const handleChangeStatus = (event) => {
-    let value = event.target.value;
-    setStatus(value);
-  };
-
-  const handleChangeDescargados = (event) => {
-    setDescargados(event.target.checked ? false : true);
-  };
-
   const handleChangeName = (event) => {
     let value = event.target.value;
     setName(value);
   };
 
-
   const handleFilterClick = () => {
-    
-    console.log(corredor);
-    console.log(vendedor);
-    console.log(freelancer);
-
     dispatch(
-      findCorredoresByNameAllInfoSeguimiento(
-        corredor,
-        vendedor,
-        freelancer,
-      )
+      findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
     );
   };
 
