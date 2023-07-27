@@ -66,7 +66,15 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
 
   useEffect(() => {
-    const customPromos = promociones.reduce((result, promo) => {
+    const promoEdicion = promociones.filter((promo) => promo.edicion === true);
+    const promoSinEdicion = promociones.filter(
+      (promo) => promo.edicion === false
+    );
+    const promocionesEdit =
+      clienteEmpresa && clienteEmpresa.edicion === true
+        ? promoEdicion
+        : promoSinEdicion;
+    const customPromos = promocionesEdit.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
         const cuota = promo.promocion.cuota || "default";
