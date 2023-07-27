@@ -21,7 +21,6 @@ export default function InputName({
   setFreelancer,
 }) {
   const dispatch = useDispatch();
-
   const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesion } = useSelector((state) => state);
@@ -41,7 +40,7 @@ export default function InputName({
     let value = event.target.value;
     setCountry(value);
   };
-  const handleChangeStatus = (event) => {
+  const handleChangeLevel = (event) => {
     let value = event.target.value;
     setLevel(value);
   };
@@ -163,7 +162,7 @@ export default function InputName({
           <label>Nivel:</label>
           <Select
             value={level}
-            onChange={handleChangeStatus}
+            onChange={handleChangeLevel}
             label=""
             id="runner"
             size="small"
