@@ -14,6 +14,8 @@ import {
   setFromDay,
   toDay,
   setToDay,
+  profesion,
+  setProfesion,
 } from "../../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
