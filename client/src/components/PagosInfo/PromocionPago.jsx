@@ -270,7 +270,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     } else if (todasPromocionesCeroFilter) {
       setTodasPromocionesCero(false);
     }
-    console.log(tiempoRestante);
   }, [tiempoRestante]);
 
   const pressLinkButtonHandler = async (linkDePago) => {
