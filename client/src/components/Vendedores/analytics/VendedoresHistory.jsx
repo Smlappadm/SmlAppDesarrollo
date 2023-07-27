@@ -417,12 +417,7 @@ const VendedoresHistory = () => {
               setLevel={setLevel}
               status={status}
               setStatus={setStatus}
-            />{" "}
-            const [fromDay, setFromDay] = useState(""); const [toDay, setToDay]
-            = useState(""); const [profesion, setProfesion] = useState("");
-            const [category, setCategory] = useState(""); const [country,
-            setCountry] = useState(""); const [level, setLevel] = useState("");
-            const [status, setStatus] = useState("");
+            />
           </motion.div>
 
           {currentCard && currentCard.length ? (
