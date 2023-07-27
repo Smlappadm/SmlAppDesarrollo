@@ -12,6 +12,7 @@ export default function InputName({
   getLeadCheckedInactive5,
   emailAddress,
   profesion,
+  setProfesion,
 }) {
   const dispatch = useDispatch();
   profesion = { profesion };
