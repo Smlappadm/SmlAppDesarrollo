@@ -14,12 +14,17 @@ export default function InputName({
   body,
   getLeadCheckedFreelance,
   emailAddress,
+  profesion
+  setProfesion
+  country
+  setCountry
+  level
+  setLevel
+  freelancer
+  setFreelancer
 }) {
   const dispatch = useDispatch();
-  const [profesion, setProfesion] = useState("");
-  const [country, setCountry] = useState("");
-  const [status, setStatus] = useState("");
-  const [freelancer, setFreelancer] = useState("");
+
   const [checkFreelancer, setCheckFreelancer] = useState(false);
 
   const { allProfesionFreelance } = useSelector((state) => state);
