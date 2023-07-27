@@ -8,7 +8,8 @@ const getVendedorVentasByEmail = async (body) => {
   // Buscar todos los leads en la base de datos donde el campo "vendedor" coincide con el correo electrónico proporcionado
   // y el campo "status" es igual a "Agenda llamada"
   let leadsAgenda = [];
-  let leads = [];
+  let leadsContactado = [];
+  let leadsEnProceso = [];
   let leadsNoResponde = [];
   
   let leadQuery = {
