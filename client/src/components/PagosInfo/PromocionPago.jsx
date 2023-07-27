@@ -75,7 +75,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     console.log(promociones);
     console.log(promoEdicion);
     console.log(promoSinEdicion);
-
+    console.log(clienteEmpresa && clienteEmpresa.edicion);
     const promocionesEdit =
       clienteEmpresa && clienteEmpresa.edicion === true
         ? promoEdicion
