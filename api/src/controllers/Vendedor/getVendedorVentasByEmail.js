@@ -36,7 +36,10 @@ if(body.status === "Agenda llamada"){
   leadsAgenda = await Lead.find(leadQuery);
 } else if((body.status === "Contactado")){
   // leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
-  leads = await Lead.find(leadQuery);
+  leadsContactado = await Lead.find(leadQuery);
+} else if((body.status === "En proceso")){
+  // leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
+  leadsEnProceso = await Lead.find(leadQuery);
 }else if((body.status === "No responde")){
   // leadsNoResponde = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"No responde"});
   leadsNoResponde = await Lead.find(leadQuery);
@@ -44,7 +47,9 @@ if(body.status === "Agenda llamada"){
   leadQuery["status"] = "Agenda llamada";
   leadsAgenda = await Lead.find(leadQuery);
   leadQuery["status"] = "Contactado";
-  leads = await Lead.find(leadQuery);
+  leadsContactado = await Lead.find(leadQuery);
+  leadQuery["status"] = "En proceso";
+  leadsEnProceso = await Lead.find(leadQuery);
   leadQuery["status"] = "No responde";
   leadsNoResponde = await Lead.find(leadQuery);
 
@@ -112,7 +117,7 @@ if(body.status === "Agenda llamada"){
 
   // Devolver el resultado de la consulta (los leads de ventas ordenados por fecha de llamada de venta)
   // return sortClients;
-  return [...leadsAgendaSorted, ...leads, ...leadsNoRespondenSorted];
+  return [...leadsAgendaSorted, ...leadsContactado, ...leadsEnProceso, ...leadsNoRespondenSorted];
 };
 
 // Exportar la función para que pueda ser utilizada en otros módulos
