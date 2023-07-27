@@ -60,7 +60,7 @@ function Landing() {
 
   let email = localStorage.getItem("email");
 
-  const username = corredor.name;
+  const username = corredor && corredor.name;
 
   useEffect(() => {
     if (userEmail !== undefined) {
