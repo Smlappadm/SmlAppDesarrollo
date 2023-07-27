@@ -703,6 +703,7 @@ export default function NestedModal({
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     emailApp: "",
+    edicion: false,
     pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
@@ -1061,6 +1062,18 @@ export default function NestedModal({
     }
     setEditContacto(false);
   };
+
+  const handleEdicionChange = (event) => {
+    const value = event.target.value;
+    const property = event.target.name;
+    setStatusObj({
+      ...statusObj,
+      edicion: value
+    });
+    // setEditContacto(false);
+  };
+
+  console.log(statusObj)
 
   return (
     <div className="">
@@ -1522,10 +1535,17 @@ export default function NestedModal({
                   </select>
                   <div className="flex flex-col items-center justify-start mt-3">
                   {statusObj.status === "A pagar" && (
-              <div className="flex justify-center items-center">
-                <h1>ssssssssssssssssssssssssssss</h1>
-              </div>
-            )}
+                      <div className="flex justify-center items-center mt-5 mb-10 gap-7">
+                        <label className="inline-flex items-center text-white text-18">Con edición</label>
+                        <input
+                          type="checkbox"
+                          name="edicion"
+                          onChange={handleEdicionChange}
+                          className="form-checkbox h-5 w-5 text-blue-500 rounded"
+                          value={true}
+                        />
+                      </div>
+                    )}
                     {statusObj.status === "Rechazado" && (
                       <div className="flex flex-col justify-center items-center">
                         <label
