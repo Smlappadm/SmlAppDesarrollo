@@ -14,7 +14,7 @@ import ModalObservaciones from "../Dashboard/Modal/ModalObservaciones";
 import { ToastContainer, toast } from "react-toastify";
 
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
-import { filterLevel, getVendedorAllLeads } from "../../../../redux/actions";
+import { filterLevel, findVendedoresByNameAllInfo, getVendedorAllLeads } from "../../../../redux/actions";
 import InputRunner from "./MUI/InputRunner";
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
@@ -34,6 +34,14 @@ const VentasHistory = () => {
   const [filterSector, setFilterSector] = useState("");
   const [filterPais, setFilterPais] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
+
+  const [fromDay, setFromDay] = useState("");
+  const [toDay, setToDay] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [category, setCategory] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [status, setStatus] = useState("");
 
   //copia para ver que onda
   localStorage.setItem("email", email);
@@ -77,14 +85,44 @@ const VentasHistory = () => {
       progress: undefined,
       theme: "dark",
     });
+    dispatch(
+      findVendedoresByNameAllInfo(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   };
   const cancelModal = () => {
-    dispatch(getVendedorAllLeads(email));
+    dispatch(
+      findVendedoresByNameAllInfo(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   };
   //----------------------------------
 
   useEffect(() => {
-    dispatch(getVendedorAllLeads(email));
+    dispatch(getVendedorAllLeads(        email,
+      fromDay,
+      toDay,
+      profesion,
+      country,
+      category,
+      level,
+      status));
   }, [dispatch, email]);
   useEffect(() => {
     vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
@@ -142,7 +180,14 @@ const VentasHistory = () => {
     setData(leadsFilteredName);
 
     if (event.target.value === "") {
-      dispatch(getVendedorAllLeads(email));
+      dispatch(getVendedorAllLeads(        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status));
     }
   };
 
@@ -375,6 +420,20 @@ const VentasHistory = () => {
             <InputRunner
               getVendedorAllLeads={getVendedorAllLeads}
               emailUser={email}
+              fromDay={fromDay}
+              setFromDay={setFromDay}
+              toDay={toDay}
+              setToDay={setToDay}
+              profesion={profesion}
+              setProfesion={setProfesion}
+              category={category}
+              setCategory={setCategory}
+              country={country}
+              setCountry={setCountry}
+              level={level}
+              setLevel={setLevel}
+              status={status}
+              setStatus={setStatus}
             />
           </motion.div>
 

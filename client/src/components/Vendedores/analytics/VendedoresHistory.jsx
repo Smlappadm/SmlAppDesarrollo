@@ -87,6 +87,18 @@ const VendedoresHistory = () => {
       progress: undefined,
       theme: "dark",
     });
+    dispatch(
+      findVendedoresByNameAllInfo(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   };
   const cancelModal = () => {
     dispatch(
