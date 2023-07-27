@@ -58,15 +58,15 @@ export default function ActualizarPromocion({ item }) {
   React.useEffect(() => {
     setPromocion({
       ...promocion,
-      name: item.promocion.name,
-      hora: item.promocion.hora,
-      link: item.promocion.link,
-      cuota: item.promocion.cuota,
-      monto: item.promocion.monto,
-      valorCuota: item.promocion.valorCuota,
-      descuento: item.promocion.descuento,
-      active: item.promocion.active,
-      edicion: item.promocion.edicion,
+      name: item.promocion.name || "",
+      hora: item.promocion.hora || 0,
+      link: item.promocion.link || "",
+      cuota: item.promocion.cuota || 0,
+      monto: item.promocion.monto || 0,
+      valorCuota: item.promocion.valorCuota || 0,
+      descuento: item.promocion.descuento || 0,
+      active: item.promocion.active || false,
+      edicion: item.promocion.edicion || false,
     });
   }, [item]);
 
