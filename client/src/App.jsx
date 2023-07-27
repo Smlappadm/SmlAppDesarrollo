@@ -9,7 +9,7 @@ import { AnalyticLeader } from "./components/Lideres/Analytic/AnalyticLeader";
 import { DashboardFreelancer } from "./components/Lideres/Dashboard/DashboardFreelancer";
 import VendedoresHistory from "./components/Vendedores/analytics/VendedoresHistory";
 import VendedoresAnalytics from "./components/Vendedores/analytics/VendedoresAnalytics";
-import VentasDasboard from "./components/Vendedores/Dashboard/VentasDashboard";
+import VendedoresAgenda from "./components/Vendedores/Dashboard/VendedoresAgenda";
 import ReturnToPage from "./components/ReturnToPage/ReturnToPage";
 import Lideres from "./components/Lideres/Lideres";
 import {
@@ -538,7 +538,7 @@ function ClerkProviderWithRoutes() {
                 roleReady === "leader" ||
                 roleReady === "vendedor") &&
               isEmployeeReady ? (
-                <VentasDasboard />
+                <VendedoresAgenda />
               ) : (
                 <ReturnToPage />
               )
