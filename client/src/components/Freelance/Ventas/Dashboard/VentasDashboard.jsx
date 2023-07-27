@@ -31,6 +31,10 @@ const VentasDashboard = () => {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [freelancer, setFreelancer] = useState("");
 
   
   const user = useUser().user;
@@ -196,6 +200,14 @@ const VentasDashboard = () => {
                 getLeadCheckedFreelance={getLeadCheckedFreelance}
                 body={body}
                 emailAddress={emailAddress}
+                profesion={profesion}
+                setProfesion={setProfesion}
+                country={country}
+                setCountry={setCountry}
+                level={level}
+                setLevel={setLevel}
+                freelancer={freelancer}
+                setFreelancer={setFreelancer}
               />
             </motion.div>
           </div>
