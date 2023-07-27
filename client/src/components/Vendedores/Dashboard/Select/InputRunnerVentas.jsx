@@ -11,6 +11,18 @@ export default function InputName({
   body,
   getLeadCheckedInactive5,
   emailAddress,
+  profesion,
+  country,
+  level,
+  status,
+  freelancer,
+  checkFreelancer,
+  setProfesion,
+  setCountry,
+  setLevel,
+  setStatus,
+  setFreelancer,
+  setCheckFreelancer,
 }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
@@ -49,7 +61,7 @@ export default function InputName({
   //AGREGADO
   const handleChangeFreelancer = (event) => {
     setFreelancer(event.target.checked ? emailAddress : "");
-    setCheckFreelancer(!checkFreelancer)
+    setCheckFreelancer(!checkFreelancer);
   };
 
   const handleFilterClick = () => {
@@ -72,7 +84,7 @@ export default function InputName({
     setLevel("");
     setStatus("");
     setFreelancer("");
-    setCheckFreelancer(false)
+    setCheckFreelancer(false);
   };
 
   return (
@@ -238,7 +250,7 @@ export default function InputName({
         </div>
 
         <div className="flex w-24 items-center justify-center flex-col">
-        <div>
+          <div>
             <label>Mis clientes</label>
           </div>
           <div>
