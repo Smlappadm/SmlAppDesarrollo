@@ -419,6 +419,7 @@ const ClasificacionDashboard = () => {
                 marca_personal={marca_personal}
                 category={category}
                 setProfesion={setProfesion}
+                setCountry={setCountry}
               />
               [profesion, setProfesion] = useState(""); const [country,
               setCountry] = useState(""); const [marca_personal,
