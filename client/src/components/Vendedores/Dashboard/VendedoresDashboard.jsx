@@ -255,6 +255,10 @@ const VendedoresDashboard = () => {
                     getLeadCheckedInactive5={getLeadCheckedInactive5}
                     body={body}
                     emailAddress={emailAddress}
+                    profesion={profesion}
+                    setProfesion={setProfesion}
+                    country={country}
+                    setCountry={setCountry}
                   />
                   const [profesion, setProfesion] = useState(""); const
                   [country, setCountry] = useState(""); const [level, setLevel]
