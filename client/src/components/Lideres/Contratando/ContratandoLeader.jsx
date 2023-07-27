@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
   filterStatus,
+  findCorredoresByNameAllInfoSeguimiento,
   getAllLeadAPagar,
   orderCategory,
   orderClients,
@@ -38,8 +39,12 @@ import { TextField } from "@mui/material";
 export const ContratandoLeader = () => {
   const [data, setData] = useState([]);
   const [name, setName] = useState("");
+  const [corredor, setCorredor] = useState("");
+  const [vendedor, setVendedor] = useState("");
+  const [freelancer, setFreelancer] = useState("");
 
   const { leadAPagar } = useSelector((state) => state);
+
   const dispatch = useDispatch();
 
   const statusOk = (name) => {
@@ -54,7 +59,9 @@ export const ContratandoLeader = () => {
       theme: "dark",
     });
 
-    dispatch(getAllLeadAPagar());
+    dispatch(
+      findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
+    );
   };
 
   useEffect(() => {
@@ -256,7 +263,16 @@ export const ContratandoLeader = () => {
         </div>
         <div>
           <div className="flex gap-5 mt-5 mb-5 justify-center items-center">
-            <InputRunner name={name} setName={setName} />
+            <InputRunner
+              name={name}
+              setName={setName}
+              corredor={corredor}
+              setCorredor={setCorredor}
+              vendedor={vendedor}
+              setVendedor={setVendedor}
+              freelancer={freelancer}
+              setFreelancer={setFreelancer}
+            />
           </div>
         </div>
         <div className="w-full">
