@@ -80,6 +80,7 @@ const LeadSchema = new mongoose.Schema(
     edicion: {
       type: Boolean,
       require: true,
+      default: false,
     },
     linkActivado: {
       type: Boolean,
