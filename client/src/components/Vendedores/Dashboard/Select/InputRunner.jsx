@@ -11,7 +11,7 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
-  const [status, setStatus] = useState("");
+  const [level, setLevel] = useState("");
   const [freelancer, setFreelancer] = useState("");
   const [checkFreelancer, setCheckFreelancer] = useState(false);
 
@@ -32,9 +32,9 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
     let value = event.target.value;
     setCountry(value);
   };
-  const handleChangeStatus = (event) => {
+  const handleChangeLevel = (event) => {
     let value = event.target.value;
-    setStatus(value);
+    setLevel(value);
   };
 
   //AGREGADO
@@ -45,14 +45,14 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
 
 
   const handleFilterClick = () => {
-    dispatch(getLeadCheckedInactive5(body, profesion, country, status, freelancer));
+    dispatch(getLeadCheckedInactive5(body, profesion, country, level, freelancer));
   };
 
   const handleFilterReset = () => {
     dispatch(getLeadCheckedInactive5(body, "", ""));
     setCountry("");
     setProfesion("");
-    setStatus("");
+    setLevel("");
     setFreelancer("");
     setCheckFreelancer(false)
   };
@@ -152,8 +152,8 @@ export default function InputName({ body, getLeadCheckedInactive5, emailAddress 
         <div className="flex flex-col w-36">
           <label>Nivel:</label>
           <Select
-            value={status}
-            onChange={handleChangeStatus}
+            value={level}
+            onChange={handleChangeLevel}
             label=""
             id="runner"
             size="small"
