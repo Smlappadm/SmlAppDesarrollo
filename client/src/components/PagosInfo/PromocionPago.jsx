@@ -66,10 +66,10 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
 
   useEffect(() => {
-    const promoEdicion = promociones.filter((promo) => promo.edicion === true);
-    const promoSinEdicion = promociones.filter(
-      (promo) => promo.edicion === false
-    );
+    const promoEdicion =
+      promociones && promociones.filter((promo) => promo.edicion === true);
+    const promoSinEdicion =
+      promociones && promociones.filter((promo) => promo.edicion === false);
     console.log(promoEdicion);
     console.log(promoSinEdicion);
     const promocionesEdit =
