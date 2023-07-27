@@ -15,6 +15,8 @@ export default function InputName({
   setProfesion,
   country,
   setCountry,
+  level,
+  setLevel,
 }) {
   const dispatch = useDispatch();
   profesion = { profesion };
