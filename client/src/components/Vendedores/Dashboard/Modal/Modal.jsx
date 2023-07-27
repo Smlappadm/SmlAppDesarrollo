@@ -207,8 +207,6 @@ function ChildModal({
     //La fecha y el status de observaciones se cargan en el back
     const dataObservaciones = statusObj.observaciones;
 
-    console.log(dataObservaciones)
-
     const dataUpdate = {
       dataObservaciones,
       dataLead,
@@ -854,10 +852,8 @@ export default function NestedModal({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email)) {
       setEmailValidator(true);
-      console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto");
     }
   };
 

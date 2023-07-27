@@ -191,7 +191,6 @@ const VentasHistory = () => {
 
   const onChangeStatus = (value) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
-    console.log(value);
     setStatusValue(value);
 
     const leadsFilteredStatus = vendedorAllLeadsHistory.filter(

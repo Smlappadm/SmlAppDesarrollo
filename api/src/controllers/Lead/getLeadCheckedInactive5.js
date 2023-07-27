@@ -341,7 +341,6 @@ module.exports = getLeadCheckedInactive5;
 //   }
 //   leadRest = [...leadRestNivel2, ...leadRestNivel1];
   
-//   console.log(leadRest)
 
 
 //   // if (leadRest.length > 0) {

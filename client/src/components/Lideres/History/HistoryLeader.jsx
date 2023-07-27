@@ -435,9 +435,9 @@ export const LideresHistory = () => {
                         ) : (
                           ""
                         )}
-                        {item.status === "Contratando" ? (
+                        {item.status === "A pagar" ? (
                           <Text className="bg-[#e5fc18] text-[#000000] px-2 py-1.5 rounded-xl text-center w-48">
-                            Contactado
+                            A pagar
                           </Text>
                         ) : (
                           ""
@@ -450,7 +450,7 @@ export const LideresHistory = () => {
                           ""
                         )}
                         {item.status === "incidencia" ? (
-                          <Text className="bg-[#e5fc18] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                          <Text className="bg-[#fcd218] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
                             Incidencia
                           </Text>
                         ) : (

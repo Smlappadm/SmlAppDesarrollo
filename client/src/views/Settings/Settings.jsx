@@ -135,7 +135,7 @@ export default function Settings() {
     axios.put(`/employees/email/?email=${mail}`, formData);
 
     if (role === "clevel") {
-      axios.put(`/clevel/email/email/?email=${mail}`, formData);
+      axios.put(`/clevel/email/?email=${mail}`, formData);
       axios.put(`/corredor/email/email/?email=${mail}`, formData);
       axios.put(`/vendedor/email/email/?email=${mail}`, formData);
     }

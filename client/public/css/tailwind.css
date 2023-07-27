@@ -1168,6 +1168,10 @@ video {
   height: 100vh;
 }
 
+.h-\[4rem\] {
+  height: 4rem;
+}
+
 .\!w-px {
   width: 1px !important;
 }
@@ -1439,6 +1443,10 @@ video {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-\[4rem\] {
+  width: 4rem;
 }
 
 .min-w-\[180px\] {
@@ -2535,6 +2543,18 @@ video {
 
 .text-\[65px\] {
   font-size: 65px;
+}
+
+.text-\[\.5rem\] {
+  font-size: .5rem;
+}
+
+.text-\[\.2rem\] {
+  font-size: .2rem;
+}
+
+.text-\[\.8rem\] {
+  font-size: .8rem;
 }
 
 .font-bold {

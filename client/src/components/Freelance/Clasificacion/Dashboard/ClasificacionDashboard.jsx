@@ -105,7 +105,7 @@ const ClasificacionDashboard = () => {
     checkMarcaPersonal();
   }, [checkMarcaPersonal]);
 
-  const handleChangeInstagram = (event, index) => {
+  const handleChangeInput = (event, index) => {
     const { name, value } = event.target;
 
     setClient((prevState) => {
@@ -113,20 +113,6 @@ const ClasificacionDashboard = () => {
       updatedClient[index] = {
         ...updatedClient[index],
         [name]: value,
-        instagram: value,
-      };
-      return updatedClient;
-    });
-  };
-
-  const handleChangeEmail = (event, index) => {
-    const { name, value } = event.target;
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        email: value,
       };
       return updatedClient;
     });
@@ -143,13 +129,11 @@ const ClasificacionDashboard = () => {
         updatedClient[index] = {
           ...updatedClient[index],
           [name]: "",
-          level: "",
         };
       } else {
         updatedClient[index] = {
           ...updatedClient[index],
           [name]: value,
-          level: value,
         };
       }
 
@@ -157,7 +141,7 @@ const ClasificacionDashboard = () => {
     });
   };
 
-  const handleseguidores2000 = (event, index) => {
+  const handleCheck = (event, index) => {
     const { name, checked } = event.target;
     const value = checked ? true : false;
 
@@ -166,87 +150,6 @@ const ClasificacionDashboard = () => {
       updatedClient[index] = {
         ...updatedClient[index],
         [name]: value,
-        seguidores2000: value,
-      };
-
-      return updatedClient;
-    });
-  };
-
-  const handleRepercusion = (event, index) => {
-    const { name, checked } = event.target;
-    const value = checked ? true : false;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        repercusion: value,
-      };
-
-      return updatedClient;
-    });
-  };
-
-  const handleFrecuencia = (event, index) => {
-    const { name, checked } = event.target;
-    const value = checked ? true : false;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        frecuencia: value,
-      };
-
-      return updatedClient;
-    });
-  };
-
-  const handleContenidoPersonal = (event, index) => {
-    const { name, checked } = event.target;
-    const value = checked ? true : false;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        contenidoPersonal: value,
-      };
-
-      return updatedClient;
-    });
-  };
-
-  const handleContenidoValor = (event, index) => {
-    const { name, checked } = event.target;
-    const value = checked ? true : false;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        contenidoValor: value,
-      };
-
-      return updatedClient;
-    });
-  };
-
-  const handleCalidadInstagram = (event, index) => {
-    const { name, checked } = event.target;
-    const value = checked ? true : false;
-
-    setClient((prevState) => {
-      const updatedClient = [...prevState];
-      updatedClient[index] = {
-        ...updatedClient[index],
-        [name]: value,
-        calidadInstagram: value,
       };
 
       return updatedClient;
@@ -424,78 +327,53 @@ const ClasificacionDashboard = () => {
   date.setHours(date.getHours() - 3);
   const formattedTime = date.toISOString();
 
+  const instagramRegex =
+    /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     SendLeads();
+
+    const updateLead = async (lead) => {
+      const response = await axios.put(`/lead/${lead._id}`, {
+        instagram: lead.instagram,
+        email: lead.email,
+        level: lead.level,
+        seguidores2000: lead.seguidores2000,
+        repercusion: lead.repercusion,
+        frecuencia: lead.frecuencia,
+        contenidoPersonal: lead.contenidoPersonal,
+        contenidoValor: lead.contenidoValor,
+        calidadInstagram: lead.calidadInstagram,
+        updateCorredor: formattedTime,
+        checked: true,
+        view: true,
+        freelancer: true,
+      });
+    };
+
     try {
-      for (let i = 0; i < freelanceLead.length; i++) {
-        const currentClient = client[i];
+      for (const lead of client) {
+        const { level, instagram, name } = lead;
 
-        console.log(currentClient.level, "level");
-        console.log(currentClient.instagram, "instagram");
-        console.log(currentClient.name, "name");
-        console.log(currentClient._id, "_id");
-        console.log(currentClient.email, "email");
-        console.log(currentClient.seguidores2000, "seguidores2000");
-        console.log(currentClient.repercusion, "repercusion");
-        console.log(currentClient.frecuencia, "frecuencia");
-        console.log(currentClient.contenidoPersonal, "contenidoPersonal");
-        console.log(currentClient.contenidoValor, "contenidoValor");
-        console.log(currentClient.calidadInstagram), "calidadInstagram";
-
-        if (currentClient.level !== "-") {
-          if (
-            currentClient.instagram !== "" &&
-            (currentClient.level === "0" ||
-              currentClient.level === "incidencia")
-          ) {
-            SendLeadsErrorInsta0(currentClient.name);
-          } else if (
-            currentClient.instagram === "" &&
-            (currentClient.level === "incidencia" ||
-              currentClient.level === "0")
-          ) {
-            const response = await axios.put(`/lead/${currentClient._id}`, {
-              instagram: currentClient.instagram,
-              email: currentClient.email,
-              level: currentClient.level,
-              seguidores2000: currentClient.seguidores2000,
-              repercusion: currentClient.repercusion,
-              frecuencia: currentClient.frecuencia,
-              contenidoPersonal: currentClient.contenidoPersonal,
-              contenidoValor: currentClient.contenidoValor,
-              calidadInstagram: currentClient.calidadInstagram,
-              updateCorredor: formattedTime,
-              checked: true,
-              view: true,
-              freelancer: true,
-            });
-          } else if (
-            currentClient.instagram !== "" &&
-            (currentClient.level === "1" ||
-              currentClient.level === "2" ||
-              currentClient.level === "0")
-          ) {
-            const response = await axios.put(`/lead/${currentClient._id}`, {
-              instagram: currentClient.instagram,
-              email: currentClient.email,
-              level: currentClient.level,
-              seguidores2000: currentClient.seguidores2000,
-              repercusion: currentClient.repercusion,
-              frecuencia: currentClient.frecuencia,
-              contenidoPersonal: currentClient.contenidoPersonal,
-              contenidoValor: currentClient.contenidoValor,
-              calidadInstagram: currentClient.calidadInstagram,
-              updateCorredor: formattedTime,
-              checked: true,
-              view: true,
-              freelancer: true,
-            });
+        if (level === "-" || level === "") {
+          SendLeadsErrorLevel(name);
+        } else if (level === "incidencia") {
+          if (instagram !== "") {
+            SendLeadsErrorInsta0(name);
           } else {
-            SendLeadsErrorInsta(currentClient.name);
+            await updateLead(lead);
+            SendLeadsSuccess();
           }
-        } else {
-          SendLeadsErrorLevel(currentClient.name);
+        } else if (level === "1" || level === "2") {
+          if (instagram !== "" && instagramRegex.test(instagram)) {
+            await updateLead(lead);
+            SendLeadsSuccess();
+          } else {
+            SendLeadsErrorInsta(name);
+          }
+        } else if (level === "0") {
+          await updateLead(lead);
         }
       }
 
@@ -503,16 +381,11 @@ const ClasificacionDashboard = () => {
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
-
-      SendLeadsSuccess();
     } catch (error) {
-      SendLeadsError(username);
+      SendLeadsError(names);
       console.log({ error: error.message });
     }
   };
-
-  const instagramRegex =
-    /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9_]+\/?$/;
 
   return (
     <>
@@ -625,7 +498,7 @@ const ClasificacionDashboard = () => {
                             name="email"
                             value={item.email || ""}
                             onChange={(event) =>
-                              handleChangeEmail(event, index)
+                              handleChangeInput(event, index)
                             }
                             placeholder="Ingrese un mail..."
                           />
@@ -651,7 +524,7 @@ const ClasificacionDashboard = () => {
                             name="instagram"
                             value={item.instagram || ""}
                             onChange={(event) =>
-                              handleChangeInstagram(event, index)
+                              handleChangeInput(event, index)
                             }
                             placeholder="Ingrese instagram..."
                           />
@@ -665,7 +538,7 @@ const ClasificacionDashboard = () => {
                                 : style.buttonNivel
                             }
                             type="button"
-                            name={item._id}
+                            name={"level"}
                             value="0"
                             onClick={(event) => handleClientClick(event, index)}
                           >
@@ -678,7 +551,7 @@ const ClasificacionDashboard = () => {
                                 : style.buttonNivel
                             }
                             type="button"
-                            name={item._id}
+                            name={"level"}
                             value="1"
                             onClick={(event) => handleClientClick(event, index)}
                           >
@@ -691,7 +564,7 @@ const ClasificacionDashboard = () => {
                                 : style.buttonNivel
                             }
                             type="button"
-                            name={item._id}
+                            name={"level"}
                             value="2"
                             onClick={(event) => handleClientClick(event, index)}
                           >
@@ -704,7 +577,7 @@ const ClasificacionDashboard = () => {
                                 : style.buttonNivel
                             }
                             type="button"
-                            name={item._id}
+                            name={"level"}
                             value="incidencia"
                             onClick={(event) => handleClientClick(event, index)}
                           >
@@ -743,9 +616,7 @@ const ClasificacionDashboard = () => {
                             type="checkbox"
                             name="seguidores2000"
                             checked={item.seguidores2000 || ""}
-                            onChange={(event) =>
-                              handleseguidores2000(event, index)
-                            }
+                            onChange={(event) => handleCheck(event, index)}
                           />
                         </div>
                         <div className="flex items-center justify-center w-fit text-center gap-2 ">
@@ -757,9 +628,7 @@ const ClasificacionDashboard = () => {
                             type="checkbox"
                             name="repercusion"
                             checked={item.repercusion || ""}
-                            onChange={(event) =>
-                              handleRepercusion(event, index)
-                            }
+                            onChange={(event) => handleCheck(event, index)}
                           />
                         </div>
 
@@ -772,7 +641,7 @@ const ClasificacionDashboard = () => {
                             type="checkbox"
                             name="frecuencia"
                             checked={item.frecuencia || ""}
-                            onChange={(event) => handleFrecuencia(event, index)}
+                            onChange={(event) => handleCheck(event, index)}
                           />
                         </div>
 
@@ -785,9 +654,7 @@ const ClasificacionDashboard = () => {
                             type="checkbox"
                             name="contenidoPersonal"
                             checked={item.contenidoPersonal || ""}
-                            onChange={(event) =>
-                              handleContenidoPersonal(event, index)
-                            }
+                            onChange={(event) => handleCheck(event, index)}
                           />
                         </div>
 
@@ -800,9 +667,7 @@ const ClasificacionDashboard = () => {
                             type="checkbox"
                             name="contenidoValor"
                             checked={item.contenidoValor || ""}
-                            onChange={(event) =>
-                              handleContenidoValor(event, index)
-                            }
+                            onChange={(event) => handleCheck(event, index)}
                           />
                         </div>
 
@@ -815,9 +680,7 @@ const ClasificacionDashboard = () => {
                             type="checkbox"
                             name="calidadInstagram"
                             checked={item.calidadInstagram || ""}
-                            onChange={(event) =>
-                              handleCalidadInstagram(event, index)
-                            }
+                            onChange={(event) => handleCheck(event, index)}
                           />
                         </div>
                       </motion.div>

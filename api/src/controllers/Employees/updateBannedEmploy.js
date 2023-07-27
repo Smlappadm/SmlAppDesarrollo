@@ -32,9 +32,6 @@ const updateBannedEmploy = async (email, updatedData) => {
     }
   );
 
-  // Imprimir los resultados de la actualización en la consola (si es necesario)
-  console.log(leads);
-
   // Actualizar el registro del empleado en la base de datos utilizando el método "findOneAndUpdate" del modelo Employees
   // El argumento { email } es una abreviatura de { email: email }, que busca un registro con el correo electrónico proporcionado
   // updatedData es un objeto que contiene los campos y valores que se deben actualizar en el registro encontrado

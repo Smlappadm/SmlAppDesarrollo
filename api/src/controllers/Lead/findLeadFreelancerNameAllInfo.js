@@ -77,8 +77,6 @@ const findLeadFreelancerNameAllInfo = async (
     query.descargadosLeader = false; // Si descargados es "false", agregarlo al filtro como "descargadosLeader: false"
   }
 
-  console.log(query);
-
   // Realizar la búsqueda de clientes potenciales (leads) utilizando el objeto "query" como filtro
   const leads = await Lead.find(query).exec();
 

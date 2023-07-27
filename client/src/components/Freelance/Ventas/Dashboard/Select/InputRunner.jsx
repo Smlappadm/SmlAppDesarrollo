@@ -49,12 +49,9 @@ export default function InputName({
     setFreelancer(event.target.checked ? emailAddress : "");
     setCheckFreelancer(!checkFreelancer)
   };
-console.log(freelancer)
+
 
   const handleFilterClick = () => {
-    console.log(profesion);
-    console.log(country);
-    console.log(status);
     dispatch(getLeadCheckedFreelance(body, profesion, country, status, freelancer));
   };
 

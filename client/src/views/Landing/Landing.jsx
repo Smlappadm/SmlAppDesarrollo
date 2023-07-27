@@ -49,10 +49,18 @@ function Landing() {
 
   const { corredor } = useSelector((state) => state);
 
+  const photo = selectedEmployee && selectedEmployee.photo;
+  const nameEmploy = selectedEmployee && selectedEmployee.name;
+
+  localStorage.setItem("photo", photo);
+
+  localStorage.setItem("nameEmploy", nameEmploy);
+
   localStorage.setItem("email", userEmail);
+
   let email = localStorage.getItem("email");
 
-  const username = corredor.name;
+  const username = corredor && corredor.name;
 
   useEffect(() => {
     if (userEmail !== undefined) {
@@ -61,7 +69,6 @@ function Landing() {
   }, [dispatch, userEmail]);
 
   useEffect(() => {
-    console.log("adentro", username);
     localStorage.setItem("corredorName", username);
   }, [corredor]);
 

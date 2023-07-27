@@ -7,7 +7,6 @@ const Lead = require("../../models/Lead");
 const getVendedorVentasByEmail = async (body) => {
   // Buscar todos los leads en la base de datos donde el campo "vendedor" coincide con el correo electrónico proporcionado
   // y el campo "status" es igual a "Agenda llamada"
-console.log(body)
   let leadsAgenda = [];
   let leads = [];
   let leadsNoResponde = [];

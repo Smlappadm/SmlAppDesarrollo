@@ -717,7 +717,6 @@ export default function NestedModal({
   };
 
   const handleSelectChangeContratado = (event) => {
-    console.log(event.target.name);
     setOpenTimeHour(false);
     const value = event.target.value;
     const property = event.target.name;
@@ -853,7 +852,6 @@ export default function NestedModal({
     }
 
     const value = e.target.value.split("/");
-    // console.log(value)
     setStatusObj({
       ...statusObj,
       status_op: e.target.value,
@@ -873,10 +871,8 @@ export default function NestedModal({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email)) {
       setEmailValidator(true);
-      console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto")
     }
   };
 
@@ -885,10 +881,8 @@ export default function NestedModal({
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (emailRegex.test(email)) {
       setEmailValidator(true);
-      console.log("correcto");
     } else {
       setEmailValidator(false);
-      console.log("incorrecto")
     }
   };
 

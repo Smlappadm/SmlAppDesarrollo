@@ -291,10 +291,12 @@ const CorredoresDashboard = () => {
             SendLeadsErrorInsta0(name);
           } else {
             await updateLead(lead);
+            SendLeadsSuccess();
           }
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
             await updateLead(lead);
+            SendLeadsSuccess();
           } else {
             SendLeadsErrorInsta(name);
           }
@@ -305,7 +307,6 @@ const CorredoresDashboard = () => {
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
-      SendLeadsSuccess();
     } catch (error) {
       SendLeadsError(names);
       console.log({ error: error.message });
