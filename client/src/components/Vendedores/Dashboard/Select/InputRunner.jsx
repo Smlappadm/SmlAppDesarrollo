@@ -21,14 +21,6 @@ export default function InputName({
   setFreelancer,
 }) {
   const dispatch = useDispatch();
-  profesion = { profesion };
-  setProfesion = { setProfesion };
-  country = { country };
-  setCountry = { setCountry };
-  level = { level };
-  setLevel = { setLevel };
-  freelancer = { freelancer };
-  setFreelancer = { setFreelancer };
 
   const [checkFreelancer, setCheckFreelancer] = useState(false);
 
