@@ -145,6 +145,7 @@ function ChildModal({
       };
       statusObj.observaciones = {
         ...statusObj.observaciones,
+        tipoContacto: "Meet",
         dia_hora: llamadoVenta.diaHora,
         dateObject: {
           hora: llamadoVenta.hora,
