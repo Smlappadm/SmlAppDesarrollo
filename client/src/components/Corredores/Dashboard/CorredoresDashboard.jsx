@@ -25,6 +25,10 @@ import InputRunner from "./MaterialUi/inputRunner";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [marca_personal, setMarca_personal] = useState("");
+  const [category, setCategory] = useState("");
   const [detailsLead, setDetailsLead] = useState([
     false,
     false,
@@ -64,7 +68,16 @@ const CorredoresDashboard = () => {
 
   useEffect(() => {
     if (mail !== undefined) {
-      dispatch(getLeadCorredores(email, username, "", "", "", ""));
+      dispatch(
+        getLeadCorredores(
+          email,
+          username,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
     }
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
