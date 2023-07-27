@@ -153,7 +153,9 @@ const VendedoresAgenda = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   };
 
   const showObservacionesHandler = (observacion) => {
