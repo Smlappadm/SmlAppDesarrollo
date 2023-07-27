@@ -35,6 +35,14 @@ const VentasHistory = () => {
   const [filterPais, setFilterPais] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
 
+  const [fromDay, setFromDay] = useState("");
+  const [toDay, setToDay] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [category, setCategory] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [status, setStatus] = useState("");
+
   //copia para ver que onda
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
@@ -375,6 +383,20 @@ const VentasHistory = () => {
             <InputRunner
               getVendedorAllLeads={getVendedorAllLeads}
               emailUser={email}
+              fromDay={fromDay}
+              setFromDay={setFromDay}
+              toDay={toDay}
+              setToDay={setToDay}
+              profesion={profesion}
+              setProfesion={setProfesion}
+              category={category}
+              setCategory={setCategory}
+              country={country}
+              setCountry={setCountry}
+              level={level}
+              setLevel={setLevel}
+              status={status}
+              setStatus={setStatus}
             />
           </motion.div>
 
