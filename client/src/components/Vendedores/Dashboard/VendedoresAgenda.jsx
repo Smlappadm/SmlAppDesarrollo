@@ -240,7 +240,12 @@ const VendedoresAgenda = () => {
                   getLeadCheckedInactive5={getLeadsLLamadaVenta}
                   body={body}
                   emailAddress={emailAddress}
+                  profesion={profesion}
                 />
+                const [profesion, setProfesion] = useState(""); const [country,
+                setCountry] = useState(""); const [level, setLevel] =
+                useState(""); const [status, setStatus] = useState(""); const
+                [freelancer, setFreelancer] = useState("");
               </motion.div>
             )}
           </div>
