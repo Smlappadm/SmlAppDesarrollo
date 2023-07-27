@@ -95,7 +95,6 @@ export default function ActualizarPromocion({ item }) {
       newValue = !promocion.active;
     } else if (property === "edicion") {
       newValue = !promocion.edicion;
-      console.log(!promocion.edicion, newValue, "dentro de edicion");
     } else {
       newValue = event.target.value;
     }
@@ -131,9 +130,9 @@ export default function ActualizarPromocion({ item }) {
       theme: "dark",
     });
   };
-console.log(promocion);
+
   const actualizarPromocion = async () => {
-    console.log("PUT",promocion);
+    console.log("PUT", promocion);
     await axios.put(`/promociones/${item._id}`, promocion);
     dispatch(getAllPromociones());
     updatePromocion();

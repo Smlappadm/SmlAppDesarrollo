@@ -1,7 +1,6 @@
 const Promociones = require("../../models/Promociones");
 
 const updatePromocionById = async (id, body) => {
-
   const promociones = await Promociones.findByIdAndUpdate(
     id,
     {
@@ -14,6 +13,7 @@ const updatePromocionById = async (id, body) => {
         "promocion.valorCuota": body.valorCuota,
         "promocion.descuento": body.descuento,
         "promocion.active": body.active,
+        "promocion.edicion": body.edicion,
       },
     },
     { new: true }
