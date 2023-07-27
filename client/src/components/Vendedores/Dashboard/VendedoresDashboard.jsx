@@ -24,7 +24,6 @@ import BasicButtons1 from "./Select/BasicButtons1";
 import BasicButtons2 from "./Select/BasicButtons2";
 import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
-import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
 import PagosInfo from "../../PagosInfo/PagosInfo";
 import ModalAddLeadVendedor from "./MUI/ModalAddLeadVendedor";
