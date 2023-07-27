@@ -679,6 +679,7 @@ export default function NestedModal({
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     emailApp: "",
+    edicion: false,
     pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
@@ -1008,14 +1009,12 @@ export default function NestedModal({
     const property = event.target.name;
     setStatusObj({
       ...statusObj,
-      pagos: {
-        ...statusObj.pagos,
-        [property]: value,
-      },
+      edicion: value
     });
-    setEditContacto(false);
+    // setEditContacto(false);
   };
 
+  console.log(statusObj)
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1465,8 +1464,8 @@ export default function NestedModal({
                   </select>
                   <div className="flex flex-col items-center justify-start mt-3">
                     {statusObj.status === "A pagar" && (
-                      <div className="flex justify-center items-center">
-                        <label className="inline-flex items-center text-white">Edición</label>
+                      <div className="flex justify-center items-center mt-5 mb-10 gap-7">
+                        <label className="inline-flex items-center text-white text-18">Con edición</label>
                         <input
                           type="checkbox"
                           name="edicion"
