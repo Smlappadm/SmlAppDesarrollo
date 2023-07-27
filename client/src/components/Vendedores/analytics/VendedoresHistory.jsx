@@ -406,6 +406,7 @@ const VendedoresHistory = () => {
               fromDay={fromDay}
               setFromDay={setFromDay}
               toDay={toDay}
+              setToDay={setToDay}
             />{" "}
             const [fromDay, setFromDay] = useState(""); const [toDay, setToDay]
             = useState(""); const [profesion, setProfesion] = useState("");
