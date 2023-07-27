@@ -18,6 +18,8 @@ import {
   setProfesion,
   category,
   setCategory,
+  country,
+  setCountry,
 } from "../../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
