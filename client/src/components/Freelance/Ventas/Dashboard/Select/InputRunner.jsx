@@ -14,14 +14,14 @@ export default function InputName({
   body,
   getLeadCheckedFreelance,
   emailAddress,
-  profesion
-  setProfesion
-  country
-  setCountry
-  level
-  setLevel
-  freelancer
-  setFreelancer
+  profesion,
+  setProfesion,
+  country,
+  setCountry,
+  level,
+  setLevel,
+  freelancer,
+  setFreelancer,
 }) {
   const dispatch = useDispatch();
 
