@@ -131,9 +131,9 @@ export default function ActualizarPromocion({ item }) {
       theme: "dark",
     });
   };
-console.log(promocion);
+
   const actualizarPromocion = async () => {
-    console.log("PUT",promocion);
+    console.log("PUT", promocion);
     await axios.put(`/promociones/${item._id}`, promocion);
     dispatch(getAllPromociones());
     updatePromocion();
