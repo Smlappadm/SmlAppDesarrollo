@@ -198,7 +198,7 @@ function ChildModal({
           year: llamadoVenta.year,
         },
       };
-    } 
+    }
 
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
@@ -703,6 +703,7 @@ export default function NestedModal({
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     emailApp: "",
+    edicion: false,
     pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
@@ -1062,6 +1063,18 @@ export default function NestedModal({
     setEditContacto(false);
   };
 
+  const handleEdicionChange = (event) => {
+    const value = event.target.value;
+    const property = event.target.name;
+    setStatusObj({
+      ...statusObj,
+      edicion: value
+    });
+    // setEditContacto(false);
+  };
+
+  console.log(statusObj)
+
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1412,15 +1425,15 @@ export default function NestedModal({
                         }
                         className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
-                    <option disabled="disabled" value="default">
-                      Elige uno...
-                    </option>
-                    <option value="Agenda llamada">Agenda llamada</option>
-                    <option value="En proceso">En proceso</option>
-                    {/* <option value="Contratando">Contratando</option> */}
-                    <option value="A pagar">A pagar</option>
-                    <option value="Rechazado">Rechazado</option>
-                    <option value="No responde">Sin contestar</option>
+                        <option disabled="disabled" value="default">
+                          Elige uno...
+                        </option>
+                        <option value="Agenda llamada">Agenda llamada</option>
+                        <option value="En proceso">En proceso</option>
+                        {/* <option value="Contratando">Contratando</option> */}
+                        <option value="A pagar">A pagar</option>
+                        <option value="Rechazado">Rechazado</option>
+                        <option value="No responde">Sin contestar</option>
                       </select>
                     </div>
                   )}
@@ -1521,6 +1534,18 @@ export default function NestedModal({
                     <option value="No responde">Sin contestar</option>
                   </select>
                   <div className="flex flex-col items-center justify-start mt-3">
+                  {statusObj.status === "A pagar" && (
+                      <div className="flex justify-center items-center mt-5 mb-10 gap-7">
+                        <label className="inline-flex items-center text-white text-18">Con edición</label>
+                        <input
+                          type="checkbox"
+                          name="edicion"
+                          onChange={handleEdicionChange}
+                          className="form-checkbox h-5 w-5 text-blue-500 rounded"
+                          value={true}
+                        />
+                      </div>
+                    )}
                     {statusObj.status === "Rechazado" && (
                       <div className="flex flex-col justify-center items-center">
                         <label
@@ -1554,62 +1579,69 @@ export default function NestedModal({
                         </select>
                       </div>
                     )}
-                    {statusObj.status !== "Agenda llamada" && <>
-                    <label
-                      htmlFor="last_name"
-                      className="block text-sm text-center font-medium text-gray-900 dark:text-white "
-                    >
-                      Contacto
-                    </label>
-                    <select
-                      onChange={handleObservationChange}
-                      name="tipoContacto"
-                      defaultValue="default"
-                      id="select11"
-                      className="mt-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
-                      <option disabled="disabled" value="default">
-                        Tipo de Contacto
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Instagram"
-                        value="Instagram"
-                      >
-                        Instagram
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Linkedin"
-                        value="Linkedin"
-                      >
-                        Linkedin
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Whatsapp"
-                        value="Whatsapp"
-                      >
-                        Whatsapp
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Llamada telefónica"
-                        value="Llamada telefónica"
-                      >
-                        Llamada telefónica
-                      </option>
-                      <option
-                        className="text-justify"
-                        name="Email"
-                        value="Email"
-                      >
-                        Email
-                      </option>
-                      <option className="text-justify" name="Otro" value="Otro">
-                        Otro
-                      </option>
-                    </select></>}
+                    {statusObj.status !== "Agenda llamada" && (
+                      <>
+                        <label
+                          htmlFor="last_name"
+                          className="block text-sm text-center font-medium text-gray-900 dark:text-white "
+                        >
+                          Contacto
+                        </label>
+                        <select
+                          onChange={handleObservationChange}
+                          name="tipoContacto"
+                          defaultValue="default"
+                          id="select11"
+                          className="mt-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                          <option disabled="disabled" value="default">
+                            Tipo de Contacto
+                          </option>
+                          <option
+                            className="text-justify"
+                            name="Instagram"
+                            value="Instagram"
+                          >
+                            Instagram
+                          </option>
+                          <option
+                            className="text-justify"
+                            name="Linkedin"
+                            value="Linkedin"
+                          >
+                            Linkedin
+                          </option>
+                          <option
+                            className="text-justify"
+                            name="Whatsapp"
+                            value="Whatsapp"
+                          >
+                            Whatsapp
+                          </option>
+                          <option
+                            className="text-justify"
+                            name="Llamada telefónica"
+                            value="Llamada telefónica"
+                          >
+                            Llamada telefónica
+                          </option>
+                          <option
+                            className="text-justify"
+                            name="Email"
+                            value="Email"
+                          >
+                            Email
+                          </option>
+                          <option
+                            className="text-justify"
+                            name="Otro"
+                            value="Otro"
+                          >
+                            Otro
+                          </option>
+                        </select>
+                      </>
+                    )}
                     {/* <label
               htmlFor="last_name"
               className="block mt-8 text-sm text-center font-medium text-gray-900 dark:text-white"
@@ -1756,6 +1788,7 @@ export default function NestedModal({
                   </div>
                 </div>
               )} */}
+
             {statusObj.status === "Agenda llamada" && (
               <div className="flex flex-col justify-center items-center mt-8">
                 <div className="flex items-center justify-center gap-2 mt-8">
