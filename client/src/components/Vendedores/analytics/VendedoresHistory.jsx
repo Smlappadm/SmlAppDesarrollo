@@ -33,6 +33,13 @@ const VendedoresHistory = () => {
   const [filterSector, setFilterSector] = useState("");
   const [filterPais, setFilterPais] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
+  const [fromDay, setFromDay] = useState("");
+  const [toDay, setToDay] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [category, setCategory] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [status, setStatus] = useState("");
 
   //copia para ver que onda
   localStorage.setItem("email", email);
@@ -408,6 +415,20 @@ const VendedoresHistory = () => {
             <InputRunner
               getVendedorAllLeads={getVendedorAllLeads}
               emailUser={email}
+              fromDay={fromDay}
+              setFromDay={setFromDay}
+              toDay={toDay}
+              setToDay={setToDay}
+              profesion={profesion}
+              setProfesion={setProfesion}
+              category={category}
+              setCategory={setCategory}
+              country={country}
+              setCountry={setCountry}
+              level={level}
+              setLevel={setLevel}
+              status={status}
+              setStatus={setStatus}
             />
           </motion.div>
 
@@ -486,23 +507,23 @@ const VendedoresHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <div className="flex w-44 justify-start items-center gap-2 relative">
-                            <p
-                              onClick={() => handleCopyClick(item.telephone)}
-                              className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
-                            >
-                              {item.telephone}
-                            </p>
-                            </div>
-                            <a
-                              href={`http://wa.me/${item.telephone.replace(
-                                /\s+/g,
-                                ""
-                              )}`}
-                              target="blanck"
-                            >
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
-                            </a>
+                        <div className="flex w-44 justify-start items-center gap-2 relative">
+                          <p
+                            onClick={() => handleCopyClick(item.telephone)}
+                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                          >
+                            {item.telephone}
+                          </p>
+                        </div>
+                        <a
+                          href={`http://wa.me/${item.telephone.replace(
+                            /\s+/g,
+                            ""
+                          )}`}
+                          target="blanck"
+                        >
+                          <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                        </a>
                       </div>
                       <div className=" w-[10%] flex justify-center items-center p-0">
                         {item.level !== "incidencia" ? (
@@ -563,7 +584,8 @@ const VendedoresHistory = () => {
                         )}
                       </div>
                       <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
-                        {(item.status === "Contratado" || item.status === "A pagar") && (
+                        {(item.status === "Contratado" ||
+                          item.status === "A pagar") && (
                           <ModalHistory
                             item={item}
                             SendLeadAlertBaja={SendLeadAlertBaja}
