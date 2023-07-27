@@ -1536,7 +1536,7 @@ export default function NestedModal({
                   <div className="flex flex-col items-center justify-start mt-3">
                   {statusObj.status === "A pagar" && (
                       <div className="flex justify-center items-center mt-5 mb-10 gap-7">
-                        <label className="inline-flex items-center text-white text-18">Con edición</label>
+                        <label className="inline-flex items-center text-white text-14">CON EDICIÓN</label>
                         <input
                           type="checkbox"
                           name="edicion"
