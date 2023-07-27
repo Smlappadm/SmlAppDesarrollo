@@ -62,7 +62,9 @@ const VendedoresAgenda = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   };
 
   //FILTER**********************
