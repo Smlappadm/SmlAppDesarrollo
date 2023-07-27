@@ -453,23 +453,23 @@ const VentasHistory = () => {
                         )}
                       </div>
                       <div className=" w-[15%] flex justify-center items-center p-0 ">
-                      <div className="flex w-40 justify-start items-center gap-2 relative">
-                            <p
-                              onClick={() => handleCopyClick(item.telephone)}
-                              className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
-                            >
-                              {item.telephone}
-                            </p>
-                            </div>
-                            <a
-                              href={`http://wa.me/${item.telephone.replace(
-                                /\s+/g,
-                                ""
-                              )}`}
-                              target="blanck"
-                            >
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
-                            </a>
+                        <div className="flex w-40 justify-start items-center gap-2 relative">
+                          <p
+                            onClick={() => handleCopyClick(item.telephone)}
+                            className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                          >
+                            {item.telephone}
+                          </p>
+                        </div>
+                        <a
+                          href={`http://wa.me/${item.telephone.replace(
+                            /\s+/g,
+                            ""
+                          )}`}
+                          target="blanck"
+                        >
+                          <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                        </a>
                       </div>
                       <div className=" w-[10%] flex justify-center items-center p-0">
                         {item.level !== "incidencia" ? (
@@ -513,6 +513,11 @@ const VentasHistory = () => {
                             <p>A pagar</p>
                           </div>
                         )}
+                        {item.status === "En proceso" && (
+                          <div className="bg-[#d87e17] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                            <p>En proceso</p>
+                          </div>
+                        )}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
                             Incidencia
@@ -520,7 +525,8 @@ const VentasHistory = () => {
                         )}
                       </div>
                       <div className=" w-[8%] flex justify-end items-center p-0 gap-3">
-                        {(item.status === "Contratado" || item.status === "A pagar") && (
+                        {(item.status === "Contratado" ||
+                          item.status === "A pagar") && (
                           <ModalHistory
                             item={item}
                             SendLeadAlertBaja={SendLeadAlertBaja}
