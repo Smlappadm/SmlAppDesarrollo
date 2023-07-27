@@ -10,6 +10,12 @@ import {
   getAllCategory,
   getAllCountries,
   getAllProfesion,
+} from "../../../../redux/actions";
+import { useUser } from "@clerk/clerk-react";
+
+export default function InputRunner({
+  getVendedorAllLeads,
+  emailUser,
   fromDay,
   setFromDay,
   toDay,
@@ -24,10 +30,7 @@ import {
   setLevel,
   status,
   setStatus,
-} from "../../../../redux/actions";
-import { useUser } from "@clerk/clerk-react";
-
-export default function InputRunner({ getVendedorAllLeads, emailUser }) {
+}) {
   const dispatch = useDispatch();
   const [fromDay, setFromDay] = useState("");
   const [toDay, setToDay] = useState("");
