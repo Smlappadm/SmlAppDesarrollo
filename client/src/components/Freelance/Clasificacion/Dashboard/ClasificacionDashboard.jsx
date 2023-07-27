@@ -414,7 +414,13 @@ const ClasificacionDashboard = () => {
                 getLeadClasificacion={getLeadClasificacion}
                 email={email}
                 names={names}
+                profesion={profesion}
+                country={country}
               />
+              [profesion, setProfesion] = useState(""); const [country,
+              setCountry] = useState(""); const [marca_personal,
+              setMarca_personal] = useState(""); const [category, setCategory] =
+              useState("");
             </div>
           </div>
           <div className="">
