@@ -51,6 +51,13 @@ const updateLeadFreelanceById = async (id, updatedData) => {
     updatedData.dataLead.updateAgendaLlamada = formattedTimeAgendaLlamada;
     updatedData.dataObservaciones.status = "Agenda llamada";
     updatedData.dataObservaciones.fecha = formattedTimeAgendaLlamada;
+  } else if (updatedData.dataLead.status === "En proceso") {
+    // Agregamos la propiedad 'updateAgendaLlamada' con la fecha y hora actual en caso de "Agenda llamada"
+    const dateEnProceso = new Date();
+    const formattedTimeEnProceso = date.toISOString();
+    updatedData.dataLead.updateEnProceso = formattedTimeEnProceso;
+    updatedData.dataObservaciones.status = "En proceso";
+    updatedData.dataObservaciones.fecha = formattedTimeEnProceso;
   } else if (updatedData.dataLead.status === "incidencia") {
     // Agregamos la propiedad 'updateIncidencia' con la fecha y hora actual en caso de "Incidencia"
     const dateIncidencia = new Date();
