@@ -251,10 +251,6 @@ const VendedoresAgenda = () => {
                   freelancer={freelancer}
                   setFreelancer={setFreelancer}
                 />
-                const [profesion, setProfesion] = useState(""); const [country,
-                setCountry] = useState(""); const [level, setLevel] =
-                useState(""); const [status, setStatus] = useState(""); const
-                [freelancer, setFreelancer] = useState("");
               </motion.div>
             )}
           </div>
