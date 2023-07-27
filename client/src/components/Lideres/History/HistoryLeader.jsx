@@ -22,7 +22,12 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoLogoSnapchat, IoStatsChart,IoRocketOutline } from "react-icons/io5";
+import {
+  IoGrid,
+  IoLogoSnapchat,
+  IoStatsChart,
+  IoRocketOutline,
+} from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -401,7 +406,9 @@ export const LideresHistory = () => {
                       <div className="flex justify-center items-center p-0 mr-2 ">
                         <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                           <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.vendedor_name ? item.vendedor_name : "Sin vendedor asignado"}
+                            {item.vendedor_name
+                              ? item.vendedor_name
+                              : "Sin vendedor asignado"}
                           </Text>
                         </div>
                       </div>
@@ -452,6 +459,20 @@ export const LideresHistory = () => {
                         {item.status === "incidencia" ? (
                           <Text className="bg-[#fcd218] text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
                             Incidencia
+                          </Text>
+                        ) : (
+                          ""
+                        )}
+                        {item.status === "Agendar 2do llamado" ? (
+                          <Text className="bg-black text-[#e0dfdf] px-2 py-1.5 rounded-xl text-center w-48">
+                            2do Llamado
+                          </Text>
+                        ) : (
+                          ""
+                        )}
+                        {item.status === "Contactado" ? (
+                          <Text className="bg-[#219bac] text-black px-2 py-1.5 rounded-xl text-center w-48">
+                            Contratando
                           </Text>
                         ) : (
                           ""
