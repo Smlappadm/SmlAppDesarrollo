@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { Input, TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, Input, TextField } from "@mui/material";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getAllPromociones } from "../../../../redux/actions";
@@ -34,6 +34,7 @@ export default function AgregarPromosion() {
     monto: 0,
     valorCuota: 0,
     descuento: 0,
+    edicion: false,
     active: false,
   });
 
@@ -47,9 +48,27 @@ export default function AgregarPromosion() {
   };
 
   const handleChange = (event, property) => {
+    let newValue;
+
+    if (
+      property === "hora" ||
+      property === "cuota" ||
+      property === "monto" ||
+      property === "descuento" ||
+      property === "valorCuota"
+    ) {
+      newValue = event.target.value;
+    } else if (property === "active") {
+      newValue = !promocion.active;
+    } else if (property === "edicion") {
+      newValue = !promocion.edicion;
+    } else {
+      newValue = event.target.value;
+    }
+
     setPromocion({
       ...promocion,
-      [property]: event.target.value,
+      [property]: newValue,
     });
   };
 
@@ -194,6 +213,17 @@ export default function AgregarPromosion() {
                   color: "white",
                 },
               }}
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={promocion.edicion}
+                  onChange={(e) => handleChange(e, "edicion")}
+                  color="primary"
+                  size="large"
+                />
+              }
+              label={`Promocion con Editores`}
             />
             <Button variant="outlined" onClick={cargarPromocion}>
               Agregar Promoción
