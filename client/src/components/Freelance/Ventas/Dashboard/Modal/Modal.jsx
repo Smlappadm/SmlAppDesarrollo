@@ -1542,7 +1542,7 @@ export default function NestedModal({
                           name="edicion"
                           onChange={handleEdicionChange}
                           className="form-checkbox h-5 w-5 text-blue-500 rounded"
-                          value={true}
+                          value={statusObj.edicion}
                         />
                       </div>
                     )}
