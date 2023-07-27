@@ -377,7 +377,16 @@ const ClasificacionDashboard = () => {
         }
       }
 
-      dispatch(getLeadClasificacion(email, username, "", "", "", ""));
+      dispatch(
+        getLeadClasificacion(
+          email,
+          username,
+          profesion,
+          country,
+          marca_personal,
+          category
+        )
+      );
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
@@ -414,6 +423,14 @@ const ClasificacionDashboard = () => {
                 getLeadClasificacion={getLeadClasificacion}
                 email={email}
                 names={names}
+                profesion={profesion}
+                country={country}
+                marca_personal={marca_personal}
+                category={category}
+                setProfesion={setProfesion}
+                setCountry={setCountry}
+                setMarca_personal={setMarca_personal}
+                setCategory={setCategory}
               />
             </div>
           </div>

@@ -11,12 +11,20 @@ import {
   getAllProfesion,
 } from "../../../../../redux/actions";
 
-export default function InputRunner({ getLeadClasificacion, email, names }) {
+export default function InputRunner({
+  getLeadClasificacion,
+  email,
+  names,
+  profesion,
+  category,
+  country,
+  marca_personal,
+  setProfesion,
+  setCategory,
+  setCountry,
+  setMarca_personal,
+}) {
   const dispatch = useDispatch();
-  const [profesion, setProfesion] = useState("");
-  const [category, setCategory] = useState("");
-  const [country, setCountry] = useState("");
-  const [marca_personal, setMarca_personal] = useState("");
   const [freelancer, setFreelancer] = useState("undefined");
 
   const { allProfesion } = useSelector((state) => state);

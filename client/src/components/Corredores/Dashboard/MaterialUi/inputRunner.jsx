@@ -16,12 +16,16 @@ export default function InputRunner({
   getLeadCorredores,
   email,
   names,
+  profesion,
+  category,
+  country,
+  marca_personal,
+  setProfesion,
+  setCategory,
+  setCountry,
+  setMarca_personal,
 }) {
   const dispatch = useDispatch();
-  const [profesion, setProfesion] = useState("");
-  const [category, setCategory] = useState("");
-  const [country, setCountry] = useState("");
-  const [marca_personal, setMarca_personal] = useState("");
   const [check, setCheck] = useState(false);
 
   const { allProfesion } = useSelector((state) => state);
@@ -51,7 +55,7 @@ export default function InputRunner({
 
   const handleChangeNombrePropio = (event) => {
     setMarca_personal(event.target.checked ? "SI" : "");
-    setCheck(!check)
+    setCheck(!check);
   };
 
   const handleFilterClick = () => {
@@ -72,7 +76,7 @@ export default function InputRunner({
     setCategory("");
     setCountry("");
     setMarca_personal("");
-    setCheck(false)
+    setCheck(false);
   };
 
   return (
