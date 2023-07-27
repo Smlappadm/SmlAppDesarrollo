@@ -241,6 +241,7 @@ const VendedoresAgenda = () => {
                   body={body}
                   emailAddress={emailAddress}
                   profesion={profesion}
+                  setProfesion={setProfesion}
                 />
                 const [profesion, setProfesion] = useState(""); const [country,
                 setCountry] = useState(""); const [level, setLevel] =
