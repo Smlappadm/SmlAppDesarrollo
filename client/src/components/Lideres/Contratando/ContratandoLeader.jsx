@@ -280,6 +280,7 @@ export const ContratandoLeader = () => {
               setVendedor={setVendedor}
               freelancer={freelancer}
               setFreelancer={setFreelancer}
+              getAllLeadAPagar={getAllLeadAPagar}
             />
           </div>
         </div>
