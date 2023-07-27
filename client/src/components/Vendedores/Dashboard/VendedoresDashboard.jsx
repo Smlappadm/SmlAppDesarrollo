@@ -40,6 +40,7 @@ const VendedoresDashboard = () => {
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
   const [status, setStatus] = useState("");
+  const [level, setLevel] = useState("");
   const [freelancer, setFreelancer] = useState("");
 
   const user = useUser().user;
@@ -48,8 +49,6 @@ const VendedoresDashboard = () => {
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
   const body = { name: fullName, email: emailAddress };
-
-  const [level, setLevel] = useState("");
 
   const notify = () => toast("Here is your toast.");
 
