@@ -34,7 +34,6 @@ const VendedoresDashboard = () => {
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
   const [profesion, setProfesion] = useState("");
