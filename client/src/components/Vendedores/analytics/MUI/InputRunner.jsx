@@ -22,6 +22,8 @@ import {
   setCountry,
   level,
   setLevel,
+  status,
+  setStatus,
 } from "../../../../redux/actions";
 import { useUser } from "@clerk/clerk-react";
 
