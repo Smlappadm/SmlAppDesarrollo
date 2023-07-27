@@ -14,7 +14,7 @@ import ModalObservaciones from "../Dashboard/Modal/ModalObservaciones";
 import { ToastContainer, toast } from "react-toastify";
 
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
-import { filterLevel, getVendedorAllLeads } from "../../../../redux/actions";
+import { filterLevel, findVendedoresByNameAllInfo, getVendedorAllLeads } from "../../../../redux/actions";
 import InputRunner from "./MUI/InputRunner";
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
@@ -85,14 +85,44 @@ const VentasHistory = () => {
       progress: undefined,
       theme: "dark",
     });
+    dispatch(
+      findVendedoresByNameAllInfo(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   };
   const cancelModal = () => {
-    dispatch(getVendedorAllLeads(email));
+    dispatch(
+      findVendedoresByNameAllInfo(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   };
   //----------------------------------
 
   useEffect(() => {
-    dispatch(getVendedorAllLeads(email));
+    dispatch(getVendedorAllLeads(        email,
+      fromDay,
+      toDay,
+      profesion,
+      country,
+      category,
+      level,
+      status));
   }, [dispatch, email]);
   useEffect(() => {
     vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
@@ -150,7 +180,14 @@ const VentasHistory = () => {
     setData(leadsFilteredName);
 
     if (event.target.value === "") {
-      dispatch(getVendedorAllLeads(email));
+      dispatch(getVendedorAllLeads(        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status));
     }
   };
 
