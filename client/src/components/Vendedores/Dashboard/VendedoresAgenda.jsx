@@ -28,7 +28,11 @@ const VendedoresAgenda = () => {
   const [observationMessage, setObservationMessage] = useState("false");
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
-
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [status, setStatus] = useState("");
+  const [freelancer, setFreelancer] = useState("");
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   const fullName = user?.fullName;
