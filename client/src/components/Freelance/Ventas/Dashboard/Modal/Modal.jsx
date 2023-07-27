@@ -58,7 +58,7 @@ function ChildModal({
   saveEmailAppFunction,
   openModalPagoFunction,
   flagPago,
-  openTimeHour
+  openTimeHour,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -117,7 +117,12 @@ function ChildModal({
         },
       });
 
-      if (!updatedEmailApp ||updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
+      if (
+        !updatedEmailApp ||
+        updatedEmailApp === "-" ||
+        updatedEmailApp === "" ||
+        updatedEmailApp === "NaN"
+      ) {
         saveEmailAppFunction(updatedPagos);
       } else {
         saveEmailAppFunction(updatedPagos);
@@ -126,10 +131,13 @@ function ChildModal({
       statusObj.pagos = {};
     }
 
-
     if (statusObj.status === "A pagar") {
-
-      if (!updatedEmailApp ||updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
+      if (
+        !updatedEmailApp ||
+        updatedEmailApp === "-" ||
+        updatedEmailApp === "" ||
+        updatedEmailApp === "NaN"
+      ) {
         saveEmailAppFunction(item.email);
       } else {
         saveEmailAppFunction(updatedEmailApp);
@@ -145,13 +153,9 @@ function ChildModal({
   };
 
   const handleUpdate = () => {
-    if (
-      statusObj.status === "Agenda llamada" ||
-      statusObj.status === "Agendar otro llamado"
-    ) {
+    if (statusObj.status === "Agenda llamada") {
       statusObj.status = "Agenda llamada";
-      (statusObj.emailApp = item.emailApp),
-        (statusObj.status_op = llamadoVenta.diaHora);
+      statusObj.emailApp = item.emailApp;
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
         // contacto: statusObj.observaciones.hableCon,
@@ -177,8 +181,23 @@ function ChildModal({
         },
       };
     } else {
-      statusObj.llamada_venta = {}
+      statusObj.llamada_venta = {};
     }
+
+    if (statusObj.status === "Rechazado") {
+      statusObj.observaciones = {
+        ...statusObj.observaciones,
+        dia_hora: llamadoVenta.diaHora,
+        status_op: statusObj.status_op,
+        dateObject: {
+          hora: llamadoVenta.hora,
+          minutos: llamadoVenta.minutos,
+          dia: llamadoVenta.dia,
+          mes: llamadoVenta.mes,
+          year: llamadoVenta.year,
+        },
+      };
+    } 
 
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
@@ -715,8 +734,8 @@ export default function NestedModal({
   }, [updatedEmail]);
 
   const handleOpen = () => {
-    statusObj.observaciones.tipoContacto = ""
-    statusObj.observaciones.observacion = ""
+    statusObj.observaciones.tipoContacto = "";
+    statusObj.observaciones.observacion = "";
     setOpen(true);
   };
   const handleClose = () => {
@@ -764,9 +783,7 @@ export default function NestedModal({
     });
   };
 
-
   const handleSelectChangeContratado = (event) => {
-
     setOpenTimeHour(false);
     const value = event.target.value;
     const property = event.target.name;
@@ -1500,7 +1517,7 @@ export default function NestedModal({
                     <option value="No responde">Sin contestar</option>
                   </select>
                   <div className="flex flex-col items-center justify-start mt-3">
-                                        {statusObj.status === "Rechazado" && (
+                    {statusObj.status === "Rechazado" && (
                       <div className="flex flex-col justify-center items-center">
                         <label
                           htmlFor="Motivo"
@@ -1513,16 +1530,22 @@ export default function NestedModal({
                           onChange={handleSelectChange}
                           name="status_op"
                           defaultValue={
-                            statusObj.status_op ? statusObj.status_op : "default"
+                            statusObj.status_op
+                              ? statusObj.status_op
+                              : "default"
                           }
                           className="w-60 mt-3 mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         >
                           <option disabled="disabled" value="default">
                             Elige uno...
                           </option>
-                          <option value="Falta de presupuesto">Falta de presupuesto</option>
+                          <option value="Falta de presupuesto">
+                            Falta de presupuesto
+                          </option>
                           <option value="Sin interes">Sin interes</option>
-                          <option value="Otro servicio similar">Otro servicio similar</option>
+                          <option value="Otro servicio similar">
+                            Otro servicio similar
+                          </option>
                           <option value="Otros motivos">Otros motivos</option>
                         </select>
                       </div>
@@ -1730,7 +1753,6 @@ export default function NestedModal({
               )} */}
             {statusObj.status === "Agenda llamada" && (
               <div className="flex flex-col justify-center items-center">
-                
                 <div className="flex items-center justify-center gap-2 mt-8">
                   <input
                     onChange={handleLlamadoVentaChange}
@@ -1772,7 +1794,7 @@ export default function NestedModal({
                 </div>
               </div>
             )}
-          
+
             {item.llamados > 0 && statusObj.status === "No responde" && (
               <div className="flex flex-col justify-center items-center">
                 <div className="flex justify-center items-center flex-col">
