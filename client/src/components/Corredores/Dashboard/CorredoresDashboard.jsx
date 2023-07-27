@@ -343,6 +343,14 @@ const CorredoresDashboard = () => {
                   getLeadCorredores={getLeadCorredores}
                   email={email}
                   names={names}
+                  profesion={profesion}
+                  country={country}
+                  marca_personal={marca_personal}
+                  category={category}
+                  setProfesion={setProfesion}
+                  setCountry={setCountry}
+                  setMarca_personal={setMarca_personal}
+                  setCategory={setCategory}
                 />
               </div>
             </div>
