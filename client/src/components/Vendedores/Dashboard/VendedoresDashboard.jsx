@@ -264,10 +264,6 @@ const VendedoresDashboard = () => {
                     freelancer={freelancer}
                     setFreelancer={setFreelancer}
                   />
-                  const [profesion, setProfesion] = useState(""); const
-                  [country, setCountry] = useState(""); const [level, setLevel]
-                  = useState(""); const [freelancer, setFreelancer] =
-                  useState("");
                 </motion.div>
               </div>
             )}
