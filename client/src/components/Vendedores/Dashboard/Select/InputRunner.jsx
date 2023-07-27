@@ -11,8 +11,17 @@ export default function InputName({
   body,
   getLeadCheckedInactive5,
   emailAddress,
+  profesion,
 }) {
   const dispatch = useDispatch();
+  profesion = { profesion };
+  setProfesion = { setProfesion };
+  country = { country };
+  setCountry = { setCountry };
+  level = { level };
+  setLevel = { setLevel };
+  freelancer = { freelancer };
+  setFreelancer = { setFreelancer };
 
   const [checkFreelancer, setCheckFreelancer] = useState(false);
 
