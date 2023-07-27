@@ -17,16 +17,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaHistory, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineAttachMoney } from "react-icons/md";
-import SelectLevel from "./Select/SelectStatus";
 import { useUser } from "@clerk/clerk-react";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import BasicButtons1 from "./Select/BasicButtons1";
-import BasicButtons2 from "./Select/BasicButtons2";
 import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
-import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import PagosInfo from "../../PagosInfo/PagosInfo";
 import ModalAddLeadVendedor from "./MUI/ModalAddLeadVendedor";
 
 const VendedoresDashboard = () => {
@@ -34,9 +29,12 @@ const VendedoresDashboard = () => {
   const { vendedoresDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
   const [openModalPago, setOpenModalPago] = useState(false);
   const [saveEmailApp, setSaveEmailApp] = useState("");
+  const [profesion, setProfesion] = useState("");
+  const [country, setCountry] = useState("");
+  const [level, setLevel] = useState("");
+  const [freelancer, setFreelancer] = useState("");
 
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
@@ -45,16 +43,12 @@ const VendedoresDashboard = () => {
   let emailAddress = localStorage.getItem("email");
   const body = { name: fullName, email: emailAddress };
 
-  const [profesion, setProfesion] = useState("");
-  const [country, setCountry] = useState("");
-  const [level, setLevel] = useState("");
-
-  const notify = () => toast("Here is your toast.");
-
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -73,7 +67,9 @@ const VendedoresDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   };
 
   const [levelValue, setLevelValue] = useState("");
@@ -116,7 +112,9 @@ const VendedoresDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -142,7 +140,9 @@ const VendedoresDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedInactive5(body, profesion, country, level));
+    dispatch(
+      getLeadCheckedInactive5(body, profesion, country, level, freelancer)
+    );
   };
 
   const funcionHorario = (horario) => {
@@ -255,6 +255,14 @@ const VendedoresDashboard = () => {
                     getLeadCheckedInactive5={getLeadCheckedInactive5}
                     body={body}
                     emailAddress={emailAddress}
+                    profesion={profesion}
+                    setProfesion={setProfesion}
+                    country={country}
+                    setCountry={setCountry}
+                    level={level}
+                    setLevel={setLevel}
+                    freelancer={freelancer}
+                    setFreelancer={setFreelancer}
                   />
                 </motion.div>
               </div>
@@ -353,23 +361,23 @@ const VendedoresDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
-                        <div className="flex w-44 justify-start items-center gap-2 relative">
+                          <div className="flex w-44 justify-start items-center gap-2 relative">
                             <p
                               onClick={() => handleCopyClick(item.telephone)}
                               className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
                             >
                               {item.telephone}
                             </p>
-                            </div>
-                            <a
-                              href={`http://wa.me/${item.telephone.replace(
-                                /\s+/g,
-                                ""
-                              )}`}
-                              target="blanck"
-                            >
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
-                            </a>
+                          </div>
+                          <a
+                            href={`http://wa.me/${item.telephone.replace(
+                              /\s+/g,
+                              ""
+                            )}`}
+                            target="blanck"
+                          >
+                            <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                          </a>
                         </div>
                         <div className=" w-[5%] flex justify-center items-center p-0">
                           {item.level !== "incidencia" ? (
