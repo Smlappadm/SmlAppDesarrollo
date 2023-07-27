@@ -990,6 +990,7 @@ export default function NestedModal({
   const handleChangeContacto = (event) => {
     setInputContacto(event.target.value);
   };
+
   const handleConfirmEditContacto = async (id) => {
     try {
       const body = { contacto: inputContacto };
@@ -999,6 +1000,19 @@ export default function NestedModal({
     } catch (error) {
       SendEmailLeadAlertError("Contacto");
     }
+    setEditContacto(false);
+  };
+
+  const handleEdicionChange = (event) => {
+    const value = event.target.value;
+    const property = event.target.name;
+    setStatusObj({
+      ...statusObj,
+      pagos: {
+        ...statusObj.pagos,
+        [property]: value,
+      },
+    });
     setEditContacto(false);
   };
 
@@ -1450,6 +1464,18 @@ export default function NestedModal({
                     <option value="No responde">Sin contestar</option>
                   </select>
                   <div className="flex flex-col items-center justify-start mt-3">
+                    {statusObj.status === "A pagar" && (
+                      <div className="flex justify-center items-center">
+                        <label className="inline-flex items-center text-white">Edición</label>
+                        <input
+                          type="checkbox"
+                          name="edicion"
+                          onChange={handleEdicionChange}
+                          className="form-checkbox h-5 w-5 text-blue-500 rounded"
+                          value={true}
+                        />
+                      </div>
+                    )}
                     {statusObj.status === "Rechazado" && (
                       <div className="flex flex-col justify-center items-center">
                         <label
@@ -1675,6 +1701,7 @@ export default function NestedModal({
                   </div>
                 </div>
               )} */}
+
             {statusObj.status === "Agenda llamada" && (
               <div className="flex flex-col justify-center items-center">
                 <div className="flex items-center justify-center gap-2 mt-8">
