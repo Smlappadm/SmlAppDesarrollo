@@ -74,8 +74,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       promociones.filter((promo) => promo.promocion.edicion === false);
     console.log(promociones);
     console.log(promoEdicion);
-    console.log(promoSinEdicion);
-    console.log(clienteEmpresa && clienteEmpresa.edicion);
     const promocionesEdit =
       clienteEmpresa && clienteEmpresa.edicion === true
         ? promoEdicion
