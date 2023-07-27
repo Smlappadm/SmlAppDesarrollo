@@ -68,15 +68,21 @@ export default function PromocionPago({ tamañoPantalla }) {
   useEffect(() => {
     const promoEdicion =
       promociones &&
-      promociones.filter((promo) => promo.promocion.edicion === true);
+      promociones.filter(
+        (promo) =>
+          promo.promocion.edicion === true && promo.promocion.active === true
+      );
     const promoSinEdicion =
       promociones &&
-      promociones.filter((promo) => promo.promocion.edicion === false);
+      promociones.filter(
+        (promo) =>
+          promo.promocion.edicion === false && promo.promocion.active === true
+      );
     const promocionesEdit =
       clienteEmpresa && clienteEmpresa.edicion === true
         ? promoEdicion
         : promoSinEdicion;
-    const customPromos = promociones.reduce((result, promo) => {
+    const customPromos = promocionesEdit.reduce((result, promo) => {
       if (promo.promocion && promo.promocion.hora) {
         const hora = `promo${promo.promocion.hora}horas`;
         const cuota = promo.promocion.cuota || "default";
