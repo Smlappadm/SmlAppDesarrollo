@@ -18,6 +18,7 @@ export default function InputRunner({
   profesion,
   category,
   country,
+  marca_personal,
 }) {
   const dispatch = useDispatch();
   const [profesion, setProfesion] = useState("");
