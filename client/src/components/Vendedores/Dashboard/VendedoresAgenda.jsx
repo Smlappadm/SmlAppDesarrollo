@@ -42,7 +42,9 @@ const VendedoresAgenda = () => {
   const body = { email: emailAddress };
 
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(body));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
