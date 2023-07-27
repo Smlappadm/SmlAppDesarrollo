@@ -39,7 +39,6 @@ const VendedoresDashboard = () => {
   const [saveEmailApp, setSaveEmailApp] = useState("");
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
-  const [status, setStatus] = useState("");
   const [level, setLevel] = useState("");
   const [freelancer, setFreelancer] = useState("");
 
@@ -257,6 +256,10 @@ const VendedoresDashboard = () => {
                     body={body}
                     emailAddress={emailAddress}
                   />
+                  const [profesion, setProfesion] = useState(""); const
+                  [country, setCountry] = useState(""); const [level, setLevel]
+                  = useState(""); const [freelancer, setFreelancer] =
+                  useState("");
                 </motion.div>
               </div>
             )}
