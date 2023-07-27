@@ -17,56 +17,56 @@ const updateLeadVendedorById = async (id, updatedData) => {
     // Si el estado es "Contratado", se procede con ciertas acciones y actualizaciones adicionales
     // Agregamos la propiedad 'updateContratado' con la fecha y hora actual en caso de "Contratado"
     const dateContratado = new Date();
-    const formattedTimeContratado = date.toISOString();
+    const formattedTimeContratado = dateContratado.toISOString();
     updatedData.dataLead.updateContratado = formattedTimeContratado;
     updatedData.dataObservaciones.status = "Contratado";
     updatedData.dataObservaciones.fecha = formattedTimeContratado;
   } else if (updatedData.dataLead.status === "Rechazado") {
     // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
     const dateRechazado = new Date();
-    const formattedTimeRechazado = date.toISOString();
+    const formattedTimeRechazado = dateRechazado.toISOString();
     updatedData.dataLead.updateRechazado = formattedTimeRechazado;
     updatedData.dataObservaciones.status = "Rechazado";
     updatedData.dataObservaciones.fecha = formattedTimeRechazado;
   } else if (updatedData.dataLead.status === "Contactado") {
     // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
-    const dateRechazado = new Date();
-    const formattedTimeContactado = date.toISOString();
+    const dateContactado = new Date();
+    const formattedTimeContactado = dateContactado.toISOString();
     updatedData.dataLead.updateContactado = formattedTimeContactado;
     updatedData.dataObservaciones.status = "Contactado";
     updatedData.dataObservaciones.fecha = formattedTimeContactado;
   } else if (updatedData.dataLead.status === "A pagar") {
     // Agregamos la propiedad 'updateRechazado' con la fecha y hora actual en caso de "Rechazado"
     const dateAPagar = new Date();
-    const formattedTimeAPagar = date.toISOString();
+    const formattedTimeAPagar = dateAPagar.toISOString();
     updatedData.dataLead.updateAPagar = formattedTimeAPagar;
     updatedData.dataObservaciones.status = "A pagar";
     updatedData.dataObservaciones.fecha = formattedTimeAPagar;
   } else if (updatedData.dataLead.status === "No responde") {
     // Agregamos la propiedad 'updateNoResponde' con la fecha y hora actual en caso de "No responde"
     const dateNoResponde = new Date();
-    const formattedTimeNoResponde = date.toISOString();
+    const formattedTimeNoResponde = dateNoResponde.toISOString();
     updatedData.dataLead.updateNoResponde = formattedTimeNoResponde;
     updatedData.dataObservaciones.status = "No responde";
     updatedData.dataObservaciones.fecha = formattedTimeNoResponde;
   } else if (updatedData.dataLead.status === "Agenda llamada") {
     // Agregamos la propiedad 'updateAgendaLlamada' con la fecha y hora actual en caso de "Agenda llamada"
     const dateSdoLlamado = new Date();
-    const formattedTimeAgendaLlamada = date.toISOString();
+    const formattedTimeAgendaLlamada = dateSdoLlamado.toISOString();
     updatedData.dataLead.updateAgendaLlamada = formattedTimeAgendaLlamada;
     updatedData.dataObservaciones.status = "Agenda llamada";
     updatedData.dataObservaciones.fecha = formattedTimeAgendaLlamada;
   } else if (updatedData.dataLead.status === "En proceso") {
     // Agregamos la propiedad 'updateAgendaLlamada' con la fecha y hora actual en caso de "Agenda llamada"
     const dateEnProceso = new Date();
-    const formattedTimeEnProceso = date.toISOString();
+    const formattedTimeEnProceso = dateEnProceso.toISOString();
     updatedData.dataLead.updateEnProceso = formattedTimeEnProceso;
     updatedData.dataObservaciones.status = "En proceso";
     updatedData.dataObservaciones.fecha = formattedTimeEnProceso;
   } else if (updatedData.dataLead.status === "incidencia") {
     // Agregamos la propiedad 'updateIncidencia' con la fecha y hora actual en caso de "Incidencia"
     const dateIncidencia = new Date();
-    const formattedTimeIncidencia = date.toISOString();
+    const formattedTimeIncidencia = dateIncidencia.toISOString();
     updatedData.dataLead.updateIncidencia = formattedTimeIncidencia;
     updatedData.dataObservaciones.status = "incidencia";
     updatedData.dataObservaciones.fecha = formattedTimeIncidencia;

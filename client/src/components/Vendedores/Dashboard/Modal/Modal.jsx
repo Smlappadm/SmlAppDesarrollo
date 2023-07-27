@@ -59,7 +59,7 @@ function ChildModal({
   editEmailApp,
   editContacto,
   saveEmailAppFunction,
-  openTimeHour
+  openTimeHour,
 }) {
   const [openChild, setOpenChild] = React.useState(false);
 
@@ -74,6 +74,7 @@ function ChildModal({
     if (statusObj.status === "Contactado") {
       setStatusObj({ ...statusObj, pagoRecibido: false });
     }
+
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -91,7 +92,12 @@ function ChildModal({
         },
         status_op: statusObj.pagos.monto,
       });
-      if (!updatedEmailApp || updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
+      if (
+        !updatedEmailApp ||
+        updatedEmailApp === "-" ||
+        updatedEmailApp === "" ||
+        updatedEmailApp === "NaN"
+      ) {
         saveEmailAppFunction(item.email);
       } else {
         saveEmailAppFunction(updatedEmailApp);
@@ -99,15 +105,19 @@ function ChildModal({
     } else {
       statusObj.pagos = {};
     }
-    
-    if (statusObj.status === "A pagar") {
 
-      if (!updatedEmailApp || updatedEmailApp === "-" || updatedEmailApp === "" || updatedEmailApp === "NaN") {
+    if (statusObj.status === "A pagar") {
+      if (
+        !updatedEmailApp ||
+        updatedEmailApp === "-" ||
+        updatedEmailApp === "" ||
+        updatedEmailApp === "NaN"
+      ) {
         saveEmailAppFunction(item.email);
       } else {
         saveEmailAppFunction(updatedEmailApp);
       }
-    } 
+    }
 
     setOpenChild(true);
     handleLlamadoVentaChange();
@@ -118,13 +128,9 @@ function ChildModal({
   };
 
   const handleUpdate = () => {
-    if (
-      statusObj.status === "Agenda llamada" ||
-      statusObj.status === "Agendar otro llamado"
-    ) {
+    if (statusObj.status === "Agenda llamada") {
       statusObj.status = "Agenda llamada";
-      (statusObj.emailApp = item.emailApp),
-        (statusObj.status_op = llamadoVenta.diaHora);
+      statusObj.emailApp = item.emailApp;
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
         // contacto: statusObj.observaciones.hableCon,
@@ -137,7 +143,6 @@ function ChildModal({
           year: llamadoVenta.year,
         },
       };
-
       statusObj.observaciones = {
         ...statusObj.observaciones,
         dia_hora: llamadoVenta.diaHora,
@@ -150,8 +155,23 @@ function ChildModal({
         },
       };
     } else {
-      statusObj.llamada_venta = {}
+      statusObj.llamada_venta = {};
     }
+
+    if (statusObj.status === "Rechazado") {
+      statusObj.observaciones = {
+        ...statusObj.observaciones,
+        dia_hora: llamadoVenta.diaHora,
+        status_op: statusObj.status_op,
+        dateObject: {
+          hora: llamadoVenta.hora,
+          minutos: llamadoVenta.minutos,
+          dia: llamadoVenta.dia,
+          mes: llamadoVenta.mes,
+          year: llamadoVenta.year,
+        },
+      };
+    } 
 
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
@@ -690,8 +710,8 @@ export default function NestedModal({
   }, [updatedEmail]);
 
   const handleOpen = () => {
-    statusObj.observaciones.tipoContacto = ""
-    statusObj.observaciones.observacion = ""
+    statusObj.observaciones.tipoContacto = "";
+    statusObj.observaciones.observacion = "";
     setOpen(true);
   };
   const handleClose = () => {
@@ -980,7 +1000,6 @@ export default function NestedModal({
     }
     setEditContacto(false);
   };
-
 
   return (
     <div className="">
@@ -1317,33 +1336,6 @@ export default function NestedModal({
                     <option value="No responde">No Responde</option> */}
                   </select>
 
-                  {statusObj.status === "Rechazado" && (
-                    <div className="flex flex-col justify-center items-center">
-                      <label
-                        htmlFor="Motivo"
-                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                      >
-                        Motivo
-                      </label>
-                      <select
-                        id="Motivo"
-                        onChange={handleSelectChange}
-                        name="status_op"
-                        defaultValue={
-                          statusObj.status_op ? statusObj.status_op : "default"
-                        }
-                        className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      >
-                        <option disabled="disabled" value="default">
-                          Elige uno...
-                        </option>
-                        <option value="Sin dinero">Sin Dinero</option>
-                        <option value="Sin interes">Sin Interes</option>
-                        <option value="Otro servicio">Otro Servicio</option>
-                      </select>
-                    </div>
-                  )}
-
                   <div className="flex flex-col items-center justify-start mt-3">
                     <label
                       htmlFor="last_name"
@@ -1449,13 +1441,47 @@ export default function NestedModal({
                     <option disabled="disabled" value="default">
                       Elige uno...
                     </option>
-                    <option value="Agendar otro llamado">Agenda llamada</option>
+                    <option value="Agenda llamada">Agenda llamada</option>
                     {/* <option value="Contratando">Contratando</option> */}
+                    <option value="En proceso">En proceso</option>
                     <option value="A pagar">A pagar</option>
                     <option value="Rechazado">Rechazado</option>
                     <option value="No responde">Sin contestar</option>
                   </select>
                   <div className="flex flex-col items-center justify-start mt-3">
+                    {statusObj.status === "Rechazado" && (
+                      <div className="flex flex-col justify-center items-center">
+                        <label
+                          htmlFor="Motivo"
+                          className="block text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Motivo
+                        </label>
+                        <select
+                          id="Motivo"
+                          onChange={handleSelectChange}
+                          name="status_op"
+                          defaultValue={
+                            statusObj.status_op
+                              ? statusObj.status_op
+                              : "default"
+                          }
+                          className="w-60 mt-3 mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        >
+                          <option disabled="disabled" value="default">
+                            Elige uno...
+                          </option>
+                          <option value="Falta de presupuesto">
+                            Falta de presupuesto
+                          </option>
+                          <option value="Sin interes">Sin interes</option>
+                          <option value="Otro servicio similar">
+                            Otro servicio similar
+                          </option>
+                          <option value="Otros motivos">Otros motivos</option>
+                        </select>
+                      </div>
+                    )}
                     <label
                       htmlFor="last_name"
                       className="block text-sm text-center font-medium text-gray-900 dark:text-white "
@@ -1511,23 +1537,7 @@ export default function NestedModal({
                         Otro
                       </option>
                     </select>
-                    {/* <label
-                htmlFor="last_name"
-                className="block mt-8 text-sm text-center font-medium text-gray-900 dark:text-white"
-                >
-                Nombre del Contacto
-                </label>
-              <div className="mt-3 flex justify-center items-center">
-                <input
-                  onChange={handleLlamadoVentaChange}
-                  type="text"
-                  id="last_name"
-                  name="contacto"
-                  className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                  required
-                  />
-                </div> */}
+
                     <label
                       htmlFor="last_name"
                       className="mt-7 block text-sm text-center font-medium text-gray-900 dark:text-white "
@@ -1545,36 +1555,11 @@ export default function NestedModal({
                       placeholder=""
                       required
                     />
-                    {/* </div> */}
-
-                    {/* <label
-                      htmlFor="last_name"
-                      className="mt-7 block text-sm text-center font-medium text-gray-900 dark:text-white "
-                    >
-                      Hable con
-                    </label>
-                <div className="flex justify-center items-center">
-                  <input
-                    onChange={handleObservationChange}
-                    type="text"
-                    id="last_name"
-                    name="hableCon"
-                    value={
-                      statusObj.observaciones.hableCon
-                        ? statusObj.observaciones.hableCon
-                        : item &&
-                          item.observaciones_ventas &&
-                          item.observaciones_ventas.hableCon
-                    }
-                    className="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder=""
-                    required
-                  />
-                </div> */}
                   </div>
                 </>
               )}
             </div>
+
             {/* {statusObj.status === "Rechazado" && (
               <div className="m-5">
               <label
@@ -1682,56 +1667,8 @@ export default function NestedModal({
                   </div>
                 </div>
               )} */}
-            {statusObj.status === "Agendar otro llamado" && (
+            {statusObj.status === "Agenda llamada" && (
               <div className="flex flex-col justify-center items-center">
-                {/* <label
-                  htmlFor="last_name"
-                  className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                >
-                  Hable con
-                </label>
-                <div className="flex justify-center items-center">
-                  <input
-                    onChange={handleObservationChange}
-                    type="text"
-                    id="last_name"
-                    name="hableCon"
-                    value={
-                      statusObj.observaciones.hableCon
-                        ? statusObj.observaciones.hableCon
-                        : item &&
-                          item.observaciones_ventas &&
-                          item.observaciones_ventas.hableCon
-                    }
-                    className="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder=""
-                    required
-                  />
-                </div> */}
-                {/* <label
-                  htmlFor="last_name"
-                  className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
-                >
-                  Observaciones
-                </label>
-                <div className="flex justify-center items-center">
-                  <textarea
-                    onChange={handleLlamadoVentaChange}
-                    type="text"
-                    id="last_name"
-                    name="observaciones"
-                    value={
-                      llamadoVenta && llamadoVenta.observaciones
-                        ? llamadoVenta.observaciones
-                        : item &&
-                          item.llamada_venta &&
-                          item.llamada_venta.observaciones
-                    }
-                    className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder=""
-                    required
-                  />
-                </div> */}
                 <div className="flex items-center justify-center gap-2 mt-8">
                   <input
                     onChange={handleLlamadoVentaChange}
@@ -1773,61 +1710,7 @@ export default function NestedModal({
                 </div>
               </div>
             )}
-            {/* {statusObj.status === "A pagar" && (
-              <div className="flex flex-col items-center justify-center gap-7 mt-8">
-                <div className="flex items-center justify-center gap-2 relative">
-                  <label
-                    htmlFor="last_name"
-                    className="absolute  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                  >
-                    €
-                  </label>
-                  <input
-                    onChange={handleSelectChangeContratado}
-                    type="number"
-                    id="last_name"
-                    name="monto"
-                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-32 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
-                    placeholder="Monto"
-                    required
-                  />
-                  <label
-                    htmlFor="last_name"
-                    className="  text-sm text-center font-medium text-gray-900 dark:text-white left-2"
-                  >
-                    /
-                  </label>
-                  <input
-                    onChange={handleSelectChangeContratado}
-                    type="number"
-                    id="last_name"
-                    name="cuotas"
-                    className={`text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${styles.numberPick}`}
-                    placeholder="Cuotas"
-                    required
-                  />
-                </div>
 
-                <p
-                  type="text"
-                  id="last_name"
-                  name="total"
-                  disabled={true}
-                  className={
-                    statusObj.pagos.monto && statusObj.pagos.cuotas
-                      ? "text-center bbg-gray-50 border border-gray-300 text-gray-900 text-14 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      : ""
-                  }
-                  placeholder=""
-                >
-                  {statusObj.pagos.monto &&
-                    statusObj.pagos.cuotas &&
-                    `${statusObj.pagos.cuotas} pagos de €${(
-                      statusObj.pagos.monto / statusObj.pagos.cuotas
-                    ).toFixed(2)}`}
-                </p>
-              </div>
-            )} */}
             {item.llamados > 0 && statusObj.status === "No responde" && (
               <div className="flex flex-col justify-center items-center">
                 <div className="flex justify-center items-center flex-col">

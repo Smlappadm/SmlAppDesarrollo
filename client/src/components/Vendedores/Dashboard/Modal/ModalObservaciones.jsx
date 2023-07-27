@@ -95,10 +95,10 @@ export default function ModalIntelligentInfo({ item }) {
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 580, borderRadius: 5 }}>
-          <div className="flex flex-col items-center justify-center gap-y-3">
+          <div className="flex flex-col items-center justify-center gap-y-3 text-white">
             <h1 className="text-24 text-[#e4e1e1]">Historial Obvservaciones</h1>
             <p>{item.name}</p>
-            <div className="flex flex-col  justify-start items-center h-[400px] w-[500px] my-3 overflow-scroll">
+            <div className="flex flex-col  justify-start items-center h-[400px] w-[500px] my-3 overflow-scroll text-white">
               {item.observaciones_ventas &&
               item.observaciones_ventas.length > 0 &&
               item.observaciones_ventas[0].status ? (
@@ -120,7 +120,13 @@ export default function ModalIntelligentInfo({ item }) {
                         </div>
                       </div>
 
-                      <div className=" flex justify-start items-start h-fit w-full gap-x-3">
+                      <div className=" flex flex-col justify-start items-start h-fit w-full gap-x-3">
+                        {item.status === "Rechazado" && (
+                          <div className=" flex justify-start items-start h-fit w-56 gap-x-2">
+                            <h1>Motivo: </h1>
+                            <h1>{item.status_op && item.status_op}</h1>
+                          </div>
+                        )}
                         <div className="flex justify-start items-start h-fit w-56 gap-x-2">
                           <h1>Contacto: </h1>
                           <h1>{item.tipoContacto && item.tipoContacto}</h1>
