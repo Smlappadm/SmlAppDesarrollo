@@ -116,7 +116,7 @@ export const Promociones = () => {
             <div className="flex  justify-center w-1/12 items-center p-0 ml-[5.5rem]">
               <Text className="text-start w-fit p-0 text-white">Horas</Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-16">
+            <div className="flex  justify-center w-1/12 items-center p-0 ml-16">
               <Text className="text-center w-24 p-0 text-white">
                 Monto Total
               </Text>
