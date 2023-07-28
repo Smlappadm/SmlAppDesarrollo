@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import trofy1 from "../../Assets/med1.png";
-import trofy2 from "../../Assets/med2.png";
-import trofy3 from "../../Assets/med3.png";
-import trofy4 from "../../Assets/med4.png";
+import trofy1 from "../../Assets/med1.webp";
+import trofy2 from "../../Assets/med2.webp";
+import trofy3 from "../../Assets/med3.webp";
+import trofy4 from "../../Assets/med4.webp";
 import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
 import CustomsIconsDesktop from "./CustomsIconsDesktop/CustomsIconsDesktop";
 import "./TrofeosDesktop.module.css";
