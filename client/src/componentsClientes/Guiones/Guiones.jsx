@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import background from "../../Assets/borde1.png";
 import background2 from "../../Assets/borde2.png";
-import AI22 from "../../Assets/AI22.png";
+import AI22 from "../../Assets/AI22.webp";
 import next1 from "../../Assets/next1.png";
-import IA21 from "../../Assets/IA21.png";
-import user1 from "../../Assets/user1.png";
-import SMLlogo from "../../Assets/smllogo.png";
+import IA21 from "../../Assets/IA21.webp";
+import user1 from "../../Assets/user1.webp";
+import SMLlogo from "../../Assets/smllogo.webp";
 import { Link } from "react-router-dom";
 import ProgressBar from "./ProgressBar/ProgressBar";
 import HandleGuion from "./MUI/HandleGuion";
