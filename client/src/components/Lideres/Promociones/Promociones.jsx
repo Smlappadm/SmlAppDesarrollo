@@ -146,45 +146,52 @@ export const Promociones = () => {
             <div key={index} className="w-full mt-4">
               <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around   w-full">
                 <div className="flex  justify-center items-center p-0  w-2/12">
-                  <Text className=" text-white rounded-full">
+                  <Text className=" text-white rounded-full w-full">
                     {item.promocion.name}
                   </Text>
                 </div>
 
                 <div className="w-4/12 text-ellipsis  flex justify-center items-center p-0 ">
-                  <Text className="text-white">{item.promocion.link}</Text>
+                  <Text className="text-white w-full">
+                    {item.promocion.link}
+                  </Text>
                 </div>
 
                 <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
-                  <Text className="text-white">{item.promocion.hora}</Text>
+                  <Text className="text-white w-full">
+                    {item.promocion.hora}
+                  </Text>
                 </div>
-                <div className="flex  justify-center items-center p-0">
-                  <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
-                    <Text className="text-white">{item.promocion.monto}</Text>
-                  </div>
+
+                <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
+                  <Text className="text-white w-full">
+                    {item.promocion.monto}
+                  </Text>
                 </div>
                 <div className="flex  justify-center items-center p-0">
                   <div className="w-1/12 flex justify-center items-center p-0 ">
-                    <Text className="text-white ">{item.promocion.cuota}</Text>
+                    <Text className="text-white w-full">
+                      {item.promocion.cuota}
+                    </Text>
                   </div>
                 </div>
                 <div className="flex  justify-center items-center p-0">
                   <div className="w-20 flex justify-center items-center p-0 ">
-                    <Text className="text-white">
+                    <Text className="text-white w-full">
                       {item.promocion.valorCuota}
                     </Text>
                   </div>
                 </div>
                 <div className="flex  justify-center items-center p-0">
                   <div className="w-1/12 flex justify-center items-center p-0 ">
-                    <Text className="text-white">
+                    <Text className="text-white w-full">
                       {item.promocion.edicion ? "Con Editores" : "Sin Editores"}
                     </Text>
                   </div>
                 </div>
                 <div className="flex  justify-center items-center p-0">
                   <div className="w-1/12 flex justify-center items-center p-0 ">
-                    <Text className="text-white">
+                    <Text className="text-white w-full">
                       {item.promocion.active ? "Activo" : "Inactivo"}
                     </Text>
                   </div>
