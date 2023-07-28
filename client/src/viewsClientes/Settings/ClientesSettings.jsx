@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ProfileSetting from "../../componentsClientes/ProfileSetting/ProfileSetting";
 import CustomsLabelSetting from "./CustomsLabelSetting/CustomsLabelSetting";
 import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
-import background from "../../Assets/borde1.png";
+import background from "../../Assets/borde1.webp";
 
 export default function ClientesSettings({ tamañoPantalla }) {
   const [profileSetting, setProfileSetting] = useState(false);
