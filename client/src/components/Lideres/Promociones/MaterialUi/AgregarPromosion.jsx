@@ -50,14 +50,17 @@ export default function AgregarPromosion() {
   const handleChange = (event, property) => {
     let newValue;
 
-    if (
+    if (property === "name") {
+      newValue = event.target.value.trimStart();
+    } else if (
       property === "hora" ||
+      property === "link" ||
       property === "cuota" ||
       property === "monto" ||
       property === "descuento" ||
       property === "valorCuota"
     ) {
-      newValue = event.target.value;
+      newValue = event.target.value.trim();
     } else if (property === "active") {
       newValue = !promocion.active;
     } else if (property === "edicion") {
