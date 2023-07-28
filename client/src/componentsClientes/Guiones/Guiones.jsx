@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import background from "../../Assets/borde1.png";
-import background2 from "../../Assets/borde2.png";
+import background from "../../Assets/borde1.webp";
+import background2 from "../../Assets/borde2.webp";
 import AI22 from "../../Assets/AI22.webp";
-import next1 from "../../Assets/next1.png";
+import next1 from "../../Assets/next1.webp";
 import IA21 from "../../Assets/IA21.webp";
 import user1 from "../../Assets/user1.webp";
 import SMLlogo from "../../Assets/smllogo.webp";
