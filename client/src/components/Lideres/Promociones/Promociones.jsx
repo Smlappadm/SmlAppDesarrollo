@@ -158,7 +158,7 @@ export const Promociones = () => {
                 </div>
 
                 <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full">
+                  <Text className="text-white w-full text-center">
                     {item.promocion.hora}
                   </Text>
                 </div>
