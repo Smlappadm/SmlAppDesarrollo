@@ -187,13 +187,12 @@ export const Promociones = () => {
                   </Text>
                 </div>
 
-                <div className="flex  justify-center items-center p-0">
-                  <div className="w-1/12 flex justify-center items-center p-0 ">
-                    <Text className="text-white w-full">
-                      {item.promocion.active ? "Activo" : "Inactivo"}
-                    </Text>
-                  </div>
+                <div className="w-1/12 flex justify-center items-center p-0 ">
+                  <Text className="text-white w-full">
+                    {item.promocion.active ? "Activo" : "Inactivo"}
+                  </Text>
                 </div>
+
                 <ActualizarPromocion item={item} />
               </div>
             </div>
