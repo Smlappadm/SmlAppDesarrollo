@@ -106,14 +106,21 @@ export default function ModalIntelligentInfo({ item }) {
                   .map((item, index) => (
                     <div
                       key={index}
-                      className="flex flex-col  justify-center items-center w-[500px] text-white p-2"
+                      className=" flex flex-col  justify-center items-center w-[500px] text-white p-2"
                     >
                       <div className="border-2 w-full mb-2"></div>
-                      <div className="whitespace-nowrap flex justify-start items-start h-fit w-full gap-x-3">
-                        <div className=" flex justify-start items-start h-fit w-56 gap-x-2">
+                      <div className="flex justify-start items-start h-fit w-full gap-x-3">
+                        <div className="whitespace-nowrap flex justify-start items-start h-fit w-56 gap-x-2">
                           <h1>Status: </h1>
                           <h1>{item.status && item.status}</h1>
                         </div>
+                        <div className=" flex justify-end items-start h-fit w-full gap-x-2">
+                          <h1>Fechas: </h1>
+                          <h1>{item.fecha && funcionHorario(item.fecha)}</h1>
+                        </div>
+                      </div>
+
+                      <div className=" flex flex-col justify-start items-start h-fit w-full gap-x-3">
                         {item.status === "Rechazado" && (
                           <div className=" flex justify-start items-start h-fit w-56 gap-x-2">
                             <h1>Motivo: </h1>
@@ -126,13 +133,6 @@ export default function ModalIntelligentInfo({ item }) {
                             <h1>{item.status_op && item.status_op}</h1>
                           </div>
                         )}
-                        <div className=" flex justify-end items-start h-fit w-full gap-x-2">
-                          <h1>Fechas: </h1>
-                          <h1>{item.fecha && funcionHorario(item.fecha)}</h1>
-                        </div>
-                      </div>
-
-                      <div className=" flex justify-start items-start h-fit w-full gap-x-3">
                         <div className="flex justify-start items-start h-fit w-56 gap-x-2">
                           <h1>Contacto: </h1>
                           <h1>{item.tipoContacto && item.tipoContacto}</h1>
