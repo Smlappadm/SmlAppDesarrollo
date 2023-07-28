@@ -356,9 +356,7 @@ const ClasificacionDashboard = () => {
       for (const lead of client) {
         const { level, instagram, name } = lead;
 
-        if (level === "-" || level === "") {
-          SendLeadsErrorLevel(name);
-        } else if (level === "incidencia") {
+        if (level === "incidencia") {
           if (instagram !== "") {
             SendLeadsErrorInsta0(name);
           } else {
