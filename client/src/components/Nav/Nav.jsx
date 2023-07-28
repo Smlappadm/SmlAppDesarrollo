@@ -265,20 +265,20 @@ function Nav() {
         )}
       </div>
 
-      <div className="flex flex-col justify-center w-full items-start ml-5 mb-5">
-        <div className="flex flex-col gap-2 items-center justify-center">
+      <div className="flex flex-col justify-center w-full items-center mb-10">
+        <div className="flex flex-col gap-5 items-center justify-center">
           <div className="w-16 h-16">
             <img className="rounded-full" src={imageUrl} alt="avatar" />
           </div>
           <div className="flex flex-col gap-1 mb-2">
             <p className="text-[.7rem] text-white">{userEmail}</p>
-            <p className="text-[.7rem] text-white">{fullName}</p>
+            <p className="text-[.7rem] text-white text-center">{fullName}</p>
           </div>
         </div>
         <Link to="/">
           <button
             onClick={handleLogout}
-            className={`flex items-center justify-center gap-2 ${styles.boton}`}
+            className={`flex items-center justify-center gap-2 mt-3 ${styles.boton}`}
           >
             <IoExitOutline className={styles.icono} /> <p>Salir</p>
           </button>
