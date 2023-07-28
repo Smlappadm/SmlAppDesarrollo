@@ -102,14 +102,14 @@ export const Promociones = () => {
             <AgregarPromosion />
           </div>
         </div>
-        <div className="text-white  text-14 font-thin w-full justify-between flex flex-col items-center">
-          <div className="flex  justify-center items-center p-0 w-11/12">
+        <div className="text-white  text-14 font-thin w-full justify-around flex flex-row items-center">
+          <div className="flex  justify-center items-center p-0 w-2/12">
             <Text className="text-center w-full p-0 text-white ">
               Promoción
             </Text>
           </div>
 
-          <div className="flex  justify-center items-center p-0  w-5/12">
+          <div className="flex  justify-center items-center p-0  w-4/12">
             <Text className="text-center w-full p-0 text-white">
               Link de Stripe
             </Text>
@@ -144,13 +144,11 @@ export const Promociones = () => {
         {currentCard && currentCard.length > 0 ? (
           currentCard.map((item, index) => (
             <div key={index} className="w-full mt-4">
-              <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around px-5 py-1">
-                <div className="flex  justify-center items-center p-0 ">
-                  <div className="w-64 flex justify-center items-center ">
-                    <Text className=" text-white rounded-full">
-                      {item.promocion.name}
-                    </Text>
-                  </div>
+              <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around   w-full">
+                <div className="flex  justify-center items-center p-0  w-2/12">
+                  <Text className=" text-white rounded-full">
+                    {item.promocion.name}
+                  </Text>
                 </div>
 
                 <div className="flex  justify-center items-center p-0">
