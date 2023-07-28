@@ -102,18 +102,18 @@ export const Promociones = () => {
             <AgregarPromosion />
           </div>
         </div>
-        <div className="text-white  text-14 font-thin">
+        <div className="text-white  text-14 font-thin w-full">
           <div className="flex rounded-lg items-center px-10 py-3 w-full">
             <div className="flex  justify-center items-center p-0 ml-20 w-1/12">
-              <Text className="text-start w-fit p-0 text-white">Promoción</Text>
+              <Text className="text-start  p-0 text-white ">Promoción</Text>
             </div>
 
-            <div className="flex  justify-center w-fit items-center p-0 ml-52">
+            <div className="flex  justify-center items-center p-0 ml-52 w-1/12">
               <Text className="text-center w-[18rem] p-0 text-white">
                 Link de Stripe
               </Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-[5.5rem]">
+            <div className="flex  justify-center w-1/12 items-center p-0 ml-[5.5rem]">
               <Text className="text-start w-fit p-0 text-white">Horas</Text>
             </div>
             <div className="flex  justify-center w-fit items-center p-0 ml-16">
