@@ -164,7 +164,7 @@ export const Promociones = () => {
                   </div>
                 </div>
                 <div className="flex  justify-center items-center p-0">
-                  <div className="w-20 flex justify-center items-center p-0 ">
+                  <div className="w-1/12 flex justify-center items-center p-0 ">
                     <Text className="text-white ">{item.promocion.cuota}</Text>
                   </div>
                 </div>
