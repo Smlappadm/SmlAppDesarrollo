@@ -14,7 +14,7 @@ const getVendedorVentasByEmail = async (body) => {
   
   let leadQuery = {
     vendedor: body.email,
-    pagoRecibido: { $ne: true },
+    // pagoRecibido: { $ne: true },
   };
   if (body.country) {
     leadQuery["country"] = body.country;
