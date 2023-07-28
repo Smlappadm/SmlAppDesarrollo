@@ -335,6 +335,66 @@ const CorredoresDashboard = () => {
     }
   };
 
+  const handleSubmitOne = async (event) => {
+    event.preventDefault();
+    SendLeads();
+
+    const updateLead = async (client) => {
+      const response = await axios.put(`/lead/${client[0]._id}`, {
+        instagram: client[0].instagram,
+        email: client[0].email,
+        level: client[0].level,
+        seguidores2000: client[0].seguidores2000,
+        repercusion: client[0].repercusion,
+        frecuencia: client[0].frecuencia,
+        contenidoPersonal: client[0].contenidoPersonal,
+        contenidoValor: client[0].contenidoValor,
+        calidadInstagram: client[0].calidadInstagram,
+        updateCorredor: formattedTime,
+        checked: true,
+        view: true,
+      });
+    };
+
+    try {
+        if (client[0].level === "-" || client[0].level === "") {
+          SendLeadsErrorLevel(client[0].name);
+        } else if (client[0].level === "0" || client[0].level === "incidencia") {
+          if (client[0].instagram !== "") {
+            SendLeadsErrorInsta0(client[0].name);
+          } else {
+            await updateLead(client[0]);
+            SendLeadsSuccess();
+          }
+        } else if (client[0].level === "1" || client[0].level === "2") {
+          if (client[0].instagram !== "" && instagramRegex.test(client[0].instagram)) {
+            await updateLead(client[0]);
+            SendLeadsSuccess();
+          } else {
+            SendLeadsErrorInsta(client[0].name);
+          }
+        
+      }
+
+      dispatch(
+        getLeadCorredores(
+          email,
+          username,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
+      dispatch(getAllProfesion());
+      dispatch(getAllCountries());
+      dispatch(getAllCategory());
+    } catch (error) {
+      SendLeadsError(names);
+      console.log({ error: error.message });
+    }
+  };
+
   return (
     <>
       <Nav />
