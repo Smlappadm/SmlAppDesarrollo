@@ -108,6 +108,7 @@ export default function ModalIntelligentInfo({ item }) {
                       key={index}
                       className=" flex flex-col  justify-center items-center w-[500px] text-white p-2"
                     >
+                      {console.log(item)}
                       <div className="border-2 w-full mb-2"></div>
                       <div className="flex justify-start items-start h-fit w-full gap-x-3">
                         <div className="whitespace-nowrap flex justify-start items-start h-fit w-56 gap-x-2">
@@ -124,6 +125,12 @@ export default function ModalIntelligentInfo({ item }) {
                         {item.status === "Rechazado" && (
                           <div className=" flex justify-start items-start h-fit w-56 gap-x-2">
                             <h1>Motivo: </h1>
+                            <h1>{item.status_op && item.status_op}</h1>
+                          </div>
+                        )}
+                        {item.status === "No responde" && (
+                          <div className=" flex justify-start items-start h-fit w-56 gap-x-2 text-white">
+                            <h1>Llamados: </h1>
                             <h1>{item.status_op && item.status_op}</h1>
                           </div>
                         )}
