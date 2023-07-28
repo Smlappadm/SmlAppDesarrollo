@@ -402,8 +402,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                               key={cuota}
                               className={
                                 cuotas === cuota
-                                  ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
-                                  : "rounded-md border border-white mr-2 font-bold"
+                                  ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold cursor-pointer"
+                                  : "rounded-md border border-white mr-2 font-bold cursor-pointer"
                               }
                               onClick={() => CambiarCuota(cuota)}
                             >
@@ -452,8 +452,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                   key={cuota}
                   className={
                     cuotas === cuota
-                      ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold"
-                      : "rounded-md border border-white mr-2 font-bold"
+                      ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold cursor-pointer"
+                      : "rounded-md border border-white mr-2 font-bold cursor-pointer"
                   }
                   onClick={() => CambiarCuota(cuota)}
                 >
