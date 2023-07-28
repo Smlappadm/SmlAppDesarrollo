@@ -21,6 +21,11 @@ const cleanValueClevel = async (email) => {
           checked: false,
           view: false,
           deleted: false,
+          observaciones_ventas: [],
+          linkActivado: false,
+          emailApp: "",
+          linkPago: false,
+          edicion: false,
         },
       }
     ),
@@ -38,6 +43,11 @@ const cleanValueClevel = async (email) => {
           checked: true,
           view: true,
           deleted: false,
+          observaciones_ventas: [],
+          linkActivado: false,
+          emailApp: "",
+          linkPago: false,
+          edicion: false,
         },
       }
     ),
