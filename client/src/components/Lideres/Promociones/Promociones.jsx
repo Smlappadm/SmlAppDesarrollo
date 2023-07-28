@@ -129,10 +129,10 @@ export const Promociones = () => {
                 Valor Cuotas
               </Text>
             </div>
-            <div className="flex  justify-centerw-1/12 items-center p-0 ml-16">
+            <div className="flex  justify-center w-1/12 items-center p-0 ml-16">
               <Text className="text-center w-fit p-0 text-white">Editores</Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-24">
+            <div className="flex  justify-center w-1/12 items-center p-0 ml-24">
               <Text className="text-center w-fit p-0 text-white">Estado</Text>
             </div>
             <div className="flex  justify-center w-fit items-center p-0 ml-20">
