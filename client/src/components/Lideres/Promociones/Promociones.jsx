@@ -102,7 +102,7 @@ export const Promociones = () => {
             <AgregarPromosion />
           </div>
         </div>
-        <div className="text-white  text-14 font-thin w-full justify-around flex flex-row items-center">
+        <div className="text-white  text-16 font-thin w-full justify-around flex flex-row items-center">
           <div className="flex  justify-center items-center p-0 w-2/12">
             <Text className="text-center w-full p-0 text-white ">
               Promoción
@@ -110,9 +110,7 @@ export const Promociones = () => {
           </div>
 
           <div className="flex  justify-center items-center p-0  w-4/12">
-            <Text className="text-center w-full p-0 text-white">
-              Link de Stripe
-            </Text>
+            <Text className="text-center  p-0 text-white">Link de Stripe</Text>
           </div>
           <div className="flex  justify-center w-1/12 items-center p-0 ">
             <Text className="text-center  p-0 text-white w-full">Horas</Text>
@@ -143,56 +141,58 @@ export const Promociones = () => {
 
         {currentCard && currentCard.length > 0 ? (
           currentCard.map((item, index) => (
-            <div key={index} className="w-full mt-4">
-              <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around   w-full">
-                <div className="flex  justify-center items-center p-0  w-2/12">
-                  <Text className=" text-white rounded-full w-full text-center">
-                    {item.promocion.name}
-                  </Text>
-                </div>
+            <div
+              key={index}
+              className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around   mt-4 w-full"
+            >
+              <div className="flex  justify-center items-center p-0  w-2/12">
+                <Text className=" text-white rounded-full w-full text-center">
+                  {item.promocion.name}
+                </Text>
+              </div>
 
-                <div className="w-4/12 text-ellipsis  flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full text-center">
-                    {item.promocion.link}
-                  </Text>
-                </div>
+              <div className="w-4/12 text-ellipsis  flex justify-center items-center p-0 ">
+                <Text className="text-white  text-center">
+                  {item.promocion.link}
+                </Text>
+              </div>
 
-                <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full text-center">
-                    {item.promocion.hora}
-                  </Text>
-                </div>
+              <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
+                <Text className="text-white w-full text-center">
+                  {item.promocion.hora}
+                </Text>
+              </div>
 
-                <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full text-center">
-                    {item.promocion.monto}
-                  </Text>
-                </div>
+              <div className="w-1/12 text-ellipsis  flex justify-center items-center p-0 ">
+                <Text className="text-white w-full text-center">
+                  {item.promocion.monto}
+                </Text>
+              </div>
 
-                <div className="w-1/12 flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full text-center">
-                    {item.promocion.cuota}
-                  </Text>
-                </div>
+              <div className="w-1/12 flex justify-center items-center p-0 ">
+                <Text className="text-white w-full text-center">
+                  {item.promocion.cuota}
+                </Text>
+              </div>
 
-                <div className="w-20 flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full text-center">
-                    {item.promocion.valorCuota}
-                  </Text>
-                </div>
+              <div className="w-1/12 flex justify-center items-center p-0 ">
+                <Text className="text-white w-full text-center">
+                  {item.promocion.valorCuota}
+                </Text>
+              </div>
 
-                <div className="w-1/12 flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full text-center">
-                    {item.promocion.edicion ? "Con Editores" : "Sin Editores"}
-                  </Text>
-                </div>
+              <div className="w-1/12 flex justify-center items-center p-0 ">
+                <Text className="text-white w-full text-center">
+                  {item.promocion.edicion ? "Con Editores" : "Sin Editores"}
+                </Text>
+              </div>
 
-                <div className="w-1/12 flex justify-center items-center p-0 ">
-                  <Text className="text-white w-full text-center">
-                    {item.promocion.active ? "Activo" : "Inactivo"}
-                  </Text>
-                </div>
-
+              <div className="w-1/12 flex justify-center items-center p-0 ">
+                <Text className="text-white w-full text-center">
+                  {item.promocion.active ? "Activo" : "Inactivo"}
+                </Text>
+              </div>
+              <div className="w-1/12">
                 <ActualizarPromocion item={item} />
               </div>
             </div>
