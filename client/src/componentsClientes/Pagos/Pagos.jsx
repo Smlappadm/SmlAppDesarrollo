@@ -8,7 +8,7 @@ import axios from "axios";
 import { useClerk, useUser } from "@clerk/clerk-react";
 import { useSelector, useDispatch } from "react-redux";
 import { getClienteEmpresa } from "../../redux/actions";
-import background from "../../Assets/borde1.png";
+import background from "../../Assets/borde1.webp";
 import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
 import { Link } from "react-router-dom";
 import { IoCloseSharp } from "react-icons/io5";

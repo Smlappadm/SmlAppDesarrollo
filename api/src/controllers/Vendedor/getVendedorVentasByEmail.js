@@ -14,7 +14,7 @@ const getVendedorVentasByEmail = async (body) => {
   
   let leadQuery = {
     vendedor: body.email,
-    pagoRecibido: { $ne: true },
+    // pagoRecibido: { $ne: true },
   };
   if (body.country) {
     leadQuery["country"] = body.country;
@@ -116,6 +116,7 @@ if(body.status === "Agenda llamada"){
     return 0;
   });
 
+  console.log(leadsContactado)
   // Devolver el resultado de la consulta (los leads de ventas ordenados por fecha de llamada de venta)
   // return sortClients;
   return [...leadsAgendaSorted, ...leadsContactado, ...leadsEnProceso, ...leadsNoRespondenSorted];

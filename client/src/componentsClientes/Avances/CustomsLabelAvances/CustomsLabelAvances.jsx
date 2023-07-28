@@ -1,6 +1,6 @@
 import React from "react";
-import igPng from "../../../Assets/instagram.png";
-import tkPng from "../../../Assets/tik-tok.png";
+import igPng from "../../../Assets/instagram.webp";
+import tkPng from "../../../Assets/tik-tok.webp";
 export default function CustomsLabelAvances({
   text,
   ganadosTT,

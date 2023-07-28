@@ -1,7 +1,7 @@
 import React from "react";
 import NavBarDesktop from "../Landing/NavBarDesktop/NavBarDesktop";
 import Recursos from "./Recursos";
-import background from "../../Assets/borde1.png";
+import background from "../../Assets/borde1.webp";
 
 export default function RecursosDesktop({ tamañoPantalla }) {
   return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import igPng from "../../Assets/instagram.png";
-import tkPng from "../../Assets/tik-tok.png";
+import igPng from "../../Assets/instagram.webp";
+import tkPng from "../../Assets/tik-tok.webp";
 
 export default function HistoryVideos({ videosPublicados, tamañoPantalla }) {
   const [reverse, setReverse] = useState([]);

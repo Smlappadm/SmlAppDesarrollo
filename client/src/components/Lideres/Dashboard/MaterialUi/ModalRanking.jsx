@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllFreelancer } from "../../../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import gold from "../../../../Assets/gold.png";
-import silver from "../../../../Assets/silver.png";
-import bronze from "../../../../Assets/bronze.png";
+import gold from "../../../../Assets/gold.webp";
+import silver from "../../../../Assets/silver.webp";
+import bronze from "../../../../Assets/bronze.webp";
 const style = {
   position: "absolute",
   top: "50%",

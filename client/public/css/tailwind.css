@@ -712,6 +712,10 @@ video {
   top: 1.25rem;
 }
 
+.top-32 {
+  top: 8rem;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -867,24 +871,12 @@ video {
   margin-left: 5rem;
 }
 
-.ml-24 {
-  margin-left: 6rem;
-}
-
 .ml-4 {
   margin-left: 1rem;
 }
 
 .ml-5 {
   margin-left: 1.25rem;
-}
-
-.ml-52 {
-  margin-left: 13rem;
-}
-
-.ml-\[5\.5rem\] {
-  margin-left: 5.5rem;
 }
 
 .ml-\[55px\] {
@@ -1374,10 +1366,6 @@ video {
 
 .w-\[20rem\] {
   width: 20rem;
-}
-
-.w-\[22rem\] {
-  width: 22rem;
 }
 
 .w-\[24px\] {

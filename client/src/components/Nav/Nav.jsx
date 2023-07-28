@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 import { useClerk, useUser } from "@clerk/clerk-react";
-import logo from "../../Assets/smllogo.png";
+import logo from "../../Assets/smllogo.webp";
 import {
   IoStatsChart,
   IoSettingsSharp,

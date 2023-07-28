@@ -1,5 +1,5 @@
 import React from "react";
-import avatar from "../../Assets/avatar.png";
+import avatar from "../../Assets/avatar.webp";
 
 // Componente de agendar
 export const Agendar = ({ nameAgendar }) => {

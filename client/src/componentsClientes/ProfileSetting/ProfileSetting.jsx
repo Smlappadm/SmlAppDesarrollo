@@ -4,11 +4,10 @@ import { IoCloseSharp } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
-
-import igPng from "../../Assets/instagram.png";
-import tkPng from "../../Assets/tik-tok.png";
-import gdPng from "../../Assets/googleDrive.png";
-import avatarPng from "../../Assets/avatar.png";
+import igPng from "../../Assets/instagram.webp";
+import tkPng from "../../Assets/tik-tok.webp";
+import gdPng from "../../Assets/googleDrive.webp";
+import avatarPng from "../../Assets/avatar.webp";
 
 export default function ProfileSetting({
   handleProfileSetting,

@@ -38,9 +38,11 @@ const VendedoresDashboard = () => {
 
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-  const fullName = user?.fullName;
+  // const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  let fullName = localStorage.getItem("nameEmploy");
+  console.log(fullName)
   const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
@@ -211,13 +213,16 @@ const VendedoresDashboard = () => {
     <>
       <Nav />
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
-        <div className="w-full flex flex-col justify-center items-center">
-          <div className={style.divTitle}>
             {showCopiedMessage && (
-              <p className="absolute top-2 left-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
+
+
+              <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
                 Copiado!
               </p>
+
             )}
+        <div className="w-full flex flex-col justify-center items-center">
+          <div className={style.divTitle}>
             <div className="flex">
               <motion.h1
                 initial={{ opacity: 0 }}

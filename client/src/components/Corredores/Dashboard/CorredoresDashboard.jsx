@@ -297,9 +297,7 @@ const CorredoresDashboard = () => {
       for (const lead of client) {
         const { level, instagram, name } = lead;
 
-        if (level === "-" || level === "") {
-          SendLeadsErrorLevel(name);
-        } else if (level === "0" || level === "incidencia") {
+        if (level === "0" || level === "incidencia") {
           if (instagram !== "") {
             SendLeadsErrorInsta0(name);
           } else {

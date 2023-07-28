@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
-import background from "../../Assets/borde1.png";
-import background2 from "../../Assets/borde2.png";
+import background from "../../Assets/borde1.webp";
+import background2 from "../../Assets/borde2.webp";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
 import { ToastContainer, toast } from "react-toastify";
@@ -164,7 +164,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     ) {
       const nuevosTiemposRestantes = {};
       const fechaActual = new Date();
-      let fechaAnterior = null;
       let fechaAnteriorSegundos = 0;
       clienteEmpresa.promociones.forEach((promocion, index) => {
         const time = new Date(promocion);
@@ -314,7 +313,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               : "flex flex-col justify-center items-center p-6 h-full w-1/5 gap-8"
           }
         >
-          <p className="text-white text-24 font-bold whitespace-nowrap">
+          <p className="text-white text-24 font-bold whitespace-nowrap text-center">
             {cliente && cliente.name}
           </p>
           <Link

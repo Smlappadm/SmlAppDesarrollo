@@ -176,6 +176,11 @@ function ChildModal({
 
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
+      statusObj.observaciones = {
+        ...statusObj.observaciones,
+        status_op: item.llamados + 1,
+      };
+
       // statusObj.status_op = "";
       dataVendedor = {
         _id: item._id,
@@ -1014,7 +1019,7 @@ export default function NestedModal({
       edicion: !statusObj.edicion,
     });
   };
-  console.log(statusObj.edicion)
+  console.log(statusObj.edicion);
 
   return (
     <div className="">
@@ -1466,7 +1471,9 @@ export default function NestedModal({
                   <div className="flex flex-col items-center justify-start mt-3">
                     {statusObj.status === "A pagar" && (
                       <div className="flex justify-center items-center mt-5 mb-10 gap-7">
-                        <label className="inline-flex items-center text-white text-14">CON EDICIÓN</label>
+                        <label className="inline-flex items-center text-white text-14">
+                          CON EDICIÓN
+                        </label>
                         <input
                           type="checkbox"
                           name="edicion"

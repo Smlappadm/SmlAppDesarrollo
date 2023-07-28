@@ -36,21 +36,21 @@ const VentasDashboard = () => {
   const [level, setLevel] = useState("");
   const [freelancer, setFreelancer] = useState("");
 
-  
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-  const fullName = user?.fullName;
+  // const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  let fullName = localStorage.getItem("nameEmploy");
 
   const body = { name: fullName, email: emailAddress };
-
-
 
   useEffect(() => {
     dispatch(getAllProfesionFreelance(emailAddress));
     dispatch(getAllCountriesFreelance(emailAddress));
-    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
+    dispatch(
+      getLeadCheckedFreelance(body, profesion, country, level, freelancer)
+    );
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -69,7 +69,9 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
+    dispatch(
+      getLeadCheckedFreelance(body, profesion, country, level, freelancer)
+    );
   };
 
   const [levelValue, setLevelValue] = useState("");
@@ -106,7 +108,9 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
+    dispatch(
+      getLeadCheckedFreelance(body, profesion, country, level, freelancer)
+    );
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -132,7 +136,9 @@ const VentasDashboard = () => {
       theme: "dark",
     });
 
-    dispatch(getLeadCheckedFreelance(body, profesion, country, level, freelancer));
+    dispatch(
+      getLeadCheckedFreelance(body, profesion, country, level, freelancer)
+    );
   };
 
   const funcionHorario = (horario) => {
@@ -163,12 +169,12 @@ const VentasDashboard = () => {
       <Nav />
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         <div className="w-full flex flex-col justify-center items-center">
+          {showCopiedMessage && (
+            <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
+              Copiado!
+            </p>
+          )}
           <div className={style.divTitle}>
-            {showCopiedMessage && (
-              <p className="absolute top-2  w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
-                Copiado!
-              </p>
-            )}
             <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -292,16 +298,16 @@ const VentasDashboard = () => {
                             >
                               {item.telephone}
                             </p>
-                            </div>
-                            <a
-                              href={`http://wa.me/${item.telephone.replace(
-                                /\s+/g,
-                                ""
-                              )}`}
-                              target="blanck"
-                            >
-                              <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
-                            </a>
+                          </div>
+                          <a
+                            href={`http://wa.me/${item.telephone.replace(
+                              /\s+/g,
+                              ""
+                            )}`}
+                            target="blanck"
+                          >
+                            <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                          </a>
                         </div>
                         <div className=" w-[5%] flex justify-center items-center p-0">
                           {item.level !== "incidencia" ? (

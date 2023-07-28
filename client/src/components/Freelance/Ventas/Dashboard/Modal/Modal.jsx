@@ -202,7 +202,11 @@ function ChildModal({
 
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
-      // statusObj.status_op = "";
+      statusObj.observaciones = {
+        ...statusObj.observaciones,
+        status_op: item.llamados + 1,
+      };
+
       dataVendedor = {
         _id: item._id,
         name: item.name,
@@ -1074,7 +1078,6 @@ export default function NestedModal({
     });
   };
 
-
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1534,9 +1537,11 @@ export default function NestedModal({
                     <option value="No responde">Sin contestar</option>
                   </select>
                   <div className="flex flex-col items-center justify-start mt-3">
-                  {statusObj.status === "A pagar" && (
+                    {statusObj.status === "A pagar" && (
                       <div className="flex justify-center items-center mt-5 mb-10 gap-7">
-                        <label className="inline-flex items-center text-white text-14">CON EDICIÓN</label>
+                        <label className="inline-flex items-center text-white text-14">
+                          CON EDICIÓN
+                        </label>
                         <input
                           type="checkbox"
                           name="edicion"

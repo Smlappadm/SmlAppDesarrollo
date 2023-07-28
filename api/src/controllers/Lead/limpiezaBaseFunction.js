@@ -1,28 +1,28 @@
-const Lead = require("../../models/Lead");
+// const Lead = require("../../models/Lead");
 
-const limpiezaBaseFunction = async () => {
-  const leadResult = await Lead.updateMany(
-    {corredor: "akosjev@gmail.com"},
-    {
-      $set: {
-        status: "Sin contactar",
-        status_op: "",
-        llamados: 0,
-        vendedor: "",
-        vendedor_name: "",
-        corredor: "",
-        corredor_name: "",
-        checked: false,
-        freelancer: false,
-        view: false,
-        deleted: false,
-      },
-    }
-  );
-  return leadResult;
-};
+// const limpiezaBaseFunction = async () => {
+//   const leadResult = await Lead.updateMany(
+//     {corredor: "akosjev@gmail.com"},
+//     {
+//       $set: {
+//         status: "Sin contactar",
+//         status_op: "",
+//         llamados: 0,
+//         vendedor: "",
+//         vendedor_name: "",
+//         corredor: "",
+//         corredor_name: "",
+//         checked: false,
+//         freelancer: false,
+//         view: false,
+//         deleted: false,
+//       },
+//     }
+//   );
+//   return leadResult;
+// };
 
-module.exports = limpiezaBaseFunction;
+// module.exports = limpiezaBaseFunction;
 
 // const Lead = require("../../models/Lead");
 
@@ -116,29 +116,31 @@ module.exports = limpiezaBaseFunction;
 
 
 
-// const Lead = require("../../models/Lead");
+const Lead = require("../../models/Lead");
 
-// const limpiezaBaseFunction = async () => {
-//   const leadResult = await Lead.updateMany({
-//     $set: {
-//       status: "Sin contactar",
-//       status_op: "",
-//       llamados: 0,
-//       vendedor: "",
-//       vendedor_name: "",
-//       corredor: "",
-//       corredor_name: "",
-//       checked: false,
-//       freelancer: false,
-//       view: false,
-//       deleted: false,
-//       observaciones_ventas: [],
-//       linkActivado: false,
-//       emailApp: "",
-//       level: "",
-//     },
-//   });
-//   return leadResult;
-// };
+const limpiezaBaseFunction = async () => {
+  const leadResult = await Lead.updateMany({
+    $set: {
+      status: "Sin contactar",
+      status_op: "",
+      llamados: 0,
+      vendedor: "",
+      vendedor_name: "",
+      corredor: "",
+      corredor_name: "",
+      checked: false,
+      freelancer: false,
+      view: false,
+      deleted: false,
+      observaciones_ventas: [],
+      linkActivado: false,
+      emailApp: "",
+      level: "",
+      linkPago: false,
+      edicion: false,
+    },
+  });
+  return leadResult;
+};
 
-// module.exports = limpiezaBaseFunction;
+module.exports = limpiezaBaseFunction;
