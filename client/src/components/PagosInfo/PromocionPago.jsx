@@ -164,7 +164,6 @@ export default function PromocionPago({ tamañoPantalla }) {
     ) {
       const nuevosTiemposRestantes = {};
       const fechaActual = new Date();
-      let fechaAnterior = null;
       let fechaAnteriorSegundos = 0;
       clienteEmpresa.promociones.forEach((promocion, index) => {
         const time = new Date(promocion);
