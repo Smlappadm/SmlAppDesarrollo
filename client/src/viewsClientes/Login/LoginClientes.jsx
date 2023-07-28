@@ -3,10 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Login from "../../componentsClientes/Login/Login";
 import LoginDesktop from "../../componentsClientes/Login/LoginDesktop";
 import Register from "../../componentsClientes/Login/Register";
-import background from "../../Assets/borde1.png";
-import background2 from "../../Assets/borde2.png";
+import background from "../../Assets/borde1.webp";
+import background2 from "../../Assets/borde2.webp";
 import RegisterDesktop from "../../componentsClientes/Login/RegisterDesktop";
-import logo from "../../Assets/smllogo.png";
+import logo from "../../Assets/smllogo.webp";
 
 export default function Home({ tamañoPantalla }) {
   const navigate = useNavigate();

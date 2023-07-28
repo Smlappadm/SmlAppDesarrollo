@@ -6,7 +6,7 @@ import { useClerk, useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail, updateClientProfile } from "../../redux/actions";
-import background from "../../Assets/borde1.png";
+import background from "../../Assets/borde1.webp";
 import Performance from "../../components/Lideres/Employees/Performance/Performance";
 import LandingClientDesktop from "../../componentsClientes/Landing/LandingClientDesktop";
 import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";

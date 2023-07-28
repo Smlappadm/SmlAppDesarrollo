@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import igPng from "../../Assets/instagram.png";
-import tkPng from "../../Assets/tik-tok.png";
-import gdPng from "../../Assets/googleDrive.png";
+import igPng from "../../Assets/instagram.webp";
+import tkPng from "../../Assets/tik-tok.webp";
+import gdPng from "../../Assets/googleDrive.webp";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getClientByEmail } from "../../redux/actions";

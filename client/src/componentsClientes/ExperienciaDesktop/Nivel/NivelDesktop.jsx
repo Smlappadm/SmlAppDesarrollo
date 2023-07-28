@@ -1,5 +1,5 @@
 import React from "react";
-import medImage from "../../../Assets/med1.png";
+import medImage from "../../../Assets/med1.webp";
 
 export default function NivelDesktop({ nivel }) {
   return (
