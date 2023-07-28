@@ -136,6 +136,8 @@ const limpiezaBaseFunction = async () => {
       linkActivado: false,
       emailApp: "",
       level: "",
+      linkPago: false,
+      edicion: false,
     },
   });
   return leadResult;
