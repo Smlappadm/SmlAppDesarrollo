@@ -55,7 +55,7 @@ export const Promociones = () => {
     <>
       <Nav />
       <Card className="w-full h-full  bg-[#222131] rounded-none p-5">
-        <div className="flex  justify-between mx-5 mb-10">
+        <div className="flex  justify-between mx-5 mb-10 w-full">
           <div className="flex gap-5 ">
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Promociones
@@ -102,42 +102,42 @@ export const Promociones = () => {
             <AgregarPromosion />
           </div>
         </div>
-        <div className="text-white  text-14 font-thin w-full">
-          <div className="flex rounded-lg items-center px-10 py-3 w-full">
-            <div className="flex  justify-center items-center p-0 ml-20 w-1/12">
-              <Text className="text-start  p-0 text-white ">Promoción</Text>
-            </div>
+        <div className="text-white  text-14 font-thin w-full justify-between flex flex-col items-center">
+          <div className="flex  justify-center items-center p-0 w-11/12">
+            <Text className="text-center w-full p-0 text-white ">
+              Promoción
+            </Text>
+          </div>
 
-            <div className="flex  justify-center items-center p-0 ml-52 w-1/12">
-              <Text className="text-center w-[18rem] p-0 text-white">
-                Link de Stripe
-              </Text>
-            </div>
-            <div className="flex  justify-center w-1/12 items-center p-0 ml-[5.5rem]">
-              <Text className="text-start w-fit p-0 text-white">Horas</Text>
-            </div>
-            <div className="flex  justify-center w-1/12 items-center p-0 ml-16">
-              <Text className="text-center w-24 p-0 text-white">
-                Monto Total
-              </Text>
-            </div>
-            <div className="flex  justify-center w-1/12 items-center p-0 ml-16">
-              <Text className="text-center w-fit p-0 text-white">Cuota</Text>
-            </div>
-            <div className="flex  justify-center w-1/12 items-center p-0  ml-16">
-              <Text className="text-center w-24 p-0 text-white">
-                Valor Cuotas
-              </Text>
-            </div>
-            <div className="flex  justify-center w-1/12 items-center p-0 ml-16">
-              <Text className="text-center w-fit p-0 text-white">Editores</Text>
-            </div>
-            <div className="flex  justify-center w-1/12 items-center p-0 ml-24">
-              <Text className="text-center w-fit p-0 text-white">Estado</Text>
-            </div>
-            <div className="flex  justify-center w-1/12 items-center p-0 ml-20">
-              <Text className="text-center w-fit p-0 text-white">Editar</Text>
-            </div>
+          <div className="flex  justify-center items-center p-0  w-5/12">
+            <Text className="text-center w-full p-0 text-white">
+              Link de Stripe
+            </Text>
+          </div>
+          <div className="flex  justify-center w-1/12 items-center p-0 ">
+            <Text className="text-center  p-0 text-white w-full">Horas</Text>
+          </div>
+          <div className="flex  justify-center w-1/12 items-center p-0 ">
+            <Text className="text-center p-0 text-white w-full">
+              Monto Total
+            </Text>
+          </div>
+          <div className="flex  justify-center w-1/12 items-center p-0 ">
+            <Text className="text-center  p-0 text-white w-full">Cuota</Text>
+          </div>
+          <div className="flex  justify-center w-1/12 items-center p-0  ">
+            <Text className="text-center p-0 text-white w-full">
+              Valor Cuotas
+            </Text>
+          </div>
+          <div className="flex  justify-center w-1/12 items-center p-0 ">
+            <Text className="text-center  p-0 text-white w-full">Editores</Text>
+          </div>
+          <div className="flex  justify-center w-1/12 items-center p-0 ">
+            <Text className="text-center  p-0 text-white w-full">Estado</Text>
+          </div>
+          <div className="flex  justify-center w-1/12 items-center p-0 ">
+            <Text className="text-center  p-0 text-white w-full">Editar</Text>
           </div>
         </div>
 
