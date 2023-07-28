@@ -116,6 +116,7 @@ if(body.status === "Agenda llamada"){
     return 0;
   });
 
+  console.log(leadsContactado)
   // Devolver el resultado de la consulta (los leads de ventas ordenados por fecha de llamada de venta)
   // return sortClients;
   return [...leadsAgendaSorted, ...leadsContactado, ...leadsEnProceso, ...leadsNoRespondenSorted];

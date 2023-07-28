@@ -43,7 +43,9 @@ const VentasDashboard = () => {
   const body = { email: emailAddress };
 
   useEffect(() => {
-    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -61,7 +63,9 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
-    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   };
 
   //FILTER**********************
@@ -122,7 +126,9 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -148,7 +154,9 @@ const VentasDashboard = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(getLeadsLLamadaVenta(body,  profesion, country, status, level, freelancer));
+    dispatch(
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
+    );
   };
 
   const showObservacionesHandler = (observacion) => {
@@ -186,12 +194,13 @@ const VentasDashboard = () => {
     <>
       <Nav />
 
-      <div className="flex flex-col justify-between items-center w-screen  z-0">
-        {showCopiedMessage && (
-          <p className="mt-2 p-3 bg-[#b9b9b978] text-white rounded-md absolute">
-            Copiado al portapapeles
+      <div className="flex flex-col justify-between items-center w-screen relative">
+      {showCopiedMessage && (
+          <p className={!openModalPago ? "z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer" : "z-10 absolute top-32 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer" }>
+            Copiado!
           </p>
         )}
+
         {showObservaciones && (
           <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
             <p className=" p-3    ">Observaciones: {observationMessage}</p>
