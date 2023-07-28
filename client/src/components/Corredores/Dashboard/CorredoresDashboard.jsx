@@ -72,10 +72,10 @@ const CorredoresDashboard = () => {
         getLeadCorredores(
           email,
           username,
-          profesion,
-          country,
-          marca_personal,
-          category
+          "",
+          "",
+          "",
+          ""
         )
       );
     }
@@ -316,16 +316,7 @@ const CorredoresDashboard = () => {
         }
       }
 
-      dispatch(
-        getLeadCorredores(
-          email,
-          username,
-          profesion,
-          country,
-          marca_personal,
-          category
-        )
-      );
+      dispatch(getLeadCorredores(email, username, "", "", "", ""));
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
