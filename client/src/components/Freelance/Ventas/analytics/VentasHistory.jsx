@@ -14,7 +14,11 @@ import ModalObservaciones from "../Dashboard/Modal/ModalObservaciones";
 import { ToastContainer, toast } from "react-toastify";
 
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
-import { filterLevel, findVendedoresByNameAllInfo, getVendedorAllLeads } from "../../../../redux/actions";
+import {
+  filterLevel,
+  findVendedoresByNameAllInfo,
+  getVendedorAllLeads,
+} from "../../../../redux/actions";
 import InputRunner from "./MUI/InputRunner";
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
@@ -115,14 +119,18 @@ const VentasHistory = () => {
   //----------------------------------
 
   useEffect(() => {
-    dispatch(getVendedorAllLeads(        email,
-      fromDay,
-      toDay,
-      profesion,
-      country,
-      category,
-      level,
-      status));
+    dispatch(
+      getVendedorAllLeads(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    );
   }, [dispatch, email]);
   useEffect(() => {
     vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
@@ -180,14 +188,18 @@ const VentasHistory = () => {
     setData(leadsFilteredName);
 
     if (event.target.value === "") {
-      dispatch(getVendedorAllLeads(        email,
-        fromDay,
-        toDay,
-        profesion,
-        country,
-        category,
-        level,
-        status));
+      dispatch(
+        getVendedorAllLeads(
+          email,
+          fromDay,
+          toDay,
+          profesion,
+          country,
+          category,
+          level,
+          status
+        )
+      );
     }
   };
 
@@ -321,7 +333,7 @@ const VentasHistory = () => {
 
       <div className="flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
-          <p className="absolute w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-32 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
+          <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
             Copiado!
           </p>
         )}
