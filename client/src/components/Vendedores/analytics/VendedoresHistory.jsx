@@ -334,8 +334,8 @@ const VendedoresHistory = () => {
 
       <div className="flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
-          <p className="mt-2 p-3 bg-[#b9b9b978] text-white rounded-md absolute">
-            Copiado al portapapeles
+          <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
+            Copiado!
           </p>
         )}
 
