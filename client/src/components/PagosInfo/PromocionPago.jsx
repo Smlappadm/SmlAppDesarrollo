@@ -313,7 +313,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               : "flex flex-col justify-center items-center p-6 h-full w-1/5 gap-8"
           }
         >
-          <p className="text-white text-24 font-bold whitespace-nowrap">
+          <p className="text-white text-24 font-bold whitespace-nowrap text-center">
             {cliente && cliente.name}
           </p>
           <Link
