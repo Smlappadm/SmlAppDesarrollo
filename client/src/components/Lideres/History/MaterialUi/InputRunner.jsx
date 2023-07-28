@@ -415,8 +415,8 @@ export default function InputName({ name }) {
           >
             <MenuItem value="">Estado</MenuItem>
             <MenuItem value="Sin contactar">Sin contactar</MenuItem>
-            {/* <MenuItem value="En proceso">En Proceso</MenuItem>
-            <MenuItem value="A pagar">A Pagar</MenuItem> */}
+            <MenuItem value="En proceso">En Proceso</MenuItem>
+            <MenuItem value="A pagar">A Pagar</MenuItem>
             <MenuItem value="Rechazado">Rechazado</MenuItem>
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="No responde">No responde</MenuItem>
