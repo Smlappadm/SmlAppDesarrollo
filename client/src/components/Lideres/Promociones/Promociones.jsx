@@ -103,7 +103,7 @@ export const Promociones = () => {
           </div>
         </div>
         <div className="text-white  text-14 font-thin">
-          <div className="flex rounded-lg items-center px-10 py-3 ">
+          <div className="flex rounded-lg items-center px-10 py-3 w-full">
             <div className="flex  justify-center w-fit items-center p-0 ml-20">
               <Text className="text-start w-fit p-0 text-white">Promoción</Text>
             </div>
