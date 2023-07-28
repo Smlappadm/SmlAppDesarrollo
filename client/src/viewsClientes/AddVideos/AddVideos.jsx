@@ -7,7 +7,7 @@ import HistoryVideos from "../../componentsClientes/HistoryVideos/HistoryVideos"
 import { getClientByEmail } from "../../redux/actions";
 import toast, { Toaster } from "react-hot-toast";
 import NavBarDesktop from "../../componentsClientes/Landing/NavBarDesktop/NavBarDesktop";
-import background from "../../Assets/borde1.png";
+import background from "../../Assets/borde1.webp";
 
 export default function AddVideos() {
   const [link, setLink] = useState("");
