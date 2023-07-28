@@ -151,14 +151,12 @@ export const Promociones = () => {
                   </Text>
                 </div>
 
-                <div className="w-[22rem] text-ellipsis  flex justify-center items-center p-0 ">
+                <div className="w-4/12 text-ellipsis  flex justify-center items-center p-0 ">
                   <Text className="text-white">{item.promocion.link}</Text>
                 </div>
 
-                <div className="flex  justify-center items-center p-0">
-                  <div className="w-20 text-ellipsis  flex justify-center items-center p-0 ">
-                    <Text className="text-white">{item.promocion.hora}</Text>
-                  </div>
+                <div className="w-20 text-ellipsis  flex justify-center items-center p-0 ">
+                  <Text className="text-white">{item.promocion.hora}</Text>
                 </div>
                 <div className="flex  justify-center items-center p-0">
                   <div className="w-20 text-ellipsis  flex justify-center items-center p-0 ">
