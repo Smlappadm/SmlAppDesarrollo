@@ -415,12 +415,13 @@ export default function InputName({ name }) {
           >
             <MenuItem value="">Estado</MenuItem>
             <MenuItem value="Sin contactar">Sin contactar</MenuItem>
+            <MenuItem value="En Proceso">En Proceso</MenuItem>
+            <MenuItem value="A Pagar">A Pagar</MenuItem>
             <MenuItem value="Rechazado">Rechazado</MenuItem>
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="No responde">No responde</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
             <MenuItem value="incidencia">incidencia</MenuItem>
-            <MenuItem value="discard">discard</MenuItem>
           </Select>
         </div>
 
