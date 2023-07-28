@@ -39,9 +39,10 @@ const VentasDashboard = () => {
   
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
-  const fullName = user?.fullName;
+  // const fullName = user?.fullName;
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
+  let fullName = localStorage.getItem("nameEmploy");
 
   const body = { name: fullName, email: emailAddress };
 
