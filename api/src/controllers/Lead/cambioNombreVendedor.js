@@ -8,7 +8,7 @@ const cambioNombreVendedor = async (body) => {
 
   // Actualizar el nombre del vendedor en todos los registros donde el correo electrónico del corredor coincida
   const leadResult = await Lead.updateMany(
-    { corredor: email },
+    { vendedor: email },
     {
       vendedor_name: name,
     }

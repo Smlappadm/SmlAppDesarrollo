@@ -468,12 +468,6 @@ export const getLeadCorredores = (
   marca_personal
 ) => {
   return async (dispatch) => {
-    console.log(email);
-    console.log(names);
-    console.log(profesion);
-    console.log(category);
-    console.log(country);
-    console.log(marca_personal);
     if (
       email !== "undefined" &&
       email !== "" &&

@@ -127,6 +127,12 @@ export default function ModalIntelligentInfo({ item }) {
                             <h1>{item.status_op && item.status_op}</h1>
                           </div>
                         )}
+                        {item.status === "No responde" && (
+                          <div className=" flex justify-start items-start h-fit w-56 gap-x-2 text-white">
+                            <h1>Llamados: </h1>
+                            <h1>{item.status_op && item.status_op}</h1>
+                          </div>
+                        )}
                         <div className="flex justify-start items-start h-fit w-56 gap-x-2">
                           <h1>Contacto: </h1>
                           <h1>{item.tipoContacto && item.tipoContacto}</h1>

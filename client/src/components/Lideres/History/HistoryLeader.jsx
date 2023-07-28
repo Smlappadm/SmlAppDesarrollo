@@ -472,7 +472,7 @@ export const LideresHistory = () => {
                         )}
                         {item.status === "Contactado" ? (
                           <Text className="bg-[#219bac] text-black px-2 py-1.5 rounded-xl text-center w-48">
-                            Contratando
+                            Contactado
                           </Text>
                         ) : (
                           ""
