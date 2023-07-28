@@ -194,14 +194,12 @@ const VendedoresAgenda = () => {
       <Nav />
 
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
-      {showCopiedMessage && (
+        {showCopiedMessage && (
+          <p className={!openModalPago ? "z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer" : "z-10 absolute top-32 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer" }>
+            Copiado!
+          </p>
+        )}
 
-
-<p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
-  Copiado!
-</p>
-
-)}
         {showObservaciones && (
           <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
             <p className=" p-3    ">Observaciones: {observationMessage}</p>
