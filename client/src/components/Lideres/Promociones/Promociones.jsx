@@ -135,7 +135,7 @@ export const Promociones = () => {
             <div className="flex  justify-center w-1/12 items-center p-0 ml-24">
               <Text className="text-center w-fit p-0 text-white">Estado</Text>
             </div>
-            <div className="flex  justify-center w-fit items-center p-0 ml-20">
+            <div className="flex  justify-center w-1/12 items-center p-0 ml-20">
               <Text className="text-center w-fit p-0 text-white">Editar</Text>
             </div>
           </div>
