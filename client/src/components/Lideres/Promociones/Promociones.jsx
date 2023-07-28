@@ -146,7 +146,7 @@ export const Promociones = () => {
             <div key={index} className="w-full mt-4">
               <div className="flex  bg-[#39394b] hover:bg-[#313141] rounded-lg items-center justify-around   w-full">
                 <div className="flex  justify-center items-center p-0  w-2/12">
-                  <Text className=" text-white rounded-full w-full">
+                  <Text className=" text-white rounded-full w-full text-center">
                     {item.promocion.name}
                   </Text>
                 </div>
