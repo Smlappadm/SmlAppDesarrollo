@@ -867,24 +867,12 @@ video {
   margin-left: 5rem;
 }
 
-.ml-24 {
-  margin-left: 6rem;
-}
-
 .ml-4 {
   margin-left: 1rem;
 }
 
 .ml-5 {
   margin-left: 1.25rem;
-}
-
-.ml-52 {
-  margin-left: 13rem;
-}
-
-.ml-\[5\.5rem\] {
-  margin-left: 5.5rem;
 }
 
 .ml-\[55px\] {
@@ -1376,10 +1364,6 @@ video {
   width: 20rem;
 }
 
-.w-\[22rem\] {
-  width: 22rem;
-}
-
 .w-\[24px\] {
   width: 24px;
 }
@@ -1447,10 +1431,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-6\/12 {
-  width: 50%;
 }
 
 .min-w-\[180px\] {
