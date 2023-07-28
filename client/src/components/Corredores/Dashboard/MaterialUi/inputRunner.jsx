@@ -12,7 +12,6 @@ import {
 import { Checkbox } from "@mui/material";
 
 export default function InputRunner({
-  getLeadClasificacion,
   getLeadCorredores,
   email,
   names,
@@ -77,6 +76,17 @@ export default function InputRunner({
     setCountry("");
     setMarca_personal("");
     setCheck(false);
+
+    dispatch(
+      getLeadCorredores(
+        email,
+        names,
+        profesion,
+        category,
+        country,
+        marca_personal
+      )
+    );
   };
 
   return (
