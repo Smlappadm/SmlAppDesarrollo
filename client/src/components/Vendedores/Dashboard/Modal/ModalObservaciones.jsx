@@ -108,7 +108,6 @@ export default function ModalIntelligentInfo({ item }) {
                       key={index}
                       className=" flex flex-col  justify-center items-center w-[500px] text-white p-2"
                     >
-                      {console.log(item)}
                       <div className="border-2 w-full mb-2"></div>
                       <div className="flex justify-start items-start h-fit w-full gap-x-3">
                         <div className="whitespace-nowrap flex justify-start items-start h-fit w-56 gap-x-2">
