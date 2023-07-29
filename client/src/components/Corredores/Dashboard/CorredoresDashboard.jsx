@@ -357,7 +357,6 @@ const CorredoresDashboard = () => {
         checked: true,
         view: true,
       });
-      console.log(response.data);
     };
 
     try {
@@ -372,7 +371,6 @@ const CorredoresDashboard = () => {
         }
       } else if (client.level === "1" || client.level === "2") {
         if (client.instagram !== "" && instagramRegex.test(client.instagram)) {
-          console.log("aca llego");
           await updateLead(client);
           SendLeadsSuccess();
         } else {
