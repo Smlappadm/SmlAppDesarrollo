@@ -440,7 +440,7 @@ const CorredoresDashboard = () => {
             </div>
 
             <div
-              className="flex gap-12"
+              className="flex gap-12 mr-5"
               type="submit"
               onClick={() => handleSubmit}
             >
