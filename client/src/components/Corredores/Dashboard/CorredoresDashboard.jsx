@@ -340,21 +340,20 @@ const CorredoresDashboard = () => {
     }
   };
 
-  const handleSubmitOne = async (client) => {
+  const handleSubmitOne = async (item) => {
     SendLeads();
-    console.log(client);
 
-    const updateLead = async (client) => {
-      const response = await axios.put(`/lead/${client._id}`, {
-        instagram: client.instagram,
-        email: client.email,
-        level: client.level,
-        seguidores2000: client.seguidores2000,
-        repercusion: client.repercusion,
-        frecuencia: client.frecuencia,
-        contenidoPersonal: client.contenidoPersonal,
-        contenidoValor: client.contenidoValor,
-        calidadInstagram: client.calidadInstagram,
+    const updateLead = async (item) => {
+      const response = await axios.put(`/lead/${item._id}`, {
+        instagram: item.instagram,
+        email: item.email,
+        level: item.level,
+        seguidores2000: item.seguidores2000,
+        repercusion: item.repercusion,
+        frecuencia: item.frecuencia,
+        contenidoPersonal: item.contenidoPersonal,
+        contenidoValor: item.contenidoValor,
+        calidadInstagram: item.calidadInstagram,
         updateCorredor: formattedTime,
         checked: true,
         view: true,
@@ -362,21 +361,21 @@ const CorredoresDashboard = () => {
     };
 
     try {
-      if (client.level === "-" || client.level === "") {
-        SendLeadsErrorLevel(client.name);
-      } else if (client.level === "0" || client.level === "incidencia") {
-        if (client.instagram !== "") {
-          SendLeadsErrorInsta0(client.name);
+      if (item.level === "-" || item.level === "") {
+        SendLeadsErrorLevel(item.name);
+      } else if (item.level === "0" || item.level === "incidencia") {
+        if (item.instagram !== "") {
+          SendLeadsErrorInsta0(item.name);
         } else {
-          await updateLead(client);
+          await updateLead(item);
           SendLeadsSuccess();
         }
-      } else if (client.level === "1" || client.level === "2") {
-        if (client.instagram !== "" && instagramRegex.test(client.instagram)) {
-          await updateLead(client);
+      } else if (item.level === "1" || item.level === "2") {
+        if (item.instagram !== "" && instagramRegex.test(item.instagram)) {
+          await updateLead(item);
           SendLeadsSuccess();
         } else {
-          SendLeadsErrorInsta(client.name);
+          SendLeadsErrorInsta(item.name);
         }
       }
 
@@ -619,15 +618,6 @@ const CorredoresDashboard = () => {
                                 <NestedModal item={item} />
                               </div>
                             ) : null}
-
-                            <div
-                              className="ml-4"
-                              type="submit"
-                              onClick={() => handleSubmitOne(client[index])}
-                            >
-                              <Button variant="default" endIcon={<SendIcon />}>
-                              </Button>
-                            </div>
                           </div>
                         </motion.div>
 
@@ -726,11 +716,23 @@ const CorredoresDashboard = () => {
                         </motion.div>
                       </>
 
-                      <div
-                        className="absolute right-12"
-                        onClick={() => handleCheckList(index)}
-                      >
-                        Descripción
+                      <div className="absolute right-12">
+                        <div className="flex">
+                          <div
+                            className="ml-4"
+                            type="submit"
+                            onClick={() => handleSubmitOne(item)}
+                          >
+                            <Button
+                              variant="default"
+                              endIcon={<SendIcon />}
+                            ></Button>
+                          </div>
+
+                          <div onClick={() => handleCheckList(index)}>
+                            Descripción
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ))}
