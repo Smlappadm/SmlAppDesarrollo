@@ -183,6 +183,12 @@ const CorredoresDashboard = () => {
           instagram: client[i].instagram,
           email: client[i].email,
           level: client[i].level,
+          seguidores2000: client[i].seguidores2000,
+          repercusion: client[i].repercusion,
+          frecuencia: client[i].frecuencia,
+          contenidoPersonal: client[i].contenidoPersonal,
+          contenidoValor: client[i].contenidoValor,
+          calidadInstagram: client[i].calidadInstagram,
         })
       );
 
@@ -272,8 +278,7 @@ const CorredoresDashboard = () => {
   const instagramRegex =
     /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
     SendLeads();
 
     const updateLead = async (lead) => {
@@ -333,45 +338,46 @@ const CorredoresDashboard = () => {
     }
   };
 
-  const handleSubmitOne = async (event) => {
-    event.preventDefault();
+  const handleSubmitOne = async (client) => {
     SendLeads();
+    console.log(client);
 
     const updateLead = async (client) => {
-      const response = await axios.put(`/lead/${client[0]._id}`, {
-        instagram: client[0].instagram,
-        email: client[0].email,
-        level: client[0].level,
-        seguidores2000: client[0].seguidores2000,
-        repercusion: client[0].repercusion,
-        frecuencia: client[0].frecuencia,
-        contenidoPersonal: client[0].contenidoPersonal,
-        contenidoValor: client[0].contenidoValor,
-        calidadInstagram: client[0].calidadInstagram,
+      const response = await axios.put(`/lead/${client._id}`, {
+        instagram: client.instagram,
+        email: client.email,
+        level: client.level,
+        seguidores2000: client.seguidores2000,
+        repercusion: client.repercusion,
+        frecuencia: client.frecuencia,
+        contenidoPersonal: client.contenidoPersonal,
+        contenidoValor: client.contenidoValor,
+        calidadInstagram: client.calidadInstagram,
         updateCorredor: formattedTime,
         checked: true,
         view: true,
       });
+      console.log(response.data);
     };
 
     try {
-        if (client[0].level === "-" || client[0].level === "") {
-          SendLeadsErrorLevel(client[0].name);
-        } else if (client[0].level === "0" || client[0].level === "incidencia") {
-          if (client[0].instagram !== "") {
-            SendLeadsErrorInsta0(client[0].name);
-          } else {
-            await updateLead(client[0]);
-            SendLeadsSuccess();
-          }
-        } else if (client[0].level === "1" || client[0].level === "2") {
-          if (client[0].instagram !== "" && instagramRegex.test(client[0].instagram)) {
-            await updateLead(client[0]);
-            SendLeadsSuccess();
-          } else {
-            SendLeadsErrorInsta(client[0].name);
-          }
-        
+      if (client.level === "-" || client.level === "") {
+        SendLeadsErrorLevel(client.name);
+      } else if (client.level === "0" || client.level === "incidencia") {
+        if (client.instagram !== "") {
+          SendLeadsErrorInsta0(client.name);
+        } else {
+          await updateLead(client);
+          SendLeadsSuccess();
+        }
+      } else if (client.level === "1" || client.level === "2") {
+        if (client.instagram !== "" && instagramRegex.test(client.instagram)) {
+          console.log("aca llego");
+          await updateLead(client);
+          SendLeadsSuccess();
+        } else {
+          SendLeadsErrorInsta(client.name);
+        }
       }
 
       dispatch(
@@ -398,7 +404,7 @@ const CorredoresDashboard = () => {
       <Nav />
       <div className="w-full m-5 bg-[#222131]">
         <ToastContainer />
-        <form onSubmit={handleSubmit}>
+        <div>
           <div className="flex justify-between items-center">
             <div className="flex gap-10  mt-2 mx-5 ">
               <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
@@ -435,7 +441,11 @@ const CorredoresDashboard = () => {
               </div>
             </div>
 
-            <div className="flex gap-12" type="submit" onClick={handleSubmit}>
+            <div
+              className="flex gap-12"
+              type="submit"
+              onClick={() => handleSubmit}
+            >
               <IconLabelButtons />
             </div>
           </div>
@@ -609,6 +619,14 @@ const CorredoresDashboard = () => {
                                 <NestedModal item={item} />
                               </div>
                             ) : null}
+
+                            <div
+                              className="ml-4"
+                              type="submit"
+                              onClick={() => handleSubmitOne(client[index])}
+                            >
+                              <IconLabelButtons />
+                            </div>
                           </div>
                         </motion.div>
 
@@ -722,7 +740,7 @@ const CorredoresDashboard = () => {
               <h1>NO HAY LEADS CON ESE FILTRADO...</h1>
             </div>
           )}
-        </form>
+        </div>
       </div>
     </>
   );
