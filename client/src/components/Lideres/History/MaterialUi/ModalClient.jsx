@@ -268,7 +268,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                   <p className="font-normal">{modalItems.vendedor}</p>
                 </div>
                 <div className="font-semibold flex gap-3">
-                  <p>Clasificado:</p>
+                  <p>Asignado:</p>
                   <p className="font-normal">
                     {funcionHorario(modalItems.updateVendedor)}
                   </p>
@@ -281,11 +281,27 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                     </p>
                   </div>
                 )}
-                {modalItems.updateSegundoLlamado && (
+                {modalItems.updateContactado && (
+                  <div className="font-semibold flex gap-3">
+                    <p>Contactado:</p>
+                    <p className="font-normal">
+                      {funcionHorario(modalItems.updateContactado)}
+                    </p>
+                  </div>
+                )}
+                {modalItems.updateEnProceso && (
                   <div className="font-semibold flex gap-3">
                     <p>En proceso:</p>
                     <p className="font-normal">
-                      {funcionHorario(modalItems.updateSegundoLlamado)}
+                      {funcionHorario(modalItems.updateEnProceso)}
+                    </p>
+                  </div>
+                )}
+                {modalItems.updateAPagar && (
+                  <div className="font-semibold flex gap-3">
+                    <p>A pagar:</p>
+                    <p className="font-normal">
+                      {funcionHorario(modalItems.updateAPagar)}
                     </p>
                   </div>
                 )}
