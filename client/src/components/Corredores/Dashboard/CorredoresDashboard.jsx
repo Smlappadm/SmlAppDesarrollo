@@ -22,6 +22,8 @@ import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
+import { Button } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -623,7 +625,8 @@ const CorredoresDashboard = () => {
                               type="submit"
                               onClick={() => handleSubmitOne(client[index])}
                             >
-                              <IconLabelButtons />
+                              <Button variant="default" endIcon={<SendIcon />}>
+                              </Button>
                             </div>
                           </div>
                         </motion.div>
