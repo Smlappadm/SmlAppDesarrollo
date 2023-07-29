@@ -442,7 +442,7 @@ const CorredoresDashboard = () => {
             <div
               className="flex gap-12 mr-5"
               type="submit"
-              onClick={() => handleSubmit}
+              onClick={handleSubmit}
             >
               <IconLabelButtons />
             </div>
