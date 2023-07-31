@@ -114,9 +114,10 @@ export default function ChildModal() {
       <Button
         variant="contained"
         sx={{
+          color: "white",
           bgcolor: "#ae2dff",
           "&:hover": {
-            bgcolor: "#e04dff", // El color que deseas cuando el cursor está sobre el botón
+            bgcolor: "#a020f0", // El color que deseas cuando el cursor está sobre el botón
           },
         }}
         onClick={handleOpen}
