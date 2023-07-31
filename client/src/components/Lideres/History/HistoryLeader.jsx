@@ -193,18 +193,18 @@ export const LideresHistory = () => {
     },
   ]);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (index) => {
     setTitles((prevState) => {
       const updatedTitles = [...prevState]; // Crear una copia del estado
-      updatedTitles[0].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
+      updatedTitles[index].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
       return updatedTitles;
     });
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (index) => {
     setTitles((prevState) => {
       const updatedTitles = [...prevState]; // Crear una copia del estado
-      updatedTitles[0].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
+      updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
       return updatedTitles;
     });
   };
