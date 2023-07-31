@@ -228,7 +228,7 @@ export const LideresHistory = () => {
                   className: `text-[2rem] text-[#418df0] ${
                     encabezado.isHovered ? "hover:text-[#3570bd]" : ""
                   }`,
-                  onMouseEnter: () => handleMouseEnter(),
+                  onMouseEnter: () => handleMouseEnter(index),
                   onMouseLeave: () => handleMouseLeave(),
                 })}
                 <motion.div
