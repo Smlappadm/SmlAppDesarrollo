@@ -189,7 +189,7 @@ export const LideresHistory = () => {
       title: "Promociones",
       isHovered: false,
       link: "/promociones",
-      icon: IoGrid,
+      icon: IoRocketOutline,
     },
   ]);
 
@@ -249,7 +249,7 @@ export const LideresHistory = () => {
                 )}
               </motion.div>
             </Link>
-            <Link
+            {/* <Link
               className="flex items-center justify-center gap-2"
               to={"/lideres-freelancer/"}
             >
@@ -276,7 +276,7 @@ export const LideresHistory = () => {
             >
               <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               <p className="text-white">Promociones</p>
-            </Link>
+            </Link> */}
           </div>
 
           <label>Leads chequeados: {showData.length}</label>
