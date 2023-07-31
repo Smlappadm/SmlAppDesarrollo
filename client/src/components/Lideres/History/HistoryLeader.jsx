@@ -160,14 +160,6 @@ export const LideresHistory = () => {
     updateLeaderDashboard();
   };
 
-  const handleMouseLeave = (index) => {
-    setTitles((prevState) => {
-      const updatedTitles = [...prevState]; // Crear una copia del estado
-      updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
-      return updatedTitles;
-    });
-  };
-
   return (
     <>
       <Nav />
