@@ -68,7 +68,7 @@ export default function NavBar() {
     });
   };
   return (
-    <div className="flex gap-2 w-1">
+    <div className="flex gap-2 w-[9rem]">
       {titles.map((encabezado, index) => (
         <Link
           className="flex items-center justify-center gap-2 "
