@@ -31,6 +31,7 @@ import {
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import { motion } from "framer-motion";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -172,8 +173,16 @@ export const LideresHistory = () => {
               className="flex items-center justify-center gap-2"
               to={"/contratando/"}
             >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
+              <motion.div
+                className="flex items-center justify-center gap-2"
+                initial={{ opacity: 0, x: 10 }} // Establecemos la posición inicial y la opacidad
+                animate={{ opacity: 1, x: 0 }} // Establecemos la posición final y la opacidad a la que llegará con la animación
+                whileHover={{ scale: 1.2, x: 20 }} // Establecemos la escala y el desplazamiento durante el hover
+                transition={{ duration: 0.3 }} // Establecemos la duración de la animación
+              >
+                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                <p className="text-white hidden md:block">Seguimiento</p>
+              </motion.div>
             </Link>
             <Link
               className="flex items-center justify-center gap-2"
