@@ -191,7 +191,7 @@ export const LideresHistory = () => {
               >
                 {isHovered && (
                   <motion.p
-                    className="text-white ml-2"
+                    className="text-white"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
