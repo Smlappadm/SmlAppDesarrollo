@@ -1,4 +1,11 @@
 import React from 'react'
+import {
+    IoGrid,
+    IoLogoSnapchat,
+    IoStatsChart,
+    IoRocketOutline,
+    IoCashOutline,
+  } from "react-icons/io5";
 
 
 
