@@ -83,7 +83,7 @@ export default function NavBar() {
             onMouseLeave: () => handleMouseLeave(index),
           })}
           <motion.div
-            className="flex items-center gap-2 text-white h-full "
+            className="flex items-center gap-2 text-white h-full bg-black"
             style={{
               width: encabezado.isHovered ? "fit-content" : "2rem",
             }}
@@ -94,16 +94,25 @@ export default function NavBar() {
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            {encabezado.isHovered && (
-              <motion.p
-                className="text-white"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-              >
-                {encabezado.title}
-              </motion.p>
-            )}
+            {encabezado.isHovered ||
+              (path === encabezado.link && (
+                <motion.p
+                  className="text-white bg"
+                  initial={
+                    path === encabezado.link
+                      ? { opacity: 1, x: 0 }
+                      : { opacity: 0, x: -10 }
+                  }
+                  animate={
+                    path === encabezado.link
+                      ? { opacity: 1, x: 0 }
+                      : { opacity: 1, x: 0 }
+                  }
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  {encabezado.title}
+                </motion.p>
+              ))}
           </motion.div>
         </Link>
       ))}
