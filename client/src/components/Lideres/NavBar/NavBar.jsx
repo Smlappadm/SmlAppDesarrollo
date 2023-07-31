@@ -76,8 +76,8 @@ export default function NavBar() {
           key={index}
         >
           {React.createElement(encabezado.icon, {
-            className: `text-[2rem] text-[#418df0] ${
-              encabezado.isHovered ? "hover:text-[#3570bd]" : ""
+            className: `text-[2rem] text-[#ae2dff] ${
+              encabezado.isHovered ? "hover:text-[#a020f0]" : ""
             }`,
             onMouseEnter: () => handleMouseEnter(index),
             onMouseLeave: () => handleMouseLeave(index),

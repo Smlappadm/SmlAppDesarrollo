@@ -223,6 +223,15 @@ export default function InputRunner({
               checked={check}
               onClick={handleChangeNombrePropio}
               size="medium"
+              sx={{
+                color: "#ae2dff",
+                "& .MuiSvgIcon-root": {
+                  fill: check && "#ae2dff",
+                },
+                "&:hover .MuiSvgIcon-root": {
+                  fill: "#ae2dff",
+                },
+              }}
             />
           </div>
         </div>
