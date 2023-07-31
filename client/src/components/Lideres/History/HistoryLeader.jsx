@@ -162,7 +162,7 @@ export const LideresHistory = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [titles, setTitles] = useState([
     {
-      title: "Seguimiento",
+      title: "Empleados",
       isHovered: false,
       link: "/lideres/",
       icon: IoGrid,
