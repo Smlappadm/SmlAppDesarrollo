@@ -4,9 +4,10 @@
 .divTitle {
   width: 98%;
   display: flex;
+  height: fit-content;
   justify-content: start;
-  align-content: center;
-  margin: 30px 0 30px 10px;
+  align-content: start;
+  margin: 20px 0 30px 10px;
 }
 
 .containerCard {

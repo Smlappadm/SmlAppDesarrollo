@@ -209,7 +209,7 @@ const VendedoresAgenda = () => {
 
         {showObservaciones && (
           <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
-            <p className=" p-3    ">Observaciones: {observationMessage}</p>
+            <p className="p-3">Observaciones: {observationMessage}</p>
             <button
               onClick={closeObservacionesHandler}
               className="border-2 text-white mx-3 text-16  px-2 rounded-md"
@@ -226,16 +226,16 @@ const VendedoresAgenda = () => {
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0 }}
               className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
-            >
+              >
               Seguimiento
             </motion.h1> */}
-            <div className="flex w-full h-fit">
+            <div className="flex w-full  h-10">
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0 }}
                 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
-                >
+              >
                 {/* Dashboard */}
                 <NavBar />
               </motion.div>
@@ -255,32 +255,32 @@ const VendedoresAgenda = () => {
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
               ""
-              )}
+            )}
           </div>
-              {!openModalPago && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="flex gap-5 justify-center items-center"
-                >
-                  <InputRunner
-                    getLeadCheckedInactive5={getLeadsLLamadaVenta}
-                    body={body}
-                    emailAddress={emailAddress}
-                    profesion={profesion}
-                    setProfesion={setProfesion}
-                    country={country}
-                    setCountry={setCountry}
-                    level={level}
-                    setLevel={setLevel}
-                    status={status}
-                    setStatus={setStatus}
-                    freelancer={freelancer}
-                    setFreelancer={setFreelancer}
-                  />
-                </motion.div>
-              )}
+          {!openModalPago && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="flex gap-5 justify-center items-center"
+            >
+              <InputRunner
+                getLeadCheckedInactive5={getLeadsLLamadaVenta}
+                body={body}
+                emailAddress={emailAddress}
+                profesion={profesion}
+                setProfesion={setProfesion}
+                country={country}
+                setCountry={setCountry}
+                level={level}
+                setLevel={setLevel}
+                status={status}
+                setStatus={setStatus}
+                freelancer={freelancer}
+                setFreelancer={setFreelancer}
+              />
+            </motion.div>
+          )}
           {!openModalPago ? (
             <>
               {vendedoresVentasDashboard.length > 0 ? (

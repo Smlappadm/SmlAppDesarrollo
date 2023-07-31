@@ -341,18 +341,18 @@ const VendedoresHistory = () => {
         )}
 
         <div className="w-full flex flex-col justify-center items-center">
-        <div className={`${style.divTitle}`}>
+          <div className={style.divTitle}>
             <div className="flex w-full h-10">
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0 }}
-                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
+                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
               >
                 {/* Dashboard */}
-              <NavBar />
+                <NavBar />
               </motion.div>
-              </div>
+            </div>
             <div className="flex gap-7 ">
               {/* <Link to={"/vendedores"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
