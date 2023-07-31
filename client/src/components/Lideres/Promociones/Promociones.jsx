@@ -60,42 +60,6 @@ export const Promociones = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Promociones
             </Title>
-
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Empleados</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-freelancer/"}
-            >
-              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Freelancer</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-analytics"}
-            >
-              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Analiticas</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-incidences"}
-            >
-              <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Incidencias</p>
-            </Link>
           </div>
 
           <div className="flex gap-5">
