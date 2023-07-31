@@ -177,11 +177,9 @@ export const LideresHistory = () => {
                 <Text className="text-start w-28 p-0 text-white">Cliente</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByCategory()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Categoria
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">
+                  Categoria
+                </Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">LVL</Text>
