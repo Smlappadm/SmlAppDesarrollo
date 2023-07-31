@@ -107,12 +107,7 @@ export const LideresHistory = () => {
     setFilters(!filters);
   };
   const [levelValue, setLevelValue] = useState("");
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(leaderDashboard);
-    setCurrentPage(1);
-  };
+
   const [statusValue, setStatusValue] = useState("");
   const onChangeStatus = (value) => {
     setStatusValue(value);
