@@ -240,7 +240,7 @@ export const LideresHistory = () => {
                   animate={{ width: titles[0].isHovered ? 100 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  {titles[0].isHovered && (
+                  {encabezado.isHovered && (
                     <motion.p
                       className="text-white"
                       initial={{ opacity: 0, x: -10 }}
