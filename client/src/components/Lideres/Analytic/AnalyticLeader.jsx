@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import style from "./AnalyticLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
@@ -16,18 +15,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
   filterStatus,
-  getLeadChecked,
   getLeadDiscard,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoPeople,
-  IoStatsChart,
-  IoRocketOutline,
-} from "react-icons/io5";
 import NavBar from "../NavBar/NavBar";
 
 export const AnalyticLeader = () => {
