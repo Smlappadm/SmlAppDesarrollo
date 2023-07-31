@@ -151,7 +151,6 @@ export const AnalyticLeader = () => {
             ""
           )}
           {filters.runner === true ? <InputRunner /> : ""}
-          {filters.sellers === true ? <InputSeller /> : ""}
 
      
           )} */}
