@@ -2,13 +2,7 @@ import { Link } from "react-router-dom";
 import style from "./Promociones.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
-import {
-  CiMail,
-  CiInstagram,
-  CiPhone,
-  CiWarning,
-  CiGlobe,
-} from "react-icons/ci";
+
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
