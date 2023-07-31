@@ -226,7 +226,7 @@ export const LideresHistory = () => {
               >
                 {React.createElement(encabezado.icon, {
                   className: `text-[2rem] text-[#418df0] ${
-                    titles[0].isHovered ? "hover:text-[#3570bd]" : ""
+                    encabezado.isHovered ? "hover:text-[#3570bd]" : ""
                   }`,
                   onMouseEnter: () => handleMouseEnter(),
                   onMouseLeave: () => handleMouseLeave(),
