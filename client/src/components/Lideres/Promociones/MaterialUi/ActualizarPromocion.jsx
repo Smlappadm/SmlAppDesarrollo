@@ -37,6 +37,11 @@ const styleButton = {
 const buttonsend = {
   bgcolor: "transparent",
   width: "30%",
+  color: "white",
+  borderColor: "#ae2dff",
+  "&:hover": {
+    borderColor: "#a020f0",
+  },
 };
 
 export default function ActualizarPromocion({ item }) {
@@ -152,7 +157,7 @@ export default function ActualizarPromocion({ item }) {
     <div className="flex items-center justify-center">
       <ToastContainer />
       <Button sx={styleButton} onClick={handleOpen}>
-        <VscSettings className="text-[1.5rem] text-[#418df0] hover:text-[#3570bd]" />
+        <VscSettings className="text-[1.5rem] text-[#ae2dff] hover:text-[#a020f0]" />
       </Button>
       <Modal
         open={open}
@@ -295,6 +300,15 @@ export default function ActualizarPromocion({ item }) {
                 onChange={(e) => handleChange(e, "active")}
                 color="primary"
                 size="large"
+                sx={{
+                  color: "#ae2dff",
+                  "& .MuiSvgIcon-root": {
+                    fill: promocion.active && "#ae2dff",
+                  },
+                  "&:hover .MuiSvgIcon-root": {
+                    fill: "#ae2dff",
+                  },
+                }}
               />
             }
             label={`Estado de la Promoción: ${
@@ -308,6 +322,15 @@ export default function ActualizarPromocion({ item }) {
                 onChange={(e) => handleChange(e, "edicion")}
                 color="primary"
                 size="large"
+                sx={{
+                  color: "#ae2dff",
+                  "& .MuiSvgIcon-root": {
+                    fill: promocion.edicion && "#ae2dff",
+                  },
+                  "&:hover .MuiSvgIcon-root": {
+                    fill: "#ae2dff",
+                  },
+                }}
               />
             }
             label={`Promocion con Editores`}
@@ -315,14 +338,14 @@ export default function ActualizarPromocion({ item }) {
           <div className="flex gap-5 justify-center items-center">
             <Button
               sx={buttonsend}
-              variant="outlined"
+              variant="outlined" 
               onClick={actualizarPromocion}
             >
               Actualizar Promoción
             </Button>
             <Button
               sx={buttonsend}
-              variant="outlined"
+              variant="outlined" 
               onClick={eliminarromocion}
             >
               Eliminar Promoción

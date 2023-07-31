@@ -85,7 +85,17 @@ export default function ChildModal() {
   return (
     <React.Fragment>
       <ToastContainer />
-      <Button variant="contained" sx={{}} onClick={handleOpen}>
+      <Button
+        variant="contained"
+        sx={{
+          color: "white",
+          bgcolor: "#ae2dff",
+          "&:hover": {
+            bgcolor: "#a020f0",
+          },
+        }}
+        onClick={handleOpen}
+      >
         RANKING
       </Button>
       <Modal

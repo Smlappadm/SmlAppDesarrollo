@@ -18,6 +18,7 @@ import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import InputRunner from "./Select/InputRunnerVentas";
 import { motion } from "framer-motion";
 import Nav from "../../Nav/Nav";
+import NavBar from "./NavBar";
 
 const VendedoresAgenda = () => {
   const [data, setData] = useState([]);
@@ -195,7 +196,13 @@ const VendedoresAgenda = () => {
 
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
-          <p className={!openModalPago ? "z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer" : "z-10 absolute top-32 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer" }>
+          <p
+            className={
+              !openModalPago
+                ? "z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer"
+                : "z-10 absolute top-32 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer"
+            }
+          >
             Copiado!
           </p>
         )}
@@ -214,17 +221,28 @@ const VendedoresAgenda = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <motion.h1
+            {/* <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0 }}
               className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
             >
               Seguimiento
-            </motion.h1>
-            <div className="flex gap-7">
+            </motion.h1> */}
+            <div className="flex w-full h-fit">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0 }}
+                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
+                >
+                {/* Dashboard */}
+                <NavBar />
+              </motion.div>
+            </div>
+            {/* <div className="flex gap-7">
               <Link to={"/vendedores"}>
-                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
               <Link to={"/vendedores-ventas"}>
                 <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
@@ -232,43 +250,43 @@ const VendedoresAgenda = () => {
               <Link className="text-5xl" to={"/vendedores-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-            </div>
+            </div> */}
             {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
               ""
-            )}
-            {!openModalPago && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="flex gap-5 justify-center items-center ml-16"
-              >
-                <InputRunner
-                  getLeadCheckedInactive5={getLeadsLLamadaVenta}
-                  body={body}
-                  emailAddress={emailAddress}
-                  profesion={profesion}
-                  setProfesion={setProfesion}
-                  country={country}
-                  setCountry={setCountry}
-                  level={level}
-                  setLevel={setLevel}
-                  status={status}
-                  setStatus={setStatus}
-                  freelancer={freelancer}
-                  setFreelancer={setFreelancer}
-                />
-              </motion.div>
-            )}
+              )}
           </div>
+              {!openModalPago && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="flex gap-5 justify-center items-center"
+                >
+                  <InputRunner
+                    getLeadCheckedInactive5={getLeadsLLamadaVenta}
+                    body={body}
+                    emailAddress={emailAddress}
+                    profesion={profesion}
+                    setProfesion={setProfesion}
+                    country={country}
+                    setCountry={setCountry}
+                    level={level}
+                    setLevel={setLevel}
+                    status={status}
+                    setStatus={setStatus}
+                    freelancer={freelancer}
+                    setFreelancer={setFreelancer}
+                  />
+                </motion.div>
+              )}
           {!openModalPago ? (
             <>
               {vendedoresVentasDashboard.length > 0 ? (
                 <motion.div
                   initial={{ opacity: 0, y: "30px" }}
-                  whileInView={{ y: "10px", opacity: 1 }}
+                  whileInView={{ y: "25px", opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0 }}
                   className={style.table}
                 >
@@ -564,7 +582,7 @@ const VendedoresAgenda = () => {
           )}
         </div>
         {data.length > 10 && !openModalPago && (
-          <div className="mb-5">
+          <div className="absolute bottom-2 mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}
               setPageStyle={setPageStyle}

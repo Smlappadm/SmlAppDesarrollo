@@ -7,49 +7,34 @@ import {
   IoRocketOutline,
   IoCashOutline,
 } from "react-icons/io5";
+import { MdOutlineAttachMoney } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { FaHistory, FaWhatsapp } from "react-icons/fa";
 
 export default function NavBar() {
   const path = window.location.pathname;
   console.log(path);
   const [titles, setTitles] = useState([
     {
-      title: "Empleados",
+      title: "Dashboard",
       isHovered: false,
-      link: "/lideres/",
+      link: "/vendedores",
       icon: IoGrid,
     },
     {
       title: "Seguimiento",
       isHovered: false,
-      link: "/contratando/",
-      icon: IoCashOutline,
+      link: "/vendedores-ventas",
+      icon: MdOutlineAttachMoney,
     },
     {
-      title: "Freelancers",
+      title: "History",
       isHovered: false,
-      link: "/lideres-freelancer/",
-      icon: IoLogoSnapchat,
+      link: "/vendedores-history",
+      icon: FaHistory,
     },
-    {
-      title: "Analíticas",
-      isHovered: false,
-      link: "/lideres-analytics",
-      icon: IoStatsChart,
-    },
-    {
-      title: "Incidencias",
-      isHovered: false,
-      link: "/lideres-incidences",
-      icon: CiWarning,
-    },
-    {
-      title: "Promociones",
-      isHovered: false,
-      link: "/promociones",
-      icon: IoRocketOutline,
-    },
+
   ]);
 
   const handleMouseEnter = (index) => {
@@ -68,7 +53,7 @@ export default function NavBar() {
     });
   };
   return (
-    <div className="flex gap-2 w-1">
+    <div className="border-2 flex gap-5 w-1">
       {titles.map((encabezado, index) => (
         <Link
           className="flex items-center justify-center gap-2 "
@@ -76,8 +61,8 @@ export default function NavBar() {
           key={index}
         >
           {React.createElement(encabezado.icon, {
-            className: `text-[2rem] text-[#ae2dff] ${
-              encabezado.isHovered ? "hover:text-[#a020f0]" : ""
+            className: `text-[2rem] text-[#418df0] ${
+              encabezado.isHovered ? "hover:text-[#3570bd]" : ""
             }`,
             onMouseEnter: () => handleMouseEnter(index),
             onMouseLeave: () => handleMouseLeave(index),

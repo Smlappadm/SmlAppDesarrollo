@@ -229,12 +229,13 @@ export default function Settings() {
         <div className="h-screen w-4/5 flex flex-col justify-start items-center p-8">
           <div>
             <h2 className={styles.title}>Settings</h2>
-            <motion.form onSubmit={handleSubmit} className={styles.form}
-            initial={{ opacity: 0, y: "30px" }}
-            whileInView={{ y: "10px", opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0 }}
+            <motion.form
+              onSubmit={handleSubmit}
+              className={styles.form}
+              initial={{ opacity: 0, y: "30px" }}
+              whileInView={{ y: "10px", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0 }}
             >
-              
               <div className="flex flex-col justify-end items-start gap-1 w-full ">
                 <span className="text-[#dad8d8]">Fecha de nacimiento</span>
                 <DatePicker
@@ -323,7 +324,7 @@ export default function Settings() {
                   onClick={desasignar}
                   className="flex flex-col cursor-pointer justify-center items-center gap-1 w-full h-fit"
                 >
-                  <div className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                  <div className="text-white w-full bg-[#ae2dff] hover:bg-[#a020f0] font-medium rounded-xl text-sm px-5 py-2.5 mt-8">
                     Desasignar Corredores/Vendedores
                   </div>
                 </div>
@@ -333,7 +334,7 @@ export default function Settings() {
                 {editSave && (
                   <button
                     type="submit"
-                    className="text-white w-full bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mt-8 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    className="text-white w-full bg-[#ae2dff] hover:bg-[#a020f0] font-medium rounded-xl text-sm px-5 py-2.5 mt-8"
                   >
                     Save
                   </button>

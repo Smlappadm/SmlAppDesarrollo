@@ -167,7 +167,17 @@ export const LideresHistory = () => {
           <label>Leads chequeados: {showData.length}</label>
 
           <div className="flex gap-5">
-            <Button variant="outlined" onClick={downloadCSV}>
+            <Button
+              variant="outlined"
+              sx={{
+                color: "white",
+                borderColor: "#ae2dff",
+                "&:hover": {
+                  borderColor: "#a020f0", 
+                }, 
+              }}
+              onClick={downloadCSV}
+            >
               Descargar CSV
             </Button>
             <AddLead />
