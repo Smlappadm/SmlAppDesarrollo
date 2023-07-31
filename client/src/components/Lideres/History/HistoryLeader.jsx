@@ -13,7 +13,7 @@ import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
 import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
@@ -27,10 +27,12 @@ import {
   IoLogoSnapchat,
   IoStatsChart,
   IoRocketOutline,
+  IoCashOutline,
 } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -167,42 +169,7 @@ export const LideresHistory = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Historial Empleados
             </Title>
-
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-freelancer/"}
-            >
-              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Freelancer</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-analytics"}
-            >
-              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Analiticas</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-incidences"}
-            >
-              <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Incidencias</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/promociones"}
-            >
-              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Promociones</p>
-            </Link>
+            <NavBar />
           </div>
 
           <label>Leads chequeados: {showData.length}</label>
@@ -290,7 +257,7 @@ export const LideresHistory = () => {
               currentCard.map((item, index) => (
                 <div
                   key={item._id}
-                  className="flex bg-[#39394b] text-gray-400 text-sm p-3 rounded-lg h-14 my-5"
+                  className="flex bg-[#39394b] text-gray-400 text-sm p-3 rounded-lg h-11 my-3"
                 >
                   <div className="w-full flex justify-around items-center">
                     <button

@@ -184,12 +184,12 @@ export default function BannedEmploy() {
                   <div className="p-0">
                     <p
                       className={` 
-                      ${item.rol === "clevel" ? "bg-[#ac4242]" : null} 
-                      ${item.rol === "leader" ? "bg-[#1b7757]" : null}  
-                      ${item.rol === "corredor" ? "bg-[#2148b4]" : null}  
-                      ${
-                        item.rol === "vendedor" ? "bg-[#8a912b]" : null
-                      } text-center p-1 w-20 rounded-lg`}
+                      ${item.rol === "clevel" ? "bg-[#ac4242] w-32" : null} 
+                      ${item.rol === "leader" ? "bg-[#1b7757] w-32" : null}  
+                      ${item.rol === "corredor" ? "bg-[#2148b4] w-32" : null}  
+                      ${item.rol === "vendedor" ? "bg-[#8a912b] w-32" : null} 
+                      ${item.rol === "freelancer" ? "bg-black w-32" : null} 
+                      text-center p-1 w-20 rounded-lg`}
                     >
                       {item.rol}
                     </p>

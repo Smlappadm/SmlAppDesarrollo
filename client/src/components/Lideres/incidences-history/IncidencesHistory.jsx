@@ -282,7 +282,7 @@ export const IncidencesHistory = () => {
             {currentCard.map((item, index) => (
               <div
                 key={item._id}
-                className="flex bg-[#39394b] text-gray-400 text-sm p-3 rounded-lg h-14 my-5"
+                className="flex bg-[#39394b] text-gray-400 text-sm p-3 rounded-lg h-11 my-3"
               >
                 <div className="w-full flex justify-around items-center">
                   <button

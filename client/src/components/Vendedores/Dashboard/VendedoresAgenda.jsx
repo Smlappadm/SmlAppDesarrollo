@@ -205,7 +205,7 @@ const VendedoresAgenda = () => {
             <p className=" p-3    ">Observaciones: {observationMessage}</p>
             <button
               onClick={closeObservacionesHandler}
-              className="border-2 text-white mx-3 text-18  px-2 rounded-md"
+              className="border-2 text-white mx-3 text-16  px-2 rounded-md"
             >
               x
             </button>
@@ -298,18 +298,18 @@ const VendedoresAgenda = () => {
                         className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 h-11 rounded-lg"
                       >
                         <div className=" w-[15%] flex justify-start items-center  p-0 ">
-                          <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                             {item.name}
                           </p>
                         </div>
                         <div className=" w-[11%] flex justify-start items-center p-0 ">
-                          <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                             {item.profesion}
                           </p>
                         </div>
 
                         <div className=" w-[9%] flex justify-start items-center p-0">
-                          <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-18 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                          <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                             {item.country}
                           </p>
                         </div>
@@ -440,17 +440,17 @@ const VendedoresAgenda = () => {
                         </div>
                         <div className=" w-[15%] flex justify-center items-start p-0">
                           {item.status === "Contratado" && (
-                            <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                            <p className="bg-[#26af7f] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-16">
                               Contratado
                             </p>
                           )}
                           {item.status === "No responde" && (
-                            <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                            <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-16">
                               Sin contestar
                             </p>
                           )}
                           {item.status === "Rechazado" && (
-                            <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-18">
+                            <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-16">
                               Rechazado
                             </p>
                           )}
@@ -470,7 +470,7 @@ const VendedoresAgenda = () => {
                             </div>
                           )}
                           {item.level === "incidencia" && (
-                            <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-18">
+                            <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-16">
                               Incidencia
                             </p>
                           )}

@@ -79,10 +79,10 @@
   align-items: center;
   justify-content: space-between;
   background-color: #39394b;
-  font-size: 14px;
+  font-size: 16px;
   color: rgb(204, 203, 203);
-  margin: 12px;
-  padding: 6px;
+  margin: 11px;
+  padding: 5px;
   border-radius: 10px;
 }
 .tableCards:hover {
