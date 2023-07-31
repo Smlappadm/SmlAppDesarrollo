@@ -88,7 +88,10 @@ export default function NavBar() {
               width: encabezado.isHovered ? "fit-content" : "2rem",
             }}
             initial={{ width: path === encabezado.link ? 100 : 0 }}
-            animate={{ width: encabezado.isHovered ? 100 : 0 }}
+            animate={{
+              width:
+                path === encabezado.link ? 100 : encabezado.isHovered ? 100 : 0,
+            }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             {encabezado.isHovered && (
