@@ -1,62 +1,64 @@
 import React from 'react'
 
 
-const [titles, setTitles] = useState([
-    {
-      title: "Empleados",
-      isHovered: false,
-      link: "/lideres/",
-      icon: IoGrid,
-    },
-    {
-      title: "Seguimiento",
-      isHovered: false,
-      link: "/contratando/",
-      icon: IoCashOutline,
-    },
-    {
-      title: "Freelancers",
-      isHovered: false,
-      link: "/lideres-freelancer/",
-      icon: IoLogoSnapchat,
-    },
-    {
-      title: "Analíticas",
-      isHovered: false,
-      link: "/lideres-analytics",
-      icon: IoStatsChart,
-    },
-    {
-      title: "Incidencias",
-      isHovered: false,
-      link: "/lideres-incidences",
-      icon: CiWarning,
-    },
-    {
-      title: "Promociones",
-      isHovered: false,
-      link: "/promociones",
-      icon: IoRocketOutline,
-    },
-  ]);
 
-const handleMouseEnter = (index) => {
-    setTitles((prevState) => {
-      const updatedTitles = [...prevState]; // Crear una copia del estado
-      updatedTitles[index].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
-      return updatedTitles;
-    });
-  };
-
-const handleMouseLeave = (index) => {
-    setTitles((prevState) => {
-      const updatedTitles = [...prevState]; // Crear una copia del estado
-      updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
-      return updatedTitles;
-    });
-  };
 
 export default function NavBar() {
+
+    const [titles, setTitles] = useState([
+        {
+          title: "Empleados",
+          isHovered: false,
+          link: "/lideres/",
+          icon: IoGrid,
+        },
+        {
+          title: "Seguimiento",
+          isHovered: false,
+          link: "/contratando/",
+          icon: IoCashOutline,
+        },
+        {
+          title: "Freelancers",
+          isHovered: false,
+          link: "/lideres-freelancer/",
+          icon: IoLogoSnapchat,
+        },
+        {
+          title: "Analíticas",
+          isHovered: false,
+          link: "/lideres-analytics",
+          icon: IoStatsChart,
+        },
+        {
+          title: "Incidencias",
+          isHovered: false,
+          link: "/lideres-incidences",
+          icon: CiWarning,
+        },
+        {
+          title: "Promociones",
+          isHovered: false,
+          link: "/promociones",
+          icon: IoRocketOutline,
+        },
+      ]);
+    
+    const handleMouseEnter = (index) => {
+        setTitles((prevState) => {
+          const updatedTitles = [...prevState]; // Crear una copia del estado
+          updatedTitles[index].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
+          return updatedTitles;
+        });
+      };
+    
+    const handleMouseLeave = (index) => {
+        setTitles((prevState) => {
+          const updatedTitles = [...prevState]; // Crear una copia del estado
+          updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
+          return updatedTitles;
+        });
+      };
   return (
     {titles.map((encabezado, index) => (
         <Link
