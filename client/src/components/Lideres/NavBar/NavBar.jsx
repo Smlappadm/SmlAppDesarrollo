@@ -99,11 +99,7 @@ export default function NavBar() {
                 <motion.p
                   className="text-white bg"
                   initial={{ opacity: 0, x: -10 }}
-                  animate={
-                    path === encabezado.link
-                      ? { opacity: 1, x: 0 }
-                      : { opacity: 1, x: 0 }
-                  }
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   {encabezado.title}
