@@ -13,7 +13,7 @@ import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
 import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
@@ -187,13 +187,20 @@ export const LideresHistory = () => {
               className="flex items-center justify-center gap-2"
               to={titles[0].link}
             >
-              <IoGrid
-                className={`text-[2rem] text-[#418df0] ${
+              {React.createElement(titles[0].icon, {
+                className: `text-[2rem] text-[#418df0] ${
                   isHovered ? "hover:text-[#3570bd]" : ""
-                }`}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-              />
+                }`,
+                onMouseEnter: () =>
+                  setTitles((prevState) => ({
+                    ...prevState,
+                    [0]: {
+                      ...prevState[0],
+                      isHovered: true,
+                    },
+                  })),
+                onMouseLeave: () => setIsHovered(false),
+              })}
               <motion.div
                 className="flex items-center gap-2 text-white h-full "
                 style={{ width: isHovered ? "fit-content" : "2rem" }}
