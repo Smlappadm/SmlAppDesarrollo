@@ -221,7 +221,7 @@ export const LideresHistory = () => {
             {titles.map((encabezado, index) => (
               <Link
                 className="flex items-center justify-center gap-2"
-                to={titles[0].link}
+                to={encabezado.link}
                 key={index}
               >
                 {React.createElement(titles[0].icon, {
