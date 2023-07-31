@@ -14,13 +14,7 @@ import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterLevel,
-  filterStatus,
-  getLeadChecked,
-  orderCategory,
-  orderClients,
-} from "../../../redux/actions";
+import { getLeadChecked } from "../../../redux/actions";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
