@@ -140,9 +140,9 @@ export const AnalyticLeader = () => {
             </Title>
 
             <NavBar />
-            <div className=" mx-36">
-              <label>Leads descartados por el bot: {showData.length}</label>
-            </div>
+          </div>
+          <div className=" mx-36">
+            <label>Leads descartados por el bot: {showData.length}</label>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
           {/* {filters.level === true ? (
