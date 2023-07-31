@@ -106,7 +106,6 @@ export const LideresHistory = () => {
   const handlerFilter = () => {
     setFilters(!filters);
   };
-  const [levelValue, setLevelValue] = useState("");
 
   const [statusValue, setStatusValue] = useState("");
   const onChangeStatus = (value) => {
