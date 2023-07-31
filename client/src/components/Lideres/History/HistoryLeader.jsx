@@ -247,7 +247,7 @@ export const LideresHistory = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      {titles[0].title}
+                      {encabezado.title}
                     </motion.p>
                   )}
                 </motion.div>
