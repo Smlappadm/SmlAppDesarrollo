@@ -170,25 +170,25 @@ export const LideresHistory = () => {
     {
       title: "Seguimiento",
       isHovered: false,
-      link: "/contratando/",
+      link: "/lideres-freelancer/",
       icon: IoGrid,
     },
     {
       title: "Seguimiento",
       isHovered: false,
-      link: "/contratando/",
+      link: "/lideres-analytics",
       icon: IoGrid,
     },
     {
       title: "Seguimiento",
       isHovered: false,
-      link: "/contratando/",
+      link: "/lideres-incidences",
       icon: IoGrid,
     },
     {
       title: "Seguimiento",
       isHovered: false,
-      link: "/contratando/",
+      link: "/promociones",
       icon: IoGrid,
     },
   ]);
