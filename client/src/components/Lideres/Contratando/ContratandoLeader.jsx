@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import style from "./ContratandoLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
