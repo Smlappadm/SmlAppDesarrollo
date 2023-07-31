@@ -171,7 +171,10 @@ export const LideresHistory = () => {
               variant="outlined"
               sx={{
                 color: "white",
-                borderColor: "#e04dff", // El color que deseas cuando el cursor está sobre el botón
+                borderColor: "#ae2dff",
+                "&:hover": {
+                  borderColor: "#a020f0", 
+                }, 
               }}
               onClick={downloadCSV}
             >
