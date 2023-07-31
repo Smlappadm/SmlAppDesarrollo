@@ -22,6 +22,9 @@ import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
+import { Button } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
+import NavBar from "../NavBar/NavBar";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -183,6 +186,12 @@ const CorredoresDashboard = () => {
           instagram: client[i].instagram,
           email: client[i].email,
           level: client[i].level,
+          seguidores2000: client[i].seguidores2000,
+          repercusion: client[i].repercusion,
+          frecuencia: client[i].frecuencia,
+          contenidoPersonal: client[i].contenidoPersonal,
+          contenidoValor: client[i].contenidoValor,
+          calidadInstagram: client[i].calidadInstagram,
         })
       );
 
@@ -272,12 +281,9 @@ const CorredoresDashboard = () => {
   const instagramRegex =
     /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    SendLeads();
-
-    const updateLead = async (lead) => {
-      const response = await axios.put(`/lead/${lead._id}`, {
+  const handleSubmit = async () => {
+    const updateLead = async (lead, index) => {
+      await axios.put(`/lead/${lead._id}`, {
         instagram: lead.instagram,
         email: lead.email,
         level: lead.level,
@@ -291,26 +297,89 @@ const CorredoresDashboard = () => {
         checked: true,
         view: true,
       });
+
+      if (index === 9) {
+        SendLeadsSuccess();
+      }
     };
 
     try {
-      for (const lead of client) {
+      client.forEach(async (lead, index) => {
         const { level, instagram, name } = lead;
 
         if (level === "0" || level === "incidencia") {
           if (instagram !== "") {
             SendLeadsErrorInsta0(name);
           } else {
-            await updateLead(lead);
-            SendLeadsSuccess();
+            if (index === 0) {
+              SendLeads();
+            }
+            await updateLead(lead, index);
           }
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
-            await updateLead(lead);
-            SendLeadsSuccess();
+            if (index === 0) {
+              SendLeads();
+            }
+            await updateLead(lead, index);
           } else {
             SendLeadsErrorInsta(name);
           }
+        }
+      });
+
+      dispatch(
+        getLeadCorredores(
+          email,
+          username,
+          profesion,
+          category,
+          country,
+          marca_personal
+        )
+      );
+      dispatch(getAllProfesion());
+      dispatch(getAllCountries());
+      dispatch(getAllCategory());
+    } catch (error) {
+      SendLeadsError(names);
+      console.log({ error: error.message });
+    }
+  };
+
+  const handleSubmitOne = async (item) => {
+    const updateLead = async (item) => {
+      const response = await axios.put(`/lead/${item._id}`, {
+        instagram: item.instagram,
+        email: item.email,
+        level: item.level,
+        seguidores2000: item.seguidores2000,
+        repercusion: item.repercusion,
+        frecuencia: item.frecuencia,
+        contenidoPersonal: item.contenidoPersonal,
+        contenidoValor: item.contenidoValor,
+        calidadInstagram: item.calidadInstagram,
+        updateCorredor: formattedTime,
+        checked: true,
+        view: true,
+      });
+      SendLeadsSuccess();
+    };
+
+    try {
+      if (item.level === "0" || item.level === "incidencia") {
+        if (item.instagram !== "") {
+          SendLeadsErrorInsta0(item.name);
+        } else {
+          SendLeads();
+          await updateLead(item);
+        }
+      } else if (item.level === "1" || item.level === "2") {
+        if (item.instagram !== "" && instagramRegex.test(item.instagram)) {
+          SendLeads();
+          await updateLead(item);
+        } else {
+          SendLeadsErrorInsta(item.name);
         }
       }
 
@@ -338,23 +407,13 @@ const CorredoresDashboard = () => {
       <Nav />
       <div className="w-full m-5 bg-[#222131]">
         <ToastContainer />
-        <form onSubmit={handleSubmit}>
+        <div>
           <div className="flex justify-between items-center">
-            <div className="flex gap-10  mt-2 mx-5 ">
+            <div className="flex  mt-2 ">
               <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
                 Dashboard
               </h1>
-              <div className="flex gap-5">
-                <Link to={"/corredores"}>
-                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-                <Link className="text-5xl" to={"/corredores-history"}>
-                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-                <Link className="text-5xl" to={"/corredores-analytics"}>
-                  <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-              </div>
+              <NavBar />
             </div>
 
             <div>
@@ -375,7 +434,11 @@ const CorredoresDashboard = () => {
               </div>
             </div>
 
-            <div className="flex gap-12" type="submit" onClick={handleSubmit}>
+            <div
+              className="flex gap-12 mr-5"
+              type="submit"
+              onClick={handleSubmit}
+            >
               <IconLabelButtons />
             </div>
           </div>
@@ -404,7 +467,7 @@ const CorredoresDashboard = () => {
                           id="name"
                           value={item.name}
                         >
-                          <p className="w-80 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden">
+                          <p className="w-80 p-1 px-3 rounded-md text-ellipsis opacity-1 whitespace-nowrap overflow-hidden">
                             {item.name}
                           </p>
                         </div>
@@ -431,17 +494,17 @@ const CorredoresDashboard = () => {
                           <div className="flex ml-[55px] p-0">
                             <Link to={item.url} target="_blank">
                               <p value={item.url}>
-                                <CiGlobe className="text-[2rem] text-[#418df0]" />
+                                <CiGlobe className="text-[2rem] text-[#ae2dff]" />
                               </p>
                             </Link>
                           </div>
 
                           <div className="flex w-[20rem] gap-3 p-0 mx-24">
                             <div>
-                              <CiMail className="text-[2rem] text-[#418df0]" />
+                              <CiMail className="text-[2rem] text-[#ae2dff]" />
                             </div>
                             <input
-                              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+                              className={`bg-transparent w-[12rem] rounded-md border-[1px] border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
                                 item.email !== "-" && item.email !== ""
                                   ? "border-green-500"
                                   : ""
@@ -461,15 +524,15 @@ const CorredoresDashboard = () => {
                               {item.instagram &&
                               instagramRegex.test(item.instagram) ? (
                                 <Link to={item.instagram} target="_blank">
-                                  <GrInstagram className="text-[2rem] text-[#418df0]" />
+                                  <GrInstagram className="text-[2rem] text-[#ae2dff]" />
                                 </Link>
                               ) : (
-                                <GrInstagram className="text-[2rem] text-[#418df0]" />
+                                <GrInstagram className="text-[2rem] text-[#ae2dff]" />
                               )}
                             </div>
 
                             <input
-                              className={`bg-transparent w-[12rem] rounded-full border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+                              className={`bg-transparent w-[12rem] rounded-md border-[1px] border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
                                 item.instagram ? "border-green-500" : ""
                               }`}
                               type="text"
@@ -647,11 +710,25 @@ const CorredoresDashboard = () => {
                         </motion.div>
                       </>
 
-                      <div
-                        className="absolute right-12"
-                        onClick={() => handleCheckList(index)}
-                      >
-                        Descripción
+                      <div className="absolute right-12">
+                        <div className="flex gap-3 items-center justify-center">
+                          <div
+                            className="ml-4"
+                            type="submit"
+                            onClick={() => handleSubmitOne(item)}
+                          >
+                            <Button
+                              variant="text"
+                              endIcon={
+                                <SendIcon style={{ color: "#ae2dff" }} />
+                              }
+                            ></Button>
+                          </div>
+
+                          <div onClick={() => handleCheckList(index)}>
+                            Descripción
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -662,7 +739,7 @@ const CorredoresDashboard = () => {
               <h1>NO HAY LEADS CON ESE FILTRADO...</h1>
             </div>
           )}
-        </form>
+        </div>
       </div>
     </>
   );
