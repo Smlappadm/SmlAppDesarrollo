@@ -1,96 +1,109 @@
-import { motion } from "framer-motion";
-import React from "react";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
+import React, { useState } from "react";
+import { CiWarning } from "react-icons/ci";
+import {
+  IoGrid,
+  IoStatsChart,
+} from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
-const NavBar = () => {
-  const [dashboard, setDashboard] = React.useState(false);
-  const [historial, setHistorial] = React.useState(false);
-  const [analiticas, setAnaliticas] = React.useState(false);
+export default function NavBar() {
+  const path = window.location.pathname;
+  console.log(path);
+  const [titles, setTitles] = useState([
+    {
+      title: "Dashboard",
+      isHovered: false,
+      link: "/corredores/",
+      icon: IoGrid,
+    },
+    {
+      title: "Historial",
+      isHovered: false,
+      link: "/corredores-history/",
+      icon: FaHistory ,
+    },
+    {
+      title: "Analiticas",
+      isHovered: false,
+      link: "/corredores-analytics/",
+      icon: IoStatsChart ,
+    },
+  ]);
 
-  const handleMouseEnterD = () => {
-    setDashboard(true);
+  const handleMouseEnter = (index) => {
+    setTitles((prevState) => {
+      const updatedTitles = [...prevState]; // Crear una copia del estado
+      updatedTitles[index].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
+      return updatedTitles;
+    });
   };
 
-  const handleMouseLeaveD = () => {
-    setDashboard(false);
+  const handleMouseLeave = (index) => {
+    setTitles((prevState) => {
+      const updatedTitles = [...prevState]; // Crear una copia del estado
+      updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
+      return updatedTitles;
+    });
   };
-  const handleMouseEnterH = () => {
-    setHistorial(true);
-  };
-
-  const handleMouseLeaveH = () => {
-    setHistorial(false);
-  };
-  const handleMouseEnterA = () => {
-    setAnaliticas(true);
-  };
-
-  const handleMouseLeaveA = () => {
-    setAnaliticas(false);
-  };
-
   return (
-    <div className="flex gap-2 w-[8rem]">
-      <div className="flex gap-2 items-center justify-center">
-        <motion.div
-          whileHover={{ scale: 1.2 }} // Aumentar el tamaño al pasar el mouse por encima
-          className="text-[2rem] text-[#ae2dff] hover:text-[#af4fff] transition-transform"
-          onMouseEnter={handleMouseEnterD}
-          onMouseLeave={handleMouseLeaveD}
-        >
-          <IoGrid />
-        </motion.div>
-        {dashboard && (
-          <motion.p
-            initial={{ opacity: 0 }} // La opacidad inicial será 0
-            animate={{ opacity: 1 }} // La opacidad al pasar el mouse por encima será 1
-            className="group-hover:opacity-100 transition-opacity"
+    <div className="flex w-1">
+      <div className="flex gap-2">
+        {titles.map((encabezado, index) => (
+          <Link
+            className="flex items-center justify-center gap-2 "
+            to={encabezado.link}
+            key={index}
           >
-            Dashboard
-          </motion.p>
-        )}
-      </div>
-      <div className="flex gap-2 items-center justify-center">
-        <motion.div
-          whileHover={{ scale: 1.2 }} // Aumentar el tamaño al pasar el mouse por encima
-          className="text-[2rem] text-[#ae2dff] hover:text-[#af4fff] transition-transform"
-          onMouseEnter={handleMouseEnterH}
-          onMouseLeave={handleMouseLeaveH}
-        >
-          <FaHistory />
-        </motion.div>
-        {historial && (
-          <motion.p
-            initial={{ opacity: 0 }} // La opacidad inicial será 0
-            animate={{ opacity: 1 }} // La opacidad al pasar el mouse por encima será 1
-            className="group-hover:opacity-100 transition-opacity"
-          >
-            Historial
-          </motion.p>
-        )}
-      </div>
-      <div className="flex gap-2 items-center justify-center">
-        <motion.div
-          whileHover={{ scale: 1.2 }} // Aumentar el tamaño al pasar el mouse por encima
-          className="text-[2rem] text-[#ae2dff] hover:text-[#af4fff] transition-transform"
-          onMouseEnter={handleMouseEnterA}
-          onMouseLeave={handleMouseLeaveA}
-        >
-          <IoStatsChart />
-        </motion.div>
-        {analiticas && (
-          <motion.p
-            initial={{ opacity: 0 }} // La opacidad inicial será 0
-            animate={{ opacity: 1 }} // La opacidad al pasar el mouse por encima será 1
-            className="group-hover:opacity-100 transition-opacity"
-          >
-            Analiticas
-          </motion.p>
-        )}
+            {React.createElement(encabezado.icon, {
+              className: `text-[2rem] text-[#ae2dff] ${
+                encabezado.isHovered ? "hover:text-[#aa2afa]" : ""
+              }`,
+              onMouseEnter: () => handleMouseEnter(index),
+              onMouseLeave: () => handleMouseLeave(index),
+            })}
+            <motion.div
+              className="flex items-center gap-2 text-white h-full "
+              style={{
+                width: encabezado.isHovered ? "fit-content" : "2rem",
+              }}
+              initial={{ width: path === encabezado.link ? 100 : 0 }}
+              animate={{
+                width:
+                  path === encabezado.link
+                    ? 100
+                    : encabezado.isHovered
+                    ? 100
+                    : 0,
+              }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              {encabezado.isHovered ? (
+                <motion.p
+                  className="text-white"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  {encabezado.title}
+                </motion.p>
+              ) : (
+                path === encabezado.link && (
+                  <motion.p
+                    className="text-white"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    {encabezado.title}
+                  </motion.p>
+                )
+              )}
+            </motion.div>
+          </Link>
+        ))}
       </div>
     </div>
   );
-};
-
-export default NavBar;
+}
