@@ -70,7 +70,7 @@ export default function NavBar() {
   return (
     <div className="flex gap-2">
       {titles.map((encabezado, index) => (
-        <div>
+        <div className="w-2/4">
           <Link
             className="flex items-center justify-center gap-2 "
             to={encabezado.link}
