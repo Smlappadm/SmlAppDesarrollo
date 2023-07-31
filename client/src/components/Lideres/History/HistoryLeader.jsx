@@ -229,7 +229,7 @@ export const LideresHistory = () => {
                     encabezado.isHovered ? "hover:text-[#3570bd]" : ""
                   }`,
                   onMouseEnter: () => handleMouseEnter(index),
-                  onMouseLeave: () => handleMouseLeave(),
+                  onMouseLeave: () => handleMouseLeave(index),
                 })}
                 <motion.div
                   className="flex items-center gap-2 text-white h-full "
