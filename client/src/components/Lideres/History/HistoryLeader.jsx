@@ -167,10 +167,30 @@ export const LideresHistory = () => {
       link: "/contratando/",
       icon: IoGrid,
     },
-    {},
-    {},
-    {},
-    {},
+    {
+      title: "Seguimiento",
+      isHovered: false,
+      link: "/contratando/",
+      icon: IoGrid,
+    },
+    {
+      title: "Seguimiento",
+      isHovered: false,
+      link: "/contratando/",
+      icon: IoGrid,
+    },
+    {
+      title: "Seguimiento",
+      isHovered: false,
+      link: "/contratando/",
+      icon: IoGrid,
+    },
+    {
+      title: "Seguimiento",
+      isHovered: false,
+      link: "/contratando/",
+      icon: IoGrid,
+    },
   ]);
 
   const handleMouseEnter = () => {
