@@ -187,7 +187,7 @@ export const LideresHistory = () => {
                 />
                 {isHovered && (
                   <motion.p
-                    initial={{ opacity: 0, x: 20 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={{
                       opacity: isHovered ? 1 : 0,
                       x: isHovered ? 0 : 20,
