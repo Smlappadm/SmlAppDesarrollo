@@ -18,6 +18,7 @@ import Nav from "../../../Nav/Nav";
 import ModalObservaciones from "./Modal/ModalObservaciones";
 import { motion } from "framer-motion";
 import InputRunner from "./Select/InputRunnerVentas";
+import NavBar from "./NavBar";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
@@ -215,7 +216,18 @@ const VentasDashboard = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <motion.h1
+            <div className="flex w-full  h-10">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0 }}
+                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
+              >
+                {/* Dashboard */}
+                <NavBar />
+              </motion.div>
+            </div>
+            {/* <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0 }}
@@ -233,12 +245,13 @@ const VentasDashboard = () => {
               <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-            </div>
+            </div> */}
             {filters.level === true ? (
               <SelectLevel onChange={onChangeLevel} value={levelValue} />
             ) : (
               ""
             )}
+          </div>
             {!openModalPago && (
               <motion.div
                 initial={{ opacity: 0 }}
@@ -263,13 +276,12 @@ const VentasDashboard = () => {
                 />
               </motion.div>
             )}
-          </div>
           {!openModalPago ? (
             <>
               {vendedoresVentasDashboard.length > 0 ? (
                 <motion.div
                   initial={{ opacity: 0, y: "30px" }}
-                  whileInView={{ y: "10px", opacity: 1 }}
+                  whileInView={{ y: "25px", opacity: 1 }}
                   transition={{ duration: 0.6, delay: 0 }}
                   className={style.table}
                 >
