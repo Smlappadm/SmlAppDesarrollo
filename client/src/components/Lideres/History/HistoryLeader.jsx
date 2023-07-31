@@ -177,7 +177,7 @@ export const LideresHistory = () => {
       title: "Analíticas",
       isHovered: false,
       link: "/lideres-analytics",
-      icon: IoGrid,
+      icon: IoStatsChart,
     },
     {
       title: "Incidencias",
