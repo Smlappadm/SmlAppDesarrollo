@@ -189,7 +189,15 @@ export const LideresHistory = () => {
                     isHovered ? "hover:text-[#3570bd]" : ""
                   }`}
                 />
-                {isHovered && <motion.p>Seguimiento</motion.p>}
+                {isHovered && (
+                  <motion.p
+                    initial={{ width: "2rem" }}
+                    animate={{ width: isHovered ? 150 : "2rem" }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    Seguimiento
+                  </motion.p>
+                )}
               </motion.div>
             </Link>
             <Link
