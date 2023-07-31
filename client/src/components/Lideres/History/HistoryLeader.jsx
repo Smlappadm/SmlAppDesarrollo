@@ -32,7 +32,6 @@ import {
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
-import { motion } from "framer-motion";
 import NavBar from "../NavBar/NavBar";
 
 export const LideresHistory = () => {
