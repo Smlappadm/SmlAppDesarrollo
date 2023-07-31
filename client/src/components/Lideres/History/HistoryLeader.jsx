@@ -160,8 +160,6 @@ export const LideresHistory = () => {
     updateLeaderDashboard();
   };
 
-  const [isHovered, setIsHovered] = useState(false);
-
   const handleMouseEnter = (index) => {
     setTitles((prevState) => {
       const updatedTitles = [...prevState]; // Crear una copia del estado
