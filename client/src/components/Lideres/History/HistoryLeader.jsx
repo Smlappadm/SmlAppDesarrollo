@@ -199,7 +199,14 @@ export const LideresHistory = () => {
                       isHovered: true,
                     },
                   })),
-                onMouseLeave: () => setIsHovered(false),
+                onMouseLeave: () =>
+                  setTitles((prevState) => ({
+                    ...prevState,
+                    [0]: {
+                      ...prevState[0],
+                      isHovered: false,
+                    },
+                  })),
               })}
               <motion.div
                 className="flex items-center gap-2 text-white h-full "
