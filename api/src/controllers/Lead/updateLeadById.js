@@ -2,11 +2,11 @@
 const Lead = require("../../models/Lead");
 
 const updateLeadById = async (id, updatedData) => {
+
   // Para actualizar la fecha del contratacion del lead
   const dateContratado = new Date();
   const formattedTimeContratado = dateContratado.toISOString();
   updatedData.updateContratado = formattedTimeContratado;
-
 
   try {
     console.log(updatedData);
@@ -14,11 +14,11 @@ const updateLeadById = async (id, updatedData) => {
     // donde el campo '_id' es igual al valor de 'id' proporcionado
     // 'updatedData' contiene los campos y valores a actualizar en el lead
     // 'new: true' indica que se debe devolver el lead actualizado después de la actualización
-    // const lead = await Lead.findByIdAndUpdate(id, updatedData, {
-    //   new: true,
-    // });
+    const lead = await Lead.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    });
 
-    // return lead; // Devuelve el lead actualizado
+    return lead; // Devuelve el lead actualizado
   } catch (error) {
     // Si ocurre un error durante la actualización, se lanza una excepción con un mensaje de error
     throw new Error(`Error updating lead with id ${id}: ${error.message}`);
