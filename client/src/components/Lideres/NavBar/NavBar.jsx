@@ -67,6 +67,9 @@ export default function NavBar() {
         });
       };
   return (
+    <div>
+
+
     {titles.map((encabezado, index) => (
         <Link
           className="flex items-center justify-center gap-2 "
