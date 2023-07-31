@@ -90,12 +90,6 @@ export const LideresHistory = () => {
     }
   };
   const handleOrderByCategory = () => {
-    if (categoryOrder === "ASC" || categoryOrder === "") {
-      setCategoryOrder("DES");
-      setClientOrder("");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
-    }
     setCurrentPage(1);
   };
 
