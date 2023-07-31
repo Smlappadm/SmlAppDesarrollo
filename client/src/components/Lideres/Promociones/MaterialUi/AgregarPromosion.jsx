@@ -76,8 +76,18 @@ export default function AgregarPromosion() {
   };
 
   return (
-    <div>
-      <Button variant="outlined" onClick={handleOpen}>
+    <div className="mx-5">
+      <Button
+        variant="outlined"
+        sx={{
+          color: "white",
+          borderColor: "#ae2dff",
+          "&:hover": {
+            borderColor: "#a020f0",
+          },
+        }}
+        onClick={handleOpen}
+      >
         Añadir Promociones
       </Button>
       <Modal
@@ -228,7 +238,17 @@ export default function AgregarPromosion() {
               }
               label={`Promocion con Editores`}
             />
-            <Button variant="outlined" onClick={cargarPromocion}>
+            <Button
+              variant="outlined"
+              sx={{
+                color: "white",
+                borderColor: "#ae2dff",
+                "&:hover": {
+                  borderColor: "#a020f0",
+                },
+              }}
+              onClick={cargarPromocion}
+            >
               Agregar Promoción
             </Button>
           </div>
