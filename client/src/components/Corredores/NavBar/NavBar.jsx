@@ -15,19 +15,19 @@ export default function NavBar() {
     {
       title: "Dashboard",
       isHovered: false,
-      link: "/corredores/",
+      link: "/corredores",
       icon: IoGrid,
     },
     {
       title: "Historial",
       isHovered: false,
-      link: "/corredores-history/",
+      link: "/corredores-history",
       icon: FaHistory ,
     },
     {
       title: "Analiticas",
       isHovered: false,
-      link: "/corredores-analytics/",
+      link: "/corredores-analytics",
       icon: IoStatsChart ,
     },
   ]);
