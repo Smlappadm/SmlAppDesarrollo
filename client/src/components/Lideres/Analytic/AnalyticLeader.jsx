@@ -154,7 +154,7 @@ export const AnalyticLeader = () => {
           {filters.sellers === true ? <InputSeller /> : ""}
           {filters.status === true ? (
             <SelectStatus onChange={onChangeStatus} value={statusValue} />
-          ) : (
+
      
           )} */}
         </div>
