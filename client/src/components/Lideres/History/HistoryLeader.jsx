@@ -227,11 +227,7 @@ export const LideresHistory = () => {
                 <Text className="text-start w-28 p-0 text-white">Corredor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Vendedor
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Vendedor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("status")}>
