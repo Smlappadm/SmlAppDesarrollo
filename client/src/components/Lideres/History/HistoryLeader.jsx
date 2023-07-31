@@ -186,7 +186,14 @@ export const LideresHistory = () => {
                   }`}
                 />
                 {isHovered && (
-                  <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  <motion.p
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{
+                      opacity: isHovered ? 1 : 0,
+                      x: isHovered ? 0 : 20,
+                    }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
                     Seguimiento
                   </motion.p>
                 )}
