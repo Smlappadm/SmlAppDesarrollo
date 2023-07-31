@@ -1,13 +1,16 @@
 .table {
   width: 97%;
 }
-.divTitle {
-  width: 98%;
-  display: flex;
-  justify-content: start;
-  align-content: center;
-  margin: 30px 0 30px 10px;
-}
+
+  .divTitle {
+    width: 98%;
+    display: flex;
+    height: fit-content;
+    justify-content: start;
+    align-content: start;
+    margin: 30px 0 30px 10px;
+  }
+
 
 .containerCard {
   border: 1px solid green;
