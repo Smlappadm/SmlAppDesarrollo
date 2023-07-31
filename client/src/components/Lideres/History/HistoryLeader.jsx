@@ -168,6 +168,12 @@ export const LideresHistory = () => {
       icon: IoGrid,
     },
     {
+      title: "Seguimiento",
+      isHovered: false,
+      link: "/contratando/",
+      icon: IoGrid,
+    },
+    {
       title: "Freelancers",
       isHovered: false,
       link: "/lideres-freelancer/",
