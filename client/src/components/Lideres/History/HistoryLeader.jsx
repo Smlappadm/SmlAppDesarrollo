@@ -224,7 +224,7 @@ export const LideresHistory = () => {
                 to={encabezado.link}
                 key={index}
               >
-                {React.createElement(titles[0].icon, {
+                {React.createElement(encabezado.icon, {
                   className: `text-[2rem] text-[#418df0] ${
                     titles[0].isHovered ? "hover:text-[#3570bd]" : ""
                   }`,
