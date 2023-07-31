@@ -1,10 +1,11 @@
 import * as React from "react";
 import Stack from "@mui/material/Stack";
+import { Button } from "@mui/material";
 
 export default function CustomizedButtons() {
   return (
     <Stack spacing={2} direction="row">
-      <ColorButton
+      <Button
         variant="outlined"
         sx={{
           color: "white",
@@ -15,7 +16,7 @@ export default function CustomizedButtons() {
         }}
       >
         Ingresar
-      </ColorButton>
+      </Button>
     </Stack>
   );
 }
