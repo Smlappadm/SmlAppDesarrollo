@@ -11,12 +11,6 @@ import {
 } from "react-icons/ci";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoStatsChart,
-  IoRocketOutline,
-} from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import AgregarPromosion from "./MaterialUi/AgregarPromosion";
 import { useDispatch, useSelector } from "react-redux";
