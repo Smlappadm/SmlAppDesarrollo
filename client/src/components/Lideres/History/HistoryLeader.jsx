@@ -185,7 +185,7 @@ export const LideresHistory = () => {
 
             <Link
               className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
+              to={titles[0].link}
             >
               <IoGrid
                 className={`text-[2rem] text-[#418df0] ${
@@ -208,7 +208,7 @@ export const LideresHistory = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    Seguimiento
+                    {titles[0].title}
                   </motion.p>
                 )}
               </motion.div>
