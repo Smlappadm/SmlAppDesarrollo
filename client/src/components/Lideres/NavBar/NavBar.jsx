@@ -1,5 +1,14 @@
 import React from 'react'
 
+
+const handleMouseLeave = (index) => {
+    setTitles((prevState) => {
+      const updatedTitles = [...prevState]; // Crear una copia del estado
+      updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
+      return updatedTitles;
+    });
+  };
+
 export default function NavBar() {
   return (
     {titles.map((encabezado, index) => (
