@@ -22,6 +22,7 @@ import AgregarPromosion from "./MaterialUi/AgregarPromosion";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPromociones } from "../../../redux/actions";
 import ActualizarPromocion from "./MaterialUi/ActualizarPromocion";
+import NavBar from "../NavBar/NavBar";
 
 export const Promociones = () => {
   const dispatch = useDispatch();
@@ -60,6 +61,7 @@ export const Promociones = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Promociones
             </Title>
+            <NavBar />
           </div>
 
           <div className="flex gap-5">
