@@ -224,10 +224,32 @@ export default function InputName({
       </div>
       <div className="flex gap-5">
         <div className="flex gap-5 items-end justify-center">
-          <Button onClick={handleFilterClick} variant="contained" size="large">
+          <Button
+            onClick={handleFilterClick}
+            variant="contained"
+            sx={{
+              color: "white",
+              bgcolor: "#ae2dff",
+              "&:hover": {
+                bgcolor: "#a020f0",
+              },
+            }}
+            size="large"
+          >
             Filtrar
           </Button>
-          <Button onClick={handleFilterReset} variant="outlined" size="large">
+          <Button
+            onClick={handleFilterReset}
+            variant="outlined"
+            sx={{
+              color: "white",
+              borderColor: "#ae2dff",
+              "&:hover": {
+                borderColor: "#a020f0",
+              },
+            }}
+            size="large"
+          >
             Reset
           </Button>
         </div>
