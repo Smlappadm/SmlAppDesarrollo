@@ -4,21 +4,8 @@ import style from "./CorredoresHistory.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import Nav from "../../Nav/Nav";
-import {
-  Card,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
-  TableBody,
-  TableCell,
-  Text,
-  Title,
-} from "@tremor/react";
 
-import { CiGlobe, CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { FaHistory } from "react-icons/fa";
+import { CiGlobe, CiWarning, CiInstagram } from "react-icons/ci";
 import {
   getLeadCorredoresChecked,
   getLeadCorredoresCheckedDescargados,
@@ -28,6 +15,7 @@ import { Button } from "@mui/material";
 import Papa from "papaparse";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import NavBar from "../NavBar/NavBar";
 
 const CorredoresHistory = () => {
   const { corredorLeadChecked } = useSelector((state) => state);
@@ -112,21 +100,12 @@ const CorredoresHistory = () => {
       <ToastContainer />
       <Nav />
       <div className=" flex flex-col justify-start items-center w-full h-screen mx-5 ">
-        <Card className="w-full m-5 h-screen bg-[#222131]">
-          <div className="flex gap-10 items-center mt-2 mx-5 justify-between">
-            <div className="flex gap-5">
-              <h2 className="font-bold text-[#e2e2e2] text-lg">History</h2>
-              <div className="flex gap-5">
-                <Link to={"/corredores"}>
-                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-                <Link className="text-5xl" to={"/corredores-history"}>
-                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-                <Link className="text-5xl" to={"/corredores-analytics"}>
-                  <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-              </div>
+        <div className="w-full m-5 bg-[#222131]">
+          <div className="flex justify-between items-center">
+            <div className="flex mt-5">
+              <h2 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">History</h2>
+
+              <NavBar />
             </div>
 
             <label>Leads chequeados: {corredorLeadChecked.length}</label>
@@ -135,90 +114,90 @@ const CorredoresHistory = () => {
             </Button>
           </div>
           <div className="flex flex-col">
-              <div className="text-gray-400 text-14 font-thin">
-                <div className={style.tableRow}>
-                  <div className="text-start">Invoice Id</div>
-                  <div className="text-start">Name</div>
-                  <div className="text-start">Web</div>
-                  <div className="text-start">Instagram</div>
-                  <div className="text-start">Nivel</div>
-                  <div className="text-start">Incidencia</div>
-                </div>
+            <div className="text-gray-400 text-14 font-thin">
+              <div className={style.tableRow}>
+                <div className="text-start">Invoice Id</div>
+                <div className="text-start">Name</div>
+                <div className="text-start">Web</div>
+                <div className="text-start">Instagram</div>
+                <div className="text-start">Nivel</div>
+                <div className="text-start">Incidencia</div>
               </div>
+            </div>
 
-              <div className="h-3/4">
-                {currentCard.map((item, index) => (
-                  <div key={index} className={style.tableCards}>
-                    <div className="flex justify-start items-center p-0">
-                      <div className="w-24 p-1 px-3 rounded-full text-ellipsis opacity-1 overflow-hidden hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item._id}
-                      </div>
-                    </div>
-                    <div className="flex justify-start items-center p-0">
-                      {/* sssss */}
-                      <Text className="w-96 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                        {item.name}
-                      </Text>
-                    </div>
-                    <div className="flex justify-start items-center p-0">
-                      {item.url ? (
-                        <Link to={item.url} target="_blank">
-                          <div>
-                            <CiGlobe className="text-[30px] mr-5 text-[#418df0]" />
-                          </div>
-                        </Link>
-                      ) : (
-                        <div>
-                          <CiGlobe className="text-[30px] mr-5 text-[#9eabbe]" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex justify-start items-center p-0 mx-3">
-                      {item.instagram ? (
-                        <Link to={item.instagram} target="_blank">
-                          <div>
-                            <CiInstagram className="text-[30px] mr-5 text-[#ff598b]" />
-                            <Text className="text-start">{item.Instagram}</Text>
-                          </div>
-                        </Link>
-                      ) : (
-                        <div>
-                          <CiInstagram className="text-[30px] mr-5 text-[#9eabbe]" />
-                          <Text className="text-start">{item.Instagram}</Text>
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex justify-start items-center p-0">
-                      {item.level == "0" ? (
-                        <label className={style.buttonNivelActive}>0</label>
-                      ) : (
-                        <label className={style.buttonNivel}>0</label>
-                      )}
-                      {item.level == "1" ? (
-                        <label className={style.buttonNivelActive}>1</label>
-                      ) : (
-                        <label className={style.buttonNivel}>1</label>
-                      )}
-                      {item.level == "2" ? (
-                        <label className={style.buttonNivelActive}>2</label>
-                      ) : (
-                        <label className={style.buttonNivel}>2</label>
-                      )}
-                    </div>
-                    <div className="flex justify-start items-center p-0">
-                      <div>
-                        {item.level == "incidencia" ? (
-                          <CiWarning className="text-[30px] mr-5 text-[#f0de41]" />
-                        ) : (
-                          <CiWarning className="text-[30px] mr-5 text-[#418df0]" />
-                        )}
-                      </div>
+            <div className="h-3/4">
+              {currentCard.map((item, index) => (
+                <div key={index} className={style.tableCards}>
+                  <div className="flex justify-start items-center p-0">
+                    <div className="w-24 p-1 px-3 rounded-full text-ellipsis opacity-1 overflow-hidden hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
+                      {item._id}
                     </div>
                   </div>
-                ))}
-              </div>
+                  <div className="flex justify-start items-center p-0">
+                    {/* sssss */}
+                    <p className="w-96 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                      {item.name}
+                    </p>
+                  </div>
+                  <div className="flex justify-start items-center p-0">
+                    {item.url ? (
+                      <Link to={item.url} target="_blank">
+                        <div>
+                          <CiGlobe className="text-[30px] mr-5 text-[#418df0]" />
+                        </div>
+                      </Link>
+                    ) : (
+                      <div>
+                        <CiGlobe className="text-[30px] mr-5 text-[#9eabbe]" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex justify-start items-center p-0 mx-3">
+                    {item.instagram ? (
+                      <Link to={item.instagram} target="_blank">
+                        <div>
+                          <CiInstagram className="text-[30px] mr-5 text-[#ff598b]" />
+                          <p className="text-start">{item.Instagram}</p>
+                        </div>
+                      </Link>
+                    ) : (
+                      <div>
+                        <CiInstagram className="text-[30px] mr-5 text-[#9eabbe]" />
+                        <p className="text-start">{item.Instagram}</p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex justify-start items-center p-0">
+                    {item.level == "0" ? (
+                      <label className={style.buttonNivelActive}>0</label>
+                    ) : (
+                      <label className={style.buttonNivel}>0</label>
+                    )}
+                    {item.level == "1" ? (
+                      <label className={style.buttonNivelActive}>1</label>
+                    ) : (
+                      <label className={style.buttonNivel}>1</label>
+                    )}
+                    {item.level == "2" ? (
+                      <label className={style.buttonNivelActive}>2</label>
+                    ) : (
+                      <label className={style.buttonNivel}>2</label>
+                    )}
+                  </div>
+                  <div className="flex justify-start items-center p-0">
+                    <div>
+                      {item.level == "incidencia" ? (
+                        <CiWarning className="text-[30px] mr-5 text-[#f0de41]" />
+                      ) : (
+                        <CiWarning className="text-[30px] mr-5 text-[#418df0]" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </Card>
+        </div>
         <div className=" mb-5">
           <PaginationOutlined
             pageStyle={pageStyle}

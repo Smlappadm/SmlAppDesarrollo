@@ -97,7 +97,17 @@ function ChildModalDelete({
   return (
     <React.Fragment>
       {role && role === "clevel" ? (
-        <Button variant="contained" onClick={handleOpen}>
+        <Button
+          variant="contained"
+          sx={{
+            color: "white",
+            bgcolor: "#ae2dff",
+            "&:hover": {
+              bgcolor: "#a020f0",
+            },
+          }}
+          onClick={handleOpen}
+        >
           Delete Employ
         </Button>
       ) : (
@@ -115,10 +125,30 @@ function ChildModalDelete({
           </h2>
 
           <div className="flex mt-5 gap-2 justify-center items-center">
-            <Button variant="outlined" onClick={handleClose}>
+            <Button
+              variant="outlined"
+              sx={{
+                color: "white",
+                borderColor: "#ae2dff",
+                "&:hover": {
+                  borderColor: "#a020f0",
+                },
+              }}
+              onClick={handleClose}
+            >
               Cerrar
             </Button>
-            <Button variant="contained" onClick={handleCreate}>
+            <Button
+              variant="contained"
+              sx={{
+                color: "white",
+                bgcolor: "#ae2dff",
+                "&:hover": {
+                  bgcolor: "#a020f0",
+                },
+              }}
+              onClick={handleCreate}
+            >
               Eliminar empleado
             </Button>
           </div>
@@ -192,7 +222,7 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
-        
+
         await axios.put(`/lead/cambiarnombreclevel`, {
           name: inputName,
           email: inputEmail,
@@ -226,7 +256,6 @@ function ChildModal({
           country: inputCountry,
         });
 
-        
         await axios.put(`/lead/cambiarnombreleader`, {
           name: inputName,
           email: inputEmail,
@@ -276,12 +305,10 @@ function ChildModal({
           country: inputCountry,
         });
 
-        
         await axios.put(`/lead/cambiarnombrevendedor`, {
           name: inputName,
           email: inputEmail,
         });
-        
       }
 
       if (itemRol === "corredor") {
@@ -293,7 +320,7 @@ function ChildModal({
           description: inputDescription,
           country: inputCountry,
         });
-        
+
         await axios.put(`/lead/cambiarnombrecorredor`, {
           name: inputName,
           email: inputEmail,
@@ -322,7 +349,17 @@ function ChildModal({
 
   return (
     <React.Fragment>
-      <Button variant="contained" onClick={handleOpen}>
+      <Button
+        variant="contained"
+        sx={{
+          color: "white",
+          bgcolor: "#ae2dff",
+          "&:hover": {
+            bgcolor: "#a020f0",
+          },
+        }}
+        onClick={handleOpen}
+      >
         Actualizar
       </Button>
       <Modal
@@ -333,10 +370,30 @@ function ChildModal({
         <Box sx={{ ...style, width: "20%", backgroundColor: "#39394b" }}>
           <h2 id="child-modal-title">Confirm update of {inputName}?</h2>
           <div className="flex mt-5 gap-2 justify-center items-center">
-            <Button variant="outlined" onClick={handleClose}>
+            <Button
+              variant="outlined"
+              sx={{
+                color: "white",
+                borderColor: "#ae2dff",
+                "&:hover": {
+                  borderColor: "#a020f0",
+                },
+              }}
+              onClick={handleClose}
+            >
               Cerrar
             </Button>
-            <Button variant="contained" onClick={handleCreate}>
+            <Button
+              variant="contained"
+              sx={{
+                color: "white",
+                bgcolor: "#ae2dff",
+                "&:hover": {
+                  bgcolor: "#a020f0",
+                },
+              }}
+              onClick={handleCreate}
+            >
               Actualizar empleado
             </Button>
           </div>
@@ -388,9 +445,9 @@ export default function NestedModalEdit({
   return (
     <div>
       <Button className="text-3xl" onClick={handleOpen}>
-        <TbPointFilled />
-        <TbPointFilled />
-        <TbPointFilled />{" "}
+        <TbPointFilled className="text-[#ae2dff] hover:text-[#a020f0]" />
+        <TbPointFilled className="text-[#ae2dff] hover:text-[#a020f0]" />
+        <TbPointFilled className="text-[#ae2dff] hover:text-[#a020f0]" />
       </Button>
 
       <Modal
@@ -442,7 +499,17 @@ export default function NestedModalEdit({
             </div>
           </div>
           <div className="flex mt-5 gap-3 justify-center items-center">
-            <Button variant="outlined" onClick={handleClose}>
+            <Button
+              variant="outlined"
+              sx={{
+                color: "white",
+                borderColor: "#ae2dff",
+                "&:hover": {
+                  borderColor: "#a020f0",
+                },
+              }}
+              onClick={handleClose}
+            >
               Cerrar
             </Button>
             <ChildModal

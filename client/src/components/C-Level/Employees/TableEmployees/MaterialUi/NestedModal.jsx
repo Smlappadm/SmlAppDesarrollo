@@ -167,14 +167,6 @@ function ChildModal({
         }
 
         setLoading(false);
-
-        // const response = await axios.put("/lead/asignacion", {
-        //   name: inputName,
-        //   email: inputEmail,
-        //   leads: leadAsigned,
-        // });
-
-        // console.log(response.data);
       }
       CreateEmployees(inputName);
     } catch (error) {
@@ -201,10 +193,30 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex gap-2 justify-center items-center mt-5">
-        <Button variant="outlined" onClick={handleCloseChild}>
+        <Button
+          variant="outlined"
+          sx={{
+            color: "white",
+            borderColor: "#ae2dff",
+            "&:hover": {
+              borderColor: "#a020f0",
+            },
+          }}
+          onClick={handleCloseChild}
+        >
           Cerrar
         </Button>
-        <Button variant="contained" onClick={handleOpen}>
+        <Button
+          variant="contained"
+          sx={{
+            color: "white",
+            bgcolor: "#ae2dff",
+            "&:hover": {
+              bgcolor: "#a020f0",
+            },
+          }}
+          onClick={handleOpen}
+        >
           Siguiente
         </Button>
       </div>
@@ -260,10 +272,30 @@ function ChildModal({
               Estas seguro que queres crear este empleado?
             </p>
             <div className="flex justify-center gap-2 items-center">
-              <Button variant="outlined" onClick={handleClose}>
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "white",
+                  borderColor: "#ae2dff",
+                  "&:hover": {
+                    borderColor: "#a020f0",
+                  },
+                }}
+                onClick={handleClose}
+              >
                 Cerrar
               </Button>
-              <Button variant="contained" onClick={handleCreate}>
+              <Button
+                variant="contained"
+                sx={{
+                  color: "white",
+                  bgcolor: "#ae2dff",
+                  "&:hover": {
+                    bgcolor: "#a020f0",
+                  },
+                }}
+                onClick={handleCreate}
+              >
                 Crear empleado
               </Button>
             </div>
@@ -306,7 +338,17 @@ export default function NestedModal({
 
   return (
     <div>
-      <Button variant="contained" onClick={handleOpen}>
+      <Button
+        variant="contained"
+        sx={{
+          color: "white",
+          bgcolor: "#ae2dff",
+          "&:hover": {
+            bgcolor: "#a020f0",
+          },
+        }}
+        onClick={handleOpen}
+      >
         Agregar empleado
       </Button>
       <Modal
