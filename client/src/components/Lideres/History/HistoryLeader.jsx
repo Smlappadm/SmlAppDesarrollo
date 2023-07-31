@@ -183,7 +183,7 @@ export const LideresHistory = () => {
       title: "Incidencias",
       isHovered: false,
       link: "/lideres-incidences",
-      icon: IoGrid,
+      icon: CiWarning,
     },
     {
       title: "Promociones",
