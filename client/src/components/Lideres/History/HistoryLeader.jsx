@@ -177,7 +177,7 @@ export const LideresHistory = () => {
             >
               <motion.div
                 className="flex items-center gap-2 text-white"
-                style={{ width: isHovered ? "fit-content" : "2rem" }}
+                // style={{ width: isHovered ? "fit-content" : "2rem" }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 initial={{ width: "2rem" }}
