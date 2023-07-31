@@ -89,9 +89,6 @@ export const LideresHistory = () => {
       return "Profesion";
     }
   };
-  const handleOrderByCategory = () => {
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
