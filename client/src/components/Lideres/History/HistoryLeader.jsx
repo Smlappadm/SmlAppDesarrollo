@@ -22,13 +22,6 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoStatsChart,
-  IoRocketOutline,
-  IoCashOutline,
-} from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
