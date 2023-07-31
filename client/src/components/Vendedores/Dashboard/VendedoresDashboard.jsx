@@ -23,6 +23,7 @@ import InputRunner from "./Select/InputRunner";
 import Nav from "../../Nav/Nav";
 import { motion } from "framer-motion";
 import ModalAddLeadVendedor from "./MUI/ModalAddLeadVendedor";
+import NavBar from "./NavBar";
 
 const VendedoresDashboard = () => {
   const [data, setData] = useState([]);
@@ -42,7 +43,7 @@ const VendedoresDashboard = () => {
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
   let fullName = localStorage.getItem("nameEmploy");
-  console.log(fullName)
+  console.log(fullName);
   const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
@@ -213,40 +214,37 @@ const VendedoresDashboard = () => {
     <>
       <Nav />
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
-            {showCopiedMessage && (
-
-
-              <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
-                Copiado!
-              </p>
-
-            )}
+        {showCopiedMessage && (
+          <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
+            Copiado!
+          </p>
+        )}
         <div className="w-full flex flex-col justify-center items-center">
-          <div className={style.divTitle}>
-            <div className="flex">
-              <motion.h1
+          <div className={`${style.divTitle}`}>
+            <div className="flex w-full h-10">
+              <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0 }}
                 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
               >
-                Dashboard
-              </motion.h1>
-
-              <div className="flex gap-7">
+                {/* Dashboard */}
+              <NavBar />
+              </motion.div>
+              {/* <div className="flex gap-7">
                 <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
-                  Ingresa al Dashboard
+                Ingresa al Dashboard
                 </p>
                 <Link to={"/vendedores"}>
-                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
                 </Link>
                 <Link to={"/vendedores-ventas"}>
-                  <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                <MdOutlineAttachMoney className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
                 </Link>
                 <Link className="text-5xl" to={"/vendedores-history"}>
-                  <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
+                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
                 </Link>
-              </div>
+              </div> */}
             </div>
             {!openModalPago && (
               <div>
@@ -254,7 +252,25 @@ const VendedoresDashboard = () => {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className="flex gap-5 justify-center items-center"
+                  className="mr-10 whitespace-nowrap w-fit"
+                >
+                  <ModalAddLeadVendedor
+                    email={emailAddress}
+                    AddLeadError={AddLeadError}
+                    AddLeads={AddLeads}
+                    AddLeadsIncomplete={AddLeadsIncomplete}
+                  />
+                </motion.div>
+              </div>
+            )}
+          </div>
+            {!openModalPago && (
+              <div className="h-fit mb-6">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="flex justify-center items-center"
                 >
                   <InputRunner
                     getLeadCheckedInactive5={getLeadCheckedInactive5}
@@ -272,24 +288,6 @@ const VendedoresDashboard = () => {
                 </motion.div>
               </div>
             )}
-            {!openModalPago && (
-              <div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="mr-10"
-                >
-                  <ModalAddLeadVendedor
-                    email={emailAddress}
-                    AddLeadError={AddLeadError}
-                    AddLeads={AddLeads}
-                    AddLeadsIncomplete={AddLeadsIncomplete}
-                  />
-                </motion.div>
-              </div>
-            )}
-          </div>
 
           {!openModalPago ? (
             <>
