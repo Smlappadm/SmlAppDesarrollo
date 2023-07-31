@@ -229,7 +229,7 @@ const VendedoresDashboard = () => {
                 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
               >
                 {/* Dashboard */}
-              <NavBar />
+                <NavBar />
               </motion.div>
               {/* <div className="flex gap-7">
                 <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
@@ -264,30 +264,30 @@ const VendedoresDashboard = () => {
               </div>
             )}
           </div>
-            {!openModalPago && (
-              <div className="h-fit mb-6">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.5 }}
-                  className="flex justify-center items-center"
-                >
-                  <InputRunner
-                    getLeadCheckedInactive5={getLeadCheckedInactive5}
-                    body={body}
-                    emailAddress={emailAddress}
-                    profesion={profesion}
-                    setProfesion={setProfesion}
-                    country={country}
-                    setCountry={setCountry}
-                    level={level}
-                    setLevel={setLevel}
-                    freelancer={freelancer}
-                    setFreelancer={setFreelancer}
-                  />
-                </motion.div>
-              </div>
-            )}
+          {!openModalPago && (
+            <div className="h-fit mb-6">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="flex justify-center items-center"
+              >
+                <InputRunner
+                  getLeadCheckedInactive5={getLeadCheckedInactive5}
+                  body={body}
+                  emailAddress={emailAddress}
+                  profesion={profesion}
+                  setProfesion={setProfesion}
+                  country={country}
+                  setCountry={setCountry}
+                  level={level}
+                  setLevel={setLevel}
+                  freelancer={freelancer}
+                  setFreelancer={setFreelancer}
+                />
+              </motion.div>
+            </div>
+          )}
 
           {!openModalPago ? (
             <>
