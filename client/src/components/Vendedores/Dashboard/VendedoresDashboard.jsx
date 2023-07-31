@@ -265,28 +265,26 @@ const VendedoresDashboard = () => {
             )}
           </div>
           {!openModalPago && (
-            <div className="h-fit mb-6">
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="flex justify-center items-center"
-              >
-                <InputRunner
-                  getLeadCheckedInactive5={getLeadCheckedInactive5}
-                  body={body}
-                  emailAddress={emailAddress}
-                  profesion={profesion}
-                  setProfesion={setProfesion}
-                  country={country}
-                  setCountry={setCountry}
-                  level={level}
-                  setLevel={setLevel}
-                  freelancer={freelancer}
-                  setFreelancer={setFreelancer}
-                />
-              </motion.div>
-            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="flex justify-center items-center h-fit mb-6"
+            >
+              <InputRunner
+                getLeadCheckedInactive5={getLeadCheckedInactive5}
+                body={body}
+                emailAddress={emailAddress}
+                profesion={profesion}
+                setProfesion={setProfesion}
+                country={country}
+                setCountry={setCountry}
+                level={level}
+                setLevel={setLevel}
+                freelancer={freelancer}
+                setFreelancer={setFreelancer}
+              />
+            </motion.div>
           )}
 
           {!openModalPago ? (
