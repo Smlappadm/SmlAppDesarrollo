@@ -171,7 +171,7 @@ export const LideresHistory = () => {
       title: "Freelancers",
       isHovered: false,
       link: "/lideres-freelancer/",
-      icon: IoGrid,
+      icon: IoLogoSnapchat,
     },
     {
       title: "Analíticas",
@@ -180,13 +180,13 @@ export const LideresHistory = () => {
       icon: IoGrid,
     },
     {
-      title: "Seguimiento",
+      title: "Incidencias",
       isHovered: false,
       link: "/lideres-incidences",
       icon: IoGrid,
     },
     {
-      title: "Seguimiento",
+      title: "Promociones",
       isHovered: false,
       link: "/promociones",
       icon: IoGrid,
