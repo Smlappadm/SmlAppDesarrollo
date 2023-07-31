@@ -33,6 +33,7 @@ import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { motion } from "framer-motion";
+import NavBar from "../NavBar/NavBar";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
@@ -225,6 +226,7 @@ export const LideresHistory = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Historial Empleados
             </Title>
+            <NavBar />
             {/* {titles.map((encabezado, index) => (
               <Link
                 className="flex items-center justify-center gap-2 "
