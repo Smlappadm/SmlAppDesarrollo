@@ -237,7 +237,7 @@ export const LideresHistory = () => {
                     width: encabezado.isHovered ? "fit-content" : "2rem",
                   }}
                   initial={{ width: 0 }}
-                  animate={{ width: titles[0].isHovered ? 100 : 0 }}
+                  animate={{ width: encabezado.isHovered ? 100 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
                   {encabezado.isHovered && (
