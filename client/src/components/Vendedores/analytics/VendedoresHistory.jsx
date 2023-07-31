@@ -21,6 +21,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { motion } from "framer-motion";
 import Nav from "../../Nav/Nav";
 import InputRunner from "./MUI/InputRunner";
+import NavBar from "../Dashboard/NavBar";
 
 const VendedoresHistory = () => {
   const [data, setData] = useState([]);
@@ -340,17 +341,20 @@ const VendedoresHistory = () => {
         )}
 
         <div className="w-full flex flex-col justify-center items-center">
-          <div className={style.divTitle}>
-            <motion.h1
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0 }}
-              className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
-            >
-              Historial
-            </motion.h1>
+        <div className={`${style.divTitle}`}>
+            <div className="flex w-full h-10">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0 }}
+                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
+              >
+                {/* Dashboard */}
+              <NavBar />
+              </motion.div>
+              </div>
             <div className="flex gap-7 ">
-              <Link to={"/vendedores"}>
+              {/* <Link to={"/vendedores"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
               <Link to={"/vendedores-ventas"}>
@@ -358,7 +362,7 @@ const VendedoresHistory = () => {
               </Link>
               <Link className="text-5xl" to={"/vendedores-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+              </Link> */}
 
               {filters.level === true ? (
                 <div className=" flex justify-center items-center w-80">
@@ -623,7 +627,7 @@ const VendedoresHistory = () => {
           )}
         </div>
         {data && data.length > 10 && (
-          <div className="mb-5">
+          <div className="absolute bottom-2 mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}
               setPageStyle={setPageStyle}
