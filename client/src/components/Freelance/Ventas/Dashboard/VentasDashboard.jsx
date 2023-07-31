@@ -23,6 +23,7 @@ import {
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
 import PagosInfo from "../../../PagosInfo/PagosInfo";
+import NavBar from "./NavBar";
 
 const VentasDashboard = () => {
   const [data, setData] = useState([]);
@@ -175,15 +176,26 @@ const VentasDashboard = () => {
             </p>
           )}
           <div className={style.divTitle}>
-            <motion.h1
+            <div className="flex w-full h-10">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0 }}
+                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
+              >
+                <NavBar />
+              </motion.div>
+            </div>
+
+            {/* <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0 }}
               className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
             >
               Dashboard
-            </motion.h1>
-            <div className="flex gap-7">
+            </motion.h1> */}
+            {/* <div className="flex gap-7">
               <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
@@ -193,29 +205,30 @@ const VentasDashboard = () => {
               <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="flex gap-5 justify-center items-center ml-16"
-            >
-              <InputRunner
-                getLeadCheckedFreelance={getLeadCheckedFreelance}
-                body={body}
-                emailAddress={emailAddress}
-                profesion={profesion}
-                setProfesion={setProfesion}
-                country={country}
-                setCountry={setCountry}
-                level={level}
-                setLevel={setLevel}
-                freelancer={freelancer}
-                setFreelancer={setFreelancer}
-              />
-            </motion.div>
+            </div> */}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="flex gap-5 justify-center items-center h-fit mb-6"
+          >
+            <InputRunner
+              getLeadCheckedFreelance={getLeadCheckedFreelance}
+              body={body}
+              emailAddress={emailAddress}
+              profesion={profesion}
+              setProfesion={setProfesion}
+              country={country}
+              setCountry={setCountry}
+              level={level}
+              setLevel={setLevel}
+              freelancer={freelancer}
+              setFreelancer={setFreelancer}
+            />
+          </motion.div>
+
           {!openModalPago ? (
             <>
               {vendedoresDashboard.length ? (
