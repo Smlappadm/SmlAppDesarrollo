@@ -67,10 +67,6 @@ export const LideresHistory = () => {
       return "Cliente";
     }
   };
-  const handleOrderByClient = () => {
-    setCurrentPage(1);
-  };
-
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
   const handleOpen = (item, index) => {
