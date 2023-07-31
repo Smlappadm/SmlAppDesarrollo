@@ -221,12 +221,12 @@ export const LideresHistory = () => {
             {titles.map((encabezado, index) => (
               <Link
                 className="flex items-center justify-center gap-2"
-                to={encabezado.link}
+                to={titles[0].link}
                 key={index}
               >
-                {React.createElement(encabezado.icon, {
+                {React.createElement(titles[0].icon, {
                   className: `text-[2rem] text-[#418df0] ${
-                    encabezado.isHovered ? "hover:text-[#3570bd]" : ""
+                    titles[0].isHovered ? "hover:text-[#3570bd]" : ""
                   }`,
                   onMouseEnter: () => handleMouseEnter(),
                   onMouseLeave: () => handleMouseLeave(),
@@ -234,13 +234,13 @@ export const LideresHistory = () => {
                 <motion.div
                   className="flex items-center gap-2 text-white h-full "
                   style={{
-                    width: encabezado.isHovered ? "fit-content" : "2rem",
+                    width: titles[0].isHovered ? "fit-content" : "2rem",
                   }}
                   initial={{ width: 0 }}
-                  animate={{ width: encabezado.isHovered ? 100 : 0 }}
+                  animate={{ width: titles[0].isHovered ? 100 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  {encabezado.isHovered && (
+                  {titles[0].isHovered && (
                     <motion.p
                       className="text-white"
                       initial={{ opacity: 0, x: -10 }}
