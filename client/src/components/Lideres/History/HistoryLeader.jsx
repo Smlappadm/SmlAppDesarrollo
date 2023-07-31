@@ -68,12 +68,6 @@ export const LideresHistory = () => {
     }
   };
   const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    }
     setCurrentPage(1);
   };
 
