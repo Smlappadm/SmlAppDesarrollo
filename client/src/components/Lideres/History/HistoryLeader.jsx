@@ -174,7 +174,7 @@ export const LideresHistory = () => {
       icon: IoGrid,
     },
     {
-      title: "Seguimiento",
+      title: "Analíticas",
       isHovered: false,
       link: "/lideres-analytics",
       icon: IoGrid,
