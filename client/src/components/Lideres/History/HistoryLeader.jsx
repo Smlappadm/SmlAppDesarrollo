@@ -103,9 +103,6 @@ export const LideresHistory = () => {
     }
     setCurrentPage(1);
   };
-  const handlerFilter = () => {
-    setFilters(!filters);
-  };
 
   const [statusValue, setStatusValue] = useState("");
   const onChangeStatus = (value) => {
