@@ -83,7 +83,7 @@ export default function NavBar() {
             onMouseLeave: () => handleMouseLeave(index),
           })}
           <motion.div
-            className="flex items-center gap-2 text-white h-full bg-black"
+            className="flex items-center gap-2 text-white h-full"
             style={{
               width: encabezado.isHovered ? "fit-content" : "2rem",
             }}
