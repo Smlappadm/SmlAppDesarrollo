@@ -28,6 +28,7 @@ import {
   IoStatsChart,
   IoRocketOutline,
 } from "react-icons/io5";
+import NavBar from "../NavBar/NavBar";
 
 export const AnalyticLeader = () => {
   const [data, setData] = useState([]);
@@ -147,41 +148,7 @@ export const AnalyticLeader = () => {
               Estadísticas
             </Title>
 
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Empleados</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-freelancer/"}
-            >
-              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Freelancer</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-incidences"}
-            >
-              <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Incidencias</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/promociones"}
-            >
-              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Promociones</p>
-            </Link>
+            <NavBar />
             <div className=" mx-36">
               <label>Leads descartados por el bot: {showData.length}</label>
             </div>
