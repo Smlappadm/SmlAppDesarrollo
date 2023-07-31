@@ -43,6 +43,12 @@ export default function PaginationOutlined({
           color="primary"
           onChange={handleChangePage}
           page={currentPage}
+          sx={{
+            '& .Mui-selected': {
+              backgroundColor: '#ae2dff', 
+              bgcolor: '#ae2dff', 
+            },
+          }}
         />
       </Stack>
     </div>

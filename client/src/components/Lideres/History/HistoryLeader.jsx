@@ -283,12 +283,12 @@ export const LideresHistory = () => {
                       <div className="flex justify-center items-center p-0 ">
                         {item.level !== "incidencia" ? (
                           <div className="flex w-6 text-ellipsis justify-start items-center p-0">
-                            <p className="bg-[#6254ff] text-[#ffffff] w-6 rounded flex items-center justify-center  ">
+                            <p className="bg-[#ae2dff] text-[#ffffff] w-6 rounded flex items-center justify-center  ">
                               {item.level}
                             </p>
                           </div>
                         ) : (
-                          <div className="bg-[#6254ff] text-[#e8e8e9] w-6 rounded  flex items-center justify-center text-24  ">
+                          <div className="bg-[#ae2dff] text-[#e8e8e9] w-6 rounded  flex items-center justify-center text-24  ">
                             <CiWarning className="text-[#fdfa3a] p-0  font-bold" />
                           </div>
                         )}

@@ -566,7 +566,7 @@ const VentasDashboard = () => {
           )}
         </div>
         {data.length > 10 && !openModalPago && (
-          <div className="mb-5">
+          <div className="absolute bottom-2 mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}
               setPageStyle={setPageStyle}
