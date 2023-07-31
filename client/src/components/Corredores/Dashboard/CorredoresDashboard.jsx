@@ -24,6 +24,7 @@ import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import NavBar from "../NavBar/NavBar";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -412,26 +413,7 @@ const CorredoresDashboard = () => {
               <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
                 Dashboard
               </h1>
-              <div className="flex gap-5">
-                <div className="flex gap-2 items-center justify-center">
-                  <Link to={"/corredores"}>
-                    <IoGrid className="text-[2rem] text-[#ae2dff] hover:text-[#af4fff]" />
-                  </Link>
-                  <p>Dashboard</p>
-                </div>
-                <div className="flex gap-2 items-center justify-center">
-                  <Link className="text-5xl" to={"/corredores-history"}>
-                    <FaHistory className="text-[2rem] text-[#ae2dff] hover:text-[#af4fff]" />
-                  </Link>
-                  <p>Historial</p>
-                </div>
-                <div className="flex gap-2 items-center justify-center">
-                  <Link className="text-5xl" to={"/corredores-analytics"}>
-                    <IoStatsChart className="text-[2rem] text-[#ae2dff] hover:text-[#af4fff]" />
-                  </Link>
-                  <p>Analiticas</p>
-                </div>
-              </div>
+              <NavBar />
             </div>
 
             <div>
