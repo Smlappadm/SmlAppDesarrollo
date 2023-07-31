@@ -22,9 +22,11 @@ import {
   IoGrid,
   IoStatsChart,
   IoPeople,
-  IoLogoSnapchat,IoRocketOutline
+  IoLogoSnapchat,
+  IoRocketOutline,
 } from "react-icons/io5";
 import { CiGlobe } from "react-icons/ci";
+import NavBar from "../NavBar/NavBar";
 
 //
 const Incidences = () => {
@@ -149,42 +151,8 @@ const Incidences = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Incidences
             </Title>
-            
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Empleados</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-freelancer/"}
-            >
-              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Freelancer</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-analytics"}
-            >
-              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Analiticas</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/promociones"}
-            >
-              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Promociones</p>
-            </Link>
+
+            <NavBar />
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
         </div>
