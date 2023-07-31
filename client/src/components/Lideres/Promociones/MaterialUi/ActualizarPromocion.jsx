@@ -152,7 +152,7 @@ export default function ActualizarPromocion({ item }) {
     <div className="flex items-center justify-center">
       <ToastContainer />
       <Button sx={styleButton} onClick={handleOpen}>
-        <VscSettings className="text-[1.5rem] text-[#418df0] hover:text-[#3570bd]" />
+        <VscSettings className="text-[1.5rem] text-[#ae2dff] hover:text-[#a020f0]" />
       </Button>
       <Modal
         open={open}
