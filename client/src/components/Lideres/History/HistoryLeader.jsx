@@ -161,44 +161,6 @@ export const LideresHistory = () => {
   };
 
   const [isHovered, setIsHovered] = useState(false);
-  const [titles, setTitles] = useState([
-    {
-      title: "Empleados",
-      isHovered: false,
-      link: "/lideres/",
-      icon: IoGrid,
-    },
-    {
-      title: "Seguimiento",
-      isHovered: false,
-      link: "/contratando/",
-      icon: IoCashOutline,
-    },
-    {
-      title: "Freelancers",
-      isHovered: false,
-      link: "/lideres-freelancer/",
-      icon: IoLogoSnapchat,
-    },
-    {
-      title: "Analíticas",
-      isHovered: false,
-      link: "/lideres-analytics",
-      icon: IoStatsChart,
-    },
-    {
-      title: "Incidencias",
-      isHovered: false,
-      link: "/lideres-incidences",
-      icon: CiWarning,
-    },
-    {
-      title: "Promociones",
-      isHovered: false,
-      link: "/promociones",
-      icon: IoRocketOutline,
-    },
-  ]);
 
   const handleMouseEnter = (index) => {
     setTitles((prevState) => {
