@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CiWarning } from "react-icons/ci";
 import {
   IoGrid,
   IoLogoSnapchat,
@@ -6,8 +7,12 @@ import {
   IoRocketOutline,
   IoCashOutline,
 } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function NavBar() {
+  const path = window.location.pathname;
+  console.log(path);
   const [titles, setTitles] = useState([
     {
       title: "Empleados",
@@ -63,7 +68,7 @@ export default function NavBar() {
     });
   };
   return (
-    <div>
+    <div className="flex gap-2">
       {titles.map((encabezado, index) => (
         <Link
           className="flex items-center justify-center gap-2 "
@@ -82,7 +87,7 @@ export default function NavBar() {
             style={{
               width: encabezado.isHovered ? "fit-content" : "2rem",
             }}
-            initial={{ width: 0 }}
+            initial={{ width: path === encabezado.link ? 100 : 0 }}
             animate={{ width: encabezado.isHovered ? 100 : 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
