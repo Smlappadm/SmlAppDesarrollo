@@ -22,6 +22,7 @@ import {
 import InputRunner from "./MUI/InputRunner";
 import Nav from "../../../Nav/Nav";
 import { motion } from "framer-motion";
+import NavBar from "../Dashboard/NavBar";
 
 const VentasHistory = () => {
   const [data, setData] = useState([]);
@@ -340,16 +341,27 @@ const VentasHistory = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-            <motion.h1
+          <div className="flex w-full h-10">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0 }}
+                className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
+              >
+                {/* Dashboard */}
+                <NavBar />
+              </motion.div>
+            </div>
+            {/* <motion.h1
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0 }}
               className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2"
             >
               Historial
-            </motion.h1>
+            </motion.h1> */}
             <div className="flex gap-7 ">
-              <Link to={"/ventas-dashboard"}>
+              {/* <Link to={"/ventas-dashboard"}>
                 <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
               <Link to={"/ventas-agenda"}>
@@ -357,7 +369,7 @@ const VentasHistory = () => {
               </Link>
               <Link className="text-5xl" to={"/ventas-history"}>
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
+              </Link> */}
               {/* <Link className="text-5xl" to={"/vendedores-analytics"}>
                 <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link> */}
