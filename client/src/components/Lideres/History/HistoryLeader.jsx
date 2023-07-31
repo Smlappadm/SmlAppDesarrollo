@@ -160,6 +160,18 @@ export const LideresHistory = () => {
   };
 
   const [isHovered, setIsHovered] = useState(false);
+  const [titles, setTitles] = useState([
+    {
+      title: "Seguimiento",
+      isHovered: false,
+      link: "/contratando/",
+      icon: IoGrid,
+    },
+    {},
+    {},
+    {},
+    {},
+  ]);
 
   return (
     <>
@@ -183,7 +195,7 @@ export const LideresHistory = () => {
                 onMouseLeave={() => setIsHovered(false)}
               />
               <motion.div
-                className="flex items-center gap-2 text-white bg-red-500"
+                className="flex items-center gap-2 text-white h-full "
                 style={{ width: isHovered ? "fit-content" : "2rem" }}
                 initial={{ width: 0 }}
                 animate={{ width: isHovered ? 100 : 0 }}
