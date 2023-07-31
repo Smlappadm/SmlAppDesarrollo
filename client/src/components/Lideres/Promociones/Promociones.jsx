@@ -1,27 +1,13 @@
-import { Link } from "react-router-dom";
-import style from "./Promociones.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
-import {
-  CiMail,
-  CiInstagram,
-  CiPhone,
-  CiWarning,
-  CiGlobe,
-} from "react-icons/ci";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoStatsChart,
-  IoRocketOutline,
-} from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import AgregarPromosion from "./MaterialUi/AgregarPromosion";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPromociones } from "../../../redux/actions";
 import ActualizarPromocion from "./MaterialUi/ActualizarPromocion";
+import NavBar from "../NavBar/NavBar";
 
 export const Promociones = () => {
   const dispatch = useDispatch();
@@ -60,42 +46,7 @@ export const Promociones = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Promociones
             </Title>
-
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Empleados</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-freelancer/"}
-            >
-              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Freelancer</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-analytics"}
-            >
-              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Analiticas</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-incidences"}
-            >
-              <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Incidencias</p>
-            </Link>
+            <NavBar />
           </div>
 
           <div className="flex gap-5">

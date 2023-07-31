@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import style from "./AnalyticLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
@@ -8,12 +7,7 @@ import {
   CiPhone,
   CiWarning,
   CiGlobe,
-  CiDumbbell,
 } from "react-icons/ci";
-import InputRunner from "./MaterialUi/InputRunner";
-import InputSeller from "./MaterialUi/InputSeller";
-import SelectLevel from "./MaterialUi/SelectLevel";
-import SelectStatus from "./MaterialUi/SelectStatus";
 import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
@@ -21,18 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
   filterStatus,
-  getLeadChecked,
   getLeadDiscard,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoPeople,
-  IoStatsChart,
-  IoRocketOutline,
-} from "react-icons/io5";
+import NavBar from "../NavBar/NavBar";
 
 export const AnalyticLeader = () => {
   const [data, setData] = useState([]);
@@ -152,41 +139,7 @@ export const AnalyticLeader = () => {
               Estadísticas
             </Title>
 
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Empleados</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-freelancer/"}
-            >
-              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Freelancer</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-incidences"}
-            >
-              <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Incidencias</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/promociones"}
-            >
-              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Promociones</p>
-            </Link>
+            <NavBar />
             <div className=" mx-36">
               <label>Leads descartados por el bot: {showData.length}</label>
             </div>
