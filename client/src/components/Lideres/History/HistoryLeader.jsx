@@ -260,35 +260,6 @@ export const LideresHistory = () => {
                 </motion.div>
               </Link>
             ))}
-
-            {/* <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-freelancer/"}
-            >
-              <IoLogoSnapchat className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Freelancer</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-analytics"}
-            >
-              <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Analiticas</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/lideres-incidences"}
-            >
-              <CiWarning className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Incidencias</p>
-            </Link>
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/promociones"}
-            >
-              <IoRocketOutline className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Promociones</p>
-            </Link> */}
           </div>
 
           <label>Leads chequeados: {showData.length}</label>
