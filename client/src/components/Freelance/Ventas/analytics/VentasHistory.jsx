@@ -620,7 +620,7 @@ const VentasHistory = () => {
           )}
         </div>
         {data && data.length > 10 && (
-          <div className="mb-5">
+          <div className="absolute bottom-2 mb-5">
             <PaginationOutlined
               pageStyle={pageStyle}
               setPageStyle={setPageStyle}
