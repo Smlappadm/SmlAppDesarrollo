@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import style from "./Promociones.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
 
