@@ -173,6 +173,22 @@ export const LideresHistory = () => {
     {},
   ]);
 
+  const handleMouseEnter = () => {
+    setTitles((prevState) => {
+      const updatedTitles = [...prevState]; // Crear una copia del estado
+      updatedTitles[0].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
+      return updatedTitles;
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTitles((prevState) => {
+      const updatedTitles = [...prevState]; // Crear una copia del estado
+      updatedTitles[0].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
+      return updatedTitles;
+    });
+  };
+
   return (
     <>
       <Nav />
@@ -189,33 +205,19 @@ export const LideresHistory = () => {
             >
               {React.createElement(titles[0].icon, {
                 className: `text-[2rem] text-[#418df0] ${
-                  isHovered ? "hover:text-[#3570bd]" : ""
+                  titles[0].isHovered ? "hover:text-[#3570bd]" : ""
                 }`,
-                onMouseEnter: () =>
-                  setTitles((prevState) => ({
-                    ...prevState,
-                    [0]: {
-                      ...prevState[0],
-                      isHovered: true,
-                    },
-                  })),
-                onMouseLeave: () =>
-                  setTitles((prevState) => ({
-                    ...prevState,
-                    [0]: {
-                      ...prevState[0],
-                      isHovered: false,
-                    },
-                  })),
+                onMouseEnter: () => handleMouseEnter(),
+                onMouseLeave: () => handleMouseLeave(),
               })}
               <motion.div
                 className="flex items-center gap-2 text-white h-full "
-                style={{ width: isHovered ? "fit-content" : "2rem" }}
+                style={{ width: titles[0].isHovered ? "fit-content" : "2rem" }}
                 initial={{ width: 0 }}
-                animate={{ width: isHovered ? 100 : 0 }}
+                animate={{ width: titles[0].isHovered ? 100 : 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                {isHovered && (
+                {titles[0].isHovered && (
                   <motion.p
                     className="text-white"
                     initial={{ opacity: 0, x: -10 }}
