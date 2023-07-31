@@ -175,24 +175,25 @@ export const LideresHistory = () => {
               className="flex items-center justify-center gap-2"
               to={"/contratando/"}
             >
-              <motion.div
-                className="flex items-center gap-2 text-white"
-                style={{ width: isHovered ? "fit-content" : "2rem" }}
+              <IoGrid
+                className={`text-[2rem] text-[#418df0] ${
+                  isHovered ? "hover:text-[#3570bd]" : ""
+                }`}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                initial={{ width: "2rem" }}
-                animate={{ width: isHovered ? 150 : "2rem" }}
+              />
+              <motion.div
+                className="flex items-center gap-2 text-white bg-red-500"
+                style={{ width: isHovered ? "fit-content" : "2rem" }}
+                initial={{ width: 0 }}
+                animate={{ width: isHovered ? 100 : 0 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <IoGrid
-                  className={`text-[2rem] text-[#418df0] ${
-                    isHovered ? "hover:text-[#3570bd]" : ""
-                  }`}
-                />
                 {isHovered && (
                   <motion.p
-                    initial={{ width: "2rem" }}
-                    animate={{ width: isHovered ? 150 : "2rem" }}
+                    className="text-white ml-2"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
                     Seguimiento
