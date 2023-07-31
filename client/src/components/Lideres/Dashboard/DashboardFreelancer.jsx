@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import style from "./DashboardLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text, Title } from "@tremor/react";
@@ -24,7 +23,6 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import { IoGrid, IoStatsChart, IoRocketOutline } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
