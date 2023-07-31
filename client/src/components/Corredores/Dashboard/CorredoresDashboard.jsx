@@ -712,7 +712,7 @@ const CorredoresDashboard = () => {
 
                       <div className="absolute right-12">
                         <div className="flex gap-3 items-center justify-center">
-                          {/* 
+                          
                           Funcion para mandar de a 1 lead
                           
                           <div
@@ -726,7 +726,7 @@ const CorredoresDashboard = () => {
                                 <SendIcon style={{ color: "#ae2dff" }} />
                               }
                             ></Button>
-                          </div> */}
+                          </div>
 
                           <div onClick={() => handleCheckList(index)}>
                             Descripción
