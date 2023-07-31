@@ -234,6 +234,15 @@ export default function AgregarPromosion() {
                   onChange={(e) => handleChange(e, "edicion")}
                   color="primary"
                   size="large"
+                  sx={{
+                    color: "#ae2dff",
+                    "& .MuiSvgIcon-root": {
+                      fill: promocion.edicion && "#ae2dff",
+                    },
+                    "&:hover .MuiSvgIcon-root": {
+                      fill: "#ae2dff",
+                    },
+                  }}
                 />
               }
               label={`Promocion con Editores`}
