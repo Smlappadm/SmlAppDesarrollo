@@ -98,11 +98,7 @@ export default function NavBar() {
               (path === encabezado.link && (
                 <motion.p
                   className="text-white bg"
-                  initial={
-                    path === encabezado.link
-                      ? { opacity: 1, x: 0 }
-                      : { opacity: 0, x: -10 }
-                  }
+                  initial={{ opacity: 0, x: -10 }}
                   animate={
                     path === encabezado.link
                       ? { opacity: 1, x: 0 }
