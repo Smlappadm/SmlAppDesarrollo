@@ -803,11 +803,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -1438,12 +1433,12 @@ video {
   width: 100vw;
 }
 
-.w-\[50rem\] {
-  width: 50rem;
-}
-
 .w-\[30rem\] {
   width: 30rem;
+}
+
+.w-\[16rem\] {
+  width: 16rem;
 }
 
 .w-\[10rem\] {
@@ -1452,6 +1447,14 @@ video {
 
 .w-\[8rem\] {
   width: 8rem;
+}
+
+.w-\[1rem\] {
+  width: 1rem;
+}
+
+.w-1 {
+  width: 0.25rem;
 }
 
 .min-w-\[180px\] {
@@ -2824,10 +2827,6 @@ video {
   opacity: 0.8;
 }
 
-.opacity-0 {
-  opacity: 0;
-}
-
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
@@ -2853,18 +2852,6 @@ video {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.transition-opacity {
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.transition-transform {
-  transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -3050,14 +3037,9 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.hover\:text-\[\#af2fff\]:hover {
+.hover\:text-\[\#aa2afa\]:hover {
   --tw-text-opacity: 1;
-  color: rgb(175 47 255 / var(--tw-text-opacity));
-}
-
-.hover\:text-\[\#af4fff\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(175 79 255 / var(--tw-text-opacity));
+  color: rgb(170 42 250 / var(--tw-text-opacity));
 }
 
 .focus\:z-10:focus {
@@ -3111,10 +3093,6 @@ video {
 
 .group:hover .group-hover\:block {
   display: block;
-}
-
-.group:hover .group-hover\:opacity-100 {
-  opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
