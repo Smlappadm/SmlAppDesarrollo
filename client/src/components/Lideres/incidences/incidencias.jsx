@@ -18,13 +18,6 @@ import {
   orderClients,
   orderCategory,
 } from "../../../redux/actions";
-import {
-  IoGrid,
-  IoStatsChart,
-  IoPeople,
-  IoLogoSnapchat,
-  IoRocketOutline,
-} from "react-icons/io5";
 import { CiGlobe } from "react-icons/ci";
 import NavBar from "../NavBar/NavBar";
 
