@@ -218,37 +218,42 @@ export const LideresHistory = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Historial Empleados
             </Title>
-
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={titles[0].link}
-            >
-              {React.createElement(titles[0].icon, {
-                className: `text-[2rem] text-[#418df0] ${
-                  titles[0].isHovered ? "hover:text-[#3570bd]" : ""
-                }`,
-                onMouseEnter: () => handleMouseEnter(),
-                onMouseLeave: () => handleMouseLeave(),
-              })}
-              <motion.div
-                className="flex items-center gap-2 text-white h-full "
-                style={{ width: titles[0].isHovered ? "fit-content" : "2rem" }}
-                initial={{ width: 0 }}
-                animate={{ width: titles[0].isHovered ? 100 : 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+            {titles.map((encabezado, index) => (
+              <Link
+                className="flex items-center justify-center gap-2"
+                to={encabezado.link}
+                key={index}
               >
-                {titles[0].isHovered && (
-                  <motion.p
-                    className="text-white"
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    {titles[0].title}
-                  </motion.p>
-                )}
-              </motion.div>
-            </Link>
+                {React.createElement(encabezado.icon, {
+                  className: `text-[2rem] text-[#418df0] ${
+                    encabezado.isHovered ? "hover:text-[#3570bd]" : ""
+                  }`,
+                  onMouseEnter: () => handleMouseEnter(),
+                  onMouseLeave: () => handleMouseLeave(),
+                })}
+                <motion.div
+                  className="flex items-center gap-2 text-white h-full "
+                  style={{
+                    width: encabezado.isHovered ? "fit-content" : "2rem",
+                  }}
+                  initial={{ width: 0 }}
+                  animate={{ width: encabezado.isHovered ? 100 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  {encabezado.isHovered && (
+                    <motion.p
+                      className="text-white"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      {titles[0].title}
+                    </motion.p>
+                  )}
+                </motion.div>
+              </Link>
+            ))}
+
             {/* <Link
               className="flex items-center justify-center gap-2"
               to={"/lideres-freelancer/"}
