@@ -225,7 +225,7 @@ export const LideresHistory = () => {
             <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
               Historial Empleados
             </Title>
-            {titles.map((encabezado, index) => (
+            {/* {titles.map((encabezado, index) => (
               <Link
                 className="flex items-center justify-center gap-2 "
                 to={encabezado.link}
@@ -259,7 +259,7 @@ export const LideresHistory = () => {
                   )}
                 </motion.div>
               </Link>
-            ))}
+            ))} */}
           </div>
 
           <label>Leads chequeados: {showData.length}</label>
