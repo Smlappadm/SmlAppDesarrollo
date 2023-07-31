@@ -177,11 +177,11 @@ export const LideresHistory = () => {
             >
               <motion.div
                 className="flex items-center gap-2 text-white"
-                // style={{ width: isHovered ? "fit-content" : "2rem" }}
+                style={{ width: isHovered ? "fit-content" : "2rem" }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 initial={{ width: "2rem" }}
-                animate={{ width: isHovered ? "fit-content" : "2rem" }}
+                animate={{ width: isHovered ? 150 : "2rem" }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <IoGrid
@@ -189,7 +189,7 @@ export const LideresHistory = () => {
                     isHovered ? "hover:text-[#3570bd]" : ""
                   }`}
                 />
-                {isHovered && <p className="ml-2">Seguimiento</p>}
+                {isHovered && <motion.p>Seguimiento</motion.p>}
               </motion.div>
             </Link>
             <Link
