@@ -57,7 +57,6 @@ export const LideresHistory = () => {
   };
   const [clientOrder, setClientOrder] = useState("");
   const [categoryOrder, setCategoryOrder] = useState("");
-  const [filters, setFilters] = useState(false);
 
   const headerClient = () => {
     if (clientOrder === "ASC") {
