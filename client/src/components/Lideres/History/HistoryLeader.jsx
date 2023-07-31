@@ -27,6 +27,7 @@ import {
   IoLogoSnapchat,
   IoStatsChart,
   IoRocketOutline,
+  IoCashOutline,
 } from "react-icons/io5";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
@@ -171,7 +172,7 @@ export const LideresHistory = () => {
       title: "Seguimiento",
       isHovered: false,
       link: "/contratando/",
-      icon: IoGrid,
+      icon: IoCashOutline,
     },
     {
       title: "Freelancers",
@@ -226,7 +227,7 @@ export const LideresHistory = () => {
             </Title>
             {titles.map((encabezado, index) => (
               <Link
-                className="flex items-center justify-center gap-2"
+                className="flex items-center justify-center gap-2 "
                 to={encabezado.link}
                 key={index}
               >
