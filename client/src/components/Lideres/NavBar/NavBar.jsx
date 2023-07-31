@@ -1,76 +1,70 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
-    IoGrid,
-    IoLogoSnapchat,
-    IoStatsChart,
-    IoRocketOutline,
-    IoCashOutline,
-  } from "react-icons/io5";
-
-
-
+  IoGrid,
+  IoLogoSnapchat,
+  IoStatsChart,
+  IoRocketOutline,
+  IoCashOutline,
+} from "react-icons/io5";
 
 export default function NavBar() {
+  const [titles, setTitles] = useState([
+    {
+      title: "Empleados",
+      isHovered: false,
+      link: "/lideres/",
+      icon: IoGrid,
+    },
+    {
+      title: "Seguimiento",
+      isHovered: false,
+      link: "/contratando/",
+      icon: IoCashOutline,
+    },
+    {
+      title: "Freelancers",
+      isHovered: false,
+      link: "/lideres-freelancer/",
+      icon: IoLogoSnapchat,
+    },
+    {
+      title: "Analíticas",
+      isHovered: false,
+      link: "/lideres-analytics",
+      icon: IoStatsChart,
+    },
+    {
+      title: "Incidencias",
+      isHovered: false,
+      link: "/lideres-incidences",
+      icon: CiWarning,
+    },
+    {
+      title: "Promociones",
+      isHovered: false,
+      link: "/promociones",
+      icon: IoRocketOutline,
+    },
+  ]);
 
-    const [titles, setTitles] = useState([
-        {
-          title: "Empleados",
-          isHovered: false,
-          link: "/lideres/",
-          icon: IoGrid,
-        },
-        {
-          title: "Seguimiento",
-          isHovered: false,
-          link: "/contratando/",
-          icon: IoCashOutline,
-        },
-        {
-          title: "Freelancers",
-          isHovered: false,
-          link: "/lideres-freelancer/",
-          icon: IoLogoSnapchat,
-        },
-        {
-          title: "Analíticas",
-          isHovered: false,
-          link: "/lideres-analytics",
-          icon: IoStatsChart,
-        },
-        {
-          title: "Incidencias",
-          isHovered: false,
-          link: "/lideres-incidences",
-          icon: CiWarning,
-        },
-        {
-          title: "Promociones",
-          isHovered: false,
-          link: "/promociones",
-          icon: IoRocketOutline,
-        },
-      ]);
-    
-    const handleMouseEnter = (index) => {
-        setTitles((prevState) => {
-          const updatedTitles = [...prevState]; // Crear una copia del estado
-          updatedTitles[index].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
-          return updatedTitles;
-        });
-      };
-    
-    const handleMouseLeave = (index) => {
-        setTitles((prevState) => {
-          const updatedTitles = [...prevState]; // Crear una copia del estado
-          updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
-          return updatedTitles;
-        });
-      };
+  const handleMouseEnter = (index) => {
+    setTitles((prevState) => {
+      const updatedTitles = [...prevState]; // Crear una copia del estado
+      updatedTitles[index].isHovered = true; // Actualizar el valor de isHovered en el primer objeto
+      return updatedTitles;
+    });
+  };
+
+  const handleMouseLeave = (index) => {
+    setTitles((prevState) => {
+      const updatedTitles = [...prevState]; // Crear una copia del estado
+      updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
+      return updatedTitles;
+    });
+  };
   return (
     <div>
-
-
-    {titles.map((encabezado, index) => (
+      {titles.map((encabezado, index) => (
         <Link
           className="flex items-center justify-center gap-2 "
           to={encabezado.link}
@@ -105,5 +99,6 @@ export default function NavBar() {
           </motion.div>
         </Link>
       ))}
-  )
+    </div>
+  );
 }
