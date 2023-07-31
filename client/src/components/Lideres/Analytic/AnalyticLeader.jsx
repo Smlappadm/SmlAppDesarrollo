@@ -149,8 +149,6 @@ export const AnalyticLeader = () => {
             <SelectLevel onChange={onChangeLevel} value={levelValue} />
           ) : (
             ""
-          )}
-          {filters.runner === true ? <InputRunner /> : ""}
 
      
           )} */}
