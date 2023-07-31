@@ -80,15 +80,6 @@ export const LideresHistory = () => {
     }
     setCurrentPage(1);
   };
-  const headerCategory = () => {
-    if (categoryOrder === "ASC") {
-      return "Profesion ⤴";
-    } else if (categoryOrder === "DES") {
-      return "Profesion ⤵";
-    } else {
-      return "Profesion";
-    }
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
