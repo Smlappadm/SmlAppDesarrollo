@@ -384,12 +384,12 @@ const CorredoresDashboard = () => {
             <div className="w-full">
               <div className={style.tableHead}>
                 <div className={style.tableRow}>
-                  <div className="text-start ml-20">Name</div>
-                  <div className="text-start ml-5">Web</div>
-                  <div className="text-start ml-12">Mail</div>
-                  <div className="text-start ml-2">Instagram</div>
-                  <div className="text-start ml-4">Nivel</div>
-                  <div className="text-start ml-4"></div>
+                  <div className="text-start ml-20 text-16">Name</div>
+                  <div className="text-start ml-5 text-16">Web</div>
+                  <div className="text-start ml-12 text-16">Mail</div>
+                  <div className="text-start ml-2 text-16">Instagram</div>
+                  <div className="text-start ml-4 text-16">Nivel</div>
+                  <div className="text-start ml-4 text-16"></div>
                 </div>
               </div>
 
