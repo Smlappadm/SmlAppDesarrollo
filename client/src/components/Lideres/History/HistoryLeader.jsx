@@ -234,7 +234,7 @@ export const LideresHistory = () => {
                 <motion.div
                   className="flex items-center gap-2 text-white h-full "
                   style={{
-                    width: titles[0].isHovered ? "fit-content" : "2rem",
+                    width: encabezado.isHovered ? "fit-content" : "2rem",
                   }}
                   initial={{ width: 0 }}
                   animate={{ width: titles[0].isHovered ? 100 : 0 }}
