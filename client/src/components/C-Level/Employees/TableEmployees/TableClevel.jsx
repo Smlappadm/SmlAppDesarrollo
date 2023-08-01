@@ -156,7 +156,6 @@ export const TableClevel = () => {
         <div className="bg-[#222131] rounded-none w-full h-screen p-5">
           <div className="flex justify-between items-center">
             <div className="flex gap-5">
-              <h1 className="font-bold text-[#e2e2e2] text-lg">Empleadoss</h1>
               <div className="flex gap-5">
                 <NavBar />
               </div>
