@@ -561,11 +561,6 @@ const VendedoresHistory = () => {
                             <p>En proceso</p>
                           </div>
                         )}
-                        {/* {item.status === "Contratado" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contactado</p>
-                          </div>
-                        )} */}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-16">
                             Incidencia
