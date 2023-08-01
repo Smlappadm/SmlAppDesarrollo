@@ -6,13 +6,11 @@ import { getDetailEmploy, getEmployeesBanned } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { FaBan } from "react-icons/fa";
 import Detail from "../Detail/Detail";
 import Nav from "../../../Nav/Nav";
 import { IoAdd } from "react-icons/io5";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 
 export default function BannedEmploy() {
   const { detailEmploy } = useSelector((state) => state);
@@ -144,14 +142,8 @@ export default function BannedEmploy() {
         <div className="bg-[#222131] rounded-none w-full h-screen p-5">
           <div className="flex justify-between items-center">
             <div className="flex gap-5">
-              <h1 className="font-bold text-[#e2e2e2] text-lg">Baneados</h1>
               <div className="flex gap-5">
-                <Link to={"/clevel"}>
-                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-                <Link className="text-5xl" to={"/employees-banned"}>
-                  <FaBan className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
+                <NavBar />
               </div>
             </div>
           </div>
