@@ -41,7 +41,7 @@ export const ContratandoLeader = () => {
 
   const dispatch = useDispatch();
 
-  const statusOk = async (name) => {
+  const statusOk =  (name) => {
     toast.success(`✔Cambio de estado a Contratado realizado ${name} ! `, {
       position: "top-center",
       autoClose: 2500,
@@ -53,18 +53,7 @@ export const ContratandoLeader = () => {
       theme: "dark",
     });
 
-    // console.log(corredor);
-    // console.log(vendedor);
-    // console.log(freelancer);
-
-    // if (corredor === "" && vendedor === "" && freelancer === "") {
-    //   dispatch(getAllLeadAPagar());
-    // } else {
-    //   dispatch(
-    //     findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
-    //   );
-    // }
-    await updatePage();
+   updatePage();
     setActive(true);
   };
 

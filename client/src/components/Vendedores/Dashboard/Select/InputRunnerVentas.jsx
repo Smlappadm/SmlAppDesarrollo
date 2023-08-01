@@ -232,9 +232,7 @@ export default function InputName({
               },
             }}
           >
-            {/* <MenuItem value="">Estado</MenuItem> */}
-            {/* <MenuItem value="Rechazado">Rechazado</MenuItem> */}
-            {/* <MenuItem value="Contratado">Contratado</MenuItem> */}
+
             <MenuItem value="Contactado">Contactado</MenuItem>
             <MenuItem value="No responde">Sin contestar</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>

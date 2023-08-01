@@ -10,7 +10,7 @@ const ClasificacionAnalytics = () => {
       <Nav />
       <div className=" flex flex-col justify-start items-center w-full h-screen mx-5 ">
         <div className="w-full m-5 h-screen bg-[#222131]">
-          <div className="flex  mt-2 ">
+          <div className="flex  mt-2">
             <NavBar />
           </div>
         </div>

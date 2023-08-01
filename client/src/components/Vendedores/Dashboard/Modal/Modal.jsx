@@ -3,22 +3,17 @@ import axios from "axios";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import styles from "./Modal.module.css";
 import { CiEdit } from "react-icons/ci";
-import { MdPriceCheck } from "react-icons/md";
-import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
-import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { motion, spring } from "framer-motion";
+import { motion} from "framer-motion";
 import {
-  AiOutlineConsoleSql,
   AiOutlinePhone,
   AiOutlineUserAdd,
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { BsCheck } from "react-icons/bs";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -40,7 +35,6 @@ function ChildModal({
   setOpen,
   statusObj,
   SendLeadAlert,
-  SendEmailLeadAlert,
   SendErrorUpdateAlert,
   updateLeads,
   llamadoVenta,
@@ -50,7 +44,6 @@ function ChildModal({
   cancelModal,
   setStatusObj,
   updatedEmailApp,
-  SendEmailLeadAlertError,
   SendEmailLeadAlertErrorCuotas,
   openModalPagoFunction,
   editEmail,
@@ -639,7 +632,6 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
 export default function NestedModal({
   item,
   SendLeadAlert,
-  SendIncidenceAlert,
   SendErrorUpdateAlert,
   updateLeads,
   emailAddress,
@@ -1340,7 +1332,6 @@ export default function NestedModal({
               {location.pathname === "/vendedores" ||
               location.pathname === "/ventas-dashboard" ? (
                 <>
-                  {/* {statusObj.status = "Contactado"} */}
                   <select
                     onChange={handleSelectChange}
                     name="status"
@@ -1348,12 +1339,7 @@ export default function NestedModal({
                     id="select1"
                     className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    {/* <option value="Sin contactar">Sin Contactar</option> */}
-                    {/* <option value="Agenda llamada">En proceso</option> */}
                     <option value="Contactado">Contactado</option>
-                    {/* <option value="Contratado">Contratado</option> */}
-                    {/* <option value="Rechazado">Rechazado</option>
-                    <option value="No responde">No Responde</option> */}
                   </select>
 
                   <div className="flex flex-col items-center justify-start mt-3">
@@ -1412,41 +1398,21 @@ export default function NestedModal({
                         Otro
                       </option>
                     </select>
-                    {/* <label
-                    htmlFor="last_name"
-                    className="block mt-8 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    Nombre del Contacto
-                  </label>
-                  <div className="mt-3 flex justify-center items-center">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="contacto"
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                  </div> */}
                     <label
                       htmlFor="last_name"
                       className="mt-3 block text-sm text-center font-medium text-gray-900 dark:text-white "
                     >
                       Observaciones
                     </label>
-                    {/* <div className="flex justify-center items-center"> */}
                     <textarea
                       onChange={handleObservationChange}
                       type="text"
                       id="last_name"
                       name="observacion"
-                      // value={llamadoVenta.observaciones}
                       className="mt-3 bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       required
                     />
-                    {/* </div> */}
                   </div>
                 </>
               ) : (
@@ -1462,7 +1428,6 @@ export default function NestedModal({
                       Elige uno...
                     </option>
                     <option value="Agenda llamada">Agenda llamada</option>
-                    {/* <option value="Contratando">Contratando</option> */}
                     <option value="En proceso">En proceso</option>
                     <option value="A pagar">A pagar</option>
                     <option value="Rechazado">Rechazado</option>
@@ -1585,13 +1550,11 @@ export default function NestedModal({
                     >
                       Observaciones
                     </label>
-                    {/* <div className="flex justify-center items-center"> */}
                     <textarea
                       onChange={handleObservationChange}
                       type="text"
                       id="last_name"
                       name="observacion"
-                      // value={llamadoVenta.observaciones}
                       className="mt-3 bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       required
@@ -1600,115 +1563,6 @@ export default function NestedModal({
                 </>
               )}
             </div>
-
-            {/* {statusObj.status === "Rechazado" && (
-              <div className="m-5">
-              <label
-                  htmlFor="Motivo"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Motivo
-                </label>
-                <select
-                  id="Motivo"
-                  onChange={handleSelectChange}
-                  name="status_op"
-                  defaultValue={
-                    statusObj.status_op ? statusObj.status_op : "default"
-                  }
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
-                  <option disabled="disabled" value="default">
-                    Elige uno...
-                  </option>
-                  <option value="Sin dinero">Sin Dinero</option>
-                  <option value="Sin interes">Sin Interes</option>
-                  <option value="Otro servicio">Otro Servicio</option>
-                </select>
-              </div>
-            )} */}
-            {/* {(item.status === "Sin contactar" ||
-              item.status === "No responde") &&
-              // statusObj.status === "Agenda llamada" && (
-              statusObj.status === "" && (
-                <div className="flex flex-col justify-center items-center mt-5 ">
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white"
-                  >
-                    Contacto
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="contacto"
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                  </div>
-                  <label
-                    htmlFor="last_name"
-                    className="block mb-2 text-sm text-center font-medium text-gray-900 dark:text-white mt-8"
-                  >
-                    Observaciones
-                  </label>
-                  <div className="flex justify-center items-center">
-                    <textarea
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="observaciones"
-                      value={llamadoVenta.observaciones}
-                      className="bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder=""
-                      required
-                    />
-                  </div>
-                  <div className="flex items-center justify-center gap-2 mt-8">
-                    <input
-                      onChange={handleLlamadoVentaChange}
-                      type="text"
-                      id="last_name"
-                      name="status_op"
-                      className="bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-56 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-white dark:text-white text-center dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      value={
-                        dateHour.$D
-                          ? `Dia: ${dateHour.$D}/${dateHour.$M}/${
-                              dateHour.$y
-                            } Hora: ${
-                              dateHour.$H && String(dateHour.$H).length === 1
-                                ? `0${dateHour.$H}`
-                                : dateHour.$H
-                            }:${
-                              dateHour.$m && String(dateHour.$m).length === 1
-                                ? `0${dateHour.$m}`
-                                : dateHour.$m
-                            }`
-                          : "Fecha y Hora"
-                      }
-                      disabled
-                      required
-                    />
-                    <a
-                      type="button"
-                      className="py-2 px-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                      href="https://calendly.com/event_types/user/me"
-                      target="_blank"
-                    >
-                      Calendly
-                    </a>
-
-                    <CiEdit
-                      onClick={setDateTime}
-                      className="border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                    />
-                  </div>
-                </div>
-              )} */}
-
             {statusObj.status === "Agenda llamada" && (
               <div className="flex flex-col justify-center items-center">
                 <div className="flex items-center justify-center gap-2 mt-8">

@@ -297,37 +297,7 @@ const VendedoresHistory = () => {
     setFilterPais("");
     dispatch(getVendedorAllLeads(email));
   };
-  const handlerOpenFilterSector = () => {
-    setFilters({ level: false, runner: false, sellers: false, status: false });
-    setOpenFilterName(false);
-    setOpenFilterPais(false);
-    setOpenFilterStatus(false);
-    setOpenFilterSector(!openFilterSector);
-    setFilterName("");
-    setFilterPais("");
-    dispatch(getVendedorAllLeads(email));
-  };
-  const handlerOpenFilterPais = () => {
-    setFilters({ level: false, runner: false, sellers: false, status: false });
-    setOpenFilterName(false);
-    setOpenFilterSector(false);
-    setOpenFilterStatus(false);
-    setOpenFilterPais(!openFilterPais);
-    setFilterName("");
-    setFilterSector("");
-    dispatch(getVendedorAllLeads(email));
-  };
-  const handlerOpenStatus = () => {
-    setFilters({ level: false, runner: false, sellers: false, status: false });
-    setOpenFilterName(false);
-    setOpenFilterSector(false);
-    setOpenFilterPais(false);
-    setFilterPais("");
-    setFilterName("");
-    setFilterSector("");
-    setOpenFilterStatus(!openFilterStatus);
-    dispatch(getVendedorAllLeads(email));
-  };
+
 
   return (
     <>
@@ -591,11 +561,6 @@ const VendedoresHistory = () => {
                             <p>En proceso</p>
                           </div>
                         )}
-                        {/* {item.status === "Contratado" && (
-                          <div className="bg-[#5bac42] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-                            <p>Contactado</p>
-                          </div>
-                        )} */}
                         {item.level === "incidencia" && (
                           <p className="bg-[#e5fc18] w-44 h-11 flex justify-center items-center text-black rounded-3xl text-16">
                             Incidencia
