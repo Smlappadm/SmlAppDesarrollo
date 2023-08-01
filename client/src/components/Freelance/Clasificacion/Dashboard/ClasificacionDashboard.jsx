@@ -325,33 +325,27 @@ const ClasificacionDashboard = () => {
   const instagramRegex =
     /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    SendLeads();
+  const updateLead = async (lead) => {
+    return axios.put(`/lead/${lead._id}`, {
+      instagram: lead.instagram,
+      email: lead.email,
+      level: lead.level,
+      seguidores2000: lead.seguidores2000,
+      repercusion: lead.repercusion,
+      frecuencia: lead.frecuencia,
+      contenidoPersonal: lead.contenidoPersonal,
+      contenidoValor: lead.contenidoValor,
+      calidadInstagram: lead.calidadInstagram,
+      updateCorredor: formattedTime,
+      checked: true,
+      view: true,
+      freelancer: true,
+    });
+  };
 
-    const updateLead = async (lead) => {
-      const response = await axios.put(`/lead/${lead._id}`, {
-        instagram: lead.instagram,
-        email: lead.email,
-        level: lead.level,
-        seguidores2000: lead.seguidores2000,
-        repercusion: lead.repercusion,
-        frecuencia: lead.frecuencia,
-        contenidoPersonal: lead.contenidoPersonal,
-        contenidoValor: lead.contenidoValor,
-        calidadInstagram: lead.calidadInstagram,
-        updateCorredor: formattedTime,
-        checked: true,
-        view: true,
-        freelancer: true,
-      });
-
-      if (index === 9) {
-        SendLeadsSuccess();
-      }
-    };
-
+  const handleSubmit = async () => {
     try {
+      const updatePromises = [];
       client.forEach(async (lead, index) => {
         const { level, instagram, name } = lead;
 
@@ -362,19 +356,25 @@ const ClasificacionDashboard = () => {
             if (index === 0) {
               SendLeads();
             }
-            await updateLead(lead, index);
+            updatePromises.push(updateLead(lead));
           }
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
             if (index === 0) {
               SendLeads();
             }
-            await updateLead(lead, index);
+            updatePromises.push(updateLead(lead));
           } else {
             SendLeadsErrorInsta(name);
           }
         }
       });
+
+      await Promise.all(updatePromises);
+
+      if (updatePromises.length > 0) {
+        SendLeadsSuccess();
+      }
 
       dispatch(
         getLeadClasificacion(
