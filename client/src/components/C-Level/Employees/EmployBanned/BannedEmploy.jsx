@@ -145,7 +145,9 @@ export default function BannedEmploy() {
           <div className="flex justify-between items-center">
             <div className="flex gap-5">
               <h1 className="font-bold text-[#e2e2e2] text-lg">Baneados</h1>
-              <div className="flex gap-5"></div>
+              <div className="flex gap-5">
+                <NavBar />
+              </div>
             </div>
           </div>
           <div className="w-full">
