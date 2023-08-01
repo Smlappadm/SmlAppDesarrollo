@@ -409,9 +409,6 @@ const CorredoresDashboard = () => {
         <div>
           <div className="flex justify-between items-center">
             <div className="flex  mt-2 ">
-              <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
-                Dashboard
-              </h1>
               <NavBar />
             </div>
 
