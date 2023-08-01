@@ -771,7 +771,7 @@ const ClasificacionDashboard = () => {
 
                       <div className="absolute right-12">
                         <div className="flex gap-3 items-center justify-center">
-                          <div
+                          {/* <div
                             className="ml-4"
                             type="submit"
                             onClick={() => handleSubmitOne(item)}
@@ -782,7 +782,7 @@ const ClasificacionDashboard = () => {
                                 <SendIcon style={{ color: "#ae2dff" }} />
                               }
                             ></Button>
-                          </div>
+                          </div> */}
 
                           <div onClick={() => handleCheckList(index)}>
                             Descripción

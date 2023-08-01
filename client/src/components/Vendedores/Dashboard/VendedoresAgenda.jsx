@@ -381,7 +381,7 @@ const VendedoresAgenda = () => {
                         </div>
                         <div className=" w-[5%] flex justify-center items-start p-0">
                           {item.level !== "incidencia" ? (
-                            <p className="bg-[#6254ff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
+                            <p className="bg-[#ae2dff] text-[#ffffff] w-[40px] rounded h-10 flex items-center justify-center text-[35px] drop-shadow-xl">
                               {item.level}
                             </p>
                           ) : (
