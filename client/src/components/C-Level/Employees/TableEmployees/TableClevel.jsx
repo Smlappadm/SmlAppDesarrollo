@@ -156,14 +156,7 @@ export const TableClevel = () => {
           <div className="flex justify-between items-center">
             <div className="flex gap-5">
               <h1 className="font-bold text-[#e2e2e2] text-lg">Empleados</h1>
-              <div className="flex gap-5">
-                <Link to={"/clevel"}>
-                  <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-                <Link className="text-5xl" to={"/employees-banned"}>
-                  <FaBan className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-                </Link>
-              </div>
+              <div className="flex gap-5"></div>
             </div>
             <div className="flex gap-2">
               <NestedModal
