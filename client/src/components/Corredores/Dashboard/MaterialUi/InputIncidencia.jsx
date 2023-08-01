@@ -10,6 +10,8 @@ export default function InputIncidencia({
     setInputIncidencia(event.target.value);
   };
 
+
+
   return (
     <Box
       sx={{
