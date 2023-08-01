@@ -6,8 +6,6 @@ import Nav from "../../Nav/Nav";
 import { motion } from "framer-motion";
 import { CiGlobe, CiMail } from "react-icons/ci";
 import { GrInstagram } from "react-icons/gr";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import {
   getAllCategory,
@@ -22,9 +20,9 @@ import "react-toastify/dist/ReactToastify.css";
 import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
+import NavBar from "../NavBar/NavBar";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import NavBar from "../NavBar/NavBar";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -51,7 +49,6 @@ const CorredoresDashboard = () => {
 
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
-  const fullName = user?.fullName;
 
   localStorage.setItem("email", mail);
   let email = localStorage.getItem("email");
@@ -282,7 +279,7 @@ const CorredoresDashboard = () => {
     /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
   const handleSubmit = async () => {
-    const updateLead = async (lead, index) => {
+    const updateLead = async (lead, index, lastLeadIndex) => {
       await axios.put(`/lead/${lead._id}`, {
         instagram: lead.instagram,
         email: lead.email,
@@ -298,12 +295,11 @@ const CorredoresDashboard = () => {
         view: true,
       });
 
-      if (index === 9) {
-        SendLeadsSuccess();
-      }
+      SendLeadsSuccess();
     };
 
     try {
+
       client.forEach(async (lead, index) => {
         const { level, instagram, name } = lead;
 
@@ -363,6 +359,7 @@ const CorredoresDashboard = () => {
         checked: true,
         view: true,
       });
+
       SendLeadsSuccess();
     };
 
@@ -504,7 +501,7 @@ const CorredoresDashboard = () => {
                               <CiMail className="text-[2rem] text-[#ae2dff]" />
                             </div>
                             <input
-                              className={`bg-transparent w-[12rem] rounded-md border-[1px] border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+                              className={`bg-transparent w-[12rem] rounded-md border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
                                 item.email !== "-" && item.email !== ""
                                   ? "border-green-500"
                                   : ""
@@ -532,7 +529,7 @@ const CorredoresDashboard = () => {
                             </div>
 
                             <input
-                              className={`bg-transparent w-[12rem] rounded-md border-[1px] border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
+                              className={`bg-transparent w-[12rem] rounded-md border-2 border-gray-300 py-2 px-4 leading-tight focus:outline-none focus:border-gray-500 placeholder-white ${
                                 item.instagram ? "border-green-500" : ""
                               }`}
                               type="text"
@@ -712,9 +709,6 @@ const CorredoresDashboard = () => {
 
                       <div className="absolute right-12">
                         <div className="flex gap-3 items-center justify-center">
-                          {/* 
-                          Funcion para mandar de a 1 lead
-                          
                           <div
                             className="ml-4"
                             type="submit"
@@ -726,7 +720,7 @@ const CorredoresDashboard = () => {
                                 <SendIcon style={{ color: "#ae2dff" }} />
                               }
                             ></Button>
-                          </div> */}
+                          </div>
 
                           <div onClick={() => handleCheckList(index)}>
                             Descripción
