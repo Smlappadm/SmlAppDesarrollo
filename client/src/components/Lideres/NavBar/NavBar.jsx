@@ -17,7 +17,7 @@ export default function NavBar() {
     {
       title: "Empleados",
       isHovered: false,
-      link: "/lideres/",
+      link: "/lideres",
       icon: IoGrid,
     },
     {
