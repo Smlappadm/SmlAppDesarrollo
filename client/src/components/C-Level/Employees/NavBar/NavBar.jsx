@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { CiWarning } from "react-icons/ci";
 import {
   IoGrid,
   IoLogoSnapchat,
