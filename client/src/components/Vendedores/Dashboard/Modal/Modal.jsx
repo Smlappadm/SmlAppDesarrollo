@@ -3,22 +3,17 @@ import axios from "axios";
 import { useEffect } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import styles from "./Modal.module.css";
 import { CiEdit } from "react-icons/ci";
-import { MdPriceCheck } from "react-icons/md";
-import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
-import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { motion, spring } from "framer-motion";
+import { motion} from "framer-motion";
 import {
-  AiOutlineConsoleSql,
   AiOutlinePhone,
   AiOutlineUserAdd,
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { BsCheck } from "react-icons/bs";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -40,7 +35,6 @@ function ChildModal({
   setOpen,
   statusObj,
   SendLeadAlert,
-  SendEmailLeadAlert,
   SendErrorUpdateAlert,
   updateLeads,
   llamadoVenta,
@@ -50,7 +44,6 @@ function ChildModal({
   cancelModal,
   setStatusObj,
   updatedEmailApp,
-  SendEmailLeadAlertError,
   SendEmailLeadAlertErrorCuotas,
   openModalPagoFunction,
   editEmail,
@@ -639,7 +632,6 @@ function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
 export default function NestedModal({
   item,
   SendLeadAlert,
-  SendIncidenceAlert,
   SendErrorUpdateAlert,
   updateLeads,
   emailAddress,
