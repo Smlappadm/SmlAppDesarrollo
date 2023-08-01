@@ -7,7 +7,6 @@ import {
   CiPhone,
   CiWarning,
   CiGlobe,
-  CiDumbbell,
 } from "react-icons/ci";
 import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
