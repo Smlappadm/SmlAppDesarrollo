@@ -246,7 +246,7 @@ export default function BasicModal(props) {
                 )}
               </div>
             ) : ( */}
-            <div className="font-semibold flex gap-3">
+            {/* <div className="font-semibold flex gap-3">
               <p>NIVEL: </p>
               {visible.level === false ? (
                 <div className="w-[500px] flex flex-row justify-between">
@@ -283,7 +283,7 @@ export default function BasicModal(props) {
                   </button>
                 </div>
               )}
-            </div>
+            </div> */}
             {/* )} */}
             <div className="font-semibold flex gap-3">
               <p>INSTAGRAM: </p>
