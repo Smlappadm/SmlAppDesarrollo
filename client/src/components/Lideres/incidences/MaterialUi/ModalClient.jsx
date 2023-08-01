@@ -110,9 +110,8 @@ export default function BasicModal(props) {
       telephone: changePhone,
       url: changeWeb,
       instagram: changeIG,
-      level: changeLevel,
-      checked:
-        changeLevel !== "incidencia" || changeLevel !== "0" ? true : false,
+      //level: changeLevel,
+      checked: false,
       status: changeLevel === "0" ? "discard" : status,
     };
     dispatch(updateLeadIncidence(client, body));
