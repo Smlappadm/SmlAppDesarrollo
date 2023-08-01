@@ -1692,6 +1692,10 @@ video {
   border-width: 4px;
 }
 
+.border-\[1px\] {
+  border-width: 1px;
+}
+
 .border-solid {
   border-style: solid;
 }
@@ -3004,6 +3008,11 @@ video {
 .hover\:text-\[\#a020f0\]:hover {
   --tw-text-opacity: 1;
   color: rgb(160 32 240 / var(--tw-text-opacity));
+}
+
+.hover\:text-\[\#aa2afa\]:hover {
+  --tw-text-opacity: 1;
+  color: rgb(170 42 250 / var(--tw-text-opacity));
 }
 
 .hover\:text-\[\#f73d3d\]:hover {
