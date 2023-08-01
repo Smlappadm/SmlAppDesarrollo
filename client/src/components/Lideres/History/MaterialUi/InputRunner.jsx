@@ -421,7 +421,6 @@ export default function InputName({ name }) {
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="No responde">No responde</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
-            <MenuItem value="incidencia">incidencia</MenuItem>
           </Select>
         </div>
 
