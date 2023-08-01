@@ -1314,7 +1314,7 @@ export default function NestedModal({
               </div>
             </div>
             <div className="flex flex-col absolute right-4 top-4">
-              <div className="bg-[#8d8b0c] text-[#e8e8e9] w-[40px] rounded-md h-9 text-[35px] drop-shadow-xl hover:bg-[#c94219] ">
+              {/* <div className="bg-[#8d8b0c] text-[#e8e8e9] w-[40px] rounded-md h-9 text-[35px] drop-shadow-xl hover:bg-[#c94219] ">
                 <IncidenceModal
                   setOpen={setOpen}
                   SendIncidenceAlert={SendIncidenceAlert}
@@ -1325,7 +1325,7 @@ export default function NestedModal({
                   fullName={fullName}
                   updateLeads={updateLeads}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
