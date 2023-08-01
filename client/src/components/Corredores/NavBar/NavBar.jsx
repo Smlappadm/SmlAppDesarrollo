@@ -11,19 +11,19 @@ export default function NavBar() {
     {
       title: "Dashboard",
       isHovered: false,
-      link: "/corredor",
+      link: "/corredores",
       icon: IoGrid,
     },
     {
       title: "Historial",
       isHovered: false,
-      link: "/corredor-history",
+      link: "/corredores-history",
       icon: FaHistory,
     },
     {
       title: "Analiticas",
       isHovered: false,
-      link: "/corredor-analytics",
+      link: "/corredores-analytics",
       icon: IoStatsChart,
     },
   ]);
