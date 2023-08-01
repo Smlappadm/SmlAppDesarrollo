@@ -610,7 +610,16 @@ const CorredoresDashboard = () => {
 
                             {item.level === "incidencia" ? (
                               <div>
-                                <NestedModal item={item} />
+                                <NestedModal
+                                  item={item}
+                                  getLeadCorredores={getLeadCorredores}
+                                  email={email}
+                                  username={username}
+                                  profesion={profesion}
+                                  category={category}
+                                  country={country}
+                                  marca_personal={marca_personal}
+                                />
                               </div>
                             ) : null}
                           </div>
