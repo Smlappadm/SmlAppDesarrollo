@@ -761,19 +761,6 @@ export default function NestedModal({
     });
   };
 
-  const handleSelectChangeContratado = (event) => {
-    setOpenTimeHour(false);
-    const value = event.target.value;
-    const property = event.target.name;
-    setStatusObj({
-      ...statusObj,
-      pagos: {
-        ...statusObj.pagos,
-        [property]: value,
-      },
-    });
-  };
-
   const formattedUpdate = () => {
     let fechaYear = "";
     let fechaMonth = "";
