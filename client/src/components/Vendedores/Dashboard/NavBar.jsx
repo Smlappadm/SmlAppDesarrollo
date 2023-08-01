@@ -53,7 +53,7 @@ export default function NavBar() {
     });
   };
   return (
-    <div className="border-2 flex gap-5 w-1">
+    <div className="flex gap-5 w-1">
       {titles.map((encabezado, index) => (
         <Link
           className="flex items-center justify-center gap-2 "
@@ -61,8 +61,8 @@ export default function NavBar() {
           key={index}
         >
           {React.createElement(encabezado.icon, {
-            className: `text-[2rem] text-[#418df0] ${
-              encabezado.isHovered ? "hover:text-[#3570bd]" : ""
+            className: `text-[2rem] text-[#ae2dff] ${
+              encabezado.isHovered ? "hover:text-[#aa2afa]" : ""
             }`,
             onMouseEnter: () => handleMouseEnter(index),
             onMouseLeave: () => handleMouseLeave(index),

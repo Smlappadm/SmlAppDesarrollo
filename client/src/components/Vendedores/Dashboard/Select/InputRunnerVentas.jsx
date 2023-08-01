@@ -253,14 +253,37 @@ export default function InputName({
               checked={checkFreelancer}
               onClick={handleChangeFreelancer}
               size="medium"
+              sx={{
+                color: "#ae2dff",
+                "& .MuiSvgIcon-root": {
+                  fill: checkFreelancer && "#ae2dff",
+                },
+                "&:hover .MuiSvgIcon-root": {
+                  fill: "#ae2dff",
+                },
+              }}
             />
           </div>
         </div>
         <div className="flex gap-5 items-end justify-center">
-          <Button onClick={handleFilterClick} variant="contained" size="large">
+          <Button
+            onClick={handleFilterClick}
+            style={{
+              color: "white",
+              borderColor: "#ae2dff",
+              background: "#ae2dff",
+            }}
+            variant="contained"
+            size="large"
+          >
             Filtrar
           </Button>
-          <Button onClick={handleFilterReset} variant="outlined" size="large">
+          <Button
+            onClick={handleFilterReset}
+            style={{ color: "white", borderColor: "#ae2dff" }}
+            variant="outlined"
+            size="large"
+          >
             Reset
           </Button>
         </div>
