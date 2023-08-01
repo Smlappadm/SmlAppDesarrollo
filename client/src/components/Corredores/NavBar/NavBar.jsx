@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { CiWarning } from "react-icons/ci";
-import {
-  IoGrid,
-  IoStatsChart,
-} from "react-icons/io5";
+import { IoGrid, IoStatsChart } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -14,20 +11,20 @@ export default function NavBar() {
     {
       title: "Dashboard",
       isHovered: false,
-      link: "/corredores",
+      link: "/corredor",
       icon: IoGrid,
     },
     {
       title: "Historial",
       isHovered: false,
-      link: "/corredores-history",
-      icon: FaHistory ,
+      link: "/corredor-history",
+      icon: FaHistory,
     },
     {
       title: "Analiticas",
       isHovered: false,
-      link: "/corredores-analytics",
-      icon: IoStatsChart ,
+      link: "/corredor-analytics",
+      icon: IoStatsChart,
     },
   ]);
 
@@ -47,7 +44,7 @@ export default function NavBar() {
     });
   };
   return (
-    <div className="flex w-1">
+    <div className="flex w-40">
       <div className="flex gap-2">
         {titles.map((encabezado, index) => (
           <Link
