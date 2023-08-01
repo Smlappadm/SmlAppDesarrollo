@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import Nav from "../../Nav/Nav";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { FaHistory } from "react-icons/fa";
 import NavBar from "../NavBar/NavBar";
 
 const CorredoresAnlaytics = () => {
