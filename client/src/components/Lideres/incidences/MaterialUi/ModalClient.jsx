@@ -111,6 +111,7 @@ export default function BasicModal(props) {
       url: changeWeb,
       instagram: changeIG,
       //level: changeLevel,
+      view: false,
       checked: false,
       status: changeLevel === "0" ? "discard" : status,
     };
