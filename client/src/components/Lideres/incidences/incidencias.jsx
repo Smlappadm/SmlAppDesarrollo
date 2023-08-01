@@ -1,6 +1,6 @@
 import style from "./incidencias.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { Card, Text, Title } from "@tremor/react";
+import { Card, Text } from "@tremor/react";
 import {
   CiMail,
   CiInstagram,
