@@ -113,7 +113,6 @@ export default function BasicModal(props) {
       //level: changeLevel,
       view: false,
       checked: false,
-      status: changeLevel === "0" ? "discard" : status,
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
