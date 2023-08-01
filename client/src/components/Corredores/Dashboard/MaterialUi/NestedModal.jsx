@@ -114,7 +114,6 @@ function ChildModal({
 
 export default function NestedModal({
   item,
-  getLeadCorredores,
   email,
   username,
   profesion,
@@ -176,7 +175,6 @@ export default function NestedModal({
             inputIncidencia={inputIncidencia}
             handleReset={handleReset}
             handleCloseChild={handleClose}
-            getLeadCorredores={getLeadCorredores}
             email={email}
             username={username}
             profesion={profesion}
