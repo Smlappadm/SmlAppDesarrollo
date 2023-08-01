@@ -21,6 +21,8 @@ import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import NavBar from "../NavBar/NavBar";
+import { Button } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -409,6 +411,9 @@ const CorredoresDashboard = () => {
         <div>
           <div className="flex justify-between items-center">
             <div className="flex  mt-2 ">
+              <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
+                Dashboard
+              </h1>
               <NavBar />
             </div>
 
@@ -607,7 +612,6 @@ const CorredoresDashboard = () => {
                               <div>
                                 <NestedModal
                                   item={item}
-                                  getLeadCorredores={getLeadCorredores}
                                   email={email}
                                   username={username}
                                   profesion={profesion}
