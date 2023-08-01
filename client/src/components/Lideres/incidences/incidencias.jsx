@@ -134,10 +134,6 @@ const Incidences = () => {
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5 h-[37px]">
-            <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
-              Incidences
-            </Title>
-
             <NavBar />
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
