@@ -11,7 +11,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoGrid } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { FaBan } from "react-icons/fa";
 import NavBar from "../NavBar/NavBar";
 
 const BannedEmployees = (name) => {
