@@ -135,7 +135,6 @@ function ClerkProviderWithRoutes() {
     }
   }, []);
 
-  console.log(redirectUrl);
   return (
     <>
       <Routes>
