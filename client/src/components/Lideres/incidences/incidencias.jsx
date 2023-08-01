@@ -175,9 +175,9 @@ const Incidences = () => {
               <div className="flex justify-center items-center p-0">
                 <Text className="text-start w-28 p-0 text-white">Corredor</Text>
               </div>
-              <div className="flex justify-center items-center p-0">
+              {/* <div className="flex justify-center items-center p-0">
                 <Text className="text-start w-28 p-0 text-white">Vendedor</Text>
-              </div>
+              </div> */}
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-48 p-0 text-white">Estado</Text>
               </div>
