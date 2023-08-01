@@ -14,13 +14,7 @@ import AddLead from "./MaterialUi/ModalAddLead";
 import Nav from "../../Nav/Nav";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterLevel,
-  filterStatus,
-  getLeadChecked,
-  orderCategory,
-  orderClients,
-} from "../../../redux/actions";
+import { getLeadChecked } from "../../../redux/actions";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -54,71 +48,6 @@ export const LideresHistory = () => {
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-  const [clientOrder, setClientOrder] = useState("");
-  const [categoryOrder, setCategoryOrder] = useState("");
-  const [filters, setFilters] = useState(false);
-
-  const headerClient = () => {
-    if (clientOrder === "ASC") {
-      return "Cliente ⤴";
-    } else if (clientOrder === "DES") {
-      return "Cliente ⤵";
-    } else {
-      return "Cliente";
-    }
-  };
-  const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    }
-    setCurrentPage(1);
-  };
-  const headerCategory = () => {
-    if (categoryOrder === "ASC") {
-      return "Profesion ⤴";
-    } else if (categoryOrder === "DES") {
-      return "Profesion ⤵";
-    } else {
-      return "Profesion";
-    }
-  };
-  const handleOrderByCategory = () => {
-    if (categoryOrder === "ASC" || categoryOrder === "") {
-      setCategoryOrder("DES");
-      setClientOrder("");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
-    } else {
-      setCategoryOrder("ASC");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
-    }
-    setCurrentPage(1);
-  };
-  const handlerFilter = () => {
-    setFilters(!filters);
-  };
-  const [levelValue, setLevelValue] = useState("");
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(leaderDashboard);
-    setCurrentPage(1);
-  };
-  const [statusValue, setStatusValue] = useState("");
-  const onChangeStatus = (value) => {
-    setStatusValue(value);
-    dispatch(filterStatus(value));
-    setData(leaderDashboard);
-    setCurrentPage(1);
   };
 
   const [open, setOpen] = useState(false);
@@ -173,8 +102,8 @@ export const LideresHistory = () => {
                 color: "white",
                 borderColor: "#ae2dff",
                 "&:hover": {
-                  borderColor: "#a020f0", 
-                }, 
+                  borderColor: "#a020f0",
+                },
               }}
               onClick={downloadCSV}
             >
@@ -192,23 +121,15 @@ export const LideresHistory = () => {
           <div className="text-white text-14 font-thin">
             <div className="flex items-center justify-around p-3  ">
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByClient()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerClient()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Cliente</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByCategory()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerCategory()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">
+                  Categoria
+                </Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">LVL</Text>
-                </button>
+                <Text className="text-center w-6 p-0 text-white">LVL</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Web</Text>
@@ -226,25 +147,13 @@ export const LideresHistory = () => {
                 <Text className="pr-3 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Corredor
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Corredor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Vendedor
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Vendedor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("status")}>
-                  <Text className="text-center w-48 p-0 text-white">
-                    Estado
-                  </Text>
-                </button>
+                <Text className="text-center w-48 p-0 text-white">Estado</Text>
               </div>
             </div>
           </div>

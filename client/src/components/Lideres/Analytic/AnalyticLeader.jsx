@@ -145,18 +145,6 @@ export const AnalyticLeader = () => {
             <label>Leads descartados por el bot: {showData.length}</label>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
-          {/* {filters.level === true ? (
-            <SelectLevel onChange={onChangeLevel} value={levelValue} />
-          ) : (
-            ""
-          )}
-          {filters.runner === true ? <InputRunner /> : ""}
-          {filters.sellers === true ? <InputSeller /> : ""}
-          {filters.status === true ? (
-            <SelectStatus onChange={onChangeStatus} value={statusValue} />
-          ) : (
-            ""
-          )} */}
         </div>
         <div className="w-full">
           <div className="text-white text-14 font-thin">
