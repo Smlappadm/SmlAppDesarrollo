@@ -413,14 +413,7 @@ const VendedoresAgenda = () => {
                             </label>
                             // </div>
                           )}
-                          {/* <AiOutlineInfoCircle
-                            className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer "
-                            onClick={() => {
-                              showObservacionesHandler(
-                                item.llamada_venta.observaciones
-                              );
-                            }}
-                          /> */}
+
                         </div>
                         <div className=" w-[15%] flex justify-center items-start p-0">
                           {item.status === "Contratado" && (
