@@ -297,37 +297,7 @@ const VendedoresHistory = () => {
     setFilterPais("");
     dispatch(getVendedorAllLeads(email));
   };
-  const handlerOpenFilterSector = () => {
-    setFilters({ level: false, runner: false, sellers: false, status: false });
-    setOpenFilterName(false);
-    setOpenFilterPais(false);
-    setOpenFilterStatus(false);
-    setOpenFilterSector(!openFilterSector);
-    setFilterName("");
-    setFilterPais("");
-    dispatch(getVendedorAllLeads(email));
-  };
-  const handlerOpenFilterPais = () => {
-    setFilters({ level: false, runner: false, sellers: false, status: false });
-    setOpenFilterName(false);
-    setOpenFilterSector(false);
-    setOpenFilterStatus(false);
-    setOpenFilterPais(!openFilterPais);
-    setFilterName("");
-    setFilterSector("");
-    dispatch(getVendedorAllLeads(email));
-  };
-  const handlerOpenStatus = () => {
-    setFilters({ level: false, runner: false, sellers: false, status: false });
-    setOpenFilterName(false);
-    setOpenFilterSector(false);
-    setOpenFilterPais(false);
-    setFilterPais("");
-    setFilterName("");
-    setFilterSector("");
-    setOpenFilterStatus(!openFilterStatus);
-    dispatch(getVendedorAllLeads(email));
-  };
+
 
   return (
     <>
