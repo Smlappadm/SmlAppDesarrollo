@@ -14,7 +14,6 @@ import { FaHistory, FaWhatsapp } from "react-icons/fa";
 
 export default function NavBar() {
   const path = window.location.pathname;
-  console.log(path);
   const [titles, setTitles] = useState([
     {
       title: "Dashboard",

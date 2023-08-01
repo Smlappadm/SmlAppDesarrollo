@@ -12,7 +12,6 @@ import { motion } from "framer-motion";
 
 export default function NavBar() {
   const path = window.location.pathname;
-  console.log(path);
   const [titles, setTitles] = useState([
     {
       title: "Empleados",
