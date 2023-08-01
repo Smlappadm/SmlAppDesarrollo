@@ -17,7 +17,7 @@ export default function NavBar() {
       title: "Seguimiento",
       isHovered: false,
       link: "/contratando/",
-      icon: IoCashOutline,
+      icon: FaBan,
     },
   ]);
 
