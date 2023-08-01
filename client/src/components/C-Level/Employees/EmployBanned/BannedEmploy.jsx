@@ -13,6 +13,7 @@ import Detail from "../Detail/Detail";
 import Nav from "../../../Nav/Nav";
 import { IoAdd } from "react-icons/io5";
 import axios from "axios";
+import NavBar from "../NavBar/NavBar";
 
 export default function BannedEmploy() {
   const { detailEmploy } = useSelector((state) => state);
