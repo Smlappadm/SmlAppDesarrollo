@@ -15,9 +15,9 @@ export default function NavBar() {
       icon: IoGrid,
     },
     {
-      title: "Seguimiento",
+      title: "Baneados",
       isHovered: false,
-      link: "/contratando/",
+      link: "/employees-banned",
       icon: FaBan,
     },
   ]);
