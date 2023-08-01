@@ -9,7 +9,6 @@ import NestedModal from "./MaterialUi/NestedModal";
 import NestedModalEdit from "./MaterialUi/Edit/NestedModalEdit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { IoGrid } from "react-icons/io5";
 import NavBar from "../NavBar/NavBar";
 
 const BannedEmployees = (name) => {
