@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoStatsChart,
-  IoRocketOutline,
-  IoCashOutline,
-} from "react-icons/io5";
+import { IoGrid, IoCashOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
