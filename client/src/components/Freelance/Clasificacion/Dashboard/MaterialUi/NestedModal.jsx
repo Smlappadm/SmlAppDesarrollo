@@ -5,6 +5,8 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import InputIncidencia from "./InputIncidencia";
 import { BsFillEnvelopePaperFill } from "react-icons/bs";
+import { getLeadClasificacion } from "../../../../../redux/actions";
+import { useDispatch } from "react-redux";
 
 const style = {
   position: "absolute",
@@ -20,7 +22,19 @@ const style = {
   pb: 3,
 };
 
-function ChildModal({ inputIncidencia, handleReset, handleCloseChild, item }) {
+function ChildModal({
+  inputIncidencia,
+  handleReset,
+  handleCloseChild,
+  item,
+  email,
+  username,
+  profesion,
+  category,
+  country,
+  marca_personal,
+}) {
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -39,7 +53,19 @@ function ChildModal({ inputIncidencia, handleReset, handleCloseChild, item }) {
       console.log(`No se pudo enviar la incidencia`);
     }
 
+    dispatch(
+      getLeadClasificacion(
+        email,
+        username,
+        profesion,
+        category,
+        country,
+        marca_personal
+      )
+    );
+
     setOpen(false);
+    handleCloseChild();
     handleReset();
   };
 
@@ -85,7 +111,15 @@ function ChildModal({ inputIncidencia, handleReset, handleCloseChild, item }) {
   );
 }
 
-export default function NestedModal({ item }) {
+export default function NestedModal({
+  item,
+  email,
+  username,
+  profesion,
+  category,
+  country,
+  marca_personal,
+}) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -140,6 +174,12 @@ export default function NestedModal({ item }) {
             inputIncidencia={inputIncidencia}
             handleReset={handleReset}
             handleCloseChild={handleClose}
+            email={email}
+            username={username}
+            profesion={profesion}
+            category={category}
+            country={country}
+            marca_personal={marca_personal}
           />
         </Box>
       </Modal>
