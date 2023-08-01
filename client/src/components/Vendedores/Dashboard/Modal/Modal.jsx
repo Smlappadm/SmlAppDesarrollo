@@ -1340,7 +1340,6 @@ export default function NestedModal({
               {location.pathname === "/vendedores" ||
               location.pathname === "/ventas-dashboard" ? (
                 <>
-                  {/* {statusObj.status = "Contactado"} */}
                   <select
                     onChange={handleSelectChange}
                     name="status"
