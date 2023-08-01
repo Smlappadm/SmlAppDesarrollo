@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { Link } from "react-router-dom";
 import Detail from "../Detail/Detail";
 import Nav from "../../../Nav/Nav";
 import { IoAdd } from "react-icons/io5";
