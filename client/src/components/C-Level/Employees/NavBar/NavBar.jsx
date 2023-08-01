@@ -26,30 +26,6 @@ export default function NavBar() {
       link: "/contratando/",
       icon: IoCashOutline,
     },
-    {
-      title: "Freelancers",
-      isHovered: false,
-      link: "/lideres-freelancer/",
-      icon: IoLogoSnapchat,
-    },
-    {
-      title: "Analíticas",
-      isHovered: false,
-      link: "/lideres-analytics",
-      icon: IoStatsChart,
-    },
-    {
-      title: "Incidencias",
-      isHovered: false,
-      link: "/lideres-incidences",
-      icon: CiWarning,
-    },
-    {
-      title: "Promociones",
-      isHovered: false,
-      link: "/promociones",
-      icon: IoRocketOutline,
-    },
   ]);
 
   const handleMouseEnter = (index) => {
