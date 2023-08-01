@@ -2,25 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from "./ClasificacionHistory.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Card,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
-  TableBody,
-  TableCell,
-  Text,
-  Title,
-} from "@tremor/react";
-
 import { CiGlobe, CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { FaHistory } from "react-icons/fa";
 import { useUser } from "@clerk/clerk-react";
 import PaginationOutlined from "../../../pagination/PaginationOutlined";
 import Nav from "../../../Nav/Nav";
 import { getLeadCorredoresChecked } from "../../../../redux/actions";
+import NavBar from "../NavBar/NavBar";
 
 const ClasificacionHistory = () => {
   const { corredorLeadChecked } = useSelector((state) => state);
@@ -52,54 +39,37 @@ const ClasificacionHistory = () => {
     <>
       <Nav />
       <div className=" flex flex-col justify-start items-center w-full h-screen mx-5 ">
-        <Card className="w-full m-5 h-screen bg-[#222131]">
-          <div className="flex gap-10 items-center mt-2 mx-5 ">
-            <Title className="font-bold text-[#e2e2e2] text-lg">History</Title>
-            <div className="flex gap-5">
-              <Link to={"/clasificacion"}>
-                <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/clasificacion-history"}>
-                <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-              <Link className="text-5xl" to={"/clasificacion-analytics"}>
-                <IoStatsChart className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              </Link>
-            </div>
+        <div className="w-full m-5 h-screen bg-[#222131]">
+          <div className="flex  mt-2 ">
+            <NavBar />
           </div>
-          <Table className="flex">
-            <TableHead className="text-gray-400 text-14 font-thin">
-              <TableRow className={style.tableRow}>
-                <TableHeaderCell className="text-start">
-                  Invoice Id
-                </TableHeaderCell>
-                <TableHeaderCell className="text-start">Name</TableHeaderCell>
-                <TableHeaderCell className="text-start">Web</TableHeaderCell>
-                <TableHeaderCell className="text-start">
-                  Instagram
-                </TableHeaderCell>
-                <TableHeaderCell className="text-start">Nivel</TableHeaderCell>
-                <TableHeaderCell className="text-start">
-                  Incidencia
-                </TableHeaderCell>
-              </TableRow>
-            </TableHead>
 
-            <TableBody className="h-3/4">
+          <div className="flex">
+            <div className="text-gray-400 text-14 font-thin">
+              <div className={style.tableRow}>
+                <div className="text-start">Invoice Id</div>
+                <div className="text-start">Name</div>
+                <div className="text-start">Web</div>
+                <div className="text-start">Instagram</div>
+                <div className="text-start">Nivel</div>
+                <div className="text-start">Incidencia</div>
+              </div>
+            </div>
+
+            <div className="h-3/4">
               {currentCard?.map((item, index) => (
-                <TableRow key={index} className={style.tableCards}>
-                  <TableCell className="flex justify-start items-center p-0">
+                <div key={index} className={style.tableCards}>
+                  <div className="flex justify-start items-center p-0">
                     <div className="w-24 p-1 px-3 rounded-full text-ellipsis opacity-1 overflow-hidden hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
                       {item._id}
                     </div>
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
-                    {/* sssss */}
-                    <Text className="w-96 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                  </div>
+                  <div className="flex justify-start items-center p-0">
+                    <p className="w-96 p-1 px-3 rounded-full text-ellipsis opacity-1 whitespace-nowrap overflow-hidden hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                       {item.name}
-                    </Text>
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
+                    </p>
+                  </div>
+                  <div className="flex justify-start items-center p-0">
                     {item.url ? (
                       <Link to={item.url} target="_blank">
                         <div>
@@ -111,23 +81,23 @@ const ClasificacionHistory = () => {
                         <CiGlobe className="text-[30px] mr-5 text-[#9eabbe]" />
                       </div>
                     )}
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0 mx-3">
+                  </div>
+                  <div className="flex justify-start items-center p-0 mx-3">
                     {item.instagram ? (
                       <Link to={item.instagram} target="_blank">
                         <div>
                           <CiInstagram className="text-[30px] mr-5 text-[#ff598b]" />
-                          <Text className="text-start">{item.Instagram}</Text>
+                          <p className="text-start">{item.Instagram}</p>
                         </div>
                       </Link>
                     ) : (
                       <div>
                         <CiInstagram className="text-[30px] mr-5 text-[#9eabbe]" />
-                        <Text className="text-start">{item.Instagram}</Text>
+                        <p className="text-start">{item.Instagram}</p>
                       </div>
                     )}
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
+                  </div>
+                  <div className="flex justify-start items-center p-0">
                     {item.level == "0" ? (
                       <label className={style.buttonNivelActive}>0</label>
                     ) : (
@@ -143,8 +113,8 @@ const ClasificacionHistory = () => {
                     ) : (
                       <label className={style.buttonNivel}>2</label>
                     )}
-                  </TableCell>
-                  <TableCell className="flex justify-start items-center p-0">
+                  </div>
+                  <div className="flex justify-start items-center p-0">
                     <div>
                       {item.level == "incidencia" ? (
                         <CiWarning className="text-[30px] mr-5 text-[#f0de41]" />
@@ -152,12 +122,12 @@ const ClasificacionHistory = () => {
                         <CiWarning className="text-[30px] mr-5 text-[#418df0]" />
                       )}
                     </div>
-                  </TableCell>
-                </TableRow>
+                  </div>
+                </div>
               ))}
-            </TableBody>
-          </Table>
-        </Card>
+            </div>
+          </div>
+        </div>
         <div className=" mb-5">
           <PaginationOutlined
             pageStyle={pageStyle}
