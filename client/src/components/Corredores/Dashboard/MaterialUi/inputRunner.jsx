@@ -8,12 +8,11 @@ import {
   getAllCategory,
   getAllCountries,
   getAllProfesion,
+  getLeadCorredores,
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
-import { color } from "framer-motion";
 
 export default function InputRunner({
-  getLeadCorredores,
   email,
   names,
   profesion,

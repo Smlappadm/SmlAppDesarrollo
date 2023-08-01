@@ -23,9 +23,9 @@ import {
   getLeadClasificacion,
 } from "../../../../redux/actions";
 import AddLead from "../Dashboard/MaterialUi/ModalAddLead.jsx";
-import NavBar from "../../../Corredores/NavBar/NavBar";
 import { Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import NavBar from "../NavBar/NavBar";
 
 const ClasificacionDashboard = () => {
   const [client, setClient] = useState([]);
@@ -325,33 +325,27 @@ const ClasificacionDashboard = () => {
   const instagramRegex =
     /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    SendLeads();
+  const updateLead = async (lead) => {
+    return axios.put(`/lead/${lead._id}`, {
+      instagram: lead.instagram,
+      email: lead.email,
+      level: lead.level,
+      seguidores2000: lead.seguidores2000,
+      repercusion: lead.repercusion,
+      frecuencia: lead.frecuencia,
+      contenidoPersonal: lead.contenidoPersonal,
+      contenidoValor: lead.contenidoValor,
+      calidadInstagram: lead.calidadInstagram,
+      updateCorredor: formattedTime,
+      checked: true,
+      view: true,
+      freelancer: true,
+    });
+  };
 
-    const updateLead = async (lead) => {
-      const response = await axios.put(`/lead/${lead._id}`, {
-        instagram: lead.instagram,
-        email: lead.email,
-        level: lead.level,
-        seguidores2000: lead.seguidores2000,
-        repercusion: lead.repercusion,
-        frecuencia: lead.frecuencia,
-        contenidoPersonal: lead.contenidoPersonal,
-        contenidoValor: lead.contenidoValor,
-        calidadInstagram: lead.calidadInstagram,
-        updateCorredor: formattedTime,
-        checked: true,
-        view: true,
-        freelancer: true,
-      });
-
-      if (index === 9) {
-        SendLeadsSuccess();
-      }
-    };
-
+  const handleSubmit = async () => {
     try {
+      const updatePromises = [];
       client.forEach(async (lead, index) => {
         const { level, instagram, name } = lead;
 
@@ -362,19 +356,25 @@ const ClasificacionDashboard = () => {
             if (index === 0) {
               SendLeads();
             }
-            await updateLead(lead, index);
+            updatePromises.push(updateLead(lead));
           }
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
             if (index === 0) {
               SendLeads();
             }
-            await updateLead(lead, index);
+            updatePromises.push(updateLead(lead));
           } else {
             SendLeadsErrorInsta(name);
           }
         }
       });
+
+      await Promise.all(updatePromises);
+
+      if (updatePromises.length > 0) {
+        SendLeadsSuccess();
+      }
 
       dispatch(
         getLeadClasificacion(
@@ -460,9 +460,6 @@ const ClasificacionDashboard = () => {
         <div>
           <div className="flex justify-between items-center">
             <div className="flex  mt-2 ">
-              <h1 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5 mt-2">
-                Dashboard
-              </h1>
               <NavBar />
             </div>
 
@@ -668,7 +665,15 @@ const ClasificacionDashboard = () => {
 
                             {item.level === "incidencia" ? (
                               <div>
-                                <NestedModal item={item} />
+                                <NestedModal
+                                  item={item}
+                                  email={email}
+                                  username={username}
+                                  profesion={profesion}
+                                  category={category}
+                                  country={country}
+                                  marca_personal={marca_personal}
+                                />
                               </div>
                             ) : null}
                           </div>

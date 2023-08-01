@@ -1,13 +1,7 @@
 import style from "./incidencias.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { Card, Text, Title } from "@tremor/react";
-import {
-  CiMail,
-  CiInstagram,
-  CiPhone,
-  CiWarning,
-  CiDumbbell,
-} from "react-icons/ci";
+import { Card, Text } from "@tremor/react";
+import { CiMail, CiInstagram, CiPhone, CiWarning } from "react-icons/ci";
 import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
@@ -140,10 +134,6 @@ const Incidences = () => {
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5 h-[37px]">
-            <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
-              Incidences
-            </Title>
-
             <NavBar />
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
@@ -185,9 +175,9 @@ const Incidences = () => {
               <div className="flex justify-center items-center p-0">
                 <Text className="text-start w-28 p-0 text-white">Corredor</Text>
               </div>
-              <div className="flex justify-center items-center p-0">
+              {/* <div className="flex justify-center items-center p-0">
                 <Text className="text-start w-28 p-0 text-white">Vendedor</Text>
-              </div>
+              </div> */}
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-48 p-0 text-white">Estado</Text>
               </div>
@@ -322,13 +312,13 @@ const Incidences = () => {
                         </Text>
                       </div>
                     </div>
-                    <div className="flex justify-center items-center p-0 ">
+                    {/* <div className="flex justify-center items-center p-0 ">
                       <div className="w-28 text-ellipsis  flex justify-start items-center p-0">
                         <Text className="text-white rounded-full text-ellipsis  opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
                           {item.vendedor_name ? item.vendedor_name : "-"}
                         </Text>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="flex justify-center items-center p-0">
                       <Text className="bg-red-500  text-white   px-2 py-1.5 rounded-xl text-center w-48">
                         INCIDENCIA

@@ -1,37 +1,24 @@
 import React, { useState } from "react";
-import { CiWarning } from "react-icons/ci";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoStatsChart,
-  IoRocketOutline,
-  IoCashOutline,
-} from "react-icons/io5";
-import { MdOutlineAttachMoney } from "react-icons/md";
+import { IoGrid } from "react-icons/io5";
+import { FaBan } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaHistory, FaWhatsapp } from "react-icons/fa";
 
 export default function NavBar() {
   const path = window.location.pathname;
+  console.log(path);
   const [titles, setTitles] = useState([
     {
-      title: "Dashboard",
+      title: "Empleados",
       isHovered: false,
-      link: "/vendedores",
+      link: "/clevel",
       icon: IoGrid,
     },
     {
-      title: "Seguimiento",
+      title: "Baneados",
       isHovered: false,
-      link: "/vendedores-ventas",
-      icon: MdOutlineAttachMoney,
-    },
-    {
-      title: "History",
-      isHovered: false,
-      link: "/vendedores-history",
-      icon: FaHistory,
+      link: "/employees-banned",
+      icon: FaBan,
     },
   ]);
 
@@ -51,7 +38,7 @@ export default function NavBar() {
     });
   };
   return (
-    <div className="flex gap-5 w-1">
+    <div className="flex gap-2 w-[9rem]">
       {titles.map((encabezado, index) => (
         <Link
           className="flex items-center justify-center gap-2 "
@@ -60,7 +47,7 @@ export default function NavBar() {
         >
           {React.createElement(encabezado.icon, {
             className: `text-[2rem] text-[#ae2dff] ${
-              encabezado.isHovered ? "hover:text-[#aa2afa]" : ""
+              encabezado.isHovered ? "hover:text-[#a020f0]" : ""
             }`,
             onMouseEnter: () => handleMouseEnter(index),
             onMouseLeave: () => handleMouseLeave(index),

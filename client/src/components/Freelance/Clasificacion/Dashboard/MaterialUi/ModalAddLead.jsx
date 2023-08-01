@@ -219,7 +219,15 @@ export default function ChildModal({
   return (
     <React.Fragment>
       <ToastContainer />
-      <Button variant="contained" sx={{}} onClick={handleOpen}>
+      <Button
+        variant="contained"
+        style={{
+          color: "white",
+          borderColor: "#ae2dff",
+          background: "#ae2dff",
+        }}
+        onClick={handleOpen}
+      >
         NUEVO CLIENTE
       </Button>
       <Modal

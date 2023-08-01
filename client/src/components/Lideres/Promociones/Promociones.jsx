@@ -1,5 +1,5 @@
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { Card, Text, Title } from "@tremor/react";
+import { Card, Text } from "@tremor/react";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,9 +43,6 @@ export const Promociones = () => {
       <Card className="w-full h-full  bg-[#222131] rounded-none p-5">
         <div className="flex  justify-between mx-5 mb-10 w-full">
           <div className="flex gap-5 ">
-            <Title className="font-bold text-[#e2e2e2] w-40 text-lg mx-5 mt-2">
-              Promociones
-            </Title>
             <NavBar />
           </div>
 

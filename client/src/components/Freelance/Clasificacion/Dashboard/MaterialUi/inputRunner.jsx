@@ -25,6 +25,8 @@ export default function InputRunner({
   setMarca_personal,
 }) {
   const dispatch = useDispatch();
+  const [check, setCheck] = useState(false);
+  const [checkF, setCheckF] = useState(false);
   const [freelancer, setFreelancer] = useState("undefined");
 
   const { allProfesion } = useSelector((state) => state);
@@ -54,10 +56,12 @@ export default function InputRunner({
 
   const handleChangeNombrePropio = (event) => {
     setMarca_personal(event.target.checked ? "SI" : "");
+    setCheck(!check);
   };
 
   const handleChangeFreelancer = (event) => {
     setFreelancer(event.target.checked ? email : "undefined");
+    setCheckF(!checkF);
   };
 
   const handleFilterClick = () => {
@@ -78,6 +82,8 @@ export default function InputRunner({
     setProfesion("");
     setCategory("");
     setCountry("");
+    setCheck(false);
+    setCheckF(false);
   };
 
   return (
@@ -210,8 +216,18 @@ export default function InputRunner({
           <div>
             <Checkbox
               id="propio"
+              checked={check}
               onClick={handleChangeNombrePropio}
               size="medium"
+              sx={{
+                color: "#ae2dff",
+                "& .MuiSvgIcon-root": {
+                  fill: check && "#ae2dff",
+                },
+                "&:hover .MuiSvgIcon-root": {
+                  fill: "#ae2dff",
+                },
+              }}
             />
           </div>
         </div>
@@ -224,14 +240,38 @@ export default function InputRunner({
               id="freelancer"
               onClick={handleChangeFreelancer}
               size="medium"
+              checked={checkF}
+              sx={{
+                color: "#ae2dff",
+                "& .MuiSvgIcon-root": {
+                  fill: check && "#ae2dff",
+                },
+                "&:hover .MuiSvgIcon-root": {
+                  fill: "#ae2dff",
+                },
+              }}
             />
           </div>
         </div>
         <div className="flex gap-5 items-end justify-center">
-          <Button onClick={handleFilterClick} variant="contained" size="large">
+          <Button
+            onClick={handleFilterClick}
+            variant="contained"
+            style={{
+              color: "white",
+              borderColor: "#ae2dff",
+              background: "#ae2dff",
+            }}
+            size="large"
+          >
             Filtrar
           </Button>
-          <Button onClick={handleFilterReset} variant="outlined" size="large">
+          <Button
+            onClick={handleFilterReset}
+            variant="outlined"
+            style={{ color: "white", borderColor: "#ae2dff" }}
+            size="large"
+          >
             Reset
           </Button>
         </div>
