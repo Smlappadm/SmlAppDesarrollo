@@ -135,6 +135,7 @@ function ClerkProviderWithRoutes() {
     }
   }, []);
 
+  console.log(redirectUrl);
   return (
     <>
       <Routes>
@@ -155,7 +156,7 @@ function ClerkProviderWithRoutes() {
           <Route
             path="/sign-in/*"
             element={
-              redirectUrl === "/protected" ? (
+              redirectUrl === "/protected" || redirectUrl === null ? (
                 <SignIn
                   routing="path"
                   path="/sign-in"
@@ -186,7 +187,9 @@ function ClerkProviderWithRoutes() {
                   }}
                 ></SignIn>
               ) : (
-                <LoginClientes tamañoPantalla={tamañoPantalla} />
+                redirectUrl === "/clientes-home" && (
+                  <LoginClientes tamañoPantalla={tamañoPantalla} />
+                )
               )
             }
           />
