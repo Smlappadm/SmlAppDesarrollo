@@ -32,6 +32,7 @@ import NavBar from "../NavBar/NavBar";
 export const ContratandoLeader = () => {
   const [data, setData] = useState([]);
   const [name, setName] = useState("");
+  const [active, setActive] = useState("");
   const [corredor, setCorredor] = useState("");
   const [vendedor, setVendedor] = useState("");
   const [freelancer, setFreelancer] = useState("");
@@ -40,7 +41,7 @@ export const ContratandoLeader = () => {
 
   const dispatch = useDispatch();
 
-  const statusOk = (name, corredor, vendedor, freelancer) => {
+  const statusOk = async (name) => {
     toast.success(`✔Cambio de estado a Contratado realizado ${name} ! `, {
       position: "top-center",
       autoClose: 2500,
@@ -52,17 +53,19 @@ export const ContratandoLeader = () => {
       theme: "dark",
     });
 
-    console.log(corredor);
-    console.log(vendedor);
-    console.log(freelancer);
+    // console.log(corredor);
+    // console.log(vendedor);
+    // console.log(freelancer);
 
-    if (corredor === "" && vendedor === "" && freelancer === "") {
-      dispatch(getAllLeadAPagar());
-    } else {
-      dispatch(
-        findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
-      );
-    }
+    // if (corredor === "" && vendedor === "" && freelancer === "") {
+    //   dispatch(getAllLeadAPagar());
+    // } else {
+    //   dispatch(
+    //     findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
+    //   );
+    // }
+    await updatePage();
+    setActive(true);
   };
 
   useEffect(() => {
@@ -71,7 +74,8 @@ export const ContratandoLeader = () => {
 
   useEffect(() => {
     dispatch(getAllLeadAPagar());
-  }, [dispatch]);
+    setActive(false)
+  }, [dispatch, active]);
 
   const changeStatus = (id, contratado, name) => {
     const newStatus = contratado === "A pagar" ? "Contratado" : "A pagar";
@@ -80,8 +84,19 @@ export const ContratandoLeader = () => {
       pagoRecibido: true,
     });
 
-    statusOk(name, corredor, vendedor, freelancer);
+    statusOk(name);
+
   };
+
+  const updatePage = () => {
+    if (corredor === "" && vendedor === "" && freelancer === "") {
+      dispatch(getAllLeadAPagar());
+    } else {
+      dispatch(
+        findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
+      );
+    }
+  }
 
   const normalizeString = (str) => {
     return str
