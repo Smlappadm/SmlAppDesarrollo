@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoGrid } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { FaBan } from "react-icons/fa";
+import NavBar from "../NavBar/NavBar";
 
 const BannedEmployees = (name) => {
   toast.success(`✔ ${name} Proceso de baneo completado exitosamente! `, {
@@ -155,8 +156,10 @@ export const TableClevel = () => {
         <div className="bg-[#222131] rounded-none w-full h-screen p-5">
           <div className="flex justify-between items-center">
             <div className="flex gap-5">
-              <h1 className="font-bold text-[#e2e2e2] text-lg">Empleados</h1>
-              <div className="flex gap-5"></div>
+              <h1 className="font-bold text-[#e2e2e2] text-lg">Empleadoss</h1>
+              <div className="flex gap-5">
+                <NavBar />
+              </div>
             </div>
             <div className="flex gap-2">
               <NestedModal
