@@ -222,19 +222,6 @@ export const IncidencesHistory = () => {
                       </div>
                     </div>
                     <div className="flex justify-center items-center p-0 ">
-                      {item.level !== "incidencia" ? (
-                        <div className="flex w-6 text-ellipsis justify-start items-center p-0">
-                          <p className="bg-[#6254ff] text-[#ffffff] w-6 rounded flex items-center justify-center  ">
-                            {item.level}
-                          </p>
-                        </div>
-                      ) : (
-                        <div className="bg-[#6254ff] text-[#e8e8e9] w-6 rounded  flex items-center justify-center text-24  ">
-                          <CiWarning className="text-[#fdfa3a] p-0  font-bold" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex justify-center items-center p-0 ">
                       <div className="flex w-6 text-ellipsis justify-start items-center p-0 ">
                         {item.url !== "-" ? (
                           <div className=" flex opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#ffffff] hover:w-fit hover:text-black z-111 hover:absolute">
