@@ -107,15 +107,6 @@
 
 // module.exports = limpiezaBaseFunction;
 
-
-
-
-
-
-
-
-
-
 const Lead = require("../../models/Lead");
 
 const limpiezaBaseFunction = async () => {
@@ -138,10 +129,20 @@ const limpiezaBaseFunction = async () => {
       level: "",
       linkPago: false,
       edicion: false,
-      
-updateContratado: "",
+      updateContratado: "",
+      updateCorredor: "",
+      updateVendedor: "",
+      updateSinContactar: "",
+      updateRechazado: "",
+      updateNoResponde: "",
+      updateContactado: "",
+      updateAPagar: "",
+      updateSegundoLlamado: "",
+      updateIncidencia: "",
+      updateEnProceso: "",
     },
   });
+
   return leadResult;
 };
 
