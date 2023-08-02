@@ -49,7 +49,6 @@ export default function BasicModal(props) {
     setChangePhone(telephone);
     setChangeWeb(web);
     setChangeIG(instagram);
-    setChangeLevel(level);
   }, [email, _id, telephone, web, instagram, level, dispatch]);
 
   const [client, setClient] = useState("");
