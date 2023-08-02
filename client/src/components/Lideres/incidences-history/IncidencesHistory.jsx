@@ -19,7 +19,6 @@ export const IncidencesHistory = () => {
     dispatch(getLeadDiscard());
   }, [dispatch]);
   useEffect(() => {
-    console.log(leaderDiscard);
     setData(leaderDiscard);
   }, [leaderDiscard]);
 
@@ -31,7 +30,6 @@ export const IncidencesHistory = () => {
   const showData = data.filter((item) => {
     return item.status === "discard";
   });
-  console.log(showData);
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -103,7 +101,7 @@ export const IncidencesHistory = () => {
               province={modalItems.province}
               corredor={modalItems.corredor}
               vendedor={modalItems.vendedor}
-              obeservacion={modalItems.status_op}
+              observacion={modalItems.status_op}
             />
             {currentCard.map((item, index) => (
               <div

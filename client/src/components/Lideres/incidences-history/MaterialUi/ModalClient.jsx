@@ -17,27 +17,28 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function BasicModal(props) {
-  const {
-    name,
-    category,
-    level,
-    email,
-    instagram,
-    telephone,
-    status,
-    city,
-    province,
-    corredor,
-    vendedor,
-    observacion,
-    web,
-  } = props;
+export default function BasicModal({
+  name,
+  category,
+  level,
+  email,
+  instagram,
+  telephone,
+  status,
+  city,
+  province,
+  corredor,
+  vendedor,
+  observacion,
+  web,
+  open,
+  handleClose,
+}) {
   return (
     <div>
       <Modal
-        open={props.open}
-        onClose={props.handleClose}
+        open={open}
+        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         BackdropProps={{
@@ -48,6 +49,14 @@ export default function BasicModal(props) {
       >
         <Box sx={style}>
           <div className="flex flex-col justify-between h-full">
+            <div className=" justify-end flex">
+              <button
+                className="bg-red-500 w-fit h-fit px-2 rounded-md"
+                onClick={handleClose}
+              >
+                X
+              </button>
+            </div>
             <div className="font-semibold flex flex-col gap-3 items-center text-24 mb-5">
               <h1>{name} </h1>
               <hr className=" border-gray-400 w-5/6 text-center" />

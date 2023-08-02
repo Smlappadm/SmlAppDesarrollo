@@ -373,9 +373,16 @@ export const DashboardFreelancer = () => {
                         ) : (
                           ""
                         )}
-                        {item.status === "Sin contactar" ? (
+                        {item.checked === true && item.status === "Sin contactar" ? (
                           <Text className="bg-[#d0da3d]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
                             Sin Contactar
+                          </Text>
+                        ) : (
+                          ""
+                        )}
+                        {item.checked === false && item.status === "Sin contactar" ? (
+                          <Text className="bg-[#666666]  text-white  px-2 py-1.5 rounded-xl text-center w-48">
+                            Sin Clasficar
                           </Text>
                         ) : (
                           ""
