@@ -118,19 +118,6 @@ export default function BasicModal(props) {
     FixedLeadAlert();
     fixed(body);
   };
-  const SendFixVendedor = (client) => {
-    body = {
-      email: changeMail,
-      telephone: changePhone,
-      url: changeWeb,
-      instagram: changeIG,
-      level: changeLevel,
-    };
-    dispatch(updateLeadIncidence(client, body));
-    handleClose();
-    FixedLeadAlert();
-    fixed(body);
-  };
   const DiscardLead = (client) => {
     body = {
       email: changeMail,
