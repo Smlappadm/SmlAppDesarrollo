@@ -77,7 +77,11 @@ const findLeadFreelancerNameAllInfo = async (
   }
 
   if (status) {
-    query.status = status; // Si se proporciona el estado, agregarlo al filtro
+    if (status === "Sin clasificar") {
+      query.status = "Sin contactar"; // Si se proporciona el estado, agregarlo al filtro
+    } else {
+      query.status = status; // Si se proporciona el estado, agregarlo al filtro
+    }
   }
 
   if (descargados === "false") {
