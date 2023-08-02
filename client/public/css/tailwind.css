@@ -1606,6 +1606,16 @@ video {
   row-gap: 1.75rem;
 }
 
+.gap-x-5 {
+  -moz-column-gap: 1.25rem;
+       column-gap: 1.25rem;
+}
+
+.gap-x-10 {
+  -moz-column-gap: 2.5rem;
+       column-gap: 2.5rem;
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -2119,6 +2129,16 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-purple-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(168 85 247 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#a020f0\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(160 32 240 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-0 {
   --tw-bg-opacity: 0;
 }
@@ -2430,6 +2450,10 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pl-4 {
+  padding-left: 1rem;
 }
 
 .text-left {
