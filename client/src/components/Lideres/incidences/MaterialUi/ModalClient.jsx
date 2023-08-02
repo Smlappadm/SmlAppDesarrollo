@@ -109,7 +109,6 @@ export default function BasicModal(props) {
       telephone: changePhone,
       url: changeWeb,
       instagram: changeIG,
-      //level: changeLevel,
       level: "",
       view: false,
       checked: false,
@@ -434,45 +433,24 @@ export default function BasicModal(props) {
               </div>
             ) : null}
 
-            {vendedor !== "" ? (
-              <div className="flex flex-row justify-around">
-                <button
-                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    DiscardLead(client);
-                  }}
-                >
-                  DESCARTAR CLIENTE
-                </button>
-                <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    SendFixVendedor(client);
-                  }}
-                >
-                  ACTUALIZAR
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-row justify-around">
-                <button
-                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    DiscardLead(client);
-                  }}
-                >
-                  DESCARTAR CLIENTE
-                </button>
-                <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    SendFixCorredor(client);
-                  }}
-                >
-                  ACTUALIZAR
-                </button>
-              </div>
-            )}
+            <div className="flex flex-row justify-around">
+              <button
+                className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                onClick={() => {
+                  DiscardLead(client);
+                }}
+              >
+                DESCARTAR CLIENTE
+              </button>
+              <button
+                className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                onClick={() => {
+                  SendFixCorredor(client);
+                }}
+              >
+                ACTUALIZAR
+              </button>
+            </div>
           </div>
         </Box>
       </Modal>
