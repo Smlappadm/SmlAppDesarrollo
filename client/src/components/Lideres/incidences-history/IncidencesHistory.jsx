@@ -46,12 +46,6 @@ export const IncidencesHistory = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [filters, setFilters] = useState({
-    level: false,
-    runner: false,
-    sellers: false,
-    status: false,
-  });
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
