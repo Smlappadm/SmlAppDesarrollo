@@ -6,6 +6,7 @@ import {
   IoStatsChart,
   IoRocketOutline,
   IoCashOutline,
+  IoTrashOutline,
 } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -53,7 +54,7 @@ export default function NavBar() {
       title: "Descartados",
       isHovered: false,
       link: "/incidences-history",
-      icon: CiWarning,
+      icon: IoTrashOutline,
     },
   ]);
 
