@@ -48,6 +48,14 @@ export default function BasicModal(props) {
       >
         <Box sx={style}>
           <div className="flex flex-col justify-between h-full">
+            <div className=" justify-end flex">
+              <button
+                className="bg-red-500 w-fit h-fit px-2 rounded-md"
+                onClick={handleClose}
+              >
+                X
+              </button>
+            </div>
             <div className="font-semibold flex flex-col gap-3 items-center text-24 mb-5">
               <h1>{name} </h1>
               <hr className=" border-gray-400 w-5/6 text-center" />
