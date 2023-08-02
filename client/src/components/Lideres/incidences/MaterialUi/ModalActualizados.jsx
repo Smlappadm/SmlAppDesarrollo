@@ -16,7 +16,12 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ModalActualizados({ open, close, client }) {
+export default function ModalActualizados({
+  open,
+  close,
+  SendFixCorredor,
+  client,
+}) {
   return (
     <div>
       <Modal
