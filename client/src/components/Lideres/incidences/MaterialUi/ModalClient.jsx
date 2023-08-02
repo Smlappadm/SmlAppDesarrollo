@@ -126,7 +126,7 @@ export default function BasicModal(props) {
   };
 
   const FixedLeadAlert = () => {
-    toast.success(`✔ FIXED LEAD! `, {
+    toast.success(`✔ LEAD ACTUALIZADO! `, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -138,7 +138,7 @@ export default function BasicModal(props) {
     });
   };
   const DiscardLeadAlert = () => {
-    toast.success(`✔ DISCARD LEAD! `, {
+    toast.success(`✔ LEAD DESCARTADO! `, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
