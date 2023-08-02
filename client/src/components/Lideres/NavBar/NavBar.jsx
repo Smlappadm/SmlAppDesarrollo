@@ -49,6 +49,12 @@ export default function NavBar() {
       link: "/lideres-incidences",
       icon: CiWarning,
     },
+    {
+      title: "Incidencias Historial",
+      isHovered: false,
+      link: "/incidences-history",
+      icon: CiWarning,
+    },
   ]);
 
   const handleMouseEnter = (index) => {
