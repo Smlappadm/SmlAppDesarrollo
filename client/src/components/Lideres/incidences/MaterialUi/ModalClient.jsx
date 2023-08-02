@@ -333,7 +333,8 @@ export default function BasicModal(props) {
               <button
                 className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
                 onClick={() => {
-                  DiscardLead(client);
+                  // DiscardLead(client)
+                  openModalDescartados();
                 }}
               >
                 DESCARTAR CLIENTE
