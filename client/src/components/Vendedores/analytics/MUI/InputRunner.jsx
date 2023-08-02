@@ -347,7 +347,7 @@ export default function InputRunner({
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="A pagar">A pagar</MenuItem>
             <MenuItem value="Rechazado">Rechazado</MenuItem>
-            <MenuItem value="No responde">Sin responder</MenuItem>
+            <MenuItem value="No responde">Sin contestar</MenuItem>
           </Select>
         </div>
 
