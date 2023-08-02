@@ -95,9 +95,6 @@ export default function BasicModal(props) {
   };
 
   const [changeLevel, setChangeLevel] = useState("");
-  const OpenChangeLevel = () => {
-    setVisible({ ...visible, level: true });
-  };
 
   let body = {};
   const SendFixCorredor = (client) => {
