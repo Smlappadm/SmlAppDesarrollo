@@ -45,7 +45,7 @@ export default function ModalActualizados({
               <button
                 className="bg-[#a020f0] w-2/6  rounded-md"
                 onClick={() => {
-                  DiscardLead(client);
+                  SendFixCorredor(client);
                 }}
               >
                 SI
