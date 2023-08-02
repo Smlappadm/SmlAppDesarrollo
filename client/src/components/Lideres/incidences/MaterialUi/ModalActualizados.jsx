@@ -37,7 +37,7 @@ export default function ModalActualizados({
       >
         <Box sx={style}>
           <div className="flex flex-col justify-between h-full w-full text-center text-18 ">
-            <p>¿Descartar por completo el lead?</p>
+            <p>¿Actualizar y enviar lead a clasificar?</p>
             <div className="flex justify-around w-full">
               <button className="bg-red-500 w-2/6  rounded-md" onClick={close}>
                 NO
