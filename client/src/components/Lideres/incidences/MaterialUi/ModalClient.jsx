@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { updateLeadIncidence } from "../../../../redux/actions";
+import ModalDescartado from "./ModalDescartado";
 
 const style = {
   position: "absolute",
@@ -37,9 +38,7 @@ export default function BasicModal(props) {
     handleClose,
     observacion,
     corredor,
-    vendedor,
     fixed,
-    status,
   } = props;
 
   const dispatch = useDispatch();
@@ -50,7 +49,6 @@ export default function BasicModal(props) {
     setChangePhone(telephone);
     setChangeWeb(web);
     setChangeIG(instagram);
-    setChangeLevel(level);
   }, [email, _id, telephone, web, instagram, level, dispatch]);
 
   const [client, setClient] = useState("");
@@ -95,14 +93,6 @@ export default function BasicModal(props) {
     setVisible({ ...visible, instagram: false });
   };
 
-  const [changeLevel, setChangeLevel] = useState("");
-  const OpenChangeLevel = () => {
-    setVisible({ ...visible, level: true });
-  };
-  const OKChangeLevel = () => {
-    setVisible({ ...visible, level: false });
-  };
-
   let body = {};
   const SendFixCorredor = (client) => {
     body = {
@@ -110,23 +100,9 @@ export default function BasicModal(props) {
       telephone: changePhone,
       url: changeWeb,
       instagram: changeIG,
-      //level: changeLevel,
       level: "",
       view: false,
       checked: false,
-    };
-    dispatch(updateLeadIncidence(client, body));
-    handleClose();
-    FixedLeadAlert();
-    fixed(body);
-  };
-  const SendFixVendedor = (client) => {
-    body = {
-      email: changeMail,
-      telephone: changePhone,
-      url: changeWeb,
-      instagram: changeIG,
-      level: changeLevel,
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
@@ -143,7 +119,6 @@ export default function BasicModal(props) {
       checked: true,
       view: true,
       status: "discard",
-      status_op: "-",
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
@@ -152,7 +127,7 @@ export default function BasicModal(props) {
   };
 
   const FixedLeadAlert = () => {
-    toast.success(`✔ FIXED LEAD! `, {
+    toast.success(`✔ LEAD ACTUALIZADO! `, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -164,7 +139,7 @@ export default function BasicModal(props) {
     });
   };
   const DiscardLeadAlert = () => {
-    toast.success(`✔ DISCARD LEAD! `, {
+    toast.success(`✔ LEAD DESCARTADO! `, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -175,6 +150,12 @@ export default function BasicModal(props) {
       theme: "dark",
     });
   };
+  const [openDescartados, setOpenDescartados] = useState(false);
+  const closeModalDescartados = () => setOpenDescartados(false);
+  const openModalDescartados = () => setOpenDescartados(true);
+  const [openActualizar, setOpenActualizar] = useState(false);
+  const closeModalActualizar = () => setOpenActualizar(false);
+  const openModalActualizar = () => setOpenActualizar(true);
 
   return (
     <div>
@@ -206,85 +187,6 @@ export default function BasicModal(props) {
                 {province}, {city}{" "}
               </p>
             </div>
-
-            {/* {vendedor !== "" ? (
-              <div className="font-semibold flex gap-3">
-                <p>NIVEL: </p>
-                {visible.level === false ? (
-                  <div className="w-[500px] flex flex-row justify-between">
-                    <p className="font-normal ">{changeLevel}</p>
-                    <button
-                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2 "
-                      onClick={OpenChangeLevel}
-                    >
-                      Change
-                    </button>
-                  </div>
-                ) : (
-                  <div className="w-[500px] flex flex-row justify-between">
-                    <select
-                      name="level"
-                      id="level"
-                      placeholder="Selecciona nivel"
-                      className="text-black w-80"
-                      value={changeLevel}
-                      onChange={(event) => {
-                        setChangeLevel(event.target.value);
-                      }}
-                    >
-                      <option value="incidencia">Incidencia</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                    </select>
-                    <button
-                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
-                      onClick={OKChangeLevel}
-                    >
-                      OK
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : ( */}
-            {/* <div className="font-semibold flex gap-3">
-              <p>NIVEL: </p>
-              {visible.level === false ? (
-                <div className="w-[500px] flex flex-row justify-between">
-                  <p className="font-normal w-80">{changeLevel}</p>
-                  <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
-                    onClick={OpenChangeLevel}
-                  >
-                    Change
-                  </button>
-                </div>
-              ) : (
-                <div className="w-[500px] flex flex-row justify-between">
-                  <select
-                    name="level"
-                    id="level"
-                    placeholder="Selecciona nivel"
-                    className="text-black w-80"
-                    value={changeLevel}
-                    onChange={(event) => {
-                      setChangeLevel(event.target.value);
-                    }}
-                  >
-                    <option value="incidencia">Incidencia</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
-                  <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
-                    onClick={OKChangeLevel}
-                  >
-                    OK
-                  </button>
-                </div>
-              )}
-            </div> */}
-            {/* )} */}
             <div className="font-semibold flex gap-3">
               <p>INSTAGRAM: </p>
               {visible.instagram === false ? (
@@ -427,54 +329,29 @@ export default function BasicModal(props) {
               <p className="font-normal">{corredor}</p>
             </div>
 
-            {vendedor !== "" ? (
-              <div className="w-[500px] flex flex-row justify-between">
-                <div className="font-semibold flex gap-3">
-                  <p>VENDEDOR: </p>
-                  <p className="font-normal">{vendedor}</p>
-                </div>
-              </div>
-            ) : null}
-
-            {vendedor !== "" ? (
-              <div className="flex flex-row justify-around">
-                <button
-                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    DiscardLead(client);
-                  }}
-                >
-                  DESCARTAR CLIENTE
-                </button>
-                <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    SendFixVendedor(client);
-                  }}
-                >
-                  ACTUALIZAR
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-row justify-around">
-                <button
-                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    DiscardLead(client);
-                  }}
-                >
-                  DESCARTAR CLIENTE
-                </button>
-                <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    SendFixCorredor(client);
-                  }}
-                >
-                  ACTUALIZAR
-                </button>
-              </div>
-            )}
+            <div className="flex flex-row justify-around">
+              <button
+                className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                onClick={() => {
+                  // DiscardLead(client)
+                  openModalDescartados();
+                }}
+              >
+                DESCARTAR CLIENTE
+              </button>
+              <button
+                className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                onClick={() => {
+                  SendFixCorredor(client);
+                }}
+              >
+                ACTUALIZAR
+              </button>
+              <ModalDescartado
+                open={openDescartados}
+                close={closeModalDescartados}
+              />
+            </div>
           </div>
         </Box>
       </Modal>

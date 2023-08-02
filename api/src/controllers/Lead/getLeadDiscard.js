@@ -7,7 +7,8 @@ const getLeadDiscard = async () => {
   // donde el campo 'checked' es igual a true (verificados) y el campo 'status' es igual a "discard_bot"
   const leadChequed = await Lead.find({
     checked: true,
-    status: "discard_bot",
+    view: true,
+    status: "discard",
   });
 
   return leadChequed; // Devuelve un array con los leads verificados que tienen el estado "discard_bot"
