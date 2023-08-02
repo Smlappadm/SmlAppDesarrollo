@@ -172,7 +172,7 @@ export default function BasicModal(props) {
         }}
       >
         <Box sx={style}>
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col justify-between h-full w-full">
             <div className="font-semibold flex flex-col gap-3 items-center text-24 mb-5">
               <h1>{name} </h1>
               <hr className="border-gray-400 w-5/6 text-center" />
@@ -193,7 +193,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeIG}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0] flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeIG}
                   >
                     Change
@@ -224,7 +224,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changePhone}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0]  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangePhone}
                   >
                     Change
@@ -255,7 +255,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeMail}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0] flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeMail}
                   >
                     Change
@@ -295,7 +295,7 @@ export default function BasicModal(props) {
                     </a>
                   </div>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0]  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeWeb}
                   >
                     Change
@@ -329,9 +329,9 @@ export default function BasicModal(props) {
               <p className="font-normal">{corredor}</p>
             </div>
 
-            <div className="flex flex-row justify-around">
+            <div className="flex w-full justify-around ">
               <button
-                className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                className="bg-red-500 w-2/6 h-9   text-white rounded-md text-10 "
                 onClick={() => {
                   // DiscardLead(client)
                   openModalDescartados();
@@ -340,18 +340,18 @@ export default function BasicModal(props) {
                 DESCARTAR CLIENTE
               </button>
               <button
-                className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
+                className="bg-[#a020f0] w-2/6 h-9  text-white rounded-md text-10 "
                 onClick={() => {
                   SendFixCorredor(client);
                 }}
               >
                 ACTUALIZAR
               </button>
-              <ModalDescartado
-                open={openDescartados}
-                close={closeModalDescartados}
-              />
             </div>
+            <ModalDescartado
+              open={openDescartados}
+              close={closeModalDescartados}
+            />
           </div>
         </Box>
       </Modal>
