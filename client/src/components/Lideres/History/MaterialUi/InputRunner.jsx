@@ -420,7 +420,7 @@ export default function InputName({ name }) {
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="A pagar">A Pagar</MenuItem>
             <MenuItem value="Rechazado">Rechazado</MenuItem>
-            <MenuItem value="No responde">No responde</MenuItem>
+            <MenuItem value="No responde">Sin contestar</MenuItem>
           </Select>
         </div>
 
