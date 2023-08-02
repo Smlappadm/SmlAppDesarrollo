@@ -39,7 +39,6 @@ export default function BasicModal(props) {
     corredor,
     vendedor,
     fixed,
-    status,
   } = props;
 
   const dispatch = useDispatch();
@@ -143,7 +142,6 @@ export default function BasicModal(props) {
       checked: true,
       view: true,
       status: "discard",
-      status_op: "-",
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
