@@ -351,6 +351,8 @@ export default function BasicModal(props) {
             <ModalDescartado
               open={openDescartados}
               close={closeModalDescartados}
+              DiscardLead={DiscardLead}
+              client={client}
             />
           </div>
         </Box>
