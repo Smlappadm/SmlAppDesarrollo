@@ -342,7 +342,7 @@ function ClerkProviderWithRoutes() {
             }
           />
           <Route
-            path="/lideres-i-history"
+            path="/incidences-history"
             element={
               isRoleAllowed(roleReady) &&
               (roleReady === "clevel" || roleReady === "leader") &&
