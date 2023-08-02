@@ -35,7 +35,7 @@ export default function ModalDescartado({ open, close }) {
             <p>¿Descartar por completo el lead?</p>
             <div className="flex justify-around w-full">
               <button className="bg-red-500 w-2/6  rounded-md">NO</button>
-              <button>SI</button>
+              <button className="bg-red-500 w-2/6  rounded-md">SI</button>
             </div>
           </div>
         </Box>
