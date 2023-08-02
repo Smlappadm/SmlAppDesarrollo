@@ -55,19 +55,6 @@ export const IncidencesHistory = () => {
     status: false,
   });
 
-  const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    }
-    setCurrentPage(1);
-  };
   const headerCategory = () => {
     if (categoryOrder === "ASC") {
       return "Profesion ⤴";
