@@ -12,7 +12,7 @@ const style = {
   p: 4,
   textColor: "white",
   color: "white",
-  height: 300,
+  height: 200,
   borderRadius: "20px",
 };
 
@@ -31,8 +31,12 @@ export default function ModalDescartado({ open, close }) {
         }}
       >
         <Box sx={style}>
-          <div className="flex flex-col justify-between h-full w-full">
-            <p>Hola</p>
+          <div className="flex flex-col justify-between h-full w-full text-center text-18 bg-black">
+            <p>¿Descartar por completo el lead?</p>
+            <div className="flex justify-around w-full">
+              <button className="bg-red-500 w-2/6  rounded-md">NO</button>
+              <button>SI</button>
+            </div>
           </div>
         </Box>
       </Modal>
