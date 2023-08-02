@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   filterLevel,
   filterStatus,
-  getLeadChecked,
   getLeadDiscard,
   orderCategory,
   orderClients,
@@ -25,15 +24,15 @@ import NavBar from "../NavBar/NavBar";
 
 export const IncidencesHistory = () => {
   const [data, setData] = useState([]);
-  const { leaderDashboard } = useSelector((state) => state);
+  const { leaderDiscard } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLeadDiscard());
   }, [dispatch]);
   useEffect(() => {
-    console.log(leaderDashboard);
-    setData(leaderDashboard);
-  }, [leaderDashboard]);
+    console.log(leaderDiscard);
+    setData(leaderDiscard);
+  }, [leaderDiscard]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
