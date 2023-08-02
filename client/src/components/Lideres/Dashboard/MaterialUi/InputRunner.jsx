@@ -28,6 +28,7 @@ export default function InputName({ name, setCurrentPage }) {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
+  const [checked, setChecked] = useState(false);
   const [descargados, setDescargados] = useState(true);
 
   const { allFreelancer } = useSelector((state) => state);
@@ -77,6 +78,12 @@ export default function InputName({ name, setCurrentPage }) {
   const handleChangeStatus = (event) => {
     let value = event.target.value;
     setStatus(value);
+    if (value === "Sin clasificar") {
+      setChecked(false);
+      setStatus("Sin contactar");
+    } else {
+      setChecked(true);
+    }
   };
 
   const handleChangeDescargados = (event) => {
@@ -94,6 +101,7 @@ export default function InputName({ name, setCurrentPage }) {
         category,
         level,
         status,
+        checked,
         descargados
       )
     );
@@ -374,6 +382,7 @@ export default function InputName({ name, setCurrentPage }) {
             }}
           >
             <MenuItem value="">Estado</MenuItem>
+            <MenuItem value="Sin clasificar">Sin clasificar</MenuItem>
             <MenuItem value="Sin contactar">Sin contactar</MenuItem>
             <MenuItem value="En Proceso">En Proceso</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
