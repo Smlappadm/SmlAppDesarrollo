@@ -10,7 +10,6 @@ import {
   CiGlobe,
   CiDumbbell,
 } from "react-icons/ci";
-import InputRunner from "./MaterialUi/InputRunner";
 import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
