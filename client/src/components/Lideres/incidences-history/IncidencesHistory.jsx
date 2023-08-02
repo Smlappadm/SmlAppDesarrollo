@@ -46,7 +46,6 @@ export const IncidencesHistory = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [clientOrder, setClientOrder] = useState("");
   const [filters, setFilters] = useState({
     level: false,
     runner: false,
