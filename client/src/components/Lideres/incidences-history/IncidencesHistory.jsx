@@ -57,8 +57,6 @@ export const IncidencesHistory = () => {
 
   const [levelValue, setLevelValue] = useState("");
 
-  const [statusValue, setStatusValue] = useState("");
-
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
   const handleOpen = (item, index) => {
