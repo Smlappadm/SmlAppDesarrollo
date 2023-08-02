@@ -93,8 +93,6 @@ export default function BasicModal(props) {
     setVisible({ ...visible, instagram: false });
   };
 
-  const [changeLevel, setChangeLevel] = useState("");
-
   let body = {};
   const SendFixCorredor = (client) => {
     body = {
