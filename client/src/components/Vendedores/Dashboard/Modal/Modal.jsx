@@ -677,7 +677,7 @@ export default function NestedModal({
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     emailApp: "",
-    edicion: false,
+    edicion: true,
     pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
@@ -724,7 +724,7 @@ export default function NestedModal({
     setOpenTimeHour(false);
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
     statusObj.pagos = {};
-    statusObj.edicion = false;
+    statusObj.edicion = true;
     const value = event.target.value;
     const property = event.target.name;
     if (value === "No responde" || value === "Sin contactar") {
@@ -1011,7 +1011,7 @@ export default function NestedModal({
       edicion: !statusObj.edicion,
     });
   };
-  console.log(statusObj.edicion);
+
 
   return (
     <div className="">
@@ -1437,7 +1437,7 @@ export default function NestedModal({
                     {statusObj.status === "A pagar" && (
                       <div className="flex justify-center items-center mt-5 mb-10 gap-7">
                         <label className="inline-flex items-center text-white text-14">
-                          CON EDICIÓN
+                          SIN EDICIÓN
                         </label>
                         <input
                           type="checkbox"
