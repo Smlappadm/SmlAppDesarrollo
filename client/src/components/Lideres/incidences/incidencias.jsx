@@ -105,13 +105,6 @@ const Incidences = () => {
     }
     setCurrentPage(1);
   };
-  const [levelValue, setLevelValue] = useState("");
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(leaderDashboard);
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
