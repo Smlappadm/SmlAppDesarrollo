@@ -55,15 +55,6 @@ export const IncidencesHistory = () => {
     status: false,
   });
 
-  const headerClient = () => {
-    if (clientOrder === "ASC") {
-      return "Cliente ⤴";
-    } else if (clientOrder === "DES") {
-      return "Cliente ⤵";
-    } else {
-      return "Cliente";
-    }
-  };
   const handleOrderByClient = () => {
     if (clientOrder === "ASC" || clientOrder === "") {
       setClientOrder("DES");
