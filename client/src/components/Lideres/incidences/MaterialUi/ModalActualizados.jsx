@@ -12,7 +12,7 @@ const style = {
   p: 4,
   textColor: "white",
   color: "white",
-  height: 200,
+  height: 150,
   borderRadius: "20px",
 };
 
@@ -31,7 +31,7 @@ export default function ModalActualizados({
         aria-describedby="modal-modal-description"
         BackdropProps={{
           sx: {
-            backgroundColor: "rgba(00, 00, 00, 0.7)",
+            backgroundColor: "rgba(00, 00, 00, 0.9)",
           },
         }}
       >
