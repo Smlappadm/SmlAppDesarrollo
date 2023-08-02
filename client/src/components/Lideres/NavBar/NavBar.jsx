@@ -50,7 +50,7 @@ export default function NavBar() {
       icon: CiWarning,
     },
     {
-      title: "Incidencias Historial",
+      title: "Descartados",
       isHovered: false,
       link: "/incidences-history",
       icon: CiWarning,
