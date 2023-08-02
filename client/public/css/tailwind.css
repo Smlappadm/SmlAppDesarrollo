@@ -1441,6 +1441,10 @@ video {
   width: 100vw;
 }
 
+.w-2\/6 {
+  width: 33.333333%;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
@@ -2128,6 +2132,11 @@ video {
 .bg-\[\#666666\] {
   --tw-bg-opacity: 1;
   background-color: rgb(102 102 102 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#a020f0\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(160 32 240 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-0 {

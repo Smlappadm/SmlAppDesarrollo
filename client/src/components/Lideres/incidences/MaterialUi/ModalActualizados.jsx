@@ -16,7 +16,12 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ModalDescartado({ open, close, DiscardLead, client }) {
+export default function ModalActualizados({
+  open,
+  close,
+  SendFixCorredor,
+  client,
+}) {
   return (
     <div>
       <Modal
@@ -32,7 +37,7 @@ export default function ModalDescartado({ open, close, DiscardLead, client }) {
       >
         <Box sx={style}>
           <div className="flex flex-col justify-between h-full w-full text-center text-18 ">
-            <p>¿Descartar por completo el lead?</p>
+            <p>¿Actualizar y enviar lead a clasificar?</p>
             <div className="flex justify-around w-full">
               <button className="bg-red-500 w-2/6  rounded-md" onClick={close}>
                 NO
@@ -40,7 +45,7 @@ export default function ModalDescartado({ open, close, DiscardLead, client }) {
               <button
                 className="bg-[#a020f0] w-2/6  rounded-md"
                 onClick={() => {
-                  DiscardLead(client);
+                  SendFixCorredor(client);
                 }}
               >
                 SI
