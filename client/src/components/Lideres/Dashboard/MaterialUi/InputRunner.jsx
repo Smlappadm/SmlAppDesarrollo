@@ -78,9 +78,9 @@ export default function InputName({ name, setCurrentPage }) {
   const handleChangeStatus = (event) => {
     let value = event.target.value;
     setStatus(value);
+
     if (value === "Sin clasificar") {
       setChecked(false);
-      setStatus("Sin contactar");
     } else {
       setChecked(true);
     }
