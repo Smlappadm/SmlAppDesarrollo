@@ -1,13 +1,7 @@
 import style from "./IncidencesHistory.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text } from "@tremor/react";
-import {
-  CiMail,
-  CiInstagram,
-  CiPhone,
-  CiWarning,
-  CiGlobe,
-} from "react-icons/ci";
+import { CiMail, CiInstagram, CiPhone, CiGlobe } from "react-icons/ci";
 import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
