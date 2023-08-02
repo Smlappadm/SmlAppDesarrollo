@@ -30,7 +30,7 @@ export default function BasicModal(props) {
     province,
     corredor,
     vendedor,
-    op,
+    observacion,
     web,
   } = props;
   return (
@@ -100,7 +100,7 @@ export default function BasicModal(props) {
             </div>
             <div className="font-semibold flex gap-3">
               <p>DETALLE: </p>
-              <p className="font-normal">{op ? op : "-"} </p>
+              <p className="font-normal">{observacion ? observacion : "-"} </p>
             </div>
           </div>
         </Box>
