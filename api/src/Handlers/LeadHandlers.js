@@ -43,7 +43,7 @@ const cambioNombreClevel = require("../controllers/Lead/cambioNombreClevel");
 const cambioNombreLeader = require("../controllers/Lead/cambioNombreLeader");
 const UpdatePromociones = require("../controllers/Lead/UpdatePromociones");
 const getAllLeadAPagar = require("../controllers/Lead/getAllLeadAPagar");
-const setPagoLink = require("../controllers/Lead/setPagoLink")
+const setPagoLink = require("../controllers/Lead/setPagoLink");
 const findLeadSeguimientoAllInfo = require("../controllers/Lead/findLeadSeguimientoAllInfo");
 
 // Obtener todos los leads
@@ -482,16 +482,12 @@ const findLeadCorredorNameAllInfoHandler = async (req, res) => {
 };
 // Buscar lead por nombre con toda la información
 const findLeadSeguimientoAllInfoHandler = async (req, res) => {
-  const {
-    corredor,
-    vendedor,
-    freelancer,
-  } = req.query;
+  const { corredor, vendedor, freelancer } = req.query;
   try {
     const foundCorredor = await findLeadSeguimientoAllInfo(
       corredor,
       vendedor,
-      freelancer,
+      freelancer
     );
     res.status(200).json(foundCorredor);
   } catch (error) {
@@ -510,6 +506,7 @@ const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
     category,
     level,
     status,
+    checked,
     descargados,
   } = req.query;
   try {
@@ -522,6 +519,7 @@ const findLeadFreelancerNameAllInfoHandler = async (req, res) => {
       category,
       level,
       status,
+      checked,
       descargados
     );
     res.status(200).json(foundFreelancer);
@@ -578,7 +576,7 @@ const updateChangeEmailHandler = async (req, res) => {
 };
 // Actualizar el pago seleccionado
 const setPagoHandler = async (req, res) => {
-  const body = req.body
+  const body = req.body;
 
   try {
     const leadUpdated = await setPagoLink(body);
