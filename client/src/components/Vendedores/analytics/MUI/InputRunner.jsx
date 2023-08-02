@@ -341,12 +341,13 @@ export default function InputRunner({
             }}
           >
             <MenuItem value="">Estado</MenuItem>
-            <MenuItem value="Rechazado">Rechazado</MenuItem>
-            <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="Contactado">Contactado</MenuItem>
-            <MenuItem value="No responde">Sin responder</MenuItem>
+            <MenuItem value="En proceso">En proceso</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
+            <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="A pagar">A pagar</MenuItem>
+            <MenuItem value="Rechazado">Rechazado</MenuItem>
+            <MenuItem value="No responde">Sin responder</MenuItem>
           </Select>
         </div>
 
