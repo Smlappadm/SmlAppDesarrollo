@@ -13,7 +13,6 @@ import {
 import InputRunner from "./MaterialUi/InputRunner";
 import InputSeller from "./MaterialUi/InputSeller";
 import SelectLevel from "./MaterialUi/SelectLevel";
-import SelectStatus from "./MaterialUi/SelectStatus";
 import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
@@ -29,7 +28,8 @@ import {
   IoGrid,
   IoLogoSnapchat,
   IoPeople,
-  IoStatsChart,IoRocketOutline
+  IoStatsChart,
+  IoRocketOutline,
 } from "react-icons/io5";
 
 export const IncidencesHistory = () => {
@@ -150,7 +150,7 @@ export const IncidencesHistory = () => {
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5 h-[37px]">
             <Title className={style.title}>I-Historial</Title>
-            
+
             <Link
               className="flex items-center justify-center gap-2"
               to={"/contratando/"}
