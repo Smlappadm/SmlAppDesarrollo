@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { updateLeadIncidence } from "../../../../redux/actions";
 import ModalDescartado from "./ModalDescartado";
+import ModalActualizados from "./ModalActualizados";
 
 const style = {
   position: "absolute",
@@ -106,6 +107,7 @@ export default function BasicModal(props) {
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
+    closeModalActualizar;
     FixedLeadAlert();
     fixed(body);
   };
@@ -352,6 +354,12 @@ export default function BasicModal(props) {
               open={openDescartados}
               close={closeModalDescartados}
               DiscardLead={DiscardLead}
+              client={client}
+            />
+            <ModalActualizados
+              open={openActualizar}
+              close={closeModalActualizar}
+              SendFixCorredor={SendFixCorredor}
               client={client}
             />
           </div>
