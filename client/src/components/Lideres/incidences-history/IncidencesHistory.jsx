@@ -28,6 +28,7 @@ import {
   IoStatsChart,
   IoRocketOutline,
 } from "react-icons/io5";
+import NavBar from "../NavBar/NavBar";
 
 export const IncidencesHistory = () => {
   const [data, setData] = useState([]);
@@ -145,7 +146,9 @@ export const IncidencesHistory = () => {
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
-          <div className="flex gap-5 h-[37px]"></div>
+          <div className="flex gap-5 h-[37px]">
+            <NavBar />
+          </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
           {/* {filters.level === true ? (
             <SelectLevel onChange={onChangeLevel} value={levelValue} />
