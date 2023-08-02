@@ -21,10 +21,6 @@ const Incidences = () => {
   const [changeIncidence, setChangeIncidence] = useState({});
   const dispatch = useDispatch();
 
-  const fetchData = () => {
-    dispatch(getLeadChecked());
-  };
-
   const filterData = () => {
     const filteredData = leaderDashboard.filter(
       (item) => item.level === "incidencia"
