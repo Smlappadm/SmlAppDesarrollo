@@ -103,7 +103,7 @@ export const IncidencesHistory = () => {
               province={modalItems.province}
               corredor={modalItems.corredor}
               vendedor={modalItems.vendedor}
-              obeservacion={modalItems.status_op}
+              observacion={modalItems.status_op}
             />
             {currentCard.map((item, index) => (
               <div
