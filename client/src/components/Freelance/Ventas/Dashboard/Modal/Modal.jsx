@@ -708,7 +708,7 @@ export default function NestedModal({
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     emailApp: "",
-    edicion: false,
+    edicion: true,
     pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
@@ -762,7 +762,7 @@ export default function NestedModal({
       setFlagPago(true);
     }
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    statusObj.edicion = false;
+    statusObj.edicion = true;
     statusObj.pagos = {};
     if (value === "No responde" || value === "Sin contactar") {
       setStatusObj({
@@ -1078,6 +1078,7 @@ export default function NestedModal({
     });
   };
 
+  console.log(statusObj.edicion)
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1431,8 +1432,8 @@ export default function NestedModal({
                         <option disabled="disabled" value="default">
                           Elige uno...
                         </option>
-                        <option value="Agenda llamada">Agenda llamada</option>
                         <option value="En proceso">En proceso</option>
+                        <option value="Agenda llamada">Agenda llamada</option>
                         {/* <option value="Contratando">Contratando</option> */}
                         <option value="A pagar">A pagar</option>
                         <option value="Rechazado">Rechazado</option>
@@ -1529,8 +1530,8 @@ export default function NestedModal({
                     <option disabled="disabled" value="default">
                       Elige uno...
                     </option>
-                    <option value="Agenda llamada">Agenda llamada</option>
                     <option value="En proceso">En proceso</option>
+                    <option value="Agenda llamada">Agenda llamada</option>
                     {/* <option value="Contratando">Contratando</option> */}
                     <option value="A pagar">A pagar</option>
                     <option value="Rechazado">Rechazado</option>
@@ -1540,7 +1541,7 @@ export default function NestedModal({
                     {statusObj.status === "A pagar" && (
                       <div className="flex justify-center items-center mt-5 mb-10 gap-7">
                         <label className="inline-flex items-center text-white text-14">
-                          CON EDICIÓN
+                          SIN EDICIÓN
                         </label>
                         <input
                           type="checkbox"
