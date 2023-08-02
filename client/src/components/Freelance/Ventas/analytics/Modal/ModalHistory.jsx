@@ -6,6 +6,7 @@ import Modal from "@mui/material/Modal";
 import { CiEdit } from "react-icons/ci";
 import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
 // import toast, { Toaster } from 'react-hot-toast';
