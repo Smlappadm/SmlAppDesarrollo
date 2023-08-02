@@ -187,7 +187,6 @@ export const IncidencesHistory = () => {
                   </Text>
                 </button>
               </div>
-
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("status")}>
                   <Text className="text-center w-48 p-0 text-white">
