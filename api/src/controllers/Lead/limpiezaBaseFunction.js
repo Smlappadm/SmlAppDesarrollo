@@ -138,6 +138,8 @@ const limpiezaBaseFunction = async () => {
       level: "",
       linkPago: false,
       edicion: false,
+      
+updateContratado: "",
     },
   });
   return leadResult;
