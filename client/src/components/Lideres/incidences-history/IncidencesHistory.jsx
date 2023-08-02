@@ -12,11 +12,7 @@ import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterLevel,
-  filterStatus,
-  getLeadDiscard,
-} from "../../../redux/actions";
+import { getLeadDiscard } from "../../../redux/actions";
 import NavBar from "../NavBar/NavBar";
 
 export const IncidencesHistory = () => {
