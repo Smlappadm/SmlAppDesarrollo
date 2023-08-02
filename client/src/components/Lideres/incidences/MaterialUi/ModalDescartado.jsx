@@ -16,7 +16,7 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function ModalDescartado({ open, close }) {
+export default function ModalDescartado({ open, close, DiscardLead, client }) {
   return (
     <div>
       <Modal
@@ -34,7 +34,14 @@ export default function ModalDescartado({ open, close }) {
           <div className="flex flex-col justify-between h-full w-full text-center text-18 ">
             <p>¿Descartar por completo el lead?</p>
             <div className="flex justify-around w-full">
-              <button className="bg-red-500 w-2/6  rounded-md">NO</button>
+              <button
+                className="bg-red-500 w-2/6  rounded-md"
+                onClick={() => {
+                  DiscardLead(client);
+                }}
+              >
+                NO
+              </button>
               <button className="bg-[#a020f0] w-2/6  rounded-md">SI</button>
             </div>
           </div>
