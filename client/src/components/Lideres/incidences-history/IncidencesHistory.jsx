@@ -30,6 +30,7 @@ export const IncidencesHistory = () => {
     dispatch(getLeadChecked());
   }, [dispatch]);
   useEffect(() => {
+    console.log(leaderDashboard);
     setData(leaderDashboard);
   }, [leaderDashboard]);
 
