@@ -13,6 +13,7 @@ import {
   getAllProfesion,
   getCorredor,
   getFreelancers,
+  getLeadCheckedFreelancer,
   getVendedor,
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
@@ -117,6 +118,9 @@ export default function InputName({ name, setCurrentPage }) {
     setCountry("");
     setLevel("");
     setStatus("");
+
+    dispatch(getLeadCheckedFreelancer());
+    setCurrentPage(1);
   };
 
   return (
