@@ -151,7 +151,7 @@ export const IncidencesHistory = () => {
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-start w-28 p-0 text-white">
-                  {headerCategory()}
+                  Profesión
                 </Text>
               </div>
               <div className="flex justify-center items-center p-0">
