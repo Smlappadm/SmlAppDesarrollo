@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { updateLeadIncidence } from "../../../../redux/actions";
+import ModalDescartado from "./ModalDescartado";
 
 const style = {
   position: "absolute",
@@ -149,6 +150,12 @@ export default function BasicModal(props) {
       theme: "dark",
     });
   };
+  const [openDescartados, setOpenDescartados] = useState(false);
+  const closeModalDescartados = () => setOpenDescartados(false);
+  const openModalDescartados = () => setOpenDescartados(true);
+  const [openActualizar, setOpenActualizar] = useState(false);
+  const closeModalActualizar = () => setOpenActualizar(false);
+  const openModalActualizar = () => setOpenActualizar(true);
 
   return (
     <div>
@@ -339,6 +346,10 @@ export default function BasicModal(props) {
               >
                 ACTUALIZAR
               </button>
+              <ModalDescartado
+                open={openDescartados}
+                close={closeModalDescartados}
+              />
             </div>
           </div>
         </Box>
