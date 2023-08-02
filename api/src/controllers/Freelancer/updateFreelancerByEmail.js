@@ -8,16 +8,59 @@ const updateFreelancerByEmail = async (email, updatedData) => {
   // Utilizamos { new: true } para que se devuelva el freelancer actualizado después de realizar la actualización
 
 
-
-  const lead = await Lead.updateMany({ corredor: email, vendedor: email, freelancer: true },{
-    $set: {
-      vendedor: "",
-      vendedor_name: "",
-      corredor: "",
-      corredor_name: "",
-      freelancer: false,
+  const lead = await Lead.updateMany(
+    {
+      corredor: email,
+      vendedor: email,
+      freelancer: true,
+      checked: false,
     },
-  })
+    {
+      $set: {
+        vendedor: "",
+        vendedor_name: "",
+        corredor: "",
+        corredor_name: "",
+        freelancer: false,
+        view: false,
+      },
+    }
+  );
+
+  const lead2 = await Lead.updateMany(
+    {
+      corredor: email,
+      vendedor: email,
+      freelancer: true,
+      checked: true,
+      status: "Sin contactar"
+    },
+    {
+      $set: {
+        vendedor: "",
+        vendedor_name: "",
+        freelancer: false,
+      },
+    }
+  );
+
+  // const lead3 = await Lead.updateMany(
+  //   {
+  //     corredor: email,
+  //     vendedor: email,
+  //     freelancer: true,
+  //     checked: true,
+  //     status: { $ne: "Sin contactar" }
+  //   },
+  //   {
+  //     $set: {
+  //       freelancer: false,
+
+  //     },
+  //   }
+  // );
+
+
   // const Lead = await Lead.find({ corredor: email, vendedor: email, freelancer: true }, updatedData, {
   //   new: true,
   // });
