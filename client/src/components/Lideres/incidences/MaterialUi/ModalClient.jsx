@@ -107,7 +107,7 @@ export default function BasicModal(props) {
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
-    closeModalActualizar;
+    closeModalActualizar();
     FixedLeadAlert();
     fixed(body);
   };
@@ -123,8 +123,8 @@ export default function BasicModal(props) {
       status: "discard",
     };
     dispatch(updateLeadIncidence(client, body));
-    handleClose();
     closeModalDescartados();
+    handleClose();
     DiscardLeadAlert();
     fixed(body);
   };
@@ -344,7 +344,7 @@ export default function BasicModal(props) {
               <button
                 className="bg-[#a020f0] w-2/6 h-9  text-white rounded-md text-10 "
                 onClick={() => {
-                  SendFixCorredor(client);
+                  openModalActualizar();
                 }}
               >
                 ACTUALIZAR
