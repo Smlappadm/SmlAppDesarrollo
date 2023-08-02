@@ -1,18 +1,20 @@
-import style from "./IncidencesHistory.module.css";
-import PaginationOutlined from "../../pagination/PaginationOutlined";
 import { Card, Text } from "@tremor/react";
 import { CiMail, CiInstagram, CiPhone, CiGlobe } from "react-icons/ci";
-import ModalCient from "./MaterialUi/ModalClient";
-import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getLeadDiscard } from "../../../redux/actions";
+import style from "./IncidencesHistory.module.css";
+import PaginationOutlined from "../../pagination/PaginationOutlined";
+import Nav from "../../Nav/Nav";
+import ModalCient from "./MaterialUi/ModalClient";
 import NavBar from "../NavBar/NavBar";
 
 export const IncidencesHistory = () => {
   const [data, setData] = useState([]);
   const { leaderDiscard } = useSelector((state) => state);
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getLeadDiscard());
   }, [dispatch]);
