@@ -9,6 +9,8 @@ import { orderCategory } from "../../../../../redux/actions";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { CgFileAdd } from "react-icons/cg";
 import { BsCheck } from "react-icons/bs";
+import { FaHistory, FaWhatsapp } from "react-icons/fa";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -82,8 +84,8 @@ export default function ModalIntelligentInfo({ item }) {
           <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
             Observaciones
           </p>
-          <AiOutlineInfoCircle
-            className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer"
+          <FaHistory
+            className="text-[32px] text-[#a09e9e]  cursor-pointer"
             onClick={handleOpen}
           />
         </div>

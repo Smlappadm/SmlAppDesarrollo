@@ -9,6 +9,7 @@ import { orderCategory } from "../../../../redux/actions";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { CgFileAdd } from "react-icons/cg";
 import { BsCheck } from "react-icons/bs";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -66,7 +67,7 @@ export default function ModalIntelligentInfo({ item }) {
   return (
     <div>
       <div className="flex gap-4">
-        <CgFileAdd
+        <AiOutlineInfoCircle
           className="text-[33px] text-[#4a8637] cursor-pointer"
           onClick={handleOpen}
         />

@@ -62,14 +62,26 @@ function ChildModalDelete({
           await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
             deleted: true,
           });
-        } else {
+        } else if (itemRol === "freelancer"){
+          await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
+            // freelancer: false,
+            // vendedor: "",
+            // vendedor_name: "",
+            // corredor: "",
+            // corredor_name: "",
+            deleted: true,
+          });
+        }
+        else {
           await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
             deleted: true,
           });
         }
+
         await axios.put(`/corredor/email/email?email=${itemEmail}`, {
           deleted: true,
         });
+
         await axios.put(`/vendedor/email/email?email=${itemEmail}`, {
           deleted: true,
         });

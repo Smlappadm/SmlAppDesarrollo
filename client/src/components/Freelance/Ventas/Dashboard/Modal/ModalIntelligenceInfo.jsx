@@ -8,6 +8,7 @@ import { useUser } from "@clerk/clerk-react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { CgFileAdd } from "react-icons/cg";
 import { BsCheck } from "react-icons/bs";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -69,7 +70,7 @@ export default function ModalIntelligentInfo({ item }) {
           <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
             Lead Info AI
           </p>
-          <CgFileAdd
+          <AiOutlineInfoCircle
             className="text-[33px] text-[#9c9b9b]  cursor-pointer"
             onClick={handleOpen}
           />

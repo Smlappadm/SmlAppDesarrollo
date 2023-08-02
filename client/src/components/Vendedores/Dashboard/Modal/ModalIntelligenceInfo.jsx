@@ -71,7 +71,7 @@ export default function ModalIntelligentInfo({ item }) {
                     <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
                       Lead Info AI
                     </p>
-      <CgFileAdd className="text-[33px] text-[#b3bebd] cursor-pointer" onClick={handleOpen}/>
+      <AiOutlineInfoCircle className="text-[33px] text-[#b3bebd] cursor-pointer" onClick={handleOpen}/>
       </div>
       </div>
       <Modal

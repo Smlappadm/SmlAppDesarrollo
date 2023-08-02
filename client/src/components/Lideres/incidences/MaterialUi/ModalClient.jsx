@@ -5,6 +5,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { updateLeadIncidence } from "../../../../redux/actions";
+import ModalDescartado from "./ModalDescartado";
+import ModalActualizados from "./ModalActualizados";
 
 const style = {
   position: "absolute",
@@ -37,9 +39,7 @@ export default function BasicModal(props) {
     handleClose,
     observacion,
     corredor,
-    vendedor,
     fixed,
-    status,
   } = props;
 
   const dispatch = useDispatch();
@@ -50,7 +50,6 @@ export default function BasicModal(props) {
     setChangePhone(telephone);
     setChangeWeb(web);
     setChangeIG(instagram);
-    setChangeLevel(level);
   }, [email, _id, telephone, web, instagram, level, dispatch]);
 
   const [client, setClient] = useState("");
@@ -95,14 +94,6 @@ export default function BasicModal(props) {
     setVisible({ ...visible, instagram: false });
   };
 
-  const [changeLevel, setChangeLevel] = useState("");
-  const OpenChangeLevel = () => {
-    setVisible({ ...visible, level: true });
-  };
-  const OKChangeLevel = () => {
-    setVisible({ ...visible, level: false });
-  };
-
   let body = {};
   const SendFixCorredor = (client) => {
     body = {
@@ -110,26 +101,13 @@ export default function BasicModal(props) {
       telephone: changePhone,
       url: changeWeb,
       instagram: changeIG,
-      //level: changeLevel,
       level: "",
       view: false,
       checked: false,
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
-    FixedLeadAlert();
-    fixed(body);
-  };
-  const SendFixVendedor = (client) => {
-    body = {
-      email: changeMail,
-      telephone: changePhone,
-      url: changeWeb,
-      instagram: changeIG,
-      level: changeLevel,
-    };
-    dispatch(updateLeadIncidence(client, body));
-    handleClose();
+    closeModalActualizar();
     FixedLeadAlert();
     fixed(body);
   };
@@ -143,16 +121,16 @@ export default function BasicModal(props) {
       checked: true,
       view: true,
       status: "discard",
-      status_op: "-",
     };
     dispatch(updateLeadIncidence(client, body));
+    closeModalDescartados();
     handleClose();
     DiscardLeadAlert();
     fixed(body);
   };
 
   const FixedLeadAlert = () => {
-    toast.success(`✔ FIXED LEAD! `, {
+    toast.success(`✔ LEAD ACTUALIZADO! `, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -164,7 +142,7 @@ export default function BasicModal(props) {
     });
   };
   const DiscardLeadAlert = () => {
-    toast.success(`✔ DISCARD LEAD! `, {
+    toast.success(`✔ LEAD DESCARTADO! `, {
       position: "top-center",
       autoClose: 3000,
       hideProgressBar: false,
@@ -175,6 +153,12 @@ export default function BasicModal(props) {
       theme: "dark",
     });
   };
+  const [openDescartados, setOpenDescartados] = useState(false);
+  const closeModalDescartados = () => setOpenDescartados(false);
+  const openModalDescartados = () => setOpenDescartados(true);
+  const [openActualizar, setOpenActualizar] = useState(false);
+  const closeModalActualizar = () => setOpenActualizar(false);
+  const openModalActualizar = () => setOpenActualizar(true);
 
   return (
     <div>
@@ -191,7 +175,15 @@ export default function BasicModal(props) {
         }}
       >
         <Box sx={style}>
-          <div className="flex flex-col justify-between h-full">
+          <div className="flex flex-col justify-between h-full w-full">
+            <div className=" justify-end flex">
+              <button
+                className="bg-red-500 w-fit h-fit px-2 rounded-md"
+                onClick={handleClose}
+              >
+                X
+              </button>
+            </div>
             <div className="font-semibold flex flex-col gap-3 items-center text-24 mb-5">
               <h1>{name} </h1>
               <hr className="border-gray-400 w-5/6 text-center" />
@@ -206,92 +198,13 @@ export default function BasicModal(props) {
                 {province}, {city}{" "}
               </p>
             </div>
-
-            {/* {vendedor !== "" ? (
-              <div className="font-semibold flex gap-3">
-                <p>NIVEL: </p>
-                {visible.level === false ? (
-                  <div className="w-[500px] flex flex-row justify-between">
-                    <p className="font-normal ">{changeLevel}</p>
-                    <button
-                      className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2 "
-                      onClick={OpenChangeLevel}
-                    >
-                      Change
-                    </button>
-                  </div>
-                ) : (
-                  <div className="w-[500px] flex flex-row justify-between">
-                    <select
-                      name="level"
-                      id="level"
-                      placeholder="Selecciona nivel"
-                      className="text-black w-80"
-                      value={changeLevel}
-                      onChange={(event) => {
-                        setChangeLevel(event.target.value);
-                      }}
-                    >
-                      <option value="incidencia">Incidencia</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                    </select>
-                    <button
-                      className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
-                      onClick={OKChangeLevel}
-                    >
-                      OK
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : ( */}
-            {/* <div className="font-semibold flex gap-3">
-              <p>NIVEL: </p>
-              {visible.level === false ? (
-                <div className="w-[500px] flex flex-row justify-between">
-                  <p className="font-normal w-80">{changeLevel}</p>
-                  <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
-                    onClick={OpenChangeLevel}
-                  >
-                    Change
-                  </button>
-                </div>
-              ) : (
-                <div className="w-[500px] flex flex-row justify-between">
-                  <select
-                    name="level"
-                    id="level"
-                    placeholder="Selecciona nivel"
-                    className="text-black w-80"
-                    value={changeLevel}
-                    onChange={(event) => {
-                      setChangeLevel(event.target.value);
-                    }}
-                  >
-                    <option value="incidencia">Incidencia</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                  </select>
-                  <button
-                    className="bg-green-600 flex justify-center items-center text-white rounded-md text-10 px-2"
-                    onClick={OKChangeLevel}
-                  >
-                    OK
-                  </button>
-                </div>
-              )}
-            </div> */}
-            {/* )} */}
             <div className="font-semibold flex gap-3">
               <p>INSTAGRAM: </p>
               {visible.instagram === false ? (
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeIG}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0] flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeIG}
                   >
                     Change
@@ -322,7 +235,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changePhone}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0]  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangePhone}
                   >
                     Change
@@ -353,7 +266,7 @@ export default function BasicModal(props) {
                 <div className="w-[500px] flex flex-row justify-between">
                   <p className="font-normal">{changeMail}</p>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0] flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeMail}
                   >
                     Change
@@ -393,7 +306,7 @@ export default function BasicModal(props) {
                     </a>
                   </div>
                   <button
-                    className="bg-blue-400  flex justify-center items-center text-white rounded-md text-10 px-2"
+                    className="bg-[#a020f0]  flex justify-center items-center text-white rounded-md text-10 px-2"
                     onClick={OpenChangeWeb}
                   >
                     Change
@@ -427,54 +340,36 @@ export default function BasicModal(props) {
               <p className="font-normal">{corredor}</p>
             </div>
 
-            {vendedor !== "" ? (
-              <div className="w-[500px] flex flex-row justify-between">
-                <div className="font-semibold flex gap-3">
-                  <p>VENDEDOR: </p>
-                  <p className="font-normal">{vendedor}</p>
-                </div>
-              </div>
-            ) : null}
-
-            {vendedor !== "" ? (
-              <div className="flex flex-row justify-around">
-                <button
-                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    DiscardLead(client);
-                  }}
-                >
-                  DESCARTAR CLIENTE
-                </button>
-                <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    SendFixVendedor(client);
-                  }}
-                >
-                  ACTUALIZAR
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-row justify-around">
-                <button
-                  className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    DiscardLead(client);
-                  }}
-                >
-                  DESCARTAR CLIENTE
-                </button>
-                <button
-                  className="bg-blue-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
-                  onClick={() => {
-                    SendFixCorredor(client);
-                  }}
-                >
-                  ACTUALIZAR
-                </button>
-              </div>
-            )}
+            <div className="flex w-full justify-around ">
+              <button
+                className="bg-red-500 w-2/6 h-9   text-white rounded-md text-10 "
+                onClick={() => {
+                  openModalDescartados();
+                }}
+              >
+                DESCARTAR CLIENTE
+              </button>
+              <button
+                className="bg-[#a020f0] w-2/6 h-9  text-white rounded-md text-10 "
+                onClick={() => {
+                  openModalActualizar();
+                }}
+              >
+                ACTUALIZAR
+              </button>
+            </div>
+            <ModalDescartado
+              open={openDescartados}
+              close={closeModalDescartados}
+              DiscardLead={DiscardLead}
+              client={client}
+            />
+            <ModalActualizados
+              open={openActualizar}
+              close={closeModalActualizar}
+              SendFixCorredor={SendFixCorredor}
+              client={client}
+            />
           </div>
         </Box>
       </Modal>

@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { FaHistory, FaWhatsapp } from "react-icons/fa";
 
 const style = {
   position: "absolute",
@@ -76,8 +77,8 @@ export default function ModalIntelligentInfo({ item }) {
           <p className="z-10 w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-6 group-hover:block">
             Observaciones
           </p>
-          <AiOutlineInfoCircle
-            className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer"
+          <FaHistory
+            className="text-[32px] text-[#9e9d9d]  cursor-pointer"
             onClick={handleOpen}
           />
         </div>

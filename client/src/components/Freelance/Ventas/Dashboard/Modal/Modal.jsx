@@ -8,7 +8,7 @@ import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
-import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
+import { CiWarning, CiInstagram, CiMail, CiGlobe } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
 import styles from "./Modal.module.css";
 import {
@@ -708,7 +708,7 @@ export default function NestedModal({
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
     emailApp: "",
-    edicion: false,
+    edicion: true,
     pagos: {},
     status_op: item.status_op,
     llamados: item.llamados,
@@ -762,7 +762,7 @@ export default function NestedModal({
       setFlagPago(true);
     }
     //CHEQUEAR ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    statusObj.edicion = false;
+    statusObj.edicion = true;
     statusObj.pagos = {};
     if (value === "No responde" || value === "Sin contactar") {
       setStatusObj({
@@ -1078,6 +1078,7 @@ export default function NestedModal({
     });
   };
 
+  console.log(statusObj.edicion)
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1172,6 +1173,20 @@ export default function NestedModal({
               <div className="flex flex-col justify-center items-center mt-3">
                 <div className="mt-3  flex  justify-between items-center">
                   {/* EDITAR DATOS Email-------------------------------------  */}
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
+                    <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
+                      Open WebSite
+                    </p>
+                    <a href={item.url} target="blank">
+                    <CiGlobe
+                      className={
+                        editEmail
+                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                      }
+                    />
+                    </a>
+                  </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Editar email lead
@@ -1431,8 +1446,8 @@ export default function NestedModal({
                         <option disabled="disabled" value="default">
                           Elige uno...
                         </option>
-                        <option value="Agenda llamada">Agenda llamada</option>
                         <option value="En proceso">En proceso</option>
+                        <option value="Agenda llamada">Agenda llamada</option>
                         {/* <option value="Contratando">Contratando</option> */}
                         <option value="A pagar">A pagar</option>
                         <option value="Rechazado">Rechazado</option>
@@ -1529,8 +1544,8 @@ export default function NestedModal({
                     <option disabled="disabled" value="default">
                       Elige uno...
                     </option>
-                    <option value="Agenda llamada">Agenda llamada</option>
                     <option value="En proceso">En proceso</option>
+                    <option value="Agenda llamada">Agenda llamada</option>
                     {/* <option value="Contratando">Contratando</option> */}
                     <option value="A pagar">A pagar</option>
                     <option value="Rechazado">Rechazado</option>
@@ -1540,7 +1555,7 @@ export default function NestedModal({
                     {statusObj.status === "A pagar" && (
                       <div className="flex justify-center items-center mt-5 mb-10 gap-7">
                         <label className="inline-flex items-center text-white text-14">
-                          CON EDICIÓN
+                          SIN EDICIÓN
                         </label>
                         <input
                           type="checkbox"
