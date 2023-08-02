@@ -147,14 +147,6 @@ export const IncidencesHistory = () => {
         <div className="flex justify-between items-center mx-5 mb-0">
           <div className="flex gap-5 h-[37px]">
             <Title className={style.title}>I-Historial</Title>
-
-            <Link
-              className="flex items-center justify-center gap-2"
-              to={"/contratando/"}
-            >
-              <IoGrid className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
-              <p className="text-white">Seguimiento</p>
-            </Link>
           </div>
           <div className="h-[36.5px] w-[36.5px]"></div>
           {/* {filters.level === true ? (
