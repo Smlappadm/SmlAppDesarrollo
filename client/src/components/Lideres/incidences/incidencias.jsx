@@ -6,11 +6,7 @@ import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getLeadChecked,
-  orderClients,
-  orderCategory,
-} from "../../../redux/actions";
+import { getLeadChecked } from "../../../redux/actions";
 import { CiGlobe } from "react-icons/ci";
 import NavBar from "../NavBar/NavBar";
 
