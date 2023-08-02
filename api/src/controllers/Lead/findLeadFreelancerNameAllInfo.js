@@ -11,12 +11,15 @@ const findLeadFreelancerNameAllInfo = async (
   category,
   level,
   status,
+  checked,
   descargados
 ) => {
+  console.log(checked);
+
   // Crear un objeto "query" con los criterios de búsqueda iniciales:
   const query = {
-    checked: true, // Se debe haber verificado (checked) el cliente potencial
-    view: true, // El cliente potencial debe estar marcado como "visto" (view)
+    // Se debe haber verificado (checked) el cliente potencial
+    // El cliente potencial debe estar marcado como "visto" (view)
     freelancer: true, // El cliente potencial debe ser un freelancer
   };
 
@@ -53,6 +56,10 @@ const findLeadFreelancerNameAllInfo = async (
     };
   }
 
+  if (checked) {
+    query.checked = checked; // Si se proporciona la profesión, agregarla al filtro
+  }
+
   if (profesion) {
     query.profesion = profesion; // Si se proporciona la profesión, agregarla al filtro
   }
@@ -76,6 +83,8 @@ const findLeadFreelancerNameAllInfo = async (
   if (descargados === "false") {
     query.descargadosLeader = false; // Si descargados es "false", agregarlo al filtro como "descargadosLeader: false"
   }
+
+  console.log(query);
 
   // Realizar la búsqueda de clientes potenciales (leads) utilizando el objeto "query" como filtro
   const leads = await Lead.find(query).exec();
