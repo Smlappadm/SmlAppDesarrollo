@@ -38,16 +38,16 @@ export default function NavBar() {
       icon: IoStatsChart,
     },
     {
-      title: "Incidencias",
-      isHovered: false,
-      link: "/lideres-incidences",
-      icon: CiWarning,
-    },
-    {
       title: "Promociones",
       isHovered: false,
       link: "/promociones",
       icon: IoRocketOutline,
+    },
+    {
+      title: "Incidencias",
+      isHovered: false,
+      link: "/lideres-incidences",
+      icon: CiWarning,
     },
   ]);
 
