@@ -44,11 +44,6 @@ const Incidences = () => {
     setChangeIncidence(change);
   };
 
-  const handleState = () => {
-    fetchData();
-    filterData();
-  };
-
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardXPage, setCardXpage] = useState(10);
