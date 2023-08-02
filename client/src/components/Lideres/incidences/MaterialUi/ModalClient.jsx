@@ -37,7 +37,6 @@ export default function BasicModal(props) {
     handleClose,
     observacion,
     corredor,
-    vendedor,
     fixed,
   } = props;
 
