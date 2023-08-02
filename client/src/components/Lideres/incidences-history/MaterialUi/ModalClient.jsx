@@ -17,27 +17,28 @@ const style = {
   borderRadius: "20px",
 };
 
-export default function BasicModal(props) {
-  const {
-    name,
-    category,
-    level,
-    email,
-    instagram,
-    telephone,
-    status,
-    city,
-    province,
-    corredor,
-    vendedor,
-    observacion,
-    web,
-  } = props;
+export default function BasicModal({
+  name,
+  category,
+  level,
+  email,
+  instagram,
+  telephone,
+  status,
+  city,
+  province,
+  corredor,
+  vendedor,
+  observacion,
+  web,
+  open,
+  handleClose,
+}) {
   return (
     <div>
       <Modal
-        open={props.open}
-        onClose={props.handleClose}
+        open={open}
+        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         BackdropProps={{
