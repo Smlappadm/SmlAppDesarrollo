@@ -58,12 +58,6 @@ export const IncidencesHistory = () => {
   const [levelValue, setLevelValue] = useState("");
 
   const [statusValue, setStatusValue] = useState("");
-  const onChangeStatus = (value) => {
-    setStatusValue(value);
-    dispatch(filterStatus(value));
-    setData(leaderDashboard);
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
