@@ -424,15 +424,6 @@ export default function BasicModal(props) {
               <p className="font-normal">{corredor}</p>
             </div>
 
-            {vendedor !== "" ? (
-              <div className="w-[500px] flex flex-row justify-between">
-                <div className="font-semibold flex gap-3">
-                  <p>VENDEDOR: </p>
-                  <p className="font-normal">{vendedor}</p>
-                </div>
-              </div>
-            ) : null}
-
             <div className="flex flex-row justify-around">
               <button
                 className="bg-red-500 w-44 h-9 flex justify-center items-center text-white rounded-md text-10 "
