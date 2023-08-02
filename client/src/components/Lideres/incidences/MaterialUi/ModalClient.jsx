@@ -122,6 +122,7 @@ export default function BasicModal(props) {
     };
     dispatch(updateLeadIncidence(client, body));
     handleClose();
+    closeModalDescartados();
     DiscardLeadAlert();
     fixed(body);
   };
