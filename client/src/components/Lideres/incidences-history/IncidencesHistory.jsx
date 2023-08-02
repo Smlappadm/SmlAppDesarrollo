@@ -145,9 +145,7 @@ export const IncidencesHistory = () => {
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between items-center mx-5 mb-0">
-          <div className="flex gap-5 h-[37px]">
-            <Title className={style.title}>I-Historial</Title>
-          </div>
+          <div className="flex gap-5 h-[37px]"></div>
           <div className="h-[36.5px] w-[36.5px]"></div>
           {/* {filters.level === true ? (
             <SelectLevel onChange={onChangeLevel} value={levelValue} />
