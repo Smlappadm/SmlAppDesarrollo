@@ -31,7 +31,7 @@ export default function ModalDescartado({ open, close }) {
         }}
       >
         <Box sx={style}>
-          <div className="flex flex-col justify-between h-full w-full text-center text-18 bg-black">
+          <div className="flex flex-col justify-between h-full w-full text-center text-18 ">
             <p>¿Descartar por completo el lead?</p>
             <div className="flex justify-around w-full">
               <button className="bg-red-500 w-2/6  rounded-md">NO</button>
