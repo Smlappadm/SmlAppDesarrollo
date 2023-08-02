@@ -55,19 +55,6 @@ export const IncidencesHistory = () => {
     status: false,
   });
 
-  const handleOrderByCategory = () => {
-    if (categoryOrder === "ASC" || categoryOrder === "") {
-      setCategoryOrder("DES");
-      setClientOrder("");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
-    } else {
-      setCategoryOrder("ASC");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
-    }
-    setCurrentPage(1);
-  };
   const handlerFilter = (filter) => {
     if (filter === "level") {
       setFilters({ level: true, runner: false, sellers: false, status: false });
