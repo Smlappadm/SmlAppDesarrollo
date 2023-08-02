@@ -17,6 +17,7 @@ import {
   filterLevel,
   filterStatus,
   getLeadChecked,
+  getLeadDiscard,
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
@@ -27,7 +28,7 @@ export const IncidencesHistory = () => {
   const { leaderDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getLeadChecked());
+    dispatch(getLeadDiscard());
   }, [dispatch]);
   useEffect(() => {
     console.log(leaderDashboard);
