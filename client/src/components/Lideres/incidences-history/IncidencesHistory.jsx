@@ -55,15 +55,6 @@ export const IncidencesHistory = () => {
     status: false,
   });
 
-  const headerCategory = () => {
-    if (categoryOrder === "ASC") {
-      return "Profesion ⤴";
-    } else if (categoryOrder === "DES") {
-      return "Profesion ⤵";
-    } else {
-      return "Profesion";
-    }
-  };
   const handleOrderByCategory = () => {
     if (categoryOrder === "ASC" || categoryOrder === "") {
       setCategoryOrder("DES");
