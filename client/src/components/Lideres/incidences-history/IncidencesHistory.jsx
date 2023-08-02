@@ -20,13 +20,6 @@ import {
   orderCategory,
   orderClients,
 } from "../../../redux/actions";
-import {
-  IoGrid,
-  IoLogoSnapchat,
-  IoPeople,
-  IoStatsChart,
-  IoRocketOutline,
-} from "react-icons/io5";
 import NavBar from "../NavBar/NavBar";
 
 export const IncidencesHistory = () => {
