@@ -2572,6 +2572,10 @@ video {
   font-size: 65px;
 }
 
+.text-\[32px\] {
+  font-size: 32px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -2816,6 +2820,16 @@ video {
 .text-yellow-500 {
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity));
+}
+
+.text-\[\#a09e9e\] {
+  --tw-text-opacity: 1;
+  color: rgb(160 158 158 / var(--tw-text-opacity));
+}
+
+.text-\[\#9e9d9d\] {
+  --tw-text-opacity: 1;
+  color: rgb(158 157 157 / var(--tw-text-opacity));
 }
 
 .text-opacity-100 {
