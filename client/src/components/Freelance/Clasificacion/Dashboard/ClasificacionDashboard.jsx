@@ -33,6 +33,7 @@ const ClasificacionDashboard = () => {
   const [country, setCountry] = useState("");
   const [marca_personal, setMarca_personal] = useState("");
   const [category, setCategory] = useState("");
+  const [loader, setLoader] = useState(false);
   const [detailsLead, setDetailsLead] = useState([
     false,
     false,
@@ -318,6 +319,11 @@ const ClasificacionDashboard = () => {
     });
   };
 
+  const loaderFuncion = (status) => {
+    console.log("llamando");
+    setLoader(status);
+  };
+
   const date = new Date();
   date.setHours(date.getHours() - 3);
   const formattedTime = date.toISOString();
@@ -355,6 +361,7 @@ const ClasificacionDashboard = () => {
           } else {
             if (index === 0) {
               SendLeads();
+              loaderFuncion(true);
             }
             updatePromises.push(updateLead(lead));
           }
@@ -362,6 +369,7 @@ const ClasificacionDashboard = () => {
           if (instagram !== "" && instagramRegex.test(instagram)) {
             if (index === 0) {
               SendLeads();
+              loaderFuncion(true);
             }
             updatePromises.push(updateLead(lead));
           } else {
@@ -389,6 +397,8 @@ const ClasificacionDashboard = () => {
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
+
+      loaderFuncion(false);
     } catch (error) {
       SendLeadsError(names);
       console.log({ error: error.message });
@@ -454,6 +464,23 @@ const ClasificacionDashboard = () => {
 
   return (
     <>
+      {loader ? (
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-80 flex justify-center items-center">
+          <div className="flex flex-col gap-5 items-center justify-center">
+            <h2>Enviando los leads!</h2>
+            <div className="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <Nav />
       <div className="w-full m-5 bg-[#222131]">
         <ToastContainer />
