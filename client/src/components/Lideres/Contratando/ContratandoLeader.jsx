@@ -1,6 +1,6 @@
 import style from "./ContratandoLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { Card, Text, Title } from "@tremor/react";
+import { Card, Text } from "@tremor/react";
 import {
   CiMail,
   CiInstagram,
@@ -15,12 +15,8 @@ import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  filterLevel,
-  filterStatus,
   findCorredoresByNameAllInfoSeguimiento,
   getAllLeadAPagar,
-  orderCategory,
-  orderClients,
 } from "../../../redux/actions";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
@@ -41,7 +37,7 @@ export const ContratandoLeader = () => {
 
   const dispatch = useDispatch();
 
-  const statusOk =  (name) => {
+  const statusOk = (name) => {
     toast.success(`✔Cambio de estado a Contratado realizado ${name} ! `, {
       position: "top-center",
       autoClose: 2500,
@@ -53,7 +49,7 @@ export const ContratandoLeader = () => {
       theme: "dark",
     });
 
-   updatePage();
+    updatePage();
     setActive(true);
   };
 
@@ -63,7 +59,7 @@ export const ContratandoLeader = () => {
 
   useEffect(() => {
     dispatch(getAllLeadAPagar());
-    setActive(false)
+    setActive(false);
   }, [dispatch, active]);
 
   const changeStatus = (id, contratado, name) => {
@@ -74,7 +70,6 @@ export const ContratandoLeader = () => {
     });
 
     statusOk(name);
-
   };
 
   const updatePage = () => {
@@ -85,7 +80,7 @@ export const ContratandoLeader = () => {
         findCorredoresByNameAllInfoSeguimiento(corredor, vendedor, freelancer)
       );
     }
-  }
+  };
 
   const normalizeString = (str) => {
     return str
@@ -115,71 +110,6 @@ export const ContratandoLeader = () => {
   const currentCard = showData && showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-  const [clientOrder, setClientOrder] = useState("");
-  const [categoryOrder, setCategoryOrder] = useState("");
-  const [filters, setFilters] = useState(false);
-
-  const headerClient = () => {
-    if (clientOrder === "ASC") {
-      return "Cliente ⤴";
-    } else if (clientOrder === "DES") {
-      return "Cliente ⤵";
-    } else {
-      return "Cliente";
-    }
-  };
-  const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leadAPagar);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leadAPagar);
-    }
-    setCurrentPage(1);
-  };
-  const headerCategory = () => {
-    if (categoryOrder === "ASC") {
-      return "Profesion ⤴";
-    } else if (categoryOrder === "DES") {
-      return "Profesion ⤵";
-    } else {
-      return "Profesion";
-    }
-  };
-  const handleOrderByCategory = () => {
-    if (categoryOrder === "ASC" || categoryOrder === "") {
-      setCategoryOrder("DES");
-      setClientOrder("");
-      dispatch(orderCategory(categoryOrder));
-      setData(leadAPagar);
-    } else {
-      setCategoryOrder("ASC");
-      dispatch(orderCategory(categoryOrder));
-      setData(leadAPagar);
-    }
-    setCurrentPage(1);
-  };
-  const handlerFilter = () => {
-    setFilters(!filters);
-  };
-  const [levelValue, setLevelValue] = useState("");
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(leadAPagar);
-    setCurrentPage(1);
-  };
-  const [statusValue, setStatusValue] = useState("");
-  const onChangeStatus = (value) => {
-    setStatusValue(value);
-    dispatch(filterStatus(value));
-    setData(leadAPagar);
-    setCurrentPage(1);
   };
 
   const [open, setOpen] = useState(false);
@@ -258,23 +188,13 @@ export const ContratandoLeader = () => {
           <div className="text-white text-14 font-thin">
             <div className="flex items-center justify-around p-3  ">
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByClient()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerClient()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Cliente</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByCategory()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerCategory()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28  text-white">Profesión</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">LVL</Text>
-                </button>
+                <Text className="text-center w-6 p-0 text-white">LVL</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Web</Text>
@@ -289,28 +209,16 @@ export const ContratandoLeader = () => {
                 <Text className="text-center w-6 p-0 text-white">Tel</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="pr-3 text-center text-white">Chequeado</Text>
+                <Text className=" w-24 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Corredor
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Corredor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Vendedor
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Vendedor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("status")}>
-                  <Text className="text-center w-48 p-0 text-white">
-                    Estado
-                  </Text>
-                </button>
+                <Text className="text-center w-48 p-0 text-white">Estado</Text>
               </div>
             </div>
           </div>

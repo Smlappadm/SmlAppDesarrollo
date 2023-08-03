@@ -12,13 +12,7 @@ import ModalCient from "./MaterialUi/ModalClient";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterLevel,
-  filterStatus,
-  getLeadDiscard,
-  orderCategory,
-  orderClients,
-} from "../../../redux/actions";
+import { getLeadDiscard } from "../../../redux/actions";
 import NavBar from "../NavBar/NavBar";
 
 export const AnalyticLeader = () => {
@@ -41,84 +35,6 @@ export const AnalyticLeader = () => {
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-  const [clientOrder, setClientOrder] = useState("");
-  const [categoryOrder, setCategoryOrder] = useState("");
-  const [filters, setFilters] = useState({
-    level: false,
-    runner: false,
-    sellers: false,
-    status: false,
-  });
-
-  const headerClient = () => {
-    if (clientOrder === "ASC") {
-      return "Cliente ⤴";
-    } else if (clientOrder === "DES") {
-      return "Cliente ⤵";
-    } else {
-      return "Cliente";
-    }
-  };
-  const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    }
-    setCurrentPage(1);
-  };
-  const headerCategory = () => {
-    if (categoryOrder === "ASC") {
-      return "Profesion ⤴";
-    } else if (categoryOrder === "DES") {
-      return "Profesion ⤵";
-    } else {
-      return "Profesion";
-    }
-  };
-  const handleOrderByCategory = () => {
-    if (categoryOrder === "ASC" || categoryOrder === "") {
-      setCategoryOrder("DES");
-      setClientOrder("");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
-    } else {
-      setCategoryOrder("ASC");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderDashboard);
-    }
-    setCurrentPage(1);
-  };
-  const handlerFilter = (filter) => {
-    if (filter === "level") {
-      setFilters({ level: true, runner: false, sellers: false, status: false });
-    } else if (filter === "runner") {
-      setFilters({ level: false, runner: true, sellers: false, status: false });
-    } else if (filter === "sellers") {
-      setFilters({ level: false, runner: false, sellers: true, status: false });
-    } else {
-      setFilters({ level: false, runner: false, sellers: false, status: true });
-    }
-  };
-  const [levelValue, setLevelValue] = useState("");
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(leaderDashboard);
-    setCurrentPage(1);
-  };
-  const [statusValue, setStatusValue] = useState("");
-  const onChangeStatus = (value) => {
-    setStatusValue(value);
-    dispatch(filterStatus(value));
-    setData(leaderDashboard);
-    setCurrentPage(1);
   };
 
   const [open, setOpen] = useState(false);
@@ -146,58 +62,34 @@ export const AnalyticLeader = () => {
           <div className="text-white text-14 font-thin">
             <div className="flex items-center justify-around p-3  ">
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByClient()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerClient()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28  text-white">Cliente</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByCategory()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerCategory()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28  text-white">Profesión</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">Nivel</Text>
-                </button>
+                <Text className="text-center w-6  text-white">Nivel</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Web</Text>
+                <Text className="text-center w-6  text-white">Web</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Mail</Text>
+                <Text className="text-center w-6  text-white">Mail</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">
-                  Instagram
-                </Text>
+                <Text className="text-center w-6  text-white">Instagram</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Telefono</Text>
+                <Text className="text-center w-6  text-white">Telefono</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("runner")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Corredor
-                  </Text>
-                </button>
+                <Text className="text-start w-28  text-white">Corredor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Vendedor
-                  </Text>
-                </button>
+                <Text className="text-start w-28 text-white">Vendedor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("status")}>
-                  <Text className="text-center w-48 p-0 text-white">
-                    Estado
-                  </Text>
-                </button>
+                <Text className="text-center w-48  text-white">Estado</Text>
               </div>
             </div>
           </div>

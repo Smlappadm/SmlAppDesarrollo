@@ -21,8 +21,6 @@ import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import NavBar from "../NavBar/NavBar";
-import { Button } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
@@ -527,13 +525,13 @@ const CorredoresDashboard = () => {
                             detailsLead[index] === false
                               ? { x: -200 }
                               : { x: 0 }
-                          } // Ancho inicial en 0
+                          }
                           animate={
                             detailsLead[index] === false
                               ? { x: 0 }
                               : { x: -200 }
-                          } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
-                          transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
+                          }
+                          transition={{ duration: 0.5 }}
                           style={
                             detailsLead[index] === true && { display: "none" }
                           }
