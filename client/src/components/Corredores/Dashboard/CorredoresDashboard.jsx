@@ -22,7 +22,6 @@ import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import NavBar from "../NavBar/NavBar";
 import { Button } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
