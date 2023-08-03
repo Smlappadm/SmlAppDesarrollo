@@ -128,19 +128,6 @@ export const ContratandoLeader = () => {
       return "Cliente";
     }
   };
-  const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leadAPagar);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leadAPagar);
-    }
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
