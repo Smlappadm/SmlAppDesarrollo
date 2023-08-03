@@ -349,7 +349,7 @@ const CorredoresDashboard = () => {
         )
       ).then(() => {
         loaderFuncion(false);
-        setPromisesNames([])
+        setPromisesNames([]);
       });
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
@@ -421,8 +421,6 @@ const CorredoresDashboard = () => {
       console.log({ error: error.message });
     }
   };
-
-  console.log(promisesNames);
 
   return (
     <>
