@@ -11,6 +11,7 @@ import {
   IoExitOutline,
   IoLogoSnapchat,
 } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 function Nav() {
   const { signOut } = useClerk();
@@ -266,7 +267,12 @@ function Nav() {
       </div>
 
       <div className="flex flex-col justify-center w-full items-center mb-10">
-        <div className="flex flex-col gap-5 items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 3 }}
+          className="flex flex-col gap-5 items-center justify-center"
+        >
           <div className="w-16 h-16">
             <img className="rounded-full" src={imageUrl} alt="avatar" />
           </div>
@@ -274,7 +280,7 @@ function Nav() {
             <p className="text-[.7rem] text-white">{userEmail}</p>
             <p className="text-[.7rem] text-white text-center">{fullName}</p>
           </div>
-        </div>
+        </motion.div>
         <Link to="/">
           <button
             onClick={handleLogout}
