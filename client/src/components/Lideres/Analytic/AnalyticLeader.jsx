@@ -60,19 +60,6 @@ export const AnalyticLeader = () => {
       return "Cliente";
     }
   };
-  const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leaderDashboard);
-    }
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
