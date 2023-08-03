@@ -166,7 +166,6 @@ export const ContratandoLeader = () => {
   const handlerFilter = () => {
     setFilters(!filters);
   };
-  const [levelValue, setLevelValue] = useState("");
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
