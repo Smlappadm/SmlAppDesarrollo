@@ -82,7 +82,6 @@ export const AnalyticLeader = () => {
       return "Profesion";
     }
   };
-  const handleOrderByCategory = () => {};
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
