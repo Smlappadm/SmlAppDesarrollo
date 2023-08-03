@@ -503,7 +503,7 @@ const CorredoresDashboard = () => {
                             detailsLead[index] === false
                               ? { x: -200 }
                               : { x: 0 }
-                          } // Ancho inicial en 0
+                          }
                           animate={
                             detailsLead[index] === false
                               ? { x: 0 }
