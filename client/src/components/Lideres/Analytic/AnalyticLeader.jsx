@@ -16,7 +16,6 @@ import {
   filterLevel,
   filterStatus,
   getLeadDiscard,
-  orderCategory,
 } from "../../../redux/actions";
 import NavBar from "../NavBar/NavBar";
 
