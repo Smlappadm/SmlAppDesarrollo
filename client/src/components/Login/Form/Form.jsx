@@ -29,7 +29,6 @@ const Form = (props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// Validar si existen errores en los datos
 		const propsArray = Object.values(errors);
 		if (propsArray.some((error) => error !== '')) {
 			alert('Debe llenar todos los campos correctamente');
