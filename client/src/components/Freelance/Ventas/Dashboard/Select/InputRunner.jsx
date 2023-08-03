@@ -49,7 +49,6 @@ export default function InputName({
     setLevel(value);
   };
 
-  //AGREGADO
   const handleChangeFreelancer = (event) => {
     setFreelancer(event.target.checked ? emailAddress : "");
     setCheckFreelancer(!checkFreelancer);
