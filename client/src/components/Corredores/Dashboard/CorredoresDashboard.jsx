@@ -21,7 +21,6 @@ import IconLabelButtons from "./MaterialUi/IconLabelButtons";
 import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import NavBar from "../NavBar/NavBar";
-import { Button } from "@mui/material";
 
 const CorredoresDashboard = () => {
   const [client, setClient] = useState([]);
