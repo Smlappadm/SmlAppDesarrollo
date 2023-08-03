@@ -18,8 +18,6 @@ const findLeadFreelancerNameAllInfo = async (
 
   // Crear un objeto "query" con los criterios de búsqueda iniciales:
   const query = {
-    // Se debe haber verificado (checked) el cliente potencial
-    // El cliente potencial debe estar marcado como "visto" (view)
     freelancer: true, // El cliente potencial debe ser un freelancer
   };
 
