@@ -353,7 +353,7 @@ const ClasificacionDashboard = () => {
   const handleSubmit = async () => {
     try {
       const updatePromises = [];
-      const nameClient = [];
+      const newPromisesNames = [];
       client.forEach(async (lead, index) => {
         const { level, instagram, name } = lead;
 
@@ -366,7 +366,8 @@ const ClasificacionDashboard = () => {
               loaderFuncion(true);
             }
             updatePromises.push(updateLead(lead));
-            nameClient.push(lead.name);
+            newPromisesNames.push(lead.name);
+            setPromisesNames(newPromisesNames);
           }
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
@@ -375,7 +376,8 @@ const ClasificacionDashboard = () => {
               loaderFuncion(true);
             }
             updatePromises.push(updateLead(lead));
-            nameClient.push(lead.name);
+            newPromisesNames.push(lead.name);
+            setPromisesNames(newPromisesNames);
           } else {
             SendLeadsErrorInsta(name);
           }
@@ -400,6 +402,7 @@ const ClasificacionDashboard = () => {
         )
       ).then(() => {
         loaderFuncion(false);
+        setPromisesNames([]);
       });
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
