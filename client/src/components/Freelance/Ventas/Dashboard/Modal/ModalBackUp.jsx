@@ -151,7 +151,6 @@ function ChildModal({
 
     let dataVendedor = {};
     if (statusObj.status === "No responde") {
-      // statusObj.status_op = "";
       dataVendedor = {
         _id: item._id,
         name: item.name,
@@ -168,7 +167,6 @@ function ChildModal({
         level: item.level,
       };
     } else {
-      // statusObj.status_op = "";
       dataVendedor = {
         _id: item._id,
         name: item.name,
