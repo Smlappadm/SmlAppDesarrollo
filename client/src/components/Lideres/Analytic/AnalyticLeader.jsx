@@ -167,11 +167,7 @@ export const AnalyticLeader = () => {
                 <Text className="text-center w-6 p-0 text-white">Telefono</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("runner")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Corredor
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">Corredor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("sellers")}>
