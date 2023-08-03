@@ -153,9 +153,7 @@ export const AnalyticLeader = () => {
                 </button>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-start w-28 p-0 text-white">
-                  Profesión
-                </Text>
+                <Text className="text-start w-28  text-white">Profesión</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Nivel</Text>
