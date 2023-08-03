@@ -1,6 +1,6 @@
 import style from "./ContratandoLeader.module.css";
 import PaginationOutlined from "../../pagination/PaginationOutlined";
-import { Card, Text, Title } from "@tremor/react";
+import { Card, Text } from "@tremor/react";
 import {
   CiMail,
   CiInstagram,
@@ -15,12 +15,8 @@ import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  filterLevel,
-  filterStatus,
   findCorredoresByNameAllInfoSeguimiento,
   getAllLeadAPagar,
-  orderCategory,
-  orderClients,
 } from "../../../redux/actions";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
@@ -115,7 +111,6 @@ export const ContratandoLeader = () => {
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  const [clientOrder, setClientOrder] = useState("");
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
