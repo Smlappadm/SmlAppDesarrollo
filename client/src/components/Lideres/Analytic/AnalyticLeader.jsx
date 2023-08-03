@@ -158,22 +158,22 @@ export const AnalyticLeader = () => {
                 <Text className="text-center w-6 p-0 text-white">Web</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Mail</Text>
+                <Text className="text-center w-6  text-white">Mail</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6  text-white">Instagram</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">Telefono</Text>
+                <Text className="text-center w-6  text-white">Telefono</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-start w-28 p-0 text-white">Corredor</Text>
+                <Text className="text-start w-28  text-white">Corredor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-start w-28 p-0 text-white">Vendedor</Text>
+                <Text className="text-start w-28 text-white">Vendedor</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-48 p-0 text-white">Estado</Text>
+                <Text className="text-center w-48  text-white">Estado</Text>
               </div>
             </div>
           </div>
