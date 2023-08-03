@@ -257,9 +257,7 @@ export const ContratandoLeader = () => {
           <div className="text-white text-14 font-thin">
             <div className="flex items-center justify-around p-3  ">
               <div className="flex justify-center items-center p-0">
-                <Text className="text-start w-28 p-0 text-white">
-                  {headerClient()}
-                </Text>
+                <Text className="text-start w-28 p-0 text-white">Cliente</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handleOrderByCategory()}>
