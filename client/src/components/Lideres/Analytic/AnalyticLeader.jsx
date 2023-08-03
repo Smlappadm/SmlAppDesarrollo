@@ -106,7 +106,6 @@ export const AnalyticLeader = () => {
       setFilters({ level: false, runner: false, sellers: false, status: true });
     }
   };
-  const [levelValue, setLevelValue] = useState("");
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
