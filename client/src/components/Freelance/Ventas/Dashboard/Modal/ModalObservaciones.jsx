@@ -6,9 +6,6 @@ import Modal from "@mui/material/Modal";
 import { CiWarning, CiEdit } from "react-icons/ci";
 import { useUser } from "@clerk/clerk-react";
 import { orderCategory } from "../../../../../redux/actions";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { CgFileAdd } from "react-icons/cg";
-import { BsCheck } from "react-icons/bs";
 import { FaHistory, FaWhatsapp } from "react-icons/fa";
 
 const style = {
