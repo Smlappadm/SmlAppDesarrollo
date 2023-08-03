@@ -209,7 +209,7 @@ export const ContratandoLeader = () => {
                 <Text className="text-center w-6 p-0 text-white">Tel</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="pr-3 text-center text-white">Chequeado</Text>
+                <Text className=" w-24 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-start w-28 p-0 text-white">Corredor</Text>
