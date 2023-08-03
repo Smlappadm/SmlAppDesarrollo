@@ -509,7 +509,7 @@ const CorredoresDashboard = () => {
                               ? { x: 0 }
                               : { x: -200 }
                           } // Ancho final al 100% (se ajusta automáticamente al ancho del contenedor padre)
-                          transition={{ duration: 0.5 }} // Duración de la animación en segundos y tipo de transición "tween"
+                          transition={{ duration: 0.5 }}
                           style={
                             detailsLead[index] === true && { display: "none" }
                           }
