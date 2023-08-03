@@ -95,17 +95,6 @@ export const AnalyticLeader = () => {
     }
     setCurrentPage(1);
   };
-  const handlerFilter = (filter) => {
-    if (filter === "level") {
-      setFilters({ level: true, runner: false, sellers: false, status: false });
-    } else if (filter === "runner") {
-      setFilters({ level: false, runner: true, sellers: false, status: false });
-    } else if (filter === "sellers") {
-      setFilters({ level: false, runner: false, sellers: true, status: false });
-    } else {
-      setFilters({ level: false, runner: false, sellers: false, status: true });
-    }
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
