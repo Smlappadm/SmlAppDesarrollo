@@ -167,12 +167,6 @@ export const ContratandoLeader = () => {
     setFilters(!filters);
   };
   const [levelValue, setLevelValue] = useState("");
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(leadAPagar);
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
