@@ -43,7 +43,6 @@ export const AnalyticLeader = () => {
     setCurrentPage(pageNumber);
   };
   const [clientOrder, setClientOrder] = useState("");
-  const [categoryOrder, setCategoryOrder] = useState("");
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
