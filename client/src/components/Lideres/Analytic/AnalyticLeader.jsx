@@ -113,7 +113,6 @@ export const AnalyticLeader = () => {
     setData(leaderDashboard);
     setCurrentPage(1);
   };
-  const [statusValue, setStatusValue] = useState("");
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
