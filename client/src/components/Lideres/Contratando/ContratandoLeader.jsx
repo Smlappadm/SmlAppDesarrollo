@@ -163,9 +163,6 @@ export const ContratandoLeader = () => {
     }
     setCurrentPage(1);
   };
-  const handlerFilter = () => {
-    setFilters(!filters);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
