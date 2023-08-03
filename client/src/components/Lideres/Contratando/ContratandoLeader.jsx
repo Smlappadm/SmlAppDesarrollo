@@ -263,9 +263,7 @@ export const ContratandoLeader = () => {
                 <Text className="text-start w-28  text-white">Profesión</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">LVL</Text>
-                </button>
+                <Text className="text-center w-6 p-0 text-white">LVL</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Web</Text>
