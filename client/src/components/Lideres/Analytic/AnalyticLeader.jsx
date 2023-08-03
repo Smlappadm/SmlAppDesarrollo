@@ -161,9 +161,7 @@ export const AnalyticLeader = () => {
                 <Text className="text-center w-6 p-0 text-white">Mail</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="text-center w-6 p-0 text-white">
-                  Instagram
-                </Text>
+                <Text className="text-center w-6  text-white">Instagram</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Telefono</Text>
