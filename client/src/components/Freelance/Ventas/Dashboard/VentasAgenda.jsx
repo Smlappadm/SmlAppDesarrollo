@@ -386,40 +386,6 @@ const VentasDashboard = () => {
                           )}
                         </div>
                         <div className=" w-[13%] flex flex-col justify-center items-center p-0">
-                          {/* <h1>sss</h1>
-                          {item.llamada_venta.contacto ? (
-                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              {item.llamada_venta.contacto}
-                            </p>
-                          ) : (
-                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              Sin contacto
-                            </p>
-                          )} */}
-
-                          {/* {item.observaciones_ventas.contacto ? (
-                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              {item.observaciones_ventas.hableCon}
-                            </p>
-                          ) : (
-                            <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                              Sin contacto
-                            </p>
-                          )} */}
-
-                          {/* <div className=" flex justify-center items-center">
-                            {typeof item.llamada_venta.dia_hora !==
-                              "undefined" &&
-                            item.llamada_venta?.dia_hora[5] !== "u" ? (
-                              <p className="w-fit rounded-full text-ellipsis text-14 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                {item.llamada_venta.dia_hora}
-                              </p>
-                            ) : (
-                              <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
-                                Sin Día/Hora
-                              </p>
-                            )}
-                          </div> */}
                           <div className=" flex justify-center items-center">
                             {item.status === "Agenda llamada" &&
                               item.llamada_venta?.dia_hora[0] !== "u" && (
@@ -442,15 +408,6 @@ const VentasDashboard = () => {
                             </label>
                             // </div>
                           )}
-
-                          {/* <AiOutlineInfoCircle
-                            className="border-2  border-[#dddb6376] text-1 text-[#dddb63b0] w-8 h-8 rounded-md cursor-pointer "
-                            onClick={() => {
-                              showObservacionesHandler(
-                                item.llamada_venta.observaciones
-                              );
-                            }}
-                          /> */}
                         </div>
                         <div className=" w-[15%] flex justify-center items-start p-0">
                           {item.status === "Contratado" && (
