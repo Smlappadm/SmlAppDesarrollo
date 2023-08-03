@@ -101,7 +101,7 @@ function ChildModal({
                 Cerrar
               </Button>
               <Button variant="contained" onClick={handleIncidencia}>
-                Enviar incidencia
+              Guardar incidencia
               </Button>
             </div>
           </div>
