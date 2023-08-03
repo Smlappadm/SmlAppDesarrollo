@@ -158,7 +158,6 @@ function ChildModal({
       statusObj.emailApp = item.emailApp;
       statusObj.llamada_venta = {
         dia_hora: llamadoVenta.diaHora,
-        // contacto: statusObj.observaciones.hableCon,
         observaciones: llamadoVenta.observaciones,
         dateObject: {
           hora: llamadoVenta.hora,
