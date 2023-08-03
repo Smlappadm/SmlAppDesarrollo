@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { CiWarning } from "react-icons/ci";
+
 import {
   IoGrid,
-  IoLogoSnapchat,
-  IoStatsChart,
-  IoRocketOutline,
-  IoCashOutline,
 } from "react-icons/io5";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { Link } from "react-router-dom";

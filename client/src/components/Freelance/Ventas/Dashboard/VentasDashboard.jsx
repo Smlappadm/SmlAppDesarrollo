@@ -75,17 +75,7 @@ const VentasDashboard = () => {
     );
   };
 
-  const [levelValue, setLevelValue] = useState("");
 
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(vendedoresDashboard);
-    setCurrentPage(1);
-    if (!value) {
-      setFilters({ ...filters, level: !filters.level });
-    }
-  };
   //********************************* */
 
   const handleCopyClick = (copyToProps) => {
