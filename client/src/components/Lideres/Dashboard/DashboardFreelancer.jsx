@@ -75,11 +75,7 @@ export const DashboardFreelancer = () => {
       setCategoryOrder("");
       dispatch(orderClients(clientOrder));
       setData(leaderFreelancer);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leaderFreelancer);
-    
+    } 
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
