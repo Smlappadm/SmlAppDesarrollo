@@ -225,11 +225,9 @@ export const DashboardFreelancer = () => {
                 <Text className="pr-3 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Freelancer
-                  </Text>
-                </button>
+                <Text className="text-start w-28 p-0 text-white">
+                  Freelancer
+                </Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <button onClick={() => handlerFilter("status")}>
@@ -373,14 +371,16 @@ export const DashboardFreelancer = () => {
                         ) : (
                           ""
                         )}
-                        {item.checked === true && item.status === "Sin contactar" ? (
+                        {item.checked === true &&
+                        item.status === "Sin contactar" ? (
                           <Text className="bg-[#d0da3d]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
                             Sin Contactar
                           </Text>
                         ) : (
                           ""
                         )}
-                        {item.checked === false && item.status === "Sin contactar" ? (
+                        {item.checked === false &&
+                        item.status === "Sin contactar" ? (
                           <Text className="bg-[#666666]  text-white  px-2 py-1.5 rounded-xl text-center w-48">
                             Sin Clasficar
                           </Text>
