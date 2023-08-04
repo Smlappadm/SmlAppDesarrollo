@@ -11,6 +11,7 @@ import {
   getAllProfesion,
 } from "../../../../../redux/actions";
 
+// Componente funcional InputRunner
 export default function InputRunner({
   getLeadClasificacion,
   email,
@@ -29,16 +30,19 @@ export default function InputRunner({
   const [checkF, setCheckF] = useState(false);
   const [freelancer, setFreelancer] = useState("undefined");
 
+  // Obtener datos de Redux Store mediante useSelector
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
 
+  // Efecto para cargar datos iniciales desde Redux Store
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCategory());
     dispatch(getAllCountries());
   }, [dispatch]);
 
+  // Funciones para manejar cambios en los campos de entrada
   const handleChangeProfesion = (event) => {
     let value = event.target.value;
     setProfesion(value);
@@ -55,15 +59,18 @@ export default function InputRunner({
   };
 
   const handleChangeNombrePropio = (event) => {
+    // Cambiar el estado "marca_personal" basado en el valor del checkbox
     setMarca_personal(event.target.checked ? "SI" : "");
     setCheck(!check);
   };
 
   const handleChangeFreelancer = (event) => {
+    // Cambiar el estado "freelancer" basado en el valor del checkbox
     setFreelancer(event.target.checked ? email : "undefined");
     setCheckF(!checkF);
   };
 
+  // Funciones para manejar el filtrado y reseteo de datos
   const handleFilterClick = () => {
     dispatch(
       getLeadClasificacion(
@@ -87,8 +94,10 @@ export default function InputRunner({
   };
 
   return (
+    // Contenedor de la interfaz de usuario
     <Box
       sx={{
+        // Estilos para el contenedor
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -109,7 +118,9 @@ export default function InputRunner({
         },
       }}
     >
+      {/* Contenido del componente */}
       <div className="flex items-center justify-center gap-5">
+        {/* Dropdown para seleccionar profesión */}
         <div className="flex flex-col">
           <label>Profesion:</label>
           <Select
@@ -136,6 +147,7 @@ export default function InputRunner({
             }}
           >
             <MenuItem value="">Profesion</MenuItem>
+            {/* Mapear opciones de profesión desde la variable "allProfesion" */}
             {allProfesion.map((profesion) => (
               <MenuItem key={profesion} value={profesion}>
                 {profesion}
@@ -143,6 +155,7 @@ export default function InputRunner({
             ))}
           </Select>
         </div>
+        {/* Dropdown para seleccionar categoría */}
         <div className="flex flex-col">
           <label>Categoria:</label>
           <Select
@@ -169,6 +182,7 @@ export default function InputRunner({
             }}
           >
             <MenuItem value="">Categoria</MenuItem>
+            {/* Mapear opciones de categoría desde la variable "allCategory" */}
             {allCategory.map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
@@ -176,6 +190,7 @@ export default function InputRunner({
             ))}
           </Select>
         </div>
+        {/* Dropdown para seleccionar país */}
         <div className="flex flex-col">
           <label>Paises:</label>
           <Select
@@ -202,6 +217,7 @@ export default function InputRunner({
             }}
           >
             <MenuItem value="">Pais</MenuItem>
+            {/* Mapear opciones de país desde la variable "allCountries" */}
             {allCountries.map((country) => (
               <MenuItem key={country} value={country}>
                 {country}
@@ -209,6 +225,7 @@ export default function InputRunner({
             ))}
           </Select>
         </div>
+        {/* Checkbox para seleccionar "marca personal" */}
         <div className="flex w-12 items-center justify-center flex-col">
           <div>
             <label>Propio:</label>
@@ -231,6 +248,7 @@ export default function InputRunner({
             />
           </div>
         </div>
+        {/* Checkbox para seleccionar "freelancer" */}
         <div className="flex w-18 items-center justify-center flex-col">
           <div>
             <label>Freelancer:</label>
@@ -253,7 +271,9 @@ export default function InputRunner({
             />
           </div>
         </div>
+        {/* Botones para filtrar y resetear */}
         <div className="flex gap-5 items-end justify-center">
+          {/* Botón para filtrar */}
           <Button
             onClick={handleFilterClick}
             variant="contained"
@@ -266,6 +286,7 @@ export default function InputRunner({
           >
             Filtrar
           </Button>
+          {/* Botón para resetear */}
           <Button
             onClick={handleFilterReset}
             variant="outlined"
