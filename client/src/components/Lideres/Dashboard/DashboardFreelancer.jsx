@@ -58,7 +58,6 @@ export const DashboardFreelancer = () => {
   };
   const [clientOrder, setClientOrder] = useState("");
   const [categoryOrder, setCategoryOrder] = useState("");
-  const [filters, setFilters] = useState(false);
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
