@@ -1256,41 +1256,9 @@ export default function NestedModal({
               </div>
             </div>
             <div className="flex flex-col absolute right-4 top-4">
-              {/* <div className="bg-[#8d8b0c] text-[#e8e8e9] w-[40px] rounded-md h-9 text-[35px] drop-shadow-xl hover:bg-[#c94219] ">
-                <IncidenceModal
-                  setOpen={setOpen}
-                  SendIncidenceAlert={SendIncidenceAlert}
-                  setStatusObj={setStatusObj}
-                  statusObj={statusObj}
-                  item={item}
-                  emailAddress={emailAddress}
-                  fullName={fullName}
-                  updateLeads={updateLeads}
-                />
-              </div> */}
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full my-10 gap-1 ">
-            {/* <h1 className="text-14 text-white mb-3">- ESTADO DE CUENTA -</h1>
-            <div className="gap-3 flex flex-col justify-center items-center w-56 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-              <div className="w-48 flex justify-start items-center">
-                <h3 className="w-36">Valor servicio:</h3>
-                <h3>{`€${item.pagos && item.pagos.monto}`} </h3>
-              </div>
-              <div className="w-48 flex justify-start items-center">
-                <h3 className="w-36">Cantidad cuotas:</h3>
-                {console.log(item.pagos && item.pagos.cuotas === "undefined" && "sdddddd")}
-                <h3>{`${item.pagos && item.pagos.cuotas !== "undefined" && item.pagos.cuotas}`}</h3>
-              </div>
-              <div className="w-48 flex justify-start items-center">
-                <h3 className="w-36">Valor cuotas:</h3>
-                <h3>{`€${item.pagos && item.pagos.valorCuota}`}</h3>
-              </div>
-              <div className="w-48 flex justify-start items-center">
-                <h3 className="w-36">Pagos realizados:</h3>
-                <h3>{`${item.pagos && item.pagos.cuotasPagadas}/${item.pagos && item.pagos.cuotas}`}</h3>
-              </div>
-            </div> */}
           </div>
 
           <div className=" h-fit flex items-center justify-start flex-col mb-10">

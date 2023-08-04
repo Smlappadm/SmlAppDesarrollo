@@ -15,13 +15,7 @@ import Ranking from "./MaterialUi/ModalRanking";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterLevel,
-  filterStatus,
-  getLeadCheckedFreelancer,
-  orderCategory,
-  orderClients,
-} from "../../../redux/actions";
+import { getLeadCheckedFreelancer } from "../../../redux/actions";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
@@ -55,71 +49,6 @@ export const DashboardFreelancer = () => {
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
-  };
-  const [clientOrder, setClientOrder] = useState("");
-  const [categoryOrder, setCategoryOrder] = useState("");
-  const [filters, setFilters] = useState(false);
-
-  const headerClient = () => {
-    if (clientOrder === "ASC") {
-      return "Cliente ⤴";
-    } else if (clientOrder === "DES") {
-      return "Cliente ⤵";
-    } else {
-      return "Cliente";
-    }
-  };
-  const handleOrderByClient = () => {
-    if (clientOrder === "ASC" || clientOrder === "") {
-      setClientOrder("DES");
-      setCategoryOrder("");
-      dispatch(orderClients(clientOrder));
-      setData(leaderFreelancer);
-    } else {
-      setClientOrder("ASC");
-      dispatch(orderClients(clientOrder));
-      setData(leaderFreelancer);
-    }
-    setCurrentPage(1);
-  };
-  const headerCategory = () => {
-    if (categoryOrder === "ASC") {
-      return "Profesion ⤴";
-    } else if (categoryOrder === "DES") {
-      return "Profesion ⤵";
-    } else {
-      return "Profesion";
-    }
-  };
-  const handleOrderByCategory = () => {
-    if (categoryOrder === "ASC" || categoryOrder === "") {
-      setCategoryOrder("DES");
-      setClientOrder("");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderFreelancer);
-    } else {
-      setCategoryOrder("ASC");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderFreelancer);
-    }
-    setCurrentPage(1);
-  };
-  const handlerFilter = () => {
-    setFilters(!filters);
-  };
-  const [levelValue, setLevelValue] = useState("");
-  const onChangeLevel = (value) => {
-    setLevelValue(value);
-    dispatch(filterLevel(value));
-    setData(leaderFreelancer);
-    setCurrentPage(1);
-  };
-  const [statusValue, setStatusValue] = useState("");
-  const onChangeStatus = (value) => {
-    setStatusValue(value);
-    dispatch(filterStatus(value));
-    setData(leaderFreelancer);
-    setCurrentPage(1);
   };
 
   const [open, setOpen] = useState(false);
@@ -191,23 +120,13 @@ export const DashboardFreelancer = () => {
           <div className="text-white text-14 font-thin">
             <div className="flex items-center justify-around p-3  ">
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByClient()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerClient()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28  text-white">Cliente</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handleOrderByCategory()}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    {headerCategory()}
-                  </Text>
-                </button>
+                <Text className="text-start w-28 text-white">Profesión</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("level")}>
-                  <Text className="text-center w-6 p-0 text-white">LVL</Text>
-                </button>
+                <Text className="text-center w-6 p-0 text-white">LVL</Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Web</Text>
@@ -225,18 +144,10 @@ export const DashboardFreelancer = () => {
                 <Text className="pr-3 text-center text-white">Chequeado</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("sellers")}>
-                  <Text className="text-start w-28 p-0 text-white">
-                    Freelancer
-                  </Text>
-                </button>
+                <Text className="text-start w-28  text-white">Freelancer</Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <button onClick={() => handlerFilter("status")}>
-                  <Text className="text-center w-48 p-0 text-white">
-                    Estado
-                  </Text>
-                </button>
+                <Text className="text-center w-48 p-0 text-white">Estado</Text>
               </div>
             </div>
           </div>
@@ -373,14 +284,16 @@ export const DashboardFreelancer = () => {
                         ) : (
                           ""
                         )}
-                        {item.checked === true && item.status === "Sin contactar" ? (
+                        {item.checked === true &&
+                        item.status === "Sin contactar" ? (
                           <Text className="bg-[#d0da3d]  text-black  px-2 py-1.5 rounded-xl text-center w-48">
                             Sin Contactar
                           </Text>
                         ) : (
                           ""
                         )}
-                        {item.checked === false && item.status === "Sin contactar" ? (
+                        {item.checked === false &&
+                        item.status === "Sin contactar" ? (
                           <Text className="bg-[#666666]  text-white  px-2 py-1.5 rounded-xl text-center w-48">
                             Sin Clasficar
                           </Text>

@@ -1417,12 +1417,7 @@ export default function NestedModal({
                     id="select1"
                     className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
-                    {/* <option value="Sin contactar">Sin Contactar</option> */}
-                    {/* <option value="Agenda llamada">En proceso</option> */}
                     <option value="Contactado">Contactado</option>
-                    {/* <option value="Contratado">Contratado</option> */}
-                    {/* <option value="Rechazado">Rechazado</option> */}
-                    {/* <option value="No responde">No Responde</option> */}
                   </select>
 
                   {statusObj.status === "Rechazado" && (
@@ -1447,7 +1442,6 @@ export default function NestedModal({
                         </option>
                         <option value="En proceso">En proceso</option>
                         <option value="Agenda llamada">Agenda llamada</option>
-                        {/* <option value="Contratando">Contratando</option> */}
                         <option value="A pagar">A pagar</option>
                         <option value="Rechazado">Rechazado</option>
                         <option value="No responde">Sin contestar</option>
@@ -1517,18 +1511,15 @@ export default function NestedModal({
                     >
                       Observaciones
                     </label>
-                    {/* <div className="flex justify-center items-center"> */}
                     <textarea
                       onChange={handleObservationChange}
                       type="text"
                       id="last_name"
                       name="observacion"
-                      // value={llamadoVenta.observaciones}
                       className="mt-3 bbg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder=""
                       required
                     />
-                    {/* </div> */}
                   </div>
                 </>
               ) : (
