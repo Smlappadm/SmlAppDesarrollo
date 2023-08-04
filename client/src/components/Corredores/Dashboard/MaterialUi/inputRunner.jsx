@@ -1,3 +1,4 @@
+// Importar las dependencias necesarias desde React y Material-UI
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Select from "@mui/material/Select";
@@ -12,6 +13,7 @@ import {
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
 
+// Definir el componente funcional InputRunner
 export default function InputRunner({
   email,
   names,
@@ -24,19 +26,23 @@ export default function InputRunner({
   setCountry,
   setMarca_personal,
 }) {
+  // Dispatch para acceder a las acciones de Redux
   const dispatch = useDispatch();
   const [check, setCheck] = useState(false);
 
+  // Obtener datos de los estados de Redux mediante useSelector
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
 
+  // Cargar las opciones de profesión, categoría y países al montar el componente
   useEffect(() => {
     dispatch(getAllProfesion());
     dispatch(getAllCategory());
     dispatch(getAllCountries());
   }, [dispatch]);
 
+  // Funciones para manejar los cambios en las opciones seleccionadas
   const handleChangeProfesion = (event) => {
     let value = event.target.value;
     setProfesion(value);
@@ -52,11 +58,13 @@ export default function InputRunner({
     setCountry(value);
   };
 
+  // Función para manejar el cambio en la opción "Propio" (Marca personal)
   const handleChangeNombrePropio = (event) => {
     setMarca_personal(event.target.checked ? "SI" : "");
     setCheck(!check);
   };
 
+  // Funciones para manejar los eventos de filtrado y reseteo
   const handleFilterClick = () => {
     dispatch(
       getLeadCorredores(
@@ -92,6 +100,7 @@ export default function InputRunner({
   return (
     <Box
       sx={{
+        // Estilos del contenedor principal
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -113,6 +122,7 @@ export default function InputRunner({
       }}
     >
       <div className="flex items-center justify-center gap-5">
+        {/* Select para elegir la profesión */}
         <div className="flex flex-col">
           <label>Profesion:</label>
           <Select
@@ -146,6 +156,7 @@ export default function InputRunner({
             ))}
           </Select>
         </div>
+        {/* Select para elegir la categoría */}
         <div className="flex flex-col">
           <label>Categoria:</label>
           <Select
@@ -180,6 +191,7 @@ export default function InputRunner({
             ))}
           </Select>
         </div>
+        {/* Select para elegir el país */}
         <div className="flex flex-col">
           <label>Paises:</label>
           <Select
@@ -213,6 +225,7 @@ export default function InputRunner({
             ))}
           </Select>
         </div>
+        {/* Checkbox para seleccionar la opción "Propio" */}
         <div className="flex w-12 items-center justify-center flex-col">
           <div>
             <label>Propio:</label>
@@ -235,6 +248,7 @@ export default function InputRunner({
             />
           </div>
         </div>
+        {/* Botones para aplicar filtros y resetear */}
         <div className="flex gap-5 items-end justify-center">
           <Button
             onClick={handleFilterClick}

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// Importar las dependencias necesarias desde React y Material-UI
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
@@ -8,6 +9,7 @@ import { BsFillEnvelopePaperFill } from "react-icons/bs";
 import { getLeadCorredores } from "../../../../redux/actions";
 import { useDispatch } from "react-redux";
 
+// Estilos del modal
 const style = {
   position: "absolute",
   top: "50%",
@@ -22,6 +24,7 @@ const style = {
   pb: 3,
 };
 
+// Componente ChildModal que muestra un modal dentro de otro modal
 function ChildModal({
   inputIncidencia,
   handleReset,
@@ -36,6 +39,7 @@ function ChildModal({
 }) {
   const dispatch = useDispatch();
 
+  // Estado para controlar la apertura y cierre del modal interno
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -44,6 +48,7 @@ function ChildModal({
     setOpen(false);
   };
 
+  // Función para guardar la incidencia en la base de datos
   const handleIncidencia = async () => {
     try {
       const response = await axios.put(`/lead/${item._id}`, {
@@ -54,6 +59,7 @@ function ChildModal({
       console.log(`No se pudo enviar la incidencia`);
     }
 
+    // Actualizar la lista de corredores después de guardar la incidencia
     dispatch(
       getLeadCorredores(
         email,
@@ -72,6 +78,7 @@ function ChildModal({
 
   return (
     <div>
+      {/* Botones para cerrar el modal interno o guardar la incidencia */}
       <div className="flex gap-2 justify-center items-center mt-5">
         <Button variant="outlined" onClick={handleCloseChild}>
           Cerrar
@@ -80,6 +87,7 @@ function ChildModal({
           Siguiente
         </Button>
       </div>
+      {/* Modal interno para mostrar la descripción de la incidencia */}
       <Modal
         open={open}
         aria-labelledby="child-modal-title"
@@ -95,7 +103,7 @@ function ChildModal({
               </div>
             </div>
             <p id="child-modal-description">
-              Estas seguro que queres enviar esta incidencia?
+              Estas seguro que quieres enviar esta incidencia?
             </p>
             <div className="flex justify-center gap-2 items-center">
               <Button variant="outlined" onClick={handleClose}>
@@ -112,6 +120,7 @@ function ChildModal({
   );
 }
 
+// Componente NestedModal que muestra un modal con otro modal dentro
 export default function NestedModal({
   item,
   email,
@@ -130,14 +139,17 @@ export default function NestedModal({
     setOpen(false);
   };
 
+  // Estado para almacenar la descripción de la incidencia
   const [inputIncidencia, setInputIncidencia] = useState(item.status_op);
 
+  // Función para resetear el valor de la descripción de incidencia
   const handleReset = () => {
     setInputIncidencia("");
   };
 
   return (
     <div>
+      {/* Botón para abrir el modal */}
       <Button onClick={handleOpen}>
         {item.status_op === "" ? (
           <BsFillEnvelopePaperFill className="text-[1.6rem] text-[#a89e3c] hover:text-[#3570bd]" />
@@ -145,6 +157,7 @@ export default function NestedModal({
           <BsFillEnvelopePaperFill className="text-[1.6rem] text-[#4da342] hover:text-[#3570bd]" />
         )}
       </Button>
+      {/* Modal principal */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -164,12 +177,14 @@ export default function NestedModal({
               <h2 id="parent-modal-title">Nueva incidencia</h2>
             </div>
             <div className="flex flex-col items-center justify-center gap-5">
+              {/* Componente InputIncidencia para ingresar la descripción */}
               <InputIncidencia
                 inputIncidencia={inputIncidencia}
                 setInputIncidencia={setInputIncidencia}
               />
             </div>
           </div>
+          {/* Componente ChildModal para mostrar el modal interno */}
           <ChildModal
             item={item}
             inputIncidencia={inputIncidencia}

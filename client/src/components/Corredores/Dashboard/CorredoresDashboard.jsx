@@ -1,3 +1,4 @@
+//Import
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -22,7 +23,9 @@ import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import NavBar from "../NavBar/NavBar";
 
+//Componente Dashboard Corredores
 const CorredoresDashboard = () => {
+  //Estodos
   const [client, setClient] = useState([]);
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
@@ -43,10 +46,13 @@ const CorredoresDashboard = () => {
     false,
   ]);
 
+  //Estados de redux
   const { corredorLead, corredor } = useSelector((state) => state);
 
+  //Dispatch
   const dispatch = useDispatch();
 
+  // Obtener el usuario actual usando Clerk (biblioteca de autenticación)
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
 
@@ -56,17 +62,20 @@ const CorredoresDashboard = () => {
   let names = localStorage.getItem("corredorName");
 
   const username = corredor.name;
+
   useEffect(() => {
     localStorage.setItem("corredorName", username);
   }, [corredor]);
 
   useEffect(() => {
+    // Si se ha proporcionado un correo electrónico, obtener los corredores por email
     if (mail !== undefined) {
       dispatch(getAllCorredoresByEmail(mail));
     }
   }, [dispatch, mail, username]);
 
   useEffect(() => {
+    // Si se ha proporcionado un correo electrónico, obtener los corredores líderes
     if (mail !== undefined) {
       dispatch(
         getLeadCorredores(
@@ -79,11 +88,13 @@ const CorredoresDashboard = () => {
         )
       );
     }
+    // Obtener todas las profesiones, países y categorías
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
     dispatch(getAllCategory());
   }, [dispatch, mail, username]);
 
+  // Manejar la lista de verificación de detalles de los corredores líderes
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
       const updatedDetailsLead = [...prevDetailsLead];
@@ -92,6 +103,7 @@ const CorredoresDashboard = () => {
     });
   };
 
+  // Manejar el cambio de datos de entrada de los corredores líderes
   const handleChangeInput = (event, index) => {
     const { name, value } = event.target;
 
@@ -105,6 +117,7 @@ const CorredoresDashboard = () => {
     });
   };
 
+  // Manejar el clic en el cliente para ocultar o mostrar detalles adicionales
   const handleClientClick = (event, index) => {
     const { name, value } = event.target;
 
@@ -128,6 +141,7 @@ const CorredoresDashboard = () => {
     });
   };
 
+  // Manejar el cambio en la casilla de verificación
   const handleCheck = (event, index) => {
     const { name, checked } = event.target;
     const value = checked ? true : false;
@@ -146,6 +160,7 @@ const CorredoresDashboard = () => {
   useEffect(() => {
     let clientes = [];
     let i = 0;
+    // Si hay corredores líderes, crear una nueva lista de clientes con los datos relevantes
     if (corredorLead && corredorLead.length > 0) {
       for (let i = 0; i < corredorLead.length; i++) {
         if (corredorLead[i] && corredorLead[i]._id) {
@@ -173,6 +188,7 @@ const CorredoresDashboard = () => {
   }, [corredorLead]);
 
   useEffect(() => {
+    // Actualizar los clientes en la base de datos cuando cambian los datos
     const updateClients = async () => {
       if (corredorLead.length !== client.length) {
         return;
@@ -198,7 +214,8 @@ const CorredoresDashboard = () => {
     updateClients();
   }, [client]);
 
-  const SendLeads = () => {
+  // Función para mostrar una notificación de información al enviar el formulario
+const SendLeads = () => {
     toast.info(`✔ Enviando formulario! `, {
       position: "top-center",
       autoClose: 500,
@@ -210,7 +227,9 @@ const CorredoresDashboard = () => {
       theme: "dark",
     });
   };
-  const SendLeadsErrorInsta = (name) => {
+
+  // Función para mostrar una notificación de error cuando falta el nombre de Instagram
+const SendLeadsErrorInsta = (name) => {
     toast.error(`❌ Error Instagram incompleto ${name}!`, {
       position: "top-center",
       autoClose: 3000,
@@ -222,7 +241,9 @@ const CorredoresDashboard = () => {
       theme: "dark",
     });
   };
-  const SendLeadsErrorLevel = (name) => {
+
+  // Función para mostrar una notificación de error cuando falta el nivel
+const SendLeadsErrorLevel = (name) => {
     toast.error(`❌ Error nivel incompleto ${name}!`, {
       position: "top-center",
       autoClose: 3000,
@@ -234,7 +255,9 @@ const CorredoresDashboard = () => {
       theme: "dark",
     });
   };
-  const SendLeadsErrorInsta0 = (name) => {
+  
+  // Función para mostrar una notificación de error cuando el nivel es 0
+const SendLeadsErrorInsta0 = (name) => {
     toast.error(`❌ Error instagram con nivel 0 ${name}!`, {
       position: "top-center",
       autoClose: 3000,
@@ -246,7 +269,9 @@ const CorredoresDashboard = () => {
       theme: "dark",
     });
   };
-  const SendLeadsSuccess = () => {
+  
+  // Función para mostrar una notificación de éxito al enviar leads
+const SendLeadsSuccess = () => {
     toast.success(`✔ Envío de leads exitoso!`, {
       position: "top-center",
       autoClose: 3000,
@@ -258,7 +283,9 @@ const CorredoresDashboard = () => {
       theme: "dark",
     });
   };
-  const SendLeadsError = (name) => {
+  
+  // Función para mostrar una notificación de error al enviar leads
+const SendLeadsError = (name) => {
     toast.error(`✔ Error al enviar los leads! ${name}`, {
       position: "top-center",
       autoClose: 3000,
@@ -270,18 +297,22 @@ const CorredoresDashboard = () => {
       theme: "dark",
     });
   };
-  const loaderFuncion = (status) => {
+  // Función para controlar el estado del loader
+const loaderFuncion = (status) => {
     setLoader(status);
   };
 
-  const date = new Date();
+  // Obtener la fecha actual y darle formato para el registro de actualizaciones de corredores
+const date = new Date();
   date.setHours(date.getHours() - 3);
   const formattedTime = date.toISOString();
 
-  const instagramRegex =
+  // Expresión regular para verificar el formato de Instagram
+const instagramRegex =
     /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
-  const updateLead = async (lead) => {
+  // Función para actualizar un lead
+const updateLead = async (lead) => {
     return axios.put(`/lead/${lead._id}`, {
       instagram: lead.instagram,
       email: lead.email,
@@ -298,7 +329,8 @@ const CorredoresDashboard = () => {
     });
   };
 
-  const handleSubmit = async () => {
+  // Función para manejar el envío del formulario
+const handleSubmit = async () => {
     try {
       const updatePromises = [];
       const newPromisesNames = [];
@@ -360,7 +392,8 @@ const CorredoresDashboard = () => {
     }
   };
 
-  const handleSubmitOne = async (item) => {
+  // Función para manejar el envío del formulario para un solo item
+const handleSubmitOne = async (item) => {
     const updateLead = async (item) => {
       const response = await axios.put(`/lead/${item._id}`, {
         instagram: item.instagram,
