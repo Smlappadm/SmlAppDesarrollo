@@ -16,10 +16,6 @@ export default function ResponsiveDateTimePickers({
   let date = "";
   const today = dayjs();
 
-  const handleAcept = (date) => {
-// setSelectedDate(date);
-    closeDateHour();
-  };
   const handleDateChange = (date) => {
     setSelectedDate(date);
     handleLlamadoVentaChange()
