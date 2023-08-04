@@ -15,11 +15,7 @@ import Ranking from "./MaterialUi/ModalRanking";
 import Nav from "../../Nav/Nav";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterLevel,
-  filterStatus,
-  getLeadCheckedFreelancer,
-} from "../../../redux/actions";
+import { getLeadCheckedFreelancer } from "../../../redux/actions";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
 import axios from "axios";
