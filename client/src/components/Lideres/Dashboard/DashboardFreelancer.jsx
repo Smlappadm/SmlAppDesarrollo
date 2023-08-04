@@ -91,19 +91,6 @@ export const DashboardFreelancer = () => {
       return "Profesion";
     }
   };
-  const handleOrderByCategory = () => {
-    if (categoryOrder === "ASC" || categoryOrder === "") {
-      setCategoryOrder("DES");
-      setClientOrder("");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderFreelancer);
-    } else {
-      setCategoryOrder("ASC");
-      dispatch(orderCategory(categoryOrder));
-      setData(leaderFreelancer);
-    }
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
