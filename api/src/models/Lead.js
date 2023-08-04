@@ -38,6 +38,7 @@ const LeadSchema = new mongoose.Schema(
     level: {
       type: String,
       enum: ["", "-", "0", "1", "2", "incidencia"],
+      require: true,
     },
     status: {
       type: String,
@@ -192,26 +193,32 @@ const LeadSchema = new mongoose.Schema(
     seguidores2000: {
       type: Boolean,
       default: false,
+      require: true,
     },
     repercusion: {
       type: Boolean,
       default: false,
+      require: true,
     },
     frecuencia: {
       type: Boolean,
       default: false,
+      require: true,
     },
     contenidoPersonal: {
       type: Boolean,
       default: false,
+      require: true,
     },
     contenidoValor: {
       type: Boolean,
       default: false,
+      require: true,
     },
     calidadInstagram: {
       type: Boolean,
       default: false,
+      require: true,
     },
     from: {
       type: String,

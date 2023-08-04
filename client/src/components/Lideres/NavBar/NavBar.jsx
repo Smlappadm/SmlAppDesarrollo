@@ -68,7 +68,7 @@ export default function NavBar() {
 
   const handleMouseLeave = (index) => {
     setTitles((prevState) => {
-      const updatedTitles = [...prevState]; // Crear una copia del estado
+      const updatedTitles = [...prevState]; // Crear una copia del Estado
       updatedTitles[index].isHovered = false; // Actualizar el valor de isHovered en el primer objeto
       return updatedTitles;
     });

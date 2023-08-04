@@ -29,6 +29,7 @@ const CorredoresDashboard = () => {
   const [marca_personal, setMarca_personal] = useState("");
   const [category, setCategory] = useState("");
   const [loader, setLoader] = useState(false);
+  const [promisesNames, setPromisesNames] = useState([]);
   const [detailsLead, setDetailsLead] = useState([
     false,
     false,
@@ -300,6 +301,7 @@ const CorredoresDashboard = () => {
   const handleSubmit = async () => {
     try {
       const updatePromises = [];
+      const newPromisesNames = [];
       client.forEach(async (lead, index) => {
         const { level, instagram, name } = lead;
 
@@ -312,6 +314,8 @@ const CorredoresDashboard = () => {
               loaderFuncion(true);
             }
             updatePromises.push(updateLead(lead));
+            newPromisesNames.push(lead.name);
+            setPromisesNames(newPromisesNames);
           }
         } else if (level === "1" || level === "2") {
           if (instagram !== "" && instagramRegex.test(instagram)) {
@@ -320,6 +324,8 @@ const CorredoresDashboard = () => {
               loaderFuncion(true);
             }
             updatePromises.push(updateLead(lead));
+            newPromisesNames.push(lead.name);
+            setPromisesNames(newPromisesNames);
           } else {
             SendLeadsErrorInsta(name);
           }
@@ -341,11 +347,13 @@ const CorredoresDashboard = () => {
           country,
           marca_personal
         )
-      );
+      ).then(() => {
+        loaderFuncion(false);
+        setPromisesNames([]);
+      });
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
-      loaderFuncion(false);
     } catch (error) {
       SendLeadsError(names);
       console.log({ error: error.message });
@@ -399,7 +407,10 @@ const CorredoresDashboard = () => {
           country,
           marca_personal
         )
-      );
+      ).then(() => {
+        loaderFuncion(false);
+      });
+
       dispatch(getAllProfesion());
       dispatch(getAllCountries());
       dispatch(getAllCategory());
@@ -414,9 +425,21 @@ const CorredoresDashboard = () => {
   return (
     <>
       {loader ? (
-        <div className="absolute z-50 h-screen w-screen bg-black opacity-80 flex justify-center items-center">
-          <div className="flex flex-col gap-5 items-center justify-center">
-            <h2>Enviando los leads!</h2>
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+          <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit bg-[#39394b] rounded-xl">
+            <h2 className="text-white text-[2rem]">Enviando Leads!</h2>
+
+            <div className="flex flex-col gap-2 p-2">
+              {promisesNames &&
+                promisesNames.map((item) => {
+                  return (
+                    <h2 key={item._id} className="text-white m-1">
+                      {item}
+                    </h2>
+                  );
+                })}
+            </div>
+
             <div className="lds-roller">
               <div></div>
               <div></div>
@@ -430,6 +453,7 @@ const CorredoresDashboard = () => {
           </div>
         </div>
       ) : null}
+
       <Nav />
       <div className="w-full m-5 bg-[#222131]">
         <ToastContainer />
