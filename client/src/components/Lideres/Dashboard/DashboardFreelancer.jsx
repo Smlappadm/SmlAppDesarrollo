@@ -79,9 +79,7 @@ export const DashboardFreelancer = () => {
       setClientOrder("ASC");
       dispatch(orderClients(clientOrder));
       setData(leaderFreelancer);
-    }
-    setCurrentPage(1);
-  };
+    
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
