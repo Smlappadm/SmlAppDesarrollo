@@ -60,16 +60,6 @@ export const DashboardFreelancer = () => {
   const [categoryOrder, setCategoryOrder] = useState("");
   const [filters, setFilters] = useState(false);
 
-  const headerClient = () => {
-    if (clientOrder === "ASC") {
-      return "Cliente ⤴";
-    } else if (clientOrder === "DES") {
-      return "Cliente ⤵";
-    } else {
-      return "Cliente";
-    }
-  };
-
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
   const handleOpen = (item, index) => {
