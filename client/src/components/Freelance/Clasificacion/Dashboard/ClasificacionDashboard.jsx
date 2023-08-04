@@ -5,8 +5,6 @@ import style from "./ClasificacionDashboard.module.css";
 import { motion } from "framer-motion";
 import { CiGlobe, CiMail } from "react-icons/ci";
 import { GrInstagram } from "react-icons/gr";
-import { IoGrid, IoStatsChart } from "react-icons/io5";
-import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import { ToastContainer, toast } from "react-toastify";
