@@ -19,8 +19,6 @@ import {
   filterLevel,
   filterStatus,
   getLeadCheckedFreelancer,
-  orderCategory,
-  orderClients,
 } from "../../../redux/actions";
 import Papa from "papaparse";
 import Button from "@mui/material/Button";
