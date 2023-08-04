@@ -1,3 +1,4 @@
+//Import
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
@@ -22,7 +23,9 @@ import NestedModal from "./MaterialUi/NestedModal";
 import InputRunner from "./MaterialUi/inputRunner";
 import NavBar from "../NavBar/NavBar";
 
+//Componente Dashboard Corredores
 const CorredoresDashboard = () => {
+  //Estodos
   const [client, setClient] = useState([]);
   const [profesion, setProfesion] = useState("");
   const [country, setCountry] = useState("");
@@ -43,10 +46,13 @@ const CorredoresDashboard = () => {
     false,
   ]);
 
+  //Estados de redux
   const { corredorLead, corredor } = useSelector((state) => state);
 
+  //Dispatch
   const dispatch = useDispatch();
 
+  // Obtener el usuario actual usando Clerk (biblioteca de autenticación)
   const user = useUser().user;
   const mail = user?.emailAddresses[0]?.emailAddress;
 
@@ -56,17 +62,20 @@ const CorredoresDashboard = () => {
   let names = localStorage.getItem("corredorName");
 
   const username = corredor.name;
+
   useEffect(() => {
     localStorage.setItem("corredorName", username);
   }, [corredor]);
 
   useEffect(() => {
+    // Si se ha proporcionado un correo electrónico, obtener los corredores por email
     if (mail !== undefined) {
       dispatch(getAllCorredoresByEmail(mail));
     }
   }, [dispatch, mail, username]);
 
   useEffect(() => {
+    // Si se ha proporcionado un correo electrónico, obtener los corredores líderes
     if (mail !== undefined) {
       dispatch(
         getLeadCorredores(
@@ -79,11 +88,13 @@ const CorredoresDashboard = () => {
         )
       );
     }
+    // Obtener todas las profesiones, países y categorías
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
     dispatch(getAllCategory());
   }, [dispatch, mail, username]);
 
+  // Manejar la lista de verificación de detalles de los corredores líderes
   const handleCheckList = (index) => {
     setDetailsLead((prevDetailsLead) => {
       const updatedDetailsLead = [...prevDetailsLead];
@@ -92,6 +103,7 @@ const CorredoresDashboard = () => {
     });
   };
 
+  // Manejar el cambio de datos de entrada de los corredores líderes
   const handleChangeInput = (event, index) => {
     const { name, value } = event.target;
 
@@ -105,6 +117,7 @@ const CorredoresDashboard = () => {
     });
   };
 
+  // Manejar el clic en el cliente para ocultar o mostrar detalles adicionales
   const handleClientClick = (event, index) => {
     const { name, value } = event.target;
 
@@ -128,6 +141,7 @@ const CorredoresDashboard = () => {
     });
   };
 
+  // Manejar el cambio en la casilla de verificación
   const handleCheck = (event, index) => {
     const { name, checked } = event.target;
     const value = checked ? true : false;
@@ -146,6 +160,7 @@ const CorredoresDashboard = () => {
   useEffect(() => {
     let clientes = [];
     let i = 0;
+    // Si hay corredores líderes, crear una nueva lista de clientes con los datos relevantes
     if (corredorLead && corredorLead.length > 0) {
       for (let i = 0; i < corredorLead.length; i++) {
         if (corredorLead[i] && corredorLead[i]._id) {
@@ -173,6 +188,7 @@ const CorredoresDashboard = () => {
   }, [corredorLead]);
 
   useEffect(() => {
+    // Actualizar los clientes en la base de datos cuando cambian los datos
     const updateClients = async () => {
       if (corredorLead.length !== client.length) {
         return;
