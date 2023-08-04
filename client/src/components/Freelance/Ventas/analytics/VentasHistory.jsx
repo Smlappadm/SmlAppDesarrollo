@@ -273,13 +273,7 @@ const VentasHistory = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-  const openEditMenu = (index, id) => {
-    setEdit(true);
-    setEditIndex(index);
-  };
-  const sendEdit = () => {
-    setEdit(false);
-  };
+
 
   const updateLeads = () => {
     dispatch(getVendedorAllLeads(email));
@@ -348,7 +342,6 @@ const VentasHistory = () => {
                 transition={{ duration: 1, delay: 0 }}
                 className="font-bold text-[#e2e2e2] w-28 text-lg mx-5"
               >
-                {/* Dashboard */}
                 <NavBar />
               </motion.div>
             </div>
