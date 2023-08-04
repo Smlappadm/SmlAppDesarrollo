@@ -5,7 +5,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
 import "dayjs/locale/es";
-import style from "../Modal/ResponsiveDateTimePickers.module.css";
 
 export default function ResponsiveDateTimePickers({
   closeDateHour,
