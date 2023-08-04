@@ -11,6 +11,8 @@ import {
 } from "../../../../../redux/actions";
 import axios from "axios";
 import { red } from "@mui/material/colors";
+
+// Estilos personalizados para el modal
 const style = {
   position: "absolute",
   top: "50%",
@@ -25,6 +27,7 @@ const style = {
   borderRadius: "20px",
 };
 
+// Componente funcional ChildModal
 export default function ChildModal({
   email,
   AddLeadError,
@@ -59,6 +62,7 @@ export default function ChildModal({
     profesion: "",
   });
 
+  // Efecto para obtener datos iniciales desde Redux Store y la API de países
   useEffect(() => {
     dispatch(getAllFreelancer());
     dispatch(getAllCategory());
@@ -73,12 +77,14 @@ export default function ChildModal({
       .catch((error) => console.log(error));
   }, [dispatch]);
 
+  // Efecto para obtener el objeto de freelancer que coincide con el email proporcionado
   useEffect(() => {
     const free =
       freelancer && freelancer.filter((free) => free.email === email);
     setOneFreelancer(free);
   }, [freelancer, email]);
 
+  // Funciones para abrir y cerrar el modal
   const handleOpen = () => {
     setOpen(true);
   };
@@ -86,6 +92,7 @@ export default function ChildModal({
     setOpen(false);
   };
 
+  // Funciones de validación para email y URL
   const validateEmail = (email) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
@@ -95,6 +102,7 @@ export default function ChildModal({
     return regex.test(url);
   };
 
+  // Validaciones para campos de entrada de email y URL
   const validaciones = () => {
     if (values.email !== "") {
       setErrors((prevErrors) => {
@@ -120,10 +128,12 @@ export default function ChildModal({
     }
   };
 
+  // Efecto para realizar validaciones cuando cambia el valor de los campos de entrada
   useEffect(() => {
     validaciones();
   }, [values]);
 
+  // Función para manejar cambios en los campos de entrada
   const handleChange = (event) => {
     const { id, value } = event.target;
     setValues((prevValues) => ({
@@ -132,6 +142,7 @@ export default function ChildModal({
     }));
   };
 
+  // Función para manejar el envío del formulario para agregar un nuevo cliente
   const handleSubmitAdd = async (event) => {
     event.preventDefault();
     const body = {
@@ -203,6 +214,7 @@ export default function ChildModal({
     }
   };
 
+  // Función para limpiar los campos del formulario
   const handleClean = () => {
     setValues({
       nombre: "",
@@ -230,6 +242,7 @@ export default function ChildModal({
       >
         NUEVO CLIENTE
       </Button>
+      {/* Modal para agregar nuevo cliente */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -253,10 +266,11 @@ export default function ChildModal({
             <h2 className="font-extrabold text-white text-24 mb-8">
               Añadir clientes!
             </h2>
-
+            {/* Formulario para agregar nuevo cliente */}
             <form className="flex flex-col " onSubmit={handleSubmitAdd}>
               <div className="flex flex-col gap-3">
                 <p>(*)Campos obligatorios</p>
+                {/* Campos de entrada */}
                 <div className="flex  h-10  items-center  px-3 gap-x-2">
                   <label className="w-24 text-left">*Nombre: </label>
                   <input
@@ -403,6 +417,7 @@ export default function ChildModal({
                 </Button>
               </div>
             </form>
+            {/* Botón para limpiar los campos del formulario */}
             <Button
               variant="contained"
               onClick={handleClean}
