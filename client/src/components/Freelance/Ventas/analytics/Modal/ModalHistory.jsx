@@ -9,6 +9,7 @@ import { useUser } from "@clerk/clerk-react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { ToastContainer, toast } from "react-toastify";
+import ClipboardJS from 'clipboard';
 // import toast, { Toaster } from 'react-hot-toast';
 import { CiWarning, CiInstagram, CiMail, CiGlobe } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
@@ -565,30 +566,24 @@ export default function NestedModal({
   //     .catch((err) => alert(`Error al copiar: ${err}`));
   // };
   const handleCopyClick = (copyToProps) => {
-    try {
-      // Try using the clipboard API first
-      navigator.clipboard.writeText(copyToProps)
-        .then(() => {
-          setShowCopiedMessage(true);
-          setTimeout(() => setShowCopiedMessage(false), 2000);
-        })
-        .catch((err) => {
-          // If the clipboard API is not available, use execCommand as a fallback
-          const textarea = document.createElement('textarea');
-          textarea.value = copyToProps;
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textarea);
+    const clipboard = new ClipboardJS('.copy-button', {
+      text: () => copyToProps,
+    });
   
-          setShowCopiedMessage(true);
-          setTimeout(() => setShowCopiedMessage(false), 2000);
-        });
-    } catch (err) {
-      // Handle any other errors here
-      alert(`Error al copiar: ${err}`);
-    }
+    clipboard.on('success', (e) => {
+      setShowCopiedMessage(true);
+      setTimeout(() => setShowCopiedMessage(false), 2000);
+    });
+  
+    clipboard.on('error', (e) => {
+      alert(`Error al copiar: ${e.text}`);
+    });
+  
+    clipboard.onClick(e);
   };
+
+
+
 
   const handleOpen = () => {
     setOpen(true);
@@ -1070,16 +1065,19 @@ export default function NestedModal({
                       Copiar Link Pago
                     </p>
                     {window.location.hostname.includes("localhost") && (
-                    <p
-                      onClick={() =>
-                        handleCopyClick(
-                          `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
-                        )
-                      }
-                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                    >
+                      <button className="copy-button w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer" onClick={() => handleCopyClick(`http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`)}>
                       Link
-                    </p>
+                    </button>
+                    // <p
+                    //   onClick={() =>
+                    //     handleCopyClick(
+                    //       `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
+                    //     )
+                    //   }
+                    //   className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                    // >
+                    //   Link
+                    // </p>
                     )}
                     {window.location.hostname.includes("sml-app.vercel") && (
                     <p
