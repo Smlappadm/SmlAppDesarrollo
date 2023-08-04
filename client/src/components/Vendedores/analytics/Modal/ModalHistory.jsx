@@ -446,14 +446,40 @@ export default function NestedModal({
     setUpdatedEmail(inputEmail);
   }, [updatedEmail]);
 
+  // const handleCopyClick = (copyToProps) => {
+  //   navigator.clipboard
+  //     .writeText(copyToProps)
+  //     .then(() => {
+  //       setShowCopiedMessage(true);
+  //       setTimeout(() => setShowCopiedMessage(false), 2000);
+  //     })
+  //     .catch((err) => alert(`Error al copiar: ${err}`));
+  // };
+
   const handleCopyClick = (copyToProps) => {
-    navigator.clipboard
-      .writeText(copyToProps)
-      .then(() => {
-        setShowCopiedMessage(true);
-        setTimeout(() => setShowCopiedMessage(false), 2000);
-      })
-      .catch((err) => alert(`Error al copiar: ${err}`));
+    try {
+      // Try using the clipboard API first
+      navigator.clipboard.writeText(copyToProps)
+        .then(() => {
+          setShowCopiedMessage(true);
+          setTimeout(() => setShowCopiedMessage(false), 2000);
+        })
+        .catch((err) => {
+          // If the clipboard API is not available, use execCommand as a fallback
+          const textarea = document.createElement('textarea');
+          textarea.value = copyToProps;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+  
+          setShowCopiedMessage(true);
+          setTimeout(() => setShowCopiedMessage(false), 2000);
+        });
+    } catch (err) {
+      // Handle any other errors here
+      alert(`Error al copiar: ${err}`);
+    }
   };
 
   const handleOpen = () => {
