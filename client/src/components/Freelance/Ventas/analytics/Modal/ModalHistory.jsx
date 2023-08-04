@@ -1060,7 +1060,7 @@ export default function NestedModal({
                     <p
                       onClick={() =>
                         handleCopyClick(
-                          `https://sml-app.vercel.app/promocion-pagos?emailApp=${saveEmailApp}`
+                          `https://sml-app.vercel.app/promocion-pagos?emailApp=${inputEmailApp}`
                         )
                       }
                       className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
@@ -1072,7 +1072,7 @@ export default function NestedModal({
                     <p
                       onClick={() =>
                         handleCopyClick(
-                          `https://sml-app.com/promocion-pagos?emailApp=${saveEmailApp}`
+                          `https://sml-app.com/promocion-pagos?emailApp=${inputEmailApp}`
                         )
                       }
                       className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
