@@ -115,12 +115,6 @@ export const DashboardFreelancer = () => {
     setCurrentPage(1);
   };
   const [statusValue, setStatusValue] = useState("");
-  const onChangeStatus = (value) => {
-    setStatusValue(value);
-    dispatch(filterStatus(value));
-    setData(leaderFreelancer);
-    setCurrentPage(1);
-  };
 
   const [open, setOpen] = useState(false);
   const [modalItems, setModalItems] = useState([]);
