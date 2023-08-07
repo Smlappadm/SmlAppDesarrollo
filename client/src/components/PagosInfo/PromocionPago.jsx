@@ -378,28 +378,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                   {promo.hora &&
                     formatTiempoRestante(tiempoRestante[promocionKey])}
                 </p> */}
-                {/* <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
-                  {promo.hora === "1" ? (
-                    <>
-                      <p className="text-white text-3xl text-center">
-                        Desc. -{promo.descuento}€
-                      </p>
-                      <p className="text-white text-3xl text-center">
-                        ({promo.hora} hora)
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-white text-3xl text-center">
-                        Desc. -{promo.descuento}€
-                      </p>
-                      <p className="text-white text-3xl text-center">
-                        ({promo.hora} horas)
-                      </p>
-                    </>
-                  )}
-                </div> */}
-                <p className="text-white">CUOTAS</p>
+
                 <div className="flex justify-evenly items-center text-white ">
                   {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
                     <div
