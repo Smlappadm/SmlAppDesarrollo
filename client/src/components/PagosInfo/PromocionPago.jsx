@@ -358,73 +358,71 @@ export default function PromocionPago({ tamañoPantalla }) {
             const promocionKey = `promocion${index}`;
 
             return (
-              <div key={index} className="w-full flex flex-row">
+              <div key={index} className="w-full">
                 {tiempoRestante[promocionKey] &&
-                tiempoRestante[promocionKey] > 0
-                  ? promocionActual === index && (
-                      <div
-                        className={
-                          tamañoPantalla === "Pequeña"
-                            ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                            : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
-                        }
-                      >
-                        <p className="text-white">PROMOCIÓN</p>
-                        <p className="text-white text-3xl">
-                          {formatTiempoRestante(tiempoRestante[promocionKey])}
-                        </p>
-                        <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
-                          {promo.hora === "1" ? (
-                            <>
-                              <p className="text-white text-3xl text-center">
-                                Desc. -{promo.descuento}€
-                              </p>
-                              <p className="text-white text-3xl text-center">
-                                ({promo.hora} hora)
-                              </p>
-                            </>
-                          ) : (
-                            <>
-                              <p className="text-white text-3xl text-center">
-                                Desc. -{promo.descuento}€
-                              </p>
-                              <p className="text-white text-3xl text-center">
-                                ({promo.hora} horas)
-                              </p>
-                            </>
-                          )}
+                tiempoRestante[promocionKey] > 0 ? (
+                  <div
+                    className={
+                      tamañoPantalla === "Pequeña"
+                        ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
+                        : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+                    }
+                  >
+                    <p className="text-white">PROMOCIÓN</p>
+                    <p className="text-white text-3xl">
+                      {formatTiempoRestante(tiempoRestante[promocionKey])}
+                    </p>
+                    <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
+                      {promo.hora === "1" ? (
+                        <>
+                          <p className="text-white text-3xl text-center">
+                            Desc. -{promo.descuento}€
+                          </p>
+                          <p className="text-white text-3xl text-center">
+                            ({promo.hora} hora)
+                          </p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-white text-3xl text-center">
+                            Desc. -{promo.descuento}€
+                          </p>
+                          <p className="text-white text-3xl text-center">
+                            ({promo.hora} horas)
+                          </p>
+                        </>
+                      )}
+                    </div>
+                    <p className="text-white">CUOTAS</p>
+                    <div className="flex justify-evenly items-center text-white ">
+                      {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
+                        <div
+                          key={cuota}
+                          className={
+                            cuotas === cuota
+                              ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold cursor-pointer"
+                              : "rounded-md border border-white mr-2 font-bold cursor-pointer"
+                          }
+                          onClick={() => CambiarCuota(cuota)}
+                        >
+                          <p className="py-3 px-5">
+                            {Object.keys(promo.pagos)[cuotaIndex]}
+                          </p>
                         </div>
-                        <p className="text-white">CUOTAS</p>
-                        <div className="flex justify-evenly items-center text-white ">
-                          {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
-                            <div
-                              key={cuota}
-                              className={
-                                cuotas === cuota
-                                  ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold cursor-pointer"
-                                  : "rounded-md border border-white mr-2 font-bold cursor-pointer"
-                              }
-                              onClick={() => CambiarCuota(cuota)}
-                            >
-                              <p className="py-3 px-5">
-                                {Object.keys(promo.pagos)[cuotaIndex]}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                        <p className="text-white">DETALLE</p>
-                        <p className="text-white text-center">
-                          {promo.pagos[cuotas]}
-                        </p>
-                        <ModalConfirmacion
-                          tamañoPantalla={tamañoPantalla}
-                          pressLinkButtonHandler={pressLinkButtonHandler}
-                          promo={promo.pagos[cuotas]}
-                          promoParametro={promo.links[cuotas]}
-                        />
-                      </div>
-                    )
-                  : null}
+                      ))}
+                    </div>
+                    <p className="text-white">DETALLE</p>
+                    <p className="text-white text-center">
+                      {promo.pagos[cuotas]}
+                    </p>
+                    <ModalConfirmacion
+                      tamañoPantalla={tamañoPantalla}
+                      pressLinkButtonHandler={pressLinkButtonHandler}
+                      promo={promo.pagos[cuotas]}
+                      promoParametro={promo.links[cuotas]}
+                    />
+                  </div>
+                ) : null}
               </div>
             );
           })}
