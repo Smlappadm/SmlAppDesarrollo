@@ -186,7 +186,7 @@ export default function NestedModal({
             className={
               tamañoPantalla === "Pequeña"
                 ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
-                : "text-white bg-gray-500 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600 whitespace-nowrap px-3 cursor-pointer"
+                : "text-white bg-gray-500 w-full py-3 text-18 rounded-2xl text-center whitespace-nowrap px-3  cursor-default"
             }
           >
             Confirmar selección
