@@ -169,16 +169,18 @@ export default function NestedModal({
   return (
     <div className="">
       <div className="flex gap-4">
-        <p
-          className={
-            tamañoPantalla === "Pequeña"
-              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
-              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600 whitespace-nowrap px-3 cursor-pointer"
-          }
-          onClick={handleOpen}
-        >
-          Confirmar selección
-        </p>
+        {key === "promocion0" || (key !== "promocion0" && tiempo[key]) ? (
+          <p
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
+                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600 whitespace-nowrap px-3 cursor-pointer"
+            }
+            onClick={handleOpen}
+          >
+            Confirmar selección
+          </p>
+        ) : null}
       </div>
       <Modal
         open={open}
