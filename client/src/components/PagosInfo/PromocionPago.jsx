@@ -410,7 +410,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 <p className="text-white text-center">{promo.pagos[cuotas]}</p> */}
                 <ModalConfirmacion
                   tiempo={tiempoRestante}
-                  key={promocionKey}
+                  promokey={promocionKey}
                   tamañoPantalla={tamañoPantalla}
                   pressLinkButtonHandler={pressLinkButtonHandler}
                   promo={promo.pagos[cuota]}
