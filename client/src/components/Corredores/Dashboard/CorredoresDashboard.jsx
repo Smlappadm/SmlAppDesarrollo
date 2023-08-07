@@ -187,32 +187,32 @@ const CorredoresDashboard = () => {
     setClient(clientes);
   }, [corredorLead]);
 
-  useEffect(() => {
-    // Actualizar los clientes en la base de datos cuando cambian los datos
-    const updateClients = async () => {
-      if (corredorLead.length !== client.length) {
-        return;
-      }
+  // useEffect(() => {
+  //   // Actualizar los clientes en la base de datos cuando cambian los datos
+  //   const updateClients = async () => {
+  //     if (corredorLead.length !== client.length) {
+  //       return;
+  //     }
 
-      const promises = corredorLead.map((lead, i) =>
-        axios.put(`/lead/${lead._id}`, {
-          instagram: client[i].instagram,
-          email: client[i].email,
-          level: client[i].level,
-          seguidores2000: client[i].seguidores2000,
-          repercusion: client[i].repercusion,
-          frecuencia: client[i].frecuencia,
-          contenidoPersonal: client[i].contenidoPersonal,
-          contenidoValor: client[i].contenidoValor,
-          calidadInstagram: client[i].calidadInstagram,
-        })
-      );
+  //     const promises = corredorLead.map((lead, i) =>
+  //       axios.put(`/lead/${lead._id}`, {
+  //         instagram: client[i].instagram,
+  //         email: client[i].email,
+  //         level: client[i].level,
+  //         seguidores2000: client[i].seguidores2000,
+  //         repercusion: client[i].repercusion,
+  //         frecuencia: client[i].frecuencia,
+  //         contenidoPersonal: client[i].contenidoPersonal,
+  //         contenidoValor: client[i].contenidoValor,
+  //         calidadInstagram: client[i].calidadInstagram,
+  //       })
+  //     );
 
-      await Promise.all(promises);
-    };
+  //     await Promise.all(promises);
+  //   };
 
-    updateClients();
-  }, [client]);
+  //   updateClients();
+  // }, [client]);
 
   // Función para mostrar una notificación de información al enviar el formulario
 const SendLeads = () => {
@@ -591,7 +591,7 @@ const handleSubmitOne = async (item) => {
                               }`}
                               type="text"
                               name="email"
-                              value={item.email}
+                              value={item.email || ""}
                               onChange={(event) =>
                                 handleChangeInput(event, index)
                               }
@@ -617,7 +617,7 @@ const handleSubmitOne = async (item) => {
                               }`}
                               type="text"
                               name="instagram"
-                              value={item.instagram}
+                              value={item.instagram || ""}
                               onChange={(event) =>
                                 handleChangeInput(event, index)
                               }
