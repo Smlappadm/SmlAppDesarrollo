@@ -374,10 +374,10 @@ export default function PromocionPago({ tamañoPantalla }) {
                 </p>
 
                 {/* RELOJ */}
-                <p className="text-white text-3xl">
+                {/* <p className="text-white text-3xl">
                   {promo.hora &&
                     formatTiempoRestante(tiempoRestante[promocionKey])}
-                </p>
+                </p> */}
 
                 <div className="flex flex-col justify-evenly items-center text-white w-full">
                   {Object.keys(promo.pagos).map((cuota, cuotaIndex) =>
