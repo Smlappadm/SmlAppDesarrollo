@@ -139,6 +139,7 @@ export default function NestedModal({
   pressLinkButtonHandler,
   promo,
   total,
+  tipo,
   promoParametro,
 }) {
   const [open, setOpen] = React.useState(false);
@@ -201,6 +202,7 @@ export default function NestedModal({
             )}
 
             <p>¿Desear confirmar la seleccion del tipo de pago?</p>
+            <p>{tipo}</p>
             <p>{promo}</p>
             <p>{total}</p>
 
