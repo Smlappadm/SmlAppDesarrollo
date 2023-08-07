@@ -1457,6 +1457,14 @@ video {
   width: 100vw;
 }
 
+.w-3\/5 {
+  width: 60%;
+}
+
+.w-3 {
+  width: 0.75rem;
+}
+
 .min-w-\[180px\] {
   min-width: 180px;
 }
@@ -2451,6 +2459,10 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pl-5 {
+  padding-left: 1.25rem;
 }
 
 .text-left {
