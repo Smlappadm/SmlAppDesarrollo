@@ -332,6 +332,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       </div>
     );
   }
+  console.log(promos);
 
   return (
     <div
@@ -421,7 +422,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             );
           })}
 
-        {todasPromocionesCero && (
+        {/* {todasPromocionesCero && (
           <div
             className={
               tamañoPantalla === "Pequeña"
@@ -465,7 +466,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               promoParametro={promos[0] && promos[0].links[cuotas]}
             />
           </div>
-        )}
+        )} */}
       </div>
       <ToastContainer />
     </div>
