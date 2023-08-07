@@ -138,6 +138,7 @@ export default function NestedModal({
   tamañoPantalla,
   pressLinkButtonHandler,
   promo,
+  total,
   promoParametro,
 }) {
   const [open, setOpen] = React.useState(false);
