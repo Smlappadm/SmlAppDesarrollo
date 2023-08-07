@@ -15,6 +15,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [promos, setPromos] = useState([]);
   const [cuotas, setCuotas] = useState("1");
   const [cuota, setCuota] = useState("1");
+  const [total, setTotal] = useState("1");
   const [cliente, setCliente] = useState({});
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [promocionActual, setPromocionActual] = useState(0);
@@ -389,7 +390,11 @@ export default function PromocionPago({ tamañoPantalla }) {
                           : "  mr-2 font-bold cursor-pointer w-full flex items-center rounded-lg"
                       }
                       onClick={() => (
-                        CambiarCuota(cuota, index, cuotaIndex), setCuota(cuota)
+                        CambiarCuota(cuota, index, cuotaIndex),
+                        setCuota(cuota),
+                        setTotal(
+                          promo.total[Object.keys(promo.pagos)[cuotaIndex]]
+                        )
                       )}
                     >
                       <p className="py-3 pl-5 w-8">
@@ -406,7 +411,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                 <ModalConfirmacion
                   tamañoPantalla={tamañoPantalla}
                   pressLinkButtonHandler={pressLinkButtonHandler}
-                  promo={promo.pagos[cuota]}
+                  promo={promo.total[cuota]}
                   promoParametro={promo.links[cuota]}
                 />
               </div>
