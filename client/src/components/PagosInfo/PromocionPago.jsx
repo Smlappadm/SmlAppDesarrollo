@@ -344,7 +344,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       }
       style={styles()}
     >
-      <p className="text-white text-24 font-bold mb-40">
+      <p className="text-white text-24 font-bold mt-10">
         {cliente && cliente.name}
       </p>
       <div
@@ -364,8 +364,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                 key={index}
                 className={
                   tamañoPantalla === "Pequeña"
-                    ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 "
-                    : "w-full flex flex-col justify-center items-center mt-5  p-5 rounded-3xl bg-[#D9D9D9] bg-opacity-25 "
+                    ? "w-full flex flex-col justify-between items-center bg-black p-8 rounded-3xl bg-opacity-75 h-[500px]"
+                    : "w-full flex flex-col justify-between items-center p-8 rounded-3xl bg-[#D9D9D9] bg-opacity-25 h-[500px] "
                 }
               >
                 <p className="text-white text-center w-full">
@@ -384,8 +384,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                       key={cuota}
                       className={
                         cuotas === `${cuota}-${index}-${cuotaIndex}`
-                          ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center"
-                          : "  mr-2 font-bold cursor-pointer w-full flex items-center"
+                          ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center rounded-lg"
+                          : "  mr-2 font-bold cursor-pointer w-full flex items-center rounded-lg"
                       }
                       onClick={() => CambiarCuota(cuota, index, cuotaIndex)}
                     >
