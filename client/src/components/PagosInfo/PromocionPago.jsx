@@ -358,7 +358,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             const promocionKey = `promocion${index}`;
 
             return (
-              <div key={index} className="w-full">
+              <div key={index} className="w-full flex flex-row">
                 {tiempoRestante[promocionKey] &&
                 tiempoRestante[promocionKey] > 0
                   ? promocionActual === index && (
