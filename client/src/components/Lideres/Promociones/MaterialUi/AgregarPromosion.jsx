@@ -34,7 +34,7 @@ export default function AgregarPromosion() {
     monto: 0,
     valorCuota: 0,
     descuento: 0,
-    edicion: false,
+    edicion: true,
     active: false,
   });
 
@@ -227,7 +227,7 @@ export default function AgregarPromosion() {
                 },
               }}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={
                 <Checkbox
                   checked={promocion.edicion}
@@ -246,7 +246,7 @@ export default function AgregarPromosion() {
                 />
               }
               label={`Promocion con Editores`}
-            />
+            /> */}
             <Button
               variant="outlined"
               sx={{

@@ -138,7 +138,11 @@ export default function NestedModal({
   tamañoPantalla,
   pressLinkButtonHandler,
   promo,
+  total,
+  tipo,
   promoParametro,
+  tiempo,
+  promokey,
 }) {
   const [open, setOpen] = React.useState(false);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
@@ -165,16 +169,29 @@ export default function NestedModal({
   return (
     <div className="">
       <div className="flex gap-4">
-        <p
-          className={
-            tamañoPantalla === "Pequeña"
-              ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
-              : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600 whitespace-nowrap px-3 cursor-pointer"
-          }
-          onClick={handleOpen}
-        >
-          Confirmar selección
-        </p>
+        {promokey === "promocion0" ||
+        (promokey !== "promocion0" && tiempo[promokey]) ? (
+          <p
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
+                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600 whitespace-nowrap px-3 cursor-pointer"
+            }
+            onClick={handleOpen}
+          >
+            Confirmar selección
+          </p>
+        ) : (
+          <p
+            className={
+              tamañoPantalla === "Pequeña"
+                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
+                : "text-white bg-gray-500 w-full py-3 text-18 rounded-2xl text-center whitespace-nowrap px-3  cursor-default"
+            }
+          >
+            Confirmar selección
+          </p>
+        )}
       </div>
       <Modal
         open={open}
@@ -200,7 +217,9 @@ export default function NestedModal({
             )}
 
             <p>¿Desear confirmar la seleccion del tipo de pago?</p>
+            <p>{tipo}</p>
             <p>{promo}</p>
+            <p>{total}</p>
 
             <div className="flex justify-around items-center m-5 gap-10 text-white">
               <button
