@@ -407,6 +407,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                   tamañoPantalla={tamañoPantalla}
                   pressLinkButtonHandler={pressLinkButtonHandler}
                   promo={promo.pagos[cuota]}
+                  total={promo.total[cuota]}
                   promoParametro={promo.links[cuota]}
                 />
               </div>
