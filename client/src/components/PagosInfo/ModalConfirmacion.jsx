@@ -142,7 +142,7 @@ export default function NestedModal({
   tipo,
   promoParametro,
   tiempo,
-  key,
+  promokey,
 }) {
   const [open, setOpen] = React.useState(false);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
@@ -169,7 +169,8 @@ export default function NestedModal({
   return (
     <div className="">
       <div className="flex gap-4">
-        {key === "promocion0" || (key !== "promocion0" && tiempo[key]) ? (
+        {promokey === "promocion0" ||
+        (promokey !== "promocion0" && tiempo[promokey]) ? (
           <p
             className={
               tamañoPantalla === "Pequeña"
