@@ -352,7 +352,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         className={
           tamañoPantalla === "Pequeña"
             ? "flex flex-col justify-center items-center p-6 h-full w-full"
-            : "flex flex-row justify-center items-center p-6 h-full w-1/5 "
+            : "flex flex-row justify-center items-center p-6 h-full w-2/5 gap-5 "
         }
       >
         {!clienteEmpresa.linkActivado &&
@@ -369,14 +369,16 @@ export default function PromocionPago({ tamañoPantalla }) {
                     : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
                 }
               >
-                <p className="text-white">PROMOCIÓN</p>
+                <p className="text-white text-center w-full">
+                  {promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
+                </p>
 
                 {/*  RELOJ
                 <p className="text-white text-3xl">
                   {promo.hora &&
                     formatTiempoRestante(tiempoRestante[promocionKey])}
                 </p> */}
-                <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
+                {/* <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
                   {promo.hora === "1" ? (
                     <>
                       <p className="text-white text-3xl text-center">
@@ -396,7 +398,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                       </p>
                     </>
                   )}
-                </div>
+                </div> */}
                 <p className="text-white">CUOTAS</p>
                 <div className="flex justify-evenly items-center text-white ">
                   {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
