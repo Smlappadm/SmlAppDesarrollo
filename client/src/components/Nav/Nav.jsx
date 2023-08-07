@@ -12,8 +12,16 @@ import {
   IoLogoSnapchat,
 } from "react-icons/io5";
 import { motion } from "framer-motion";
-import { getAllClevel, getAllCorredores, getAllFreelancer, getAllLeader, getAllVendedores, getEmployees } from "../../redux/actions";
+import {
+  getAllClevel,
+  getAllCorredores,
+  getAllFreelancer,
+  getAllLeader,
+  getAllVendedores,
+  getEmployees,
+} from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 function Nav() {
   const dispatch = useDispatch();
@@ -53,8 +61,6 @@ function Nav() {
     (employee) => employee.email === userEmail
   );
 
-  console.log(selectedEmployee);
-
   useEffect(() => {
     dispatch(getAllCorredores());
     dispatch(getAllVendedores());
@@ -73,7 +79,7 @@ function Nav() {
     };
 
     fetchEmployees();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="bg-[#39394B] flex flex-col justify-between items-center h-screen min-w-[190px]">
@@ -318,11 +324,19 @@ function Nav() {
           className="flex flex-col gap-5 items-center justify-center"
         >
           <div className="w-16 h-16">
-            <img className="rounded-full" src={selectedEmployee && selectedEmployee.photo} alt="avatar" />
+            <img
+              className="rounded-full"
+              src={selectedEmployee && selectedEmployee.photo}
+              alt="avatar"
+            />
           </div>
           <div className="flex flex-col gap-1 mb-2">
-            <p className="text-[.7rem] text-white">{selectedEmployee && selectedEmployee.email}</p>
-            <p className="text-[.7rem] text-white text-center">{selectedEmployee && selectedEmployee.name}</p>
+            <p className="text-[.7rem] text-white">
+              {selectedEmployee && selectedEmployee.email}
+            </p>
+            <p className="text-[.7rem] text-white text-center">
+              {selectedEmployee && selectedEmployee.name}
+            </p>
           </div>
         </motion.div>
         <Link to="/">
