@@ -409,6 +409,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                   promo={promo.pagos[cuota]}
                   total={promo.total[cuota]}
                   promoParametro={promo.links[cuota]}
+                  tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
                 />
               </div>
             );
