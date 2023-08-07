@@ -132,23 +132,23 @@ export default function Settings() {
     //   return;
     // }
 
-    axios.put(`/employees/email/?email=${mail}`, formData);
+    axios.put(`/employees/email?email=${mail}`, formData);
 
     if (role === "clevel") {
-      axios.put(`/clevel/email/?email=${mail}`, formData);
-      axios.put(`/corredor/email/email/?email=${mail}`, formData);
-      axios.put(`/vendedor/email/email/?email=${mail}`, formData);
+      axios.put(`/clevel/email?email=${mail}`, formData);
+      axios.put(`/corredor/email/email?email=${mail}`, formData);
+      axios.put(`/vendedor/email/email?email=${mail}`, formData);
     }
 
     if (role === "leader") {
-      axios.put(`/clevel/email/email/?email=${mail}`, formData);
-      axios.put(`/corredor/email/email/?email=${mail}`, formData);
-      axios.put(`/vendedor/email/email/?email=${mail}`, formData);
+      axios.put(`/clevel/email/email?email=${mail}`, formData);
+      axios.put(`/corredor/email/email?email=${mail}`, formData);
+      axios.put(`/vendedor/email/email?email=${mail}`, formData);
     }
     if (role === "freelancer") {
-      axios.put(`/freelancer/email/email/?email=${mail}`, formData);
-      axios.put(`/corredor/email/email/?email=${mail}`, formData);
-      axios.put(`/vendedor/email/email/?email=${mail}`, formData);
+      axios.put(`/freelancer/email/email?email=${mail}`, formData);
+      axios.put(`/corredor/email/email?email=${mail}`, formData);
+      axios.put(`/vendedor/email/email?email=${mail}`, formData);
     }
 
     axios
