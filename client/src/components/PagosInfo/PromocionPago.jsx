@@ -14,6 +14,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const emailApp = url.searchParams.get("emailApp");
   const [promos, setPromos] = useState([]);
   const [cuotas, setCuotas] = useState("1");
+  const [cuota, setCuota] = useState("1");
   const [cliente, setCliente] = useState({});
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [promocionActual, setPromocionActual] = useState(0);
@@ -387,12 +388,16 @@ export default function PromocionPago({ tamañoPantalla }) {
                           ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center rounded-lg"
                           : "  mr-2 font-bold cursor-pointer w-full flex items-center rounded-lg"
                       }
-                      onClick={() => CambiarCuota(cuota, index, cuotaIndex)}
+                      onClick={() => (
+                        CambiarCuota(cuota, index, cuotaIndex), setCuota(cuota)
+                      )}
                     >
                       <p className="py-3 pl-5 w-8">
                         {`${Object.keys(promo.pagos)[cuotaIndex]}`}
                       </p>
-                      <p className="">{`- ${promo.pagos[cuotaIndex + 1]}`}</p>
+                      <p className="">{`- ${
+                        promo.pagos[Object.keys(promo.pagos)[cuotaIndex]]
+                      }`}</p>
                     </div>
                   ))}
                 </div>
@@ -401,8 +406,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                 <ModalConfirmacion
                   tamañoPantalla={tamañoPantalla}
                   pressLinkButtonHandler={pressLinkButtonHandler}
-                  promo={promo.pagos[cuotas]}
-                  promoParametro={promo.links[cuotas]}
+                  promo={promo.pagos[cuota]}
+                  promoParametro={promo.links[cuota]}
                 />
               </div>
             );
