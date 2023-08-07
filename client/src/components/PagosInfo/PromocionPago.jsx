@@ -83,7 +83,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         ? promoEdicion
         : promoSinEdicion;
     const customPromos = promocionesEdit.reduce((result, promo) => {
-      if (promo.promocion && promo.promocion.hora) {
+      if (promo.promocion) {
         const hora = `promo${promo.promocion.hora}horas`;
         const cuota = promo.promocion.cuota || "default";
 
@@ -106,6 +106,8 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       return result;
     }, {});
+
+    console.log(customPromos);
     const sortedHours = Object.keys(customPromos).sort((a, b) => {
       return customPromos[a].hora - customPromos[b].hora;
     });
@@ -152,6 +154,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
+    console.log();
   }, [promos]);
 
   useEffect(() => {
@@ -332,7 +335,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       </div>
     );
   }
-  console.log(promos);
 
   return (
     <div
