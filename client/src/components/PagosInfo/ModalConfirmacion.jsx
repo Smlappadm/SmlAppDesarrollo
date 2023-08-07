@@ -202,6 +202,7 @@ export default function NestedModal({
 
             <p>¿Desear confirmar la seleccion del tipo de pago?</p>
             <p>{promo}</p>
+            <p>{total}</p>
 
             <div className="flex justify-around items-center m-5 gap-10 text-white">
               <button
