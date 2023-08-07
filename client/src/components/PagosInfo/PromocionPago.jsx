@@ -342,16 +342,16 @@ export default function PromocionPago({ tamañoPantalla }) {
       }
       style={styles()}
     >
+      <p className="text-white text-24 font-bold mb-40">
+        {cliente && cliente.name}
+      </p>
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "flex flex-col justify-start items-center p-6 h-full w-full"
-            : "flex flex-row justify-start items-center p-6 h-full w-1/5 "
+            ? "flex flex-col justify-center items-center p-6 h-full w-full"
+            : "flex flex-row justify-center items-center p-6 h-full w-1/5 "
         }
       >
-        <p className="text-white text-24 font-bold mb-40">
-          {cliente && cliente.name}
-        </p>
         {!clienteEmpresa.linkActivado &&
           promos &&
           promos.map((promo, index) => {
