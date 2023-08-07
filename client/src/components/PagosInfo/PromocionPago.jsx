@@ -48,8 +48,8 @@ export default function PromocionPago({ tamañoPantalla }) {
     );
   };
 
-  const CambiarCuota = (cuota) => {
-    setCuotas(cuota);
+  const CambiarCuota = (cuota, index, cuotaIndex) => {
+    setCuotas(`${cuota}-${index}-${cuotaIndex}`);
   };
 
   useEffect(() => {
@@ -91,13 +91,12 @@ export default function PromocionPago({ tamañoPantalla }) {
           result[hora] = {
             pagos: {},
             links: {},
+            total: {},
           };
         }
 
-        result[hora].pagos[cuota] =
-          cuota !== "1"
-            ? `${promo.promocion.name}, Total: ${promo.promocion.monto}€` || ""
-            : promo.promocion.name || "";
+        result[hora].pagos[cuota] = promo.promocion.name || "";
+        result[hora].total[cuota] = `Total: ${promo.promocion.monto}€` || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
         result[hora].descuento = promo.promocion.descuento || "";
@@ -352,7 +351,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         className={
           tamañoPantalla === "Pequeña"
             ? "flex flex-col justify-center items-center p-6 h-full w-full"
-            : "flex flex-row justify-center items-center p-6 h-full w-2/5 gap-5 "
+            : "flex flex-row justify-center items-center p-6 h-full w-3/5 gap-5 "
         }
       >
         {!clienteEmpresa.linkActivado &&
@@ -365,8 +364,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                 key={index}
                 className={
                   tamañoPantalla === "Pequeña"
-                    ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                    : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
+                    ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 "
+                    : "w-full flex flex-col justify-center items-center mt-5  p-5 rounded-3xl bg-[#D9D9D9] bg-opacity-25 "
                 }
               >
                 <p className="text-white text-center w-full">
@@ -379,25 +378,26 @@ export default function PromocionPago({ tamañoPantalla }) {
                     formatTiempoRestante(tiempoRestante[promocionKey])}
                 </p> */}
 
-                <div className="flex justify-evenly items-center text-white ">
+                <div className="flex flex-col justify-evenly items-center text-white w-full">
                   {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
                     <div
                       key={cuota}
                       className={
-                        cuotas === cuota
-                          ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold cursor-pointer"
-                          : "rounded-md border border-white mr-2 font-bold cursor-pointer"
+                        cuotas === `${cuota}-${index}-${cuotaIndex}`
+                          ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center"
+                          : "  mr-2 font-bold cursor-pointer w-full flex items-center"
                       }
-                      onClick={() => CambiarCuota(cuota)}
+                      onClick={() => CambiarCuota(cuota, index, cuotaIndex)}
                     >
-                      <p className="py-3 px-5">
-                        {Object.keys(promo.pagos)[cuotaIndex]}
+                      <p className="py-3 pl-5 w-8">
+                        {`${Object.keys(promo.pagos)[cuotaIndex]}`}
                       </p>
+                      <p className="">{`- ${promo.pagos[cuotaIndex + 1]}`}</p>
                     </div>
                   ))}
                 </div>
-                <p className="text-white">DETALLE</p>
-                <p className="text-white text-center">{promo.pagos[cuotas]}</p>
+                {/* <p className="text-white">DETALLE</p>
+                <p className="text-white text-center">{promo.pagos[cuotas]}</p> */}
                 <ModalConfirmacion
                   tamañoPantalla={tamañoPantalla}
                   pressLinkButtonHandler={pressLinkButtonHandler}
