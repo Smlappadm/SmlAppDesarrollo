@@ -14,6 +14,7 @@ export default function PromocionPago({ tamañoPantalla }) {
   const emailApp = url.searchParams.get("emailApp");
   const [promos, setPromos] = useState([]);
   const [cuotas, setCuotas] = useState("1");
+  const [cuota, setCuota] = useState("1");
   const [cliente, setCliente] = useState({});
   const [tiempoRestante, setTiempoRestante] = useState({});
   const [promocionActual, setPromocionActual] = useState(0);
@@ -48,8 +49,8 @@ export default function PromocionPago({ tamañoPantalla }) {
     );
   };
 
-  const CambiarCuota = (cuota) => {
-    setCuotas(cuota);
+  const CambiarCuota = (cuota, index, cuotaIndex) => {
+    setCuotas(`${cuota}-${index}-${cuotaIndex}`);
   };
 
   useEffect(() => {
@@ -83,7 +84,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         ? promoEdicion
         : promoSinEdicion;
     const customPromos = promocionesEdit.reduce((result, promo) => {
-      if (promo.promocion && promo.promocion.hora) {
+      if (promo.promocion) {
         const hora = `promo${promo.promocion.hora}horas`;
         const cuota = promo.promocion.cuota || "default";
 
@@ -91,13 +92,12 @@ export default function PromocionPago({ tamañoPantalla }) {
           result[hora] = {
             pagos: {},
             links: {},
+            total: {},
           };
         }
 
-        result[hora].pagos[cuota] =
-          cuota !== "1"
-            ? `${promo.promocion.name}, Total: ${promo.promocion.monto}€` || ""
-            : promo.promocion.name || "";
+        result[hora].pagos[cuota] = promo.promocion.name || "";
+        result[hora].total[cuota] = `Total: ${promo.promocion.monto}€` || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
         result[hora].descuento = promo.promocion.descuento || "";
@@ -106,6 +106,8 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       return result;
     }, {});
+
+    console.log(customPromos);
     const sortedHours = Object.keys(customPromos).sort((a, b) => {
       return customPromos[a].hora - customPromos[b].hora;
     });
@@ -152,6 +154,7 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
+    console.log();
   }, [promos]);
 
   useEffect(() => {
@@ -342,94 +345,88 @@ export default function PromocionPago({ tamañoPantalla }) {
       }
       style={styles()}
     >
+      <p className="text-white text-24 font-bold mt-10">
+        {cliente && cliente.name}
+      </p>
       <div
         className={
           tamañoPantalla === "Pequeña"
-            ? "flex flex-col justify-start items-center p-6 h-full w-full"
-            : "flex flex-col justify-start items-center p-6 h-full w-1/5 "
+            ? "flex flex-col justify-center items-center p-6 h-full w-full"
+            : "flex flex-row justify-center items-center p-6 h-full w-3/5 gap-5 "
         }
       >
-        <p className="text-white text-24 font-bold mb-40">
-          {cliente && cliente.name}
-        </p>
         {!clienteEmpresa.linkActivado &&
           promos &&
           promos.map((promo, index) => {
             const promocionKey = `promocion${index}`;
 
             return (
-              <div key={index} className="w-full">
-                {tiempoRestante[promocionKey] &&
-                tiempoRestante[promocionKey] > 0
-                  ? promocionActual === index && (
-                      <div
-                        className={
-                          tamañoPantalla === "Pequeña"
-                            ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                            : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
-                        }
-                      >
-                        <p className="text-white">PROMOCIÓN</p>
-                        <p className="text-white text-3xl">
-                          {formatTiempoRestante(tiempoRestante[promocionKey])}
-                        </p>
-                        <div className="border border-white w-5/6 flex flex-col items-center justify-center p-3 rounded-md">
-                          {promo.hora === "1" ? (
-                            <>
-                              <p className="text-white text-3xl text-center">
-                                Desc. -{promo.descuento}€
-                              </p>
-                              <p className="text-white text-3xl text-center">
-                                ({promo.hora} hora)
-                              </p>
-                            </>
-                          ) : (
-                            <>
-                              <p className="text-white text-3xl text-center">
-                                Desc. -{promo.descuento}€
-                              </p>
-                              <p className="text-white text-3xl text-center">
-                                ({promo.hora} horas)
-                              </p>
-                            </>
-                          )}
-                        </div>
-                        <p className="text-white">CUOTAS</p>
-                        <div className="flex justify-evenly items-center text-white ">
-                          {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
-                            <div
-                              key={cuota}
-                              className={
-                                cuotas === cuota
-                                  ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold cursor-pointer"
-                                  : "rounded-md border border-white mr-2 font-bold cursor-pointer"
-                              }
-                              onClick={() => CambiarCuota(cuota)}
-                            >
-                              <p className="py-3 px-5">
-                                {Object.keys(promo.pagos)[cuotaIndex]}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                        <p className="text-white">DETALLE</p>
-                        <p className="text-white text-center">
-                          {promo.pagos[cuotas]}
-                        </p>
-                        <ModalConfirmacion
-                          tamañoPantalla={tamañoPantalla}
-                          pressLinkButtonHandler={pressLinkButtonHandler}
-                          promo={promo.pagos[cuotas]}
-                          promoParametro={promo.links[cuotas]}
-                        />
-                      </div>
-                    )
-                  : null}
+              <div
+                key={index}
+                className={
+                  tamañoPantalla === "Pequeña"
+                    ? "w-full flex flex-col justify-between items-center bg-black p-8 rounded-3xl bg-opacity-75 h-[500px]"
+                    : "w-full flex flex-col justify-between items-center p-8 rounded-3xl bg-[#D9D9D9] bg-opacity-25 h-[500px] "
+                }
+              >
+                <p className="text-white text-center w-full">
+                  {promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
+                </p>
+
+                {/* RELOJ */}
+                {/* <p className="text-white text-3xl">
+                  {promo.hora &&
+                    formatTiempoRestante(tiempoRestante[promocionKey])}
+                </p> */}
+
+                <div className="flex flex-col justify-evenly items-center text-white w-full">
+                  {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
+                    <div
+                      key={cuota}
+                      className={
+                        cuotas === `${cuota}-${index}-${cuotaIndex}`
+                          ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center rounded-lg"
+                          : "  mr-2 font-bold cursor-pointer w-full flex items-center rounded-lg"
+                      }
+                      onClick={
+                        promocionKey === "promocion0"
+                          ? () => (
+                              CambiarCuota(cuota, index, cuotaIndex),
+                              setCuota(cuota)
+                            )
+                          : tiempoRestante[promocionKey] &&
+                            (() => (
+                              CambiarCuota(cuota, index, cuotaIndex),
+                              setCuota(cuota)
+                            ))
+                      }
+                    >
+                      <p className="py-3 pl-5 w-8">
+                        {`${Object.keys(promo.pagos)[cuotaIndex]}`}
+                      </p>
+                      <p className="">{`- ${
+                        promo.pagos[Object.keys(promo.pagos)[cuotaIndex]]
+                      }`}</p>
+                    </div>
+                  ))}
+                </div>
+                {/* <p className="text-white">DETALLE</p>
+                <p className="text-white text-center">{promo.pagos[cuotas]}</p> */}
+                <ModalConfirmacion
+                  tiempo={tiempoRestante}
+                  promokey={promocionKey}
+                  tamañoPantalla={tamañoPantalla}
+                  pressLinkButtonHandler={pressLinkButtonHandler}
+                  promo={promo.pagos[cuota]}
+                  total={promo.total[cuota]}
+                  promoParametro={promo.links[cuota]}
+                  tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
+                />
               </div>
             );
           })}
 
-        {todasPromocionesCero && (
+        {/* {todasPromocionesCero && (
           <div
             className={
               tamañoPantalla === "Pequeña"
@@ -473,7 +470,7 @@ export default function PromocionPago({ tamañoPantalla }) {
               promoParametro={promos[0] && promos[0].links[cuotas]}
             />
           </div>
-        )}
+        )} */}
       </div>
       <ToastContainer />
     </div>
