@@ -373,33 +373,38 @@ export default function PromocionPago({ tamañoPantalla }) {
                   {promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
                 </p>
 
-                {/*  RELOJ
+                {/* RELOJ */}
                 <p className="text-white text-3xl">
                   {promo.hora &&
                     formatTiempoRestante(tiempoRestante[promocionKey])}
-                </p> */}
+                </p>
 
                 <div className="flex flex-col justify-evenly items-center text-white w-full">
-                  {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
-                    <div
-                      key={cuota}
-                      className={
-                        cuotas === `${cuota}-${index}-${cuotaIndex}`
-                          ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center rounded-lg"
-                          : "  mr-2 font-bold cursor-pointer w-full flex items-center rounded-lg"
-                      }
-                      onClick={() => (
-                        CambiarCuota(cuota, index, cuotaIndex), setCuota(cuota)
-                      )}
-                    >
-                      <p className="py-3 pl-5 w-8">
-                        {`${Object.keys(promo.pagos)[cuotaIndex]}`}
-                      </p>
-                      <p className="">{`- ${
-                        promo.pagos[Object.keys(promo.pagos)[cuotaIndex]]
-                      }`}</p>
-                    </div>
-                  ))}
+                  {Object.keys(promo.pagos).map((cuota, cuotaIndex) =>
+                    promocionKey === "promocion0" ||
+                    (promocionKey !== "promocion0" &&
+                      tiempoRestante[promocionKey]) ? (
+                      <div
+                        key={cuota}
+                        className={
+                          cuotas === `${cuota}-${index}-${cuotaIndex}`
+                            ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center rounded-lg"
+                            : "  mr-2 font-bold cursor-pointer w-full flex items-center rounded-lg"
+                        }
+                        onClick={() => (
+                          CambiarCuota(cuota, index, cuotaIndex),
+                          setCuota(cuota)
+                        )}
+                      >
+                        <p className="py-3 pl-5 w-8">
+                          {`${Object.keys(promo.pagos)[cuotaIndex]}`}
+                        </p>
+                        <p className="">{`- ${
+                          promo.pagos[Object.keys(promo.pagos)[cuotaIndex]]
+                        }`}</p>
+                      </div>
+                    ) : null
+                  )}
                 </div>
                 {/* <p className="text-white">DETALLE</p>
                 <p className="text-white text-center">{promo.pagos[cuotas]}</p> */}
