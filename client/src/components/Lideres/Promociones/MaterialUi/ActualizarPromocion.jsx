@@ -57,7 +57,7 @@ export default function ActualizarPromocion({ item }) {
     valorCuota: 0,
     descuento: 0,
     active: false,
-    edicion: false,
+    edicion: true,
   });
 
   React.useEffect(() => {
@@ -71,7 +71,7 @@ export default function ActualizarPromocion({ item }) {
       valorCuota: item.promocion.valorCuota || 0,
       descuento: item.promocion.descuento || 0,
       active: item.promocion.active || false,
-      edicion: item.promocion.edicion || false,
+      edicion: item.promocion.edicion || true,
     });
   }, [item]);
 
@@ -315,7 +315,7 @@ export default function ActualizarPromocion({ item }) {
               item.promocion.active === true ? " Activa " : " Inactiva "
             }`}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={
               <Checkbox
                 checked={promocion.edicion}
@@ -334,7 +334,7 @@ export default function ActualizarPromocion({ item }) {
               />
             }
             label={`Promocion con Editores`}
-          />
+          /> */}
           <div className="flex gap-5 justify-center items-center">
             <Button
               sx={buttonsend}
