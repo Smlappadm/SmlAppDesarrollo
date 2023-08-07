@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Nav.module.css";
 import { useClerk, useUser } from "@clerk/clerk-react";
@@ -12,9 +12,27 @@ import {
   IoLogoSnapchat,
 } from "react-icons/io5";
 import { motion } from "framer-motion";
+import {
+  getAllClevel,
+  getAllCorredores,
+  getAllFreelancer,
+  getAllLeader,
+  getAllVendedores,
+  getEmployees,
+} from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 function Nav() {
+  const dispatch = useDispatch();
   const { signOut } = useClerk();
+  const { employees } = useSelector((state) => state);
+  const corredores = useSelector((state) => state.corredores);
+  const vendedores = useSelector((state) => state.vendedores);
+  const leader = useSelector((state) => state.leader);
+  const clevel = useSelector((state) => state.clevel);
+  const freelancer = useSelector((state) => state.freelancer);
+
   const roleReady = localStorage.getItem("roleReady");
   const isEmployee = localStorage.getItem("isEmployeeReady");
   const email = localStorage.getItem("email");
@@ -30,6 +48,38 @@ function Nav() {
     await signOut();
     localStorage.clear();
   };
+
+  const allEmployees = [
+    ...corredores,
+    ...vendedores,
+    ...clevel,
+    ...leader,
+    ...freelancer,
+  ];
+
+  const selectedEmployee = allEmployees.find(
+    (employee) => employee.email === userEmail
+  );
+
+  useEffect(() => {
+    dispatch(getAllCorredores());
+    dispatch(getAllVendedores());
+    dispatch(getAllLeader());
+    dispatch(getAllClevel());
+    dispatch(getAllFreelancer());
+    const fetchEmployees = async () => {
+      try {
+        const response = await axios.get("/employees");
+        const employeesData = response.data;
+
+        dispatch(getEmployees(employeesData));
+      } catch (error) {
+        console.error("Error al obtener los empleados:", error);
+      }
+    };
+
+    fetchEmployees();
+  }, [dispatch]);
 
   return (
     <div className="bg-[#39394B] flex flex-col justify-between items-center h-screen min-w-[190px]">
@@ -274,11 +324,19 @@ function Nav() {
           className="flex flex-col gap-5 items-center justify-center"
         >
           <div className="w-16 h-16">
-            <img className="rounded-full" src={imageUrl} alt="avatar" />
+            <img
+              className="rounded-full"
+              src={selectedEmployee && selectedEmployee.photo}
+              alt="avatar"
+            />
           </div>
           <div className="flex flex-col gap-1 mb-2">
-            <p className="text-[.7rem] text-white">{userEmail}</p>
-            <p className="text-[.7rem] text-white text-center">{fullName}</p>
+            <p className="text-[.7rem] text-white">
+              {selectedEmployee && selectedEmployee.email}
+            </p>
+            <p className="text-[.7rem] text-white text-center">
+              {selectedEmployee && selectedEmployee.name}
+            </p>
           </div>
         </motion.div>
         <Link to="/">
