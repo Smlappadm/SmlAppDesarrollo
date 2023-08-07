@@ -141,6 +141,8 @@ export default function NestedModal({
   total,
   tipo,
   promoParametro,
+  tiempo,
+  key,
 }) {
   const [open, setOpen] = React.useState(false);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
