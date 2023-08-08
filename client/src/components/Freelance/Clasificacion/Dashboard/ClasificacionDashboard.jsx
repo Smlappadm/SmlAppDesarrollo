@@ -175,31 +175,31 @@ const ClasificacionDashboard = () => {
     setClient(clientes);
   }, [freelanceLead]);
 
-  // useEffect(() => {
-  //   const updateClients = async () => {
-  //     if (freelanceLead.length !== client.length) {
-  //       return;
-  //     }
+  useEffect(() => {
+    const updateClients = async () => {
+      if (freelanceLead.length !== client.length) {
+        return;
+      }
 
-  //     const promises = freelanceLead.map((lead, i) =>
-  //       axios.put(`/lead/${lead._id}`, {
-  //         instagram: client[i].instagram,
-  //         email: client[i].email,
-  //         level: client[i].level,
-  //         seguidores2000: client[i].seguidores2000,
-  //         repercusion: client[i].repercusion,
-  //         frecuencia: client[i].frecuencia,
-  //         contenidoPersonal: client[i].contenidoPersonal,
-  //         contenidoValor: client[i].contenidoValor,
-  //         calidadInstagram: client[i].calidadInstagram,
-  //       })
-  //     );
+      const promises = freelanceLead.map((lead, i) =>
+        axios.put(`/lead/${lead._id}`, {
+          instagram: client[i].instagram,
+          email: client[i].email,
+          level: client[i].level,
+          seguidores2000: client[i].seguidores2000,
+          repercusion: client[i].repercusion,
+          frecuencia: client[i].frecuencia,
+          contenidoPersonal: client[i].contenidoPersonal,
+          contenidoValor: client[i].contenidoValor,
+          calidadInstagram: client[i].calidadInstagram,
+        })
+      );
 
-  //     await Promise.all(promises);
-  //   };
+      await Promise.all(promises);
+    };
 
-  //   updateClients();
-  // }, [client]);
+    updateClients();
+  }, [client]);
 
   const SendLeads = () => {
     toast.info(`✔ Enviando formulario! `, {
