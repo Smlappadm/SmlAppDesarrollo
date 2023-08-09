@@ -6,7 +6,7 @@ import background from "../../Assets/borde1.webp";
 import background2 from "../../Assets/borde2.webp";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
-import Pagos from "../../componentsClientes/Pagos/Pagos";
+import Pagos from "../../componentsClientes/Pagos/Pagos.jsx";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
@@ -320,6 +320,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           <p className="text-white text-24 font-bold whitespace-nowrap text-center">
             {cliente && cliente.name}
           </p>
+
           <Pagos />
           {/* <Link
             className={
@@ -357,7 +358,8 @@ export default function PromocionPago({ tamañoPantalla }) {
             : "flex flex-row justify-center items-center p-6 h-full w-3/5 gap-5 "
         }
       >
-        {!clienteEmpresa.linkActivado &&
+        {clienteEmpresa &&
+          !clienteEmpresa.linkActivado &&
           promos &&
           promos.map((promo, index) => {
             const promocionKey = `promocion${index}`;
