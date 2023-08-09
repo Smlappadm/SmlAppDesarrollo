@@ -12,7 +12,7 @@ import validation from "./validation";
 import axios from "axios";
 import ModalConfirmacion from "./ModalConfirmacion";
 
-const CheckoutForm = ({emailApp}) => {
+const CheckoutForm = ({emailApp, clienteEmpresa}) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
