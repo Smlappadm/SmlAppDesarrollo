@@ -2,6 +2,7 @@ const getAllLeads = require("../controllers/Lead/getAllLeads");
 const getLeadChecked = require("../controllers/Lead/getLeadChecked");
 const getLeadById = require("../controllers/Lead/getLeadById");
 const getLeadByName = require("../controllers/Lead/getLeadByName");
+const putLeadByEmailApp = require("../controllers/Lead/putLeadByEmailApp");
 const postLead = require("../controllers/Lead/postLead");
 const updateLeadById = require("../controllers/Lead/updateLeadById");
 const getLeadUnchecked = require("../controllers/Lead/getLeadUnchecked");
@@ -352,6 +353,17 @@ const getLeadByNameHandler = async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 };
+// Put lead por emailApp
+const putLeadByEmailAppHandler = async (req, res) => {
+  const { emailApp } = req.query;
+  const dataStripe = req.body;
+  try {
+    const lead = await putLeadByEmailApp(emailApp, dataStripe);
+    res.status(200).json(lead);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
 
 // Obtener lead por ID
 const getLeadByIdHandler = async (req, res) => {
@@ -677,4 +689,5 @@ module.exports = {
   UpdatePromocionesHandler,
   setPagoHandler,
   findLeadSeguimientoAllInfoHandler,
+  putLeadByEmailAppHandler,
 };
