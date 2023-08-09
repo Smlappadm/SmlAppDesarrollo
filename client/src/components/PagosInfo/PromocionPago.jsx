@@ -6,7 +6,7 @@ import background from "../../Assets/borde1.webp";
 import background2 from "../../Assets/borde2.webp";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
-import Pagos from "../../componentsClientes/Pagos";
+import Pagos from "../../componentsClientes/Pagos/Pagos";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
@@ -320,7 +320,7 @@ export default function PromocionPago({ tamañoPantalla }) {
           <p className="text-white text-24 font-bold whitespace-nowrap text-center">
             {cliente && cliente.name}
           </p>
-          <Pagos/>
+          <Pagos />
           {/* <Link
             className={
               tamañoPantalla === "Pequeña"
@@ -376,10 +376,13 @@ export default function PromocionPago({ tamañoPantalla }) {
                 </p>
 
                 {/* RELOJ */}
-                {/* <p className="text-white text-3xl">
-                  {promo.hora &&
-                    formatTiempoRestante(tiempoRestante[promocionKey])}
-                </p> */}
+                <p className="text-white text-3xl">
+                  {promocionKey !== "promocion0"
+                    ? promo.hora && tiempoRestante[promocionKey] >= 0
+                      ? formatTiempoRestante(tiempoRestante[promocionKey])
+                      : "00:00:00"
+                    : null}
+                </p>
 
                 <div className="flex flex-col justify-evenly items-center text-white w-full">
                   {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
@@ -396,7 +399,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                               CambiarCuota(cuota, index, cuotaIndex),
                               setCuota(cuota)
                             )
-                          : tiempoRestante[promocionKey] &&
+                          : tiempoRestante[promocionKey] > 0 &&
                             (() => (
                               CambiarCuota(cuota, index, cuotaIndex),
                               setCuota(cuota)
@@ -424,7 +427,6 @@ export default function PromocionPago({ tamañoPantalla }) {
                   promoParametro={promo.links[cuota]}
                   tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
                 />
-
               </div>
             );
           })}
