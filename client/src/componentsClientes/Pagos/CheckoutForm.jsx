@@ -13,6 +13,7 @@ import axios from "axios";
 import ModalConfirmacion from "./ModalConfirmacion";
 
 const CheckoutForm = ({emailApp, clienteEmpresa}) => {
+  console.log(clienteEmpresa)
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -167,11 +168,15 @@ const CheckoutForm = ({emailApp, clienteEmpresa}) => {
 
   return (
     <div className="flex flex-col md:flex-col justify-center items-center  ">
-      <div className="flex flex-col justify-center items-center w-80 my-5">
-        <h1>5000</h1>
-        <h1>cuota: 13/25</h1>
-        <h1>Valor cuota: €200 </h1>
-      </div>
+<div className="flex flex-col justify-center items-center w-80 my-5">
+  <h1 className="whitespace-nowrap text-24 text-white mb-5">{clienteEmpresa.name}</h1>
+
+  <p>Detalle: {clienteEmpresa.dataStripe.cuotaDetail ? clienteEmpresa.dataStripe.cuotaDetail : 'N/A'}</p>
+  <p>Total: {clienteEmpresa.dataStripe.precio ? clienteEmpresa.dataStripe.precio : 'N/A'}</p>
+  <p>cuotas: {clienteEmpresa.dataStripe.cuotas ? clienteEmpresa.dataStripe.cuotas : 'N/A'}</p>
+  {/* <h1>Valor cuota: {clienteEmpresa.dataStripe.cuotaDetail && clienteEmpresa.dataStripe.cuotaDetail.split(" ")[1] ? `€${clienteEmpresa.cuotaDetail.split(" ")[1]}` : 'N/A'}</h1> */}
+  <h1>Promoción: {clienteEmpresa.dataStripe.promocion ? clienteEmpresa.dataStripe.promocion : 'N/A'}</h1>
+</div>
       <div>
         <form
           onSubmit={handleSubmit}
