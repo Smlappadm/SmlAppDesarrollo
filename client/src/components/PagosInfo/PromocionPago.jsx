@@ -374,10 +374,13 @@ export default function PromocionPago({ tamañoPantalla }) {
                 </p>
 
                 {/* RELOJ */}
-                {/* <p className="text-white text-3xl">
-                  {promo.hora &&
-                    formatTiempoRestante(tiempoRestante[promocionKey])}
-                </p> */}
+                <p className="text-white text-3xl">
+                  {promocionKey !== "promocion0"
+                    ? promo.hora && tiempoRestante[promocionKey] >= 0
+                      ? formatTiempoRestante(tiempoRestante[promocionKey])
+                      : "00:00:00"
+                    : null}
+                </p>
 
                 <div className="flex flex-col justify-evenly items-center text-white w-full">
                   {Object.keys(promo.pagos).map((cuota, cuotaIndex) => (
@@ -394,7 +397,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                               CambiarCuota(cuota, index, cuotaIndex),
                               setCuota(cuota)
                             )
-                          : tiempoRestante[promocionKey] &&
+                          : tiempoRestante[promocionKey] > 0 &&
                             (() => (
                               CambiarCuota(cuota, index, cuotaIndex),
                               setCuota(cuota)
