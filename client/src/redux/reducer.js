@@ -49,6 +49,7 @@ import {
   GET_ALL_PROMOCIONES,
   FIND_CORREDORES_NAME_ALL_INFO_SEGUIMIENTO,
   FIND_VENDEDORES_NAME_ALL_INFO_SEGUIMIENTO,
+  PUT_CLIENTE_EMPRESA,
 } from "./actions";
 
 const initialState = {
@@ -542,6 +543,11 @@ const rootReducer = (state = initialState, action) => {
         client: action.payload,
       };
     case GET_CLIENTE_EMPRESA:
+      return {
+        ...state,
+        clienteEmpresa: action.payload,
+      };
+    case PUT_CLIENTE_EMPRESA:
       return {
         ...state,
         clienteEmpresa: action.payload,
