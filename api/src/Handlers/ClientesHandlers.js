@@ -40,7 +40,7 @@ const getAllClientesHandler = async (req, res) => {
   }
 };
 
-// Actualizar perfil de cliente 
+// Actualizar perfil de cliente
 const updateClientProfileHandler = async (req, res) => {
   const { email } = req.query;
   const body = req.body;
@@ -52,7 +52,7 @@ const updateClientProfileHandler = async (req, res) => {
   }
 };
 
-// Obtener cliente por correo electrónico 
+// Obtener cliente por correo electrónico
 const getClientByEmailHandler = async (req, res) => {
   const { email } = req.query;
   try {
@@ -65,15 +65,23 @@ const getClientByEmailHandler = async (req, res) => {
 
 // Realizar pago para cliente
 const paymentClienteHandler = async (req, res) => {
-  const { id, name, monto, cuotas, cuotasRestantes, valorCuota } = req.body;
+  // const { id, name, monto, cuotas, cuotasRestantes, valorCuota } = req.body;
+  // const { id, amount} = req.body;
+  const { token, plan } = req.body;
+  // const { id, monto } = req.body;
+
+  console.log(token);
+  console.log(plan);
   try {
     const pago = await createPayment({
-      id,
-      name,
-      monto,
-      cuotas,
-      cuotasRestantes,
-      valorCuota,
+      token,
+      plan,
+      // id,
+      // name,
+      // amount,
+      // cuotas,
+      // cuotasRestantes,
+      // valorCuota,
     });
     res.status(200).json(pago);
   } catch (error) {
@@ -114,7 +122,7 @@ const paymentCompletedClienteHandler = async (req, res) => {
   // }
 };
 
-// Establecer referido para cliente 
+// Establecer referido para cliente
 const setReferredHandler = async (req, res) => {
   const body = req.body;
   try {
@@ -125,7 +133,7 @@ const setReferredHandler = async (req, res) => {
   }
 };
 
-// Agregar videos para cliente 
+// Agregar videos para cliente
 const addVideosHandler = async (req, res) => {
   const { videosPublicados } = req.body;
   const { email } = req.query;
