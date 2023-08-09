@@ -301,7 +301,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       console.log("Error al seleccionar el pago");
     }
   };
-  const [dataStripe, setDataStripe] = useState({});
   const setStripeData = (total, promo, tipo, cuotas, promoParametro) => {
     const body = {
       cuotas: cuotas,
