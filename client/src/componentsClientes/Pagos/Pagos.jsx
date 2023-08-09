@@ -116,7 +116,7 @@ const Pagos = ({ tamañoPantalla, emailApp }) => {
   return (
     <Elements stripe={stripePromise}>
       <div className="border-2 w-full h-screen flex justify-center items-center">
-        <CheckoutForm />
+        <CheckoutForm dataStripe={dataStripe} emailApp={emailApp}/>
       </div>
     </Elements>
   );
