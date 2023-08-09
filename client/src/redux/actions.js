@@ -40,6 +40,7 @@ export const GET_BANNED = "GET_BANNED";
 export const GET_CORREDORES = "GET_CORREDORES";
 export const GET_VENDEDORES = "GET_VENDEDORES";
 export const GET_CLIENTE_EMPRESA = "GET_CLIENTE_EMPRESA";
+export const PUT_CLIENTE_EMPRESA = "PUT_CLIENTE_EMPRESA";
 export const GET_LEAD_DISCARD = "GET_LEAD_DISCARD";
 export const GET_CLASIFICACION_LEAD = "GET_CLASIFICACION_LEAD";
 export const GET_ALL_FREELANCER = "GET_ALL_FREELANCER";
@@ -639,6 +640,17 @@ export const getClienteEmpresa = (emailApp) => {
       );
       const empresa = response.data;
       dispatch({ type: GET_CLIENTE_EMPRESA, payload: empresa });
+    }
+  };
+};
+export const UpdateClienteEmpresa = (emailApp, updateStripe) => {
+  return async (dispatch) => {
+    if (emailApp !== "undefined" && emailApp !== "") {
+      const response = await axios.put(
+        `/lead/leademailapp?emailApp=${emailApp}`
+      );
+      const empresa = response.data;
+      dispatch({ type: PUT_CLIENTE_EMPRESA, payload: empresa });
     }
   };
 };
