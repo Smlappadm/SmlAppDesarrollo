@@ -1,7 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPromociones, getClienteEmpresa } from "../../redux/actions";
+import {
+  getAllPromociones,
+  getClienteEmpresa,
+  UpdateClienteEmpresa,
+} from "../../redux/actions";
 import background from "../../Assets/borde1.webp";
 import background2 from "../../Assets/borde2.webp";
 import { Link } from "react-router-dom";
@@ -108,7 +112,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       return result;
     }, {});
 
-    console.log(customPromos);
     const sortedHours = Object.keys(customPromos).sort((a, b) => {
       return customPromos[a].hora - customPromos[b].hora;
     });
@@ -155,7 +158,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
       seteoPromociones(body);
     }
-    console.log();
   }, [promos]);
 
   useEffect(() => {
@@ -301,15 +303,17 @@ export default function PromocionPago({ tamañoPantalla }) {
   };
   const [dataStripe, setDataStripe] = useState({});
   const setStripeData = (total, promo, tipo, cuotas, promoParametro) => {
-    setDataStripe({
+    const body = {
       cuotas: cuotas,
       cuotaDetail: promo,
       precio: total,
       promocion: tipo,
       link: promoParametro,
-    });
-  };
+    };
 
+    dispatch(UpdateClienteEmpresa(emailApp, body));
+  };
+  console.log(dataStripe);
   if (clienteEmpresa && clienteEmpresa.linkActivado) {
     return (
       <div
@@ -438,7 +442,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                   promo={promo.pagos[cuota]}
                   total={promo.total[cuota]}
                   promoParametro={promo.links[cuota]}
-                  cuotas={Object.keys(promo.pagos[cuota])}
+                  cuotas={cuota}
                   tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
                   setStripeData={setStripeData}
                 />
