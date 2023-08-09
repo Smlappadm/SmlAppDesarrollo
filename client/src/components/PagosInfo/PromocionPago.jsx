@@ -299,6 +299,16 @@ export default function PromocionPago({ tamañoPantalla }) {
       console.log("Error al seleccionar el pago");
     }
   };
+  const [dataStripe, setDataStripe] = useState({});
+  const setStripeData = (total, promo, tipo, cuotas, promoParametro) => {
+    setDataStripe({
+      cuotas: cuotas,
+      cuotaDetail: promo,
+      precio: total,
+      promocion: tipo,
+      link: promoParametro,
+    });
+  };
 
   if (clienteEmpresa && clienteEmpresa.linkActivado) {
     return (
@@ -321,7 +331,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             {cliente && cliente.name}
           </p>
 
-          <Pagos />
+          <Pagos emailApp={emailApp} dataStripe={dataStripe} />
           {/* <Link
             className={
               tamañoPantalla === "Pequeña"
@@ -428,7 +438,9 @@ export default function PromocionPago({ tamañoPantalla }) {
                   promo={promo.pagos[cuota]}
                   total={promo.total[cuota]}
                   promoParametro={promo.links[cuota]}
+                  cuotas={Object.keys(promo.pagos[cuota])}
                   tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
+                  setStripeData={setStripeData}
                 />
               </div>
             );
