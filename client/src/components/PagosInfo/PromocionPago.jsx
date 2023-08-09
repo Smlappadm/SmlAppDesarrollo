@@ -6,6 +6,7 @@ import background from "../../Assets/borde1.webp";
 import background2 from "../../Assets/borde2.webp";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
+import Pagos from "../../componentsClientes/Pagos"
 import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
@@ -319,7 +320,8 @@ export default function PromocionPago({ tamañoPantalla }) {
           <p className="text-white text-24 font-bold whitespace-nowrap text-center">
             {cliente && cliente.name}
           </p>
-          <Link
+          <Pagos/>
+          {/* <Link
             className={
               tamañoPantalla === "Pequeña"
                 ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
@@ -329,7 +331,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             target="_blank"
           >
             Realizar Pago
-          </Link>
+          </Link> */}
         </div>
         <ToastContainer />
       </div>
@@ -425,6 +427,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                   promoParametro={promo.links[cuota]}
                   tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
                 />
+
               </div>
             );
           })}
