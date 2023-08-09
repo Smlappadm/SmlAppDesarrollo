@@ -5,7 +5,7 @@ const Lead = require("../../models/Lead");
 const putLeadByEmailApp = async (emailApp, dataStripe) => {
     console.log(emailApp)
     console.log(dataStripe)
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+ 
     const lead = await Lead.findOneAndUpdate({
         emailApp
       },
