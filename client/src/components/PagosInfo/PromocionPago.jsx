@@ -312,7 +312,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
     dispatch(UpdateClienteEmpresa(emailApp, body));
   };
-  console.log(dataStripe);
   if (clienteEmpresa && clienteEmpresa.linkActivado) {
     return (
       <div
