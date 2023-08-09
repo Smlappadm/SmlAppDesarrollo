@@ -134,15 +134,19 @@ export default function ModalIntelligentInfo({ item }) {
                             <h1>{item.status_op && item.status_op}</h1>
                           </div>
                         )}
-                        <div className="flex justify-start items-start h-fit w-56 gap-x-2">
-                          <h1>Contacto: </h1>
-                          <h1>{item.tipoContacto && item.tipoContacto}</h1>
+                        {item.status !== "Contratado" && (
+                          <div className="flex justify-start items-start h-fit w-56 gap-x-2">
+                            <h1>Contacto: </h1>
+                            <h1>{item.tipoContacto && item.tipoContacto}</h1>
+                          </div>
+                        )}
+                      </div>
+                      {item.status !== "Contratado" && (
+                        <div className="flex justify-start items-start h-fit w-full gap-x-2">
+                          <h1>Observación: </h1>
+                          <h1>{item.observacion && item.observacion}</h1>
                         </div>
-                      </div>
-                      <div className="flex justify-start items-start h-fit w-full gap-x-2">
-                        <h1>Observación: </h1>
-                        <h1>{item.observacion && item.observacion}</h1>
-                      </div>
+                      )}
                     </div>
                   ))
                   .reverse()
