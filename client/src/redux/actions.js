@@ -646,8 +646,9 @@ export const getClienteEmpresa = (emailApp) => {
 export const UpdateClienteEmpresa = (emailApp, updateStripe) => {
   return async (dispatch) => {
     if (emailApp !== "undefined" && emailApp !== "") {
+
       const response = await axios.put(
-        `/lead/leademailapp?emailApp=${emailApp}`,
+        `/lead/emailapp?emailApp=${emailApp}`,
         updateStripe
       );
       const empresa = response.data;

@@ -12,7 +12,7 @@ import validation from "./validation";
 import axios from "axios";
 import ModalConfirmacion from "./ModalConfirmacion";
 
-const CheckoutForm = ({dataStripe, emailApp}) => {
+const CheckoutForm = ({emailApp}) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -48,8 +48,7 @@ const CheckoutForm = ({dataStripe, emailApp}) => {
   });
 
 
-  console.log(dataStripe)
-  console.log(emailApp)
+
   // useEffect(() => {
   //   setTimeout(() => {
   //     setLoading(false);
