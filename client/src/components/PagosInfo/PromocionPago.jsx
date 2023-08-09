@@ -334,7 +334,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             {cliente && cliente.name}
           </p>
 
-          <Pagos emailApp={emailApp} dataStripe={dataStripe} />
+          <Pagos emailApp={emailApp} />
           {/* <Link
             className={
               tamañoPantalla === "Pequeña"
