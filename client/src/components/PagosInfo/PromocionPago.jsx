@@ -6,7 +6,7 @@ import background from "../../Assets/borde1.webp";
 import background2 from "../../Assets/borde2.webp";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
-import Pagos from "../../componentsClientes/Pagos"
+import Pagos from "../../componentsClientes/Pagos";
 import { ToastContainer, toast } from "react-toastify";
 
 export default function PromocionPago({ tamañoPantalla }) {
