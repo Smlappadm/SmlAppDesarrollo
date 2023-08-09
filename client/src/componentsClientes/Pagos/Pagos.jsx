@@ -21,7 +21,7 @@ const stripePublicKey =
   "pk_test_51NJhsbGpn5uZGCfpbyEu252jvDVNlqDiljFxifEkG5rAba4tu11lt9wl3m3UP1xFL3tnUGtPxT0KLMjNSnl6SO7o00xs2avzC5";
 const stripePromise = loadStripe(stripePublicKey);
 
-const Pagos = ({ tamañoPantalla }) => {
+const Pagos = ({ tamañoPantalla, emailApp, dataStripe }) => {
   const dispatch = useDispatch();
   const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
@@ -61,7 +61,7 @@ const Pagos = ({ tamañoPantalla }) => {
   // };
 
   useEffect(() => {
-    dispatch(getClienteEmpresa(email));
+    dispatch(getClienteEmpresa(emailApp));
     // if (clienteEmpresa && clienteEmpresa?.name) {
     //   handlePagoUrlUpdate();
     // }
@@ -116,7 +116,7 @@ const Pagos = ({ tamañoPantalla }) => {
   return (
     <Elements stripe={stripePromise}>
       <div className="border-2 w-full h-screen flex justify-center items-center">
-        <CheckoutForm />
+        <CheckoutForm dataStripe={dataStripe} />
       </div>
     </Elements>
   );
