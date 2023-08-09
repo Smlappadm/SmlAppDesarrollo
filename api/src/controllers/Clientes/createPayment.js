@@ -1,7 +1,7 @@
-// Importamos la librería de Stripe y la configuramos con la clave secreta almacenada en la variable de entorno STRIPE_SECRET_KEY
+const Lead = require("../../models/Lead");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// Función asincrónica para crear un pago utilizando la pasarela de pago Stripe
+
 const createPayment = async ({ token, plan,
   //  id, amount,
    }) => {
@@ -23,7 +23,31 @@ const createPayment = async ({ token, plan,
       });
 
 
+      const dateContratado = new Date();
+      const formattedTimeContratado = dateContratado.toISOString();
       console.log("Suscripción exitosa:", subscription);
+
+      const lead = await Lead.findOneAndUpdate(
+        {
+          emailApp: "facutam@gmail.com",
+        },
+        {
+          $set: {
+            pagoRecibido: true,
+            status: "Contratado",
+            updateContratado: formattedTimeContratado,
+            observaciones_ventas: {
+              status: "Contratado",
+              fecha: formattedTimeContratado,
+              status_op: "5 pagos de €500",
+            }
+          },
+        },
+        { new: true }
+      );
+
+
+
       return subscription;
     } catch (error) {
       // Si ocurre un error al crear la suscripción
