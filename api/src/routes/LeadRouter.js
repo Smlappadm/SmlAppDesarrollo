@@ -85,7 +85,7 @@ LeadRouter.get("/seguimientofiltro", findLeadSeguimientoAllInfoHandler);
 LeadRouter.get("/pagar");
 LeadRouter.get("/:id", getLeadByIdHandler);
 LeadRouter.get("/leadvendedor/:id", getLeadVendedorHandler);
-LeadRouter.put("/emailApp", putLeadByEmailAppHandler);
+LeadRouter.put("/emailapp", putLeadByEmailAppHandler);
 LeadRouter.put("/changeemail/:id", updateChangeEmailHandler);
 LeadRouter.put("/setpago", setPagoHandler);
 LeadRouter.put("/cleanclevel", cleanValueClevelHandler);
