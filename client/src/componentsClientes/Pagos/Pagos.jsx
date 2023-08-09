@@ -67,26 +67,26 @@ const Pagos = ({ tamañoPantalla }) => {
     }
   }, [clienteEmpresa?.name]);
 
-  const handlePagoUrlUpdate = async () => {
-    const email = email;
-    const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
+  // const handlePagoUrlUpdate = async () => {
+  //   const email = email;
+  //   const response1 = await axios.get(`/lead/leademailapp?emailApp=${email}`);
 
-    const data1 = response1.data;
-    setLeadEmpresa(data1);
+  //   const data1 = response1.data;
+  //   setLeadEmpresa(data1);
 
-    if (clienteEmpresa.name) {
-      const response2 = await axios.post("/clientes/payment", {
-        id: clienteEmpresa._id,
-        name: clienteEmpresa.name,
-        monto: clienteEmpresa.pagos.monto,
-        cuotas: clienteEmpresa.pagos.cuotas,
-        cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
-        valorCuota: clienteEmpresa.pagos.valorCuota,
-      });
-      const data2 = response2.data;
-      setUrlPago(data2.url);
-    }
-  };
+  //   if (clienteEmpresa.name) {
+  //     const response2 = await axios.post("/clientes/payment", {
+  //       id: clienteEmpresa._id,
+  //       name: clienteEmpresa.name,
+  //       monto: clienteEmpresa.pagos.monto,
+  //       cuotas: clienteEmpresa.pagos.cuotas,
+  //       cuotasRestantes: clienteEmpresa.pagos.cuotasPagadas,
+  //       valorCuota: clienteEmpresa.pagos.valorCuota,
+  //     });
+  //     const data2 = response2.data;
+  //     setUrlPago(data2.url);
+  //   }
+  // };
 
   // const handleClienteInfo = async (user.emailAddresses) => {
   //   const { data } = await axios.post(
