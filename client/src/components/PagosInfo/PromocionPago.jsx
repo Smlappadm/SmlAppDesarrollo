@@ -333,8 +333,8 @@ export default function PromocionPago({ tamañoPantalla }) {
             {cliente && cliente.name}
           </p>
 
-          <Pagos emailApp={emailApp} />
-          {/* <Link
+          {/* <Pagos emailApp={emailApp} /> */}
+          <Link
             className={
               tamañoPantalla === "Pequeña"
                 ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center"
@@ -344,7 +344,7 @@ export default function PromocionPago({ tamañoPantalla }) {
             target="_blank"
           >
             Realizar Pago
-          </Link> */}
+          </Link>
         </div>
         <ToastContainer />
       </div>
