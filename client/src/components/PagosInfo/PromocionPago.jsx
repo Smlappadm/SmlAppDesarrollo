@@ -399,11 +399,12 @@ export default function PromocionPago({ tamañoPantalla }) {
                               CambiarCuota(cuota, index, cuotaIndex),
                               setCuota(cuota)
                             )
-                          : tiempoRestante[promocionKey] > 0 &&
-                            (() => (
+                          : tiempoRestante[promocionKey] > 0
+                          ? () => (
                               CambiarCuota(cuota, index, cuotaIndex),
                               setCuota(cuota)
-                            ))
+                            )
+                          : null
                       }
                     >
                       <p className="py-3 pl-5 w-8">
