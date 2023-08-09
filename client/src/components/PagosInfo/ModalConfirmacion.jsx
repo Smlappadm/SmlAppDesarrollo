@@ -143,6 +143,8 @@ export default function NestedModal({
   promoParametro,
   tiempo,
   promokey,
+  setStripeData,
+  cuotas,
 }) {
   const [open, setOpen] = React.useState(false);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
@@ -232,7 +234,10 @@ export default function NestedModal({
               <button
                 type="button"
                 className="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 mr-2 mb-2"
-                onClick={() => pressLinkButtonHandler(promoParametro)}
+                onClick={() => (
+                  pressLinkButtonHandler(promoParametro),
+                  setStripeData(total, promo, tipo, promoParametro, cuotas)
+                )}
               >
                 Si
               </button>
