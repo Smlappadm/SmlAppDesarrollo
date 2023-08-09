@@ -1,64 +1,58 @@
 const Lead = require("../../models/Lead");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-
-const createPayment = async ({ token, plan,
+const createPayment = async ({
+  token,
+  plan,
   //  id, amount,
-   }) => {
-     
+}) => {
+  try {
+    const customer = await stripe.customers.create({
+      source: token, // ID del token de la tarjeta generado en el frontend
+      // Otros detalles del cliente como nombre y correo electrónico
+    });
 
+    const subscription = await stripe.subscriptions.create({
+      customer: customer.id,
+      items: [{ plan }], // ID del plan de suscripción
+    });
 
-    try {
-     const customer = await stripe.customers.create({
-       source: token, // ID del token de la tarjeta generado en el frontend
-       // Otros detalles del cliente como nombre y correo electrónico
-      });
-      
+    const dateContratado = new Date();
+    const formattedTimeContratado = dateContratado.toISOString();
+    console.log("Suscripción exitosa:", subscription);
 
-
-
-      const subscription = await stripe.subscriptions.create({
-        customer: customer.id,
-        items: [{ plan }], // ID del plan de suscripción
-      });
-
-
-      const dateContratado = new Date();
-      const formattedTimeContratado = dateContratado.toISOString();
-      console.log("Suscripción exitosa:", subscription);
-
-      const lead = await Lead.findOneAndUpdate(
-        {
-          emailApp: "facutam@gmail.com",
+    const lead = await Lead.findOneAndUpdate(
+      {
+        emailApp: "facutam@gmail.com",
+      },
+      {
+        $set: {
+          pagoRecibido: true,
+          status: "Contratado",
+          updateContratado: formattedTimeContratado,
         },
-        {
-          $set: {
-            pagoRecibido: true,
+        $push: {
+          observaciones_ventas: {
             status: "Contratado",
-            updateContratado: formattedTimeContratado,
-            observaciones_ventas: {
-              status: "Contratado",
-              fecha: formattedTimeContratado,
-              status_op: "5 pagos de €500",
-            }
+            fecha: formattedTimeContratado,
+            status_op: "5 pagos de €500",
           },
         },
-        { new: true }
-      );
+      },
+      { new: true }
+    );
 
+    return subscription;
+  } catch (error) {
+    // Si ocurre un error al crear la suscripción
+    console.log("Error al crear la suscripción:", error.message);
 
-
-      return subscription;
-    } catch (error) {
-      // Si ocurre un error al crear la suscripción
-      console.log("Error al crear la suscripción:", error.message);
-
-      if (error.type === "card_error" && error.code === "card_declined") {
-        console.log("La tarjeta fue rechazada debido a fondos insuficientes");
-        // Aquí puedes realizar acciones adicionales, como mostrar un mensaje al usuario
-      }
-      throw error; // Puedes lanzar el error nuevamente para manejarlo en el lugar donde llamaste a esta función
+    if (error.type === "card_error" && error.code === "card_declined") {
+      console.log("La tarjeta fue rechazada debido a fondos insuficientes");
+      // Aquí puedes realizar acciones adicionales, como mostrar un mensaje al usuario
     }
+    throw error; // Puedes lanzar el error nuevamente para manejarlo en el lugar donde llamaste a esta función
+  }
 
   // const session = await stripe.paymentIntents.create({
   //   amount: amount,
@@ -67,8 +61,6 @@ const createPayment = async ({ token, plan,
   //   payment_method: id,
   //   confirm: true,
   // });
-
-
 
   // Creamos la descripción para el pago basada en las cuotas restantes y el total de cuotas
   // const description = `cuotas ${cuotasRestantes + 1}/${cuotas}`;
@@ -107,7 +99,6 @@ const createPayment = async ({ token, plan,
   // });
 
   // return session;
-
 };
 
 // Exportamos la función para que pueda ser utilizada en otros archivos
