@@ -102,7 +102,7 @@ export default function PromocionPago({ tamañoPantalla }) {
         }
 
         result[hora].pagos[cuota] = promo.promocion.name || "";
-        result[hora].total[cuota] = `Total: ${promo.promocion.monto}€` || "";
+        result[hora].total[cuota] = parseInt(promo.promocion.monto) || "";
         result[hora].links[cuota] = promo.promocion.link || "";
         result[hora].hora = promo.promocion.hora || "";
         result[hora].descuento = promo.promocion.descuento || "";
