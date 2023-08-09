@@ -62,6 +62,7 @@ const Pagos = ({ tamañoPantalla, emailApp }) => {
 
   useEffect(() => {
     dispatch(getClienteEmpresa(emailApp));
+    console.log(clienteEmpresa)
     // if (clienteEmpresa && clienteEmpresa?.name) {
     //   handlePagoUrlUpdate();
     // }
@@ -116,7 +117,7 @@ const Pagos = ({ tamañoPantalla, emailApp }) => {
   return (
     <Elements stripe={stripePromise}>
       <div className="border-2 w-full h-screen flex justify-center items-center">
-        <CheckoutForm dataStripe={dataStripe} emailApp={emailApp}/>
+        <CheckoutForm emailApp={emailApp}/>
       </div>
     </Elements>
   );
