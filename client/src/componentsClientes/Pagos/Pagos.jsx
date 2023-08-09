@@ -114,15 +114,28 @@ const Pagos = ({ tamañoPantalla }) => {
   };
 
   return (
-    <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen">
+    <Elements stripe={stripePromise}>
+      <div className="border-2 w-full h-screen flex justify-center items-center">
+        <CheckoutForm />
+      </div>
+    </Elements>
+  );
+};
+
+export default Pagos;
+
+{
+  /* <div className="flex bg-[#020131] gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen">
       {tamañoPantalla === "Grande" ? (
         <div className="w-full h-1/6">
           <NavBarDesktop />
         </div>
       ) : null}
 
-      {clienteEmpresa && clienteEmpresa.name ? (
-        <div className="flex gap-5  flex-col justify-center items-center ">
+      {/* {clienteEmpresa && clienteEmpresa.name ? ( */
+}
+{
+  /* <div className="flex gap-5  flex-col justify-center items-center ">
           {tamañoPantalla === "Pequeña" ? (
             <div className="w-full flex mb-4 items-end justify-between pt-4">
               <h2 className="font-bold">Pagos</h2>
@@ -150,9 +163,9 @@ const Pagos = ({ tamañoPantalla }) => {
                 : "p-3 w-full text-[#fff] font-bold flex flex-col justify-center gap-5 items-center rounded-xl py-4 my-2 bg-[#D9D9D9] bg-opacity-25"
             }
           >
-            {/* <p className="border-2 text-center text-24 font-extrabold text-white">
+            <p className="border-2 text-center text-24 font-extrabold text-white">
             {`Email: ${clienteEmpresa.emailApp}`}
-          </p> */}
+          </p>
             <p className="text-center text-16 font-extrabold text-white">
               {`Monto total: €${clienteEmpresa.pagos.monto} `}
             </p>
@@ -192,8 +205,10 @@ const Pagos = ({ tamañoPantalla }) => {
           ) : (
             <p className="bg-[#26ad5f] p-2 mt-2 rounded-lg text-white">¡Las Cuotas ya fueron abonadas!</p>
           )}
-        </div>
-      ) : (
+        </div> */
+}
+{
+  /* ) : (
         <div
           className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]"
           role="status"
@@ -202,14 +217,21 @@ const Pagos = ({ tamañoPantalla }) => {
             Loading...
           </span>
         </div>
-      )}
-      {/* <Elements stripe={stripePromise} > */}
-      {/* <Elements stripe={stripePromise} options={options}> */}
-      {/* <ConfirmacionPago/> */}
-      {/* <CheckoutForm /> */}
-      {/* </Elements> */}
-    </div>
-  );
-};
-
-export default Pagos;
+      )} */
+}
+{
+  /* <Elements stripe={stripePromise} > */
+}
+{
+  /* <Elements stripe={stripePromise} options={options}> */
+}
+{
+  /* <ConfirmacionPago/> */
+}
+{
+  /* <CheckoutForm /> */
+}
+{
+  /* </Elements> */
+}
+// </div> */}
