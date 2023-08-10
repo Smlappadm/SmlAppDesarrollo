@@ -207,7 +207,18 @@ const VendedoresAgenda = () => {
           </p>
         )}
 
-        
+        {showObservaciones && (
+          <div className="flex justify-start items-center max-w-lg absolute top-2 bg-[#4f4f62] text-white rounded-xl">
+            <p className="p-3">Observaciones: {observationMessage}</p>
+            <button
+              onClick={closeObservacionesHandler}
+              className="border-2 text-white mx-3 text-16  px-2 rounded-md"
+            >
+              x
+            </button>
+          </div>
+        )}
+
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
             {/* <motion.h1
