@@ -302,9 +302,7 @@ const VendedoresAgenda = () => {
                         </div>
 
                         <div className=" w-[9%] flex justify-start items-center p-0">
-                          <p className="text-start w-24 p-1 px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.country}
-                          </p>
+
                         </div>
 
                         <div className=" w-[5%] flex justify-center items-center p-0">
