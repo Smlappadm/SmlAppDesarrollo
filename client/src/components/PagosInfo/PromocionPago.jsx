@@ -337,9 +337,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   ) => {
     setModalState({
       cuotaIndex,
-      open,
-      handleOpen,
-      handleClose,
       tiempo,
       promokey,
       tamañoPantalla,
