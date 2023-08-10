@@ -167,12 +167,13 @@ export default function NestedModal({
       })
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
+  console.log(promokey);
 
   return (
     <div className="">
       <div className="flex gap-4">
         {promokey === "promocion0" ||
-        (promokey !== "promocion0" && tiempo[promokey]) ? (
+        (promokey !== "promocion0" && tiempo[promokey] > 0) ? (
           <p
             className={
               tamañoPantalla === "Pequeña"
