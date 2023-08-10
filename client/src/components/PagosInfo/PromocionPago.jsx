@@ -577,18 +577,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       <ModalConfirmacion
         // cuotaIndex={cuotaIndex}
         open={open}
-        handleOpen={handleOpen}
         handleClose={handleClose}
-        // tiempo={tiempoRestante}
-        // promokey={promocionKey}
-        // tamañoPantalla={tamañoPantalla}
-        // pressLinkButtonHandler={pressLinkButtonHandler}
-        // promo={promo.pagos[cuota]}
-        // total={promo.total[cuota]}
-        // promoParametro={promo.links[cuota]}
-        // cuotas={cuota}
-        // tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
-        // setStripeData={setStripeData}
         modalState={modalState}
       />
       <ToastContainer />
