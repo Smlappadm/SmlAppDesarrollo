@@ -385,7 +385,9 @@ const VendedoresAgenda = () => {
                             </div>
                           )}
                           {item.status === "En proceso" && (
-
+                            <div className="bg-[#d87e17] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
+                              <p>En proceso</p>
+                            </div>
                           )}
                           {item.status === "Contactado" && (
                             <div className="bg-[#42ac9a] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
