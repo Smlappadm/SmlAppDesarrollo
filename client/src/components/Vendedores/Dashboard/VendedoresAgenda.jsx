@@ -230,11 +230,7 @@ const VendedoresAgenda = () => {
                 <FaHistory className="text-[2rem] text-[#418df0] hover:text-[#3570bd]" />
               </Link>
             </div> */}
-            {filters.level === true ? (
-              <SelectLevel onChange={onChangeLevel} value={levelValue} />
-            ) : (
-              ""
-            )}
+
           </div>
           {!openModalPago && (
             <motion.div
