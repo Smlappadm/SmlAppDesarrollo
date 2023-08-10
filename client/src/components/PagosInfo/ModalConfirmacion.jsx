@@ -185,13 +185,13 @@ export default function NestedModal({ open, handleClose, modalState }) {
               type="button"
               className="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 mr-2 mb-2"
               onClick={() => (
-                modalState.pressLinkButtonHandler(promoParametro),
+                modalState.pressLinkButtonHandler(modalState.promoParametro),
                 modalState.setStripeData(
-                  total,
-                  promo,
-                  tipo,
-                  cuotas,
-                  promoParametro
+                  modalState.total,
+                  modalState.promo,
+                  modalState.tipo,
+                  modalState.cuotas,
+                  modalState.promoParametro
                 )
               )}
             >
