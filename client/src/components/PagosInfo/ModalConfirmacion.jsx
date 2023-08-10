@@ -130,18 +130,7 @@ function ChildModalHistory({
   );
 }
 
-export default function NestedModal({
-  // item,
-  // SendLeadAlertBaja,
-  // SendIncidenceAlert,
-  // SendErrorUpdateAlertBaja,
-  // tamañoPantalla,
-  // pressLinkButtonHandler,
-  /
-  open,
-  handleClose,
-  modalState,
-}) {
+export default function NestedModal({ open, handleClose, modalState }) {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
