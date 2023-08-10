@@ -479,9 +479,6 @@ export default function PromocionPago({ tamañoPantalla }) {
                               CambiarCuota(cuota, index, cuotaIndex),
                               modifyModalState(
                                 cuotaIndex,
-                                open,
-                                handleOpen,
-                                handleClose,
                                 tiempoRestante,
                                 promocionKey,
                                 tamañoPantalla,
