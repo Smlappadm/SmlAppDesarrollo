@@ -324,9 +324,6 @@ export default function PromocionPago({ tamañoPantalla }) {
   const [modalState, setModalState] = useState({});
   const modifyModalState = (
     cuotaIndex,
-    open,
-    handleOpen,
-    handleClose,
     tiempo,
     promokey,
     tamañoPantalla,
