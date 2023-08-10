@@ -159,36 +159,7 @@ const VendedoresAgenda = () => {
     );
   };
 
-  const showObservacionesHandler = (observacion) => {
-    setObservationMessage(observacion);
-    setShowObservaciones(true);
-  };
-  const closeObservacionesHandler = () => {
-    setShowObservaciones(false);
-  };
 
-  const openModalPagoFunction = () => {
-    setOpenModalPago(true);
-  };
-  const closeModalPago = () => {
-    setOpenModalPago(false);
-  };
-
-  const saveEmailAppFunction = (email) => {
-    setSaveEmailApp(email);
-  };
-
-  const funcionHorario = (horario) => {
-    const fechaHoraISO = horario;
-
-    const fechaHora = new Date(fechaHoraISO);
-
-    const opciones = { hour12: false };
-
-    const fechaHoraLocal = fechaHora.toLocaleString(undefined, opciones);
-
-    return fechaHoraLocal;
-  };
 
   return (
     <>
