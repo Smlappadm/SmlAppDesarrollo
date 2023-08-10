@@ -132,7 +132,6 @@ function ChildModalHistory({
 
 export default function NestedModal({ open, handleClose, modalState }) {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
-  const [openAlert, setOpenAlert] = React.useState(false);
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
       .writeText(copyToProps)
