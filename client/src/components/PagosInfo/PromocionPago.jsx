@@ -527,52 +527,6 @@ export default function PromocionPago({ tamañoPantalla }) {
               </div>
             );
           })}
-
-        {/* {todasPromocionesCero && (
-          <div
-            className={
-              tamañoPantalla === "Pequeña"
-                ? "w-full flex flex-col justify-center items-center mt-5 bg-black p-5 rounded-3xl bg-opacity-75 gap-y-2"
-                : "w-full flex flex-col justify-center items-center mt-5  p-20 rounded-3xl bg-[#D9D9D9] bg-opacity-25 gap-y-5"
-            }
-          >
-            <p className="text-white">SIN PROMOCIÓN</p>
-
-            <div className="border border-white w-5/6 flex items-center justify-center p-3 rounded-md">
-              <p className="text-white text-3xl text-center">Sin Descuento</p>
-            </div>
-            <p className="text-white">CUOTAS</p>
-            <div className="flex justify-evenly items-center text-white ">
-              {Object.keys(
-                promos[0] && promos[0].pagos ? promos[0].pagos : ""
-              ).map((cuota, cuotaIndex) => (
-                <div
-                  key={cuota}
-                  className={
-                    cuotas === cuota
-                      ? "rounded-md border border-black mr-2 bg-blue-500 text-black font-bold cursor-pointer"
-                      : "rounded-md border border-white mr-2 font-bold cursor-pointer"
-                  }
-                  onClick={() => CambiarCuota(cuota)}
-                >
-                  <p className="py-3 px-5">
-                    {Object.keys(promos[0].pagos)[cuotaIndex]}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <p className="text-white">DETALLE</p>
-            <p className="text-white text-center">
-              {promos[0] && promos[0].pagos ? promos[0].pagos[cuotas] : null}
-            </p>
-            <ModalConfirmacion
-              tamañoPantalla={tamañoPantalla}
-              pressLinkButtonHandler={pressLinkButtonHandler}
-              promo={promos[0] && promos[0].pagos[cuotas]}
-              promoParametro={promos[0] && promos[0].links[cuotas]}
-            />
-          </div>
-        )} */}
       </div>
       <ModalConfirmacion
         open={open}
