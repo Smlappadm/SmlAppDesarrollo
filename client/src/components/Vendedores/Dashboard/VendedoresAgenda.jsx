@@ -293,7 +293,9 @@ const VendedoresAgenda = () => {
                         className=" flex items-center justify-start bg-[#39394B] text-sm text-gray-300 p-2 m-3 h-11 rounded-lg"
                       >
                         <div className=" w-[15%] flex justify-start items-center  p-0 ">
-
+                          <p className="w-64 p-1 px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                            {item.name}
+                          </p>
                         </div>
                         <div className=" w-[11%] flex justify-start items-center p-0 ">
                           <p className="w-40 p-1 px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
