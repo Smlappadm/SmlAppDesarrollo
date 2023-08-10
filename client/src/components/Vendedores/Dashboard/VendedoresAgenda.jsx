@@ -372,7 +372,9 @@ const VendedoresAgenda = () => {
                             </p>
                           )}
                           {item.status === "No responde" && (
-
+                            <p className="bg-[#2148b4] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-16">
+                              Sin contestar
+                            </p>
                           )}
                           {item.status === "Rechazado" && (
                             <p className="bg-[#ac4242] w-44 h-11 flex justify-center items-center text-white rounded-3xl text-16">
