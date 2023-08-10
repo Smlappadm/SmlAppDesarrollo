@@ -18,7 +18,6 @@ import {
 } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { BsCurrencyEuro } from "react-icons/bs";
-import { BsCheck } from "react-icons/bs";
 
 const style = {
   position: "absolute",
