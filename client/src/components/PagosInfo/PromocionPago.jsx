@@ -575,7 +575,6 @@ export default function PromocionPago({ tamañoPantalla }) {
         )} */}
       </div>
       <ModalConfirmacion
-        // cuotaIndex={cuotaIndex}
         open={open}
         handleClose={handleClose}
         modalState={modalState}
