@@ -357,7 +357,6 @@ export default function PromocionPago({ tamañoPantalla }) {
           ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-start items-center"
           : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center"
       }
-      style={styles()}
     >
       <p className="text-white text-24 font-bold mt-10">
         {cliente && cliente.name}
@@ -420,12 +419,13 @@ export default function PromocionPago({ tamañoPantalla }) {
                           : null
                       }
                     >
+                      <p className="py-3 pl-5 w-8">{` ${promo.pagos[
+                        Object.keys(promo.pagos)[cuotaIndex]
+                      ].slice(11)}
+                      €`}</p>
                       <p className="py-3 pl-5 w-8">
-                        {`${Object.keys(promo.pagos)[cuotaIndex]}`}
+                        {`x ${Object.keys(promo.pagos)[cuotaIndex]}`}
                       </p>
-                      <p className="">{`- ${
-                        promo.pagos[Object.keys(promo.pagos)[cuotaIndex]]
-                      }`}</p>
                     </div>
                   ))}
                 </div>
