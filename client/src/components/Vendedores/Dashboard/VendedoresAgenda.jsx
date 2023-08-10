@@ -331,7 +331,12 @@ const VendedoresAgenda = () => {
                         </div>
                         <div className=" w-[15%] flex justify-center items-center p-0 ">
                           <div className="flex w-44 justify-start items-center gap-2 relative">
-
+                            <p
+                              onClick={() => handleCopyClick(item.telephone)}
+                              className="text-start w-44 p-1 cursor-pointer  px-3 rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 "
+                            >
+                              {item.telephone}
+                            </p>
                           </div>
                           <a
                             href={`http://wa.me/${item.telephone.replace(
