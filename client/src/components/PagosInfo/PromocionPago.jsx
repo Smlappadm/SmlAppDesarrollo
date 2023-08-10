@@ -321,6 +321,41 @@ export default function PromocionPago({ tamañoPantalla }) {
     setOpen(false);
   };
 
+  const [modalState, setModalState] = useState({});
+  const modifyModalState = (
+    cuotaIndex,
+    open,
+    handleOpen,
+    handleClose,
+    tiempo,
+    promokey,
+    tamañoPantalla,
+    pressLinkButtonHandler,
+    promo,
+    total,
+    promoParametro,
+    cuotas,
+    tipo,
+    setStripeData
+  ) => {
+    setModalState({
+      cuotaIndex,
+      open,
+      handleOpen,
+      handleClose,
+      tiempo,
+      promokey,
+      tamañoPantalla,
+      pressLinkButtonHandler,
+      promo,
+      total,
+      promoParametro,
+      cuotas,
+      tipo,
+      setStripeData,
+    });
+  };
+
   if (clienteEmpresa && clienteEmpresa.linkActivado) {
     return (
       <div
@@ -418,12 +453,48 @@ export default function PromocionPago({ tamañoPantalla }) {
                         promocionKey === "promocion0"
                           ? () => (
                               CambiarCuota(cuota, index, cuotaIndex),
+                              modifyModalState(
+                                cuotaIndex,
+                                open,
+                                handleOpen,
+                                handleClose,
+                                tiempoRestante,
+                                promocionKey,
+                                tamañoPantalla,
+                                pressLinkButtonHandler,
+                                promo.pagos[cuota],
+                                promo.total[cuota],
+                                promo.links[cuota],
+                                cuota,
+                                promo.hora
+                                  ? `PROMOCIÓN ${promo.hora} HORAS`
+                                  : "PVP",
+                                setStripeData
+                              ),
                               setCuota(cuota),
                               handleOpen()
                             )
                           : tiempoRestante[promocionKey] > 0
                           ? () => (
                               CambiarCuota(cuota, index, cuotaIndex),
+                              modifyModalState(
+                                cuotaIndex,
+                                open,
+                                handleOpen,
+                                handleClose,
+                                tiempoRestante,
+                                promocionKey,
+                                tamañoPantalla,
+                                pressLinkButtonHandler,
+                                promo.pagos[cuota],
+                                promo.total[cuota],
+                                promo.links[cuota],
+                                cuota,
+                                promo.hora
+                                  ? `PROMOCIÓN ${promo.hora} HORAS`
+                                  : "PVP",
+                                setStripeData
+                              ),
                               setCuota(cuota),
                               handleOpen()
                             )
@@ -448,24 +519,6 @@ export default function PromocionPago({ tamañoPantalla }) {
                           </p>
                         </div>
                       )}
-                      <ModalConfirmacion
-                        cuotaIndex={cuotaIndex}
-                        open={open}
-                        handleOpen={handleOpen}
-                        handleClose={handleClose}
-                        tiempo={tiempoRestante}
-                        promokey={promocionKey}
-                        tamañoPantalla={tamañoPantalla}
-                        pressLinkButtonHandler={pressLinkButtonHandler}
-                        promo={promo.pagos[cuota]}
-                        total={promo.total[cuota]}
-                        promoParametro={promo.links[cuota]}
-                        cuotas={cuota}
-                        tipo={
-                          promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"
-                        }
-                        setStripeData={setStripeData}
-                      />
                     </div>
                   ))}
                 </div>
@@ -521,6 +574,23 @@ export default function PromocionPago({ tamañoPantalla }) {
           </div>
         )} */}
       </div>
+      <ModalConfirmacion
+        // cuotaIndex={cuotaIndex}
+        open={open}
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        // tiempo={tiempoRestante}
+        // promokey={promocionKey}
+        // tamañoPantalla={tamañoPantalla}
+        // pressLinkButtonHandler={pressLinkButtonHandler}
+        // promo={promo.pagos[cuota]}
+        // total={promo.total[cuota]}
+        // promoParametro={promo.links[cuota]}
+        // cuotas={cuota}
+        // tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
+        // setStripeData={setStripeData}
+        modalState={modalState}
+      />
       <ToastContainer />
     </div>
   );
