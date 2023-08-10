@@ -6,8 +6,6 @@ import Modal from "@mui/material/Modal";
 import { CiEdit } from "react-icons/ci";
 import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
-
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
