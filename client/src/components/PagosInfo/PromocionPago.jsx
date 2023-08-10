@@ -404,8 +404,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                       key={cuota}
                       className={
                         cuotas === `${cuota}-${index}-${cuotaIndex}`
-                          ? "  mr-2 bg-blue-500 text-black font-bold cursor-pointer w-full flex items-center rounded-lg"
-                          : "  mr-2 font-bold cursor-pointer w-full flex items-center rounded-lg"
+                          ? "  mr-2 bg-blue-500 text-black font-bold  w-full flex items-center rounded-lg cursor-pointer"
+                          : "  mr-2 font-bold  w-full cursor-pointer flex items-center rounded-lg"
                       }
                       onClick={
                         promocionKey === "promocion0"
