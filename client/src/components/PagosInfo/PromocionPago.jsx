@@ -423,8 +423,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                         Object.keys(promo.pagos)[cuotaIndex]
                       ].slice(11)}
                       €`}</p>
-                      <p className="py-3 pl-5 w-8">
-                        {`x ${Object.keys(promo.pagos)[cuotaIndex]}`}
+                      <p className="py-3 pl-5">
+                        {`x ${Object.keys(promo.pagos)[cuotaIndex]} pagos`}
                       </p>
                     </div>
                   ))}
