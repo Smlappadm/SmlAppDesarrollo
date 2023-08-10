@@ -57,6 +57,12 @@ const VendedoresDashboard = () => {
     setData(vendedoresDashboard);
   }, [vendedoresDashboard]);
 
+  const [pageStyle, setPageStyle] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardXPage, setCardXpage] = useState(10);
+  const indexLastCard = currentPage * cardXPage;
+  const indexFirstCard = indexLastCard - cardXPage;
+  const currentCard = data.slice(indexFirstCard, indexLastCard);
 
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
