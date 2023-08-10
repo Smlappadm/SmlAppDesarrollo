@@ -419,7 +419,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           : null
                       }
                     >
-                      <p className="py-3 pl-5 w-8">{` ${promo.pagos[
+                      <p className="py-3 pl-5 w-15">{` ${promo.pagos[
                         Object.keys(promo.pagos)[cuotaIndex]
                       ].slice(11)}
                       €`}</p>
