@@ -313,7 +313,9 @@ const VendedoresAgenda = () => {
                               </div>
                             </div>
                           ) : (
-
+                            <div>
+                              <CiMail className="text-[35px] mr-5 text-[#9eabbe]" />
+                            </div>
                           )}
                         </div>
                         <div className=" w-[5%] flex justify-center items-center p-0">
