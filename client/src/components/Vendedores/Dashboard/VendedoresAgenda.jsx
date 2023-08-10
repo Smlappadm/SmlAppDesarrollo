@@ -257,7 +257,30 @@ const VendedoresAgenda = () => {
               ""
             )}
           </div>
-
+          {!openModalPago && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="flex gap-5 justify-center items-center"
+            >
+              <InputRunner
+                getLeadCheckedInactive5={getLeadsLLamadaVenta}
+                body={body}
+                emailAddress={emailAddress}
+                profesion={profesion}
+                setProfesion={setProfesion}
+                country={country}
+                setCountry={setCountry}
+                level={level}
+                setLevel={setLevel}
+                status={status}
+                setStatus={setStatus}
+                freelancer={freelancer}
+                setFreelancer={setFreelancer}
+              />
+            </motion.div>
+          )}
           {!openModalPago ? (
             <>
               {vendedoresVentasDashboard.length > 0 ? (
