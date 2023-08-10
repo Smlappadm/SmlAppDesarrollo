@@ -147,8 +147,6 @@ export default function NestedModal({
   // cuotas,
   open,
   handleClose,
-  handleOpen,
-  // cuotaIndex,
   modalState,
 }) {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
