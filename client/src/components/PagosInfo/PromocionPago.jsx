@@ -320,7 +320,6 @@ export default function PromocionPago({ tamañoPantalla }) {
             ? "w-screen h-screen bg-[#1A1A1A] flex flex-col justify-center items-center gap-8"
             : "w-screen h-screen bg-[#020131] flex flex-col justify-center items-center gap-8"
         }
-        style={styles()}
       >
         <div
           className={
