@@ -333,7 +333,15 @@ const VendedoresAgenda = () => {
                           <div className="flex w-44 justify-start items-center gap-2 relative">
 
                           </div>
-
+                          <a
+                            href={`http://wa.me/${item.telephone.replace(
+                              /\s+/g,
+                              ""
+                            )}`}
+                            target="blanck"
+                          >
+                            <FaWhatsapp className="text-[30px] block mr-5 text-[#9eabbe] cursor-pointer hover:text-green-500 hover:text-[33px]" />
+                          </a>
                         </div>
                         <div className=" w-[5%] flex justify-center items-start p-0">
                           {item.level !== "incidencia" ? (
