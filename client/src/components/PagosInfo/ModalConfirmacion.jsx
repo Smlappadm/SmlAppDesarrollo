@@ -167,7 +167,6 @@ export default function NestedModal({
       })
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
-  console.log(promokey);
 
   return (
     <div className="">
