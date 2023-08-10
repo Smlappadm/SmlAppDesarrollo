@@ -389,7 +389,7 @@ const VendedoresAgenda = () => {
                           )}
                           {item.status === "Contactado" && (
                             <div className="bg-[#42ac9a] w-44 h-11 flex flex-col justify-center items-center text-white rounded-3xl text-16">
-
+                              <p>Contactado</p>
                             </div>
                           )}
                           {item.level === "incidencia" && (
