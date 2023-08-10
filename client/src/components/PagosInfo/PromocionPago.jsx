@@ -402,8 +402,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                       key={cuota}
                       className={
                         cuotas === `${cuota}-${index}-${cuotaIndex}`
-                          ? "  mr-2 bg-blue-500 text-black font-bold  w-full flex items-center rounded-lg cursor-pointer"
-                          : "  mr-2 font-bold  w-full cursor-pointer flex items-center rounded-lg"
+                          ? "  mr-2 bg-blue-500 text-black font-bold  w-full flex items-center rounded-lg cursor-pointer justify-center"
+                          : "  mr-2 font-bold  w-full cursor-pointer flex items-center rounded-lg justify-center"
                       }
                       onClick={
                         promocionKey === "promocion0"
@@ -419,13 +419,24 @@ export default function PromocionPago({ tamañoPantalla }) {
                           : null
                       }
                     >
-                      <p className="py-3 pl-5 w-15">{` ${promo.pagos[
-                        Object.keys(promo.pagos)[cuotaIndex]
-                      ].slice(11)}
-                      €`}</p>
-                      <p className="py-3 pl-5">
-                        {`x ${Object.keys(promo.pagos)[cuotaIndex]} pagos`}
-                      </p>
+                      {Object.keys(promo.pagos)[cuotaIndex] === "1" ? (
+                        <div className="flex">
+                          <p className="py-3 pl-5 ">{` ${promo.pagos[
+                            Object.keys(promo.pagos)[cuotaIndex]
+                          ].slice(12)}
+                       € `}</p>
+                        </div>
+                      ) : (
+                        <div className="flex">
+                          <p className="py-3 pl-5 ">{` ${promo.pagos[
+                            Object.keys(promo.pagos)[cuotaIndex]
+                          ].slice(11)}
+                        € `}</p>
+                          <p className="py-3 ">
+                            {`x ${Object.keys(promo.pagos)[cuotaIndex]} pagos`}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
