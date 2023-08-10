@@ -192,7 +192,7 @@ const VendedoresAgenda = () => {
 
   return (
     <>
-      <Nav />
+     
 
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
