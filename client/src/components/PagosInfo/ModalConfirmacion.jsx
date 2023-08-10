@@ -201,6 +201,5 @@ export default function NestedModal({ open, handleClose, modalState }) {
         </div>
       </Box>
     </Modal>
-    // </div>
   );
 }
