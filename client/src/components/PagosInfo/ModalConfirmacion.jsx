@@ -8,8 +8,6 @@ import { MdPriceCheck } from "react-icons/md";
 import { useUser } from "@clerk/clerk-react";
 
 import { ToastContainer, toast } from "react-toastify";
-import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
-import { motion, spring } from "framer-motion";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
