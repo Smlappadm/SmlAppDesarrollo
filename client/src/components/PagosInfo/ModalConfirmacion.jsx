@@ -10,7 +10,6 @@ import { useUser } from "@clerk/clerk-react";
 import { ToastContainer, toast } from "react-toastify";
 import { CiWarning, CiInstagram, CiMail } from "react-icons/ci";
 import { motion, spring } from "framer-motion";
-import { AiOutlineConsoleSql, AiOutlinePhone } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
