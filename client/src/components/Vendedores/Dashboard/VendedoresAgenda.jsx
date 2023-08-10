@@ -354,7 +354,9 @@ const VendedoresAgenda = () => {
                               )}
                             {item.status === "Agenda llamada" &&
                               item.llamada_venta?.dia_hora[0] === "u" && (
-
+                                <p className="w-fit rounded-full text-ellipsis text-16 opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 px-1">
+                                  Sin Día/Hora
+                                </p>
                               )}
                           </div>
 
