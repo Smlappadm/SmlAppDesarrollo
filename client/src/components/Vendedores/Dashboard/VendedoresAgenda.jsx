@@ -143,7 +143,17 @@ const VendedoresAgenda = () => {
       theme: "dark",
     });
   };
-
+  const SendIncidenceAlert = () => {
+    toast.warn("incidence sent!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
     dispatch(
       getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
     );
