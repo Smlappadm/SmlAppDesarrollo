@@ -522,8 +522,6 @@ export default function PromocionPago({ tamañoPantalla }) {
                     </div>
                   ))}
                 </div>
-                {/* <p className="text-white">DETALLE</p>
-                <p className="text-white text-center">{promo.pagos[cuotas]}</p> */}
               </div>
             );
           })}
