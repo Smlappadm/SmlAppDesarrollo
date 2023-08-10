@@ -127,7 +127,7 @@ const VendedoresAgenda = () => {
       theme: "dark",
     });
     dispatch(
-
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
     );
     pages(1);
   };
