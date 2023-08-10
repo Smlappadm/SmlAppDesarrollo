@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { CiEdit } from "react-icons/ci";
-import { MdPriceCheck } from "react-icons/md";
 import "react-toastify/dist/ReactToastify.css";
 
 const style = {
