@@ -145,19 +145,15 @@ export default function NestedModal({
   promokey,
   setStripeData,
   cuotas,
+  open,
+  handleClose,
+  handleOpen,
+  cuotaIndex,
 }) {
-  const [open, setOpen] = React.useState(false);
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+  console.log(cuotaIndex);
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
       .writeText(copyToProps)
@@ -169,82 +165,82 @@ export default function NestedModal({
   };
 
   return (
-    <div className="">
-      <div className="flex gap-4">
-        {promokey === "promocion0" ||
-        (promokey !== "promocion0" && tiempo[promokey] > 0) ? (
-          <p
-            className={
-              tamañoPantalla === "Pequeña"
-                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
-                : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600 whitespace-nowrap px-3 cursor-pointer"
-            }
-            onClick={handleOpen}
-          >
-            Confirmar selección
-          </p>
-        ) : (
-          <p
-            className={
-              tamañoPantalla === "Pequeña"
-                ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
-                : "text-white bg-gray-500 w-full py-3 text-18 rounded-2xl text-center whitespace-nowrap px-3  cursor-default"
-            }
-          >
-            Confirmar selección
-          </p>
-        )}
-      </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
+    // <div className="">
+    //   <div className="flex gap-4">
+    //     {promokey === "promocion0" ||
+    //     (promokey !== "promocion0" && tiempo[promokey] > 0) ? (
+    //       <p
+    //         className={
+    //           tamañoPantalla === "Pequeña"
+    //             ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
+    //             : "text-white bg-blue-950 w-full py-3 text-18 rounded-2xl text-center hover:bg-blue-600 whitespace-nowrap px-3 cursor-pointer"
+    //         }
+    //         onClick={handleOpen}
+    //       >
+    //         Confirmar selección
+    //       </p>
+    //     ) : (
+    //       <p
+    //         className={
+    //           tamañoPantalla === "Pequeña"
+    //             ? "text-white bg-black w-full py-3 text-18 rounded-2xl text-center px-3"
+    //             : "text-white bg-gray-500 w-full py-3 text-18 rounded-2xl text-center whitespace-nowrap px-3  cursor-default"
+    //         }
+    //       >
+    //         Confirmar selección
+    //       </p>
+    //     )}
+    //   </div>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="parent-modal-title"
+      aria-describedby="parent-modal-description"
+    >
+      <Box
+        sx={{
+          ...style,
+          width: 550,
+          borderRadius: 5,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
       >
-        <Box
-          sx={{
-            ...style,
-            width: 550,
-            borderRadius: 5,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-        >
-          <div className="w-full flex flex-col justify-center items-center mt-2 gap-10 text-white">
-            {showCopiedMessage && (
-              <p className="absolute -top-20 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-2 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
-                Copiado!
-              </p>
-            )}
+        <div className="w-full flex flex-col justify-center items-center mt-2 gap-10 text-white">
+          {showCopiedMessage && (
+            <p className="absolute -top-20 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4 mt-2 bg-[#2bca80] hover:bg-[#3f437a] cursor-pointer">
+              Copiado!
+            </p>
+          )}
 
-            <p>¿Desear confirmar la seleccion del tipo de pago?</p>
-            <p>{tipo}</p>
-            <p>{promo}</p>
-            <p>{total}</p>
+          <p>¿Desear confirmar la seleccion del tipo de pago?</p>
+          <p>{tipo}</p>
+          <p>{promo}</p>
+          <p>{total}</p>
 
-            <div className="flex justify-around items-center m-5 gap-10 text-white">
-              <button
-                type="button"
-                className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                onClick={handleClose}
-              >
-                No
-              </button>
-              <button
-                type="button"
-                className="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 mr-2 mb-2"
-                onClick={() => (
-                  pressLinkButtonHandler(promoParametro),
-                  setStripeData(total, promo, tipo, cuotas, promoParametro)
-                )}
-              >
-                Si
-              </button>
-            </div>
+          <div className="flex justify-around items-center m-5 gap-10 text-white">
+            <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={handleClose}
+            >
+              No
+            </button>
+            <button
+              type="button"
+              className="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 mr-2 mb-2"
+              onClick={() => (
+                pressLinkButtonHandler(promoParametro),
+                setStripeData(total, promo, tipo, cuotas, promoParametro)
+              )}
+            >
+              Si
+            </button>
           </div>
-        </Box>
-      </Modal>
-    </div>
+        </div>
+      </Box>
+    </Modal>
+    // </div>
   );
 }
