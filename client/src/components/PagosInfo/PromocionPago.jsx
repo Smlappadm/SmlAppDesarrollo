@@ -312,6 +312,15 @@ export default function PromocionPago({ tamañoPantalla }) {
 
     dispatch(UpdateClienteEmpresa(emailApp, body));
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   if (clienteEmpresa && clienteEmpresa.linkActivado) {
     return (
       <div
@@ -402,32 +411,34 @@ export default function PromocionPago({ tamañoPantalla }) {
                       key={cuota}
                       className={
                         cuotas === `${cuota}-${index}-${cuotaIndex}`
-                          ? "  mr-2 bg-blue-500 text-black font-bold  w-full flex items-center rounded-lg cursor-pointer justify-center"
+                          ? "  mr-2 text-black font-bold  w-full flex items-center rounded-lg cursor-pointer justify-center"
                           : "  mr-2 font-bold  w-full cursor-pointer flex items-center rounded-lg justify-center"
                       }
                       onClick={
                         promocionKey === "promocion0"
                           ? () => (
                               CambiarCuota(cuota, index, cuotaIndex),
-                              setCuota(cuota)
+                              setCuota(cuota),
+                              handleOpen()
                             )
                           : tiempoRestante[promocionKey] > 0
                           ? () => (
                               CambiarCuota(cuota, index, cuotaIndex),
-                              setCuota(cuota)
+                              setCuota(cuota),
+                              handleOpen()
                             )
                           : null
                       }
                     >
                       {Object.keys(promo.pagos)[cuotaIndex] === "1" ? (
-                        <div className="flex">
+                        <div className="flex hover:text-black">
                           <p className="py-3 pl-5 ">{` ${promo.pagos[
                             Object.keys(promo.pagos)[cuotaIndex]
                           ].slice(12)}
                        € `}</p>
                         </div>
                       ) : (
-                        <div className="flex">
+                        <div className="flex hover:text-black">
                           <p className="py-3 pl-5 ">{` ${promo.pagos[
                             Object.keys(promo.pagos)[cuotaIndex]
                           ].slice(11)}
@@ -437,23 +448,29 @@ export default function PromocionPago({ tamañoPantalla }) {
                           </p>
                         </div>
                       )}
+                      <ModalConfirmacion
+                        cuotaIndex={cuotaIndex}
+                        open={open}
+                        handleOpen={handleOpen}
+                        handleClose={handleClose}
+                        tiempo={tiempoRestante}
+                        promokey={promocionKey}
+                        tamañoPantalla={tamañoPantalla}
+                        pressLinkButtonHandler={pressLinkButtonHandler}
+                        promo={promo.pagos[cuota]}
+                        total={promo.total[cuota]}
+                        promoParametro={promo.links[cuota]}
+                        cuotas={cuota}
+                        tipo={
+                          promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"
+                        }
+                        setStripeData={setStripeData}
+                      />
                     </div>
                   ))}
                 </div>
                 {/* <p className="text-white">DETALLE</p>
                 <p className="text-white text-center">{promo.pagos[cuotas]}</p> */}
-                <ModalConfirmacion
-                  tiempo={tiempoRestante}
-                  promokey={promocionKey}
-                  tamañoPantalla={tamañoPantalla}
-                  pressLinkButtonHandler={pressLinkButtonHandler}
-                  promo={promo.pagos[cuota]}
-                  total={promo.total[cuota]}
-                  promoParametro={promo.links[cuota]}
-                  cuotas={cuota}
-                  tipo={promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
-                  setStripeData={setStripeData}
-                />
               </div>
             );
           })}
