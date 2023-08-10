@@ -131,29 +131,29 @@ function ChildModalHistory({
 }
 
 export default function NestedModal({
-  item,
-  SendLeadAlertBaja,
-  SendIncidenceAlert,
-  SendErrorUpdateAlertBaja,
-  tamañoPantalla,
-  pressLinkButtonHandler,
-  promo,
-  total,
-  tipo,
-  promoParametro,
-  tiempo,
-  promokey,
-  setStripeData,
-  cuotas,
+  // item,
+  // SendLeadAlertBaja,
+  // SendIncidenceAlert,
+  // SendErrorUpdateAlertBaja,
+  // tamañoPantalla,
+  // pressLinkButtonHandler,
+  // promo,
+  // total,
+  // tipo,
+  // promoParametro,
+  // tiempo,
+  // promokey,
+  // setStripeData,
+  // cuotas,
   open,
   handleClose,
   handleOpen,
-  cuotaIndex,
+  // cuotaIndex,
+  modalState,
 }) {
   const [showCopiedMessage, setShowCopiedMessage] = useState(false);
   const [openAlert, setOpenAlert] = React.useState(false);
   const [openAlertError, setOpenAlertError] = React.useState(false);
-  console.log(cuotaIndex);
   const handleCopyClick = (copyToProps) => {
     navigator.clipboard
       .writeText(copyToProps)
@@ -215,9 +215,9 @@ export default function NestedModal({
           )}
 
           <p>¿Desear confirmar la seleccion del tipo de pago?</p>
-          <p>{tipo}</p>
-          <p>{promo}</p>
-          <p>{total}</p>
+          <p>{modalState.tipo}</p>
+          <p>{modalState.promo}</p>
+          <p>{modalState.total}</p>
 
           <div className="flex justify-around items-center m-5 gap-10 text-white">
             <button
@@ -231,8 +231,14 @@ export default function NestedModal({
               type="button"
               className="text-white bg-blue-800 hover:bg-blue-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-2.5 mr-2 mb-2"
               onClick={() => (
-                pressLinkButtonHandler(promoParametro),
-                setStripeData(total, promo, tipo, cuotas, promoParametro)
+                modalState.pressLinkButtonHandler(promoParametro),
+                modalState.setStripeData(
+                  total,
+                  promo,
+                  tipo,
+                  cuotas,
+                  promoParametro
+                )
               )}
             >
               Si
