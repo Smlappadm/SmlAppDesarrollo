@@ -241,7 +241,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const styles = () => {
     if (tamañoPantalla === "Grande") {
-      return {};
     } else {
       return {
         backgroundImage: `url(${background2})`,
