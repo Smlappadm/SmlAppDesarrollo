@@ -8,7 +8,7 @@ import {
 } from "../../redux/actions";
 import background from "../../Assets/borde1.webp";
 import background2 from "../../Assets/borde2.webp";
-import logo from "../../Assets/";
+import logo from "../../Assets/smllogo.webp";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
 import Pagos from "../../componentsClientes/Pagos/Pagos.jsx";
