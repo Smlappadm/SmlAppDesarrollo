@@ -510,7 +510,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                   ))}
                 </div>
                 <img
-                  className="opacity-80 w-44"
+                  className="opacity-80 w-28"
                   src={logo}
                   // src="https://i.postimg.cc/Kvj4Yr5X/White-Logo-Social-Media-Lab.webp"
                 />
