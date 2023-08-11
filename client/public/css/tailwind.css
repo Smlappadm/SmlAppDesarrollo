@@ -3108,6 +3108,11 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.hover\:text-blue-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
 .focus\:z-10:focus {
   z-index: 10;
 }
