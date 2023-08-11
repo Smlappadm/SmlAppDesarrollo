@@ -6,8 +6,6 @@ import {
   getClienteEmpresa,
   UpdateClienteEmpresa,
 } from "../../redux/actions";
-import background from "../../Assets/borde1.webp";
-import background2 from "../../Assets/borde2.webp";
 import logo from "../../Assets/smllogo.webp";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
