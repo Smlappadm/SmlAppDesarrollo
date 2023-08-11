@@ -500,7 +500,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           className={
                             tiempoRestante[promocionKey] <= 0
                               ? "flex text-gray-500"
-                              : "flex hover:text-blue-500"
+                              : "flex hover:text-blue-500 hover:scale-140 transition-transform"
                           }
                         >
                           <p className="py-3 pl-5 ">{` ${promo.pagos[
