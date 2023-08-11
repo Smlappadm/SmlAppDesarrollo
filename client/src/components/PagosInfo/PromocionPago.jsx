@@ -332,6 +332,19 @@ export default function PromocionPago({ tamañoPantalla }) {
     });
   };
 
+  const NoPromo = () => {
+    toast.error(`Esta Promocion ya caducó`, {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   if (clienteEmpresa && clienteEmpresa.linkActivado) {
     return (
       <div
@@ -404,6 +417,9 @@ export default function PromocionPago({ tamañoPantalla }) {
                     ? "w-full flex flex-col justify-between items-center p-8 rounded-3xl bg-gray-600 bg-opacity-50 h-[500px] "
                     : "w-full flex flex-col justify-between items-center p-8 rounded-3xl  bg-[#57016C80] bg-opacity-50 h-[500px] "
                 }
+                onClick={() => {
+                  tiempoRestante[promocionKey] <= 0 && NoPromo();
+                }}
               >
                 <p
                   className={
@@ -430,7 +446,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                       key={cuota}
                       className={
                         cuotas === `${cuota}-${index}-${cuotaIndex}`
-                          ? "  mr-2 text-black font-bold  w-full flex items-center rounded-lg cursor-pointer justify-center"
+                          ? "  mr-2 font-bold  w-full flex items-center rounded-lg cursor-pointer justify-center"
                           : "  mr-2 font-bold  w-full cursor-pointer flex items-center rounded-lg justify-center"
                       }
                       onClick={
@@ -484,7 +500,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           className={
                             tiempoRestante[promocionKey] <= 0
                               ? "flex text-gray-500"
-                              : "flex hover:text-red-500"
+                              : "flex hover:text-blue-500"
                           }
                         >
                           <p className="py-3 pl-5 ">{` ${promo.pagos[
@@ -497,7 +513,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                           className={
                             tiempoRestante[promocionKey] <= 0
                               ? "flex text-gray-500"
-                              : "flex hover:text-red-500"
+                              : "flex hover:text-blue-500"
                           }
                         >
                           <p className="py-3 pl-5 ">{` ${promo.pagos[
