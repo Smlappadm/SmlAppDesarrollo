@@ -246,8 +246,6 @@ export default function PromocionPago({ tamañoPantalla }) {
         backgroundImage: `url(${background2})`,
         backgroundSize: "auto 100%",
         backgroundPosition: "left top",
-        backgroundRepeat: "no-repeat",
-      };
     }
   };
   const actualizarPromocionActual = () => {
