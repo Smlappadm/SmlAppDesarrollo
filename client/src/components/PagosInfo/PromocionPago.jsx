@@ -239,9 +239,7 @@ export default function PromocionPago({ tamañoPantalla }) {
       .padStart(2, "0")}:${segundosRestantes.toString().padStart(2, "0")}`;
   };
 
-  const styles = () => {
-    if (tamañoPantalla === "Grande") {
-  };
+  const styles = () => {};
   const actualizarPromocionActual = () => {
     for (let i = 0; i < promos.length; i++) {
       const promocionKey = `promocion${i}`;
