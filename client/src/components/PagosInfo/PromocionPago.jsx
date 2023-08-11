@@ -405,7 +405,13 @@ export default function PromocionPago({ tamañoPantalla }) {
                     : "w-full flex flex-col justify-between items-center p-8 rounded-3xl  bg-[#57016C80] bg-opacity-50 h-[500px] "
                 }
               >
-                <p className="text-white text-center w-full">
+                <p
+                  className={
+                    tiempoRestante[promocionKey] <= 0
+                      ? "text-gray-500 text-center w-full"
+                      : "text-white text-center w-full"
+                  }
+                >
                   {promo.hora ? `PROMOCIÓN ${promo.hora} HORAS` : "PVP"}
                 </p>
 
