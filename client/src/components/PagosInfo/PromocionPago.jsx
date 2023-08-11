@@ -474,9 +474,9 @@ export default function PromocionPago({ tamañoPantalla }) {
                       {Object.keys(promo.pagos)[cuotaIndex] === "1" ? (
                         <div
                           className={
-                            tiempoRestante[index] > 0
+                            tiempoRestante[index] <= 0
                               ? "flex hover:text-red-500"
-                              : "flex hover:text-black"
+                              : "flex hover:text-red-500"
                           }
                         >
                           <p className="py-3 pl-5 ">{` ${promo.pagos[
@@ -485,7 +485,13 @@ export default function PromocionPago({ tamañoPantalla }) {
                        € `}</p>
                         </div>
                       ) : (
-                        <div className="flex hover:text-black">
+                        <div
+                          className={
+                            tiempoRestante[index] <= 0
+                              ? "flex hover:text-red-500"
+                              : "flex hover:text-red-500"
+                          }
+                        >
                           <p className="py-3 pl-5 ">{` ${promo.pagos[
                             Object.keys(promo.pagos)[cuotaIndex]
                           ].slice(11)}
