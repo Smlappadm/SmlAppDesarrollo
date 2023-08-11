@@ -509,7 +509,7 @@ export default function PromocionPago({ tamañoPantalla }) {
                     </div>
                   ))}
                 </div>
-                <img className="opacity-80 w-28" src={logo} />
+                <img className="opacity-100 w-28" src={logo} />
               </div>
             );
           })}
