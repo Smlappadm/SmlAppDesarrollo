@@ -241,8 +241,6 @@ export default function PromocionPago({ tamañoPantalla }) {
 
   const styles = () => {
     if (tamañoPantalla === "Grande") {
-    } else {
-    }
   };
   const actualizarPromocionActual = () => {
     for (let i = 0; i < promos.length; i++) {
