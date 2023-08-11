@@ -90,7 +90,7 @@ function ChildModalHistory({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center mb-5 ">
-            Deseas dar de bajdxcccccccccccccccccca al cliente?
+            Deseas dar de baja al cliente?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
