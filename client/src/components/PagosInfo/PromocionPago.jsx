@@ -400,7 +400,9 @@ export default function PromocionPago({ tamañoPantalla }) {
                 className={
                   tamañoPantalla === "Pequeña"
                     ? "w-full flex flex-col justify-between items-center bg-black p-8 rounded-3xl bg-opacity-75 h-[500px]"
-                    : "w-full flex flex-col justify-between items-center p-8 rounded-3xl bg-[#57016C80] bg-opacity-50 h-[500px] "
+                    : tiempoRestante[promocionKey] <= 0
+                    ? "w-full flex flex-col justify-between items-center p-8 rounded-3xl bg-gray-600 bg-opacity-50 h-[500px] "
+                    : "w-full flex flex-col justify-between items-center p-8 rounded-3xl  bg-[#57016C80] bg-opacity-50 h-[500px] "
                 }
               >
                 <p className="text-white text-center w-full">
@@ -474,8 +476,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                       {Object.keys(promo.pagos)[cuotaIndex] === "1" ? (
                         <div
                           className={
-                            tiempoRestante[index] <= 0
-                              ? "flex hover:text-red-500"
+                            tiempoRestante[promocionKey] <= 0
+                              ? "flex text-gray-500"
                               : "flex hover:text-red-500"
                           }
                         >
@@ -487,8 +489,8 @@ export default function PromocionPago({ tamañoPantalla }) {
                       ) : (
                         <div
                           className={
-                            tiempoRestante[index] <= 0
-                              ? "flex hover:text-red-500"
+                            tiempoRestante[promocionKey] <= 0
+                              ? "flex text-gray-500"
                               : "flex hover:text-red-500"
                           }
                         >
