@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions";
 import background from "../../Assets/borde1.webp";
 import background2 from "../../Assets/borde2.webp";
+import logo from "../../Assets/";
 import { Link } from "react-router-dom";
 import ModalConfirmacion from "./ModalConfirmacion";
 import Pagos from "../../componentsClientes/Pagos/Pagos.jsx";
@@ -510,6 +511,11 @@ export default function PromocionPago({ tamañoPantalla }) {
                     </div>
                   ))}
                 </div>
+                <img
+                  className="opacity-80 w-44"
+                  src={logo}
+                  // src="https://i.postimg.cc/Kvj4Yr5X/White-Logo-Social-Media-Lab.webp"
+                />
               </div>
             );
           })}
