@@ -416,6 +416,7 @@ export default function InputName({ name }) {
             <MenuItem value="">Estado</MenuItem>
             <MenuItem value="Sin contactar">Sin contactar</MenuItem>
             <MenuItem value="En proceso">En Proceso</MenuItem>
+            <MenuItem value="Contactado">Contactado</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
             <MenuItem value="Contratado">Contratado</MenuItem>
             <MenuItem value="A pagar">A Pagar</MenuItem>
@@ -465,7 +466,7 @@ export default function InputName({ name }) {
               borderColor: "#ae2dff",
               "&:hover": {
                 borderColor: "#a020f0",
-              }, 
+              },
             }}
             size="large"
           >
