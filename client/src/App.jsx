@@ -135,7 +135,6 @@ function ClerkProviderWithRoutes() {
     }
   }, []);
 
-  console.log(redirectUrl)
   return (
     <>
       <Routes>
@@ -157,7 +156,10 @@ function ClerkProviderWithRoutes() {
             path="/sign-in/*"
             element={
               // redirectUrl === "/protected"  ? (
-              redirectUrl === "/protected" || redirectUrl === null || redirectUrl === "undefined" || redirectUrl === undefined ? (
+              redirectUrl === "/protected" ||
+              redirectUrl === null ||
+              redirectUrl === "undefined" ||
+              redirectUrl === undefined ? (
                 <SignIn
                   routing="path"
                   path="/sign-in"
