@@ -31,7 +31,7 @@ const findLeadVendedorNameAllInfo = async (
       parseInt(fromYear),
       parseInt(fromMonth) - 1,
       parseInt(fromDayOfMonth),
-      0,
+      -3,
       0,
       0
     );
@@ -39,7 +39,7 @@ const findLeadVendedorNameAllInfo = async (
       parseInt(toYear),
       parseInt(toMonth) - 1,
       parseInt(toDayOfMonth),
-      23,
+      20,
       59,
       59
     );
