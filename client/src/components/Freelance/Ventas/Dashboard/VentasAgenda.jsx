@@ -33,6 +33,7 @@ const VentasDashboard = () => {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
+  const [filterName, setFilterName] = useState("");
   const [freelancer, setFreelancer] = useState("");
 
   const user = useUser().user;
@@ -191,6 +192,28 @@ const VentasDashboard = () => {
     return fechaHoraLocal;
   };
 
+  const onChangeName = (event) => {
+    // setFilters({ level: false, runner: false, sellers: false, status: false });
+    setFilterName(event.target.value);
+    const normalizeString = (str) =>
+      str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]/g, "");
+
+    const leadsFilteredName = vendedoresVentasDashboard.filter((item) =>
+      normalizeString(item.name.toLowerCase()).includes(
+        normalizeString(event.target.value.toLowerCase())
+      )
+    );
+
+    setData(leadsFilteredName);
+
+    if (event.target.value === "") {
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer);
+    }
+  };
+
   return (
     <>
       <Nav />
@@ -260,6 +283,8 @@ const VentasDashboard = () => {
                 className="flex gap-5 justify-center items-center ml-16"
               >
                 <InputRunner
+                              filterName={filterName}
+                              onChangeName={onChangeName}
                   getLeadCheckedInactive5={getLeadsLLamadaVenta}
                   body={body}
                   emailAddress={emailAddress}
