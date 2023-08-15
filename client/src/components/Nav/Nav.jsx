@@ -316,7 +316,7 @@ function Nav() {
         )}
       </div>
 
-      <div className="flex flex-col justify-center w-full items-center mb-10">
+      <div className="flex flex-col justify-center w-full items-center mb-5">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -347,6 +347,7 @@ function Nav() {
             <IoExitOutline className={styles.icono} /> <p>Salir</p>
           </button>
         </Link>
+        <p className="text-[0.7rem] mt-2">Version 0.0.55</p>
       </div>
     </div>
   );
