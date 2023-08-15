@@ -971,10 +971,6 @@ video {
   margin-top: 2rem;
 }
 
-.mr-7 {
-  margin-right: 1.75rem;
-}
-
 .block {
   display: block;
 }
@@ -2064,6 +2060,11 @@ video {
 .bg-\[\#ff69b4\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 105 180 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#fffc32\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 252 50 / var(--tw-bg-opacity));
 }
 
 .bg-\[none\] {
