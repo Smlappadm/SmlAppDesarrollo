@@ -80,8 +80,6 @@ const findLeadCorredorNameAllInfo = async (
       59,
       59
     );
-    console.log(startDate);
-    console.log(endDate);
     query.updateVendedor = {
       $gte: startDate,
       $lt: endDate,
