@@ -24,6 +24,8 @@ const getServerUrl = () => {
 
 axios.defaults.baseURL = getServerUrl();
 
+const version = "Version 0.0.54";
+
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
@@ -61,10 +63,6 @@ root.render(
 //     </Provider>
 //   </IntlProvider>
 // );
-
-
-
-
 
 // HOVER
 
