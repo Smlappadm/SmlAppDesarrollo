@@ -31,7 +31,7 @@ const findLeadCorredorNameAllInfo = async (
     query.vendedor_name = vendedor; // Si se proporciona el nombre del vendedor, agregarlo al filtro
   }
 
-  if (fromDay && toDay) {
+  if (fromDay && toDay && vendedor === "") {
     // Si se proporcionan fechas de inicio y fin, crear un rango de búsqueda para el campo "updateCorredor"
     const [fromYear, fromMonth, fromDayOfMonth] = fromDay.split("-");
     const [toYear, toMonth, toDayOfMonth] = toDay.split("-");
@@ -40,7 +40,7 @@ const findLeadCorredorNameAllInfo = async (
       parseInt(fromYear),
       parseInt(fromMonth) - 1,
       parseInt(fromDayOfMonth),
-      0,
+      -3,
       0,
       0
     );
@@ -48,11 +48,41 @@ const findLeadCorredorNameAllInfo = async (
       parseInt(toYear),
       parseInt(toMonth) - 1,
       parseInt(toDayOfMonth),
-      23,
+      20,
       59,
       59
     );
+    console.log(startDate);
+    console.log(endDate);
     query.updateCorredor = {
+      $gte: startDate,
+      $lt: endDate,
+    };
+  }
+  if (fromDay && toDay && corredor === "") {
+    // Si se proporcionan fechas de inicio y fin, crear un rango de búsqueda para el campo "updateCorredor"
+    const [fromYear, fromMonth, fromDayOfMonth] = fromDay.split("-");
+    const [toYear, toMonth, toDayOfMonth] = toDay.split("-");
+
+    const startDate = new Date(
+      parseInt(fromYear),
+      parseInt(fromMonth) - 1,
+      parseInt(fromDayOfMonth),
+      -3,
+      0,
+      0
+    );
+    const endDate = new Date(
+      parseInt(toYear),
+      parseInt(toMonth) - 1,
+      parseInt(toDayOfMonth),
+      20,
+      59,
+      59
+    );
+    console.log(startDate);
+    console.log(endDate);
+    query.updateVendedor = {
       $gte: startDate,
       $lt: endDate,
     };
