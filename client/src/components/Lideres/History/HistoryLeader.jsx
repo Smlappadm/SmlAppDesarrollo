@@ -140,8 +140,15 @@ export const LideresHistory = () => {
               <div className="flex justify-center items-center p-0">
                 <Text className="text-center w-6 p-0 text-white">Tel</Text>
               </div>
+              <div className="flex justify-center  items-center p-0">
+                <Text className="pr-0 text-center w-14 text-white">
+                  Fecha Corredor
+                </Text>
+              </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="pr-3 text-center text-white">Chequeado</Text>
+                <Text className="pr-0 text-center w-14 text-white">
+                  Fecha Vendedor
+                </Text>
               </div>
               <div className="flex justify-center items-center p-0">
                 <Text className="text-start w-28 p-0 text-white">Corredor</Text>
@@ -264,9 +271,20 @@ export const LideresHistory = () => {
                         </div>
                       </div>
                       <div className="flex justify-center items-center p-0">
+                        <div className="w-24 text-ellipsis flex justify-start items-center p-0 mr-4">
+                          <Text className="text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
+                            {item.updateCorredor
+                              ? item.updateCorredor.slice(0, 10)
+                              : "-"}
+                          </Text>
+                        </div>
+                      </div>
+                      <div className="flex justify-center items-center p-0">
                         <div className="w-24 text-ellipsis flex justify-start items-center p-0">
                           <Text className="text-white rounded-full text-ellipsis opacity-1 overflow-hidden whitespace-nowrap hover:overflow-visible hover:bg-[#e3e1e1] hover:w-fit hover:text-black z-111 hover:absolute">
-                            {item.updatedAt ? item.updatedAt.slice(0, 10) : "-"}
+                            {item.updateVendedor
+                              ? item.updateVendedor.slice(0, 10)
+                              : "-"}
                           </Text>
                         </div>
                       </div>
