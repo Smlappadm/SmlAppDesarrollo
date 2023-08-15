@@ -273,8 +273,6 @@ const VentasHistory = () => {
       .catch((err) => alert(`Error al copiar: ${err}`));
   };
 
-
-
   const updateLeads = () => {
     dispatch(getVendedorAllLeads(email));
     setData(vendedorAllLeadsHistory);
@@ -335,7 +333,7 @@ const VentasHistory = () => {
 
         <div className="w-full flex flex-col justify-center items-center">
           <div className={style.divTitle}>
-          <div className="flex w-full h-10">
+            <div className="flex w-full h-10">
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -435,6 +433,8 @@ const VentasHistory = () => {
             className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
           >
             <InputRunner
+              onChangeName={onChangeName}
+              filterName={filterName}
               getVendedorAllLeads={getVendedorAllLeads}
               emailUser={email}
               fromDay={fromDay}
@@ -462,12 +462,12 @@ const VentasHistory = () => {
               className={style.table}
             >
               <div className="flex justify-start items-center  mx-6">
-                <button
+                <label
                   className="text-start w-[20%] px-3"
-                  onClick={handlerOpenFilterName}
+                  // onClick={handlerOpenFilterName}
                 >
                   Nombre
-                </button>
+                </label>
                 <label className="text-start w-[15%] px-3">Profesión</label>
                 <label className="text-start w-[10%] px-3">País</label>
                 <label className="text-center w-[5%] ">Email</label>
