@@ -14,8 +14,6 @@ const findLeadFreelancerNameAllInfo = async (
   checked,
   descargados
 ) => {
-  console.log(checked);
-
   // Crear un objeto "query" con los criterios de búsqueda iniciales:
   const query = {
     freelancer: true, // El cliente potencial debe ser un freelancer
@@ -36,7 +34,7 @@ const findLeadFreelancerNameAllInfo = async (
       parseInt(fromYear),
       parseInt(fromMonth) - 1,
       parseInt(fromDayOfMonth),
-      0,
+      -3,
       0,
       0
     );
@@ -44,11 +42,11 @@ const findLeadFreelancerNameAllInfo = async (
       parseInt(toYear),
       parseInt(toMonth) - 1,
       parseInt(toDayOfMonth),
-      23,
+      20,
       59,
       59
     );
-    query.updateCorredor = {
+    query.updatedAt = {
       $gte: startDate,
       $lt: endDate,
     };
