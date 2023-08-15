@@ -309,9 +309,7 @@ function IncidenceModal({
       .then((response) => {
         SendIncidenceAlert();
       })
-      .catch((error) => {
-        console.log("error al enviar la incidencia");
-      });
+      .catch((error) => {});
 
     setOpen(false);
   };
@@ -944,18 +942,18 @@ export default function NestedModal({
               </h2>
               <div className="flex flex-col justify-center items-center mt-3">
                 <div className="mt-3  flex  justify-between items-center">
-                <div className="relative h-fit w-fit group flex justify-center items-center">
+                  <div className="relative h-fit w-fit group flex justify-center items-center">
                     <p className="w-fit  whitespace-nowrap hidden absolute text-[#9c9b9b] -top-7 group-hover:block">
                       Open WebSite
                     </p>
                     <a href={item.url} target="blank">
-                    <CiGlobe
-                      className={
-                        editEmail
-                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      }
-                    />
+                      <CiGlobe
+                        className={
+                          editEmail
+                            ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                            : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                        }
+                      />
                     </a>
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">
@@ -1045,40 +1043,40 @@ export default function NestedModal({
                       Copiar Link Pago
                     </p>
                     {window.location.hostname.includes("localhost") && (
-                    <p
-                      onClick={() =>
-                        handleCopyClick(
-                          `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
-                        )
-                      }
-                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                    >
-                      Link
-                    </p>
+                      <p
+                        onClick={() =>
+                          handleCopyClick(
+                            `http://localhost:5173/promocion-pagos?emailApp=${inputEmailApp}`
+                          )
+                        }
+                        className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                      >
+                        Link
+                      </p>
                     )}
                     {window.location.hostname.includes("sml-app.vercel") && (
-                    <p
-                      onClick={() =>
-                        handleCopyClick(
-                          `https://sml-app.vercel.app/promocion-pagos?emailApp=${inputEmailApp}`
-                        )
-                      }
-                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                    >
-                      Link
-                    </p>
+                      <p
+                        onClick={() =>
+                          handleCopyClick(
+                            `https://sml-app.vercel.app/promocion-pagos?emailApp=${inputEmailApp}`
+                          )
+                        }
+                        className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                      >
+                        Link
+                      </p>
                     )}
                     {window.location.hostname.includes("sml-app.com") && (
-                    <p
-                      onClick={() =>
-                        handleCopyClick(
-                          `https://sml-app.com/promocion-pagos?emailApp=${inputEmailApp}`
-                        )
-                      }
-                      className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
-                    >
-                      Link
-                    </p>
+                      <p
+                        onClick={() =>
+                          handleCopyClick(
+                            `https://sml-app.com/promocion-pagos?emailApp=${inputEmailApp}`
+                          )
+                        }
+                        className=" w-16 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-2 ml-2 bg-[#474646] hover:bg-[#3f437a] cursor-pointer"
+                      >
+                        Link
+                      </p>
                     )}
                   </div>
                 </div>

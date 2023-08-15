@@ -6,11 +6,8 @@ import Modal from "@mui/material/Modal";
 import { CiEdit } from "react-icons/ci";
 import ResponsiveDateTimePickers from "./ResponsiveDateTimePickers";
 import { CiWarning, CiInstagram, CiMail, CiGlobe } from "react-icons/ci";
-import { motion} from "framer-motion";
-import {
-  AiOutlinePhone,
-  AiOutlineUserAdd,
-} from "react-icons/ai";
+import { motion } from "framer-motion";
+import { AiOutlinePhone, AiOutlineUserAdd } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import { BsCheck } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
@@ -404,9 +401,7 @@ function IncidenceModal({
       .then((response) => {
         SendIncidenceAlert();
       })
-      .catch((error) => {
-        console.log("error al enviar la incidencia");
-      });
+      .catch((error) => {});
 
     setOpen(false);
   };
@@ -878,7 +873,6 @@ export default function NestedModal({
     }
   };
 
-
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
     setEmailValidator(true);
@@ -1013,7 +1007,6 @@ export default function NestedModal({
     });
   };
 
-
   return (
     <div className="">
       <div className="flex gap-4">
@@ -1113,13 +1106,13 @@ export default function NestedModal({
                       Open WebSite
                     </p>
                     <a href={item.url} target="blank">
-                    <CiGlobe
-                      className={
-                        editEmail
-                          ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
-                          : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
-                      }
-                    />
+                      <CiGlobe
+                        className={
+                          editEmail
+                            ? "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-blue-700 dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-blue-500"
+                            : "mx-3 border-2 text-1 w-12 h-10 cursor-pointer text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg  hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 "
+                        }
+                      />
                     </a>
                   </div>
                   <div className="relative h-fit w-fit group flex justify-center items-center">

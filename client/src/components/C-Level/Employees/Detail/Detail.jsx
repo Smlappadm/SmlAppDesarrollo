@@ -88,11 +88,6 @@ function Detail({ cardEmail }) {
     const endTime = performance.now();
     const duration = endTime - startTime;
 
-    console.log(
-      `La asignacion de ${leadAsigned} leads tardó ${(duration / 1000).toFixed(
-        2
-      )} segundos`
-    );
 
     setLoading(false);
   };

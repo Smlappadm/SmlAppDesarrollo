@@ -42,7 +42,6 @@ const VendedoresDashboard = () => {
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
   let fullName = localStorage.getItem("nameEmploy");
-  console.log(fullName);
   const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
@@ -73,8 +72,6 @@ const VendedoresDashboard = () => {
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
     );
   };
-
-
 
   //********************************* */
 
@@ -456,5 +453,3 @@ const VendedoresDashboard = () => {
 };
 
 export default VendedoresDashboard;
-
-

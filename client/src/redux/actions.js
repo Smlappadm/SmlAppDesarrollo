@@ -231,7 +231,6 @@ export const getLeadCheckedFreelance = (
   freelancer
 ) => {
   body = { ...body, profesion, country, level, freelancer };
-  console.log(body);
 
   return async (dispatch) => {
     if (
@@ -309,9 +308,6 @@ export const findCorredoresByNameAllInfoSeguimiento = (
   freelancer
 ) => {
   return async (dispatch) => {
-    console.log(corredor);
-    console.log(vendedor);
-    console.log(freelancer);
     const response = await axios.get(
       `/lead/seguimientofiltro?corredor=${corredor}&vendedor=${vendedor}&freelancer=${freelancer}`
     );
@@ -442,7 +438,6 @@ export const getLeadsLLamadaVenta = (
     status,
     freelancer,
   };
-  console.log(body);
   return async (dispatch) => {
     if (
       body.email &&
@@ -507,7 +502,6 @@ export const getLeadClasificacion = (
 
 export const getLeadCorredoresChecked = (email) => {
   return async (dispatch) => {
-    console.log(email);
     const response = await axios.get(`lead/corredorchecked?email=${email}`);
     const corredorLeadChecked = response.data;
     dispatch({ type: GET_CORREDOR_LEAD_CHECKED, payload: corredorLeadChecked });
@@ -646,7 +640,6 @@ export const getClienteEmpresa = (emailApp) => {
 export const UpdateClienteEmpresa = (emailApp, updateStripe) => {
   return async (dispatch) => {
     if (emailApp !== "undefined" && emailApp !== "") {
-
       const response = await axios.put(
         `/lead/emailapp?emailApp=${emailApp}`,
         updateStripe

@@ -73,7 +73,7 @@ export default function ModalAddLeadVendedor({
         const sortedCountries = countryNames.sort();
         setCountries(sortedCountries);
       })
-      .catch((error) => console.log(error));
+      .catch();
   }, [dispatch]);
 
   useEffect(() => {
@@ -221,7 +221,6 @@ export default function ModalAddLeadVendedor({
           setOpen(false);
           AddLeads();
         } catch (error) {
-          console.log({ error: error.message });
           AddLeadError();
         }
       }

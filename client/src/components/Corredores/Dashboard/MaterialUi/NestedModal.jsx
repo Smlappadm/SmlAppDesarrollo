@@ -54,10 +54,7 @@ function ChildModal({
       const response = await axios.put(`/lead/${item._id}`, {
         status_op: inputIncidencia,
       });
-      console.log(response.data);
-    } catch (error) {
-      console.log(`No se pudo enviar la incidencia`);
-    }
+    } catch (error) {}
 
     // Actualizar la lista de corredores después de guardar la incidencia
     dispatch(

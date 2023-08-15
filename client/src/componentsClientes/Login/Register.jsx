@@ -38,16 +38,13 @@ export default function Register({ handleOpenRegister, refeerred }) {
     setEmail(event.target.value);
   };
   const validateEmail = (email) => {
-    console.log(email);
     const clientEmailVerify =
       allClientes && allClientes.some((client) => client.email === email);
-    console.log();
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     if (!emailRegex.test(email)) {
       return "Por favor, ingresa un correo electrónico válido";
     }
     if (clientEmailVerify) {
-      console.log("Este usario ya esta registrado, intente con otro!");
       return "Este usario ya esta registrado, intente con otro!";
     }
     return "";
@@ -101,29 +98,21 @@ export default function Register({ handleOpenRegister, refeerred }) {
   };
   const newClient = async () => {
     await axios.post("/clientes/new", body);
-    console.log("Formulario enviado");
     setUsername("");
     setEmail("");
     setName("");
     setPassword("");
     handleOpenRegister();
-    console.log("entro");
   };
   const serRef = async () => {
     try {
       await axios.put("/clientes/referred", body);
-      console.log("seteo referido");
-      console.log(body.email);
-      console.log(body.referred);
-    } catch (error) {
-      console.log(error.message);
-    }
+    } catch (error) {}
   };
   let body = {};
   const handleSubmit = (e) => {
     e.preventDefault();
     validateRegister();
-    console.log(errors);
     if (errors.validate) {
       body = {
         username,
@@ -137,7 +126,6 @@ export default function Register({ handleOpenRegister, refeerred }) {
       newClient();
       serRef();
     } else {
-      console.log("murio");
     }
   };
 

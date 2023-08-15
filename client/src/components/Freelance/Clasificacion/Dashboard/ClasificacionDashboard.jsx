@@ -319,7 +319,6 @@ const ClasificacionDashboard = () => {
   };
 
   const loaderFuncion = (status) => {
-    console.log("llamando");
     setLoader(status);
   };
 
@@ -408,7 +407,6 @@ const ClasificacionDashboard = () => {
       loaderFuncion(false);
     } catch (error) {
       SendLeadsError(names);
-      console.log({ error: error.message });
     }
   };
 
@@ -467,7 +465,6 @@ const ClasificacionDashboard = () => {
       dispatch(getAllCategory());
     } catch (error) {
       SendLeadsError(names);
-      console.log({ error: error.message });
     }
   };
 

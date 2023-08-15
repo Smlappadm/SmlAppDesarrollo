@@ -22,11 +22,10 @@ const Pagos = ({ tamañoPantalla }) => {
   const { clienteEmpresa } = useSelector((state) => state);
   const [urlPago, setUrlPago] = useState("");
   const [leadEmpresa, setLeadEmpresa] = useState(false);
-  const emailApp = useLocation().search.split("=")[1]
-const {pathname, search} = useLocation()
-const link= `http://localhost:5173${pathname}${search}`
-// const link= `https://sml-app.vercel.app${pathname}${search}`
-console.log(link)
+  const emailApp = useLocation().search.split("=")[1];
+  const { pathname, search } = useLocation();
+  const link = `http://localhost:5173${pathname}${search}`;
+  // const link= `https://sml-app.vercel.app${pathname}${search}`
   // const user = useUser().user;
   // const email = user?.emailAddresses[0]?.emailAddress;
 
@@ -118,7 +117,6 @@ console.log(link)
 
   return (
     <div className="flex gap-5  flex-col justify-start items-center h-screen xl:h-screen w-screen mt-40">
-
       {clienteEmpresa && clienteEmpresa.name ? (
         <div className="bg-[#00000046] flex gap-5  flex-col justify-center items-center p-5 rounded-lg">
           <div className="w-full flex mb-1 items-center justify-center pt-2">
@@ -148,17 +146,19 @@ console.log(link)
               {`Monto total: €${clienteEmpresa.pagos.monto} `}
             </p>
             <p className=" text-center text-16 font-extrabold text-white">
-              {`${clienteEmpresa.pagos.cuotas} cuotas de €${clienteEmpresa.pagos.valorCuota.toFixed(2)}`}
+              {`${
+                clienteEmpresa.pagos.cuotas
+              } cuotas de €${clienteEmpresa.pagos.valorCuota.toFixed(2)}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
               {`Cuotas abonadas: ${clienteEmpresa.pagos.cuotasPagadas}/${clienteEmpresa.pagos.cuotas}`}
             </p>
             <p className="text-center text-16 font-extrabold text-white">
               {clienteEmpresa.pagos.detallesRestantes[0] !== "" &&
-                (clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" &&
-                  `Próximo vencimiento: ${funcionHorario(
-                    clienteEmpresa.pagos.detallesRestantes[0]
-                  )}`)}
+                clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" &&
+                `Próximo vencimiento: ${funcionHorario(
+                  clienteEmpresa.pagos.detallesRestantes[0]
+                )}`}
             </p>
           </div>
           {clienteEmpresa.pagos.detallesRestantes[0] !== "cierre" ? (

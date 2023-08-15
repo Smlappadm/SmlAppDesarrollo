@@ -49,10 +49,8 @@ function ChildModalDelete({
       const response = await axios.put(`/${itemRol}/${itemId}`, {
         deleted: true,
       });
-
     } catch (error) {
       ErrorEmployees(inputName);
-      console.log(`No se pudo enviar el baneado de ${itemRol} ${itemId} `);
     }
     try {
       const response = await axios.put(`/employees/?email=${inputEmail}`, {
@@ -61,9 +59,7 @@ function ChildModalDelete({
 
       BannedEmployees(inputName);
       onModalClose();
-    } catch (error) {
-      console.log(`No se pudo enviar el baneado de ${itemRol} ${itemId} `);
-    }
+    } catch (error) {}
     dispatch(getAllCorredores());
     dispatch(getAllVendedores());
     dispatch(getAllLeader());
@@ -139,7 +135,6 @@ function ChildModal({
       onModalClose();
     } catch (error) {
       ErrorEditEmployees(inputName);
-      console.log(`No se pudo enviar el post de ${itemRol}`);
     }
 
     dispatch(getAllCorredores());

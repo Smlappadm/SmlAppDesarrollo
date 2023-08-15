@@ -35,8 +35,6 @@ export const Promociones = () => {
     }
   }, [promociones]);
 
-  console.log(promociones);
-
   return (
     <>
       <Nav />

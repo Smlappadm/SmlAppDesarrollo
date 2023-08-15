@@ -132,9 +132,7 @@ export default function PromocionPago({ tamañoPantalla }) {
     try {
       await axios.put(`/lead/promociones/promos`, body);
       dispatch(getClienteEmpresa(emailApp));
-    } catch (error) {
-      console.log(error.message);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -153,8 +151,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       (clienteEmpresa &&
         clienteEmpresa?.promociones.length < body.promociones.length)
     ) {
-      console.log("si");
-
       seteoPromociones(body);
     }
   }, [promos]);
@@ -280,7 +276,6 @@ export default function PromocionPago({ tamañoPantalla }) {
       SendLeadAlert();
     } catch (error) {
       SendErrorUpdateAlert();
-      console.log("Error al seleccionar el pago");
     }
   };
   const setStripeData = (total, promo, tipo, cuotas, promoParametro) => {

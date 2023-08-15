@@ -101,7 +101,6 @@ function ChildModal({
         deleted: false,
       });
 
-      console.log(response1.data);
       if (selectEmployees === "clevel" || selectEmployees === "leader") {
         await axios.post("/corredor", {
           name: inputName,
@@ -171,7 +170,6 @@ function ChildModal({
       CreateEmployees(inputName);
     } catch (error) {
       ErrorCreateEmployees(inputName);
-      console.log(`No se pudo enviar el post de ${selectEmployees}`);
     }
 
     try {
@@ -181,9 +179,7 @@ function ChildModal({
         rol: selectEmployees,
         deleted: false,
       });
-    } catch (error) {
-      console.log(`No se pudo enviar el post de Employees`);
-    }
+    } catch (error) {}
 
     dispatch(getAllEmployees());
     setOpen(false);

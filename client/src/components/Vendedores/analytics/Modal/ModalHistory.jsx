@@ -215,9 +215,7 @@ function IncidenceModal({
       .then((response) => {
         SendIncidenceAlert();
       })
-      .catch((error) => {
-        console.log("error al enviar la incidencia");
-      });
+      .catch((error) => {});
 
     setOpen(false);
   };

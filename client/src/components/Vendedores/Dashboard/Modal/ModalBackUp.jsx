@@ -63,9 +63,8 @@ function ChildModal({
 
   const handleOpen = () => {
     if (statusObj.status === "Contratando") {
-      setStatusObj({...statusObj,
-        pagoRecibido: false})
-  };
+      setStatusObj({ ...statusObj, pagoRecibido: false });
+    }
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -211,13 +210,13 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-      <button
-              type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              onClick={handleCancel}
-            >
-              Cerrar x
-            </button>
+        <button
+          type="button"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          onClick={handleCancel}
+        >
+          Cerrar x
+        </button>
         {editEmail ||
         editInstagram ||
         editTelephone ||
@@ -264,7 +263,7 @@ function ChildModal({
           }}
         >
           <h2 id="child-modal-title" className="text-white text-center">
-          Actualizar Lead?
+            Actualizar Lead?
           </h2>
           <div className="flex justify-around items-center m-5">
             <button
@@ -347,9 +346,7 @@ function IncidenceModal({
       .then((response) => {
         SendIncidenceAlert();
       })
-      .catch((error) => {
-        console.log("error al enviar la incidencia");
-      });
+      .catch((error) => {});
 
     setOpen(false);
   };
@@ -615,7 +612,7 @@ export default function NestedModal({
   const [inputContacto, setInputContacto] = React.useState(item.contacto);
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
- const [emailValidator, setEmailValidator] = React.useState(false);
+  const [emailValidator, setEmailValidator] = React.useState(false);
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -804,10 +801,9 @@ export default function NestedModal({
     }
   };
 
-
   //EDITAR DATOS EMAIL
   const handleEditEmail = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditEmail(!editEmail);
     setEditEmailApp(false);
     setEditInstagram(false);
@@ -815,7 +811,7 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmail(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -833,7 +829,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Instagram
   const handleEditInstagram = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditInstagram(!editInstagram);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -858,7 +854,7 @@ export default function NestedModal({
 
   //EDITAR DATOS Phone
   const handleEditTelephone = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditTelephone(!editTelephone);
     setEditEmailApp(false);
     setEditEmail(false);
@@ -882,7 +878,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS EmailApp
   const handleEditEmailApp = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditEmailApp(!editEmailApp);
     setEditTelephone(false);
     setEditEmail(false);
@@ -890,7 +886,7 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmailApp(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -907,7 +903,7 @@ export default function NestedModal({
   };
   //EDITAR DATOS Contacto
   const handleEditContacto = () => {
-      setEmailValidator(true);
+    setEmailValidator(true);
     setEditContacto(!editContacto);
     setEditEmailApp(false);
     setEditTelephone(false);

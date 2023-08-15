@@ -63,9 +63,8 @@ function ChildModal({
 
   const handleOpen = () => {
     if (statusObj.status === "Contratando") {
-      setStatusObj({...statusObj,
-        pagoRecibido: false})
-  };
+      setStatusObj({ ...statusObj, pagoRecibido: false });
+    }
     if (statusObj.status === "Contratado") {
       let valorCuota = statusObj.pagos.monto / statusObj.pagos.cuotas;
       if (valorCuota < 200) {
@@ -233,13 +232,13 @@ function ChildModal({
   return (
     <React.Fragment>
       <div className="flex justify-around items-center relative">
-      <button
-              type="button"
-              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              onClick={handleCancel}
-            >
-              Cerrar x
-            </button>
+        <button
+          type="button"
+          className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          onClick={handleCancel}
+        >
+          Cerrar x
+        </button>
         {!flagPago ||
         editEmail ||
         editInstagram ||
@@ -247,7 +246,6 @@ function ChildModal({
         editEmailApp ||
         editContacto ? (
           <>
-
             <button
               type="button"
               className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-[#202020] rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:[#424141] dark:text-gray-400 dark:border-gray-600"
@@ -371,9 +369,7 @@ function IncidenceModal({
       .then((response) => {
         SendIncidenceAlert();
       })
-      .catch((error) => {
-        console.log("error al enviar la incidencia");
-      });
+      .catch((error) => {});
 
     setOpen(false);
   };
@@ -515,7 +511,7 @@ function intelligentInfo({ setOpen }) {
   );
 }
 //************************************************************************************************ */
-function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator}) {
+function ConfirmacionEdicion({ handleConfirmEdit, id, emailValidator }) {
   const [openConfirmacionEdicion, setConfirmacionEdicion] =
     React.useState(false);
 
@@ -642,7 +638,6 @@ export default function NestedModal({
   const [updatedContacto, setUpdatedContacto] = React.useState(item.contacto);
 
   const [emailValidator, setEmailValidator] = React.useState(false);
-
 
   const [statusObj, setStatusObj] = React.useState({
     status: item.status,
@@ -894,7 +889,7 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmail = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmail(emailChecked);
     validatorEmailFunction(emailChecked);
   };
@@ -914,7 +909,6 @@ export default function NestedModal({
     setEditEmail(false);
     setEditTelephone(false);
     setEditContacto(false);
-
   };
   const handleChangeInstagram = (event) => {
     setInputInstagram(event.target.value);
@@ -956,11 +950,11 @@ export default function NestedModal({
     setEditContacto(false);
   };
   const handleChangeEmailApp = (event) => {
-    const emailChecked = event.target.value.trim()
+    const emailChecked = event.target.value.trim();
     setInputEmailApp(emailChecked);
     validatorEmailFunction(emailChecked);
   };
-  
+
   const handleConfirmEditEmailApp = async (id) => {
     const body = { emailApp: inputEmailApp };
     const response = await axios.put(`/lead/changeemail/${id}`, body);
@@ -1252,7 +1246,7 @@ export default function NestedModal({
                       <ConfirmacionEdicion
                         handleConfirmEdit={handleConfirmEditEmailApp}
                         id={item._id}
-                        emailValidator={emailValidator}     
+                        emailValidator={emailValidator}
                       />
                     </div>
                   )}

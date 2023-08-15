@@ -56,10 +56,7 @@ function ChildModal({
       const response = await axios.put(`/lead/${item._id}`, {
         status_op: inputIncidencia,
       });
-      console.log(response.data);
-    } catch (error) {
-      console.log(`No se pudo enviar la incidencia`);
-    }
+    } catch (error) {}
 
     // Despachamos la acción para obtener la clasificación de los leads
     dispatch(
