@@ -370,6 +370,13 @@ export const LideresHistory = () => {
                         ) : (
                           ""
                         )}
+                        {item.status === "En proceso" ? (
+                          <Text className="bg-[#fffc32] text-black px-2 py-1.5 rounded-xl text-center w-48">
+                            En proceso
+                          </Text>
+                        ) : (
+                          ""
+                        )}
                       </div>
                     </button>
                   </div>
