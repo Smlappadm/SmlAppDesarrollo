@@ -29,7 +29,7 @@ export default function InputName({ name, setCurrentPage }) {
   const [country, setCountry] = useState("");
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState("");
   const [descargados, setDescargados] = useState(true);
 
   const { allFreelancer } = useSelector((state) => state);
@@ -118,6 +118,7 @@ export default function InputName({ name, setCurrentPage }) {
     setCountry("");
     setLevel("");
     setStatus("");
+    setChecked("");
 
     dispatch(getLeadCheckedFreelancer());
     setCurrentPage(1);
