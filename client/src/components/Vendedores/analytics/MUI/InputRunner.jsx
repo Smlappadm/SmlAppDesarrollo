@@ -30,6 +30,8 @@ export default function InputRunner({
   setLevel,
   status,
   setStatus,
+  onChangeName,
+  filterName,
 }) {
   const dispatch = useDispatch();
 
@@ -131,6 +133,15 @@ export default function InputRunner({
       }}
     >
       <div className="flex gap-2 p-2">
+      <div className="flex flex-col w-52 mr-5">
+        <label>Nombre:</label>
+                  <input
+                    onChange={onChangeName}
+                    value={filterName}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Nombre"
+                  />
+                </div>
         <div className="flex flex-col">
           <label>Desde:</label>
           <TextField

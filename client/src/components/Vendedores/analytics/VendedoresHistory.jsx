@@ -298,7 +298,6 @@ const VendedoresHistory = () => {
     dispatch(getVendedorAllLeads(email));
   };
 
-
   return (
     <>
       <Nav />
@@ -402,6 +401,8 @@ const VendedoresHistory = () => {
             className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
           >
             <InputRunner
+              onChangeName={onChangeName}
+              filterName={filterName}
               getVendedorAllLeads={getVendedorAllLeads}
               emailUser={email}
               fromDay={fromDay}
@@ -429,12 +430,12 @@ const VendedoresHistory = () => {
               className={style.table}
             >
               <div className="flex justify-start items-center  mx-6">
-                <button
+                <label
                   className="text-start w-[20%] px-3"
-                  onClick={handlerOpenFilterName}
+                  // onClick={handlerOpenFilterName}
                 >
                   Nombre
-                </button>
+                </label>
                 <label className="text-start w-[15%] px-3">Profesión</label>
                 <label className="text-start w-[10%] px-3">País</label>
                 <label className="text-center w-[5%] ">Email</label>

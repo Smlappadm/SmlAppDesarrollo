@@ -347,7 +347,7 @@ function Nav() {
             <IoExitOutline className={styles.icono} /> <p>Salir</p>
           </button>
         </Link>
-        <p className="text-[0.7rem] mt-2">Version 0.0.55</p>
+        <p className="text-[0.7rem] mt-2">Version 0.0.56</p>
       </div>
     </div>
   );
