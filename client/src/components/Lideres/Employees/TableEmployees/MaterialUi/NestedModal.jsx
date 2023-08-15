@@ -102,7 +102,6 @@ function ChildModal({
       // );
     } catch (error) {
       ErrorCreateEmployees(inputName);
-      console.log(`No se pudo enviar el post de ${selectEmployees}`);
     }
 
     try {
@@ -111,9 +110,7 @@ function ChildModal({
         email: inputEmail,
         rol: selectEmployees,
       });
-    } catch (error) {
-      console.log(`No se pudo enviar el post de Employees`);
-    }
+    } catch (error) {}
 
     dispatch(getAllCorredores());
     dispatch(getAllVendedores());

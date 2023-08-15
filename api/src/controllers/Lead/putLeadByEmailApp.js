@@ -3,23 +3,19 @@ const Lead = require("../../models/Lead");
 
 // Función para obtener leads por su nombre utilizando una expresión regular (ignora mayúsculas/minúsculas)
 const putLeadByEmailApp = async (emailApp, dataStripe) => {
-    console.log(emailApp)
-    console.log(dataStripe)
- 
-    const lead = await Lead.findOneAndUpdate({
-        emailApp
+  const lead = await Lead.findOneAndUpdate(
+    {
+      emailApp,
+    },
+    {
+      $set: {
+        dataStripe: dataStripe,
       },
-      {
-        $set: {
-          dataStripe: dataStripe,
-        },
-      },
-      { new: true }
-    );
+    },
+    { new: true }
+  );
 
-
-    return lead
-
+  return lead;
 };
 
 module.exports = putLeadByEmailApp;

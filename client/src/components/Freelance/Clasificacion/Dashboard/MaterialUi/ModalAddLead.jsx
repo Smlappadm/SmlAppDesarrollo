@@ -74,7 +74,7 @@ export default function ChildModal({
         const sortedCountries = countryNames.sort();
         setCountries(sortedCountries);
       })
-      .catch((error) => console.log(error));
+      .catch();
   }, [dispatch]);
 
   // Efecto para obtener el objeto de freelancer que coincide con el email proporcionado
@@ -207,7 +207,6 @@ export default function ChildModal({
           setOpen(false);
           AddLeads();
         } catch (error) {
-          console.log({ error: error.message });
           AddLeadError();
         }
       }

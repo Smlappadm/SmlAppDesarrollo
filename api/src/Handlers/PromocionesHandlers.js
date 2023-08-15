@@ -16,7 +16,6 @@ const getAllPromocionesHandler = async (req, res) => {
 // Crear nueva promoción
 const postPromocionesHandler = async (req, res) => {
   const body = req.body;
-  console.log(body);
   try {
     const promociones = await postPromociones(body);
     res.status(200).json(promociones);
@@ -52,5 +51,6 @@ const deletePromocionByIdHandler = async (req, res) => {
 module.exports = {
   getAllPromocionesHandler,
   postPromocionesHandler,
-  updatePromocionByIdHandler,deletePromocionByIdHandler
+  updatePromocionByIdHandler,
+  deletePromocionByIdHandler,
 };

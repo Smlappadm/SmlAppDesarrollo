@@ -11,7 +11,7 @@ const getVendedorVentasByEmail = async (body) => {
   let leadsContactado = [];
   let leadsEnProceso = [];
   let leadsNoResponde = [];
-  
+
   let leadQuery = {
     vendedor: body.email,
     // pagoRecibido: { $ne: true },
@@ -32,29 +32,28 @@ const getVendedorVentasByEmail = async (body) => {
     leadQuery["from"] = body.freelancer;
   }
 
-if(body.status === "Agenda llamada"){
-  // leadsAgenda = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Agenda llamada"});
-  leadsAgenda = await Lead.find(leadQuery);
-} else if((body.status === "Contactado")){
-  // leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
-  leadsContactado = await Lead.find(leadQuery);
-} else if((body.status === "En proceso")){
-  // leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
-  leadsEnProceso = await Lead.find(leadQuery);
-}else if((body.status === "No responde")){
-  // leadsNoResponde = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"No responde"});
-  leadsNoResponde = await Lead.find(leadQuery);
-} else {
-  leadQuery["status"] = "Agenda llamada";
-  leadsAgenda = await Lead.find(leadQuery);
-  leadQuery["status"] = "Contactado";
-  leadsContactado = await Lead.find(leadQuery);
-  leadQuery["status"] = "En proceso";
-  leadsEnProceso = await Lead.find(leadQuery);
-  leadQuery["status"] = "No responde";
-  leadsNoResponde = await Lead.find(leadQuery);
-
-}
+  if (body.status === "Agenda llamada") {
+    // leadsAgenda = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Agenda llamada"});
+    leadsAgenda = await Lead.find(leadQuery);
+  } else if (body.status === "Contactado") {
+    // leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
+    leadsContactado = await Lead.find(leadQuery);
+  } else if (body.status === "En proceso") {
+    // leads = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"Contactado"});
+    leadsEnProceso = await Lead.find(leadQuery);
+  } else if (body.status === "No responde") {
+    // leadsNoResponde = await Lead.find({ vendedor: body.email, pagoRecibido: { $ne: true }, status:"No responde"});
+    leadsNoResponde = await Lead.find(leadQuery);
+  } else {
+    leadQuery["status"] = "Agenda llamada";
+    leadsAgenda = await Lead.find(leadQuery);
+    leadQuery["status"] = "Contactado";
+    leadsContactado = await Lead.find(leadQuery);
+    leadQuery["status"] = "En proceso";
+    leadsEnProceso = await Lead.find(leadQuery);
+    leadQuery["status"] = "No responde";
+    leadsNoResponde = await Lead.find(leadQuery);
+  }
 
   //-------------------------------------------------------------------------------------------------------------------------
   // Ordenar los leads encontrados por fecha de llamada de venta
@@ -89,26 +88,26 @@ if(body.status === "Agenda llamada"){
   });
   //-------------------------------------------------------------------------------------------------------------------------
 
-    const leadsNoRespondenSorted = leadsNoResponde.sort((a, b) => {
+  const leadsNoRespondenSorted = leadsNoResponde.sort((a, b) => {
     const dateA = a.updatedAt.toISOString();
     const dateB = b.updatedAt.toISOString();
-    
+
     if (dateA.slice(0, 4) !== dateB.slice(0, 4)) {
       return dateA.slice(0, 4) - dateB.slice(0, 4);
     }
-    
+
     if (dateA.slice(5, 7) !== dateB.slice(5, 7)) {
       return dateA.slice(5, 7) - dateB.slice(5, 7);
     }
-    
+
     if (dateA.slice(8, 10) !== dateB.slice(8, 10)) {
       return dateA.slice(8, 10) - dateB.slice(8, 10);
     }
-    
+
     if (dateA.slice(11, 13) !== dateB.slice(11, 13)) {
       return dateA.slice(11, 13) - dateB.slice(11, 13);
     }
-    
+
     if (dateA.slice(14, 16) !== dateB.slice(14, 16)) {
       return dateA.slice(14, 16) - dateB.slice(14, 16);
     }
@@ -116,10 +115,14 @@ if(body.status === "Agenda llamada"){
     return 0;
   });
 
-  console.log(leadsContactado)
   // Devolver el resultado de la consulta (los leads de ventas ordenados por fecha de llamada de venta)
   // return sortClients;
-  return [...leadsAgendaSorted, ...leadsContactado, ...leadsEnProceso, ...leadsNoRespondenSorted];
+  return [
+    ...leadsAgendaSorted,
+    ...leadsContactado,
+    ...leadsEnProceso,
+    ...leadsNoRespondenSorted,
+  ];
 };
 
 // Exportar la función para que pueda ser utilizada en otros módulos

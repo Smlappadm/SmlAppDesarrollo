@@ -36,7 +36,6 @@ const CorredoresHistory = () => {
   const indexFirstCard = indexLastCard - cardXPage;
   const currentCard = corredorLeadChecked.slice(indexFirstCard, indexLastCard);
 
-  console.log(corredorLeadChecked);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

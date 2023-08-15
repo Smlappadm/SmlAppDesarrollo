@@ -23,9 +23,7 @@ export default function AddVideos() {
     dispatch(getClientByEmail(userEmail && userEmail));
   }, [dispatch, userEmail]);
 
-  useEffect(() => {
-    console.log(userEmail);
-  }, [client]);
+  useEffect(() => {}, [client]);
 
   // Para obtener el tamaño de la pantalla en cada renderizado
   useEffect(() => {
@@ -50,9 +48,7 @@ export default function AddVideos() {
         setLink("");
         sendLinkSuccess();
         dispatch(getClientByEmail(userEmail && userEmail));
-      } catch (error) {
-        console.log(error.message);
-      }
+      } catch (error) {}
     } else {
       setLinkError("El link no corresponde a una publicacion");
     }

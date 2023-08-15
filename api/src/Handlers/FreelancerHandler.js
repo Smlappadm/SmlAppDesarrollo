@@ -53,7 +53,6 @@ const getAllFreelancersHandler = async (req, res) => {
 const updateFreelancerByEmailHandler = async (req, res) => {
   const { email } = req.query;
   const updateData = req.body;
-  console.log(updateData)
   try {
     const freelancer = await updateFreelancerByEmail(email, updateData);
     res.status(200).json(freelancer);

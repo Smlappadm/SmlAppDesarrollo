@@ -16,11 +16,9 @@ export default function Login({ handleOpenRegister, handleJoin }) {
   const handleSubmit = async () => {
     const response = await axios.get(`/clientes/username?username=${username}`);
     const client = response.data;
-    console.log(client);
     if (username === client.username && password === client.password) {
       handleJoin();
     } else {
-      console.log("todo mal");
     }
   };
 

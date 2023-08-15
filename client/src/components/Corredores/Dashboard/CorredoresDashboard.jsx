@@ -215,7 +215,7 @@ const CorredoresDashboard = () => {
   }, [client]);
 
   // Función para mostrar una notificación de información al enviar el formulario
-const SendLeads = () => {
+  const SendLeads = () => {
     toast.info(`✔ Enviando formulario! `, {
       position: "top-center",
       autoClose: 500,
@@ -229,7 +229,7 @@ const SendLeads = () => {
   };
 
   // Función para mostrar una notificación de error cuando falta el nombre de Instagram
-const SendLeadsErrorInsta = (name) => {
+  const SendLeadsErrorInsta = (name) => {
     toast.error(`❌ Error Instagram incompleto ${name}!`, {
       position: "top-center",
       autoClose: 3000,
@@ -243,7 +243,7 @@ const SendLeadsErrorInsta = (name) => {
   };
 
   // Función para mostrar una notificación de error cuando falta el nivel
-const SendLeadsErrorLevel = (name) => {
+  const SendLeadsErrorLevel = (name) => {
     toast.error(`❌ Error nivel incompleto ${name}!`, {
       position: "top-center",
       autoClose: 3000,
@@ -255,9 +255,9 @@ const SendLeadsErrorLevel = (name) => {
       theme: "dark",
     });
   };
-  
+
   // Función para mostrar una notificación de error cuando el nivel es 0
-const SendLeadsErrorInsta0 = (name) => {
+  const SendLeadsErrorInsta0 = (name) => {
     toast.error(`❌ Error instagram con nivel 0 ${name}!`, {
       position: "top-center",
       autoClose: 3000,
@@ -269,9 +269,9 @@ const SendLeadsErrorInsta0 = (name) => {
       theme: "dark",
     });
   };
-  
+
   // Función para mostrar una notificación de éxito al enviar leads
-const SendLeadsSuccess = () => {
+  const SendLeadsSuccess = () => {
     toast.success(`✔ Envío de leads exitoso!`, {
       position: "top-center",
       autoClose: 3000,
@@ -283,9 +283,9 @@ const SendLeadsSuccess = () => {
       theme: "dark",
     });
   };
-  
+
   // Función para mostrar una notificación de error al enviar leads
-const SendLeadsError = (name) => {
+  const SendLeadsError = (name) => {
     toast.error(`✔ Error al enviar los leads! ${name}`, {
       position: "top-center",
       autoClose: 3000,
@@ -298,21 +298,21 @@ const SendLeadsError = (name) => {
     });
   };
   // Función para controlar el estado del loader
-const loaderFuncion = (status) => {
+  const loaderFuncion = (status) => {
     setLoader(status);
   };
 
   // Obtener la fecha actual y darle formato para el registro de actualizaciones de corredores
-const date = new Date();
+  const date = new Date();
   date.setHours(date.getHours() - 3);
   const formattedTime = date.toISOString();
 
   // Expresión regular para verificar el formato de Instagram
-const instagramRegex =
+  const instagramRegex =
     /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)/;
 
   // Función para actualizar un lead
-const updateLead = async (lead) => {
+  const updateLead = async (lead) => {
     return axios.put(`/lead/${lead._id}`, {
       instagram: lead.instagram,
       email: lead.email,
@@ -330,7 +330,7 @@ const updateLead = async (lead) => {
   };
 
   // Función para manejar el envío del formulario
-const handleSubmit = async () => {
+  const handleSubmit = async () => {
     try {
       const updatePromises = [];
       const newPromisesNames = [];
@@ -388,12 +388,11 @@ const handleSubmit = async () => {
       dispatch(getAllCategory());
     } catch (error) {
       SendLeadsError(names);
-      console.log({ error: error.message });
     }
   };
 
   // Función para manejar el envío del formulario para un solo item
-const handleSubmitOne = async (item) => {
+  const handleSubmitOne = async (item) => {
     const updateLead = async (item) => {
       const response = await axios.put(`/lead/${item._id}`, {
         instagram: item.instagram,
@@ -451,7 +450,6 @@ const handleSubmitOne = async (item) => {
       loaderFuncion(false);
     } catch (error) {
       SendLeadsError(names);
-      console.log({ error: error.message });
     }
   };
 

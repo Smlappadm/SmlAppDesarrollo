@@ -8,7 +8,6 @@ export default function Followers({
   maxNumber,
 }) {
   const [loading, setLoading] = useState(true);
-  console.log(numberTiktok);
 
   const formatearNumeroConPuntos = (numero) => {
     let numeroFormateado = numero.toString();

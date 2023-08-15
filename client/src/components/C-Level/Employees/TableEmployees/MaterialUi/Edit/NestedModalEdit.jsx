@@ -62,7 +62,7 @@ function ChildModalDelete({
           await axios.put(`/${itemRol}/email?email=${itemEmail}`, {
             deleted: true,
           });
-        } else if (itemRol === "freelancer"){
+        } else if (itemRol === "freelancer") {
           await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
             // freelancer: false,
             // vendedor: "",
@@ -71,8 +71,7 @@ function ChildModalDelete({
             // corredor_name: "",
             deleted: true,
           });
-        }
-        else {
+        } else {
           await axios.put(`/${itemRol}/email/email?email=${itemEmail}`, {
             deleted: true,
           });
@@ -88,7 +87,6 @@ function ChildModalDelete({
       }
     } catch (error) {
       ErrorEmployees(inputName);
-      console.log(`No se pudo enviar el baneado de ${itemRol} ${itemEmail} `);
     }
 
     try {
@@ -98,9 +96,7 @@ function ChildModalDelete({
 
       BannedEmployees(inputName);
       onModalClose();
-    } catch (error) {
-      console.log(`No se pudo enviar el baneado de ${itemRol} ${itemId} `);
-    }
+    } catch (error) {}
 
     dispatch(getAllEmployees());
     setOpen(false);
@@ -351,7 +347,6 @@ function ChildModal({
       onModalClose();
     } catch (error) {
       ErrorEditEmployees(inputName);
-      console.log(`No se pudo enviar el post de ${itemRol}`);
     }
 
     dispatch(getAllEmployees());

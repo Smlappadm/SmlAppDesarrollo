@@ -79,7 +79,6 @@ export default function BannedEmploy() {
         });
       }
 
-      console.log(Email);
       if (Rol === "leader") {
         await axios.put(`/leader/email/email?email=${Email}`, {
           deleted: false,
@@ -125,9 +124,6 @@ export default function BannedEmploy() {
       BannedEmployees(Name);
     } catch (error) {
       ErrorEmployees(Name);
-      console.log(
-        `No se pudo enviar el post de ${Email}  ${Rol} ${error.message}`
-      );
     }
 
     dispatch(getEmployeesBanned());

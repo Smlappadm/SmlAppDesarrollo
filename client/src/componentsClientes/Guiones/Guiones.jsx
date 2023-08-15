@@ -46,8 +46,6 @@ export default function Guiones({ tamañoPantalla }) {
     }
   };
 
-  console.log(progress);
-
   return (
     <div
       className="bg-[#1a1a1a] flex flex-col justify-between items-center h-screen w-screen"

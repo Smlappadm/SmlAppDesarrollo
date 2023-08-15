@@ -52,7 +52,6 @@ export default function DownloadCSV() {
       niveles.push("incidencia");
     }
     const nivelesQuery = niveles.map((nivel) => `nivel[]=${nivel}`).join("&");
-    console.log(nivelesQuery);
   };
 
   return (

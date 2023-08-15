@@ -9,7 +9,6 @@ export default function NavBarDesktop() {
 
   const location = useLocation();
 
-  console.log(location.pathname);
   return (
     <div className="flex justify-center items-center ">
       <div className="flex items-center justify-around w-10/12 mt-4 rounded-lg bg-[#D9D9D9] bg-opacity-25">

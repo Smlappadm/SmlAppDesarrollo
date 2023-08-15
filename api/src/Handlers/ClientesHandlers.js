@@ -70,8 +70,6 @@ const paymentClienteHandler = async (req, res) => {
   const { token, plan } = req.body;
   // const { id, monto } = req.body;
 
-  console.log(token);
-  console.log(plan);
   try {
     const pago = await createPayment({
       token,

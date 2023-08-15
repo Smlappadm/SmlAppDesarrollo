@@ -22,7 +22,6 @@ export default function ClientesSettings({ tamañoPantalla }) {
     user && user.emailAddresses && user.emailAddresses[0].emailAddress;
 
   const { signOut } = useClerk();
-  console.log(tamañoPantalla);
 
   const tokenAccess = localStorage.getItem("access");
   const handleLogout = async () => {
