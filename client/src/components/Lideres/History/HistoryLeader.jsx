@@ -22,10 +22,20 @@ import NavBar from "../NavBar/NavBar";
 
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
+  const [loader, setLoader] = useState(false);
+
   const { leaderDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const loaderFuncion = (status) => {
+    setLoader(status);
+  };
+
   useEffect(() => {
-    dispatch(getLeadChecked());
+    loaderFuncion(true);
+    dispatch(getLeadChecked()).then(() => {
+      loaderFuncion(false);
+    });
   }, [dispatch]);
   useEffect(() => {
     setData(leaderDashboard);
@@ -83,6 +93,20 @@ export const LideresHistory = () => {
 
   return (
     <>
+      {loader ? (
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+          <div className="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      ) : null}
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between mx-5 mb-10">
