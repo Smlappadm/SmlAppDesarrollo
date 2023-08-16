@@ -37,6 +37,11 @@ const VendedoresDashboard = () => {
   const [level, setLevel] = useState("");
   const [freelancer, setFreelancer] = useState("");
 
+  const [loader, setLoader] = useState(false);
+  const loaderFuncion = (status) => {
+    setLoader(status);
+  };
+
   const user = useUser().user;
   const email = user?.emailAddresses[0]?.emailAddress;
   localStorage.setItem("email", email);
@@ -45,11 +50,14 @@ const VendedoresDashboard = () => {
   const body = { name: fullName, email: emailAddress };
 
   useEffect(() => {
+    loaderFuncion(true)
     dispatch(getAllProfesion());
     dispatch(getAllCountries());
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    });;
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -193,6 +201,35 @@ const VendedoresDashboard = () => {
 
   return (
     <>
+    {loader ? (
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+          <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit bg-[#39394b] rounded-xl">
+            <h2 className="text-white text-[2rem]">Enviando Leads!</h2>
+
+            <div className="flex flex-col gap-2 p-2">
+              {promisesNames &&
+                promisesNames.map((item) => {
+                  return (
+                    <h2 key={item._id} className="text-white m-1">
+                      {item}
+                    </h2>
+                  );
+                })}
+            </div>
+
+            <div className="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <Nav />
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
