@@ -19,7 +19,7 @@ import {
 import { Checkbox } from "@mui/material";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 
-export default function InputName({ name, setCurrentPage }) {
+export default function InputName({ setCurrentPage, loaderFuncion }) {
   const dispatch = useDispatch();
   const [freelancer, setFreelancer] = useState("");
   const [fromDay, setFromDay] = useState("");
@@ -38,10 +38,13 @@ export default function InputName({ name, setCurrentPage }) {
   const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
+    loaderFuncion(true);
     dispatch(getFreelancers());
     dispatch(getAllProfesion());
     dispatch(getAllCategory());
-    dispatch(getAllCountries());
+    dispatch(getAllCountries()).then(() => {
+      loaderFuncion(false);
+    });
   }, [dispatch]);
 
   const handleChangeCorredor = (event) => {
@@ -92,6 +95,7 @@ export default function InputName({ name, setCurrentPage }) {
   };
 
   const handleFilterClick = () => {
+    loaderFuncion(true);
     dispatch(
       findFreelancerByNameAllInfo(
         freelancer,
@@ -105,7 +109,9 @@ export default function InputName({ name, setCurrentPage }) {
         checked,
         descargados
       )
-    );
+    ).then(() => {
+      loaderFuncion(false);
+    });
     setCurrentPage(1);
   };
 
