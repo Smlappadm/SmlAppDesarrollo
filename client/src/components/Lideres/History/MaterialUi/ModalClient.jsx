@@ -270,7 +270,7 @@ export default function BasicModal({ modalItems, open, handleClose }) {
                 <div className="font-semibold flex gap-3">
                   <p>Asignado:</p>
                   <p className="font-normal">
-                    {funcionHorario(modalItems.updateVendedor)}
+                    {funcionHorario(modalItems.updatedAt)}
                   </p>
                 </div>
                 {modalItems.updateNoResponde && (
