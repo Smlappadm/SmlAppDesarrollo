@@ -458,17 +458,17 @@ const CorredoresDashboard = () => {
       {loader ? (
         <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
           <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit bg-[#39394b] rounded-xl">
-            <h2 className="text-white text-[2rem]">Enviando Leads!</h2>
+            <h2 className="text-white text-[2rem]">Loading...</h2>
 
             <div className="flex flex-col gap-2 p-2">
-              {promisesNames &&
+              {/* {promisesNames &&
                 promisesNames.map((item) => {
                   return (
                     <h2 key={item._id} className="text-white m-1">
                       {item}
                     </h2>
                   );
-                })}
+                })} */}
             </div>
 
             <div className="lds-roller">
