@@ -8,7 +8,7 @@ export default function PaginationOutlined({
   pageStyle,
   setPageStyle,
   cardXPage,
-  data,
+  leaderDashboard,
   pages,
   current,
 }) {
@@ -25,7 +25,7 @@ export default function PaginationOutlined({
     }
   }, [currentPage, current]);
 
-  for (let i = 1; i <= Math.ceil(data.length / cardXPage); i++) {
+  for (let i = 1; i <= Math.ceil(leaderDashboard.length / cardXPage); i++) {
     pageNumbers.push(i);
   }
 
@@ -44,9 +44,9 @@ export default function PaginationOutlined({
           onChange={handleChangePage}
           page={currentPage}
           sx={{
-            '& .Mui-selected': {
-              backgroundColor: '#ae2dff', 
-              bgcolor: '#ae2dff', 
+            "& .Mui-selected": {
+              backgroundColor: "#ae2dff",
+              bgcolor: "#ae2dff",
             },
           }}
         />
