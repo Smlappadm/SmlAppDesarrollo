@@ -135,7 +135,7 @@ export const LideresHistory = () => {
         </div>
         <div>
           <div className="flex gap-5 mt-5 mb-5 justify-around items-center">
-            <InputRunner />
+            <InputRunner loaderFuncion={loaderFuncion} />
           </div>
         </div>
         <div className="w-full">
