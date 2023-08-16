@@ -22,22 +22,32 @@ import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 
 export const DashboardFreelancer = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  const [loader, setLoader] = useState(false);
   const { leaderFreelancer } = useSelector((state) => state);
   const dispatch = useDispatch();
+
+  const loaderFuncion = (status) => {
+    setLoader(status);
+  };
+
   useEffect(() => {
-    dispatch(getLeadCheckedFreelancer());
+    loaderFuncion(true);
+    dispatch(getLeadCheckedFreelancer()).then(() => {
+      loaderFuncion(false);
+    });
   }, [dispatch]);
-  useEffect(() => {
-    setData(leaderFreelancer);
-  }, [leaderFreelancer]);
+
+  // useEffect(() => {
+  //   setData(leaderFreelancer);
+  // }, [leaderFreelancer]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardXPage, setCardXpage] = useState(8);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
-  const showData = data.filter((item) => {
+  const showData = leaderFreelancer.filter((item) => {
     return (
       item.level !== "-" &&
       item.status !== "" &&
@@ -84,6 +94,20 @@ export const DashboardFreelancer = () => {
 
   return (
     <>
+      {loader ? (
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+          <div className="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      ) : null}
       <Nav />
       <Card className="w-full h-full bg-[#222131] rounded-none p-5">
         <div className="flex justify-between mx-5 mb-10 ">
@@ -113,7 +137,10 @@ export const DashboardFreelancer = () => {
         </div>
         <div>
           <div className="flex gap-5 mt-5 mb-5 justify-around items-center">
-            <InputRunner setCurrentPage={setCurrentPage} />
+            <InputRunner
+              setCurrentPage={setCurrentPage}
+              loaderFuncion={loaderFuncion}
+            />
           </div>
         </div>
         <div className="w-full">
