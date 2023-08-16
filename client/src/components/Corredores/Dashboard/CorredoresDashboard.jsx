@@ -298,6 +298,7 @@ const CorredoresDashboard = () => {
     });
   };
   // Función para controlar el estado del loader
+  
   const loaderFuncion = (status) => {
     setLoader(status);
   };
