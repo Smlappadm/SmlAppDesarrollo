@@ -201,20 +201,24 @@ const VendedoresDashboard = () => {
 
   return (
     <>
+
+
+      <Nav />
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
     {loader ? (
-        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
-          <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit bg-[#39394b] rounded-xl">
-            <h2 className="text-white text-[2rem]">Enviando Leads!</h2>
+        <div className=" z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+          <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit rounded-xl">
+            {/* <h2 className="text-white text-[2rem]">Enviando Leads!</h2> */}
 
             <div className="flex flex-col gap-2 p-2">
-              {promisesNames &&
+              {/* {promisesNames &&
                 promisesNames.map((item) => {
                   return (
                     <h2 key={item._id} className="text-white m-1">
                       {item}
                     </h2>
                   );
-                })}
+                })} */}
             </div>
 
             <div className="lds-roller">
@@ -230,8 +234,6 @@ const VendedoresDashboard = () => {
           </div>
         </div>
       ) : null}
-      <Nav />
-      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
           <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
             Copiado!
