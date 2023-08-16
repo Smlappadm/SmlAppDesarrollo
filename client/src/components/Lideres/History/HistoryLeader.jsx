@@ -21,7 +21,7 @@ import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 
 export const LideresHistory = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
 
   const { leaderDashboard } = useSelector((state) => state);
@@ -423,7 +423,7 @@ export const LideresHistory = () => {
             pageStyle={pageStyle}
             setPageStyle={setPageStyle}
             cardXPage={cardXPage}
-            leaderDashboard={showData}
+            data={showData}
             pages={pages}
             current={currentPage}
           />
