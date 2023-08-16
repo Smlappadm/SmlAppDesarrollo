@@ -57,7 +57,7 @@ const VendedoresDashboard = () => {
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
     ).then(() => {
       loaderFuncion(false)
-    });;
+    });
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -78,7 +78,9 @@ const VendedoresDashboard = () => {
   const cancelModal = () => {
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    });
   };
 
   //********************************* */
@@ -94,6 +96,7 @@ const VendedoresDashboard = () => {
   };
 
   const SendLeadAlert = () => {
+    loaderFuncion(true)
     toast.success("✔ Cliente Actualizado!", {
       position: "top-center",
       autoClose: 3000,
@@ -106,7 +109,9 @@ const VendedoresDashboard = () => {
     });
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    });
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -121,6 +126,7 @@ const VendedoresDashboard = () => {
     });
   };
   const SendIncidenceAlert = () => {
+    loaderFuncion(true)
     toast.warn("incidence sent!", {
       position: "top-center",
       autoClose: 3000,
@@ -134,7 +140,9 @@ const VendedoresDashboard = () => {
 
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    });
   };
 
   const funcionHorario = (horario) => {
@@ -201,12 +209,8 @@ const VendedoresDashboard = () => {
 
   return (
     <>
-
-
-      <Nav />
-      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
     {loader ? (
-        <div className=" z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
           <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit rounded-xl">
             {/* <h2 className="text-white text-[2rem]">Enviando Leads!</h2> */}
 
@@ -234,6 +238,10 @@ const VendedoresDashboard = () => {
           </div>
         </div>
       ) : null}
+
+
+      <Nav />
+      <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         {showCopiedMessage && (
           <p className="z-10 absolute top-5 w-52 text-[#fff] font-bold flex justify-center gap-5 items-center rounded-xl py-4  bg-[#238d5b] hover:bg-[#3f437a] cursor-pointer">
             Copiado!
@@ -292,6 +300,7 @@ const VendedoresDashboard = () => {
               className="flex justify-center items-center h-fit mb-6"
             >
               <InputRunner
+              loaderFuncion={loaderFuncion}
                 getLeadCheckedInactive5={getLeadCheckedInactive5}
                 body={body}
                 emailAddress={emailAddress}

@@ -19,6 +19,7 @@ export default function InputName({
   setLevel,
   freelancer,
   setFreelancer,
+  loaderFuncion,
 }) {
   const dispatch = useDispatch();
   const [checkFreelancer, setCheckFreelancer] = useState(false);
@@ -27,8 +28,11 @@ export default function InputName({
   const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
+    loaderFuncion(true)
     dispatch(getAllProfesion());
-    dispatch(getAllCountries());
+    dispatch(getAllCountries()).then(() => {
+      loaderFuncion(false)
+    });
   }, [dispatch]);
 
   const handleChangeProfesion = (event) => {
@@ -52,13 +56,19 @@ export default function InputName({
   };
 
   const handleFilterClick = () => {
+    loaderFuncion(true)
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    });;
   };
 
   const handleFilterReset = () => {
-    dispatch(getLeadCheckedInactive5(body, "", ""));
+    loaderFuncion(true)
+    dispatch(getLeadCheckedInactive5(body, "", "")).then(() => {
+      loaderFuncion(false)
+    });;
     setCountry("");
     setProfesion("");
     setLevel("");
