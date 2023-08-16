@@ -283,6 +283,7 @@ const VendedoresDashboard = () => {
                   className="mr-10 whitespace-nowrap w-fit"
                 >
                   <ModalAddLeadVendedor
+                  loaderFuncion={loaderFuncion}
                     email={emailAddress}
                     AddLeadError={AddLeadError}
                     AddLeads={AddLeads}
@@ -455,9 +456,10 @@ const VendedoresDashboard = () => {
                   </div>
                 </motion.div>
               ) : (
-                <div className="flex items-center justify-center w-full h-screen">
-                  <h1>No hay Leads disponibles</h1>
-                </div>
+                null
+                // <div className="flex items-center justify-center w-full h-screen">
+                //   <h1>No hay Leads disponibles</h1>
+                // </div>
               )}
             </>
           ) : (
