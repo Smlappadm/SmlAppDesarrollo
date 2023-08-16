@@ -33,30 +33,33 @@ export const LideresHistory = () => {
 
   useEffect(() => {
     loaderFuncion(true);
-    dispatch(getLeadChecked()).then(() => {});
+    dispatch(getLeadChecked()).then(() => {
+      loaderFuncion(false);
+    });
   }, [dispatch]);
 
-  useEffect(() => {
-    setData(leaderDashboard);
-    if (Object.keys(leaderDashboard).length > 0) {
-      loaderFuncion(false);
-    }
-  }, [leaderDashboard]);
+  // useEffect(() => {
+  //   setData(leaderDashboard);
+  //   if (Object.keys(leaderDashboard).length > 0) {
+  //   }
+  // }, [leaderDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [cardXPage, setCardXpage] = useState(8);
   const indexLastCard = currentPage * cardXPage;
   const indexFirstCard = indexLastCard - cardXPage;
-  const showData = data.filter((item) => {
-    return (
-      item.level !== "-" &&
-      item.status !== "" &&
-      item.corredor !== "" &&
-      item.corredor !== "-" &&
-      item.status !== "discard"
-    );
-  });
+  const showData =
+    leaderDashboard &&
+    leaderDashboard.filter((item) => {
+      return (
+        item.level !== "-" &&
+        item.status !== "" &&
+        item.corredor !== "" &&
+        item.corredor !== "-" &&
+        item.status !== "discard"
+      );
+    });
   const currentCard = showData.slice(indexFirstCard, indexLastCard);
   const pages = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -420,7 +423,7 @@ export const LideresHistory = () => {
             pageStyle={pageStyle}
             setPageStyle={setPageStyle}
             cardXPage={cardXPage}
-            data={showData}
+            leaderDashboard={showData}
             pages={pages}
             current={currentPage}
           />
