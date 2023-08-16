@@ -8,7 +8,7 @@ export default function PaginationOutlined({
   pageStyle,
   setPageStyle,
   cardXPage,
-  leaderDashboard,
+  data,
   pages,
   current,
 }) {
@@ -25,7 +25,7 @@ export default function PaginationOutlined({
     }
   }, [currentPage, current]);
 
-  for (let i = 1; i <= Math.ceil(leaderDashboard.length / cardXPage); i++) {
+  for (let i = 1; i <= Math.ceil(data.length / cardXPage); i++) {
     pageNumbers.push(i);
   }
 
