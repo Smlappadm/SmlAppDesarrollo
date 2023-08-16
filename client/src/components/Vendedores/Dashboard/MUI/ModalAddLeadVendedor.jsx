@@ -29,6 +29,7 @@ export default function ModalAddLeadVendedor({
   AddLeadError,
   AddLeads,
   AddLeadsIncomplete,
+  loaderFuncion,
 }) {
   const { vendedores, allCategory, allProfesion } = useSelector(
     (state) => state
@@ -205,6 +206,7 @@ export default function ModalAddLeadVendedor({
         AddLeadError();
       } else {
         try {
+          loaderFuncion(true)
           await axios.post("/lead/new", body);
           setValues({
             nombre: "",
@@ -219,7 +221,9 @@ export default function ModalAddLeadVendedor({
             instagram: "",
           });
           setOpen(false);
-          AddLeads();
+          AddLeads().then(() => {
+            loaderFuncion(false)
+          });
         } catch (error) {
           AddLeadError();
         }
