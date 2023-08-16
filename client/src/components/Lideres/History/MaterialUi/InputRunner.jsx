@@ -16,7 +16,7 @@ import {
 import { Checkbox } from "@mui/material";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 
-export default function InputName({ name }) {
+export default function InputName({ loaderFuncion }) {
   const dispatch = useDispatch();
   const [corredor, setCorredor] = useState("");
   const [vendedor, setVendedor] = useState("");
@@ -28,17 +28,12 @@ export default function InputName({ name }) {
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
   const [descargados, setDescargados] = useState(true);
-  const [loader, setLoader] = useState(false);
 
   const { allCorredores } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
   const { allCategory } = useSelector((state) => state);
   const { allCountries } = useSelector((state) => state);
   const { allVendedores } = useSelector((state) => state);
-
-  const loaderFuncion = (status) => {
-    setLoader(status);
-  };
 
   useEffect(() => {
     loaderFuncion(true);
