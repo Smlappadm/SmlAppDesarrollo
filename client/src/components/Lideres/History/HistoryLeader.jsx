@@ -23,7 +23,6 @@ import NavBar from "../NavBar/NavBar";
 export const LideresHistory = () => {
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
-  // const [loader, setLoader] = useState(false);
 
   const { leaderDashboard } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -35,10 +34,12 @@ export const LideresHistory = () => {
   useEffect(() => {
     loaderFuncion(true);
     dispatch(getLeadChecked()).then(() => {
-      setData(leaderDashboard);
       loaderFuncion(false);
     });
   }, [dispatch]);
+  useEffect(() => {
+    setData(leaderDashboard);
+  }, [leaderDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
