@@ -28,6 +28,7 @@ export default function InputName({ name }) {
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
   const [descargados, setDescargados] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   const { allCorredores } = useSelector((state) => state);
   const { allProfesion } = useSelector((state) => state);
@@ -35,12 +36,19 @@ export default function InputName({ name }) {
   const { allCountries } = useSelector((state) => state);
   const { allVendedores } = useSelector((state) => state);
 
+  const loaderFuncion = (status) => {
+    setLoader(status);
+  };
+
   useEffect(() => {
+    loaderFuncion(true);
     dispatch(getCorredor());
     dispatch(getVendedor());
     dispatch(getAllProfesion());
     dispatch(getAllCategory());
-    dispatch(getAllCountries());
+    dispatch(getAllCountries()).then(() => {
+      loaderFuncion(false);
+    });
   }, [dispatch]);
 
   const handleChangeCorredor = (event) => {
@@ -90,6 +98,7 @@ export default function InputName({ name }) {
   };
 
   const handleFilterClick = () => {
+    loaderFuncion(true);
     dispatch(
       findCorredoresByNameAllInfo(
         corredor,
@@ -103,7 +112,9 @@ export default function InputName({ name }) {
         status,
         descargados
       )
-    );
+    ).then(() => {
+      loaderFuncion(false);
+    });
   };
 
   const handleFilterReset = () => {
