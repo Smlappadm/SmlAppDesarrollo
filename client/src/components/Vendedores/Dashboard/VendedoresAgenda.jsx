@@ -43,6 +43,12 @@ const VendedoresAgenda = () => {
   // const body = { name: fullName, email: emailAddress };
   const body = { email: emailAddress };
 
+
+  const [loader, setLoader] = useState(false);
+  const loaderFuncion = (status) => {
+    setLoader(status);
+  };
+
   useEffect(() => {
     dispatch(
       getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
