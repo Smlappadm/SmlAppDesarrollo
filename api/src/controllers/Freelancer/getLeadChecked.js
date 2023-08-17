@@ -4,6 +4,10 @@ const Lead = require("../../models/Lead");
 // Función asincrónica para obtener leads verificados según ciertos criterios
 const getLeadChecked = async (body) => {
   // Declaración de variables para almacenar los leads encontrados por nivel
+
+  const dateVendedor = new Date();
+  const formattedTimeVendedor = dateVendedor.toISOString();
+
   let leadRest = [];
   let leadRestNivel2 = [];
   let leadRestNivel1 = [];
