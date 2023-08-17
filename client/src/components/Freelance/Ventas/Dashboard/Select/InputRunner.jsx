@@ -118,7 +118,7 @@ export default function InputName({
               },
             }}
           >
-            <MenuItem value="">Profesión</MenuItem>
+            {/* <MenuItem value="">Profesión</MenuItem> */}
             {allProfesionFreelance.map((profesion, index) => (
               <MenuItem key={index} value={profesion}>
                 {profesion}
