@@ -33,16 +33,14 @@ export const LideresHistory = () => {
 
   useEffect(() => {
     loaderFuncion(true);
-    dispatch(getLeadChecked()).then(() => {
-      loaderFuncion(false);
-    });
+    dispatch(getLeadChecked()).then(() => {});
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   setData(leaderDashboard);
-  //   if (Object.keys(leaderDashboard).length > 0) {
-  //   }
-  // }, [leaderDashboard]);
+  useEffect(() => {
+    if (Object.keys(leaderDashboard).length > 0) {
+      loaderFuncion(false);
+    }
+  }, [leaderDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
