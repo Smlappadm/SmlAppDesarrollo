@@ -5,6 +5,20 @@ const Lead = require("../../models/Lead");
 const getLeadChecked = async (body) => {
   // Declaración de variables para almacenar los leads encontrados por nivel
 
+  await Lead.updateMany(
+    { vendedor: body.email, status: "Sin contactar" },
+    {
+      $set: {
+        status_op: "",
+        llamados: 0,
+        checked: true,
+        view: true,
+        deleted: false,
+        updateVendedor: "",
+      },
+    }
+  );
+
   const dateVendedor = new Date();
   const formattedTimeVendedor = dateVendedor.toISOString();
 
@@ -178,7 +192,19 @@ const getLeadChecked = async (body) => {
   //   status: "No responde",
   //   level: { $nin: ["incidencia", "", "-"] },
   // });
-
+  if (leadRest.length > 0) {
+    const updates = leadRest.map((element) => ({
+      updateOne: {
+        filter: { _id: element._id },
+        update: {
+          vendedor: body.email,
+          vendedor_name: body.name,
+          updateVendedor: formattedTimeVendedor,
+        },
+      },
+    }));
+    await Lead.bulkWrite(updates);
+  }
   // Ordenación de los leads que no respondieron por fecha de actualización
   // const leadsNoRespondenSorted = leadChequedInactiveNoResponde.sort((a, b) => {
   //   // ...
