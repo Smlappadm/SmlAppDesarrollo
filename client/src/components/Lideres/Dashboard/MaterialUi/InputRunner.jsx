@@ -42,9 +42,7 @@ export default function InputName({ setCurrentPage, loaderFuncion }) {
     dispatch(getFreelancers());
     dispatch(getAllProfesion());
     dispatch(getAllCategory());
-    dispatch(getAllCountries()).then(() => {
-      loaderFuncion(false);
-    });
+    dispatch(getAllCountries());
   }, [dispatch]);
 
   const handleChangeCorredor = (event) => {
