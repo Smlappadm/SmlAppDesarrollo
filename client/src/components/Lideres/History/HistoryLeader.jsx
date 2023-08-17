@@ -170,12 +170,12 @@ export const LideresHistory = () => {
                 <Text className="text-center w-6 p-0 text-white">Tel</Text>
               </div>
               <div className="flex justify-center  items-center p-0">
-                <Text className="pr-0 text-center w-14 text-white">
+                <Text className="pr-0 text-center w-fit text-white">
                   Fecha Corredor
                 </Text>
               </div>
               <div className="flex justify-center items-center p-0">
-                <Text className="pr-0 text-center w-14 text-white">
+                <Text className="pr-0 text-center w-fit text-white">
                   Fecha Vendedor
                 </Text>
               </div>

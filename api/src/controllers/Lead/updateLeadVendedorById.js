@@ -157,6 +157,8 @@ const updateLeadVendedorById = async (id, updatedData) => {
   }
   
   // Actualizamos el lead en la base de datos
+  updatedData.dataLead.descargadosLeader = false;
+
   const leadUpdate = await Lead.findByIdAndUpdate(id, updatedData.dataLead, {
     new: true,
   });
