@@ -11,6 +11,7 @@ import {
   getAllCountries,
   getAllProfesion,
   getCorredor,
+  getLeadChecked,
   getVendedor,
 } from "../../../../redux/actions";
 import { Checkbox } from "@mui/material";
@@ -122,6 +123,10 @@ export default function InputName({ loaderFuncion }) {
     setCountry("");
     setLevel("");
     setStatus("");
+
+    dispatch(getLeadChecked()).then(() => {
+      loaderFuncion(false);
+    });
   };
 
   return (
