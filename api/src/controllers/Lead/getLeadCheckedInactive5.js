@@ -16,6 +16,7 @@ const getLeadCheckedInactive5 = async (body) => {
         checked: true,
         view: true,
         deleted: false,
+        updateVendedor: "",
       },
     }
   );
@@ -43,6 +44,10 @@ const getLeadCheckedInactive5 = async (body) => {
   //     return 0;
   //   }
   // });
+  
+  const dateVendedor = new Date();
+  const formattedTimeVendedor = dateVendedor.toISOString();
+
 
   let leadRest = [];
   let leadRestNivel2 = [];
@@ -151,6 +156,7 @@ const getLeadCheckedInactive5 = async (body) => {
         update: {
           vendedor: body.email,
           vendedor_name: body.name,
+          updateVendedor: formattedTimeVendedor,
         },
       },
     }));
