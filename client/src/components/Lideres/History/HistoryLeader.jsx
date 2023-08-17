@@ -33,7 +33,7 @@ export const LideresHistory = () => {
 
   useEffect(() => {
     loaderFuncion(true);
-    dispatch(getLeadChecked()).then(() => {});
+    dispatch(getLeadChecked());
   }, [dispatch]);
 
   useEffect(() => {
