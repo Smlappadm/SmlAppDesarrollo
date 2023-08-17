@@ -42,9 +42,7 @@ export default function InputName({ loaderFuncion }) {
     dispatch(getVendedor());
     dispatch(getAllProfesion());
     dispatch(getAllCategory());
-    dispatch(getAllCountries()).then(() => {
-      loaderFuncion(false);
-    });
+    dispatch(getAllCountries());
   }, [dispatch]);
 
   const handleChangeCorredor = (event) => {
