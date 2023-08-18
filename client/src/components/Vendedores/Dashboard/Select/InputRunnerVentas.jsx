@@ -23,6 +23,7 @@ export default function InputName({
   setFreelancer,
   onChangeName,
   filterName,
+  loaderFuncion,
 }) {
   const dispatch = useDispatch();
 
@@ -32,8 +33,11 @@ export default function InputName({
   const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
+    loaderFuncion(true);
     dispatch(getAllProfesion());
-    dispatch(getAllCountries());
+    dispatch(getAllCountries()).then(() => {
+      loaderFuncion(false);
+    });
   }, [dispatch]);
 
   const handleChangeProfesion = (event) => {
@@ -61,6 +65,7 @@ export default function InputName({
   };
 
   const handleFilterClick = () => {
+    loaderFuncion(true);
     dispatch(
       getLeadCheckedInactive5(
         body,
@@ -70,17 +75,22 @@ export default function InputName({
         level,
         freelancer
       )
-    );
+    ).then(() => {
+      loaderFuncion(false);
+    });
   };
 
   const handleFilterReset = () => {
-    dispatch(getLeadCheckedInactive5(body, "", "", "", "", ""));
+    loaderFuncion(true);
     setCountry("");
     setProfesion("");
     setLevel("");
     setStatus("");
     setFreelancer("");
     setCheckFreelancer(false);
+    dispatch(getLeadCheckedInactive5(body, "", "", "", "", "")).then(() => {
+      loaderFuncion(false);
+    });
   };
 
   return (
@@ -107,16 +117,16 @@ export default function InputName({
       }}
     >
       <div className="flex gap-5">
-      {/* <div className=" flex justify-center items-center w-80"> */}
-      <div className="flex flex-col w-52 mr-5">
-        <label>Nombre:</label>
-                  <input
-                    onChange={onChangeName}
-                    value={filterName}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Nombre"
-                  />
-                </div>
+        {/* <div className=" flex justify-center items-center w-80"> */}
+        <div className="flex flex-col w-52 mr-5">
+          <label>Nombre:</label>
+          <input
+            onChange={onChangeName}
+            value={filterName}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md  focus:ring-blue-500 focus:border-blue-500 block w-56 h-10 p-1 dark:bg-[#222131] dark:border-[#fafafa] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Nombre"
+          />
+        </div>
         <div className="flex flex-col w-28">
           <label>Profesión:</label>
           <Select
@@ -244,7 +254,6 @@ export default function InputName({
               },
             }}
           >
-
             <MenuItem value="Contactado">Contactado</MenuItem>
             <MenuItem value="Agenda llamada">Agenda llamada</MenuItem>
             <MenuItem value="En proceso">En proceso</MenuItem>
