@@ -48,6 +48,10 @@ const VentasHistory = () => {
   const [level, setLevel] = useState("");
   const [status, setStatus] = useState("");
 
+  const [loader, setLoader] = useState(true);
+  const loaderFuncion = (status) => {
+    setLoader(status);
+  };
   //copia para ver que onda
   localStorage.setItem("email", email);
   let emailAddress = localStorage.getItem("email");
@@ -80,6 +84,21 @@ const VentasHistory = () => {
   };
 
   const SendIncidenceAlert = () => {
+    loaderFuncion(true);
+    dispatch(
+      findVendedoresByNameAllInfo(
+        email,
+        fromDay,
+        toDay,
+        profesion,
+        country,
+        category,
+        level,
+        status
+      )
+    ).then(() => {
+      loaderFuncion(false);
+    });
     toast.warn("incidence sent!", {
       position: "top-center",
       autoClose: 3000,
@@ -90,20 +109,9 @@ const VentasHistory = () => {
       progress: undefined,
       theme: "dark",
     });
-    dispatch(
-      findVendedoresByNameAllInfo(
-        email,
-        fromDay,
-        toDay,
-        profesion,
-        country,
-        category,
-        level,
-        status
-      )
-    );
   };
   const cancelModal = () => {
+        loaderFuncion(true);
     dispatch(
       findVendedoresByNameAllInfo(
         email,
@@ -115,11 +123,14 @@ const VentasHistory = () => {
         level,
         status
       )
-    );
+    ).then(() => {
+      loaderFuncion(false);
+    });
   };
   //----------------------------------
 
   useEffect(() => {
+            loaderFuncion(true)
     dispatch(
       getVendedorAllLeads(
         email,
@@ -131,7 +142,9 @@ const VentasHistory = () => {
         level,
         status
       )
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    });
   }, [dispatch, email]);
   useEffect(() => {
     vendedorAllLeadsHistory && setData(vendedorAllLeadsHistory);
@@ -162,7 +175,6 @@ const VentasHistory = () => {
 
   const onChangeLevel = (value) => {
     setLevelValue(value);
-
     dispatch(filterLevel(value));
     setData(vendedorAllLeadsHistory);
     setCurrentPage(1);
@@ -189,6 +201,7 @@ const VentasHistory = () => {
     setData(leadsFilteredName);
 
     if (event.target.value === "") {
+           loaderFuncion(true)
       dispatch(
         getVendedorAllLeads(
           email,
@@ -200,7 +213,9 @@ const VentasHistory = () => {
           level,
           status
         )
-      );
+      ).then(() => {
+      loaderFuncion(false)
+    });
     }
   };
 
@@ -222,7 +237,10 @@ const VentasHistory = () => {
 
     setData(leadsFilteredSector);
     if (event.target.value === "") {
-      dispatch(getVendedorAllLeads(email));
+                 loaderFuncion(true)
+      dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
     }
   };
   const onChangePais = (event) => {
@@ -243,7 +261,10 @@ const VentasHistory = () => {
 
     setData(leadsFilteredPais);
     if (event.target.value === "") {
-      dispatch(getVendedorAllLeads(email));
+                 loaderFuncion(true)
+      dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
     }
   };
 
@@ -257,8 +278,11 @@ const VentasHistory = () => {
 
     setData(leadsFilteredStatus);
     if (value === "s") {
+       loaderFuncion(true)
       setOpenFilterStatus(false);
-      dispatch(getVendedorAllLeads(email));
+      dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
     }
   };
 
@@ -274,11 +298,15 @@ const VentasHistory = () => {
   };
 
   const updateLeads = () => {
-    dispatch(getVendedorAllLeads(email));
+     loaderFuncion(true)
+    dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
     setData(vendedorAllLeadsHistory);
   };
 
   const handlerOpenFilterName = () => {
+      loaderFuncion(true)
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterSector(false);
     setOpenFilterPais(false);
@@ -286,9 +314,12 @@ const VentasHistory = () => {
     setOpenFilterName(!openFilterName);
     setFilterSector("");
     setFilterPais("");
-    dispatch(getVendedorAllLeads(email));
+    dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
   };
   const handlerOpenFilterSector = () => {
+      loaderFuncion(true)
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterPais(false);
@@ -296,9 +327,12 @@ const VentasHistory = () => {
     setOpenFilterSector(!openFilterSector);
     setFilterName("");
     setFilterPais("");
-    dispatch(getVendedorAllLeads(email));
+    dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
   };
   const handlerOpenFilterPais = () => {
+      loaderFuncion(true)
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterSector(false);
@@ -306,9 +340,12 @@ const VentasHistory = () => {
     setOpenFilterPais(!openFilterPais);
     setFilterName("");
     setFilterSector("");
-    dispatch(getVendedorAllLeads(email));
+    dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
   };
   const handlerOpenStatus = () => {
+      loaderFuncion(true)
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterSector(false);
@@ -317,11 +354,42 @@ const VentasHistory = () => {
     setFilterName("");
     setFilterSector("");
     setOpenFilterStatus(!openFilterStatus);
-    dispatch(getVendedorAllLeads(email));
+    dispatch(getVendedorAllLeads(email)).then(() => {
+      loaderFuncion(false)
+    });
   };
 
   return (
     <>
+      {loader ? (
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+          <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit rounded-xl">
+            {/* <h2 className="text-white text-[2rem]">Enviando Leads!</h2> */}
+
+            <div className="flex flex-col gap-2 p-2">
+              {/* {promisesNames &&
+                promisesNames.map((item) => {
+                  return (
+                    <h2 key={item._id} className="text-white m-1">
+                      {item}
+                    </h2>
+                  );
+                })} */}
+            </div>
+
+            <div className="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <Nav />
 
       <div className="flex flex-col justify-between items-center w-screen  z-0">
@@ -433,6 +501,7 @@ const VentasHistory = () => {
             className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
           >
             <InputRunner
+                     loaderFuncion={loaderFuncion}
               onChangeName={onChangeName}
               filterName={filterName}
               getVendedorAllLeads={getVendedorAllLeads}

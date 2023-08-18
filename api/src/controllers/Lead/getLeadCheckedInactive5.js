@@ -60,6 +60,7 @@ const getLeadCheckedInactive5 = async (body) => {
       checked: true,
       status: "Sin contactar",
       level: "2",
+      freelancer: false,
     };
     if (body.country) {
       leadQuery["country"] = body.country;
@@ -77,6 +78,7 @@ const getLeadCheckedInactive5 = async (body) => {
       checked: true,
       status: "Sin contactar",
       level: "1",
+      freelancer: false,
     };
     if (body.country) {
       leadQuery["country"] = body.country;
@@ -94,6 +96,7 @@ const getLeadCheckedInactive5 = async (body) => {
       checked: true,
       status: "Sin contactar",
       level: { $nin: ["incidencia", "0", "", "-"] },
+      freelancer: false,
     };
     if (body.country) {
       leadQuery["country"] = body.country;
@@ -110,6 +113,7 @@ const getLeadCheckedInactive5 = async (body) => {
       checked: true,
       status: "Sin contactar",
       level: { $nin: ["incidencia", "0", "", "-", "1"] },
+      freelancer: false,
     };
     if (body.country) {
       leadQuery["country"] = body.country;
@@ -126,6 +130,7 @@ const getLeadCheckedInactive5 = async (body) => {
       checked: true,
       status: "Sin contactar",
       level: { $nin: ["incidencia", "0", "", "-", "2"] },
+      freelancer: false,
     };
     if (body.country) {
       leadQuery["country"] = body.country;

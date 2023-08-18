@@ -61,19 +61,19 @@ export default function InputName({
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
     ).then(() => {
       loaderFuncion(false)
-    });;
+    });
   };
 
   const handleFilterReset = () => {
     loaderFuncion(true)
-    dispatch(getLeadCheckedInactive5(body, "", "")).then(() => {
-      loaderFuncion(false)
-    });;
     setCountry("");
     setProfesion("");
     setLevel("");
     setFreelancer("");
     setCheckFreelancer(false);
+    dispatch(getLeadCheckedInactive5(body, "", "")).then(() => {
+      loaderFuncion(false)
+    });
   };
 
   return (
