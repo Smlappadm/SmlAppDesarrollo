@@ -61,7 +61,7 @@ export default function InputName({
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
     ).then(() => {
       loaderFuncion(false)
-    });;
+    });
   };
 
   const handleFilterReset = () => {
