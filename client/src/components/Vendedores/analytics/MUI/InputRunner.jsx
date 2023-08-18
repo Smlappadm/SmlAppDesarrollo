@@ -32,6 +32,7 @@ export default function InputRunner({
   setStatus,
   onChangeName,
   filterName,
+  loaderFuncion,
 }) {
   const dispatch = useDispatch();
 
@@ -46,9 +47,12 @@ export default function InputRunner({
   const { allCountries } = useSelector((state) => state);
 
   useEffect(() => {
+    loaderFuncion(true);
     dispatch(getAllProfesion());
     dispatch(getAllCategory());
-    dispatch(getAllCountries());
+    dispatch(getAllCountries()).then(() => {
+      loaderFuncion(false);
+    });
   }, [dispatch]);
 
   const handleFromDay = (event) => {
@@ -84,6 +88,7 @@ export default function InputRunner({
   };
 
   const handleFilterClick = () => {
+    loaderFuncion(true);
     dispatch(
       findVendedoresByNameAllInfo(
         email,
@@ -95,10 +100,13 @@ export default function InputRunner({
         level,
         status
       )
-    );
+    ).then(() => {
+      loaderFuncion(false);
+    });
   };
 
   const handleFilterReset = () => {
+    loaderFuncion(true);
     setFromDay("");
     setToDay("");
     setProfesion("");
@@ -106,7 +114,9 @@ export default function InputRunner({
     setCountry("");
     setLevel("");
     setStatus("");
-    dispatch(getVendedorAllLeads(emailUser, "", "", "", "", "", "", ""));
+    dispatch(getVendedorAllLeads(emailUser, "", "", "", "", "", "", "")).then(() => {
+      loaderFuncion(false);
+    });
   };
 
   return (
