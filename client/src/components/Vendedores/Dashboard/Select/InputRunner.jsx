@@ -66,14 +66,14 @@ export default function InputName({
 
   const handleFilterReset = () => {
     loaderFuncion(true)
-    dispatch(getLeadCheckedInactive5(body, "", "")).then(() => {
-      loaderFuncion(false)
-    });;
     setCountry("");
     setProfesion("");
     setLevel("");
     setFreelancer("");
     setCheckFreelancer(false);
+    dispatch(getLeadCheckedInactive5(body, "", "")).then(() => {
+      loaderFuncion(false)
+    });
   };
 
   return (
