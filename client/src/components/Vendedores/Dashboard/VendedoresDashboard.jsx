@@ -37,7 +37,7 @@ const VendedoresDashboard = () => {
   const [level, setLevel] = useState("");
   const [freelancer, setFreelancer] = useState("");
 
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   const loaderFuncion = (status) => {
     setLoader(status);
   };
@@ -61,7 +61,7 @@ const VendedoresDashboard = () => {
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
-    setData(vendedoresDashboard);
+    setData(vendedoresDashboard)
   }, [vendedoresDashboard]);
 
   const [pageStyle, setPageStyle] = useState(1);
@@ -76,6 +76,7 @@ const VendedoresDashboard = () => {
   };
 
   const cancelModal = () => {
+    loaderFuncion(true)
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
     ).then(() => {
@@ -97,21 +98,21 @@ const VendedoresDashboard = () => {
 
   const SendLeadAlert = () => {
     loaderFuncion(true)
-    toast.success("✔ Cliente Actualizado!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
-    ).then(() => {
-      loaderFuncion(false)
-    });
+      ).then(() => {
+        loaderFuncion(false)
+      });
+      toast.success("✔ Cliente Actualizado!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -127,22 +128,21 @@ const VendedoresDashboard = () => {
   };
   const SendIncidenceAlert = () => {
     loaderFuncion(true)
-    toast.warn("incidence sent!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-
     dispatch(
       getLeadCheckedInactive5(body, profesion, country, level, freelancer)
-    ).then(() => {
-      loaderFuncion(false)
-    });
+      ).then(() => {
+        loaderFuncion(false)
+      });
+      toast.warn("incidence sent!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
   };
 
   const funcionHorario = (horario) => {
