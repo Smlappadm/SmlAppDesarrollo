@@ -131,7 +131,9 @@ const VendedoresAgenda = () => {
     loaderFuncion(true)
     dispatch(
       getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
-      );
+      ).then(() => {
+        loaderFuncion(false)
+      })
       toast.success("✔ Cliente Actualizado!", {
         position: "top-center",
         autoClose: 3000,
@@ -335,6 +337,7 @@ const VendedoresAgenda = () => {
               className="flex gap-5 justify-center items-center"
             >
               <InputRunner
+              loaderFuncion={loaderFuncion}
               filterName={filterName}
               onChangeName={onChangeName}
                 getLeadCheckedInactive5={getLeadsLLamadaVenta}
