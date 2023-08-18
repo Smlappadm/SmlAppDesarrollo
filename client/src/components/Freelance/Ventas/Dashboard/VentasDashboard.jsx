@@ -77,6 +77,7 @@ const VentasDashboard = () => {
   };
 
   const cancelModal = () => {
+    loaderFuncion(true);
     dispatch(
       getLeadCheckedFreelance(body, profesion, country, level, freelancer)
     ).then(() => {
@@ -98,21 +99,22 @@ const VentasDashboard = () => {
   };
 
   const SendLeadAlert = () => {
-    toast.success("✔ Cliente Actualizado!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    loaderFuncion(true);
     dispatch(
       getLeadCheckedFreelance(body, profesion, country, level, freelancer)
-    ).then(() => {
-      loaderFuncion(false);
-    });
+      ).then(() => {
+        loaderFuncion(false);
+      });
+      toast.success("✔ Cliente Actualizado!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
   };
   const SendErrorUpdateAlert = () => {
     toast.error("The lead could not be updated!", {
@@ -127,22 +129,22 @@ const VentasDashboard = () => {
     });
   };
   const SendIncidenceAlert = () => {
-    toast.warn("incidence sent!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-
+    loaderFuncion(true);
     dispatch(
       getLeadCheckedFreelance(body, profesion, country, level, freelancer)
-    ).then(() => {
-      loaderFuncion(false);
-    });
+      ).then(() => {
+        loaderFuncion(false);
+      });
+      toast.warn("incidence sent!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
   };
 
   const funcionHorario = (horario) => {
@@ -199,6 +201,7 @@ const VentasDashboard = () => {
           </div>
         </div>
       ) : null}
+      
       <Nav />
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
         <div className="w-full flex flex-col justify-center items-center">
