@@ -43,16 +43,18 @@ const VendedoresAgenda = () => {
   // const body = { name: fullName, email: emailAddress };
   const body = { email: emailAddress };
 
-
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   const loaderFuncion = (status) => {
     setLoader(status);
   };
 
   useEffect(() => {
+    loaderFuncion(true)
     dispatch(
       getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    });
   }, [dispatch, emailAddress]);
 
   useEffect(() => {
@@ -70,9 +72,12 @@ const VendedoresAgenda = () => {
   };
 
   const cancelModal = () => {
+    loaderFuncion(true)
     dispatch(
       getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
-    );
+    ).then(() => {
+      loaderFuncion(false)
+    })
   };
 
   //FILTER**********************
@@ -123,19 +128,20 @@ const VendedoresAgenda = () => {
   };
 
   const SendLeadAlert = () => {
-    toast.success("✔ Cliente Actualizado!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    loaderFuncion(true)
     dispatch(
       getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
-    );
+      );
+      toast.success("✔ Cliente Actualizado!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     pages(1);
   };
   const SendErrorUpdateAlert = () => {
@@ -151,19 +157,22 @@ const VendedoresAgenda = () => {
     });
   };
   const SendIncidenceAlert = () => {
-    toast.warn("incidence sent!", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+    loaderFuncion(true)
     dispatch(
       getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer)
-    );
+      ).then(() => {
+        loaderFuncion(false)
+      });
+      toast.warn("incidence sent!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
   };
 
   const showObservacionesHandler = (observacion) => {
@@ -215,12 +224,44 @@ const VendedoresAgenda = () => {
     setData(leadsFilteredName);
 
     if (event.target.value === "") {
-      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer);
+      loaderFuncion(true)
+      getLeadsLLamadaVenta(body, profesion, country, status, level, freelancer).then(() => {
+        loaderFuncion(false)
+      });
     }
   };
 
   return (
     <>
+      {loader ? (
+        <div className="absolute z-50 h-screen w-screen bg-black opacity-95 pb-10 flex justify-center items-center">
+          <div className="flex flex-col gap-5 items-center justify-center w-[30rem] p-5 h-fit rounded-xl">
+            {/* <h2 className="text-white text-[2rem]">Enviando Leads!</h2> */}
+
+            <div className="flex flex-col gap-2 p-2">
+              {/* {promisesNames &&
+                promisesNames.map((item) => {
+                  return (
+                    <h2 key={item._id} className="text-white m-1">
+                      {item}
+                    </h2>
+                  );
+                })} */}
+            </div>
+
+            <div className="lds-roller">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <Nav />
 
       <div className="relative flex flex-col justify-between items-center w-screen  z-0">
