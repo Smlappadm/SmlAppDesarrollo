@@ -228,6 +228,10 @@ const LeadSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
+    url_linkedin: {
+      type: String,
+      require: true,
+    },
     updateCorredor: {
       type: Date,
       require: true,
