@@ -1,28 +1,45 @@
-// const Lead = require("../../models/Lead");
+const Lead = require("../../models/Lead");
 
-// const limpiezaBaseFunction = async () => {
-//   const leadResult = await Lead.updateMany(
-//     {corredor: "akosjev@gmail.com"},
-//     {
-//       $set: {
-//         status: "Sin contactar",
-//         status_op: "",
-//         llamados: 0,
-//         vendedor: "",
-//         vendedor_name: "",
-//         corredor: "",
-//         corredor_name: "",
-//         checked: false,
-//         freelancer: false,
-//         view: false,
-//         deleted: false,
-//       },
-//     }
-//   );
-//   return leadResult;
-// };
+const limpiezaBaseFunction = async () => {
+  const leadResult = await Lead.updateMany(
+    { corredor: "d.cabrera@socialmedialab.es" },
+    {
+      $set: {
+        vendedor: "d.cabrera@socialmedialab.es",
+        vendedor_name: "Daniel Cabrera",
+        corredor: "d.cabrera@socialmedialab.es",
+        corredor_name: "Daniel Cabrera",
+        status: "Sin contactar",
+        status_op: "",
+        llamados: 0,
+        checked: false,
+        freelancer: false,
+        view: false,
+        deleted: false,
+        observaciones_ventas: [],
+        linkActivado: false,
+        emailApp: "",
+        level: "",
+        linkPago: false,
+        edicion: false,
+        updateContratado: "",
+        updateCorredor: "",
+        updateVendedor: "",
+        updateSinContactar: "",
+        updateRechazado: "",
+        updateNoResponde: "",
+        updateContactado: "",
+        updateAPagar: "",
+        updateSegundoLlamado: "",
+        updateIncidencia: "",
+        updateEnProceso: "",
+      },
+    }
+  );
+  return leadResult;
+};
 
-// module.exports = limpiezaBaseFunction;
+module.exports = limpiezaBaseFunction;
 
 // const Lead = require("../../models/Lead");
 
@@ -107,43 +124,43 @@
 
 // module.exports = limpiezaBaseFunction;
 
-const Lead = require("../../models/Lead");
+// const Lead = require("../../models/Lead");
 
-const limpiezaBaseFunction = async () => {
-  const leadResult = await Lead.updateMany({
-    $set: {
-      status: "Sin contactar",
-      status_op: "",
-      llamados: 0,
-      vendedor: "",
-      vendedor_name: "",
-      corredor: "",
-      corredor_name: "",
-      checked: false,
-      freelancer: false,
-      view: false,
-      deleted: false,
-      observaciones_ventas: [],
-      linkActivado: false,
-      emailApp: "",
-      level: "",
-      linkPago: false,
-      edicion: false,
-      updateContratado: "",
-      updateCorredor: "",
-      updateVendedor: "",
-      updateSinContactar: "",
-      updateRechazado: "",
-      updateNoResponde: "",
-      updateContactado: "",
-      updateAPagar: "",
-      updateSegundoLlamado: "",
-      updateIncidencia: "",
-      updateEnProceso: "",
-    },
-  });
+// const limpiezaBaseFunction = async () => {
+//   const leadResult = await Lead.updateMany({
+//     $set: {
+//       status: "Sin contactar",
+//       status_op: "",
+//       llamados: 0,
+//       vendedor: "",
+//       vendedor_name: "",
+//       corredor: "",
+//       corredor_name: "",
+//       checked: false,
+//       freelancer: false,
+//       view: false,
+//       deleted: false,
+//       observaciones_ventas: [],
+//       linkActivado: false,
+//       emailApp: "",
+//       level: "",
+//       linkPago: false,
+//       edicion: false,
+//       updateContratado: "",
+//       updateCorredor: "",
+//       updateVendedor: "",
+//       updateSinContactar: "",
+//       updateRechazado: "",
+//       updateNoResponde: "",
+//       updateContactado: "",
+//       updateAPagar: "",
+//       updateSegundoLlamado: "",
+//       updateIncidencia: "",
+//       updateEnProceso: "",
+//     },
+//   });
 
-  return leadResult;
-};
+//   return leadResult;
+// };
 
-module.exports = limpiezaBaseFunction;
+// module.exports = limpiezaBaseFunction;
