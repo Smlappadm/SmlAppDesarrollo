@@ -111,7 +111,7 @@ const VentasHistory = () => {
     });
   };
   const cancelModal = () => {
-        loaderFuncion(true);
+    loaderFuncion(true);
     dispatch(
       findVendedoresByNameAllInfo(
         email,
@@ -130,7 +130,7 @@ const VentasHistory = () => {
   //----------------------------------
 
   useEffect(() => {
-            loaderFuncion(true)
+    loaderFuncion(true);
     dispatch(
       getVendedorAllLeads(
         email,
@@ -143,7 +143,7 @@ const VentasHistory = () => {
         status
       )
     ).then(() => {
-      loaderFuncion(false)
+      loaderFuncion(false);
     });
   }, [dispatch, email]);
   useEffect(() => {
@@ -201,7 +201,7 @@ const VentasHistory = () => {
     setData(leadsFilteredName);
 
     if (event.target.value === "") {
-           loaderFuncion(true)
+      loaderFuncion(true);
       dispatch(
         getVendedorAllLeads(
           email,
@@ -214,8 +214,8 @@ const VentasHistory = () => {
           status
         )
       ).then(() => {
-      loaderFuncion(false)
-    });
+        loaderFuncion(false);
+      });
     }
   };
 
@@ -237,12 +237,14 @@ const VentasHistory = () => {
 
     setData(leadsFilteredSector);
     if (event.target.value === "") {
-                 loaderFuncion(true)
+      loaderFuncion(true);
       dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
-    });
+        loaderFuncion(false);
+      });
     }
   };
+
+  
   const onChangePais = (event) => {
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setFilterPais(event.target.value);
@@ -261,10 +263,10 @@ const VentasHistory = () => {
 
     setData(leadsFilteredPais);
     if (event.target.value === "") {
-                 loaderFuncion(true)
+      loaderFuncion(true);
       dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
-    });
+        loaderFuncion(false);
+      });
     }
   };
 
@@ -278,11 +280,11 @@ const VentasHistory = () => {
 
     setData(leadsFilteredStatus);
     if (value === "s") {
-       loaderFuncion(true)
+      loaderFuncion(true);
       setOpenFilterStatus(false);
       dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
-    });
+        loaderFuncion(false);
+      });
     }
   };
 
@@ -298,15 +300,15 @@ const VentasHistory = () => {
   };
 
   const updateLeads = () => {
-     loaderFuncion(true)
+    loaderFuncion(true);
     dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
+      loaderFuncion(false);
     });
     setData(vendedorAllLeadsHistory);
   };
 
   const handlerOpenFilterName = () => {
-      loaderFuncion(true)
+    loaderFuncion(true);
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterSector(false);
     setOpenFilterPais(false);
@@ -315,11 +317,11 @@ const VentasHistory = () => {
     setFilterSector("");
     setFilterPais("");
     dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
+      loaderFuncion(false);
     });
   };
   const handlerOpenFilterSector = () => {
-      loaderFuncion(true)
+    loaderFuncion(true);
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterPais(false);
@@ -328,11 +330,11 @@ const VentasHistory = () => {
     setFilterName("");
     setFilterPais("");
     dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
+      loaderFuncion(false);
     });
   };
   const handlerOpenFilterPais = () => {
-      loaderFuncion(true)
+    loaderFuncion(true);
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterSector(false);
@@ -341,11 +343,11 @@ const VentasHistory = () => {
     setFilterName("");
     setFilterSector("");
     dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
+      loaderFuncion(false);
     });
   };
   const handlerOpenStatus = () => {
-      loaderFuncion(true)
+    loaderFuncion(true);
     setFilters({ level: false, runner: false, sellers: false, status: false });
     setOpenFilterName(false);
     setOpenFilterSector(false);
@@ -355,7 +357,7 @@ const VentasHistory = () => {
     setFilterSector("");
     setOpenFilterStatus(!openFilterStatus);
     dispatch(getVendedorAllLeads(email)).then(() => {
-      loaderFuncion(false)
+      loaderFuncion(false);
     });
   };
 
@@ -501,7 +503,7 @@ const VentasHistory = () => {
             className="flex gap-5 justify-center items-center ml-16 mt-2 mb-5"
           >
             <InputRunner
-                     loaderFuncion={loaderFuncion}
+              loaderFuncion={loaderFuncion}
               onChangeName={onChangeName}
               filterName={filterName}
               getVendedorAllLeads={getVendedorAllLeads}
